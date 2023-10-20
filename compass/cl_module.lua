@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------------------------------
-local CompassActive = CreateClientConVar("nut_compass", 1, true, true)
+local CompassActive = CreateClientConVar("lia_compass", 1, true, true)
 --------------------------------------------------------------------------------------------------------
 function MODULE:HUDPaint()
 	local scrW, scrH = ScrW(), ScrH()
@@ -22,7 +22,7 @@ function MODULE:HUDPaint()
 		finalText = (self.compassText[y] and self.compassText[y] .. finalText) or " " .. finalText
 	end
 
-	draw.DrawText(finalText, "nutMediumFont", x, y, color_white)
+	draw.DrawText(finalText, "liaMediumFont", x, y, color_white)
 end
 
 --------------------------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ function MODULE:SetupQuickMenu(menu)
 	local buttonCompass = menu:addCheck(
 		"Toggle compass",
 		function(panel, state)
-			RunConsoleCommand("nut_compass", state and "1" or "0")
+			RunConsoleCommand("lia_compass", state and "1" or "0")
 		end, CompassActive:GetBool()
 	)
 
