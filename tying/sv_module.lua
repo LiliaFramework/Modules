@@ -15,13 +15,6 @@ function MODULE:CanDeleteChar(client, char)
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function MODULE:simfphysUse(ent, client)
-    if IsHandcuffed(client) then return false end
-
-    return true
-end
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function MODULE:PlayerSwitchWeapon(client, old, new)
     if IsHandcuffed(client) then return true end
 end
@@ -42,12 +35,17 @@ function MODULE:PostPlayerLoadout(client)
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function MODULE:PlayerUse(client, entity)
+function MODULE:ShouldWeaponBeRaised(client, weapon)
     if IsHandcuffed(client) then return false end
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function MODULE:ShouldWeaponBeRaised(client, weapon)
+function MODULE:CanPlayerUseDoor(client, entity)
+    if IsHandcuffed(client) then return false end
+end
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function MODULE:CanPlayerInteractItem(client, action, item)
     if IsHandcuffed(client) then return false end
 end
 
@@ -63,7 +61,8 @@ end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function MODULE:PlayerUse(client, entity)
-    if not IsHandcuffed(client) and (IsHandcuffed(entity) and entity:IsPlayer()) and not entity.liaBeingUnTied then
+    if IsHandcuffed(client) then return false end
+    if (IsHandcuffed(entity) and entity:IsPlayer()) and not entity.liaBeingUnTied then
         entity.liaBeingUnTied = true
         entity:setAction("@beingUntied", 5)
         client:setAction("@unTying", 5)
