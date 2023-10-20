@@ -1,0 +1,9 @@
+ITEM.name = "Plastic"
+ITEM.desc = "A few chunks of plastic, ready to be used in the production of other goods."
+ITEM.model = "models/zerochain/props_factory/zpf_item_pipe.mdl"
+ITEM.color = Color( 23,195,255,109 )
+ITEM.material = "zerochain/props_factory/items/zpf_plastic"
+ITEM.width = 1 
+ITEM.uniqueID = ITEM.name
+ITEM.height = 1
+ITEM.numeral = 13

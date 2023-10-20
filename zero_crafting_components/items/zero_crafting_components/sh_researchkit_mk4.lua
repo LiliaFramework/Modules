@@ -1,0 +1,9 @@
+ITEM.name = "ResearchKit - MK4"
+ITEM.desc = "An all-in-one research kit designed to help you learn everything we offer."
+ITEM.model = "models/zerochain/props_factory/zpf_researchkit.mdl"
+ITEM.color = Color( 255,57,255,216 )
+ITEM.material = "false"
+ITEM.width = 2
+ITEM.uniqueID = ITEM.name
+ITEM.height = 2
+ITEM.numeral = 41

@@ -1,0 +1,9 @@
+ITEM.name = "Octahedron"
+ITEM.desc = "A confusing shape with a confusing use. What does it do? One may never know."
+ITEM.model = "models/maxofs2d/hover_basic.mdl"
+ITEM.color = Color( 255,255,255,255 )
+ITEM.material = "false"
+ITEM.width = 1
+ITEM.uniqueID = ITEM.name
+ITEM.height = 1
+ITEM.numeral = 43

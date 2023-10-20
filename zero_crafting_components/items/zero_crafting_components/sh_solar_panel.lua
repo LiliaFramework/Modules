@@ -1,0 +1,9 @@
+ITEM.name = "Solar Panel"
+ITEM.desc = "A compact solar panel designed to harness the power of the sun to power anything you need.. provided you have enough solar panels, of course."
+ITEM.model = "models/zerochain/props_factory/zpf_solarpanel.mdl"
+ITEM.color = Color( 130,255,255,184 )
+ITEM.material = "false"
+ITEM.width = 2
+ITEM.uniqueID = ITEM.name
+ITEM.height = 1
+ITEM.numeral = 27
