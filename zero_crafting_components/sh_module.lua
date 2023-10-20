@@ -1,9 +1,9 @@
 --------------------------------------------------------------------------------------------------------
-local PLUGIN = PLUGIN
+local MODULE = MODULE
 --------------------------------------------------------------------------------------------------------
-PLUGIN.name = "Zero´s Factory Compatibility"
+MODULE.name = "Zero´s Factory Compatibility"
 --------------------------------------------------------------------------------------------------------
-PLUGIN.author = "@liliaplayer > Discord"
+MODULE.author = "@liliaplayer > Discord"
 --------------------------------------------------------------------------------------------------------
-PLUGIN.description = "Adds Zero´s Factory Compatibility to Lilia > https://www.gmodstore.com/market/view/zero-s-factory-crafting-space"
+MODULE.description = "Adds Zero´s Factory Compatibility to Lilia > https://www.gmodstore.com/market/view/zero-s-factory-crafting-space"
 --------------------------------------------------------------------------------------------------------

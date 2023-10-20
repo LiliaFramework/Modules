@@ -1,9 +1,9 @@
 --------------------------------------------------------------------------------------------------------
-local PLUGIN = PLUGIN
+local MODULE = MODULE
 --------------------------------------------------------------------------------------------------------
-PLUGIN.name = "Zero Cooking Compatibility"
+MODULE.name = "Zero Cooking Compatibility"
 --------------------------------------------------------------------------------------------------------
-PLUGIN.author = "@liliaplayer > Discord"
+MODULE.author = "@liliaplayer > Discord"
 --------------------------------------------------------------------------------------------------------
-PLUGIN.description = "Adds Zero Cooking Compatibility to Lilia > https://www.gmodstore.com/market/view/zero-s-masterchef-cooking-script"
+MODULE.description = "Adds Zero Cooking Compatibility to Lilia > https://www.gmodstore.com/market/view/zero-s-masterchef-cooking-script"
 --------------------------------------------------------------------------------------------------------

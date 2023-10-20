@@ -44,8 +44,8 @@ ITEM.functions._use = {
             end
 
             if item.speed then
-                client:SetWalkSpeed(lia.config.get("walkSpeed") * item.speed)
-                client:SetRunSpeed(lia.config.get("runSpeed") * item.speed)
+                client:SetWalkSpeed(lia.config.WalkSpeed * item.speed)
+                client:SetRunSpeed(lia.config.RunSpeed * item.speed)
             end
 
             local charID = char:getID()
@@ -72,8 +72,8 @@ ITEM.functions._use = {
                             end
 
                             if item.speed then
-                                client:SetWalkSpeed(lia.config.get("walkSpeed"))
-                                client:SetRunSpeed(lia.config.get("runSpeed"))
+                                client:SetWalkSpeed(lia.config.WalkSpeed)
+                                client:SetRunSpeed(lia.config.RunSpeed)
                             end
                         end
                     end
