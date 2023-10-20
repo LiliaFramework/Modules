@@ -33,7 +33,10 @@ function OnHandcuffRemove(target)
 	target:setNetVar("restricted", false)
 	target:SetRunSpeed(lia.config.RunSpeed)
 	hook.Run("ResetSubModuleCuffData", target)
-	SetDrag(target, nil)
+	if lia.module.list["tyingdragging"] then
+		SetDrag(target, nil)
+	end
+
 	if lia.module.list["anim"] then
 		OnHandCuffAnimation(target, 0)
 	end
