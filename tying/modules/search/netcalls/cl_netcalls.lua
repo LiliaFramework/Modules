@@ -4,7 +4,7 @@ local MODULE = MODULE
 MODULE.searchPanels = MODULE.searchPanels or {}
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 net.Receive(
-    "liaRequestSearch",
+    "RequestSearch",
     function(len, ply)
         lia.util.notifQuery(
             "A player is requesting to search your inventory.",

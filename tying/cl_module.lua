@@ -8,7 +8,6 @@ function MODULE:DrawCharInfo(client, character, info)
         info[#info + 1] = {"Handcuffed", Color(245, 215, 110)}
     end
 end
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function MODULE:HUDPaintBackground()
     if not LocalPlayer().getChar(LocalPlayer()) then return end
