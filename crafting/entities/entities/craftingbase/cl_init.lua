@@ -4,10 +4,12 @@ include("shared.lua")
 function ENT:Draw()
     self:DrawModel()
 end
+
 --------------------------------------------------------------------------------------------------------
 function ENT:onShouldDrawEntityInfo()
     return true
 end
+
 --------------------------------------------------------------------------------------------------------
 function ENT:onDrawEntityInfo(alpha)
     local position = (self:LocalToWorld(self:OBBCenter()) + self:GetUp() * 16):ToScreen()

@@ -1,9 +1,11 @@
 --------------------------------------------------------------------------------------------------------
+CraftingTables = CraftingTables or {}
+--------------------------------------------------------------------------------------------------------
 ENT.Type = "anim"
 ENT.Author = "Leonheart"
 ENT.Contact = "@liliaplayer"
 ENT.Instructions = "Press USE whilst looking at table to open crafting menu."
-ENT.Spawnable = true
+ENT.Spawnable = false
 ENT.AdminOnly = true
 ENT.DisableDuplicator = true
 ENT.Category = "Crafting"
