@@ -9,6 +9,7 @@ timer.Simple(
         PIM:AddOption(
             "Give Money",
             {
+                shouldShow = function(client, target) return client:getChar():getMoney() > 0 end,
                 serverRun = false,
                 onRun = function(client, target)
                     if not target:IsPlayer() then return end
