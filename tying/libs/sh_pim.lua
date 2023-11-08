@@ -10,6 +10,7 @@ PIM:AddOption(
             for k, v in pairs(es) do
                 if simfphys and simfphys.IsCar(v) then return IsHandcuffed(target) end
             end
+
             return false
         end,
         onRun = function(client, target)
@@ -19,12 +20,14 @@ PIM:AddOption(
                 if simfphys.IsCar(v) then
                     if #v.pSeat <= 1 then
                         client:notify("Closest car doesn't have back seats", NOT_ERROR)
+
                         return
                     else
                         for i = 2, #v.pSeat do
                             if not IsValid(v.pSeat[i]:GetDriver()) then
                                 target:EnterVehicle(v.pSeat[i])
-                                SetDrag(target, nil)
+                                SetDrag(target, client, false)
+
                                 return
                             end
                         end
@@ -51,7 +54,9 @@ PIM:AddOption(
             if not SERVER then return end
             for i = 2, #target.pSeat do
                 local driver = target.pSeat[i]:GetDriver()
-                if IsValid(driver) and IsHandcuffed(driver) then driver:ExitVehicle() end
+                if IsValid(driver) and IsHandcuffed(driver) then
+                    driver:ExitVehicle()
+                end
             end
         end
     }
@@ -69,6 +74,7 @@ PIM:AddOption(
             if target:Team() == FACTION_STAFF then
                 target:notify("You were just attempted to be restrained by " .. client:Name() .. ".")
                 client:notify("You can't tie a staff member!")
+
                 return false
             end
 
