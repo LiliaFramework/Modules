@@ -1,1 +1,1 @@
-exclude_files = {"lilia/libs/thirdparty/**/*.lua", "lilia/core/database.lua"}
+exclude_files = {"modules/zero_food/*.lua","modules/cwsupport_ww2rp/*.lua",}
