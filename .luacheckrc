@@ -1,1 +1,1 @@
-exclude_files = {"modules/zero_food/**/.lua","modules/cwsupport_ww2rp/**/.lua",}
+exclude_files = {"modules/cwsupport_ww2rp/**/.lua",}

@@ -61,7 +61,7 @@ function MODULE:Manage(panel, gr)
         local del = Menu:AddOption("Delete Character")
         del:SetIcon("icon16/cross.png")
         function del:DoClick()
-          if LocalPlayer().getChar and LocalPlayer():getChar() then end --Checks if player is currently using this character
+          if LocalPlayer().getChar and LocalPlayer():getChar() then return end --Checks if player is currently using this character
           Choice_Request(
             "Are you sure you want to delete " .. char:getName() .. " ?",
             function()
