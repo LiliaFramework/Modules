@@ -12,7 +12,6 @@ ITEM.functions.CraftP = {
         local tr = item.player:GetEyeTrace()
         for k, v in pairs(zpf.config.Items) do
             zpf.Item.Spawn(item.numeral, 1, tr.HitPos, item.player)
-            break
         end
     end
 }
