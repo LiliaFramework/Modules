@@ -1,4 +1,4 @@
-ITEM.name = "Chevapchichi - Raw"
+﻿ITEM.name = "Chevapchichi - Raw"
 ITEM.uniqueID = "Chevapchichi - Raw"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_meat_minced.mdl"

@@ -1,7 +1,7 @@
-ITEM.name = "Logistic Bot"
+﻿ITEM.name = "Logistic Bot"
 ITEM.desc = "A semi-autonomous drone ready to assist with all of your industrial needs."
 ITEM.model = "models/zerochain/props_factory/zpf_drone01.mdl"
-ITEM.color = Color( 255,255,255,255 )
+ITEM.color = Color(255, 255, 255, 255)
 ITEM.material = "false"
 ITEM.width = 3
 ITEM.uniqueID = ITEM.name

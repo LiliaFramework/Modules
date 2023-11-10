@@ -1,4 +1,4 @@
-ITEM.name = "Cucumber - Stripe"
+﻿ITEM.name = "Cucumber - Stripe"
 ITEM.uniqueID = "Cucumber - Stripe"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_pickle.mdl"

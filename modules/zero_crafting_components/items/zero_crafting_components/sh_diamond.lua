@@ -1,7 +1,7 @@
-ITEM.name = "Diamond"
+﻿ITEM.name = "Diamond"
 ITEM.desc = "A shiny rock which your significant other would love, probably!"
 ITEM.model = "models/props_junk/rock001a.mdl"
-ITEM.color = Color( 73,232,255,229 )
+ITEM.color = Color(73, 232, 255, 229)
 ITEM.material = "zerochain/props_factory/resource/zpf_resource_crystal_diff"
 ITEM.width = 1
 ITEM.uniqueID = ITEM.name

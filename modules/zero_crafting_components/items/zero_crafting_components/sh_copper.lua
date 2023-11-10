@@ -1,7 +1,7 @@
-ITEM.name = "Copper"
+﻿ITEM.name = "Copper"
 ITEM.desc = "A few ingots of copper, an incredibly versatile material with a myriad of applications."
 ITEM.model = "models/zerochain/props_factory/zpf_item_bar.mdl"
-ITEM.color = Color( 188,55,255,102 )
+ITEM.color = Color(188, 55, 255, 102)
 ITEM.material = "zerochain/props_factory/items/zpf_metal_copper"
 ITEM.width = 1
 ITEM.uniqueID = ITEM.name

@@ -1,5 +1,4 @@
-NAME = "English"
-
+﻿NAME = "English"
 MODULE = {
     wrongBlueprint = "Cannot use the blueprint here, try %s instead.",
     cantCraft = "Cannot craft.",

@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 netstream.Hook(
     "ClearWarTable",
     function(ply, tableEnt)
@@ -7,6 +7,7 @@ netstream.Hook(
         tableEnt:Clear()
     end
 )
+
 --------------------------------------------------------------------------------------------------------
 netstream.Hook(
     "SetWarTableMap",
@@ -22,6 +23,7 @@ netstream.Hook(
         end
     end
 )
+
 --------------------------------------------------------------------------------------------------------
 netstream.Hook(
     "PlaceWarTableMarker",
@@ -30,9 +32,7 @@ netstream.Hook(
         if not tableEnt then return end
         local tableEntFound = false
         for _, ent in pairs(ents.FindInSphere(pos, 1)) do
-            if ent == tableEnt then
-                tableEntFound = true
-            end
+            if ent == tableEnt then tableEntFound = true end
         end
 
         if not tableEntFound then return end
@@ -48,6 +48,7 @@ netstream.Hook(
         marker:SetMoveType(MOVETYPE_NONE)
     end
 )
+
 --------------------------------------------------------------------------------------------------------
 netstream.Hook(
     "RemoveWarTableMarker",

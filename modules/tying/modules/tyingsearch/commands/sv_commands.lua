@@ -1,4 +1,4 @@
-----------------------------------------------------------------------------------------------
+﻿----------------------------------------------------------------------------------------------
 local MODULE = MODULE
 ----------------------------------------------------------------------------------------------
 lia.command.add(
@@ -11,12 +11,11 @@ lia.command.add(
             local target = lia.command.findPlayer(client, arguments[1])
             local searcher = target:getNetVar("searcher")
             if not target then return end
-            if IsValid(searcher) then
-                MODULE:stopSearching(searcher)
-            end
+            if IsValid(searcher) then MODULE:stopSearching(searcher) end
         end
     }
 )
+
 ----------------------------------------------------------------------------------------------
 lia.command.add(
     "searchplayer",

@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 if CLIENT then
     SWEP.PrintName = "NS - StunGun"
     SWEP.Author = "STEAM_0:1:176123778"
@@ -38,9 +38,7 @@ SWEP.ViewModelFlip = false
 SWEP.ViewModelFOV = 65
 SWEP.LastFired = 0 -- add this variable at the top of the function
 function SWEP:Initialize()
-    if SERVER then
-        self.LastFired = 0
-    end
+    if SERVER then self.LastFired = 0 end
 end
 
 function SWEP:PrimaryAttack()
@@ -54,7 +52,6 @@ function SWEP:PrimaryAttack()
     if IsValid(target) and target:IsPlayer() and target:Team() == FACTION_STAFF then
         target:notify("You were just attempted to be stunned by " .. client:Name() .. ".")
         client:notify("You can't tie a staff member!")
-
         return
     end
 
@@ -62,7 +59,6 @@ function SWEP:PrimaryAttack()
     if distance > maxDistance then
         self.LastFired = curTime
         client:ChatPrint("target is too far away!")
-
         return
     end
 
@@ -71,9 +67,7 @@ function SWEP:PrimaryAttack()
         self:EmitSound(self.Primary.Sound)
         self.LastFired = curTime
         self:ShootBullet(0, 1, self.Primary.Cone)
-        if SERVER then
-            MODULE:TasePlayer(ply, target)
-        end
+        if SERVER then MODULE:TasePlayer(ply, target) end
     else
         self.LastFired = curTime
         client:ChatPrint("Invalid Target/Miss Shot!")
@@ -97,7 +91,6 @@ function SWEP:GetViewModelPosition(pos, ang)
     pos = pos + Offset.x * Right
     pos = pos + Offset.y * Forward
     pos = pos + Offset.z * Up
-
     return pos, ang
 end
 
@@ -113,22 +106,12 @@ if CLIENT then
             if not IsValid(m) then return end
             local pos = m:GetTranslation() + ply:EyeAngles():Forward() * 8 + Vector(0, 0, 0.1) + ply:EyeAngles():Right() * -1
             local hitpos = ply:GetShootPos() + ply:EyeAngles():Forward() * SWEPConfig.MaxDist
-            if ply:GetEyeTrace().HitPos:Length() <= SWEPConfig.MaxDist then
-                hitpos = ply:GetEyeTrace().HitPos
-            end
-
+            if ply:GetEyeTrace().HitPos:Length() <= SWEPConfig.MaxDist then hitpos = ply:GetEyeTrace().HitPos end
             render.DrawBeam(pos, hitpos, 2, 0, 12.5, Color(255, 0, 0, 255))
         end
     end
 
-    hook.Add(
-        'PostDrawOpaqueRenderables',
-        'PlyMustSeeLaser',
-        function()
-            DrawLaser()
-        end
-    )
-
+    hook.Add('PostDrawOpaqueRenderables', 'PlyMustSeeLaser', function() DrawLaser() end)
     function SWEP:ViewModelDrawn()
         local vm = self.Owner:GetViewModel()
         if not IsValid(vm) then return end

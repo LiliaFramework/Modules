@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------------------
+﻿-------------------------------------------------------------------------------------------
 ITEM.name = "Drug Lab"
 -------------------------------------------------------------------------------------------
 ITEM.model = "models/props_wasteland/laundry_basket002.mdl"
@@ -22,14 +22,12 @@ ITEM.functions.Weed = {
         local inventory = client:getChar():getInv()
         if not IsValid(item.entity) then
             client:notify("The drug lab must be on the ground")
-
             return false
         end
 
         local requirement = inventory:getFirstItemOfType("unprocessedweed")
         if not requirement then
             client:notify("You need Unprocessed Weed!")
-
             return false
         end
 
@@ -56,17 +54,14 @@ ITEM.functions.Weed = {
                 end
             end
         )
-
         return false
     end,
     onCanRun = function(item)
         if item:getData("producing2") ~= nil then
             local endTime = item:getData("producing2", 0) + 60 * 10
             if item:getData("producing2", 0) > CurTime() or CurTime() > endTime then return true end
-
             return false
         end
-
         return true
     end
 }
@@ -81,14 +76,12 @@ ITEM.functions.Heroin = {
         local inventory = client:getChar():getInv()
         if not IsValid(item.entity) then
             client:notify("The drug lab must be on the ground")
-
             return false
         end
 
         local requirement = inventory:getFirstItemOfType("unprocessedheroin")
         if not requirement then
             client:notify("You need Unprocessed Heroin!")
-
             return false
         end
 
@@ -115,17 +108,14 @@ ITEM.functions.Heroin = {
                 end
             end
         )
-
         return false
     end,
     onCanRun = function(item)
         if item:getData("producing2") ~= nil then
             local endTime = item:getData("producing2", 0) + 60 * 10
             if item:getData("producing2", 0) > CurTime() or CurTime() > endTime then return true end
-
             return false
         end
-
         return true
     end
 }
@@ -140,14 +130,12 @@ ITEM.functions.Cocaine = {
         local inventory = client:getChar():getInv()
         if not IsValid(item.entity) then
             client:notify("The drug lab must be on the ground")
-
             return false
         end
 
         local requirement = inventory:getFirstItemOfType("unprocessedcocaine")
         if not requirement then
             client:notify("You need Unprocessed Cocaine!")
-
             return false
         end
 
@@ -174,17 +162,14 @@ ITEM.functions.Cocaine = {
                 end
             end
         )
-
         return false
     end,
     onCanRun = function(item)
         if item:getData("producing2") ~= nil then
             local endTime = item:getData("producing2", 0) + 60 * 10
             if item:getData("producing2", 0) > CurTime() or CurTime() > endTime then return true end
-
             return false
         end
-
         return true
     end
 }
@@ -192,10 +177,7 @@ ITEM.functions.Cocaine = {
 -------------------------------------------------------------------------------------------
 function ITEM:getDesc()
     local desc = self.desc
-    if self:getData("producing2") ~= nil then
-        desc = desc .. "\nIt is currently producing something."
-    end
-
+    if self:getData("producing2") ~= nil then desc = desc .. "\nIt is currently producing something." end
     return Format(desc)
 end
 

@@ -1,4 +1,4 @@
-ITEM.name = "Holiday Cup"
+﻿ITEM.name = "Holiday Cup"
 ITEM.uniqueID = "Holiday Cup"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/zmc_plate05.mdl"

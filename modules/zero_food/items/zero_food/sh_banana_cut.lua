@@ -1,4 +1,4 @@
-ITEM.name = "Banana - Cut"
+﻿ITEM.name = "Banana - Cut"
 ITEM.uniqueID = "Banana - Cut"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_banana.mdl"

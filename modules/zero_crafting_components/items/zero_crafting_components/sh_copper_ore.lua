@@ -1,7 +1,7 @@
-ITEM.name = "Copper Ore"
+﻿ITEM.name = "Copper Ore"
 ITEM.desc = "A chunk of unrefined copper."
 ITEM.model = "models/props_junk/rock001a.mdl"
-ITEM.color = Color( 201,87,255,122 )
+ITEM.color = Color(201, 87, 255, 122)
 ITEM.material = "zerochain/props_factory/resource/zpf_resource_copper"
 ITEM.width = 1
 ITEM.uniqueID = ITEM.name

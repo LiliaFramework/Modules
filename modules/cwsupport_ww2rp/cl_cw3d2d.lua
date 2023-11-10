@@ -1,4 +1,4 @@
---[[
+﻿--[[
 hook.Add("LoadFonts", "liaCW3D2D", function(font, genericFont)
 	surface.CreateFont("CW_HUD72", {font = font, extended = true, size = 72, weight = 700, blursize = 0, antialias = true, shadow = false})
 	surface.CreateFont("CW_HUD60", {font = font, extended = true, size = 60, weight = 700, blursize = 0, antialias = true, shadow = false})

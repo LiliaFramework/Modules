@@ -1,13 +1,10 @@
--------------------------------------------------------------------------------------------
+﻿-------------------------------------------------------------------------------------------
 local playerMeta = FindMetaTable("Player")
 -------------------------------------------------------------------------------------------
 function playerMeta:setRagdolledTase(state, time, nm)
     getUpGrace = 0
     if state then
-        if IsValid(self.liaRagdoll) then
-            self.liaRagdoll:Remove()
-        end
-
+        if IsValid(self.liaRagdoll) then self.liaRagdoll:Remove() end
         local entity = self:createRagdoll()
         entity:setNetVar("player", self)
         entity:CallOnRemove(
@@ -16,10 +13,7 @@ function playerMeta:setRagdolledTase(state, time, nm)
                 if IsValid(self) then
                     self:setLocalVar("blur", nil)
                     self:setLocalVar("ragdoll", nil)
-                    if not entity.liaNoReset then
-                        self:SetPos(entity:GetPos())
-                    end
-
+                    if not entity.liaNoReset then self:SetPos(entity:GetPos()) end
                     self:SetNoDraw(false)
                     self:SetNotSolid(false)
                     self:SetMoveType(MOVETYPE_WALK)
@@ -32,9 +26,7 @@ function playerMeta:setRagdolledTase(state, time, nm)
                             self:Give(v)
                             if entity.liaAmmo then
                                 for k2, v2 in ipairs(entity.liaAmmo) do
-                                    if v == v2[1] then
-                                        self:SetAmmo(v2[2], tostring(k2))
-                                    end
+                                    if v == v2[1] then self:SetAmmo(v2[2], tostring(k2)) end
                                 end
                             end
                         end
@@ -62,10 +54,7 @@ function playerMeta:setRagdolledTase(state, time, nm)
         entity.liaWeapons = {}
         entity.liaAmmo = {}
         entity.liaPlayer = self
-        if getUpGrace then
-            entity.liaGrace = CurTime() + getUpGrace
-        end
-
+        if getUpGrace then entity.liaGrace = CurTime() + getUpGrace end
         if time and time > 0 then
             entity.liaStart = CurTime()
             entity.liaFinish = entity.liaStart + time
@@ -102,7 +91,6 @@ function playerMeta:setRagdolledTase(state, time, nm)
                                 self:setAction()
                                 entity.liaPausing = true
                             end
-
                             return
                         elseif entity.liaPausing then
                             self:setAction("@wakingUp", time)
@@ -110,9 +98,7 @@ function playerMeta:setRagdolledTase(state, time, nm)
                         end
 
                         time = time - 0.33
-                        if time <= 0 then
-                            entity:Remove()
-                        end
+                        if time <= 0 then entity:Remove() end
                     else
                         timer.Remove(uniqueID)
                     end

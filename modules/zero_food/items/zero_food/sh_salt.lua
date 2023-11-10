@@ -1,4 +1,4 @@
-ITEM.name = "Salt"
+﻿ITEM.name = "Salt"
 ITEM.uniqueID = "Salt"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_bag.mdl"

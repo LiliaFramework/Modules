@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 AddCSLuaFile()
 --------------------------------------------------------------------------------------------------------
 ENT.Base = "craftingbase"
@@ -15,10 +15,10 @@ ENT.Spawnable = true
 ENT.AdminOnly = true
 ENT.DisableDuplicator = true
 ENT.AllowedBlueprints = {
-	b_diamondring = false,
-	b_processedgold = true,
-	b_processediron = true,
-	b_processedsilver = true,
+    b_diamondring = false,
+    b_processedgold = true,
+    b_processediron = true,
+    b_processedsilver = true,
 }
 
 --------------------------------------------------------------------------------------------------------

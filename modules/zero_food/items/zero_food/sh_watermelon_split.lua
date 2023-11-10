@@ -1,4 +1,4 @@
-ITEM.name = "Watermelon - Split"
+﻿ITEM.name = "Watermelon - Split"
 ITEM.uniqueID = "Watermelon - Split"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_watermelon.mdl"

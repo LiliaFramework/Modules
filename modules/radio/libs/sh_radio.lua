@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 local find = {
     ["radio"] = true,
 }
@@ -10,7 +10,6 @@ function MODULE:OverrideItemTooltip(inv, data, item)
         if not freq then return end
         freq = math.Round(freq, 1)
         local enabled = item:getData("enabled", false) and "Enabled" or "Disabled"
-
         return Format(lia.config.itemFormat, item.getName and item:getName() or L(item.name), "Frequency: " .. (freq or "") .. "\n" .. enabled)
     end
 end
@@ -48,7 +47,6 @@ lia.chat.register(
                         if v.uniqueID == id and v:getData("enabled", false) == true then
                             if CURFREQ == v:getData("freq", "000.0") and CURCHANNEL == v:getData("channel", 1) then
                                 MODULE:EndChatter(listener)
-
                                 return true
                             end
 
@@ -67,7 +65,6 @@ lia.chat.register(
                             if far and itemTable.uniqueID == id and v:getData("enabled", false) == true then
                                 if CURFREQ == v:getData("freq", "000.0") and CURCHANNEL == v:getData("channel", 1) then
                                     MODULE:EndChatter(listener)
-
                                     return true
                                 end
                             end
@@ -75,7 +72,6 @@ lia.chat.register(
                     end
                 end
             end
-
             return false
         end,
         onCanSay = function(speaker, text)
@@ -116,14 +112,10 @@ lia.chat.register(
 
             if freq then
                 CURFREQ = freq
-                if channel then
-                    CURCHANNEL = channel
-                end
-
+                if channel then CURCHANNEL = channel end
                 speaker:EmitSound("npc/metropolice/vo/on" .. math.random(1, 2) .. ".wav", math.random(50, 60), math.random(80, 120))
             else
                 speaker:notifyLocalized("radioNoRadioComm")
-
                 return false
             end
         end,

@@ -1,4 +1,4 @@
-----------------------------------------------------------------------------------------------
+﻿----------------------------------------------------------------------------------------------
 MODULE.name = "Macro Weapon Register"
 MODULE.author = "@liliaplayer > Discord"
 MODULE.desc = "Gun Jesus have arrived."
@@ -40,11 +40,11 @@ function MODULE:InitializedModules()
             ITEM.ammoAmount = ammoInfo.amount or 30
             ITEM.price = ammoInfo.price or 200
             ITEM.model = ammoInfo.model or AMMO_BOX
-            --[[function ITEM:getDesc()
-				return L("ammoDesc", self.ammoAmount, L(self.ammo))
-			end--]]
         end
 
+        --[[function ITEM:getDesc()
+				return L("ammoDesc", self.ammoAmount, L(self.ammo))
+			end--]]
         -- they were ass.
         local assWeapons = {
             ["cw_ber_cz75"] = "muzzleflash_6",
@@ -103,9 +103,7 @@ function MODULE:InitializedModules()
                     -- since we don't know the category, we'll just have to iterate over all attachments, find the one we want, and attach it there
                     for category, data in pairs(self.Attachments) do
                         for key, attachment in ipairs(data.atts) do
-                            if attachment == attachmentName then
-                                self:detach(category, key - 1, false)
-                            end
+                            if attachment == attachmentName then self:detach(category, key - 1, false) end
                         end
                     end
                 end
@@ -204,10 +202,7 @@ function MODULE:InitializedModules()
                 ITEM.holsterDrawInfo = dat.holster
                 ITEM.isCW = true
                 ITEM.isWeapon = true
-                if dat.holster then
-                    ITEM.holsterDrawInfo.model = v.WorldModel
-                end
-
+                if dat.holster then ITEM.holsterDrawInfo.model = v.WorldModel end
                 ITEM.model = v.WorldModel
                 local slot = self.slotCategory[v.Slot]
                 ITEM.width = dat.width or 1
@@ -266,12 +261,10 @@ function MODULE:InitializedModules()
                                 }
                             )
                         end
-
                         return targets
                     end,
                     onCanRun = function(item)
                         if table.Count(item:getData("mod", {})) <= 0 then return false end
-
                         return not IsValid(item.entity)
                     end,
                     onRun = function(item, data)
@@ -286,10 +279,7 @@ function MODULE:InitializedModules()
                                     if attData then
                                         inv:add(attData[1])
                                         local wepon = client:GetActiveWeapon()
-                                        if IsValid(wepon) and wepon:GetClass() == item.class then
-                                            wepon:detachSpecificAttachment(attData[2])
-                                        end
-
+                                        if IsValid(wepon) and wepon:GetClass() == item.class then wepon:detachSpecificAttachment(attData[2]) end
                                         mods[data] = nil
                                         if table.Count(mods) == 0 then
                                             item:setData("mod", nil)
@@ -307,7 +297,6 @@ function MODULE:InitializedModules()
                         else
                             client:notifyLocalized("detTarget")
                         end
-
                         return false
                     end,
                 }
@@ -363,15 +352,7 @@ function MODULE:InitializedModules()
                 angleVel.y = math.random(-500, 500)
                 angleVel.z = math.random(-500, 500)
                 phys:AddAngleVelocity(ang:Right() * 100 + angleVel + VectorRand() * 50000)
-                timer.Simple(
-                    time,
-                    function()
-                        if t.s and IsValid(ent) then
-                            sound.Play(t.s, ent:GetPos())
-                        end
-                    end
-                )
-
+                timer.Simple(time, function() if t.s and IsValid(ent) then sound.Play(t.s, ent:GetPos()) end end)
                 SafeRemoveEntityDelayed(ent, removetime)
             end
         end
@@ -385,26 +366,12 @@ function MODULE:InitializedModules()
                     local owner = weapon.Owner
                     if IsValid(owner) and owner:IsPlayer() then
                         local char = owner:getChar()
-                        if char then
-                            if char:getAttrib("gunskill", 0) < 5 then
-                                char:updateAttrib("gunskill", 0.003)
-                            end
-                        end
+                        if char then if char:getAttrib("gunskill", 0) < 5 then char:updateAttrib("gunskill", 0.003) end end
                     end
                 end
             )
 
-            if CLIENT then
-                netstream.Hook(
-                    "liaUpdateWeapon",
-                    function(weapon)
-                        if weapon and weapon:IsValid() and weapon.recalculateStats then
-                            weapon:recalculateStats()
-                        end
-                    end
-                )
-            end
-
+            if CLIENT then netstream.Hook("liaUpdateWeapon", function(weapon) if weapon and weapon:IsValid() and weapon.recalculateStats then weapon:recalculateStats() end end) end
             function CustomizableWeaponry:hasAttachment(ply, att, lookIn)
                 return true
             end

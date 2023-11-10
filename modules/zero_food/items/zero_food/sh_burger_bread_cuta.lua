@@ -1,4 +1,4 @@
-ITEM.name = "Burger - Bread - CutA"
+﻿ITEM.name = "Burger - Bread - CutA"
 ITEM.uniqueID = "Burger - Bread - CutA"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_burger_bread.mdl"

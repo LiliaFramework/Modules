@@ -1,4 +1,4 @@
-ITEM.name = "Apple - Single"
+﻿ITEM.name = "Apple - Single"
 ITEM.uniqueID = "Apple - Single"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_apple.mdl"

@@ -1,4 +1,4 @@
-ITEM.name = "Steak - Burned"
+﻿ITEM.name = "Steak - Burned"
 ITEM.uniqueID = "Steak - Burned"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_steak.mdl"

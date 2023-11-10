@@ -1,4 +1,4 @@
-ITEM.name = "Soup Goulash"
+﻿ITEM.name = "Soup Goulash"
 ITEM.uniqueID = "Soup Goulash"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/zmc_plate05.mdl"

@@ -1,7 +1,7 @@
-ITEM.name = "Red Chip"
+﻿ITEM.name = "Red Chip"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_factory/zpf_chip.mdl"
-ITEM.color = Color( 211,85,255,82 )
+ITEM.color = Color(211, 85, 255, 82)
 ITEM.material = "false"
 ITEM.width = 4
 ITEM.uniqueID = ITEM.name

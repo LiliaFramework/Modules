@@ -1,7 +1,7 @@
-ITEM.name = "Iron Pipe"
+﻿ITEM.name = "Iron Pipe"
 ITEM.desc = "A bundle of iron pipes."
 ITEM.model = "models/zerochain/props_factory/zpf_item_pipe.mdl"
-ITEM.color = Color( 255,255,255,255 )
+ITEM.color = Color(255, 255, 255, 255)
 ITEM.material = "zerochain/props_factory/items/zpf_metal_iron"
 ITEM.width = 1
 ITEM.uniqueID = ITEM.name

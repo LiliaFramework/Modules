@@ -1,4 +1,4 @@
-ITEM.name = "Orange - Peeled"
+﻿ITEM.name = "Orange - Peeled"
 ITEM.uniqueID = "Orange - Peeled"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_orange.mdl"

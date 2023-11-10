@@ -1,7 +1,7 @@
-ITEM.name = "Scafold"
+﻿ITEM.name = "Scafold"
 ITEM.desc = "A large platform used as, you guessed it, scaffolding!"
 ITEM.model = "models/zerochain/props_factory/zpf_scafold_item.mdl"
-ITEM.color = Color( 255,57,255,216 )
+ITEM.color = Color(255, 57, 255, 216)
 ITEM.material = "false"
 ITEM.width = 4
 ITEM.uniqueID = ITEM.name

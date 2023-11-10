@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 function MODULE:LoadData()
     local savedTable = self:getData() or {}
     local noteItem = lia.item.list["note"]
@@ -56,11 +56,7 @@ end
 
 --------------------------------------------------------------------------------------------------------
 function MODULE:EntityRemoved(entity)
-    if not lia.shuttingDown and entity and IsValid(entity) and entity:GetClass() == "lia_note" and entity.id then
-        if WRITINGDATA[entity.id] then
-            WRITINGDATA[entity.id] = nil
-        end
-    end
+    if not lia.shuttingDown and entity and IsValid(entity) and entity:GetClass() == "lia_note" and entity.id then if WRITINGDATA[entity.id] then WRITINGDATA[entity.id] = nil end end
 end
 
 --------------------------------------------------------------------------------------------------------
@@ -70,14 +66,8 @@ function MODULE:OnNoteSpawned(note, item, load)
     note:SetMoveType(MOVETYPE_VPHYSICS)
     note:SetUseType(SIMPLE_USE)
     local physicsObject = note:GetPhysicsObject()
-    if IsValid(physicsObject) then
-        physicsObject:Wake()
-    end
-
-    if item.player and IsValid(item.player) then
-        note:setNetVar("ownerChar", item.player:getChar().id)
-    end
-
+    if IsValid(physicsObject) then physicsObject:Wake() end
+    if item.player and IsValid(item.player) then note:setNetVar("ownerChar", item.player:getChar().id) end
     if load ~= true then
         note.id = os.time()
         WRITINGDATA[note.id] = ""

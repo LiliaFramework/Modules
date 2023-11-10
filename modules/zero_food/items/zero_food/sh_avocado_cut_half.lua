@@ -1,4 +1,4 @@
-ITEM.name = "Avocado - Cut Half"
+﻿ITEM.name = "Avocado - Cut Half"
 ITEM.uniqueID = "Avocado - Cut Half"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_avocado.mdl"

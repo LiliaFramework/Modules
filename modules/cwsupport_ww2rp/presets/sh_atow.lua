@@ -1,4 +1,4 @@
-MODULE.gunData.doi_atow_bayonetcw = {
+﻿MODULE.gunData.doi_atow_bayonetcw = {
     desc = "Produced in Britain since 1947, this knife bayonet is the replacement for the unpopular No. 4 spike bayonet.",
     slot = 3,
     width = 1,

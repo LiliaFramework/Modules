@@ -1,4 +1,4 @@
-NOATTACHMENT_SIGHT = 1
+﻿NOATTACHMENT_SIGHT = 1
 ATTACHMENT_BARREL = 2
 ATTACHMENT_ALTSIGHT = 3
 ATTACHMENT_MAGAZINE = 4
@@ -447,7 +447,6 @@ local function attachment(item, data, combine)
 
     if not target then
         client:notifyLocalized("noWeapon")
-
         return false
     else
         local class = target.class
@@ -460,7 +459,6 @@ local function attachment(item, data, combine)
                 -- Is the Weapon Slot Filled?
                 if mods[item.slot] then
                     client:notifyLocalized("alreadyAttached")
-
                     return false
                 end
 
@@ -480,7 +478,6 @@ local function attachment(item, data, combine)
 
                 if not pokemon then
                     client:notifyLocalized("cantAttached")
-
                     return false
                 end
 
@@ -488,13 +485,9 @@ local function attachment(item, data, combine)
                 target:setData("mod", mods)
                 local wepon = client:GetActiveWeapon()
                 -- If you're holding right weapon, just mod it out.
-                if IsValid(wepon) and wepon:GetClass() == target.class then
-                    wepon:attachSpecificAttachment(pokemon)
-                end
-
+                if IsValid(wepon) and wepon:GetClass() == target.class then wepon:attachSpecificAttachment(pokemon) end
                 -- Yeah let them know you did something with your dildo
                 client:EmitSound("cw/holster4.wav")
-
                 return true
             else
                 client:notifyLocalized("notCW")
@@ -503,7 +496,6 @@ local function attachment(item, data, combine)
     end
 
     client:notifyLocalized("noWeapon")
-
     return false
 end
 
@@ -546,7 +538,6 @@ for className, v in pairs(attItems) do
                     end
                 end
             end
-
             return targets
         end,
         onCanRun = function(item) return not IsValid(item.entity) end,

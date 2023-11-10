@@ -1,4 +1,4 @@
-ITEM.name = "Baguette - Baked"
+﻿ITEM.name = "Baguette - Baked"
 ITEM.uniqueID = "Baguette - Baked"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_baguette.mdl"

@@ -1,7 +1,7 @@
-ITEM.name = "Coal"
+﻿ITEM.name = "Coal"
 ITEM.desc = "A chunk of black coal."
 ITEM.model = "models/props_junk/rock001a.mdl"
-ITEM.color = Color( 56,56,255,56 )
+ITEM.color = Color(56, 56, 255, 56)
 ITEM.material = "zerochain/props_factory/resource/zpf_resource_coal"
 ITEM.width = 1
 ITEM.uniqueID = ITEM.name

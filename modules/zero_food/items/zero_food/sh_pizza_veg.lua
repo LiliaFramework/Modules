@@ -1,4 +1,4 @@
-ITEM.name = "Pizza - Veg"
+﻿ITEM.name = "Pizza - Veg"
 ITEM.uniqueID = "Pizza - Veg"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_pizza.mdl"

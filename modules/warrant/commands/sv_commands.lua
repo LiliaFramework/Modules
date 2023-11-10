@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 lia.command.add(
     "warrant",
     {
@@ -8,7 +8,6 @@ lia.command.add(
             local target = lia.command.findPlayer(client, arguments[1])
             if not client:getChar():hasFlags(lia.config.WarrantFlag) then
                 client:notify("No permission to run this command!")
-
                 return
             end
 

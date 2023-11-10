@@ -1,7 +1,7 @@
-ITEM.name = "Fuel Cell"
+﻿ITEM.name = "Fuel Cell"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/thrusters/jetpack.mdl"
-ITEM.color = Color( 255,0,255,225 )
+ITEM.color = Color(255, 0, 255, 225)
 ITEM.material = "false"
 ITEM.width = 4
 ITEM.uniqueID = ITEM.name

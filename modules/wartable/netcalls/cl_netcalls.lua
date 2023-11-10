@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 netstream.Hook(
     "UseWarTable",
     function(tableEnt, shouldAct)
@@ -11,10 +11,7 @@ netstream.Hook(
             panel:ShowCloseButton(false)
             panel:MakePopup()
             panel:SetPos(ScrW() * 0.5 - (panel:GetWide() / 2), ScrH() - panel:GetTall() * 1.25)
-            panel.Paint = function(this, w, h)
-                draw.RoundedBox(5, 0, h * 0.25, w, h * 0.75, Color(0, 0, 0, 150))
-            end
-
+            panel.Paint = function(this, w, h) draw.RoundedBox(5, 0, h * 0.25, w, h * 0.75, Color(0, 0, 0, 150)) end
             local clearButton = vgui.Create("DButton", panel)
             clearButton:Dock(TOP)
             clearButton:SetText("Clear out table")
@@ -30,39 +27,24 @@ netstream.Hook(
             setMapButton:SetTextColor(Color(255, 255, 255))
             setMapButton.DoClick = function()
                 panel:Remove()
-                Derma_StringRequest(
-                    "Set new map",
-                    "Input the link to set a new map",
-                    "",
-                    function(text)
-                        netstream.Start("SetWarTableMap", tableEnt, text)
-                    end
-                )
+                Derma_StringRequest("Set new map", "Input the link to set a new map", "", function(text) netstream.Start("SetWarTableMap", tableEnt, text) end)
             end
 
             local exitButton = vgui.Create("DButton", panel)
             exitButton:Dock(TOP)
             exitButton:SetText("Exit")
             exitButton:SetTextColor(Color(255, 255, 255))
-            exitButton.DoClick = function()
-                panel:Remove()
-            end
+            exitButton.DoClick = function() panel:Remove() end
         else
             ply.LastPos = ply:GetPos()
             ply.LastAng = ply:EyeAngles()
             ply.tableEnt = tableEnt
             ply.UseWarTable = not ply.UseWarTable
-            if not ply.UseWarTable and IsValid(ply.MarkerModel) then
-                ply.MarkerModel:Remove()
-            end
+            if not ply.UseWarTable and IsValid(ply.MarkerModel) then ply.MarkerModel:Remove() end
         end
     end
 )
+
 --------------------------------------------------------------------------------------------------------
-netstream.Hook(
-    "SetWarTableMap",
-    function(tableEnt, text)
-        tableEnt:SetMap(text)
-    end
-)
+netstream.Hook("SetWarTableMap", function(tableEnt, text) tableEnt:SetMap(text) end)
 --------------------------------------------------------------------------------------------------------

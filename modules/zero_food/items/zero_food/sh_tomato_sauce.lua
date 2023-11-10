@@ -1,4 +1,4 @@
-ITEM.name = "Tomato - Sauce"
+﻿ITEM.name = "Tomato - Sauce"
 ITEM.uniqueID = "Tomato - Sauce"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_rice.mdl"

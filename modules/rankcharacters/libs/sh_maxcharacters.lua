@@ -1,4 +1,4 @@
-----------------------------------------------------------------------------------------------
+﻿----------------------------------------------------------------------------------------------
 hook.Add(
     "GetMaxPlayerCharacter",
     "returnRankCharLimit",
@@ -7,7 +7,6 @@ hook.Add(
         local defchars = lia.config.MaxCharacters
         if not rank then return defchars end
         if lia.config.OverrideCharLimit[rank] then return lia.config.OverrideCharLimit[rank] end
-
         return defchars
     end
 )

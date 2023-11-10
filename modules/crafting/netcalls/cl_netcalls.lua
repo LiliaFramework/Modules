@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 netstream.Hook(
     "craftingTableOpen",
     function(entity, index)
@@ -12,10 +12,7 @@ netstream.Hook(
         inv2:SetTitle(entity.PrintName)
         inv2:SetDraggable(false)
         inv2.OnClose = function(this)
-            if IsValid(inv1) then
-                inv1:Remove()
-            end
-
+            if IsValid(inv1) then inv1:Remove() end
             netstream.Start("invExit")
         end
 
@@ -25,7 +22,6 @@ netstream.Hook(
         actPanel.Think = function(this)
             if not inv2 or not inv2:IsValid() or not inv2:IsVisible() then
                 this:Remove()
-
                 return
             end
 
@@ -66,10 +62,7 @@ netstream.Hook(
             inv2:SetTitle(entity.PrintName)
             inv2:SetDraggable(false)
             inv2.OnClose = function(this)
-                if IsValid(inv1) then
-                    inv1:Remove()
-                end
-
+                if IsValid(inv1) then inv1:Remove() end
                 netstream.Start("invExit")
             end
 

@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 local PANEL = {}
 --------------------------------------------------------------------------------------------------------
 function PANEL:Init()
@@ -26,9 +26,7 @@ function PANEL:Init()
 
     local number = self:Add("Panel")
     number:Dock(FILL)
-    number.Paint = function(this, w, h)
-        draw.SimpleText(self.number, "liaDialFont", w / 2, h / 2, color_white, 1, 1)
-    end
+    number.Paint = function(this, w, h) draw.SimpleText(self.number, "liaDialFont", w / 2, h / 2, color_white, 1, 1) end
 end
 
 --------------------------------------------------------------------------------------------------------
@@ -65,16 +63,12 @@ function PANEL:Init()
         if i ~= 4 then
             self.dial[i] = self:Add("liaRadioDial")
             self.dial[i]:Dock(LEFT)
-            if i ~= 3 then
-                self.dial[i]:DockMargin(0, 0, 5, 0)
-            end
+            if i ~= 3 then self.dial[i]:DockMargin(0, 0, 5, 0) end
         else
             local dot = self:Add("Panel")
             dot:Dock(LEFT)
             dot:SetWide(30)
-            dot.Paint = function(this, w, h)
-                draw.SimpleText(".", "liaDialFont", w / 2, h - 10, color_white, 1, 4)
-            end
+            dot.Paint = function(this, w, h) draw.SimpleText(".", "liaDialFont", w / 2, h - 10, color_white, 1, 4) end
         end
     end
 end

@@ -1,7 +1,7 @@
-ITEM.name = "Enriched Uranium"
+﻿ITEM.name = "Enriched Uranium"
 ITEM.desc = "A few bars of enriched uranium. Extremely radioactive, are you sure you should be handling this?"
 ITEM.model = "models/zerochain/props_factory/zpf_item_pipe.mdl"
-ITEM.color = Color( 122,87,255,201 )
+ITEM.color = Color(122, 87, 255, 201)
 ITEM.material = "zerochain/props_factory/items/zpf_metal_uranium"
 ITEM.width = 1
 ITEM.uniqueID = ITEM.name

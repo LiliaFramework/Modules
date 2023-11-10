@@ -1,7 +1,7 @@
-ITEM.name = "Crystaline Cell"
+﻿ITEM.name = "Crystaline Cell"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_factory/zpf_item_panels.mdl"
-ITEM.color = Color( 255,255,255,255 )
+ITEM.color = Color(255, 255, 255, 255)
 ITEM.material = "zerochain/props_factory/items/zpf_glass"
 ITEM.width = 4
 ITEM.uniqueID = ITEM.name

@@ -1,4 +1,4 @@
-ITEM.name = "Plastic"
+﻿ITEM.name = "Plastic"
 ITEM.desc = "A few chunks of plastic, ready to be used in the production of other goods."
 ITEM.model = "models/zerochain/props_factory/zpf_item_pipe.mdl"
 ITEM.color = Color(23, 195, 255, 109)

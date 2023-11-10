@@ -1,7 +1,7 @@
-ITEM.name = "Ellipsoid Metal"
+﻿ITEM.name = "Ellipsoid Metal"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/props_combine/breenlight.mdl"
-ITEM.color = Color( 255,255,255,255 )
+ITEM.color = Color(255, 255, 255, 255)
 ITEM.material = "false"
 ITEM.width = 4
 ITEM.uniqueID = ITEM.name

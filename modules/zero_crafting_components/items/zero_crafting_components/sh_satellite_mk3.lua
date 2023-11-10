@@ -1,7 +1,7 @@
-ITEM.name = "Satellite - MK3"
+﻿ITEM.name = "Satellite - MK3"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_factory/zpf_satelity01.mdl"
-ITEM.color = Color( 255,57,255,57 )
+ITEM.color = Color(255, 57, 255, 57)
 ITEM.material = "false"
 ITEM.width = 4
 ITEM.uniqueID = ITEM.name

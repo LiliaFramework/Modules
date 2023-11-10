@@ -1,7 +1,7 @@
-ITEM.name = "Alien Wires"
+﻿ITEM.name = "Alien Wires"
 ITEM.desc = "A collection of otherworldly wires."
 ITEM.model = "models/combine_helicopter/bomb_debris_3.mdl"
-ITEM.color = Color( 255,255,255,255 )
+ITEM.color = Color(255, 255, 255, 255)
 ITEM.material = "false"
 ITEM.width = 1
 ITEM.height = 1

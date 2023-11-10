@@ -1,7 +1,7 @@
-ITEM.name = "Fast Booster"
+﻿ITEM.name = "Fast Booster"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_factory/zpf_rocket.mdl"
-ITEM.color = Color( 255,57,255,141 )
+ITEM.color = Color(255, 57, 255, 141)
 ITEM.material = "false"
 ITEM.width = 4
 ITEM.uniqueID = ITEM.name

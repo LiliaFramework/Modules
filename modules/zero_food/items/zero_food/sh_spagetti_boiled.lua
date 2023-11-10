@@ -1,4 +1,4 @@
-ITEM.name = "Spagetti - Boiled"
+﻿ITEM.name = "Spagetti - Boiled"
 ITEM.uniqueID = "Spagetti - Boiled"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_pasta.mdl"

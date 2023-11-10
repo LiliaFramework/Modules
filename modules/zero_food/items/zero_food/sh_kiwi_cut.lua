@@ -1,4 +1,4 @@
-ITEM.name = "Kiwi - Cut"
+﻿ITEM.name = "Kiwi - Cut"
 ITEM.uniqueID = "Kiwi - Cut"
 ITEM.desc = "TEMPLATE"
 ITEM.model = "models/zerochain/props_kitchen/food/zmc_kiwi.mdl"

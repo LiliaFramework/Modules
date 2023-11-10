@@ -1,4 +1,4 @@
-MODULE.gunData = {}
+﻿MODULE.gunData = {}
 MODULE.modelCam = {}
 MODULE.slotCategory = {
     [1] = "primary",

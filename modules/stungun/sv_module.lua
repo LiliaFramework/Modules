@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------------------
+﻿-------------------------------------------------------------------------------------------
 function MODULE:TasePlayer(ply, target)
     if not ply:IsPlayer() then return end
     if not IsValid(ply:GetActiveWeapon()) then return end

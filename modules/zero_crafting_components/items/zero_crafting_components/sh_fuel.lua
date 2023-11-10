@@ -1,7 +1,7 @@
-ITEM.name = "Fuel Barrel"
+﻿ITEM.name = "Fuel Barrel"
 ITEM.desc = "A barrel of fuel used to fuel things that need fuel. Contains a lot of fuel, just like this description."
 ITEM.model = "models/zerochain/props_factory/zpf_barrel.mdl"
-ITEM.color = Color( 255,0,255,225 )
+ITEM.color = Color(255, 0, 255, 225)
 ITEM.material = "false"
 ITEM.width = 3
 ITEM.uniqueID = ITEM.name
