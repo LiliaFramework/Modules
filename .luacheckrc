@@ -1,1 +1,1 @@
-exclude_files = {"modules/cwsupport_ww2rp/**/*.lua","modules\zero_crafting_components\items\base\sh_zero_crafting_components.lua",}
+exclude_files = {"modules/cwsupport_ww2rp/**/*.lua","modules/zero_crafting_components/items/base/sh_zero_crafting_components.lua",}
