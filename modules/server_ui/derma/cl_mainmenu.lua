@@ -124,7 +124,7 @@ function PANEL:CanCreateCharacter()
 
     if #validFactions == 0 then return false end
     self.validFactions = validFactions
-    local maxChars = hook.Run('GetMaxPlayerCharacter', LocalPlayer()) or lia.config.get('maxChars', 5)
+    local maxChars = hook.Run('GetMaxPlayerCharacter', LocalPlayer()) or lia.config.MaxCharacters
     if lia.characters and #lia.characters >= maxChars then return false end
     local canCreate = hook.Run('ShouldMenuButtonShow', 'create')
     if canCreate == false then return false end

@@ -3,13 +3,11 @@ local MODULE = MODULE
 ----------------------------------------------------------------------------------------------
 MODULE.name = "UI"
 ----------------------------------------------------------------------------------------------
-MODULE.author = "Leonheart#7476 & Bilwin"
+MODULE.author = "76561198312513285" -- Extra Credit to Bilwin for the NS version of this UI
 ----------------------------------------------------------------------------------------------
-MODULE.websiteURL = ""
+MODULE.discord = "@liliaplayer"
 ----------------------------------------------------------------------------------------------
-MODULE.discordURL = ""
+MODULE.desc = "Adds a Fancy Main Menu with passing iamges"
 ----------------------------------------------------------------------------------------------
-MODULE.contentURL = ""
-----------------------------------------------------------------------------------------------
-MODULE.backgrounds = {lia.util.getMaterial("ui/bg1.png"), lia.util.getMaterial("ui/bg2.png"), lia.util.getMaterial("ui/bg3.png"), lia.util.getMaterial("ui/bg4.png"), lia.util.getMaterial("ui/bg5.png")}
+lia.util.include("sh_config.lua")
 ----------------------------------------------------------------------------------------------

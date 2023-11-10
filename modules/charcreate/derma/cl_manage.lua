@@ -102,7 +102,7 @@ function MODULE:Manage(panel, gr)
     end
 
     list:AlphaTo(255, 0.3) --Fade in
-    local maxChars = hook.Run("GetMaxPlayerCharacter", LocalPlayer()) or lia.config.get("maxChars", 5)
+    local maxChars = hook.Run("GetMaxPlayerCharacter", LocalPlayer()) or lia.config.MaxCharacters
     if #lia.characters < maxChars then
       scroll:SetWide(scroll:GetWide() + 200)
       list:SetWide(scroll:GetWide())

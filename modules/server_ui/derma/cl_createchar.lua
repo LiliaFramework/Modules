@@ -234,7 +234,7 @@ function PANEL:Init()
 
             function pnl.models:paintIcon(icon, w, h)
                 if realpanel.context:GetModel() ~= icon.index then return end
-                local color = lia.config.get('color', color_white)
+                local color = lia.config.Color
                 surface.SetDrawColor(color.r, color.g, color.b, 200)
                 local i2
 
