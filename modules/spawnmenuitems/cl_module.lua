@@ -38,9 +38,7 @@ function MODULE:PopulateItems(pnlContent, tree, node)
         end
 
         local FirstNode = tree:Root():GetChildNode(0)
-        if IsValid(FirstNode) then
-            FirstNode:InternalDoClick()
-        end
+        if IsValid(FirstNode) then FirstNode:InternalDoClick() end
     end
 end
 
@@ -65,10 +63,7 @@ spawnmenu.AddContentType(
         end
 
         icon:InvalidateLayout(true)
-        if IsValid(container) then
-            container:Add(icon)
-        end
-
+        if IsValid(container) then container:Add(icon) end
         return icon
     end
 )
@@ -80,8 +75,9 @@ spawnmenu.AddCreationTab(
         local ctrl = vgui.Create("SpawnmenuContentPanel")
         ctrl:EnableSearch("items", "PopulateItems")
         ctrl:CallPopulateHook("PopulateItems")
-
         return ctrl
-    end, "icon16/cog_add.png", 200
+    end,
+    "icon16/cog_add.png",
+    200
 )
 --------------------------------------------------------------------------------------------------------------------------
