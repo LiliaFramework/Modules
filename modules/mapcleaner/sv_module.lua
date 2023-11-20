@@ -47,9 +47,7 @@ function MODULE:InitializedModules()
             end
 
             for i, v in pairs(ents.GetAll()) do
-                if table.HasValue(lia.config.MapCleanerEntitiesToRemove, v:GetClass()) then
-                    v:Remove()
-                end
+                if table.HasValue(lia.config.MapCleanerEntitiesToRemove, v:GetClass()) then v:Remove() end
             end
         end
     )

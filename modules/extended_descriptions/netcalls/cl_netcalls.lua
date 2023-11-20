@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------------------------------------
+﻿-------------------------------------------------------------------------------------------------------------
 net.Receive(
     "OpenDetailedDescriptions",
     function()
@@ -31,9 +31,7 @@ net.Receive(
         DButton:SetText("View Reference Picture")
         DButton:Dock(BOTTOM)
         DButton:DockMargin(0, 0, 0, 0)
-        DButton.DoClick = function()
-            gui.OpenURL(textEntryDataURL)
-        end
+        DButton.DoClick = function() gui.OpenURL(textEntryDataURL) end
     end
 )
 
@@ -57,10 +55,7 @@ net.Receive(
         textEntry:DockMargin(0, 0, 0, 0)
         textEntry:SetMultiline(true)
         textEntry:SetVerticalScrollbarEnabled(true)
-        if LocalPlayer():getChar():getData("textDetDescData") then
-            textEntry:SetText(LocalPlayer():getChar():getData("textDetDescData"))
-        end
-
+        if LocalPlayer():getChar():getData("textDetDescData") then textEntry:SetText(LocalPlayer():getChar():getData("textDetDescData")) end
         local DButton = vgui.Create("DButton", List)
         DButton:DockMargin(0, 0, 0, 0)
         DButton:Dock(BOTTOM)
