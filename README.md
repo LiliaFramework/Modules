@@ -1,6 +1,6 @@
-# Lilia Plugins
+# Lilia Modules
  
-An set of plugins for [Lilia 2.0](https://github.com/Lilia-Framework/Lilia), designed to provide some extra content for free.
+An set of Modules for [Lilia 2.0](https://github.com/Lilia-Framework/Lilia), designed to provide some extra content for free.
 
 # Support
 
