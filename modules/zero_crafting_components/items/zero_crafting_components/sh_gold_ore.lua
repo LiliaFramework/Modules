@@ -1,9 +1,0 @@
-﻿ITEM.name = "Gold Ore"
-ITEM.desc = "A chunk of rock with bits of unrefined gold sprinkled throughout."
-ITEM.model = "models/props_junk/rock001a.mdl"
-ITEM.color = Color(229, 40, 255, 165)
-ITEM.material = "zerochain/props_factory/resource/zpf_resource_gold"
-ITEM.width = 1
-ITEM.uniqueID = ITEM.name
-ITEM.height = 1
-ITEM.numeral = 3

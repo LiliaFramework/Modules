@@ -1,9 +1,0 @@
-﻿ITEM.name = "Green Chip"
-ITEM.desc = "TEMPLATE"
-ITEM.model = "models/zerochain/props_factory/zpf_chip.mdl"
-ITEM.color = Color(0, 89, 255, 198)
-ITEM.material = "false"
-ITEM.width = 4
-ITEM.uniqueID = ITEM.name
-ITEM.height = 4
-ITEM.numeral = 21

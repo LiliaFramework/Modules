@@ -1,9 +1,0 @@
-﻿ITEM.name = "Atomic - Fuel Cell"
-ITEM.desc = "TEMPLATE"
-ITEM.model = "models/thrusters/jetpack.mdl"
-ITEM.color = Color(122, 87, 255, 201)
-ITEM.material = "false"
-ITEM.width = 4
-ITEM.uniqueID = ITEM.name
-ITEM.height = 4
-ITEM.numeral = 26

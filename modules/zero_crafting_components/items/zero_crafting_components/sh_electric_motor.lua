@@ -1,9 +1,0 @@
-﻿ITEM.name = "Electric Motor"
-ITEM.desc = "TEMPLATE"
-ITEM.model = "models/xqm/hydcontrolbox.mdl"
-ITEM.color = Color(255, 255, 255, 255)
-ITEM.material = "false"
-ITEM.width = 4
-ITEM.uniqueID = ITEM.name
-ITEM.height = 4
-ITEM.numeral = 24

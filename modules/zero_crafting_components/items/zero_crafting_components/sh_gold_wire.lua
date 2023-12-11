@@ -1,9 +1,0 @@
-﻿ITEM.name = "Gold Wire"
-ITEM.desc = "A roll of golden wires, ready to be used."
-ITEM.model = "models/zerochain/props_factory/zpf_wireroll.mdl"
-ITEM.color = Color(229, 40, 255, 165)
-ITEM.material = "false"
-ITEM.width = 1
-ITEM.uniqueID = ITEM.name
-ITEM.height = 1
-ITEM.numeral = 19

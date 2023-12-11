@@ -1,9 +1,0 @@
-﻿ITEM.name = "Iron Plate"
-ITEM.desc = "A bundle of iron plates."
-ITEM.model = "models/zerochain/props_factory/zpf_item_panels.mdl"
-ITEM.color = Color(255, 255, 255, 255)
-ITEM.material = "zerochain/props_factory/items/zpf_metal_iron"
-ITEM.width = 1
-ITEM.uniqueID = ITEM.name
-ITEM.height = 1
-ITEM.numeral = 17
