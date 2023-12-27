@@ -24,6 +24,7 @@ lia.command.add(
         privilege = "Characters - Search Players",
         adminOnly = true,
         syntax = "<string player>",
+        onRun = function(client, arguments)
             local target = lia.command.findPlayer(client, arguments[1])
             if not target then return end
             MODULE:searchPlayer(client, target)
