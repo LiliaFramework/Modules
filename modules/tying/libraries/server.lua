@@ -72,7 +72,6 @@ function MODULE:PlayerUse(client, entity)
                 OnHandcuffRemove(client)
                 entity.liaBeingUnTied = false
                 client:EmitSound("npc/roller/blade_in.wav")
-                entity:FreeTies()
             end,
             5,
             function()
