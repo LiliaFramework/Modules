@@ -3,7 +3,7 @@ surface.CreateFont(
     "liaRadioFont",
     {
         font = "Lucida Sans Typewriter",
-        size =  17),
+        size =  17,
         weight = 100
     }
 )
