@@ -1,4 +1,4 @@
-----------------------------------------------------------------------------------------------
+﻿----------------------------------------------------------------------------------------------
 local MODULE = MODULE
 ----------------------------------------------------------------------------------------------
 function MODULE:SetupInventorySearch(client, target)
@@ -14,22 +14,18 @@ end
 ----------------------------------------------------------------------------------------------
 function MODULE:RemoveInventorySearchPermissions(client, target)
     local rule = target.liaSearchAccessRule
-    if rule then
-        target:getChar():getInv():removeAccessRule(rule)
-    end
+    if rule then target:getChar():getInv():removeAccessRule(rule) end
 end
 
 ----------------------------------------------------------------------------------------------
 function MODULE:searchPlayer(client, target)
     if IsValid(target:getNetVar("searcher")) or IsValid(client.liaSearchTarget) then
         client:notifyLocalized("This person is already being searched.")
-
         return false
     end
 
     if not target:getChar() or not target:getChar():getInv() then
         client:notifyLocalized("invalidPly")
-
         return false
     end
 
@@ -37,7 +33,6 @@ function MODULE:searchPlayer(client, target)
     netstream.Start(client, "searchPly", target, target:getChar():getInv():getID())
     client.liaSearchTarget = target
     target:setNetVar("searcher", client)
-
     return true
 end
 
@@ -60,8 +55,6 @@ end
 ----------------------------------------------------------------------------------------------
 function MODULE:OnPlayerUnRestricted(client)
     local searcher = client:getNetVar("searcher")
-    if IsValid(searcher) then
-        self:stopSearching(searcher)
-    end
+    if IsValid(searcher) then self:stopSearching(searcher) end
 end
 ----------------------------------------------------------------------------------------------
