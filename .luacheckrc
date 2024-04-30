@@ -1,1 +1,7 @@
-exclude_files = {"modules/cwsupport_ww2rp/**/*.lua","modules/zero_crafting_components/items/base/sh_zero_crafting_components.lua",}
+exclude_files = {
+    "lilia/modules/utilities/logging/logs.lua",
+    "lilia/gamemode/libraries/thirdparty/**/*.lua",
+    "lilia/lilia.txt",
+    "docs/*.lua",
+    "docs/**/*.lua",
+}
