@@ -10,6 +10,6 @@ end
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function MODULE:HUDPaintBackground()
     if not LocalPlayer().getChar(LocalPlayer()) then return end
-    if IsHandcuffed(LocalPlayer()) then lia.util.drawText(L"ziptied", scrW * 0.5, scrH * 0.33, nil, 1, 1, "liaBigFont") end
+    if IsHandcuffed(LocalPlayer()) then lia.util.drawText(L"restricted", scrW * 0.5, scrH * 0.33, nil, 1, 1, "liaBigFont") end
 end
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -37,5 +37,8 @@ ITEM.functions.use = {
         end)
         return false
     end,
+    onCanRun = function(item)
+        return not IsValid(item.entity)
+    end
 }
 --------------------------------------------------------------------------------------------------------

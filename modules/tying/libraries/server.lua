@@ -109,7 +109,7 @@ function HandcuffPlayer(target)
 
     timer.Simple(.2, function()
         target:SelectWeapon("lia_keys")
-        target:setNetVar("ziptied", true)
+        target:setNetVar("restricted", true)
     end)
 
     target:StartHandcuffAnim()
@@ -117,10 +117,18 @@ end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function OnHandcuffRemove(target)
-    target:setNetVar("ziptied", false)
+    target:setNetVar("restricted", false)
     target:SetWalkSpeed(lia.config.WalkSpeed)
     target:SetRunSpeed(lia.config.RunSpeed)
     hook.Run("ResetSubModuleCuffData", target)
     target:EndHandcuffAnim()
+end
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function MODULE:CanPlayerJoinClass(client)
+    if client:IsHandcuffed(client) then
+        client:notify("You cannot change classes when you are restrained!")
+        return false
+    end
 end
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
