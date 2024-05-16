@@ -51,7 +51,7 @@ ITEM.functions.changeFreq = {
     name = "Change Frequency",
     icon = "icon16/transmit_blue.png",
     onRun = function(item)
-        netstream.Start(item.player, "radioAdjust", item:getData("freq", 000, 0), item.id)
+        netstream.Start(item.player, "radioAdjust", item:getData("freq", "000.0"), item.id)
         return false
     end,
     onCanRun = function(item)
@@ -66,11 +66,11 @@ function ITEM:getDesc()
     local str
     if not self.entity or not IsValid(self.entity) then
         str = "A Pager that allows you to send a signal to other characters in distance.\nPower: %s\nFrequency: %s"
-        return Format(str, self:getData("enabled") and "On" or "Off", self:getData("freq", 000.0))
+        return Format(str, self:getData("enabled") and "On" or "Off", self:getData("freq", "000.0"))
     else
         local data = self.entity:getData()
         str = "A Functional Pager. Power: %s Frequency: %s"
-        return Format(str, self.entity:getData("enabled") and "On" or "Off", self.entity:getData("freq", 000.0))
+        return Format(str, self.entity:getData("enabled") and "On" or "Off", self.entity:getData("freq", "000.0"))
     end
 end
 
