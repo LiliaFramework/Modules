@@ -1,4 +1,4 @@
-﻿--------------------------------------------------------------------------------------------------------
+﻿
 netstream.Hook("radioAdjust", function(client, freq, id)
     local inv = client:getChar() and client:getChar():getInv() or nil
     if inv then
@@ -18,4 +18,3 @@ netstream.Hook("radioAdjust", function(client, freq, id)
         end
     end
 end)
---------------------------------------------------------------------------------------------------------

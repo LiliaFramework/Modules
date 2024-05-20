@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+
 netstream.Hook("radioAdjust", function(freq, id)
     local adjust = vgui.Create("liaRadioMenu")
     if id then adjust.itemID = id end
@@ -8,4 +8,3 @@ netstream.Hook("radioAdjust", function(freq, id)
         end
     end
 end)
---------------------------------------------------------------------------------------------------------

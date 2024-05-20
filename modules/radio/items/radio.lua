@@ -1,9 +1,9 @@
-﻿--------------------------------------------------------------------------------------------------------
+﻿
 ITEM.name = "Radio"
 ITEM.desc = "Radio to use to talk to other people"
 ITEM.uniqueID = "radio"
 ITEM.model = "models/gibs/shield_scanner_gib1.mdl"
---------------------------------------------------------------------------------------------------------
+
 ITEM.functions.enable = {
     name = "Turn On",
     icon = "icon16/connect.png",
@@ -11,7 +11,7 @@ ITEM.functions.enable = {
         local client = item.player
         local items = client:getChar():getInv():getItems()
         client.RadioCount = client.RadioCount or {}
-        for k, v in pairs(items) do
+        for _, v in pairs(items) do
             if v.id ~= item.id and (v.uniqueID == item.uniqueID and v:getData("enabled")) then
                 client:notify("You already have a radio equipped!")
                 return false
@@ -29,7 +29,7 @@ ITEM.functions.enable = {
     end
 }
 
---------------------------------------------------------------------------------------------------------
+
 ITEM.functions.disable = {
     name = "Turn Off",
     icon = "icon16/disconnect.png",
@@ -46,7 +46,7 @@ ITEM.functions.disable = {
     end
 }
 
---------------------------------------------------------------------------------------------------------
+
 ITEM.functions.changeFreq = {
     name = "Change Frequency",
     icon = "icon16/transmit_blue.png",
@@ -61,20 +61,19 @@ ITEM.functions.changeFreq = {
     end
 }
 
---------------------------------------------------------------------------------------------------------
+
 function ITEM:getDesc()
     local str
     if not self.entity or not IsValid(self.entity) then
         str = "A Pager that allows you to send a signal to other characters in distance.\nPower: %s\nFrequency: %s"
         return Format(str, self:getData("enabled") and "On" or "Off", self:getData("freq", "000.0"))
     else
-        local data = self.entity:getData()
         str = "A Functional Pager. Power: %s Frequency: %s"
         return Format(str, self.entity:getData("enabled") and "On" or "Off", self.entity:getData("freq", "000.0"))
     end
 end
 
---------------------------------------------------------------------------------------------------------
+
 if CLIENT then
     function ITEM:paintOver(item, w, h)
         if item:getData("enabled") then
@@ -86,4 +85,4 @@ if CLIENT then
         surface.DrawRect(w - 14, h - 14, 8, 8)
     end
 end
---------------------------------------------------------------------------------------------------------
+

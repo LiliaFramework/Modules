@@ -1,9 +1,9 @@
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 PIM:AddOption("Put in vehicle", {
     runServer = true,
     shouldShow = function(client, target)
         local es = ents.FindInSphere(client:GetPos(), 150)
-        for k, v in pairs(es) do
+        for _, v in pairs(es) do
             if simfphys and v:isSimfphysCar() then return IsHandcuffed(target) end
         end
         return false
@@ -11,7 +11,7 @@ PIM:AddOption("Put in vehicle", {
     onRun = function(client, target)
         if not SERVER then return end
         local es = ents.FindInSphere(client:GetPos(), 150)
-        for k, v in pairs(es) do
+        for _, v in pairs(es) do
             if simfphys and v:isSimfphysCar() then
                 local closestSeat = v:GetClosestSeat(target)
                 if not closestSeat or IsValid(closestSeat:GetDriver()) then
@@ -38,15 +38,15 @@ PIM:AddOption("Put in vehicle", {
     end
 })
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 PIM:AddOption("Remove Cuffed Passengers", {
     runServer = true,
-    shouldShow = function(client, target)
-        for k, v in pairs(ents.FindInSphere(client:GetPos(), 150)) do
+    shouldShow = function(client)
+        for _, v in pairs(ents.FindInSphere(client:GetPos(), 150)) do
             if v:IsPlayer() and v:InVehicle() and IsHandcuffed(v) then return true end
         end
     end,
-    onRun = function(client, target)
+    onRun = function(_, target)
         if not SERVER then return end
         for i = 2, #target.pSeat do
             local driver = target.pSeat[i]:GetDriver()
@@ -55,14 +55,14 @@ PIM:AddOption("Remove Cuffed Passengers", {
     end
 })
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 PIM:AddOption("Tie", {
     runServer = true,
     shouldShow = function(client, target) return client:getChar():getInv():hasItem("tie") and (IsValid(target) and not IsHandcuffed(target)) end,
     onRun = function(client, target)
         if not SERVER then return end
         local item = client:getChar():getInv():getFirstItemOfType("tie")
-        if target:Team() == FACTION_STAFF then
+        if target:isStaffOnDuty() then
             target:notify("You were just attempted to be restrained by " .. client:Name() .. ".")
             client:notify("You can't tie a staff member!")
             return false
@@ -80,10 +80,10 @@ PIM:AddOption("Tie", {
     end
 })
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 PIM:AddOption("UnTie", {
     runServer = true,
-    shouldShow = function(client, target) return IsHandcuffed(target) end,
+    shouldShow = function(_, target) return IsHandcuffed(target) end,
     onRun = function(client, target)
         if not SERVER then return end
         target:setAction("You are being untied...", 3)
@@ -94,4 +94,3 @@ PIM:AddOption("UnTie", {
         end)
     end
 })
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
