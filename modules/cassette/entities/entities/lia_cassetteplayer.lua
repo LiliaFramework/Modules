@@ -10,7 +10,7 @@ lia.item.inventories = lia.inventory.instances
 if SERVER then
     local function CanOnlyTransferCassette(_, action, context)
         if action ~= "transfer" then return end
-        local item, toInventory = context.item, context.to
+        local item, _ = context.item, context.to
         if item.music == nil then
             return false, "You can only place cassette's here."
         else
@@ -62,7 +62,7 @@ if SERVER then
     function ENT:activate()
         local inventory = self:getInv()
         local itemKey = inventory:getItems()
-        for k, v in pairs(itemKey) do
+        for _, v in pairs(itemKey) do
             if v.music ~= nil and self:getNetVar("songOn") == false then
                 self:setNetVar("songOn", true)
                 sound.Add({
@@ -124,7 +124,7 @@ if SERVER then
             self:setNetVar("songOn", false)
         end
     end
-    
+
     function ENT:Think()
         local inventory = self:getInv()
         if not inventory then return end
@@ -147,19 +147,17 @@ else
     local drawText = lia.util.drawText
     function ENT:onDrawEntityInfo(alpha)
         local status = self:getNetVar("songOn")
-        local position = toScreen(self.LocalToWorld(self, self.OBBCenter(self)))
+        local position = toScreen(self:LocalToWorld(self:OBBCenter()))
         local x, y = position.x, position.y
-        local playing = "Playing"
-        if status == true then
-            playing = "Playing"
+        local playingText = "Not Playing"
+        playingColor = COLOR_STOPPED
+        if status then
+            playingText = "Playing"
             playingColor = COLOR_PLAYING
-        else
-            playing = "Not Playing"
-            playingColor = COLOR_STOPPED
         end
 
         y = y - 20
-        local _, ty = drawText(playing, x, y, colorAlpha(playing and playingColor, alpha), 1, 1, nil, alpha * 0.65)
+        local _, ty = drawText(playingText, x, y, colorAlpha(playingColor, alpha), 1, 1, nil, alpha * 0.65)
         y = y + ty * .9
         drawText("Cassette Player", x, y, colorAlpha(lia.config.Color, alpha), 1, 1, nil, alpha * 0.65)
     end
