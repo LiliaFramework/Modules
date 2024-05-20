@@ -1,12 +1,12 @@
 ﻿
 lia.command.add("doorkick", {
     syntax = "",
-    onRun = function(client) end
+    onRun = function() end
 })
 
 
 lia.command.add("doorid", {
     adminOnly = true,
-    onRun = function(client, arguments) end
+    onRun = function() end
 })
 

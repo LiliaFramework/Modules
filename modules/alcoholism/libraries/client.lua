@@ -4,7 +4,7 @@ function MODULE:RenderScreenspaceEffects()
 end
 
 
-function MODULE:DrawCharInfo(client, character, info)
+function MODULE:DrawCharInfo(client, _, info)
     if client:IsDrunk() then info[#info + 1] = {"This Person Is Heavily Intoxicated", Color(245, 215, 110)} end
 end
 

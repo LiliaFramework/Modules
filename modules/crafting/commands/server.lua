@@ -2,7 +2,7 @@
 lia.command.add("craftlock", {
     adminOnly = false,
     syntax = "",
-    onRun = function(client, arguments)
+    onRun = function(client)
         local trace = client:GetEyeTraceNoCursor()
         local ent = trace.Entity
         local dist = ent:GetPos():DistToSqr(client:GetPos())
@@ -20,7 +20,7 @@ lia.command.add("craftlock", {
 lia.command.add("craftunlock", {
     adminOnly = false,
     syntax = "",
-    onRun = function(client, arguments)
+    onRun = function(client)
         local trace = client:GetEyeTraceNoCursor()
         local ent = trace.Entity
         local dist = ent:GetPos():DistToSqr(client:GetPos())

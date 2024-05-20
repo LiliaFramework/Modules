@@ -9,7 +9,7 @@ netstream.Hook("craftingTableOpen", function(entity, index)
     inv2:ShowCloseButton(true)
     inv2:SetTitle(entity.PrintName)
     inv2:SetDraggable(false)
-    inv2.OnClose = function(this)
+    inv2.OnClose = function()
         if IsValid(inv1) then inv1:Remove() end
         netstream.Start("invExit")
     end
@@ -56,7 +56,7 @@ netstream.Hook("openTempStorage", function(entity, index)
         inv2:ShowCloseButton(true)
         inv2:SetTitle(entity.PrintName)
         inv2:SetDraggable(false)
-        inv2.OnClose = function(this)
+        inv2.OnClose = function()
             if IsValid(inv1) then inv1:Remove() end
             netstream.Start("invExit")
         end

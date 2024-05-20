@@ -1,4 +1,6 @@
-﻿NAME = "english"
+﻿
+NAME = "english"
+
 LANGUAGE = {
     radioFreq = "Frequency",
     radioSubmit = "Submit",
@@ -6,3 +8,4 @@ LANGUAGE = {
     radioNoRadioComm = "You don't have any radio to communicate",
     radioFormat = "%s radios in \"%s\"",
 }
+

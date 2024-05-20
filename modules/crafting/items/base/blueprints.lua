@@ -9,13 +9,13 @@ function ITEM:getDesc()
         local strong = [[Requirements:%s
 Result:%s]]
         local reqString = ""
-        for k, v in ipairs(self.requirements) do
+        for _, v in ipairs(self.requirements) do
             local item = lia.item.list[v[1]]
             if item then reqString = reqString .. Format("\n %s x %d", item.name, v[2]) end
         end
 
         local resString = ""
-        for k, v in ipairs(self.result) do
+        for _, v in ipairs(self.result) do
             local item = lia.item.list[v[1]]
             if item then resString = resString .. Format("\n %s x %d", item.name, v[2]) end
         end

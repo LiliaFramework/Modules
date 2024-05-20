@@ -1,4 +1,4 @@
-﻿surface.CreateFont("liaDialFont", {
+surface.CreateFont("liaDialFont", {
     font = "Arial",
     size = 20,
     weight = 500,

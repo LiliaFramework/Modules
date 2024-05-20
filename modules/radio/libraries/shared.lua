@@ -1,4 +1,6 @@
-﻿local MODULE = MODULE
+
+local MODULE = MODULE
+
 local find = {
     ["radio"] = true,
 }
@@ -9,6 +11,7 @@ function MODULE:EndChatter(listener)
         listener:EmitSound("npc/metropolice/vo/off" .. math.random(1, 3) .. ".wav", math.random(60, 70), math.random(80, 120))
     end)
 end
+
 
 lia.chat.register("radio", {
     format = "%s says in radio: \"%s\"",
@@ -103,3 +106,4 @@ lia.chat.register("radio", {
     end,
     prefix = {"/r", "/radio"},
 })
+

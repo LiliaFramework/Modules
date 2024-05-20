@@ -2,13 +2,13 @@
 lia.command.add("craftlock", {
     adminOnly = false,
     syntax = "",
-    onRun = function(client, arguments) end
+    onRun = function() end
 })
 
 
 lia.command.add("craftunlock", {
     adminOnly = false,
     syntax = "",
-    onRun = function(client, arguments) end
+    onRun = function() end
 })
 

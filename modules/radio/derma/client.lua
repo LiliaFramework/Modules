@@ -1,8 +1,8 @@
 ﻿local modernColors = {
-    background = Color(45, 45, 45, 255),
-    buttonNormal = Color(60, 60, 60, 255),
-    buttonHover = Color(80, 80, 80, 255),
-    text = Color(255, 255, 255, 255)
+    background = Color(45, 45, 45, 255), -- Dark gray
+    buttonNormal = Color(60, 60, 60, 255), -- Lighter gray
+    buttonHover = Color(80, 80, 80, 255), -- Even lighter gray for hover effect
+    text = Color(255, 255, 255, 255) -- White for text
 }
 
 local PANEL = {}
