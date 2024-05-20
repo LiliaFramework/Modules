@@ -1,6 +1,4 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 lia.command.add("stopsearch", {
     privilege = "Stop Searches",
     adminOnly = true,
@@ -13,7 +11,6 @@ lia.command.add("stopsearch", {
     end
 })
 
-
 lia.command.add("searchplayer", {
     privilege = "Search Players",
     adminOnly = true,
@@ -24,4 +21,3 @@ lia.command.add("searchplayer", {
         MODULE:searchPlayer(client, target)
     end
 })
-

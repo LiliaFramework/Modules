@@ -1,2 +1,1 @@
-
-MODULE.RadioChatColor = Color(100, 255, 50)
+﻿MODULE.RadioChatColor = Color(100, 255, 50)

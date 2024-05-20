@@ -1,9 +1,7 @@
-﻿
-ITEM.name = "Radio"
+﻿ITEM.name = "Radio"
 ITEM.desc = "Radio to use to talk to other people"
 ITEM.uniqueID = "radio"
 ITEM.model = "models/gibs/shield_scanner_gib1.mdl"
-
 ITEM.functions.enable = {
     name = "Turn On",
     icon = "icon16/connect.png",
@@ -29,7 +27,6 @@ ITEM.functions.enable = {
     end
 }
 
-
 ITEM.functions.disable = {
     name = "Turn Off",
     icon = "icon16/disconnect.png",
@@ -46,7 +43,6 @@ ITEM.functions.disable = {
     end
 }
 
-
 ITEM.functions.changeFreq = {
     name = "Change Frequency",
     icon = "icon16/transmit_blue.png",
@@ -61,7 +57,6 @@ ITEM.functions.changeFreq = {
     end
 }
 
-
 function ITEM:getDesc()
     local str
     if not self.entity or not IsValid(self.entity) then
@@ -72,7 +67,6 @@ function ITEM:getDesc()
         return Format(str, self.entity:getData("enabled") and "On" or "Off", self.entity:getData("freq", "000.0"))
     end
 end
-
 
 if CLIENT then
     function ITEM:paintOver(item, w, h)
@@ -85,4 +79,3 @@ if CLIENT then
         surface.DrawRect(w - 14, h - 14, 8, 8)
     end
 end
-

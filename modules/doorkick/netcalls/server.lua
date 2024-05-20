@@ -1,1 +1,1 @@
-util.AddNetworkString("DoorKickView")
+﻿util.AddNetworkString("DoorKickView")

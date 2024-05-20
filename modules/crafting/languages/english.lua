@@ -1,5 +1,4 @@
-NAME = "English"
-
+﻿NAME = "English"
 LANGUAGE = {
     wrongBlueprint = "Cannot use the blueprint here, try %s instead.",
     cantCraft = "Cannot craft.",

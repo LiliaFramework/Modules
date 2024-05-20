@@ -13,48 +13,43 @@ function MODULE:HUDPaint()
         if IsValid(entTrace) then draw.SimpleText("| Cur Trace: " .. entTrace:GetClass() .. " | Trace Model: " .. entTrace:GetModel() .. " | ", "DevHudText", w / 5.25, h / 1.06, Color(210, 210, 210, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER) end
     end
 end
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function MODULE:LoadFonts(font, genericFont)
-    surface.CreateFont(
-        "DevHudServerName",
-        {
-            font = "Times New Roman",
-            extended = false,
-            size = 20 * h / 950,
-            weight = 500,
-            blursize = 0,
-            scanlines = 0,
-            antialias = true,
-            underline = false,
-            italic = false,
-            strikeout = false,
-            symbol = false,
-            rotary = false,
-            shadow = false,
-            additive = false,
-            outline = false,
-        }
-    )
+    surface.CreateFont("DevHudServerName", {
+        font = "Times New Roman",
+        extended = false,
+        size = 20 * h / 950,
+        weight = 500,
+        blursize = 0,
+        scanlines = 0,
+        antialias = true,
+        underline = false,
+        italic = false,
+        strikeout = false,
+        symbol = false,
+        rotary = false,
+        shadow = false,
+        additive = false,
+        outline = false,
+    })
 
-    surface.CreateFont(
-        "DevHudText",
-        {
-            font = "Times New Roman",
-            extended = false,
-            size = 20 * h / 1000,
-            weight = 500,
-            blursize = 0,
-            scanlines = 0,
-            antialias = true,
-            underline = false,
-            italic = false,
-            strikeout = false,
-            symbol = false,
-            rotary = false,
-            shadow = false,
-            additive = false,
-            outline = false,
-        }
-    )
+    surface.CreateFont("DevHudText", {
+        font = "Times New Roman",
+        extended = false,
+        size = 20 * h / 1000,
+        weight = 500,
+        blursize = 0,
+        scanlines = 0,
+        antialias = true,
+        underline = false,
+        italic = false,
+        strikeout = false,
+        symbol = false,
+        rotary = false,
+        shadow = false,
+        additive = false,
+        outline = false,
+    })
 end
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

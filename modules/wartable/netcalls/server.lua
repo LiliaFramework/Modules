@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 --------------------------------------------------------------------------------------------------------
 netstream.Hook("ClearWarTable", function(ply, tableEnt)
     local tableEnt = getTableEnt(ply:GetPos())

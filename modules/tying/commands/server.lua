@@ -1,5 +1,4 @@
-﻿
-lia.command.add("removeties", {
+﻿lia.command.add("removeties", {
     privilege = "Remove Ties",
     adminOnly = true,
     syntax = "<string player>",
@@ -9,4 +8,3 @@ lia.command.add("removeties", {
         OnHandcuffRemove(target)
     end
 })
-

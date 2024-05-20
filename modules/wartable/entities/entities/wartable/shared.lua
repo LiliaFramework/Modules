@@ -1,4 +1,4 @@
-DEFINE_BASECLASS("base_gmodentity")
+﻿DEFINE_BASECLASS("base_gmodentity")
 ENT.PrintName = "War Table"
 ENT.Spawnable = true
 ENT.AdminOnly = true

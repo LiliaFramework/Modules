@@ -1,4 +1,4 @@
-ITEM.name = "Gears Blueprint"
+﻿ITEM.name = "Gears Blueprint"
 ITEM.desc = "."
 ITEM.category = "Crafting"
 ITEM.price = 25

@@ -1,8 +1,5 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 netstream.Hook("searchExit", function(client) MODULE:stopSearching(client) end)
-
 net.Receive("ApproveSearch", function(_, client)
     local requester = client.SearchRequested
     if not requester then return end
@@ -20,4 +17,3 @@ net.Receive("ApproveSearch", function(_, client)
     requester.SearchRequested = nil
     client.SearchRequested = nil
 end)
-

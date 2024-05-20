@@ -1,6 +1,4 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 if CLIENT then
     SWEP.PrintName = "StunGun"
     SWEP.Author = "STEAM_0:1:176123778"
@@ -9,86 +7,54 @@ if CLIENT then
     SWEP.SlotPos = 1
 end
 
-
 SWEP.UseHands = true
-
 SWEP.Spawnable = true
-
 SWEP.AdminSpawnable = true
-
 SWEP.Category = "StunGun"
-
 SWEP.ViewModel = "models/weapons/cg_ocrp2/v_taser.mdl"
-
 SWEP.WorldModel = "models/weapons/cg_ocrp2/w_taser.mdl"
-
 SWEP.HoldType = "pistol"
-
 SWEP.Weight = 5
-
 SWEP.AutoSwitchTo = false
-
 SWEP.AutoSwitchFrom = false
-
 SWEP.Primary.Sound = Sound("weapons/clipempty_rifle.wav")
-
 SWEP.Primary.Recoil = 0.1
-
 SWEP.Primary.Damage = 0
-
 SWEP.Primary.NumShots = 1
-
 SWEP.Primary.Cone = 0.5
-
 SWEP.Primary.ClipSize = 1
-
 SWEP.Primary.Delay = 0.06
-
 SWEP.Primary.DefaultClip = 55
-
 SWEP.Primary.Automatic = true
-
 SWEP.Primary.Ammo = "pistol"
-
 SWEP.DrawCrosshair = false
-
 SWEP.Secondary.ClipSize = -1
-
 SWEP.Secondary.DefaultClip = -1
-
 SWEP.Secondary.Automatic = false
-
 SWEP.Secondary.Ammo = "none"
-
 SWEP.IronSightsPos = Vector(-6, 2.2, -2)
-
 SWEP.IronSightsAng = Vector(0.9, 0, 0)
-
 SWEP.ViewModelFlip = false
-
 SWEP.ViewModelFOV = 65
-
 SWEP.LastFired = 0
-
 function SWEP:Initialize()
-    if SERVER then
-        self.LastFired = 0
-    end
+    if SERVER then self.LastFired = 0 end
 end
-
 
 function SWEP:PrimaryAttack()
     local client = self:GetOwner()
     local target = client:GetEyeTrace().Entity
     if client:IsNPC() then return end
     local curTime = CurTime()
-    if curTime < self.LastFired + 5 then return end -- check if the delay time has passed
+    if curTime < self.LastFired + 5 then -- check if the delay time has passed
+        return
+    end
+
     local maxDistance = 400 -- set the maximum distance for the check
     local distance = client:GetPos():Distance(target:GetPos()) -- calculate the distance between the player and the target
     if IsValid(target) and target:IsPlayer() and target:isStaffOnDuty() then
         target:notify("You were just attempted to be stunned by " .. client:Name() .. ".")
         client:notify("You can't tie a staff member!")
-
         return
     end
 
@@ -96,7 +62,6 @@ function SWEP:PrimaryAttack()
     if distance > maxDistance then
         self.LastFired = curTime
         client:ChatPrint("target is too far away!")
-
         return
     end
 
@@ -105,15 +70,12 @@ function SWEP:PrimaryAttack()
         self:EmitSound(self.Primary.Sound)
         self.LastFired = curTime
         self:ShootBullet(0, 1, self.Primary.Cone)
-        if SERVER then
-            MODULE:TasePlayer(ply, target)
-        end
+        if SERVER then MODULE:TasePlayer(ply, target) end
     else
         self.LastFired = curTime
         client:ChatPrint("Invalid Target/Miss Shot!")
     end
 end
-
 
 function SWEP:GetViewModelPosition(pos, ang)
     if not self.IronSightsPos then return pos, ang end
@@ -132,10 +94,8 @@ function SWEP:GetViewModelPosition(pos, ang)
     pos = pos + Offset.x * Right
     pos = pos + Offset.y * Forward
     pos = pos + Offset.z * Up
-
     return pos, ang
 end
-
 
 if CLIENT then
     local LASER = Material('cable/redlaser')
@@ -149,22 +109,12 @@ if CLIENT then
             if not IsValid(m) then return end
             local pos = m:GetTranslation() + ply:EyeAngles():Forward() * 8 + Vector(0, 0, 0.1) + ply:EyeAngles():Right() * -1
             local hitpos = ply:GetShootPos() + ply:EyeAngles():Forward() * SWEPConfig.MaxDist
-            if ply:GetEyeTrace().HitPos:Length() <= SWEPConfig.MaxDist then
-                hitpos = ply:GetEyeTrace().HitPos
-            end
-
+            if ply:GetEyeTrace().HitPos:Length() <= SWEPConfig.MaxDist then hitpos = ply:GetEyeTrace().HitPos end
             render.DrawBeam(pos, hitpos, 2, 0, 12.5, Color(255, 0, 0, 255))
         end
     end
 
-    hook.Add(
-        'PostDrawOpaqueRenderables',
-        'PlyMustSeeLaser',
-        function()
-            DrawLaser()
-        end
-    )
-
+    hook.Add('PostDrawOpaqueRenderables', 'PlyMustSeeLaser', function() DrawLaser() end)
     function SWEP:ViewModelDrawn()
         local vm = self.Owner:GetViewModel()
         if not IsValid(vm) then return end

@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 ITEM.name = "Alcohol Base"
 ITEM.model = "models/Items/BoxSRounds.mdl"
 ITEM.width = 1
@@ -10,6 +10,7 @@ ITEM.category = "Alcohol"
 function ITEM:getDesc()
     return Format(self.desc, self.abv)
 end
+
 --------------------------------------------------------------------------------------------------------
 ITEM.functions.use = {
     name = "Drink",
@@ -18,7 +19,6 @@ ITEM.functions.use = {
     onRun = function(item)
         local client = item.player
         client:AddBAC(item.abv)
-
         return true
     end,
 }

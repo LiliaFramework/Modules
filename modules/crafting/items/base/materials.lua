@@ -1,4 +1,4 @@
-ITEM.name = "Crafting base"
+﻿ITEM.name = "Crafting base"
 ITEM.desc = "A crafting item."
 ITEM.model = "models/error.mdl"
 ITEM.width = 1

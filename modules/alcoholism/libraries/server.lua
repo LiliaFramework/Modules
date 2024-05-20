@@ -1,15 +1,10 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 function MODULE:Think()
-    if not self.next_think then
-        self.next_think = CurTime()
-    end
-
+    if not self.next_think then self.next_think = CurTime() end
     if self.next_think <= CurTime() then
         for k, v in next, player.GetAll() do
             local bac = v:GetNW2Int("lia_alcoholism_bac", 0)
-            if bac > 0 then
-                v:SetNW2Int("lia_alcoholism_bac", math.Clamp(bac - self.DegradeRate, 0, 100))
-            end
+            if bac > 0 then v:SetNW2Int("lia_alcoholism_bac", math.Clamp(bac - self.DegradeRate, 0, 100)) end
         end
 
         self.next_think = CurTime() + self.TickTime

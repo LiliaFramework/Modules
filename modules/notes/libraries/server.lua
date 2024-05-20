@@ -24,15 +24,12 @@ function MODULE:SaveData()
     saveTable.noteEntities = {}
     for _, v in ipairs(ents.GetAll()) do
         if v:GetClass() == "lia_note" then
-            table.insert(
-                saveTable.noteEntities,
-                {
-                    pos = v:GetPos(),
-                    ang = v:GetAngles(),
-                    id = v.id,
-                    owner = v:getOwner()
-                }
-            )
+            table.insert(saveTable.noteEntities, {
+                pos = v:GetPos(),
+                ang = v:GetAngles(),
+                id = v.id,
+                owner = v:getOwner()
+            })
 
             table.insert(validNotes, v.id)
         end
