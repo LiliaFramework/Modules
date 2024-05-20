@@ -1,17 +1,17 @@
 ﻿
 util.AddNetworkString("PlayerJoinedLeftAnnouncement")
 
-function MODULE:PlayerDisconnected(ply)
+function MODULE:PlayerDisconnected(client)
     net.Start("PlayerJoinedLeftAnnouncement")
-    net.WriteString(ply:Nick() .. " left the server.")
+    net.WriteString(client:Nick() .. " left the server.")
     net.WriteBool(false)
     net.Broadcast()
 end
 
 
-function MODULE:PlayerInitialSpawn(ply)
+function MODULE:PlayerInitialSpawn(client)
     net.Start("PlayerJoinedLeftAnnouncement")
-    net.WriteString(ply:Nick() .. " entered the server.")
+    net.WriteString(client:Nick() .. " entered the server.")
     net.WriteBool(true)
     net.Broadcast()
 end

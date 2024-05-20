@@ -2,7 +2,7 @@
 lia.command.add("viewextdescription", {
     adminOnly = false,
     privilege = "Default User Commands",
-    onRun = function(client, arguments)
+    onRun = function(client)
         net.Start("OpenDetailedDescriptions")
         net.WriteEntity(client)
         net.WriteString(client:getChar():getData("textDetDescData", nil) or "No detailed description found.")
@@ -15,7 +15,7 @@ lia.command.add("viewextdescription", {
 lia.command.add("charsetextdescription", {
     adminOnly = true,
     privilege = "Change Description",
-    onRun = function(client, arguments)
+    onRun = function(client)
         net.Start("SetDetailedDescriptions")
         net.WriteString(client:steamName())
         net.Send(client)

@@ -9,7 +9,7 @@ end
 
 
 function AddOverrideCharSlots(client)
-    for k, v in pairs(player.GetAll()) do
+    for _, v in pairs(player.GetAll()) do
         if client and v == client then
             local contents = lia.data.get("charslotsteamids", {}, nil, true)
             if contents[v:SteamID()] then
@@ -26,7 +26,7 @@ end
 
 
 function SubtractOverrideCharSlots(client)
-    for k, v in pairs(player.GetAll()) do
+    for _, v in pairs(player.GetAll()) do
         if client and v == client then
             local contents = lia.data.get("charslotsteamids", {}, nil, true)
             if contents[v:SteamID()] then
@@ -43,7 +43,7 @@ end
 
 
 function OverrideCharSlots(client, value)
-    for k, v in pairs(player.GetAll()) do
+    for _, v in pairs(player.GetAll()) do
         if client and v == client then
             local contents = lia.data.get("charslotsteamids", {}, nil, true)
             if contents[v:SteamID()] then

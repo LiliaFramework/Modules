@@ -15,7 +15,7 @@ function MODULE:HUDPaint()
         DrawSharpen(1, 1)
         surface.SetDrawColor(0, 160, 0, 255)
         local client = LocalPlayer()
-        for k, v in pairs(player.GetAll()) do
+        for _, v in pairs(player.GetAll()) do
             if v ~= client and v.character and v:GetPos():Distance(client:GetPos()) <= 2000 then
                 local position = v:LocalToWorld(v:OBBCenter()):ToScreen()
                 local x, y = position.x, position.y

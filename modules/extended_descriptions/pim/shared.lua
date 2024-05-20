@@ -1,7 +1,7 @@
 ﻿
 PIM:AddOption("Open Detailed Description", {
     runServer = true,
-    shouldShow = function(client, target) return IsValid(target) end,
+    shouldShow = function(_, target) return IsValid(target) end,
     onRun = function(client, target)
         if not SERVER then return end
         net.Start("OpenDetailedDescriptions")

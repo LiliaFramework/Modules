@@ -36,24 +36,24 @@ if SERVER then
     function SWEP:Reload()
         if self.NextReload > CurTime() then return end
         self.NextReload = CurTime() + 2
-        local ply = self:GetOwner()
+        local client = self:GetOwner()
         if self.Nightvision == false then
             self.Nightvision = true
             net.Start("AM_NightvisionOn")
-            net.Send(ply)
+            net.Send(client)
         elseif self.Nightvision == true then
             self.Nightvision = false
             net.Start("AM_NightvisionOff")
-            net.Send(ply)
+            net.Send(client)
         end
     end
 
     function SWEP:OnRemove()
         if self.Nightvision == true then
             self.Nightvision = false
-            local ply = self:GetOwner()
+            local client = self:GetOwner()
             net.Start("AM_NightvisionOff")
-            net.Send(ply)
+            net.Send(client)
         end
     end
 end

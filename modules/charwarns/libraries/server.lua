@@ -19,3 +19,7 @@ function CharacterWarns:WarnPlayer(client, target, reason)
     end)
 end
 
+lia.log.addType("playerWarned", function(client, tChar, reason)
+    local tCharName = tChar:getName()
+    return string.format("%s was warned by %s. Reason: %s", tCharName, client:Name(), reason)
+end)

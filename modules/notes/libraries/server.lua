@@ -4,7 +4,7 @@ function MODULE:LoadData()
     local noteItem = lia.item.list["note"]
     self.WRITINGDATA = savedTable.noteData
     if savedTable.noteEntities then
-        for k, v in ipairs(savedTable.noteEntities) do
+        for _, v in ipairs(savedTable.noteEntities) do
             local note = ents.Create("lia_note")
             note:SetPos(v.pos)
             note:SetAngles(v.ang)
@@ -46,7 +46,7 @@ end
 
 
 function FindNoteByID(id)
-    for k, v in ipairs(ents.GetAll()) do
+    for _, v in ipairs(ents.GetAll()) do
         if v:GetClass() == "lia_note" and v.id == id then return v end
     end
 end

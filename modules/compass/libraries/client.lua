@@ -1,6 +1,4 @@
-﻿
-local CompassActive = CreateClientConVar("lia_compass", 1, true, true)
-
+﻿local CompassActive = CreateClientConVar("lia_compass", 1, true, true)
 function MODULE:HUDPaint()
     local scrW, scrH = ScrW(), ScrH()
     local client = LocalPlayer()
@@ -25,9 +23,7 @@ function MODULE:HUDPaint()
     draw.DrawText(finalText, "liaMediumFont", x, y, color_white)
 end
 
-
 function MODULE:SetupQuickMenu(menu)
-    local buttonCompass = menu:addCheck("Toggle compass", function(panel, state) RunConsoleCommand("lia_compass", state and "1" or "0") end, CompassActive:GetBool())
+    menu:addCheck("Toggle compass", function(_, state) RunConsoleCommand("lia_compass", state and "1" or "0") end, CompassActive:GetBool())
     menu:addSpacer()
 end
-

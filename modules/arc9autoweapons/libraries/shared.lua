@@ -38,7 +38,7 @@ function MODULE:InitializedModules()
         end
 
         print("-- [[ ARC9 Compatibility - Loading Weapons... ]]--")
-        for i, v in pairs(weapons.GetList()) do
+        for _, v in pairs(weapons.GetList()) do
             if weapons.IsBasedOn(v.ClassName, "arc9_base") then
                 local ITEM = lia.item.register(v.ClassName, "base_weapons", false, nil, true)
                 ITEM.name = v.PrintName
@@ -78,7 +78,7 @@ function MODULE:InitializedModules()
 
         print("-- [[ ARC9 Compatibility - All Weapons Loaded! ]]--")
         print("-- [[ ARC9 Compatibility - Loading Attachments... ]]--")
-        for i, v in pairs(ARC9.Attachments) do
+        for _, v in pairs(ARC9.Attachments) do
             if not i.Free then
                 local ITEM = lia.item.register(i, nil, false, nil, true)
                 ITEM.name = v.PrintName

@@ -4,10 +4,10 @@ function MODULE:InitializedModules()
 end
 
 
-function MODULE:PopulateItems(pnlContent, tree, node)
+function MODULE:PopulateItems(pnlContent, tree)
     if CAMI.PlayerHasAccess(LocalPlayer(), "Lilia - Staff Permissions - Can Spawn Menu Items", nil) then
         local categorised = {}
-        for k, v in pairs(lia.item.list) do
+        for _, v in pairs(lia.item.list) do
             local category = v.category and v.category == "misc" and "Miscellaneous" or v.category and v.category or "Miscellaneous"
             categorised[category] = categorised[category] or {}
             table.insert(categorised[category], v)

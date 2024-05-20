@@ -69,7 +69,7 @@ function SWEP:PrimaryAttack()
         self:EmitSound(self.Primary.Sound)
         self.LastFired = curTime
         self:ShootBullet(0, 1, self.Primary.Cone)
-        if SERVER then MODULE:TasePlayer(ply, target) end
+        if SERVER then MODULE:TasePlayer(client, target) end
     else
         self.LastFired = curTime
         client:ChatPrint("Invalid Target/Miss Shot!")
@@ -99,16 +99,16 @@ end
 if CLIENT then
     local LASER = Material('cable/redlaser')
     local function DrawLaser()
-        for _, ply in pairs(player.GetAll()) do
-            if not ply:Alive() or LocalPlayer() == ply or ply:GetActiveWeapon() == NULL or ply:GetActiveWeapon():GetClass() ~= 'weapon_stungun' then continue end
+        for _, client in pairs(player.GetAll()) do
+            if not client:Alive() or LocalPlayer() == client or client:GetActiveWeapon() == NULL or client:GetActiveWeapon():GetClass() ~= 'weapon_stungun' then continue end
             render.SetMaterial(LASER)
-            local bone = ply:LookupBone("ValveBiped.Bip01_R_Hand")
+            local bone = client:LookupBone("ValveBiped.Bip01_R_Hand")
             if bone == nil then return end
-            local m = ply:GetBoneMatrix(bone)
+            local m = client:GetBoneMatrix(bone)
             if not IsValid(m) then return end
-            local pos = m:GetTranslation() + ply:EyeAngles():Forward() * 8 + Vector(0, 0, 0.1) + ply:EyeAngles():Right() * -1
-            local hitpos = ply:GetShootPos() + ply:EyeAngles():Forward() * SWEPConfig.MaxDist
-            if ply:GetEyeTrace().HitPos:Length() <= SWEPConfig.MaxDist then hitpos = ply:GetEyeTrace().HitPos end
+            local pos = m:GetTranslation() + client:EyeAngles():Forward() * 8 + Vector(0, 0, 0.1) + client:EyeAngles():Right() * -1
+            local hitpos = client:GetShootPos() + client:EyeAngles():Forward() * SWEPConfig.MaxDist
+            if client:GetEyeTrace().HitPos:Length() <= SWEPConfig.MaxDist then hitpos = client:GetEyeTrace().HitPos end
             render.DrawBeam(pos, hitpos, 2, 0, 12.5, Color(255, 0, 0, 255))
         end
     end
