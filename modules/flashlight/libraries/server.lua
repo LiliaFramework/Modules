@@ -1,4 +1,4 @@
-﻿---------------------------------------------------------------------------[[//////////////////]]---------------------------------------------------------------------------
+﻿
 function MODULE:PlayerSwitchFlashlight(client, isEnabled)
     local hasFlashlight = false
     local itemNeeded = self.FlashlightItems
@@ -30,4 +30,4 @@ function MODULE:PlayerSwitchFlashlight(client, isEnabled)
     end
     return false
 end
----------------------------------------------------------------------------[[//////////////////]]---------------------------------------------------------------------------
+

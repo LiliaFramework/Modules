@@ -1,10 +1,10 @@
-﻿--------------------------------------------------------------------------------------------------------
+﻿
 local MODULE = MODULE
---------------------------------------------------------------------------------------------------------
+
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
---------------------------------------------------------------------------------------------------------
+
 function ENT:Initialize()
     self:SetModel(self.Model or "models/props_c17/FurnitureTable001a.mdl")
     self:PhysicsInit(SOLID_VPHYSICS)
@@ -26,7 +26,7 @@ function ENT:Initialize()
     end)
 end
 
---------------------------------------------------------------------------------------------------------
+
 function ENT:DoCraft(client)
     if not self.AllowedBlueprints then return client:notifyLocalized("notSetup", self.PrintName) end
     if not client:CanCraft() then return client:notifyLocalized("cantCraft") end
@@ -45,7 +45,6 @@ function ENT:DoCraft(client)
     local weapons_count = #weapons
     if blueprints_count > 0 then
         if blueprints_count > 1 then return client:notifyLocalized("tooMany", "blueprints") end
-        -- Guaranteed single valid blueprint at this point
         local blueprint = blueprints[1]
         local blueprint_item = lia.item.get(blueprint.uniqueID)
         if not self.AllowedBlueprints[blueprint.uniqueID] then
@@ -62,8 +61,6 @@ function ENT:DoCraft(client)
             return client:notifyLocalized("wrongBlueprint", table.concat(other_tables, " or "))
         end
 
-        -- Allowed to craft using the blueprint
-        -- Remove ingredients from inventory
         local items_to_remove = {}
         for _, req in ipairs(blueprint.requirements) do
             local item_count = our_inv:getItemCount(req[1])
@@ -78,7 +75,6 @@ function ENT:DoCraft(client)
             end
         end
 
-        -- Insert crafting result
         for _, item in ipairs(blueprint.result) do
             for i = 1, item[2] do
                 local item_definition = lia.item.list[item[1]]
@@ -131,7 +127,7 @@ function ENT:DoCraft(client)
     end
 end
 
---------------------------------------------------------------------------------------------------------
+
 function ENT:setInventory(inventory)
     if not inventory then return end
     self:setNetVar("id", inventory:getID())
@@ -141,15 +137,13 @@ function ENT:setInventory(inventory)
         if not IsValid(ent) then return end
         if not IsValid(client) then return end
         if ent:getInv() ~= inventory then return end
-        -- If the player is too far away from storage, then ignore.
         local distance = ent:GetPos():Distance(client:GetPos())
         if distance > 128 then return false end
-        -- Allow if the player is a receiver of the storage.
         if ent.receivers[client] then return true end
     end)
 end
 
---------------------------------------------------------------------------------------------------------
+
 function ENT:Use(activator)
     local inventory = self:getInv()
     if not inventory or (activator.liaNextOpen or 0) > CurTime() then return end
@@ -173,13 +167,13 @@ function ENT:Use(activator)
     activator.liaNextOpen = CurTime() + 1.5
 end
 
---------------------------------------------------------------------------------------------------------
+
 function ENT:OnRemove()
     local index = self:getNetVar("id")
     if lia.shuttingDown or self.liaIsSafe or not index then return end
 end
 
---------------------------------------------------------------------------------------------------------
+
 function ENT:SpawnFunction(ply, tr, ClassName)
     if not tr.Hit then return end
     local SpawnPos = tr.HitPos + tr.HitNormal * 16
@@ -190,4 +184,4 @@ function ENT:SpawnFunction(ply, tr, ClassName)
     ent:Activate()
     return ent
 end
---------------------------------------------------------------------------------------------------------
+

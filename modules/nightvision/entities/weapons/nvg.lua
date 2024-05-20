@@ -1,6 +1,6 @@
-﻿--------------------------------------------------------------------------------------------------------
+﻿
 AddCSLuaFile()
---------------------------------------------------------------------------------------------------------
+
 SWEP.Base = "weapon_base"
 SWEP.PrintName = "Night Vision Goggles"
 SWEP.Author = "Tazmily & Leonheart"
@@ -26,12 +26,12 @@ SWEP.Nightvision = false
 SWEP.NextReload = CurTime()
 SWEP.Slot = 3
 SWEP.SlotPos = 4
---------------------------------------------------------------------------------------------------------
+
 function SWEP:Initialize()
     self:SetWeaponHoldType(self.HoldType)
 end
 
---------------------------------------------------------------------------------------------------------
+
 if SERVER then
     function SWEP:Reload()
         if self.NextReload > CurTime() then return end
@@ -57,4 +57,4 @@ if SERVER then
         end
     end
 end
---------------------------------------------------------------------------------------------------------
+

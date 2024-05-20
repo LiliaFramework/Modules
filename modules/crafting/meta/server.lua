@@ -1,6 +1,6 @@
-﻿--------------------------------------------------------------------------------------------------------
+﻿
 local entityMeta = FindMetaTable("Entity")
---------------------------------------------------------------------------------------------------------
+
 function entityMeta:LockTable(locked)
     assert(isbool(locked), "Expected bool, got", type(locked))
     if self:IsValid() and self.IsCraftingTable then
@@ -9,4 +9,4 @@ function entityMeta:LockTable(locked)
     end
     return false
 end
---------------------------------------------------------------------------------------------------------
+

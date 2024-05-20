@@ -1,11 +1,11 @@
 ﻿local MODULE = MODULE
---------------------------------------------------------------------------------------------------------
+
 include("shared.lua")
---------------------------------------------------------------------------------------------------------
+
 ENT.DisplayScale = 0.1
 ENT.DisplayVector = Vector(62, 107.5, 30.1)
 ENT.DisplayAngle = Angle(180, 0, 180)
---------------------------------------------------------------------------------------------------------
+
 local mainBG = vgui.Create("DPanel")
 mainBG:SetSize(2150, 1250)
 mainBG:SetPos(0, 0)
@@ -15,12 +15,12 @@ mainBG.Paint = function(this, w, h)
     surface.DrawRect(0, 0, w, h)
 end
 
---------------------------------------------------------------------------------------------------------
+
 local map = vgui.Create("HTML", mainBG)
 map:SetSize(mainBG:GetSize())
 map:SetMouseInputEnabled(false)
 map:OpenURL(MODULE.URL)
---------------------------------------------------------------------------------------------------------
+
 function ENT:Draw()
     self:DrawModel()
     if self:GetPos():DistToSqr(LocalPlayer():GetPos()) < 250000 then
@@ -35,8 +35,8 @@ function ENT:Draw()
     end
 end
 
---------------------------------------------------------------------------------------------------------
+
 function ENT:SetMap(text)
     map:OpenURL(text)
 end
---------------------------------------------------------------------------------------------------------
+

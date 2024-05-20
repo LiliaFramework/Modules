@@ -46,19 +46,18 @@ function SWEP:PrimaryAttack()
     local target = client:GetEyeTrace().Entity
     if client:IsNPC() then return end
     local curTime = CurTime()
-    if curTime < self.LastFired + 5 then -- check if the delay time has passed
+    if curTime < self.LastFired + 5 then
         return
     end
 
-    local maxDistance = 400 -- set the maximum distance for the check
-    local distance = client:GetPos():Distance(target:GetPos()) -- calculate the distance between the player and the target
+    local maxDistance = 400
+    local distance = client:GetPos():Distance(target:GetPos())
     if IsValid(target) and target:IsPlayer() and target:isStaffOnDuty() then
         target:notify("You were just attempted to be stunned by " .. client:Name() .. ".")
         client:notify("You can't tie a staff member!")
         return
     end
 
-    -- check if the distance is greater than the maximum distance
     if distance > maxDistance then
         self.LastFired = curTime
         client:ChatPrint("target is too far away!")

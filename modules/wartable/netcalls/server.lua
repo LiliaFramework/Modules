@@ -1,12 +1,12 @@
 ﻿local MODULE = MODULE
---------------------------------------------------------------------------------------------------------
+
 netstream.Hook("ClearWarTable", function(ply, tableEnt)
     local tableEnt = getTableEnt(ply:GetPos())
     if not tableEnt then return end
     tableEnt:Clear()
 end)
 
---------------------------------------------------------------------------------------------------------
+
 netstream.Hook("SetWarTableMap", function(ply, tableEnt, text)
     local tableEnt = getTableEnt(ply:GetPos())
     if not tableEnt then return end
@@ -19,7 +19,7 @@ netstream.Hook("SetWarTableMap", function(ply, tableEnt, text)
     end
 end)
 
---------------------------------------------------------------------------------------------------------
+
 netstream.Hook("PlaceWarTableMarker", function(ply, pos, bodygroups)
     local tableEnt = getTableEnt(ply:GetPos())
     if not tableEnt then return end
@@ -41,10 +41,10 @@ netstream.Hook("PlaceWarTableMarker", function(ply, pos, bodygroups)
     marker:SetMoveType(MOVETYPE_NONE)
 end)
 
---------------------------------------------------------------------------------------------------------
+
 netstream.Hook("RemoveWarTableMarker", function(ply, ent)
     local tableEnt = getTableEnt(ply:GetPos())
     if not tableEnt then return end
     ent:Remove()
 end)
---------------------------------------------------------------------------------------------------------
+

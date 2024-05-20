@@ -1,4 +1,4 @@
-﻿--------------------------------------------------------------------------------------------------------
+﻿
 function MODULE:Think()
     if not self.next_think then self.next_think = CurTime() end
     if self.next_think <= CurTime() then
@@ -11,7 +11,7 @@ function MODULE:Think()
     end
 end
 
---------------------------------------------------------------------------------------------------------
+
 function MODULE:StartCommand(ply, ucmd)
     if (ply.nextDrunkCheck or 0) < CurTime() then
         ply.nextDrunkCheck = CurTime() + 0.05
@@ -38,13 +38,13 @@ function MODULE:StartCommand(ply, ucmd)
     end
 end
 
---------------------------------------------------------------------------------------------------------
+
 function MODULE:PlayerLoadedChar(ply)
     ply:ResetBAC()
 end
 
---------------------------------------------------------------------------------------------------------
+
 function MODULE:PostPlayerLoadout(ply)
     ply:ResetBAC()
 end
---------------------------------------------------------------------------------------------------------
+

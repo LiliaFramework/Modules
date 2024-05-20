@@ -1,4 +1,4 @@
-﻿--------------------------------------------------------------------------------------------------------
+﻿
 netstream.Hook("UseWarTable", function(tableEnt, shouldAct)
     local ply = LocalPlayer()
     if shouldAct then
@@ -42,6 +42,6 @@ netstream.Hook("UseWarTable", function(tableEnt, shouldAct)
     end
 end)
 
---------------------------------------------------------------------------------------------------------
+
 netstream.Hook("SetWarTableMap", function(tableEnt, text) tableEnt:SetMap(text) end)
---------------------------------------------------------------------------------------------------------
+
