@@ -1,6 +1,4 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 lia.command.add("warrant", {
     adminOnly = false,
     onRun = function(client, arguments)
@@ -21,4 +19,3 @@ lia.command.add("warrant", {
         end
     end
 })
-

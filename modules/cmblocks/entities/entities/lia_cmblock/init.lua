@@ -1,12 +1,7 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 AddCSLuaFile("cl_init.lua")
-
 AddCSLuaFile("shared.lua")
-
 include("shared.lua")
-
 function ENT:Initialize()
     self:SetModel("models/props_combine/combine_lock01.mdl")
     self:SetSolid(SOLID_VPHYSICS)
@@ -16,12 +11,10 @@ function ENT:Initialize()
     self.onDoorRestored = function(self, door) self:toggle(false) end
 end
 
-
 function ENT:OnRemove()
     if IsValid(self.door) then self.door:Fire("unlock") end
     if not lia.shuttingDown then MODULE:SaveData() end
 end
-
 
 function ENT:Use(activator)
     if self:GetErroring() then return end
@@ -43,13 +36,11 @@ function ENT:Use(activator)
     end
 end
 
-
 function ENT:error()
     self:EmitSound("buttons/combine_button_locked.wav")
     self:SetErroring(true)
     timer.Create("lia_CombineLockErroring" .. self:EntIndex(), 1, 2, function() if IsValid(self) then self:SetErroring(false) end end)
 end
-
 
 function ENT:toggle(override)
     if override ~= nil then
@@ -77,7 +68,6 @@ function ENT:toggle(override)
     end
 end
 
-
 function ENT:getLockPos(client, door)
     local index, index2 = door:LookupBone("handle")
     local normal = client:GetEyeTrace().HitNormal:Angle()
@@ -90,7 +80,6 @@ function ENT:getLockPos(client, door)
     return position, normal
 end
 
-
 function ENT:setDoor(door, position, angles)
     if not IsValid(door) then return end
     self.door = door
@@ -100,7 +89,6 @@ function ENT:setDoor(door, position, angles)
     self:SetParent(door)
 end
 
-
 function ENT:detonate(client)
     self:SetDetonating(true)
     self.detonateStartTime = CurTime()
@@ -108,13 +96,11 @@ function ENT:detonate(client)
     self.explodeDir = client:GetAimVector() * 500
 end
 
-
 function ENT:ping()
     self:SetErroring(true)
     self:EmitSound("npc/turret_floor/ping.wav")
     timer.Create("liaPing" .. self:EntIndex(), 0.1, 1, function() if IsValid(self) then self:SetErroring(false) end end)
 end
-
 
 function ENT:Think()
     if not self:GetDetonating() then return end
@@ -130,7 +116,6 @@ function ENT:Think()
     self:ping()
 end
 
-
 function ENT:explode()
     local effect = EffectData()
     effect:SetOrigin(self:GetPos())
@@ -143,4 +128,3 @@ function ENT:explode()
     entity:blastDoor(direction * 400)
     self:Remove()
 end
-

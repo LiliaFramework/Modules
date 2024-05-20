@@ -1,14 +1,8 @@
-﻿
-local PICTURE_WIDTH = MODULE.PICTURE_WIDTH
-
+﻿local PICTURE_WIDTH = MODULE.PICTURE_WIDTH
 local PICTURE_HEIGHT = MODULE.PICTURE_HEIGHT
-
 local PICTURE_WIDTH2 = PICTURE_WIDTH * 0.5
-
 local PICTURE_HEIGHT2 = PICTURE_HEIGHT * 0.5
-
 PHOTO_CACHE = PHOTO_CACHE or {}
-
 function MODULE:takePicture()
     if (self.lastPic or 0) < CurTime() then
         self.lastPic = CurTime() + lia.config.PictureDelay
@@ -17,7 +11,6 @@ function MODULE:takePicture()
         timer.Simple(0.1, function() self.startPicture = true end)
     end
 end
-
 
 function MODULE:PostRender()
     if self.startPicture then
@@ -37,7 +30,6 @@ function MODULE:PostRender()
         self.startPicture = false
     end
 end
-
 
 concommand.Add("lia_photocache", function()
     local frame = vgui.Create("DFrame")
@@ -67,4 +59,3 @@ concommand.Add("lia_photocache", function()
         end
     end
 end)
-

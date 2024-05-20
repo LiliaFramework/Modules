@@ -1,11 +1,9 @@
-﻿
-lia.command.add("stopsearch", {
+﻿lia.command.add("stopsearch", {
     privilege = "Stop Searches",
     adminOnly = true,
     syntax = "<string player>",
     onRun = function() end
 })
-
 
 lia.command.add("searchplayer", {
     privilege = "Search Players",
@@ -13,4 +11,3 @@ lia.command.add("searchplayer", {
     syntax = "<string player>",
     onRun = function() end
 })
-

@@ -1,5 +1,4 @@
-﻿
-function MODULE:InitializedModules()
+﻿function MODULE:InitializedModules()
     timer.Create("clearWorldItems", self.ItemCleanupTime - 60, 0, function()
         for _, v in pairs(player.GetAll()) do
             v:SendMessage("[ WARNING ]  Item Cleanup Inbound in 60 seconds!")
@@ -32,4 +31,3 @@ function MODULE:InitializedModules()
         end
     end)
 end
-

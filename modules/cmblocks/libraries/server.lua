@@ -1,5 +1,4 @@
-﻿
-function MODULE:SaveData()
+﻿function MODULE:SaveData()
     local data = {}
     for k, v in ipairs(ents.FindByClass("lia_cmblock")) do
         if IsValid(v.door) then data[#data + 1] = {v.door:MapCreationID(), v.door:WorldToLocal(v:GetPos()), v.door:WorldToLocalAngles(v:GetAngles()), v:GetLocked() == true and true or nil} end
@@ -7,7 +6,6 @@ function MODULE:SaveData()
 
     self:setData(data)
 end
-
 
 function MODULE:LoadData()
     local data = self:getData() or {}
@@ -23,4 +21,3 @@ function MODULE:LoadData()
         end
     end
 end
-

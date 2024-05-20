@@ -1,6 +1,4 @@
-﻿
-local w, h = ScrW(), ScrH()
-
+﻿local w, h = ScrW(), ScrH()
 function MODULE:HUDPaint()
     local client = LocalPlayer()
     if not IsValid(client:getChar()) then return end
@@ -13,7 +11,6 @@ function MODULE:HUDPaint()
         if IsValid(entTrace) then draw.SimpleText("| Cur Trace: " .. entTrace:GetClass() .. " | Trace Model: " .. entTrace:GetModel() .. " | ", "DevHudText", w / 5.25, h / 1.06, Color(210, 210, 210, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER) end
     end
 end
-
 
 function MODULE:LoadFonts()
     surface.CreateFont("DevHudServerName", {
@@ -52,4 +49,3 @@ function MODULE:LoadFonts()
         outline = false,
     })
 end
-

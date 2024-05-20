@@ -1,5 +1,4 @@
-﻿
-function MODULE:PlayerSwitchFlashlight(client, isEnabled)
+﻿function MODULE:PlayerSwitchFlashlight(client, isEnabled)
     local hasFlashlight = false
     local itemNeeded = self.FlashlightItems
     if self.FlashlightEnabled and (client.FlashlightCooldown or 0) < CurTime() then
@@ -30,4 +29,3 @@ function MODULE:PlayerSwitchFlashlight(client, isEnabled)
     end
     return false
 end
-

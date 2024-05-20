@@ -1,5 +1,4 @@
-﻿
-netstream.Hook("craftingTableOpen", function(entity, index)
+﻿netstream.Hook("craftingTableOpen", function(entity, index)
     local inventory = lia.inventory.instances[index]
     if not IsValid(entity) or not inventory then return end
     local inv1 = LocalPlayer():getChar():getInv():show()
@@ -45,7 +44,6 @@ netstream.Hook("craftingTableOpen", function(entity, index)
     lia.gui["inv" .. index] = inv2
 end)
 
-
 netstream.Hook("openTempStorage", function(entity, index)
     local inventory = lia.inventory.instances[index]
     if IsValid(entity) and inventory then
@@ -70,4 +68,3 @@ netstream.Hook("openTempStorage", function(entity, index)
         lia.gui["inv" .. index] = inv2
     end
 end)
-

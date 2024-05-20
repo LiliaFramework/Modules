@@ -1,8 +1,5 @@
-﻿
-util.AddNetworkString("WarnReasonUI")
-
+﻿util.AddNetworkString("WarnReasonUI")
 util.AddNetworkString("ApplyWarn")
-
 net.Receive("ApplyWarn", function(_, client)
     if CAMI.PlayerHasAccess(client, "Commands - Warn Players", nil) then
         local tCharID = net.ReadInt(32)
@@ -19,4 +16,3 @@ net.Receive("ApplyWarn", function(_, client)
         client:Say("// I just tried to warn someone without permission LOLLLL!!!!!")
     end
 end)
-

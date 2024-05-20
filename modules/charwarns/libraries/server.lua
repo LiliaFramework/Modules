@@ -1,5 +1,4 @@
-﻿
-function CharacterWarns:WarnPlayer(client, target, reason)
+﻿function CharacterWarns:WarnPlayer(client, target, reason)
     local tChar = target:getChar()
     local warnCount = tChar:getData("warn", 0)
     tChar:setData("warn", warnCount + 1)

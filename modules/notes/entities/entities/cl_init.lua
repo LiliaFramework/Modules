@@ -1,10 +1,7 @@
-﻿
-include("shared.lua")
-
+﻿include("shared.lua")
 function ENT:onShouldDrawEntityInfo()
     return true
 end
-
 
 function ENT:onDrawEntityInfo(alpha)
     local position = self:LocalToWorld(self:OBBCenter()):ToScreen()
@@ -13,8 +10,6 @@ function ENT:onDrawEntityInfo(alpha)
     lia.util.drawText("It seems something is written on.", x, y + 16, ColorAlpha(color_white, alpha), 1, 1, "liaSmallFont", alpha * 0.65)
 end
 
-
 function ENT:Draw()
     self:DrawModel()
 end
-

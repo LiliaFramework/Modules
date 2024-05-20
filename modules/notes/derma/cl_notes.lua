@@ -1,6 +1,4 @@
-﻿
-local PANEL = {}
-
+﻿local PANEL = {}
 function PANEL:Init()
     self:SetSize(300, 400)
     self:MakePopup()
@@ -30,7 +28,6 @@ function PANEL:Init()
     end
 end
 
-
 function PANEL:allowEdit(bool)
     if bool then
         self.contents:SetEditable(true)
@@ -41,11 +38,8 @@ function PANEL:allowEdit(bool)
     end
 end
 
-
 function PANEL:setText(text)
     self.contents:SetValue(text)
 end
 
-
 vgui.Register("noteRead", PANEL, "DFrame")
-

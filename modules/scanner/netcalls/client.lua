@@ -1,5 +1,4 @@
-﻿
-net.Receive("liaScannerData", function()
+﻿net.Receive("liaScannerData", function()
     local data = net.ReadData(net.ReadUInt(16))
     data = util.Base64Encode(util.Decompress(data))
     if not data then return end
@@ -34,6 +33,4 @@ net.Receive("liaScannerData", function()
     CURRENT_PHOTO = panel
 end)
 
-
 net.Receive("liaScannerClearPicture", function() if IsValid(CURRENT_PHOTO) then CURRENT_PHOTO:Remove() end end)
-

@@ -1,10 +1,7 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 function MODULE:PlayerLoadedChar()
     self:UpdatePartyTiers()
 end
-
 
 function MODULE:UpdatePartyTiers()
     for _, v in pairs(player.GetAll()) do
@@ -15,4 +12,3 @@ function MODULE:UpdatePartyTiers()
         end
     end
 end
-

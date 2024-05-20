@@ -1,5 +1,4 @@
-﻿
-function MODULE:Think()
+﻿function MODULE:Think()
     if not self.next_think then self.next_think = CurTime() end
     if self.next_think <= CurTime() then
         for _, v in next, player.GetAll() do
@@ -10,7 +9,6 @@ function MODULE:Think()
         self.next_think = CurTime() + self.TickTime
     end
 end
-
 
 function MODULE:StartCommand(client, ucmd)
     if (client.nextDrunkCheck or 0) < CurTime() then
@@ -38,13 +36,10 @@ function MODULE:StartCommand(client, ucmd)
     end
 end
 
-
 function MODULE:PlayerLoadedChar(client)
     client:ResetBAC()
 end
 
-
 function MODULE:PostPlayerLoadout(client)
     client:ResetBAC()
 end
-

@@ -1,26 +1,14 @@
-﻿
-local PICTURE_WIDTH = MODULE.PICTURE_WIDTH
-
+﻿local PICTURE_WIDTH = MODULE.PICTURE_WIDTH
 local PICTURE_HEIGHT = MODULE.PICTURE_HEIGHT
-
 local PICTURE_WIDTH2 = PICTURE_WIDTH * 0.5
-
 local PICTURE_HEIGHT2 = PICTURE_HEIGHT * 0.5
-
 local view = {}
-
 local zoom = 0
-
 local deltaZoom = zoom
-
 local nextClick = 0
-
 local hidden = false
-
 local data = {}
-
 local CLICK = "buttons/button18.wav"
-
 local blackAndWhite = {
     ["$pp_colour_addr"] = 0,
     ["$pp_colour_addg"] = 0,
@@ -32,7 +20,6 @@ local blackAndWhite = {
     ["$pp_colour_mulg"] = 0,
     ["$pp_colour_mulb"] = 0
 }
-
 
 function MODULE:CalcView(client, origin, angles, fov)
     local entity = client:GetViewEntity()
@@ -47,12 +34,10 @@ function MODULE:CalcView(client, origin, angles, fov)
     end
 end
 
-
 function MODULE:InputMouseApply(command, x, y, angle)
     zoom = math.Clamp(zoom + command:GetMouseWheel() * 1.5, 0, 40)
     deltaZoom = Lerp(FrameTime() * 2, deltaZoom, zoom)
 end
-
 
 function MODULE:PreDrawOpaqueRenderables()
     local viewEntity = LocalPlayer():GetViewEntity()
@@ -72,16 +57,13 @@ function MODULE:PreDrawOpaqueRenderables()
     end
 end
 
-
 function MODULE:ShouldDrawCrosshair()
     if hidden then return false end
 end
 
-
 function MODULE:AdjustMouseSensitivity()
     if hidden then return 0.3 end
 end
-
 
 function MODULE:HUDPaint()
     if not hidden then return end
@@ -137,13 +119,11 @@ function MODULE:HUDPaint()
     surface.DrawLine(scrW, scrH + 48, scrW, scrH + 8)
 end
 
-
 function MODULE:RenderScreenspaceEffects()
     if not hidden then return end
     blackAndWhite["$pp_colour_brightness"] = -0.05 + math.sin(RealTime() * 5) * 0.01
     DrawColorModify(blackAndWhite)
 end
-
 
 function MODULE:PlayerBindPress(client, bind, pressed)
     bind = bind:lower()
@@ -152,4 +132,3 @@ function MODULE:PlayerBindPress(client, bind, pressed)
         return true
     end
 end
-

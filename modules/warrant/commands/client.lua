@@ -1,6 +1,4 @@
-﻿
-lia.command.add("warrant", {
+﻿lia.command.add("warrant", {
     adminOnly = false,
     onRun = function() end
 })
-

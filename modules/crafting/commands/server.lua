@@ -1,5 +1,4 @@
-﻿
-lia.command.add("craftlock", {
+﻿lia.command.add("craftlock", {
     adminOnly = false,
     syntax = "",
     onRun = function(client)
@@ -15,7 +14,6 @@ lia.command.add("craftlock", {
         client:notifyLocalized("lockTable")
     end
 })
-
 
 lia.command.add("craftunlock", {
     adminOnly = false,
@@ -33,4 +31,3 @@ lia.command.add("craftunlock", {
         client:notifyLocalized("unlockTable")
     end
 })
-

@@ -1,12 +1,10 @@
-﻿
-function MODULE:PlayerSpawn(client)
+﻿function MODULE:PlayerSpawn(client)
     local maxCharDonation = lia.data.get("charslotsteamids", {}, nil, true)
     if maxCharDonation[client:SteamID()] then
         MsgC(Color(0, 255, 0), "Player " .. client:Nick() .. " previously donated and has " .. maxCharDonation[client:SteamID()] .. " slots\n")
         client:setNetVar("overrideSlots", maxCharDonation[client:SteamID()])
     end
 end
-
 
 function AddOverrideCharSlots(client)
     for _, v in pairs(player.GetAll()) do
@@ -24,7 +22,6 @@ function AddOverrideCharSlots(client)
     end
 end
 
-
 function SubtractOverrideCharSlots(client)
     for _, v in pairs(player.GetAll()) do
         if client and v == client then
@@ -41,7 +38,6 @@ function SubtractOverrideCharSlots(client)
     end
 end
 
-
 function OverrideCharSlots(client, value)
     for _, v in pairs(player.GetAll()) do
         if client and v == client then
@@ -57,4 +53,3 @@ function OverrideCharSlots(client, value)
         end
     end
 end
-

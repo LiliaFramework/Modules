@@ -1,5 +1,2 @@
-﻿
-MODULE.fogAttribute = "per"
-
+﻿MODULE.fogAttribute = "per"
 MODULE.FogAttribDistance = 500
-

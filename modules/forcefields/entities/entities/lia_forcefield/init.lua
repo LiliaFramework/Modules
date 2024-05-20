@@ -1,22 +1,12 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 local modes = {}
-
 AddCSLuaFile("cl_init.lua")
-
 ENT.Type = "anim"
-
 ENT.PrintName = "Forcefield"
-
 ENT.Spawnable = true
-
 ENT.AdminOnly = true
-
 ENT.RenderGroup = RENDERGROUP_BOTH
-
 ENT.PhysgunDisabled = true
-
 function ENT:SpawnFunction(client, trace)
     local angles = (client:GetPos() - trace.HitPos):Angle()
     angles.p = 0
@@ -29,7 +19,6 @@ function ENT:SpawnFunction(client, trace)
     MODULE:saveForceFields()
     return entity
 end
-
 
 function ENT:Initialize()
     self:SetModel("models/props_combine/combine_fence01b.mdl")
@@ -93,7 +82,6 @@ function ENT:Initialize()
     self.mode = 1
 end
 
-
 function ENT:StartTouch(entity)
     if not self.buzzer then
         self.buzzer = CreateSound(entity, "ambient/machines/combine_shield_touch_loop1.wav")
@@ -107,12 +95,10 @@ function ENT:StartTouch(entity)
     self.entities = (self.entities or 0) + 1
 end
 
-
 function ENT:EndTouch(entity)
     self.entities = math.max((self.entities or 0) - 1, 0)
     if self.buzzer and self.entities == 0 then self.buzzer:FadeOut(0.5) end
 end
-
 
 function ENT:OnRemove()
     if self.buzzer then
@@ -122,7 +108,6 @@ function ENT:OnRemove()
 
     if not lia.shuttingDown and not self.liaIsSafe then MODULE:saveForceFields() end
 end
-
 
 modes[1] = {
     function(client)
@@ -136,11 +121,8 @@ modes[1] = {
     "Only allow with valid CID."
 }
 
-
 modes[2] = {function(client) return true end, "Never allow citizens."}
-
 modes[3] = {function(client) return false end, "Allow everything."}
-
 function ENT:Use(activator)
     if (self.nextUse or 0) < CurTime() then
         self.nextUse = CurTime() + 1.5
@@ -158,7 +140,6 @@ function ENT:Use(activator)
         self:EmitSound("buttons/combine_button3.wav")
     end
 end
-
 
 hook.Add("ShouldCollide", "lia_Forcefields", function(a, b)
     local client
@@ -181,7 +162,6 @@ hook.Add("ShouldCollide", "lia_Forcefields", function(a, b)
     end
 end)
 
-
 hook.Add("KeyPress", "lia_ForceUse", function(client, key)
     local data = {}
     data.start = client:GetShootPos()
@@ -191,4 +171,3 @@ hook.Add("KeyPress", "lia_ForceUse", function(client, key)
     local entity = trace.Entity
     if key == IN_USE and IsValid(entity) and entity:GetClass() == "lia_forcefield" then entity:Use(client, client, USE_ON, 1) end
 end)
-

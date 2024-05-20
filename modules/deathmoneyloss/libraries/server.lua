@@ -1,5 +1,4 @@
-﻿
-function MODULE:PlayerDeath(client)
+﻿function MODULE:PlayerDeath(client)
     local char = client:getChar()
     local money = char:getMoney()
     if money > 0 then
@@ -8,4 +7,3 @@ function MODULE:PlayerDeath(client)
         client:setNetVar("previousDeathTake", take)
     end
 end
-

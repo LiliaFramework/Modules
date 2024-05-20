@@ -1,5 +1,4 @@
-﻿
-lia.command.add("subtractcharslots", {
+﻿lia.command.add("subtractcharslots", {
     privilege = "Characters - Subtract CharSlots",
     superAdminOnly = true,
     syntax = "<string player>",
@@ -9,7 +8,6 @@ lia.command.add("subtractcharslots", {
         SubtractOverrideCharSlots(target)
     end
 })
-
 
 lia.command.add("addcharslots", {
     privilege = "Characters - Add CharSlots",
@@ -22,7 +20,6 @@ lia.command.add("addcharslots", {
     end
 })
 
-
 lia.command.add("setcharslots", {
     privilege = "Characters - Set CharSlots",
     superAdminOnly = true,
@@ -34,4 +31,3 @@ lia.command.add("setcharslots", {
         OverrideCharSlots(target, count)
     end
 })
-

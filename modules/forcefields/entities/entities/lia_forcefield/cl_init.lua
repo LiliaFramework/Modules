@@ -1,16 +1,9 @@
-﻿
-ENT.Type = "anim"
-
+﻿ENT.Type = "anim"
 ENT.PrintName = "Forcefield"
-
 ENT.Spawnable = true
-
 ENT.AdminOnly = true
-
 ENT.RenderGroup = RENDERGROUP_BOTH
-
 ENT.PhysgunDisabled = true
-
 function ENT:Initialize()
     local data = {}
     data.start = self:GetPos() + self:GetRight() * -16
@@ -20,7 +13,6 @@ function ENT:Initialize()
     self:EnableCustomCollisions(true)
     self:PhysicsInitConvex({vector_origin, Vector(0, 0, 150), trace.HitPos + Vector(0, 0, 150), trace.HitPos})
 end
-
 
 function ENT:Draw()
     self:DrawModel()
@@ -44,7 +36,6 @@ function ENT:Draw()
     end
 end
 
-
 function ENT:DrawShield(vertex)
     mesh.Begin(MATERIAL_QUADS, 1)
     mesh.Position(vector_origin)
@@ -61,4 +52,3 @@ function ENT:DrawShield(vertex)
     mesh.AdvanceVertex()
     mesh.End()
 end
-

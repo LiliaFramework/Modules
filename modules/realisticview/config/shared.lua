@@ -1,3 +1,1 @@
-﻿
-MODULE.FirstPersonViewEnabled = true
-
+﻿MODULE.FirstPersonViewEnabled = true

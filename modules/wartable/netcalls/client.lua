@@ -1,5 +1,4 @@
-﻿
-netstream.Hook("UseWarTable", function(tableEnt, shouldAct)
+﻿netstream.Hook("UseWarTable", function(tableEnt, shouldAct)
     local client = LocalPlayer()
     if shouldAct then
         local panel = vgui.Create("DFrame")
@@ -42,6 +41,4 @@ netstream.Hook("UseWarTable", function(tableEnt, shouldAct)
     end
 end)
 
-
 netstream.Hook("SetWarTableMap", function(tableEnt, text) tableEnt:SetMap(text) end)
-

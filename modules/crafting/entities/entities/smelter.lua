@@ -1,8 +1,5 @@
-﻿
-AddCSLuaFile()
-
+﻿AddCSLuaFile()
 ENT.Base = "craftingbase"
-
 ENT.PrintName = "Smelting Furnace"
 ENT.Purpose = "Use this to smelt ore into bars."
 ENT.Model = "models/props_wasteland/laundry_washer003.mdl"
@@ -21,6 +18,4 @@ ENT.AllowedBlueprints = {
     b_processedsilver = true,
 }
 
-
 CraftingTables[ENT.PrintName] = ENT.AllowedBlueprints
-

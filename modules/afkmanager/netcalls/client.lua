@@ -1,6 +1,4 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 net.Receive("AFKWarning", function()
     local enable = net.ReadBool()
     if enable then
@@ -9,7 +7,6 @@ net.Receive("AFKWarning", function()
         MODULE:DisableWarning()
     end
 end)
-
 
 net.Receive("AFKAnnounce", function(_, client)
     local name = net.ReadString()
@@ -20,4 +17,3 @@ net.Receive("AFKAnnounce", function(_, client)
 
     chat.AddText(Color(255, 0, 0, 255), "Player ", Color(255, 255, 255, 255), name, Color(255, 0, 0, 255), " has been character kicked for being AFK.")
 end)
-

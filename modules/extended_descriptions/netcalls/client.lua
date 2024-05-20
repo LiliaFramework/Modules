@@ -1,5 +1,4 @@
-﻿
-net.Receive("OpenDetailedDescriptions", function()
+﻿net.Receive("OpenDetailedDescriptions", function()
     local client = net.ReadEntity()
     local textEntryData = net.ReadString()
     local textEntryDataURL = net.ReadString()
@@ -31,7 +30,6 @@ net.Receive("OpenDetailedDescriptions", function()
     DButton:DockMargin(0, 0, 0, 0)
     DButton.DoClick = function() gui.OpenURL(textEntryDataURL) end
 end)
-
 
 net.Receive("SetDetailedDescriptions", function()
     local callingClientsteamName = net.ReadString()
@@ -74,4 +72,3 @@ net.Receive("SetDetailedDescriptions", function()
         Frame:Remove()
     end
 end)
-

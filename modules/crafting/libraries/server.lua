@@ -1,6 +1,4 @@
-﻿
-dying_storages = dying_storages or {}
-
+﻿dying_storages = dying_storages or {}
 function MODULE:SaveData()
     local to_save = {}
     for _, v in ipairs(ents.GetAll()) do
@@ -15,7 +13,6 @@ function MODULE:SaveData()
 
     self:setData(to_save)
 end
-
 
 function MODULE:LoadData()
     for _, v in ipairs(ents.GetAll()) do
@@ -36,7 +33,6 @@ function MODULE:LoadData()
     end
 end
 
-
 function MODULE:Think()
     local t = CurTime()
     for _, storage in ipairs(dying_storages) do
@@ -46,4 +42,3 @@ function MODULE:Think()
         storage:Remove()
     end
 end
-

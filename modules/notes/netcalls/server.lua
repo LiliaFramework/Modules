@@ -1,5 +1,4 @@
 ﻿local MODULE = MODULE
-
 netstream.Hook("noteSendText", function(client, id, contents)
     if string.len(contents) <= MODULE.NoteLimit then
         local note = FindNoteByID(id)
@@ -7,4 +6,3 @@ netstream.Hook("noteSendText", function(client, id, contents)
         MODULE.WRITINGDATA[id] = contents
     end
 end)
-

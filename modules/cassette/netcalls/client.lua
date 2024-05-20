@@ -1,5 +1,4 @@
-﻿
-net.Receive("cOpen", function(len, client)
+﻿net.Receive("cOpen", function(len, client)
     local entity = net.ReadType()
     local index = net.ReadUInt(32)
     local inventory = lia.item.inventories[index]
@@ -47,4 +46,3 @@ net.Receive("cOpen", function(len, client)
 
     lia.gui["inv" .. index] = cInv
 end)
-

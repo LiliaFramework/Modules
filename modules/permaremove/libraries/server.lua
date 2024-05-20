@@ -1,5 +1,4 @@
-﻿
-function PermaRemover:LoadData()
+﻿function PermaRemover:LoadData()
     local data = self:getData({})
     local mapID = game.GetMap()
     if not data then return end
@@ -11,4 +10,3 @@ function PermaRemover:LoadData()
         end
     end
 end
-

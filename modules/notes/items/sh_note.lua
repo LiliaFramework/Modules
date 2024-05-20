@@ -1,12 +1,10 @@
-﻿
-ITEM.name = "Paper Note"
+﻿ITEM.name = "Paper Note"
 ITEM.model = "models/props_lab/clipboard.mdl"
 ITEM.width = 1
 ITEM.height = 1
 ITEM.desc = "This is something you can write a doodle on."
 ITEM.price = 20
 ITEM.permit = "misc"
-
 ITEM.functions.use = {
     name = "Use",
     tip = "useTip",
@@ -27,4 +25,3 @@ ITEM.functions.use = {
         return true
     end,
 }
-

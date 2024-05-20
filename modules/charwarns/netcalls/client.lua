@@ -1,5 +1,4 @@
-﻿
-net.Receive("WarnReasonUI", function()
+﻿net.Receive("WarnReasonUI", function()
     local tCharID = net.ReadInt(32)
     local frame = vgui.Create("DFrame")
     frame:SetSize(300, 150)
@@ -23,4 +22,3 @@ net.Receive("WarnReasonUI", function()
         frame:Close()
     end
 end)
-

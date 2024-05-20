@@ -1,10 +1,6 @@
-﻿
-ITEM.name = "Restraints"
-
+﻿ITEM.name = "Restraints"
 ITEM.desc = "A pair of ties used in the process of restraining individuals by binding their hands."
-
 ITEM.model = "models/items/crossbowrounds.mdl"
-
 ITEM.functions.use = {
     name = "Use",
     onRun = function(item)
@@ -37,7 +33,5 @@ ITEM.functions.use = {
         end)
         return false
     end,
-    onCanRun = function(item)
-        return not IsValid(item.entity)
-    end
+    onCanRun = function(item) return not IsValid(item.entity) end
 }

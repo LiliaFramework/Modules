@@ -1,5 +1,4 @@
-﻿
-function MODULE:SetupWorldFog()
+﻿function MODULE:SetupWorldFog()
     if not LocalPlayer():getChar() then return false end
     local maxAttrib = LocalPlayer():getChar():getAttrib(self.fogAttribute, 0)
     render.FogStart(0)
@@ -10,7 +9,6 @@ function MODULE:SetupWorldFog()
     return true
 end
 
-
 function MODULE:SetupSkyboxFog()
     if not LocalPlayer():getChar() then return false end
     render.FogStart(0)
@@ -20,4 +18,3 @@ function MODULE:SetupSkyboxFog()
     render.FogEnd(0)
     return true
 end
-

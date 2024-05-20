@@ -1,8 +1,5 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 MODULE.searchPanels = MODULE.searchPanels or {}
-
 net.Receive("RequestID", function()
     lia.util.notifQuery("A player is requesting to see your ID.", "Accept", "Deny", true, NOT_CORRECT, function(code)
         if code == 1 then
@@ -16,7 +13,6 @@ net.Receive("RequestID", function()
         end
     end)
 end)
-
 
 netstream.Hook("searchPly", function(target, id)
     local targetInv = lia.inventory.instances[id]
@@ -49,7 +45,6 @@ netstream.Hook("searchPly", function(target, id)
     MODULE.searchPanels[#MODULE.searchPanels + 1] = targetInvPanel
 end)
 
-
 netstream.Hook("searchExit", function()
     for _, panel in pairs(MODULE.searchPanels) do
         if IsValid(panel) then panel:Remove() end
@@ -57,7 +52,6 @@ netstream.Hook("searchExit", function()
 
     MODULE.searchPanels = {}
 end)
-
 
 net.Receive("RequestSearch", function()
     lia.util.notifQuery("A player is requesting to search your inventory.", "Accept", "Deny", true, NOT_CORRECT, function(code)

@@ -1,8 +1,5 @@
-﻿
-AddCSLuaFile()
-
+﻿AddCSLuaFile()
 ENT.Base = "craftingbase"
-
 ENT.PrintName = "Workbench"
 ENT.Purpose = "Use this workbench to craft things."
 ENT.Model = "models/hourofvictory/work_bench1.mdl"
@@ -21,6 +18,4 @@ ENT.AllowedBlueprints = {
     b_processedsilver = false,
 }
 
-
 CraftingTables[ENT.PrintName] = ENT.AllowedBlueprints
-

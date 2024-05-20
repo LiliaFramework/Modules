@@ -1,5 +1,4 @@
-﻿
-function MODULE:HUDPaint()
+﻿function MODULE:HUDPaint()
     if LocalPlayer():getNetVar("nvision", false) then
         local col = {}
         col["$pp_colour_addr"] = 0.1
@@ -27,4 +26,3 @@ function MODULE:HUDPaint()
         end
     end
 end
-

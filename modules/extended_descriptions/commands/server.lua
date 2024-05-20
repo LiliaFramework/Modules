@@ -1,5 +1,4 @@
-﻿
-lia.command.add("viewextdescription", {
+﻿lia.command.add("viewextdescription", {
     adminOnly = false,
     privilege = "Default User Commands",
     onRun = function(client)
@@ -11,7 +10,6 @@ lia.command.add("viewextdescription", {
     end
 })
 
-
 lia.command.add("charsetextdescription", {
     adminOnly = true,
     privilege = "Change Description",
@@ -21,4 +19,3 @@ lia.command.add("charsetextdescription", {
         net.Send(client)
     end
 })
-

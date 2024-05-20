@@ -1,8 +1,6 @@
-﻿
-function MODULE:InitializedModules()
+﻿function MODULE:InitializedModules()
     RunConsoleCommand("spawnmenu_reload")
 end
-
 
 function MODULE:PopulateItems(pnlContent, tree)
     if CAMI.PlayerHasAccess(LocalPlayer(), "Lilia - Staff Permissions - Can Spawn Menu Items", nil) then
@@ -38,7 +36,6 @@ function MODULE:PopulateItems(pnlContent, tree)
     end
 end
 
-
 spawnmenu.AddContentType("item", function(container, object)
     local icon = vgui.Create("SpawnIcon", p)
     icon:SetWide(64)
@@ -61,11 +58,9 @@ spawnmenu.AddContentType("item", function(container, object)
     return icon
 end)
 
-
 spawnmenu.AddCreationTab("Items", function()
     local ctrl = vgui.Create("SpawnmenuContentPanel")
     ctrl:EnableSearch("items", "PopulateItems")
     ctrl:CallPopulateHook("PopulateItems")
     return ctrl
 end, "icon16/cog_add.png", 200)
-

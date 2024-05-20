@@ -1,12 +1,7 @@
-﻿
-MODULE.name = "Development HUD"
-
+﻿MODULE.name = "Development HUD"
 MODULE.author = "76561198312513285"
-
 MODULE.discord = "@liliaplayer"
-
 MODULE.desc = "Adds a Development HUD"
-
 MODULE.CAMIPrivileges = {
     {
         Name = "Lilia - Staff Permissions - Staff HUD",
@@ -19,4 +14,3 @@ MODULE.CAMIPrivileges = {
         Description = "Allows access to Development HUD.",
     }
 }
-

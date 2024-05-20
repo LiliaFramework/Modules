@@ -1,9 +1,2 @@
-﻿
-MODULE.DevServer = false
-
-MODULE.AuthorizedDevelopers = {
-    "",
-    "",
-    "",
-}
-
+﻿MODULE.DevServer = false
+MODULE.AuthorizedDevelopers = {"", "", "",}

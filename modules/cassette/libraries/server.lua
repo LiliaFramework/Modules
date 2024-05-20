@@ -1,5 +1,4 @@
-﻿
-function MODULE:LoadData()
+﻿function MODULE:LoadData()
     local savedTable = self:getData() or {}
     for k, v in ipairs(savedTable) do
         local cPlayer = ents.Create(v.class)
@@ -9,7 +8,6 @@ function MODULE:LoadData()
         cPlayer:Activate()
     end
 end
-
 
 function MODULE:SaveData()
     local savedTable = {}
@@ -25,4 +23,3 @@ function MODULE:SaveData()
 
     self:setData(savedTable)
 end
-

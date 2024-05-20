@@ -1,20 +1,11 @@
-﻿
-ENT.Type = "anim"
-
+﻿ENT.Type = "anim"
 ENT.PrintName = "Cassette Player"
-
 ENT.Category = "Lilia"
-
 ENT.Spawnable = true
-
 ENT.AdminOnly = true
-
 ENT.invType = "cassetteplayer"
-
 ENT.DrawEntityInfo = true
-
 local Inventory = FindMetaTable("GridInv")
-
 lia.item.inventories = lia.inventory.instances
 if SERVER then
     local function CanOnlyTransferCassette(inventory, action, context)

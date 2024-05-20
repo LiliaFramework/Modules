@@ -1,6 +1,4 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 lia.command.add("doorkick", {
     adminOnly = false,
     syntax = "",
@@ -47,4 +45,3 @@ lia.command.add("doorkick", {
         end
     end
 })
-

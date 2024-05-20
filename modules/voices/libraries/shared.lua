@@ -1,22 +1,12 @@
-﻿
-lia.voice = {}
-
+﻿lia.voice = {}
 lia.voice.list = {}
-
 lia.voice.chatTypes = {}
-
 lia.voice.checks = lia.voice.checks or {}
-
 lia.voice.chatTypes["ic"] = true
-
 lia.voice.chatTypes["w"] = true
-
 lia.voice.chatTypes["y"] = true
-
 lia.voice.chatTypes["radio"] = true
-
 lia.voice.chatTypes["dispatch"] = true
-
 function lia.voice.defineClass(class, onCheck, onModify, global)
     lia.voice.checks[class] = {
         class = class:lower(),
@@ -26,7 +16,6 @@ function lia.voice.defineClass(class, onCheck, onModify, global)
     }
 end
 
-
 function lia.voice.getClass(client)
     local definitions = {}
     for k, v in pairs(lia.voice.checks) do
@@ -34,7 +23,6 @@ function lia.voice.getClass(client)
     end
     return definitions
 end
-
 
 function lia.voice.register(class, key, replacement, source, max)
     class = class:lower()
@@ -44,7 +32,6 @@ function lia.voice.register(class, key, replacement, source, max)
         source = source
     }
 end
-
 
 function lia.voice.getVoiceList(class, text, delay)
     local info = lia.voice.list[class]
@@ -107,7 +94,6 @@ function lia.voice.getVoiceList(class, text, delay)
     return #output > 0 and output or nil, phrase
 end
 
-
 lia.voice.defineClass("combine", function(client) return client:isCombine() end, function(client, sounds, chatType)
     if chatType == "dispatch" or client:isCombineRank("SCN") then return false end
     local beeps = SCHEMA.beepSounds[client:Team()] or SCHEMA.beepSounds[FACTION_CP]
@@ -115,6 +101,4 @@ lia.voice.defineClass("combine", function(client) return client:isCombine() end,
     sounds[#sounds + 1] = {table.Random(beeps.off), nil, 0.25}
 end)
 
-
 lia.voice.defineClass("dispatch", function(client) return SCHEMA:isDispatch(client) end, function(client, sounds, chatType) if chatType ~= "dispatch" then return false end end, true)
-

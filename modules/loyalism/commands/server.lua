@@ -1,6 +1,4 @@
-﻿
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 lia.command.add("partytier", {
     adminOnly = true,
     privilege = "Management - Assign Party Tiers",
@@ -30,4 +28,3 @@ lia.command.add("partytier", {
         MODULE:UpdatePartyTiers()
     end
 })
-

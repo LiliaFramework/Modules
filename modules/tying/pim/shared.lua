@@ -1,5 +1,4 @@
-
-PIM:AddOption("Put in vehicle", {
+﻿PIM:AddOption("Put in vehicle", {
     runServer = true,
     shouldShow = function(client, target)
         local es = ents.FindInSphere(client:GetPos(), 150)
@@ -38,7 +37,6 @@ PIM:AddOption("Put in vehicle", {
     end
 })
 
-
 PIM:AddOption("Remove Cuffed Passengers", {
     runServer = true,
     shouldShow = function(client)
@@ -54,7 +52,6 @@ PIM:AddOption("Remove Cuffed Passengers", {
         end
     end
 })
-
 
 PIM:AddOption("Tie", {
     runServer = true,
@@ -79,7 +76,6 @@ PIM:AddOption("Tie", {
         end)
     end
 })
-
 
 PIM:AddOption("UnTie", {
     runServer = true,

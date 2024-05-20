@@ -46,10 +46,7 @@ function SWEP:PrimaryAttack()
     local target = client:GetEyeTrace().Entity
     if client:IsNPC() then return end
     local curTime = CurTime()
-    if curTime < self.LastFired + 5 then
-        return
-    end
-
+    if curTime < self.LastFired + 5 then return end
     local maxDistance = 400
     local distance = client:GetPos():Distance(target:GetPos())
     if IsValid(target) and target:IsPlayer() and target:isStaffOnDuty() then

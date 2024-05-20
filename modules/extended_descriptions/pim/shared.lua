@@ -1,5 +1,4 @@
-﻿
-PIM:AddOption("Open Detailed Description", {
+﻿PIM:AddOption("Open Detailed Description", {
     runServer = true,
     shouldShow = function(_, target) return IsValid(target) end,
     onRun = function(client, target)
@@ -11,4 +10,3 @@ PIM:AddOption("Open Detailed Description", {
         net.Send(client)
     end
 })
-

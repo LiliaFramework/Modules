@@ -1,6 +1,4 @@
-﻿
-include("shared.lua")
-
+﻿include("shared.lua")
 function ENT:Draw()
     self:DrawModel()
     local position = self:GetPos() + self:GetUp() * -8.7 + self:GetForward() * -3.85 + self:GetRight() * -6
@@ -16,4 +14,3 @@ function ENT:Draw()
     render.SetMaterial(Material("sprites/glow04_noz"))
     render.DrawSprite(position, size, size, color)
 end
-
