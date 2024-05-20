@@ -7,7 +7,7 @@ if ARC9 then
 
     function MODULE:PostPlayerLoadout(client)
         client.ARC9_AttInv = {}
-        for i, v in pairs(client:getChar():getInv():getItems()) do
+        for _, v in pairs(client:getChar():getInv():getItems()) do
             if v.category == "Attachements" then
                 ARC9:PlayerGiveAtt(client, v.att)
                 ARC9:PlayerSendAttInv(client)
@@ -78,7 +78,7 @@ function MODULE:InitializedModules()
 
         print("-- [[ ARC9 Compatibility - All Weapons Loaded! ]]--")
         print("-- [[ ARC9 Compatibility - Loading Attachments... ]]--")
-        for _, v in pairs(ARC9.Attachments) do
+        for i, v in pairs(ARC9.Attachments) do
             if not i.Free then
                 local ITEM = lia.item.register(i, nil, false, nil, true)
                 ITEM.name = v.PrintName
