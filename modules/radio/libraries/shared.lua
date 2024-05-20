@@ -6,17 +6,6 @@ local find = {
 }
 
 --------------------------------------------------------------------------------------------------------
-function MODULE:OverrideItemTooltip(inv, data, item)
-    if item.uniqueID == "radio" then
-        local freq = item:getData("freq", nil)
-        if not freq then return end
-        freq = math.Round(freq, 1)
-        local enabled = item:getData("enabled", false) and "Enabled" or "Disabled"
-        return Format(lia.config.itemFormat, item.getName and item:getName() or L(item.name), "Frequency: " .. (freq or "") .. "\n" .. enabled)
-    end
-end
-
---------------------------------------------------------------------------------------------------------
 function MODULE:EndChatter(listener)
     timer.Simple(1, function()
         if not listener:IsValid() or not listener:Alive() or hook.Run("ShouldRadioBeep", listener) == false then return false end
@@ -28,7 +17,7 @@ end
 lia.chat.register("radio", {
     format = "%s says in radio: \"%s\"",
     font = "liaRadioFont",
-    onGetColor = function(speaker, text) return Color(100, 255, 50) end,
+    onGetColor = function(speaker, text) return MODULE.RadioChatColor end,
     onCanHear = function(speaker, listener)
         local dist = speaker:GetPos():Distance(listener:GetPos())
         local speakRange = ChatboxCore.ChatRange
