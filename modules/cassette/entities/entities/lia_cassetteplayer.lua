@@ -8,7 +8,7 @@ ENT.DrawEntityInfo = true
 local Inventory = FindMetaTable("GridInv")
 lia.item.inventories = lia.inventory.instances
 if SERVER then
-    local function CanOnlyTransferCassette(inventory, action, context)
+    local function CanOnlyTransferCassette(_, action, context)
         if action ~= "transfer" then return end
         local item, toInventory = context.item, context.to
         if item.music == nil then
@@ -18,7 +18,7 @@ if SERVER then
         end
     end
 
-    local function CanReplicateItemsForEveryone(inventory, action, context)
+    local function CanReplicateItemsForEveryone(_, action)
         if action == "repl" then return true end
     end
 
@@ -39,7 +39,7 @@ if SERVER then
             inventory:addAccessRule(CanOnlyTransferCassette)
             inventory:addAccessRule(CanReplicateItemsForEveryone)
             inventory.noBags = false
-            function inventory:onCanTransfer(client, oldX, oldY, x, y, newInvID)
+            function inventory:onCanTransfer(client, oldX, oldY, _, _, newInvID)
                 return hook.Run("StorageCanTransfer", inventory, client, oldX, oldY, newInvID)
             end
         end)
@@ -48,10 +48,10 @@ if SERVER then
     function ENT:setInventory(inventory)
         if inventory then
             self:setNetVar("id", inventory:getID())
-            inventory.onAuthorizeTransfer = function(inventory, client, oldInventory, item) if IsValid(client) and IsValid(self) and self.receivers[client] then return true end end
-            inventory.getReceiver = function(inventory)
+            inventory.onAuthorizeTransfer = function(_, client) if IsValid(client) and IsValid(self) and self.receivers[client] then return true end end
+            inventory.getReceiver = function()
                 local receivers = {}
-                for k, v in pairs(self.receivers) do
+                for k, _ in pairs(self.receivers) do
                     if IsValid(k) then receivers[#receivers + 1] = k end
                 end
                 return #receivers > 0 and receivers or nil
@@ -80,7 +80,7 @@ if SERVER then
     end
 
     function ENT:disable()
-        if self:getNetVar("songOn") == true then
+        if self:getNetVar("songOn") then
             self:StopSound("cplayer_song")
             self:setNetVar("songOn", false)
         end
@@ -119,24 +119,17 @@ if SERVER then
             end
         end
 
-        if self:getNetVar("songOn") == true then
+        if self:getNetVar("songOn") then
             self:StopSound("cplayer_song")
             self:setNetVar("songOn", false)
         end
     end
-
-    function table.empty(self)
-        for _, _ in pairs(self) do
-            return false
-        end
-        return true
-    end
-
+    
     function ENT:Think()
         local inventory = self:getInv()
         if not inventory then return end
         local item = inventory:getItems()
-        if table.empty(item) == true then
+        if if table.IsEmpty(item) then
             self:StopSound("cplayer_song")
             self:setNetVar("songOn", false)
         end
@@ -156,18 +149,17 @@ else
         local status = self:getNetVar("songOn")
         local position = toScreen(self.LocalToWorld(self, self.OBBCenter(self)))
         local x, y = position.x, position.y
-        local playing = "Playing"
-        if status == true then
+        local playing = ""
+        if status then
             playing = "Playing"
             playingColor = COLOR_PLAYING
         else
             playing = "Not Playing"
             playingColor = COLOR_STOPPED
         end
-
         y = y - 20
-        local tx, ty = drawText(playing, x, y, colorAlpha(playing and playingColor, alpha), 1, 1, nil, alpha * 0.65)
+        local _, ty = drawText(playing, x, y, colorAlpha(playing and playingColor, alpha), 1, 1, nil, alpha * 0.65)
         y = y + ty * .9
-        local tx, ty = drawText("Cassette Player", x, y, colorAlpha(lia.config.Color, alpha), 1, 1, nil, alpha * 0.65)
+        drawText("Cassette Player", x, y, colorAlpha(lia.config.Color, alpha), 1, 1, nil, alpha * 0.65)
     end
 end

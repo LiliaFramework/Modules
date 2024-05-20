@@ -1,6 +1,6 @@
 ﻿function MODULE:LoadData()
     local savedTable = self:getData() or {}
-    for k, v in ipairs(savedTable) do
+    for _, v in ipairs(savedTable) do
         local cPlayer = ents.Create(v.class)
         cPlayer:SetPos(v.pos)
         cPlayer:SetAngles(v.ang)
@@ -11,7 +11,7 @@ end
 
 function MODULE:SaveData()
     local savedTable = {}
-    for k, v in ipairs(ents.GetAll()) do
+    for _, v in ipairs(ents.GetAll()) do
         if v:isCassete() then
             table.insert(savedTable, {
                 class = v:GetClass(),

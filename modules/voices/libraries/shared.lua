@@ -18,13 +18,13 @@ end
 
 function lia.voice.getClass(client)
     local definitions = {}
-    for k, v in pairs(lia.voice.checks) do
+    for _, v in pairs(lia.voice.checks) do
         if v.onCheck(client) then definitions[#definitions + 1] = v end
     end
     return definitions
 end
 
-function lia.voice.register(class, key, replacement, source, max)
+function lia.voice.register(class, key, replacement, source)
     class = class:lower()
     lia.voice.list[class] = lia.voice.list[class] or {}
     lia.voice.list[class][key:lower()] = {
@@ -101,4 +101,4 @@ lia.voice.defineClass("combine", function(client) return client:isCombine() end,
     sounds[#sounds + 1] = {table.Random(beeps.off), nil, 0.25}
 end)
 
-lia.voice.defineClass("dispatch", function(client) return SCHEMA:isDispatch(client) end, function(client, sounds, chatType) if chatType ~= "dispatch" then return false end end, true)
+lia.voice.defineClass("dispatch", function(client) return SCHEMA:isDispatch(client) end, function(_, _, chatType) if chatType ~= "dispatch" then return false end end, true)

@@ -73,15 +73,15 @@ function MODULE:PlayerNoClip(client)
     if IsValid(client.liaScn) then return false end
 end
 
-function MODULE:PlayerUse(client, entity)
+function MODULE:PlayerUse(client)
     if IsValid(client.liaScn) then return false end
 end
 
-function MODULE:CanPlayerReceiveScan(client, photographer)
+function MODULE:CanPlayerReceiveScan(client)
     return client.isCombine and client:isCombine()
 end
 
-function MODULE:PlayerSwitchFlashlight(client, enabled)
+function MODULE:PlayerSwitchFlashlight(client)
     local scanner = client.liaScn
     if not IsValid(scanner) then return end
     if (scanner.nextLightToggle or 0) >= CurTime() then return false end
@@ -99,11 +99,11 @@ function MODULE:PlayerSwitchFlashlight(client, enabled)
     return false
 end
 
-function MODULE:PlayerCanPickupWeapon(client, weapon)
+function MODULE:PlayerCanPickupWeapon(client)
     if IsValid(client.liaScn) then return false end
 end
 
-function MODULE:PlayerCanPickupItem(client, item)
+function MODULE:PlayerCanPickupItem(client)
     if IsValid(client.liaScn) then return false end
 end
 

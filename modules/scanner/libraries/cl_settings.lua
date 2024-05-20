@@ -21,7 +21,7 @@ local blackAndWhite = {
     ["$pp_colour_mulb"] = 0
 }
 
-function MODULE:CalcView(client, origin, angles, fov)
+function MODULE:CalcView(client, _, _ , fov)
     local entity = client:GetViewEntity()
     if IsValid(entity) and entity:GetClass():find("scanner") then
         view.angles = client:GetAimVector():Angle()
@@ -34,7 +34,7 @@ function MODULE:CalcView(client, origin, angles, fov)
     end
 end
 
-function MODULE:InputMouseApply(command, x, y, angle)
+function MODULE:InputMouseApply(command)
     zoom = math.Clamp(zoom + command:GetMouseWheel() * 1.5, 0, 40)
     deltaZoom = Lerp(FrameTime() * 2, deltaZoom, zoom)
 end
@@ -67,7 +67,7 @@ end
 
 function MODULE:HUDPaint()
     if not hidden then return end
-    local scrW, scrH = surface.ScreenWidth() * 0.5, surface.ScreenHeight() * 0.5
+    local scrW, scrH = ScrW() * 0.5, ScrH() * 0.5
     local x, y = scrW - PICTURE_WIDTH2, scrH - PICTURE_HEIGHT2
     if self.lastPic and self.lastPic >= CurTime() then
         local delay = lia.config.PictureDelay
@@ -125,7 +125,7 @@ function MODULE:RenderScreenspaceEffects()
     DrawColorModify(blackAndWhite)
 end
 
-function MODULE:PlayerBindPress(client, bind, pressed)
+function MODULE:PlayerBindPress(_, bind, pressed)
     bind = bind:lower()
     if bind:find("attack") and pressed and hidden and IsValid(self.lastViewEntity) then
         self:takePicture()

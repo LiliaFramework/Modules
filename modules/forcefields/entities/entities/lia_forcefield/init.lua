@@ -95,7 +95,7 @@ function ENT:StartTouch(entity)
     self.entities = (self.entities or 0) + 1
 end
 
-function ENT:EndTouch(entity)
+function ENT:EndTouch()
     self.entities = math.max((self.entities or 0) - 1, 0)
     if self.buzzer and self.entities == 0 then self.buzzer:FadeOut(0.5) end
 end
@@ -121,8 +121,8 @@ modes[1] = {
     "Only allow with valid CID."
 }
 
-modes[2] = {function(client) return true end, "Never allow citizens."}
-modes[3] = {function(client) return false end, "Allow everything."}
+modes[2] = {function() return true end, "Never allow citizens."}
+modes[3] = {function() return false end, "Allow everything."}
 function ENT:Use(activator)
     if (self.nextUse or 0) < CurTime() then
         self.nextUse = CurTime() + 1.5

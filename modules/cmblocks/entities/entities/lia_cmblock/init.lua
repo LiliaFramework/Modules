@@ -8,7 +8,7 @@ function ENT:Initialize()
     self:PhysicsInit(SOLID_VPHYSICS)
     self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
     self:SetUseType(SIMPLE_USE)
-    self.onDoorRestored = function(self, door) self:toggle(false) end
+    self.onDoorRestored = function(self) self:toggle(false) end
 end
 
 function ENT:OnRemove()
@@ -69,7 +69,7 @@ function ENT:toggle(override)
 end
 
 function ENT:getLockPos(client, door)
-    local index, index2 = door:LookupBone("handle")
+    local index, _ = door:LookupBone("handle")
     local normal = client:GetEyeTrace().HitNormal:Angle()
     local position = client:GetEyeTrace().HitPos
     if index and index >= 1 then position = door:GetBonePosition(index) end

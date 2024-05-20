@@ -5,7 +5,7 @@ util.AddNetworkString("liaScannerFlash")
 ENT.scanSounds = {"npc/scanner/scanner_scan1.wav", "npc/scanner/scanner_scan2.wav", "npc/scanner/scanner_scan4.wav", "npc/scanner/scanner_scan5.wav", "npc/scanner/combat_scan1.wav", "npc/scanner/combat_scan2.wav", "npc/scanner/combat_scan3.wav", "npc/scanner/combat_scan4.wav", "npc/scanner/combat_scan5.wav",}
 ENT.painSounds = {"npc/scanner/scanner_pain1.wav", "npc/scanner/scanner_pain2.wav", "npc/scanner/scanner_alert1.wav",}
 ENT.sirenSound = "npc/scanner/scanner_siren2.wav"
-function ENT:ejectPilot(no)
+function ENT:ejectPilot()
     local pilot = self:GetPilot()
     if not IsValid(pilot) then return end
     pilot:SetMoveType(MOVETYPE_WALK)

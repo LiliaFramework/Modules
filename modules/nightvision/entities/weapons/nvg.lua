@@ -37,7 +37,7 @@ if SERVER then
             self.Nightvision = true
             net.Start("AM_NightvisionOn")
             net.Send(client)
-        elseif self.Nightvision == true then
+        elseif self.Nightvision then
             self.Nightvision = false
             net.Start("AM_NightvisionOff")
             net.Send(client)
@@ -45,7 +45,7 @@ if SERVER then
     end
 
     function SWEP:OnRemove()
-        if self.Nightvision == true then
+        if self.Nightvision then
             self.Nightvision = false
             local client = self:GetOwner()
             net.Start("AM_NightvisionOff")
