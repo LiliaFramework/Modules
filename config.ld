@@ -1,26 +1,15 @@
 file = {
-	"docs/hooks",
-	"lilia",
-	exclude = {"lilia/gamemode/libraries/thirdparty"}
-}
-
-module_file = {
-	Character = "lilia/gamemode/libraries/meta/character.lua",
-	Entity = "lilia/gamemode/libraries/meta/entity.lua",
-	Inventory = "lilia/gamemode/libraries/meta/inventory.lua",
-	Item = "lilia/gamemode/libraries/meta/item.lua",
-	Player = "lilia/gamemode/libraries/meta/player.lua"
+	"skeleton",
 }
 
 dir = "docs/html"
-project = "Lilia"
-title = "Lilia Documentation"
+project = "Skeleton Schema Documentation"
+title = "Skeleton Schema Documentation"
 no_space_before_args = true
 style = "docs/css"
 template = "docs/templates"
 format = "markdown"
 ignore = true
-topics = "docs/manual"
 use_markdown_titles = true
 kind_names = {module = "Libraries", topic = "Manual"}
 merge = true
@@ -52,7 +41,10 @@ custom_display_name_handler = function(item, default_handler)
 	return default_handler(item)
 end
 
+
 new_type("hooks", "Hooks", true)
+new_type("items", "Items", true)
+new_type("faction", "Factions", true)
 new_type("configurations", "Configurations", true)
 new_type("panel", "Panels", true)
 tparam_alias("inventory", "Inventory")
