@@ -18,7 +18,7 @@ function PANEL:Init()
     self.confirm:Dock(RIGHT)
     self.confirm:SetDisabled(true)
     self.confirm:SetText(L("finish"))
-    self.controls.Paint = function(_, w, h)
+    self.controls.Paint = function(_, _, h)
         local text = self.contents:GetValue()
         draw.SimpleText(Format("Text Byte: %s/1000", string.len(text)), "DermaDefault", 10, h / 2, color_white, TEXT_ALIGN_LEFT, 1)
     end

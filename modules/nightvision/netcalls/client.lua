@@ -1,5 +1,5 @@
 ﻿
-net.Receive("AM_NightvisionOn", function(len, client)
+net.Receive("AM_NightvisionOn", function()
     am_nightvision = DynamicLight(0)
     if am_nightvision then
         am_nightvision.Pos = LocalPlayer():EyePos()
@@ -16,7 +16,7 @@ net.Receive("AM_NightvisionOn", function(len, client)
 end)
 
 
-net.Receive("AM_NightvisionOff", function(len, client)
+net.Receive("AM_NightvisionOff", function()
     timer.Remove("AM_LightTimer")
     if am_nightvision then am_nightvision.DieTime = CurTime() + 0.1 end
 end)
