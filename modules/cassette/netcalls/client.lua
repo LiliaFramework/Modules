@@ -10,7 +10,7 @@
     cInv:ShowCloseButton(true)
     cInv:SetTitle("")
     cInv:MoveLeftOf(playerInv, 4)
-    cInv.OnClose = function(this)
+    cInv.OnClose = function()
         if IsValid(playerInv) and not IsValid(lia.gui.menu) then playerInv:Remove() end
         netstream.Start("invExit")
     end

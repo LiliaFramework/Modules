@@ -1,11 +1,11 @@
 ﻿util.AddNetworkString("liaScannerData")
 util.AddNetworkString("liaScannerPicture")
 util.AddNetworkString("liaScannerClearPicture")
-net.Receive("liaScannerData", function(length, client)
+net.Receive("liaScannerData", function(_, client)
     if IsValid(client.liaScn) and client:GetViewEntity() == client.liaScn and (client.liaNextPic or 0) < CurTime() then
         local delay = lia.config.PictureDelay
         client.liaNextPic = CurTime() + delay - 1
-        length = net.ReadUInt(16)
+        local length = net.ReadUInt(16)
         local data = net.ReadData(length)
         if length ~= #data then return end
         local receivers = {}

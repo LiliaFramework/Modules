@@ -1,6 +1,6 @@
 ﻿function MODULE:saveForceFields()
     local buffer = {}
-    for k, v in pairs(ents.FindByClass("lia_forcefield")) do
+    for _, v in pairs(ents.FindByClass("lia_forcefield")) do
         buffer[#buffer + 1] = {
             pos = v:GetPos(),
             ang = v:GetAngles(),
@@ -13,7 +13,7 @@ end
 
 function MODULE:LoadData()
     local buffer = self:getData() or {}
-    for k, v in ipairs(buffer) do
+    for _, v in ipairs(buffer) do
         local entity = ents.Create("lia_forcefield")
         entity:SetPos(v.pos)
         entity:SetAngles(v.ang)

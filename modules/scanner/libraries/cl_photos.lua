@@ -40,7 +40,7 @@ concommand.Add("lia_photocache", function()
     frame.list = frame:Add("DScrollPanel")
     frame.list:Dock(FILL)
     frame.list:SetDrawBackground(true)
-    for k, v in ipairs(PHOTO_CACHE) do
+    for _, v in ipairs(PHOTO_CACHE) do
         local button = frame.list:Add("DButton")
         button:SetTall(28)
         button:Dock(TOP)

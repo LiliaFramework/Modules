@@ -80,7 +80,7 @@ if SERVER then
     end
 
     function ENT:disable()
-        if self:getNetVar("songOn") then
+        if self:getNetVar("songOn") == true then
             self:StopSound("cplayer_song")
             self:setNetVar("songOn", false)
         end
@@ -119,7 +119,7 @@ if SERVER then
             end
         end
 
-        if self:getNetVar("songOn") then
+        if self:getNetVar("songOn") == true then
             self:StopSound("cplayer_song")
             self:setNetVar("songOn", false)
         end
@@ -129,7 +129,7 @@ if SERVER then
         local inventory = self:getInv()
         if not inventory then return end
         local item = inventory:getItems()
-        if if table.IsEmpty(item) then
+        if table.IsEmpty(item) then
             self:StopSound("cplayer_song")
             self:setNetVar("songOn", false)
         end
@@ -149,14 +149,15 @@ else
         local status = self:getNetVar("songOn")
         local position = toScreen(self.LocalToWorld(self, self.OBBCenter(self)))
         local x, y = position.x, position.y
-        local playing = ""
-        if status then
+        local playing = "Playing"
+        if status == true then
             playing = "Playing"
             playingColor = COLOR_PLAYING
         else
             playing = "Not Playing"
             playingColor = COLOR_STOPPED
         end
+
         y = y - 20
         local _, ty = drawText(playing, x, y, colorAlpha(playing and playingColor, alpha), 1, 1, nil, alpha * 0.65)
         y = y + ty * .9
