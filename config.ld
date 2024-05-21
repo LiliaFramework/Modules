@@ -44,7 +44,7 @@ end
 
 new_type("hooks", "Hooks", true)
 new_type("items", "Items", true)
-new_type("classes", "Class", true)
+new_type("classes", "Classes", true)
 new_type("factions", "Factions", true)
 new_type("configurations", "Configurations", true)
 new_type("panel", "Panels", true)
