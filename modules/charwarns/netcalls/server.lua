@@ -1,4 +1,5 @@
-﻿util.AddNetworkString("WarnReasonUI")
+﻿local MODULE = MODULE
+util.AddNetworkString("WarnReasonUI")
 util.AddNetworkString("ApplyWarn")
 net.Receive("ApplyWarn", function(_, client)
     if CAMI.PlayerHasAccess(client, "Commands - Warn Players", nil) then
@@ -8,7 +9,7 @@ net.Receive("ApplyWarn", function(_, client)
             if target:getChar():getID() == tCharID then
                 local tCharName = target:getName()
                 lia.log.add(client, "playerWarned", tCharName, reason)
-                CharacterWarns:WarnPlayer(client, target, reason)
+                MODULE:WarnPlayer(client, target, reason)
             end
         end
     else

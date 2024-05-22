@@ -70,7 +70,7 @@ function MODULE:HUDPaint()
     local scrW, scrH = ScrW() * 0.5, ScrH() * 0.5
     local x, y = scrW - PICTURE_WIDTH2, scrH - PICTURE_HEIGHT2
     if self.lastPic and self.lastPic >= CurTime() then
-        local delay = lia.config.PictureDelay
+        local delay = self.PictureDelay
         local percent = math.Round(math.TimeFraction(self.lastPic - delay, self.lastPic, CurTime()), 2) * 100
         local glow = math.sin(RealTime() * 15) * 25
         draw.SimpleText("RE-CHARGING: " .. percent .. "%", "liaScannerFont", x, y - 24, Color(255 + glow, 100 + glow, 25, 250))

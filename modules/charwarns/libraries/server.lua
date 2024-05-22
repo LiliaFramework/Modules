@@ -1,18 +1,18 @@
-﻿function CharacterWarns:WarnPlayer(client, target, reason)
+﻿function MODULE:WarnPlayer(client, target, reason)
     local tChar = target:getChar()
     local warnCount = tChar:getData("warn", 0)
     tChar:setData("warn", warnCount + 1)
     target:GodEnable()
     target:Freeze(true)
     target:ChatPrint("You received a warning from " .. client:GetName() .. " Reason: " .. reason .. ". Your new total is " .. warnCount .. ".")
-    target:notify("You were frozen for " .. CharacterWarns.FreezeTime .. " seconds. Please read the warning!")
-    timer.Simple(CharacterWarns.FreezeTime, function()
+    target:notify("You were frozen for " .. self.FreezeTime .. " seconds. Please read the warning!")
+    timer.Simple(self.FreezeTime, function()
         if IsValid(target) then
             target:GodDisable()
             target:Freeze(false)
-            if warnCount >= CharacterWarns.WarnsTillBan then
+            if warnCount >= self.WarnsTillBan then
                 target:notify("Your character has been blocked for exceeding the allowed number of warnings!")
-                timer.Simple(5, function() tChar:ban(CharacterWarns.BanTime) end)
+                timer.Simple(5, function() tChar:ban(self.BanTime) end)
             end
         end
     end)

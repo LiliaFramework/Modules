@@ -5,7 +5,7 @@ local PICTURE_HEIGHT2 = PICTURE_HEIGHT * 0.5
 PHOTO_CACHE = PHOTO_CACHE or {}
 function MODULE:takePicture()
     if (self.lastPic or 0) < CurTime() then
-        self.lastPic = CurTime() + lia.config.PictureDelay
+        self.lastPic = CurTime() + self.PictureDelay
         net.Start("liaScannerPicture")
         net.SendToServer()
         timer.Simple(0.1, function() self.startPicture = true end)
