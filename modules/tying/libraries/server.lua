@@ -59,8 +59,8 @@ function MODULE:PlayerUse(client, entity)
             client:EmitSound("npc/roller/blade_in.wav")
         end, 5, function()
             entity.liaBeingUnTied = false
-            entity:setAction()
-            client:setAction()
+            entity:stopAction()
+            client:stopAction()
         end)
     end
 end
