@@ -27,7 +27,7 @@
                 effect:SetOrigin(position)
                 effect:SetScale(2)
                 util.Effect("GlassImpact", effect)
-                local name = client:SteamID64() .. CurTime()
+                local name = client:UniqueID() .. CurTime()
                 client:SetName(name)
                 entity.liaOldSpeed = entity.liaOldSpeed or entity:GetKeyValues().speed or 100
                 entity:Fire("setspeed", entity.liaOldSpeed * 3.5)

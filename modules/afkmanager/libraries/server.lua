@@ -39,7 +39,7 @@ end
 timer.Create("AFKTimer", MODULE.TimerInterval, 0, function()
     local clientCount = player.GetCount()
     local maxPlayers = game.MaxPlayers()
-    for _, client in player.Iterator() do
+    for _, client in ipairs(player.GetAll()) do
         if not client:getChar() and clientCount < maxPlayers then continue end
         if table.HasValue(MODULE.AFKAllowedPlayers, client:SteamID64()) or client:IsBot() then continue end
         client.AFKTime = (client.AFKTime or 0) + MODULE.TimerInterval
