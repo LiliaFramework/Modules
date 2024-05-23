@@ -3,7 +3,7 @@ function MODULE:PostPlayerSay(client, chatType, message)
         for _, v in pairs(self.NotAllowedWords) do
             if string.find(message, v) then
                 message = string.format("ERPER DETECTED: (%s) (%s) ", client:GetCharacter():GetName(), message)
-                for _, ply in pairs(player.Iterator()) do
+                for _, ply in pairs(player.GetAll()) do
                     if ply:IsAdmin() then ply:PrintMessage(HUD_PRINTTALK, message) end
                 end
 
