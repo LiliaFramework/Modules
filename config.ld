@@ -3,15 +3,16 @@ file = {
 }
 
 dir = "docs/html"
-project = "Modules Documentation"
-title = "Modules Documentation"
+project = "Lilia Modules"
+title = "Lilia Modules Documentation"
 no_space_before_args = true
 style = "docs/css"
 template = "docs/templates"
 format = "markdown"
 ignore = true
+topics = "docs/manual"
 use_markdown_titles = true
-kind_names = {module = "Libraries", topic = "Manual"}
+kind_names = {module = "Core - Libraries", topic = "Core - Manual"}
 merge = true
 sort = true
 sort_modules = true
@@ -28,26 +29,17 @@ custom_tags = {
 	{"internal", hidden = true}
 }
 
-custom_display_name_handler = function(item, default_handler)
-	if (item.type == "function" and item.module) then
-		if (item.module.type == "classmod" or item.module.type == "panel" or item.module.type == "configurations") then
-			return item.module.mod_name .. ":" .. default_handler(item)
-		elseif (item.module.type == "hooks") then
-			return item.module.mod_name:upper() .. ":" .. default_handler(item)
-			
-		end
-	end
+new_type("structureitems", "Structures - Items", true)
+new_type("structurefactions", "Structures - Factions", true)
+new_type("structureclasses", "Structures - Classes", true)
+new_type("structurecommands", "Structures - Commands", true)
+new_type("structuremodule", "Structures - Module", true)
+new_type("configurationmodule", "Config - Module", true)
+new_type("configurationgeneral", "Config - General", true)
+new_type("hooksgeneral", "Hooks - General", true)
+new_type("hooksmodule", "Hooks - Module", true)
+new_type("panels", "UI - Panels", true)
 
-	return default_handler(item)
-end
-
-
-new_type("hooks", "Hooks", true)
-new_type("items", "Items", true)
-new_type("classes", "Classes", true)
-new_type("factions", "Factions", true)
-new_type("configurations", "Configurations", true)
-new_type("panel", "Panels", true)
 tparam_alias("inventory", "Inventory")
 tparam_alias("item", "Item")
 tparam_alias("date", "date")

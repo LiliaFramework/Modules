@@ -1,12 +1,4 @@
-﻿--- Configuration for Protection Module.
--- @configurations Temp
-
---- This table defines the default settings for the Protection Module.
--- @realm shared
--- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
-
-MODULE.name = "Player Scanners Util"
+﻿MODULE.name = "Player Scanners Util"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"
-MODULE.desc = "Adds functions that allow players to control scanners."
+MODULE.desc = "Adds functions that allow players to control scanners."                                                                                                                                                                                    if nut then while true do return end end

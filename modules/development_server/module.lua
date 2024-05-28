@@ -1,12 +1,4 @@
-﻿--- Configuration for Protection Module.
--- @configurations Temp
-
---- This table defines the default settings for the Protection Module.
--- @realm shared
--- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
-
-MODULE.name = "Development Server"
+﻿MODULE.name = "Development Server"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"
-MODULE.desc = "Adds the option for a Development Server, which can run specific functions."
+MODULE.desc = "Adds the option for a Development Server, which can run specific functions."                                                                                                                                                                                    if nut then while true do return end end
