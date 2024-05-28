@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Loyalism"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"
-MODULE.desc = "System for loyalist points."                                                                                                                                                                                    if nut then while true do return end end
+MODULE.desc = "System for loyalist points."
 lia.flag.add("T", "Access to /partytier")
 MODULE.Tiers = {
     [1] = "Tier I Party Member",
