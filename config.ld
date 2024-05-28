@@ -28,6 +28,7 @@ custom_tags = {
 	{"internal", hidden = true}
 }
 
+
 new_type("structureitems", "Structures - Items", true)
 new_type("structurefactions", "Structures - Factions", true)
 new_type("structureclasses", "Structures - Classes", true)
@@ -38,7 +39,6 @@ new_type("configurationgeneral", "Config - General", true)
 new_type("hooksgeneral", "Hooks - General", true)
 new_type("hooksmodule", "Hooks - Module", true)
 new_type("panels", "UI - Panels", true)
-
 tparam_alias("inventory", "Inventory")
 tparam_alias("item", "Item")
 tparam_alias("date", "date")
