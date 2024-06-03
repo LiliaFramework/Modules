@@ -1,4 +1,4 @@
-# Lilia Modules
+# Modules
  
 An set of Modules for [Lilia](https://github.com/LiliaFramework/Lilia), designed to provide some extra content for free.
 
