@@ -1,1 +1,0 @@
-﻿MODULE.DeathTake = .15

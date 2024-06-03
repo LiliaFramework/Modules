@@ -1,7 +1,7 @@
---- Configuration for Protection Module.
--- @configurationmodule Temp
+--- Configuration for Realistic View Module.
+-- @configurationmodule RealisticView
 
---- This table defines the default settings for the Protection Module.
+--- This table defines the default settings for the Realistic View Module.
 -- @realm shared
 -- @table Configuration
 -- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**

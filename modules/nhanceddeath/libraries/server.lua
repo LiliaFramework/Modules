@@ -1,11 +1,11 @@
 ﻿function MODULE:PlayerSpawn(client)
     if not client:getChar() then return end
-    if client:getNetVar("hasDied", false) then
+    if client:getNetVar("hospitalDeath", false) then
         local respawnLocation = table.Random(self.HospitalLocations)
         timer.Simple(0, function()
             client:Spawn()
             client:SetPos(respawnLocation)
-            client:setNetVar("hasDied", false)
+            client:setNetVar("hospitalDeath", false)
             if self.LoseMoneyOnDeath then
                 local currentMoney = client:getChar():getMoney()
                 local moneyLoss = math.ceil(currentMoney * self.DeathMoneyLoss)
@@ -18,6 +18,6 @@
 end
 
 function MODULE:PlayerDeath(client)
-    if not client:getChar() then return end
-    client:setNetVar("hasDied", true)
+    if not (client:getChar() or self.HospitalsEnabled) then return end
+    client:setNetVar("hospitalDeath", true)
 end

@@ -1,7 +1,7 @@
 ﻿function MODULE:LoadData()
     local savedTable = self:getData() or {}
     local noteItem = lia.item.list["note"]
-    self.WRITINGDATA = savedTable.noteData
+    self.WritingData = savedTable.noteData
     if savedTable.noteEntities then
         for _, v in ipairs(savedTable.noteEntities) do
             local note = ents.Create("lia_note")
@@ -35,7 +35,7 @@ function MODULE:SaveData()
 
     local validNoteData = {}
     for _, v in ipairs(validNotes) do
-        validNoteData[v] = self.WRITINGDATA[v]
+        validNoteData[v] = self.WritingData[v]
     end
 
     saveTable.noteData = validNoteData
@@ -49,7 +49,7 @@ function FindNoteByID(id)
 end
 
 function MODULE:EntityRemoved(entity)
-    if not lia.shuttingDown and entity and IsValid(entity) and entity:GetClass() == "lia_note" and entity.id then if self.WRITINGDATA[entity.id] then self.WRITINGDATA[entity.id] = nil end end
+    if not lia.shuttingDown and entity and IsValid(entity) and entity:GetClass() == "lia_note" and entity.id then if self.WritingData[entity.id] then self.WritingData[entity.id] = nil end end
 end
 
 function MODULE:OnNoteSpawned(note, item, load)
@@ -62,6 +62,6 @@ function MODULE:OnNoteSpawned(note, item, load)
     if item.player and IsValid(item.player) then note:setNetVar("ownerChar", item.player:getChar().id) end
     if load ~= true then
         note.id = os.time()
-        self.WRITINGDATA[note.id] = ""
+        self.WritingData[note.id] = ""
     end
 end
