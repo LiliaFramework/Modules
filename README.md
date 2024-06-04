@@ -1,7 +1,9 @@
-# Modules
- 
-An set of free Modules for [Lilia](https://github.com/LiliaFramework/Lilia).
+<h1 align="center">Lilia Modules</h1>
 
+<p align="center">
+  <img src="https://i.imgur.com/yY3wT30.png" alt="Lilia Icon">
+</p>
+ 
 # Contents
 
 - Anti AFK
