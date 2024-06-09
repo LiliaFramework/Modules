@@ -1,5 +1,5 @@
 --- Configuration for AFK Manager Module.
--- @configurationmodule AFKManager
+-- @configuration AFKManager
 
 --- This table defines the default settings for the AFK Manager Module.
 -- @realm shared

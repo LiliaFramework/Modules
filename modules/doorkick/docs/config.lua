@@ -1,5 +1,5 @@
 --- Configuration for Door Kick Module.
--- @configurationmodule DoorKick
+-- @configuration DoorKick
 
 --- This table defines the default settings for the Door Kick Module.
 -- @realm shared

@@ -1,5 +1,5 @@
 --- Configuration for Compass Module.
--- @configurationmodule Compass
+-- @configuration Compass
 
 --- This table defines the default settings for the Compass Module.
 -- @realm shared

@@ -1,5 +1,5 @@
 --- Configuration for Server Whitelist Module.
--- @configurationgeneral Whitelist
+-- @configuration Whitelist
 
 --- This table defines the default settings for the Whitelist Module.
 -- @realm shared

@@ -1,5 +1,5 @@
 --- Configuration for Cursor Module.
--- @configurationmodule Cursor
+-- @configuration Cursor
 
 --- This table defines the default settings for the Cursor Module.
 -- @realm shared

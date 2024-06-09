@@ -1,5 +1,5 @@
 --- Configuration for Voices Module.
--- @configurationmodule Voices
+-- @configuration Voices
 
 --- This table defines the default settings for the Voices Module.
 -- @realm shared

@@ -1,5 +1,5 @@
 --- Configuration for Character Warns Module.
--- @configurationmodule CharacterWarns
+-- @configuration CharacterWarns
 
 --- This table defines the default settings for the CharacterWarns Module.
 -- @realm shared

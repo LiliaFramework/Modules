@@ -1,5 +1,5 @@
 --- Configuration for Enhanced Death Module.
--- @configurationmodule EnhancedDeath
+-- @configuration EnhancedDeath
 
 --- This table defines the default settings for the Enhanced Death Module.
 -- @realm shared

@@ -1,5 +1,5 @@
 --- Configuration for Scanner Module.
--- @configurationmodule Scanner
+-- @configuration Scanner
 
 --- This table defines the default settings for the Scanner Module.
 -- @realm shared

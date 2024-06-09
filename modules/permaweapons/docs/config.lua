@@ -1,5 +1,5 @@
 --- Configuration for Perma Weapons Module.
--- @configurationmodule PermaWeapons
+-- @configuration PermaWeapons
 
 --- This table defines the default settings for the Perma Weapons Module.
 -- @realm shared

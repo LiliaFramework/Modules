@@ -1,5 +1,5 @@
 --- Configuration for Flashlight Module.
--- @configurationmodule Flashlight
+-- @configuration Flashlight
 
 --- This table defines the default settings for the Flashlight Module.
 -- @realm shared

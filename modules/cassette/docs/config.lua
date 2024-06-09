@@ -1,5 +1,5 @@
 --- Configuration for Cassette Module.
--- @configurationmodule Cassette
+-- @configuration Cassette
 
 --- This table defines the default settings for the Cassette Module.
 -- @realm shared

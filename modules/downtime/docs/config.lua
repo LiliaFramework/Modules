@@ -1,5 +1,5 @@
 --- Configuration for DownTime Notifier Module.
--- @configurationmodule DownTimeNotifier
+-- @configuration DownTimeNotifier
 
 --- This table defines the default settings for the DownTime Notifier Module.
 -- @realm shared

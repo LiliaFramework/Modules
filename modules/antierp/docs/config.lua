@@ -1,5 +1,5 @@
 --- Configuration for Anti ERP Module.
--- @configurationmodule AntiERP
+-- @configuration AntiERP
 
 --- This table defines the default settings for the AntiERP Module.
 -- @realm shared

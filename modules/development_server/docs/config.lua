@@ -1,5 +1,5 @@
 --- Configuration for Development Server Module.
--- @configurationmodule DevelopmentServer
+-- @configuration DevelopmentServer
 
 --- This table defines the default settings for the Development Server Module.
 -- @realm shared

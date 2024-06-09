@@ -1,5 +1,5 @@
 --- Configuration for Realistic View Module.
--- @configurationmodule RealisticView
+-- @configuration RealisticView
 
 --- This table defines the default settings for the Realistic View Module.
 -- @realm shared

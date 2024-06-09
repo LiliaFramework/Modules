@@ -1,5 +1,5 @@
 --- Configuration for Crafting Module.
--- @configurationmodule Crafting
+-- @configuration Crafting
 
 --- This table defines the default settings for the Crafting Module.
 -- @realm shared

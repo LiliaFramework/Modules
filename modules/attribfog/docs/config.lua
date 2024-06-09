@@ -1,5 +1,5 @@
 --- Configuration for Attribute Fog Module.
--- @configurationmodule AttributeFog
+-- @configuration AttributeFog
 
 --- This table defines the default settings for the Attribute Fog Module.
 -- @realm shared

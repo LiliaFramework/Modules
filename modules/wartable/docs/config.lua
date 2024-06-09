@@ -1,5 +1,5 @@
 --- Configuration for War Table Module.
--- @configurationmodule WarTable
+-- @configuration WarTable
 
 --- This table defines the default settings for the War Table Module.
 -- @realm shared

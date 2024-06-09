@@ -1,5 +1,5 @@
 --- Configuration for Donation Bundle Module.
--- @configurationmodule DonationBundle
+-- @configuration DonationBundle
 
 --- This table defines the default settings for the Donation Bundle Module.
 -- @realm shared

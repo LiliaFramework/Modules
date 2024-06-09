@@ -1,5 +1,5 @@
 --- Configuration for Combine Locks Module.
--- @configurationmodule CombineLocks
+-- @configuration CombineLocks
 
 --- This table defines the default settings for the Combine Locks Module.
 -- @realm shared

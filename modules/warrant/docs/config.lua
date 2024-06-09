@@ -1,5 +1,5 @@
 --- Configuration for Warrant Module.
--- @configurationmodule Warrant
+-- @configuration Warrant
 
 --- This table defines the default settings for the Warrant Module.
 -- @realm shared
