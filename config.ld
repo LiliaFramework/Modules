@@ -11,47 +11,70 @@ template = "docs/templates"
 format = "markdown"
 ignore = true
 use_markdown_titles = true
-kind_names = {module = "Core - Libraries", topic = "Core - Manual"}
+topics = {"docs/information", "docs/structures",}
 merge = true
 sort = true
 sort_modules = true
-
 simple_args_string = true -- we show optionals/defaults outside of the display name
 strip_metamethod_prefix = true -- remove the name of the table when displaying metamethod names
 no_viewed_topic_at_top = true -- don't put the currently viewed topic at the top
 use_new_templates = true -- new templating system
 pretty_urls = true -- avoid showing .html in urls
 pretty_topic_names = true -- strips extension from manual filenames, this does not check filename collisions
-
+kind_names = {
+   module = "Libraries",
+}
 custom_tags = {
-	{"realm", hidden = true},
-	{"internal", hidden = true}
+   {
+      "realm",
+      hidden = true
+   },
+   {
+      "internal",
+      hidden = true
+   }
 }
 
 
-new_type("structureitems", "Structures - Items", true)
-new_type("structurefactions", "Structures - Factions", true)
-new_type("structureclasses", "Structures - Classes", true)
-new_type("structurecommands", "Structures - Commands", true)
-new_type("structuremodule", "Structures - Module", true)
-new_type("configurationmodule", "Config - Module", true)
-new_type("configurationgeneral", "Config - General", true)
-new_type("hooksgeneral", "Hooks - General", true)
-new_type("hooksmodule", "Hooks - Module", true)
-new_type("panels", "UI - Panels", true)
+custom_display_name_handler = function(item, default_handler)
+   if item.type == "function" and item.module then
+      if item.module.type == "aclassmod" then
+         return item.module.mod_name .. ":" .. default_handler(item)
+      elseif item.module.type == "ahooks" then
+         if item.module.mod_name == "Class" then
+            return "CLASS:" .. default_handler(item)
+         elseif item.module.mod_name == "Faction" then
+            return "FACTION:" .. default_handler(item)
+         else
+            return "MODULE:" .. default_handler(item)
+         end
+      end
+   end
+   return default_handler(item)
+end
+
+new_type("factions", "Factions", true)
+new_type("classes", "Classes", true)
+new_type("information", "Information", true)
+new_type("alibrary", "Libraries", true)
+new_type("ahooks", "Hooks", true)
+new_type("aclassmod", "Meta", true)
+new_type("aconfigurations", "Configurations", true)
+new_type("structures", "Structures", true)
+new_type("store", "Store", true)
 tparam_alias("inventory", "Inventory")
 tparam_alias("item", "Item")
-tparam_alias("date", "date")
-tparam_alias("panel", "panel")
-tparam_alias("string", "string")
-tparam_alias("bool", "boolean")
-tparam_alias("func", "function")
+tparam_alias("date", "Date")
+tparam_alias("panel", "Panel")
+tparam_alias("string", "String")
+tparam_alias("bool", "Boolean")
+tparam_alias("func", "Function")
 tparam_alias("client", "Player")
 tparam_alias("entity", "Entity")
 tparam_alias("character", "Character")
-tparam_alias("color", "color")
-tparam_alias("tab", "table")
-tparam_alias("material", "material")
-tparam_alias("vector", "vector")
-tparam_alias("angle", "angle")
-tparam_alias("int", "integer")
+tparam_alias("color", "Color")
+tparam_alias("tab", "Table")
+tparam_alias("material", "Material")
+tparam_alias("vector", "Vector")
+tparam_alias("angle", "Angle")
+tparam_alias("int", "Integer")
