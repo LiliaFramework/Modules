@@ -11,7 +11,6 @@ template = "docs/templates"
 format = "markdown"
 ignore = true
 use_markdown_titles = true
-topics = {"docs/information", "docs/structures",}
 merge = true
 sort = true
 sort_modules = true
