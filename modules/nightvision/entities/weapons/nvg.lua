@@ -1,7 +1,7 @@
 ﻿AddCSLuaFile()
 SWEP.Base = "weapon_base"
 SWEP.PrintName = "Night Vision Goggles"
-SWEP.Author = "Tazmily & Leonheart"
+SWEP.Author = "Tazmily & Samael"
 SWEP.Instructions = "Reload to activate night vision."
 SWEP.Spawnable = true
 SWEP.AdminSpawnable = false

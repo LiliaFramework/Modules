@@ -1,6 +1,6 @@
 ﻿CraftingTables = CraftingTables or {}
 ENT.Type = "anim"
-ENT.Author = "Leonheart"
+ENT.Author = "Samael"
 ENT.Contact = "@liliaplayer"
 ENT.Instructions = "Press USE whilst looking at table to open crafting menu."
 ENT.Spawnable = false
