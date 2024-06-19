@@ -1,1 +1,1 @@
-util.AddNetworkString("screamerban")
+﻿util.AddNetworkString("screamerban")

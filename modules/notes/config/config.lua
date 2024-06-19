@@ -1,1 +1,1 @@
-MODULE.NoteLimit = 1000
+﻿MODULE.NoteLimit = 1000

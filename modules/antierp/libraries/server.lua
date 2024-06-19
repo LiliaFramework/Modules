@@ -1,4 +1,4 @@
-function MODULE:PostPlayerSay(client, chatType, message)
+﻿function MODULE:PostPlayerSay(client, chatType, message)
     if self.DetectedChatTypes[chatType] then
         for _, v in pairs(self.NotAllowedWords) do
             if string.find(message, v) then

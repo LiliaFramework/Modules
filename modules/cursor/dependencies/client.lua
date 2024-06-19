@@ -1,4 +1,4 @@
-function draw.CustCursor(material)
+﻿function draw.CustCursor(material)
     local pos_x, pos_y = input.GetCursorPos()
     if vgui.CursorVisible() then
         surface.SetDrawColor(color_white)

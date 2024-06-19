@@ -1,4 +1,4 @@
-lia.command.add("screamerban", {
+﻿lia.command.add("screamerban", {
     privilege = "Use Screamer",
     adminOnly = true,
     onRun = function(client, arguments)

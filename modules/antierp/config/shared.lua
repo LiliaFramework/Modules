@@ -1,6 +1,6 @@
-MODULE.DetectChatTypes = {
+﻿MODULE.DetectChatTypes = {
     ["me"] = true,
     ["it"] = true
-
 }
-MODULE.NotAllowedWords = {"puts dick","puts inside","grabs dick"}
+
+MODULE.NotAllowedWords = {"puts dick", "puts inside", "grabs dick"}

@@ -1,4 +1,4 @@
-function MODULE:PostRenderVGUI()
+﻿function MODULE:PostRenderVGUI()
     if self.CursorMaterial ~= "" then draw.CustCursor(self.CursorMaterial) end
 end
 

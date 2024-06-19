@@ -21,7 +21,7 @@ local blackAndWhite = {
     ["$pp_colour_mulb"] = 0
 }
 
-function MODULE:CalcView(client, _, _ , fov)
+function MODULE:CalcView(client, _, _, fov)
     local entity = client:GetViewEntity()
     if IsValid(entity) and entity:GetClass():find("scanner") then
         view.angles = client:GetAimVector():Angle()

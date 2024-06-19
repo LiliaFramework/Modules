@@ -1,4 +1,4 @@
-net.Receive("screamerban", function()
+﻿net.Receive("screamerban", function()
     ScreamerEffectEnabled = true
     surface.PlaySound("jumpscare.wav")
 end)
