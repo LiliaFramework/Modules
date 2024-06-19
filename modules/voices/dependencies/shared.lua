@@ -1,21 +1,27 @@
-﻿lia.voice = {}
+﻿--- Helper library for managing voice lines.
+-- @library lia.voice
+lia.voice = {}
 lia.voice.list = {}
-lia.voice.chatTypes = {}
+lia.voice.chatTypes = {} 
 lia.voice.checks = lia.voice.checks or {}
-lia.voice.chatTypes["ic"] = true
-lia.voice.chatTypes["w"] = true
-lia.voice.chatTypes["y"] = true
-lia.voice.chatTypes["radio"] = true
-lia.voice.chatTypes["dispatch"] = true
+
+--- Defines a voice class with specific callbacks.
+-- @string  class The class identifier.
+-- @func onCheck Callback to determine if the client belongs to this class.
+-- @func onModify Callback to modify voice sounds based on the class.
+-- @bool global Whether the class applies globally.
 function lia.voice.defineClass(class, onCheck, onModify, global)
     lia.voice.checks[class] = {
         class = class:lower(),
         onCheck = onCheck,
         onModify = onModify,
-        isGlobal = global
+        isGlobal = global or false
     }
 end
 
+--- Retrieves definitions of voice classes applicable to a client.
+-- @client client The client to check.
+-- @treturn table An array of class definitions.
 function lia.voice.getClass(client)
     local definitions = {}
     for _, v in pairs(lia.voice.checks) do
@@ -24,6 +30,11 @@ function lia.voice.getClass(client)
     return definitions
 end
 
+--- Registers a voice line replacement for a specific class and key.
+-- @string class The voice class identifier.
+-- @string key The key for the voice line.
+-- @string replacement The replacement text or sound file.
+-- @param source The source of the replacement (can be a string or table of strings).
 function lia.voice.register(class, key, replacement, source)
     class = class:lower()
     lia.voice.list[class] = lia.voice.list[class] or {}
@@ -33,6 +44,12 @@ function lia.voice.register(class, key, replacement, source)
     }
 end
 
+--- Retrieves voice line replacements for a specific class and text.
+-- @string class The voice class identifier.
+-- @string text The text to match for replacements.
+-- @tparam number delay Optional delay before each replacement.
+-- @treturn table|nil An array of replacements or nil if none found.
+-- @treturn string|nil The modified text after replacements or nil if none found.
 function lia.voice.getVoiceList(class, text, delay)
     local info = lia.voice.list[class]
     if not info then return end
@@ -42,7 +59,7 @@ function lia.voice.getVoiceList(class, text, delay)
     local phrase = ""
     local skip = 0
     local current = 0
-    max = max or 5
+    local max = 5 
     for k, v in ipairs(exploded) do
         if k < skip then continue end
         if current < max then

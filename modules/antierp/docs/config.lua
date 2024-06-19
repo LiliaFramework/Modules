@@ -4,4 +4,5 @@
 --- This table defines the default settings for the AntiERP Module.
 -- @realm shared
 -- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
+-- @field DetectChatTypes Specifies the types of chat to detect for ERP | **table**
+-- @field NotAllowedWords Specifies the list of words not allowed in chat to prevent ERP | **table**

@@ -4,4 +4,5 @@
 --- This table defines the default settings for the Attribute Fog Module.
 -- @realm shared
 -- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
+-- @field FogAttribute Specifies the attribute affecting the fog | **string**
+-- @field FogAttribDistance Specifies the distance affected by the fog attribute | **number**

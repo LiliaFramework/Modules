@@ -4,4 +4,5 @@
 --- This table defines the default settings for the Warrant Module.
 -- @realm shared
 -- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
+-- @field RemoveWarrantOnDeath bool Indicates whether warrants are removed upon death
+-- @field WarrantFlag string The flag used to denote a warrant

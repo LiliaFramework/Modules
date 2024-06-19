@@ -4,4 +4,4 @@
 --- This table defines the default settings for the Door Kick Module.
 -- @realm shared
 -- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
+-- @field KickDoorBlacklistedFactions Specifies factions that are blacklisted from door kicking | **table**

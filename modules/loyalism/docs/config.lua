@@ -1,7 +1,7 @@
---- Configuration for Protection Module.
--- @configuration Temp
+--- Configuration for Loyalism Module.
+-- @configuration Loyalism
 
---- This table defines the default settings for the Protection Module.
+--- This table defines the default settings for the Loyalism Module.
 -- @realm shared
 -- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
+-- @field A table defining the tiers and their corresponding titles for party members | **table**

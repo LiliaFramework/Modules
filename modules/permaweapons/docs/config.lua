@@ -4,4 +4,4 @@
 --- This table defines the default settings for the Perma Weapons Module.
 -- @realm shared
 -- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
+-- @field DonatorWeapons table A table listing the weapons available to donators

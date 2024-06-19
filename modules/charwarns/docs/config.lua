@@ -4,4 +4,6 @@
 --- This table defines the default settings for the CharacterWarns Module.
 -- @realm shared
 -- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
+-- @field BanTime Specifies the duration of a ban when the warn limit is reached | **number**
+-- @field WarnsTillBan Specifies the number of warns after which a ban is triggered | **number**
+-- @field FreezeTime Specifies the duration a player is frozen upon reaching the warn limit | **number**

@@ -1,6 +1,6 @@
 ﻿function MODULE:SetupWorldFog()
     if not LocalPlayer():getChar() then return false end
-    local maxAttrib = LocalPlayer():getChar():getAttrib(self.fogAttribute, 0)
+    local maxAttrib = LocalPlayer():getChar():getAttrib(self.FogAttribute, 0)
     render.FogStart(0)
     render.FogColor(255, 255, 255, 255)
     render.FogMaxDensity(0.40)

@@ -4,4 +4,4 @@
 --- This table defines the default settings for the Donation Bundle Module.
 -- @realm shared
 -- @table Configuration
--- @field TempValue Indicates whether Family Sharing is enabled on this server | **bool**
+-- @field OverrideCharLimit Specifies character limit overrides for donations | **table**
