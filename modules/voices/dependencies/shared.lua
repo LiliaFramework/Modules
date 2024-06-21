@@ -5,6 +5,7 @@ lia.voice.list = {}
 lia.voice.chatTypes = {}
 lia.voice.checks = lia.voice.checks or {}
 --- Defines a voice class with specific callbacks.
+-- @realm shared
 -- @string  class The class identifier.
 -- @func onCheck Callback to determine if the client belongs to this class.
 -- @func onModify Callback to modify voice sounds based on the class.
@@ -19,6 +20,7 @@ function lia.voice.defineClass(class, onCheck, onModify, global)
 end
 
 --- Retrieves definitions of voice classes applicable to a client.
+-- @realm shared
 -- @client client The client to check.
 -- @treturn table An array of class definitions.
 function lia.voice.getClass(client)
@@ -30,6 +32,7 @@ function lia.voice.getClass(client)
 end
 
 --- Registers a voice line replacement for a specific class and key.
+-- @realm shared
 -- @string class The voice class identifier.
 -- @string key The key for the voice line.
 -- @string replacement The replacement text or sound file.
@@ -44,6 +47,7 @@ function lia.voice.register(class, key, replacement, source)
 end
 
 --- Retrieves voice line replacements for a specific class and text.
+-- @realm shared
 -- @string class The voice class identifier.
 -- @string text The text to match for replacements.
 -- @tparam number delay Optional delay before each replacement.
