@@ -2,9 +2,8 @@
 -- @library lia.voice
 lia.voice = {}
 lia.voice.list = {}
-lia.voice.chatTypes = {} 
+lia.voice.chatTypes = {}
 lia.voice.checks = lia.voice.checks or {}
-
 --- Defines a voice class with specific callbacks.
 -- @string  class The class identifier.
 -- @func onCheck Callback to determine if the client belongs to this class.
@@ -59,7 +58,7 @@ function lia.voice.getVoiceList(class, text, delay)
     local phrase = ""
     local skip = 0
     local current = 0
-    local max = 5 
+    local max = 5
     for k, v in ipairs(exploded) do
         if k < skip then continue end
         if current < max then
