@@ -7,7 +7,7 @@ net.Receive("ApplyWarn", function(_, client)
         local reason = net.ReadString()
         for _, target in pairs(player.GetAll()) do
             if target:getChar():getID() == tCharID then
-                local tCharName = target:getName()
+                local tCharName = target:getChar():getName()
                 lia.log.add(client, "playerWarned", tCharName, reason)
                 MODULE:WarnPlayer(client, target, reason)
             end
