@@ -1,6 +1,6 @@
 ﻿ENT.Type = "anim"
 ENT.PrintName = "Note"
-ENT.Author = "Black Tea"
+ENT.Author = "Samael"
 ENT.Spawnable = false
 ENT.AdminOnly = false
 ENT.Category = "Lilia"
