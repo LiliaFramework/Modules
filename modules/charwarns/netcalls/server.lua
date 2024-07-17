@@ -2,7 +2,7 @@
 util.AddNetworkString("WarnReasonUI")
 util.AddNetworkString("ApplyWarn")
 net.Receive("ApplyWarn", function(_, client)
-    if CAMI.PlayerHasAccess(client, "Commands - Warn Players", nil) then
+    if client:HasPrivilege("Commands - Warn Players") then
         local tCharID = net.ReadInt(32)
         local reason = net.ReadString()
         for _, target in pairs(player.GetAll()) do

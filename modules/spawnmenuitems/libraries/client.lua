@@ -3,7 +3,8 @@
 end
 
 function MODULE:PopulateItems(pnlContent, tree)
-    if CAMI.PlayerHasAccess(LocalPlayer(), "Staff Permissions - Can Spawn Menu Items", nil) then
+    local client = LocalPlayer()
+    if client:HasPrivilege( "Staff Permissions - Can Spawn Menu Items") then
         local categorised = {}
         for _, v in pairs(lia.item.list) do
             local category = v.category and v.category == "misc" and "Miscellaneous" or v.category and v.category or "Miscellaneous"
@@ -37,6 +38,7 @@ function MODULE:PopulateItems(pnlContent, tree)
 end
 
 spawnmenu.AddContentType("item", function(container, object)
+    local client = LocalPlayer()
     local icon = vgui.Create("SpawnIcon", p)
     icon:SetWide(64)
     icon:SetTall(64)
@@ -45,7 +47,8 @@ spawnmenu.AddContentType("item", function(container, object)
     icon:SetModel(item.model)
     icon:SetTooltip(item.name)
     icon.DoClick = function()
-        if CAMI.PlayerHasAccess(LocalPlayer(), "Staff Permissions - Can Spawn Menu Items", nil) then
+        if client):HasPrivilege("Staff Permissions - Can Spawn Menu Items")
+        if client:HasPrivilege( "Staff Permissions - Can Spawn Menu Items") then
             surface.PlaySound("ui/buttonclickrelease.wav")
             netstream.Start("liaItemSpawn", item.uniqueID)
         else

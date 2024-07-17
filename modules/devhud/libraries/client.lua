@@ -2,8 +2,8 @@
 function MODULE:HUDPaint()
     local client = LocalPlayer()
     if not IsValid(client:getChar()) then return end
-    if CAMI.PlayerHasAccess(client, "Staff Permissions - Development HUD", nil) then draw.SimpleText("| " .. client:SteamID64() .. " | " .. client:SteamID() .. " | " .. os.date("%m/%d/%Y | %X", os.time()) .. " | ", "DevHudText", w / 5.25, h / 1.12, Color(210, 210, 210, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER) end
-    if CAMI.PlayerHasAccess(client, "Staff Permissions - Staff HUD", nil) then
+    if client:HasPrivilege("Staff Permissions - Development HUD") then draw.SimpleText("| " .. client:SteamID64() .. " | " .. client:SteamID() .. " | " .. os.date("%m/%d/%Y | %X", os.time()) .. " | ", "DevHudText", w / 5.25, h / 1.12, Color(210, 210, 210, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER) end
+    if client:HasPrivilege("Staff Permissions - Staff HUD") then
         local trace = client:GetEyeTraceNoCursor()
         local entTrace = trace.Entity
         draw.SimpleText("| Pos: " .. math.Round(client:GetPos().x, 2) .. "," .. math.Round(client:GetPos().y, 2) .. "," .. math.Round(client:GetPos().z, 2) .. " | Angle: " .. math.Round(client:GetAngles().x, 2) .. "," .. math.Round(client:GetAngles().y, 2) .. "," .. math.Round(client:GetAngles().z, 2) .. " | FPS: " .. math.Round(1 / FrameTime(), 0) .. " | Trace Dis: " .. math.Round(client:GetPos():Distance(trace.HitPos), 2) .. " | ", "DevHudText", w / 5.25, h / 1.10, Color(210, 210, 210, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
