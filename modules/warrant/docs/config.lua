@@ -1,8 +1,10 @@
 --- Configuration for Warrant Module.
--- @configuration Warrant
+-- @module Warrant
 
 --- This table defines the default settings for the Warrant Module.
--- @realm shared
 -- @table Configuration
--- @field RemoveWarrantOnDeath bool Indicates whether warrants are removed upon death
--- @field WarrantFlag string The flag used to denote a warrant
+-- @field WarrantedText Indicates whether warrants are removed upon death. | **boolean**
+-- @field RemoveWarrantOnDeath Indicates whether warrants are removed upon death. | **boolean**
+-- @field WarrantFlag The flag used to denote a warrant. | **string**
+-- @field CanSeeWarrants The privilege required to see warrants. | **table**
+-- @field CanSeeWarrantsNotifications The privilege required to receive warrant notifications. | **table**
