@@ -4,7 +4,7 @@ end
 
 function MODULE:PopulateItems(pnlContent, tree)
     local client = LocalPlayer()
-    if client:HasPrivilege( "Staff Permissions - Can Spawn Menu Items") then
+    if client:HasPrivilege("Staff Permissions - Can Spawn Menu Items") then
         local categorised = {}
         for _, v in pairs(lia.item.list) do
             local category = v.category and v.category == "misc" and "Miscellaneous" or v.category and v.category or "Miscellaneous"
@@ -47,8 +47,7 @@ spawnmenu.AddContentType("item", function(container, object)
     icon:SetModel(item.model)
     icon:SetTooltip(item.name)
     icon.DoClick = function()
-        if client):HasPrivilege("Staff Permissions - Can Spawn Menu Items")
-        if client:HasPrivilege( "Staff Permissions - Can Spawn Menu Items") then
+        if client:HasPrivilege("Staff Permissions - Can Spawn Menu Items") then
             surface.PlaySound("ui/buttonclickrelease.wav")
             netstream.Start("liaItemSpawn", item.uniqueID)
         else
