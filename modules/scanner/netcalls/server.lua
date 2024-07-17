@@ -10,7 +10,7 @@ net.Receive("liaScannerData", function(_, client)
         local data = net.ReadData(length)
         if length ~= #data then return end
         local receivers = {}
-        for _, v in ipairs(player.GetAll()) do
+        for _, v in player.Iterator() do
             if hook.Run("CanPlayerReceiveScan", v, client) then
                 receivers[#receivers + 1] = v
                 v:EmitSound("npc/overwatch/radiovoice/preparevisualdownload.wav")

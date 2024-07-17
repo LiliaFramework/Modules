@@ -20,7 +20,7 @@ function MODULE:SaveData()
     local saveTable = {}
     local validNotes = {}
     saveTable.noteEntities = {}
-    for _, v in ipairs(ents.GetAll()) do
+    for _, v in ents.Iterator() do
         if v:GetClass() == "lia_note" then
             table.insert(saveTable.noteEntities, {
                 pos = v:GetPos(),
@@ -43,7 +43,7 @@ function MODULE:SaveData()
 end
 
 function FindNoteByID(id)
-    for _, v in ipairs(ents.GetAll()) do
+    for _, v in ents.Iterator() do
         if v:GetClass() == "lia_note" and v.id == id then return v end
     end
 end
