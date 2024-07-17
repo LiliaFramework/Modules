@@ -38,7 +38,6 @@ function MODULE:PopulateItems(pnlContent, tree)
 end
 
 spawnmenu.AddContentType("item", function(container, object)
-    local client = LocalPlayer()
     local icon = vgui.Create("SpawnIcon", p)
     icon:SetWide(64)
     icon:SetTall(64)
@@ -47,7 +46,7 @@ spawnmenu.AddContentType("item", function(container, object)
     icon:SetModel(item.model)
     icon:SetTooltip(item.name)
     icon.DoClick = function()
-        if client:HasPrivilege("Staff Permissions - Can Spawn Menu Items") then
+        if LocalPlayer():HasPrivilege("Staff Permissions - Can Spawn Menu Items") then
             surface.PlaySound("ui/buttonclickrelease.wav")
             netstream.Start("liaItemSpawn", item.uniqueID)
         else
