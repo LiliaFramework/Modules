@@ -3,7 +3,8 @@
 end
 
 function MODULE:PopulateItems(pnlContent, tree)
-    if LocalPlayer():HasPrivilege("Staff Permissions - Can Spawn Menu Items") then
+    local client = LocalPlayer()
+    if IsValid(client) and client:HasPrivilege("Staff Permissions - Can Spawn Menu Items") then
         local categorised = {}
         for _, v in pairs(lia.item.list) do
             local category = v.category and v.category == "misc" and "Miscellaneous" or v.category and v.category or "Miscellaneous"
