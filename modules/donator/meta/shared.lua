@@ -16,7 +16,7 @@ if SERVER then
         self:setLiliaData("AdditionalCharSlots", val)
         self:saveLiliaData()
     end
-    
+
     --- Adds a specified number of additional character slots to the player.
     -- @int AddValue The number of additional character slots to add. Defaults to 1 if not specified.
     -- @realm server

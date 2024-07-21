@@ -13,11 +13,11 @@ if SERVER then
         self:setNetVar("wanted", warranted)
         local warrantAction = warranted and "issued" or "removed"
         self:notify(string.format("You have been %s an active warrant.", warrantAction))
-        
+
         if IsValid(warranter) then
             warranter:notify(string.format("You have %s an active warrant.", warrantAction))
         end
-        
+
         for _, ply in pairs(player.GetAll()) do
             if ply:CanSeeWarrantsIssued() then
                 local expirationText = warranted and "was issued" or "has expired"
@@ -26,14 +26,14 @@ if SERVER then
             end
         end
     end
-    
+
     --- Checks if the player can warrant other players.
     -- @treturn bool True if the player can warrant others, false otherwise.
     -- @realm server
     function playerMeta:CanWarrantPlayers()
         return self:getNetVar("wanted", false) or self:HasPrivilege("Staff Permissions - Can Warrant People")
     end
-    
+
     --- Checks if the player can see issued warrants.
     -- @treturn bool True if the player can see issued warrants, false otherwise.
     -- @realm server
