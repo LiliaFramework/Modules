@@ -20,9 +20,11 @@ no_viewed_topic_at_top = true -- don't put the currently viewed topic at the top
 use_new_templates = true -- new templating system
 pretty_urls = true -- avoid showing .html in urls
 pretty_topic_names = true -- strips extension from manual filenames, this does not check filename collisions
+
 kind_names = {
    module = "Libraries",
 }
+
 custom_tags = {
     {
         "realm",
@@ -31,21 +33,25 @@ custom_tags = {
     {
         "internal",
         hidden = true
-    }
+    },
+    {
+        "group",
+        hidden = true
+    },
 }
 
 custom_display_name_handler = function(item, default_handler)
     if item.type == "function" and item.module then
         if item.module.type == "meta" or item.module.type == "modmeta" then
-            if item.module.mod_name == "Character" then
+            if item.module.group == "Character" then
                 return "characterMeta:" .. default_handler(item)
-            elseif item.module.mod_name == "Entity" then
+            elseif item.module.group == "Entity" then
                 return "entityMeta:" .. default_handler(item)
-            elseif item.module.mod_name == "Item" then
+            elseif item.module.group == "Item" then
                 return "itemMeta:" .. default_handler(item)
-            elseif item.module.mod_name == "Player" then
+            elseif item.module.group == "Player" then
                 return "playerMeta:" .. default_handler(item)
-            elseif item.module.mod_name == "Inventory" then
+            elseif item.module.group == "Inventory" then
                 return "inventoryMeta:" .. default_handler(item)
             end
             return "meta:" .. default_handler(item)
