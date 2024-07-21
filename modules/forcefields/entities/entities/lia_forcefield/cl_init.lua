@@ -1,10 +1,4 @@
-﻿ENT.Type = "anim"
-ENT.PrintName = "Forcefield"
-ENT.Spawnable = true
-ENT.AdminOnly = true
-ENT.RenderGroup = RENDERGROUP_BOTH
-ENT.PhysgunDisabled = true
-function ENT:Initialize()
+﻿function ENT:Initialize()
     local data = {}
     data.start = self:GetPos() + self:GetRight() * -16
     data.endpos = self:GetPos() + self:GetRight() * -480

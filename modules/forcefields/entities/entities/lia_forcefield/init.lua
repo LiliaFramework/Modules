@@ -6,7 +6,6 @@ ENT.PrintName = "Forcefield"
 ENT.Spawnable = true
 ENT.AdminOnly = true
 ENT.RenderGroup = RENDERGROUP_BOTH
-ENT.PhysgunDisabled = true
 function ENT:SpawnFunction(client, trace)
     local angles = (client:GetPos() - trace.HitPos):Angle()
     angles.p = 0
