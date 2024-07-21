@@ -4,7 +4,7 @@
 --- Increases the number of character slots for a specific player.
 -- @client client The player whose character slots are to be increased.
 -- @realm server
-function (client)
+function AddOverrideCharSlots(client)
 end
 
 --- Decreases the number of character slots for a specific player.
