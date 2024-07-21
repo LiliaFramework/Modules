@@ -1,4 +1,5 @@
 ﻿local MODULE = MODULE
+
 net.Receive("AFKWarning", function()
     local enable = net.ReadBool()
     if enable then

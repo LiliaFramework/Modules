@@ -1,4 +1,8 @@
-﻿local playerMeta = FindMetaTable("Player")
+﻿-- @modmeta
+local playerMeta = FindMetaTable("Player")
+
+--- Starts the handcuff animation for the player by manipulating bone angles.
+-- @realm server
 function playerMeta:StartHandcuffAnim()
     if not self.getChar or not self:getChar() then return end
     if not self:LookupBone("ValveBiped.Bip01_L_UpperArm") then return end
@@ -10,6 +14,8 @@ function playerMeta:StartHandcuffAnim()
     self:ManipulateBoneAngles(self:LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(-20, 16.6, 0))
 end
 
+--- Ends the handcuff animation for the player by resetting bone angles.
+-- @realm server
 function playerMeta:EndHandcuffAnim()
     if not self.getChar or not self:getChar() then return end
     if not self:LookupBone("ValveBiped.Bip01_L_UpperArm") then return end

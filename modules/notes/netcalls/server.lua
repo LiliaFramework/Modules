@@ -1,4 +1,11 @@
 ﻿local MODULE = MODULE
+
+local function FindNoteByID(id)
+    for _, v in ents.Iterator() do
+        if v:GetClass() == "lia_note" and v.id == id then return v end
+    end
+end
+
 netstream.Hook("noteSendText", function(client, id, contents)
     if string.len(contents) <= MODULE.NoteLimit then
         local note = FindNoteByID(id)

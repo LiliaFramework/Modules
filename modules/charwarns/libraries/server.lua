@@ -21,4 +21,4 @@ end
 lia.log.addType("playerWarned", function(client, tChar, reason)
     local tCharName = tChar:getName()
     return string.format("%s was warned by %s. Reason: %s", tCharName, client:Name(), reason)
-end)
+end, "Warnings", Color(255, 0, 0), "Warnings")

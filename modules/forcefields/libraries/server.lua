@@ -1,4 +1,4 @@
-﻿function MODULE:saveForceFields()
+﻿function MODULE:SaveData()
     local buffer = {}
     for _, v in pairs(ents.FindByClass("lia_forcefield")) do
         buffer[#buffer + 1] = {

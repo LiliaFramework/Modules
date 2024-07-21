@@ -1,4 +1,5 @@
 ﻿local MODULE = MODULE
+
 lia.command.add("permaremove", {
     adminOnly = true,
     privilege = "Remove Map Entities",

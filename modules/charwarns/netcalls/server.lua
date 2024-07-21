@@ -1,6 +1,5 @@
 ﻿local MODULE = MODULE
-util.AddNetworkString("WarnReasonUI")
-util.AddNetworkString("ApplyWarn")
+
 net.Receive("ApplyWarn", function(_, client)
     if client:HasPrivilege("Commands - Warn Players") then
         local tCharID = net.ReadInt(32)
@@ -17,3 +16,6 @@ net.Receive("ApplyWarn", function(_, client)
         client:Say("// I just tried to warn someone without permission LOLLLL!!!!!")
     end
 end)
+
+util.AddNetworkString("WarnReasonUI")
+util.AddNetworkString("ApplyWarn")

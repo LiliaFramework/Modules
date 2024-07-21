@@ -4,7 +4,7 @@
     if client:GetActiveWeapon():GetClass() ~= "weapon_stungun" then return end
     target:Freeze(true)
     target:SetNoDraw(true)
-    target:setRagdolledTase(true, 5, 0)
+    target:setRagdolled(true, 5, 5, "Recovering Conscience")
     target:notify("You have been tased by " .. client:Nick())
     timer.Simple(15, function()
         client:notify("Target is too stunned to react! You have time to tie him up!")

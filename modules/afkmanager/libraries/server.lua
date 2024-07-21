@@ -1,6 +1,5 @@
 ﻿local MODULE = MODULE
-util.AddNetworkString("AFKWarning")
-util.AddNetworkString("AFKAnnounce")
+
 function MODULE:WarnPlayer(client)
     net.Start("AFKWarning")
     net.WriteBool(true)

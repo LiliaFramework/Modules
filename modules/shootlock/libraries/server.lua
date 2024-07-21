@@ -1,5 +1,5 @@
 ﻿function MODULE:EntityTakeDamage(entity, dmgInfo)
-    if entity:GetClass() == "prop_door_rotating" and (entity.liaNextBreach or 0) < CurTime() then
+    if entity:isDoor() and (entity.liaNextBreach or 0) < CurTime() then
         local handle = entity:LookupBone("handle")
         if handle and dmgInfo:IsBulletDamage() then
             local client = dmgInfo:GetAttacker()

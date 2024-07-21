@@ -42,12 +42,6 @@ function MODULE:SaveData()
     self:setData(saveTable)
 end
 
-function FindNoteByID(id)
-    for _, v in ents.Iterator() do
-        if v:GetClass() == "lia_note" and v.id == id then return v end
-    end
-end
-
 function MODULE:EntityRemoved(entity)
     if not lia.shuttingDown and entity and IsValid(entity) and entity:GetClass() == "lia_note" and entity.id then if self.WritingData[entity.id] then self.WritingData[entity.id] = nil end end
 end

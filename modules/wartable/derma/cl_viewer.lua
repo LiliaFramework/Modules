@@ -1,4 +1,5 @@
 ﻿local PANEL = {}
+
 function PANEL:Init()
     local pWidth, pHeight = ScrW() * 0.75, ScrH() * 0.75
     self:SetSize(pWidth, pHeight)

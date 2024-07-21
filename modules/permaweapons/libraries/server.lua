@@ -1,5 +1,5 @@
 ﻿function MODULE:Check4DonationSWEP(client)
-    local weps = self.DonatorWeapons[client:SteamID()] or {}
+    local weps = self.DonatorWeapons[client:SteamID64()] or {}
     for _, wep in ipairs(weps) do
         client:Give(wep)
     end

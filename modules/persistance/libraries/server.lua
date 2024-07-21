@@ -1,5 +1,7 @@
 ﻿local MODULE = MODULE
+
 MODULE.entities = MODULE.entities or {}
+
 function MODULE:PhysgunPickup(_, entity)
     if entity:getNetVar("persistent", false) then return false end
 end

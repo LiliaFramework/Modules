@@ -2,7 +2,7 @@
 ENT.Type = "anim"
 ENT.PrintName = "Combine Lock"
 ENT.Category = "HL2 RP"
-ENT.Author = "@liliaplayer > Discord"
+ENT.Author = "76561198312513285"
 ENT.Spawnable = true
 ENT.AdminOnly = true
 ENT.PhysgunDisable = true

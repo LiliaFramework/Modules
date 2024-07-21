@@ -3,6 +3,7 @@ ENT.PrintName = "Cassette Player"
 ENT.Category = "Lilia"
 ENT.Spawnable = true
 ENT.AdminOnly = true
+ENT.isCasseteReader = true
 ENT.invType = "cassetteplayer"
 ENT.DrawEntityInfo = true
 local Inventory = FindMetaTable("GridInv")

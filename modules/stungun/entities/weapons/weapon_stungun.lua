@@ -1,8 +1,8 @@
 ﻿local MODULE = MODULE
 if CLIENT then
     SWEP.PrintName = "StunGun"
-    SWEP.Author = "STEAM_0:1:176123778"
-    SWEP.Instructions = "STEAM_0:1:176123778"
+    SWEP.Author = "76561198312513285"
+    SWEP.Instructions = "76561198312513285"
     SWEP.Slot = 2
     SWEP.SlotPos = 1
 end

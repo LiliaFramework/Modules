@@ -3,4 +3,4 @@
     ["it"] = true
 }
 
-MODULE.NotAllowedWords = {"puts dick", "puts inside", "grabs dick"}
+MODULE.NotAllowedWords = {"puts dick", "faps", "grabs dick", "fucks you"}

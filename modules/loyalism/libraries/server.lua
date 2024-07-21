@@ -1,4 +1,5 @@
 ﻿local MODULE = MODULE
+
 function MODULE:PlayerLoadedChar()
     self:UpdatePartyTiers()
 end
