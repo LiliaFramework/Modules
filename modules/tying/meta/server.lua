@@ -1,4 +1,6 @@
-﻿-- @modmeta
+﻿--- Meta Tables for Tying.
+-- @modmeta Tying
+
 local playerMeta = FindMetaTable("Player")
 
 --- Starts the handcuff animation for the player by manipulating bone angles.

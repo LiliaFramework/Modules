@@ -1,4 +1,5 @@
-﻿-- @modmeta
+﻿--- Meta Tables for Warrant.
+-- @modmeta Warrant
 local MODULE = MODULE
 local playerMeta = FindMetaTable("Player")
 local CanSeeWarrants = MODULE.CanSeeWarrants

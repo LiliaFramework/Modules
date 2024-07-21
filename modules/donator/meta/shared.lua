@@ -1,4 +1,6 @@
-﻿-- @modmeta
+﻿--- Meta Tables for Donator.
+-- @modmeta Donator
+
 local playerMeta = FindMetaTable("Player")
 
 --- Retrieves the number of additional character slots the player has.

@@ -1,4 +1,6 @@
-﻿-- @modmeta
+﻿--- Meta Tables for Crafting.
+-- @modmeta Crafting
+
 local playerMeta = FindMetaTable("Player")
 local entityMeta = FindMetaTable("Entity")
 
