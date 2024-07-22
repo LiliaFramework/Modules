@@ -2,7 +2,7 @@
 ENT.PrintName = "War Table"
 ENT.Spawnable = true
 ENT.AdminOnly = true
-ENT.IsLiliaPersistent = true
+ENT.IsPersistent = true
 ENT.Category = "Lilia"
 ENT.RenderGroup = RENDERGROUP_BOTH
 function ENT:Clear()
