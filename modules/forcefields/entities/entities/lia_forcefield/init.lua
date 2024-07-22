@@ -5,7 +5,7 @@ ENT.Type = "anim"
 ENT.PrintName = "Forcefield"
 ENT.Spawnable = true
 ENT.AdminOnly = true
-ENT.IsPersistent = true
+ENT.IsLiliaPersistent = true
 ENT.RenderGroup = RENDERGROUP_BOTH
 function ENT:SpawnFunction(client, trace)
     local angles = (client:GetPos() - trace.HitPos):Angle()
