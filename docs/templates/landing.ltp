@@ -1,16 +1,15 @@
 <div class="landing">
-    <h1>Lilia Documentation</h1>
+    <h1>Modules Documentation</h1>
 </div>
 
 <div class="wrapper">
-    <p style="text-align: center;">Welcome to the documentation for Lilia.</p>
-    <p>This is a basic skeleton that serves as a raw foundation for building any schema according to a player's preferences. It provides a starting point with essential functionalities and can be expanded upon to create custom gameplay experiences.</p>
-    <p>To utilize this skeleton, ensure you have the <a href="https://github.com/LiliaFramework/Lilia" target="_blank">Lilia framework</a> installed.</p>
+    <p style="text-align: center;">Welcome to the documentation for Lilia Modules.</p>
+    <p>This documentation serves as a guide for utilizing the free modules provided by the Lilia Framework. These modules can be used as examples or free content to enhance your server development. They offer essential functionalities that can be expanded upon to create custom gameplay experiences.</p>
+    <p>To utilize these modules, ensure you have the <a href="https://github.com/LiliaFramework/Lilia" target="_blank">Lilia Framework</a> installed.</p>
 
     <h2>Developers</h2>
-    <p>The sidebar displays the entire contents of the documentation for this schema. They are all searchable with the search box at the top of the sidebar.
+    <p>The sidebar displays the entire contents of the documentation for these modules. They are all searchable using the search box at the top of the sidebar.</p>
 
     <h2>Server Owners</h2>
-    <p>If you're looking to get your server up and running as soon as possible, check out the <a href="https://liliaframework.github.io/manual/info_installation/" target="_blank">Installation Tutorial</a> guide in the manual. Remember that this schema is dependent on the <a href="https://github.com/LiliaFramework/Lilia" target="_blank">Lilia framework</a>.</p>
-
+    <p>If you're looking to get your server up and running as soon as possible, check out the <a href="https://liliaframework.github.io/manual/info_installation/" target="_blank">Installation Tutorial</a> guide in the manual. Remember that these modules are dependent on the <a href="https://github.com/LiliaFramework/Lilia" target="_blank">Lilia Framework</a>.</p>
 </div>
