@@ -1,5 +1,7 @@
 ﻿local MODULE = MODULE
 util.AddNetworkString("RequestSearch")
+util.AddNetworkString("ApproveID")
+util.AddNetworkString("ApproveSearch")
 netstream.Hook("searchExit", function(client) MODULE:stopSearching(client) end)
 net.Receive("ApproveSearch", function(_, client)
     local requester = client.SearchRequested
