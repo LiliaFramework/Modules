@@ -1,8 +1,6 @@
 ﻿--- Meta Tables for Tying.
--- @modmeta Tying
-
+-- @player Tying
 local playerMeta = FindMetaTable("Player")
-
 --- Starts the handcuff animation for the player by manipulating bone angles.
 -- @realm server
 function playerMeta:StartHandcuffAnim()

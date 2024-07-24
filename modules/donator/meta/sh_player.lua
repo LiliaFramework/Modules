@@ -1,5 +1,5 @@
 ﻿--- Meta Tables for Donator.
--- @modmeta Donator
+-- @player Donator
 
 local playerMeta = FindMetaTable("Player")
 

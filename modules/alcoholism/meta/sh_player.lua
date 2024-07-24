@@ -1,5 +1,5 @@
 ﻿--- Meta Tables for Alcoholism.
--- @modmeta Alcoholism
+-- @player Alcoholism
 local MODULE = MODULE
 local playerMeta = FindMetaTable("Player")
 local DrunkNotifyThreshold = MODULE.DrunkNotifyThreshold
