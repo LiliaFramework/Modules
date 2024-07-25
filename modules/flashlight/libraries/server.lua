@@ -1,4 +1,5 @@
 ﻿function MODULE:PlayerSwitchFlashlight(client, isEnabled)
+    if not client:getChar() then return false end
     local hasFlashlight = false
     local itemNeeded = self.FlashlightItems
     if self.FlashlightEnabled and (client.FlashlightCooldown or 0) < CurTime() then
