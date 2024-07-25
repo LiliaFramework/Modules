@@ -17,13 +17,14 @@
 	--font-style-normal: Segoe UI, Helvetica, Arial, sans-serif;
 	--font-style-code: Consolas, monospace;
 
-	--color-accent: rgb(53, 133, 66);
-	--color-accent-dark: rgb(9, 69, 19);
+	--color-accent-hyperlinks: rgb(152, 99, 243);
+	--color-accent: rgb(103,58,183);
+	--color-accent-dark: rgb(62, 31, 117);
 	--color-white: rgb(255, 255, 255);
 	--color-offwhite: rgb(200, 200, 200);
 	--color-white-accent: rgb(203, 190, 209);
 	--color-black: rgb(0, 0, 0);
-	--color-lightgrey: rgb(160, 160, 160);
+	--color-lightgrey: rgb(15, 15, 15);
 	--color-background-light: rgb(240, 240, 240);
 	--color-background-dark: rgb(33, 33, 33);
 }
@@ -35,7 +36,7 @@
 }
 
 body {
-	background-color: var(--color-background-light);
+	background-color: var(--color-background-dark);
 	font-family: var(--font-style-normal);
 
 	display: flex;
@@ -92,7 +93,7 @@ code {
 	tab-size: 4;
 	-moz-tab-size: 4;
 	padding: 2px 4px;
-	background-color: rgb(33, 33, 33, 0.1);
+	background-color: rgb(255, 255, 255, 0.1);
 }
 
 pre {
@@ -135,6 +136,7 @@ main {
 
 	width: var(--content-width);
 	margin: auto;
+	color: var(--color-offwhite);
 }
 
 /* sidebar */
@@ -208,11 +210,11 @@ pre::-webkit-scrollbar-track {
 }
 
 nav section::-webkit-scrollbar-thumb {
-	background-color: var(--color-lightgrey);
+	background-color: var(--color-white);
 }
 
 pre::-webkit-scrollbar-thumb {
-	background-color: var(--color-lightgrey);
+	background-color: var(--color-white);
 }
 
 /* sidebar contents category */
@@ -252,7 +254,7 @@ nav section details.category summary h2 {
 
 /* content */
 article {
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(33, 33, 33);
 
 	width: calc(100% - var(--sidebar-width));
 	min-height: 100vh;
@@ -265,8 +267,8 @@ article .wrapper > *:first-child {
 
 /* header */
 article header {
-	color: rgb(255, 255, 255);
-	background-color: rgb(9, 69, 19);
+	color: var(--color-white);
+	background-color: var(--color-accent-dark);
 	padding: var(--padding-tiny);
 }
 
@@ -300,7 +302,7 @@ details.category > summary::-webkit-details-marker {
 article h1 {
 	font-size: 28px;
 	font-weight: 600;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	border-bottom: 1px solid rgba(33, 33, 33, 0.25);
 	margin-top: 24px;
 	margin-bottom: 16px;
 	padding-bottom: 8px;
@@ -313,7 +315,7 @@ article h2 {
 }
 
 article h3 {
-	color: rgb(9, 69, 19);
+	color: var(--color-accent-dark);
 	margin-top: var(--padding-tiny);
 	text-transform: uppercase;
 }
@@ -326,13 +328,13 @@ article p a,
 article ul li a,
 article h1 a,
 article h2 a {
-	color: rgb(9, 69, 19);
+	color: var(--color-accent-hyperlinks);
 	font-weight: 600;
 }
 
 article h1.title {
-	color: rgb(255, 255, 255);
-	background-color: rgb(9, 69, 19);
+	color: var(--color-white);
+	background-color: var(--color-accent-dark);
 	margin-top: var(--padding-small);
 	margin-bottom: 0;
 	padding: var(--padding-tiny);
@@ -344,7 +346,7 @@ article h1.title {
 }
 
 a.reference {
-	color: rgb(9, 69, 19);
+	color: var(--color-accent-dark);
 	float: right;
 	margin-top: 8px;
 	padding-left: 8px;
@@ -391,13 +393,13 @@ a.reference {
 .method {
 	display: flex;
 	flex-flow: column;
-	background-color: rgb(230, 230, 230);
+	background-color: rgb(55,55,55);
 	padding: var(--padding-tiny);
 	margin-top: var(--padding-small);
 }
 
 .method header {
-	color: rgb(0, 0, 0);
+	color: rgb(255,255,255);
 	background-color: inherit;
 	padding: 0;
 	order: -1;
@@ -409,7 +411,7 @@ a.reference {
 }
 
 .method header .anchor:target h1 {
-	background-color: rgba(53, 133, 66, 0.2);
+	background-color: rgba(133, 212, 250, 0.2);
 	background-clip: content-box;
 }
 
@@ -425,7 +427,7 @@ a.reference {
 }
 
 .method h3 {
-	color: rgb(9, 69, 19);
+	color: rgb(255,255,255);
 	font-size: var(--font-normal);
 	letter-spacing: 2px;
 	text-transform: uppercase;
@@ -468,14 +470,14 @@ a.reference {
 }
 
 .method ul li a {
-	color: rgb(9, 69, 19);
+	color: var(--color-accent-dark);
 	font-weight: 600;
 }
 
 /* we have to manually specify these instead of making a shared class since you cannot customize the parameter class in ldoc */
 .parameter, .type, .default {
 	display: inline-block;
-	color: rgb(255, 255, 255) !important;
+	color: var(--color-white) !important;
 
 	padding: 4px;
 	font-size: 14px;
@@ -483,11 +485,11 @@ a.reference {
 }
 
 .parameter {
-	background-color: rgb(9, 69, 19);
+	background-color: var(--color-accent-dark);
 }
 
 .type {
-	background-color: rgb(31, 141, 155);
+	background-color: var(--color-accent);
 }
 
 a.type {
@@ -504,7 +506,7 @@ a.type {
 }
 
 .or {
-	color: rgba(53, 133, 66, 0.5);
+	color: rgba(133, 212, 250, 0.5);
 	background-color: inherit;
 
 	width: calc(100% - 32px);
@@ -513,7 +515,7 @@ a.type {
 
 	text-align: center;
 	font-weight: 600;
-	border-bottom: 1px solid rgba(53, 133, 66, 0.5);
+	border-bottom: 1px solid rgba(133, 212, 250, 0.5);
 }
 
 .or span {
