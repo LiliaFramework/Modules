@@ -1,5 +1,5 @@
 --- Meta Tables for Crafting.
--- @player Crafting
+-- @metaplayer Crafting
 local playerMeta = FindMetaTable("Player")
 --- Checks if the player can craft.
 -- @treturn bool True if the player is alive and has a character, false otherwise.
