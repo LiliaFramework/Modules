@@ -45,15 +45,15 @@ custom_display_name_handler = function(item, default_handler)
                 return "FACTION:" .. default_handler(item)
             end
             return "MODULE:" .. default_handler(item)
-        elseif item.module.type == "character" then
+        elseif item.module.kind == "character meta" then
             return "characterMeta:" .. default_handler(item)
-        elseif item.module.type == "entity" then
+        elseif item.module.kind == "entity meta" then
             return "entityMeta:" .. default_handler(item)
-        elseif item.module.type == "item" then
+        elseif item.module.kind == "item meta" then
             return "itemMeta:" .. default_handler(item)
-        elseif item.module.type == "player" then
+        elseif item.module.kind == "player meta" then
             return "playerMeta:" .. default_handler(item)
-        elseif item.module.type == "inventory" then
+        elseif item.module.kind == "inventory meta" then
             return "inventoryMeta:" .. default_handler(item)
         end
     end
@@ -64,11 +64,11 @@ new_type("factions", "Factions", true)
 new_type("classes", "Classes", true)
 new_type("library", "Libraries", true)
 new_type("hooks", "Hooks", true)
-new_type("character", "Character", true)
-new_type("entity", "Entity", true)
-new_type("item", "Item", true)
-new_type("player", "Player", true)
-new_type("inventory", "Inventry", true)
+new_type("metacharacter", "Character Meta", true)
+new_type("metaentity", "Entity Meta", true)
+new_type("metaitem", "Item Meta", true)
+new_type("metaplayer", "Player Meta", true)
+new_type("metainventory", "Inventory Meta", true)
 new_type("configuration", "Configurations", true)
 new_type("structures", "Structures", true)
 new_type("information", "Information", true)
