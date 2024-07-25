@@ -1,4 +1,4 @@
-﻿MODULE.DetectChatTypes = {
+﻿MODULE.DetectedChatTypes = {
     ["me"] = true,
     ["it"] = true
 }
