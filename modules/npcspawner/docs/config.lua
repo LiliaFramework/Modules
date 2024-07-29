@@ -1,7 +1,7 @@
---- Configuration for Radio Module.
--- @configuration Radio
+--- Configuration for NPC Spawner Module.
+-- @configuration NPCSpawner
 
---- This table defines the default settings for the Radio Module.
+--- This table defines the default settings for the NPC Spawner Module.
 -- @realm shared
 -- @table Configuration
 -- @field SpawnRadius The radius within which to check for existing entities before spawning new ones | **integer**
