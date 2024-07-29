@@ -1,4 +1,4 @@
-function MODULE:KeyPress(ply, key)
+function MODULE:KeyPress(ply)
     if ply:KeyPressed(IN_JUMP) then
         local trace = {}
         trace.start = ply:GetShootPos() + Vector(0, 0, 15)

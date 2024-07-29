@@ -1,4 +1,3 @@
-
 local stepvalue = 0
 local enable = CreateClientConVar("viewbob", 0, {FCVAR_CLIENTCMD_CAN_EXECUTE, FCVAR_ARCHIVE})
 local MultiplierWalk = CreateClientConVar("viewbob_mp_walk", 0.25, {FCVAR_CLIENTCMD_CAN_EXECUTE, FCVAR_ARCHIVE})
@@ -7,7 +6,7 @@ local MultiplierSprint = CreateClientConVar("viewbob_mp_sprint", 0.4, {FCVAR_CLI
 function MODULE:SetupQuickMenu(menu)
     menu:addCheck("Viewbob", function(panel, state)
         if state then
-            ("viewbob", "1")
+            RunConsoleCommand("viewbob", "1")
         else
             RunConsoleCommand("viewbob", "0")
         end
