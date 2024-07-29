@@ -4,3 +4,7 @@
     ["admin"] = 3,
     ["user"] = 2
 }
+
+MODULE.DonatorGroups = {
+	["vip"] = "pet"
+}

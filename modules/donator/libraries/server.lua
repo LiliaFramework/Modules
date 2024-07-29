@@ -1,4 +1,10 @@
-﻿function MODULE:PlayerSpawn(client)
+﻿function MODULE:PlayerLoadedChar(client, char)
+    local usergroup = client:GetUserGroup()
+    local group = self.DonatorGroups[usergroup]
+    if group then char:giveFlags(group) end
+end
+
+function MODULE:PlayerSpawn(client)
     local maxCharDonation = lia.data.get("charslotsteamids", {}, nil, true)
     if maxCharDonation[client:SteamID()] then
         MsgC(Color(0, 255, 0), "Player " .. client:Nick() .. " previously donated and has " .. maxCharDonation[client:SteamID()] .. " slots\n")
