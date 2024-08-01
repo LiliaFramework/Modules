@@ -14,7 +14,7 @@ function MODULE:Holdingbind(client)
     end
 end
 
-function MODULE:CalcView(client, _, angles, IN_WALK)
+function MODULE:CalcView(client, _, angles)
     if not client:getChar() or not FreeLookEnabled then return end
     local smoothness = math.Clamp(self.FreelookSmooth, 0.1, 2)
     CoolAng = LerpAngle(0.15 * smoothness, CoolAng, Angle(LookY, -LookX, 0))
