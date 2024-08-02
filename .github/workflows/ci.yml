@@ -92,41 +92,41 @@ jobs:
           publish_dir: modules/docs/html
 
   release:
-  runs-on: ubuntu-latest
-  needs: linter
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        path: modules  # Ensure we're checking out the same path as in the other jobs
+    runs-on: ubuntu-latest
+    needs: linter
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          path: modules  # Ensure we're checking out the same path as in the other jobs
 
-    - name: Compress modules folder
-      run: |
-        mkdir release
-        cp -r modules release/
-        cd release
-        zip -r modules.zip modules
-        cd ..
+      - name: Compress modules folder
+        run: |
+          mkdir release
+          cp -r modules release/
+          cd release
+          zip -r modules.zip modules
+          cd ..
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        body: |
-          Automatically generated release from commit ${{ github.sha }}
-        draft: false
-        prerelease: false
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Automatically generated release from commit ${{ github.sha }}
+          draft: false
+          prerelease: false
 
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: release/modules.zip
-        asset_name: modules.zip
-        asset_content_type: application/zip
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release/modules.zip
+          asset_name: modules.zip
+          asset_content_type: application/zip
