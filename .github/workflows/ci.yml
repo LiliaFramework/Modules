@@ -108,13 +108,17 @@ jobs:
           zip -r modules.zip modules
           cd ..
 
+      - name: Get Current Tag
+        id: get_tag
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}
+          tag_name: ${{ env.TAG_NAME }}
           release_name: Lilia Modules
           body: |
             Automatically generated release from commit ${{ github.sha }}
@@ -130,3 +134,8 @@ jobs:
           asset_path: release/modules.zip
           asset_name: modules.zip
           asset_content_type: application/zip
+
+      - name: Handle Existing Tag
+        if: failure()
+        run: |
+          echo "The tag already exists. Please create a unique tag."
