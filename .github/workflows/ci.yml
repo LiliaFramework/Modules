@@ -98,12 +98,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Commit updated version
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git push origin main
-
       - name: Compress modules folder
         run: |
           mkdir release
@@ -118,7 +112,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          release_name: Lilia Modules
+          tag_name: ${{ github.sha }}
+          release_name: ${{ github.repository }}
           body: |
             Automatically generated release from commit ${{ github.sha }}
           draft: false
