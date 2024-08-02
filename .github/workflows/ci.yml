@@ -100,6 +100,32 @@ jobs:
         with:
           path: modules
 
+      - name: Delete Old Releases and Tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get all releases
+          releases=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+          "https://api.github.com/repos/${{ github.repository }}/releases" | jq -r '.[].id')
+          
+          # Delete each release
+          for release in $releases; do
+            echo "Deleting release $release"
+            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/$release"
+          done
+          
+          # Get all tags
+          tags=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+          "https://api.github.com/repos/${{ github.repository }}/git/refs/tags" | jq -r '.[].ref')
+          
+          # Delete each tag
+          for tag in $tags; do
+            echo "Deleting tag $tag"
+            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/git/$tag"
+          done
+
       - name: Compress modules folder
         run: |
           mkdir release
