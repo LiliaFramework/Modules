@@ -129,7 +129,7 @@ jobs:
       - name: Compress modules folder
         run: |
           mkdir release
-          cp -r modules release/
+          cp -r modules/modules release/
           cd release
           zip -r modules.zip modules
           cd ..
