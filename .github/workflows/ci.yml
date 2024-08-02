@@ -118,8 +118,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.new_version }}
-          release_name: Lilia Modules ${{ env.new_version }}
+          release_name: Lilia Modules
           body: |
             Automatically generated release from commit ${{ github.sha }}
           draft: false
