@@ -112,7 +112,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.sha }}
+          tag_name: ${{ github.sha }} # This is a full SHA; should use shortened version
           release_name: ${{ github.repository }}
           body: |
             Automatically generated release from commit ${{ github.sha }}
