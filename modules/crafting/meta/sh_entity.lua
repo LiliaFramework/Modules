@@ -1,5 +1,5 @@
 ﻿--- Meta Tables for Crafting.
--- @metaentity Crafting
+-- @entitymeta Crafting
 local entityMeta = FindMetaTable("Entity")
 if SERVER then
     --- Locks or unlocks a crafting table.
