@@ -1,0 +1,5 @@
+MODULE.name = "Random Name Generator"
+MODULE.author = "76561198312513285"
+MODULE.discord = "@liliaplayer"
+MODULE.desc = "Adds a Random Name Generator to the Character Creation"
+MODULE.identifier = "RandomNameGenerator"
