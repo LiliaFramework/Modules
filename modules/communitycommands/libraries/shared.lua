@@ -1,5 +1,5 @@
 function MODULE:InitializedModules()
-    for k, v in pairs(self.urls) do
+    for k, v in pairs(self.URLs) do
         lia.command.add(k, {
             adminOnly = false,
             syntax = "",
