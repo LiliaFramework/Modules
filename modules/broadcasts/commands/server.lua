@@ -4,9 +4,8 @@ lia.command.add("classbroadcast", {
     onRun = function(client, arguments)
         if not arguments[1] then return "Invalid argument (#1)" end
         local message = table.concat(arguments, " ", 1)
-        
-        if not client:getChar():hasFlags("B") then
-            client:notify("Your rank is not high enough to use this command.")
+        if not client:getChar():hasFlags("D") and not client:HasPrivilege("Staff Permissions - Can Use Class Broadcast") then
+            client:notify("You don't have permission to use this!")
             return false
         end
 
@@ -14,7 +13,7 @@ lia.command.add("classbroadcast", {
         for _, class in pairs(lia.class.list) do
             table.insert(options, class.name .. " (" .. class.uniqueID .. ")")
         end
-        
+
         client:requestOptions("Class Broadcast", "Select classes to broadcast to:", options, #options, function(selectedOptions)
             local classList = {}
             local classListSimple = {}
@@ -54,9 +53,8 @@ lia.command.add("factionbroadcast", {
     onRun = function(client, arguments)
         if not arguments[1] then return "Invalid argument (#1)" end
         local message = table.concat(arguments, " ", 1)
-
-        if not client:getChar():hasFlags("B") then
-            client:notify("Your rank is not high enough to use this command.")
+        if not client:getChar():hasFlags("B") and not client:HasPrivilege("Staff Permissions - Can Use Faction Broadcast") then
+            client:notify("You don't have permission to use this!")
             return false
         end
 
