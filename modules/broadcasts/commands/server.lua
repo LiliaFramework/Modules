@@ -12,7 +12,7 @@ lia.command.add("classbroadcast", {
             return false
         end
 
-        for k, v in pairs(string.Explode(",", arguments[1])) do
+        for _, v in pairs(string.Explode(",", arguments[1])) do
             local foundClass
             local foundID
             local multiFind
@@ -38,7 +38,7 @@ lia.command.add("classbroadcast", {
         end
 
         if table.Count(classList) == 0 then return "No valid classes found" end
-        for k, v in pairs(player.GetAll()) do
+        for _, v in pairs(player.GetAll()) do
             if v == client or (v:getChar() and classList[v:getChar():getClass()]) then
                 net.Start("classbroadcast_client")
                 net.WriteString(client:Nick())
@@ -66,7 +66,7 @@ lia.command.add("factionbroadcast", {
             return false
         end
 
-        for k, v in pairs(string.Explode(",", arguments[1])) do
+        for _, v in pairs(string.Explode(",", arguments[1])) do
             local foundFaction
             local foundID
             local multiFind
@@ -92,7 +92,7 @@ lia.command.add("factionbroadcast", {
         end
 
         if table.Count(factionList) == 0 then return "No valid factions found" end
-        for k, v in pairs(player.GetAll()) do
+        for _, v in pairs(player.GetAll()) do
             if v == client or (v:getChar() and factionList[v:getChar():getFaction()]) then
                 net.Start("factionbroadcast_client")
                 net.WriteString(client:Nick())
