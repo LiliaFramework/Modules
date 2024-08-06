@@ -108,7 +108,7 @@ function OnHandcuffRemove(target)
 end
 
 function MODULE:CanPlayerJoinClass(client)
-    if client:IsHandcuffed(client) then
+    if IsHandcuffed(client) then
         client:notify("You cannot change classes when you are restrained!")
         return false
     end
