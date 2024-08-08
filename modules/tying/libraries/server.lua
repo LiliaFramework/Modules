@@ -93,14 +93,14 @@ function HandcuffPlayer(target)
 
     timer.Simple(.2, function()
         target:SelectWeapon("lia_keys")
-        target:setNetVar("restricted", true)
+        target:setNetVar("ziptied", true)
     end)
 
     target:StartHandcuffAnim()
 end
 
 function OnHandcuffRemove(target)
-    target:setNetVar("restricted", false)
+    target:setNetVar("ziptied", false)
     target:SetWalkSpeed(lia.config.WalkSpeed)
     target:SetRunSpeed(lia.config.RunSpeed)
     hook.Run("ResetSubModuleCuffData", target)

@@ -1,3 +1,3 @@
 ﻿function IsHandcuffed(target)
-    return target:getNetVar("restricted", false)
+    return target:getNetVar("ziptied", false)
 end
