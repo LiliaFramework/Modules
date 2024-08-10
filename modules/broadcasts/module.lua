@@ -6,7 +6,7 @@ MODULE.CAMIPrivileges = {
     {
         Name = "Staff Permissions - Can Use Faction Broadcast",
         MinAccess = "superadmin",
-        Description = "Allows access to Faction Broadcast".",
+        Description = "Allows access to Faction Broadcast",
     },
     {
         Name = "Staff Permissions - Can Use Class Broadcast",
