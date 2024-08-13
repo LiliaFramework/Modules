@@ -1,4 +1,5 @@
-<h1 align="center">Lilia - Modules</h1>
+<h1 align="center">Lilia 
+- Modules</h1>
 
 <p align="center">
   <img src="https://i.imgur.com/yY3wT30.png" alt="Lilia Icon">
@@ -6,19 +7,31 @@
 
 # Contents
 
-- Anti AFK
+- Advert
 
-- Alcoholic Drinks
+- AFK Manager (Anti AFK)
+
+- Alcoholic Drinks (Alcoholism)
+
+- Announcements
 
 - Anti ERP
 
 - Attribute Fog
 
+- Broadcasts
+
 - Cassette Player
 
 - Character Warnings
 
+- Chat Messages
+
+- Climb
+
 - Combine Locks
+
+- Community Commands
 
 - Compass
 
@@ -31,24 +44,28 @@
 - Development HUD
 
 - Donator Bundle
-  
+
 - Door Kicking
 
 - Downtime Notifier
+
+- Enhanced Death
 
 - Extended Descriptions
 
 - Flashlight
 
+- Force Fields
+
+- Free Look
+
 - Join & Leave Messages
 
-- Party Tiers
+- Loyalism
 
 - Map Cleaner
 
-- Enhanced Death
-
-- Night Vision Googles
+- Night Vision Goggles
 
 - Paper Notes
 
@@ -56,15 +73,19 @@
 
 - Perma Weapons
 
+- NPC Spawner
+
 - Text Radios
+
+- Random Name
 
 - Realistic View
 
+- Rumour
+
 - Combine Scanner
 
-- Combine Locks
-
-- shoootable Locks
+- Shootable Locks
 
 - Spawn Menu Items
 
@@ -74,11 +95,17 @@
 
 - Tying Search
 
-- Text to Speech Voices 
-  
+- View Bob
+
+- Text to Speech Voices
+
 - Warrants
 
-- Wartable
+- War Table
+
+- Whitelist
+
+- Workshop Downloader
 
 # Support
 
