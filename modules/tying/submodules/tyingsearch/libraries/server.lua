@@ -7,6 +7,7 @@ function MODULE:SetupInventorySearch(client, target)
     target:getChar():getInv():addAccessRule(searcherCanAccess)
     target.liaSearchAccessRule = searcherCanAccess
     target:getChar():getInv():sync(client)
+    target:getChar():getInv().isExternalInventory = true
 end
 
 function MODULE:RemoveInventorySearchPermissions(_, target)

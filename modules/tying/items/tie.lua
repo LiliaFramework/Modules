@@ -5,7 +5,8 @@ ITEM.functions.use = {
     name = "Use",
     onRun = function(item)
         local client = item.player
-        local target = client:GetEyeTrace().Entity
+        local target = client:GetTracedEntity()
+        if IsValid(target) and target:GetClass() == "prop_ragdoll" and IsValid(target:getNetVar("player")) then target = target:getNetVar("player") end
         if not IsValid(target) or not (target:IsPlayer() and target:getChar()) then return end
         if target:isStaffOnDuty() then
             target:notify("You were just attempted to be restrained by " .. client:Name() .. ".")
