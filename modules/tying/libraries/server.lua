@@ -1,4 +1,4 @@
-﻿function MODULE:PlayerBindPress(client, bind)
+function MODULE:PlayerBindPress(client, bind)
     bind = bind:lower()
     if IsHandcuffed(client) and (string.find(bind, "+speed") or string.find(bind, "gm_showhelp") or string.find(bind, "+jump") or string.find(bind, "+walk") or string.find(bind, "+use")) then return true end
 end
@@ -100,11 +100,11 @@ function HandcuffPlayer(target)
 end
 
 function MODULE:StartCommand(client, cmd)
-	if IsHandcuffed(client) then
-		cmd:RemoveKey(IN_SPEED)
-		cmd:RemoveKey(IN_JUMP)
-	end
-end)
+    if IsHandcuffed(client) then
+        cmd:RemoveKey(IN_SPEED)
+        cmd:RemoveKey(IN_JUMP)
+    end
+end
 
 function OnHandcuffRemove(target)
     target:setNetVar("restricted", false)
