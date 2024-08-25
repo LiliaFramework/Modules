@@ -10,11 +10,11 @@
     end
 end
 
-function MODULE:StartCommand(client, ucmd)
+function MODULE:StartCommand(client, cmd)
     if (client.nextDrunkCheck or 0) < CurTime() then
         client.nextDrunkCheck = CurTime() + 0.05
         if client:GetNW2Int("lia_alcoholism_bac", 0) > 30 then
-            ucmd:ClearButtons()
+            cmd:ClearButtons()
             if (client.nextDrunkSide or 0) < CurTime() then
                 client.nextDrunkSide = CurTime() + math.Rand(0.1, 0.3) + (client:GetNW2Int("lia_alcoholism_bac", 0) * 0.01)
                 client.sideRoll = math.random(-1, 1)
@@ -22,15 +22,15 @@ function MODULE:StartCommand(client, ucmd)
             end
 
             if client.frontRoll == 1 then
-                ucmd:SetForwardMove(100000)
+                cmd:SetForwardMove(100000)
             elseif client.frontRoll == -1 then
-                ucmd:SetForwardMove(-100000)
+                cmd:SetForwardMove(-100000)
             end
 
             if client.sideRoll == 1 then
-                ucmd:SetSideMove(100000)
+                cmd:SetSideMove(100000)
             elseif client.sideRoll == -1 then
-                ucmd:SetSideMove(-100000)
+                cmd:SetSideMove(-100000)
             end
         end
     end
