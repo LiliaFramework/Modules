@@ -9,20 +9,20 @@ lia.command.add("advertisement", {
         if not client.advertdelay then client.advertdelay = 0 end
         if CurTime() < client.advertdelay then
             local timeLeft = math.ceil(client.advertdelay - CurTime())
-            client:notify("This command is on cooldown! Time remaining: " .. timeLeft .. " seconds.")
+            client:notifyLocalized("commandCooldownTimed", seconds)
             return
         end
 
         if client:getChar():hasMoney(MODULE.AdvertPrice) then
             client.advertdelay = CurTime() + MODULE.AdvertCooldown
             client:getChar():takeMoney(MODULE.AdvertPrice)
-            client:notify(MODULE.AdvertPrice .. " " .. lia.currency.plural .. " have been deducted from your wallet for advertising.")
+            client:notifyLocalized("AdvertDeductedMessage", MODULE.AdvertPrice, lia.currency.plural)
             net.Start("AdvertiseMessageCall")
             net.WriteString(client:Nick())
             net.WriteString(message)
             net.Broadcast()
         else
-            client:notify("You lack sufficient funds to make an advertisement.")
+            client:notifyLocalized("AdvertInsufficientFunds")
         end
     end
 })
