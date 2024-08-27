@@ -60,8 +60,8 @@ PIM:AddOption("Tie", {
         if not SERVER then return end
         local item = client:getChar():getInv():getFirstItemOfType("tie")
         if target:isStaffOnDuty() then
-            target:notify("You were just attempted to be restrained by " .. client:Name() .. ".")
-            client:notify("You can't tie a staff member!")
+            target:notifyLocalized("staffRestrained", client:Name())
+            client:notifyLocalized("cantRestrainStaff")
             return false
         end
 
@@ -82,8 +82,8 @@ PIM:AddOption("UnTie", {
     shouldShow = function(_, target) return IsHandcuffed(target) end,
     onRun = function(client, target)
         if not SERVER then return end
-        target:setAction("You are being untied...", 3)
-        client:setAction("Untying...", 3)
+        target:setAction("@beingUntied", 3)
+        client:setAction("@unTying", 3)
         client:doStaredAction(target, function() OnHandcuffRemove(target) end, 3, function()
             client:stopAction()
             target:stopAction()

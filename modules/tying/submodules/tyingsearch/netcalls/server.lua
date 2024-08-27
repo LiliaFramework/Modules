@@ -9,7 +9,7 @@ net.Receive("ApproveSearch", function(_, client)
     if not requester.SearchRequested then return end
     local approveSearch = net.ReadBool()
     if not approveSearch then
-        requester:notify("Player denied your request to view their inventory.")
+        requester:notifyLocalized("searchDenied")
         requester.SearchRequested = nil
         client.SearchRequested = nil
         return

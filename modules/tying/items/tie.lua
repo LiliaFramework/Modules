@@ -7,26 +7,25 @@ ITEM.functions.use = {
         local client = item.player
         local target = client:GetTracedEntity()
         if IsValid(target) and target:GetClass() == "prop_ragdoll" and IsValid(target:getNetVar("player")) then target = target:getNetVar("player") end
-        if not IsValid(target) or not (target:IsPlayer() and target:getChar()) then return end
-        if target:isStaffOnDuty() then
-            target:notify("You were just attempted to be restrained by " .. client:Name() .. ".")
-            client:notify("You can't tie a staff member!")
+        if not IsValid(target) or not (target:IsPlayer() and target:getChar()) then
+            client:notifyLocalized("needAimPlayer")
             return false
         end
 
-        if not target:IsPlayer() then
-            client:notify("You need to be aiming at a player...", NOT_ERROR)
+        if target:isStaffOnDuty() then
+            target:notifyLocalized("staffRestrained", client:Name())
+            client:notifyLocalized("cantRestrainStaff")
             return false
         end
 
         if IsHandcuffed(target) then
-            client:notify("This person is already cuffed", NOT_ERROR)
+            client:notifyLocalized("alreadyCuffed")
             return false
         end
 
         target:setAction("@beingTied", 3)
         client:setAction("@tying", 3, function()
-            local ete = client:GetEyeTrace().Entity
+            local ete = client:GetTracedEntity()
             if IsValid(ete) and ete == target then
                 HandcuffPlayer(target)
                 item:remove()

@@ -6,7 +6,7 @@ PIM:AddOption("Request Search", {
         if not SERVER then return end
         net.Start("RequestSearch")
         net.Send(target)
-        client:notify("Request to search sent.")
+        client:notifyLocalized("requestSearchSent")
         target.SearchRequested = client
         client.SearchRequested = target
     end

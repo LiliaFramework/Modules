@@ -114,7 +114,7 @@ end
 
 function MODULE:CanPlayerJoinClass(client)
     if IsHandcuffed(client) then
-        client:notify("You cannot change classes when you are restrained!")
+        client:notifyLocalized("cuffCannotChangeClass")
         return false
     end
 end

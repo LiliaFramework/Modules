@@ -17,7 +17,7 @@ end
 
 function MODULE:searchPlayer(client, target)
     if IsValid(target:getNetVar("searcher")) or IsValid(client.liaSearchTarget) then
-        client:notifyLocalized("This person is already being searched.")
+        client:notifyLocalized("alreadyBeingSearched")
         return false
     end
 
