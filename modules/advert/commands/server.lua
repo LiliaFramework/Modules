@@ -8,7 +8,7 @@ lia.command.add("advertisement", {
         local message = table.concat(arguments, " ", 1)
         if not client.advertdelay then client.advertdelay = 0 end
         if CurTime() < client.advertdelay then
-            local timeLeft = math.ceil(client.advertdelay - CurTime())
+            local seconds = math.ceil(client.advertdelay - CurTime())
             client:notifyLocalized("commandCooldownTimed", seconds)
             return
         end
