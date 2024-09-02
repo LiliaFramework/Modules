@@ -1,8 +1,8 @@
 ﻿local modernColors = {
-    background = Color(45, 45, 45, 255), -- Dark gray
-    buttonNormal = Color(60, 60, 60, 255), -- Lighter gray
-    buttonHover = Color(80, 80, 80, 255), -- Even lighter gray for hover effect
-    text = Color(255, 255, 255, 255) -- White for text
+    background = Color(45, 45, 45, 255),
+    buttonNormal = Color(60, 60, 60, 255),
+    buttonHover = Color(80, 80, 80, 255),
+    text = Color(255, 255, 255, 255)
 }
 
 local PANEL = {}
@@ -56,7 +56,7 @@ end
 vgui.Register("liaRadioDial", PANEL, "DPanel")
 PANEL = {}
 function PANEL:Init()
-    self:SetTitle("Radio Frequency")
+    self:SetTitle(L("radioFrequencyTitle"))
     self:SetSize(350, 180)
     self:Center()
     self:MakePopup()
@@ -87,7 +87,7 @@ function PANEL:Init()
     self.submit:Dock(BOTTOM)
     self.submit:SetTall(24)
     self.submit:DockMargin(10, 4, 10, 4)
-    self.submit:SetText("Submit")
+    self.submit:SetText(L("submit"))
     self.submit.DoClick = function()
         local str = ""
         for i = 1, 5 do

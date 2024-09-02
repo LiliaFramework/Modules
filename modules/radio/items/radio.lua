@@ -3,7 +3,7 @@ ITEM.desc = "Radio to use to talk to other people"
 ITEM.uniqueID = "radio"
 ITEM.model = "models/gibs/shield_scanner_gib1.mdl"
 ITEM.functions.enable = {
-    name = "Turn On",
+    name = L("radioTurnOn"),
     icon = "icon16/connect.png",
     onRun = function(item)
         local client = item.player
@@ -28,7 +28,7 @@ ITEM.functions.enable = {
 }
 
 ITEM.functions.disable = {
-    name = "Turn Off",
+    name = L("radioTurnOff"),
     icon = "icon16/disconnect.png",
     onRun = function(item)
         local client = item.player
@@ -44,7 +44,7 @@ ITEM.functions.disable = {
 }
 
 ITEM.functions.changeFreq = {
-    name = "Change Frequency",
+    name = L("radioChangeFreq"),
     icon = "icon16/transmit_blue.png",
     onRun = function(item)
         netstream.Start(item.player, "radioAdjust", item:getData("freq", "000.0"), item.id)
@@ -60,11 +60,11 @@ ITEM.functions.changeFreq = {
 function ITEM:getDesc()
     local str
     if not self.entity or not IsValid(self.entity) then
-        str = "A Pager that allows you to send a signal to other characters in distance.\nPower: %s\nFrequency: %s"
-        return Format(str, self:getData("enabled") and "On" or "Off", self:getData("freq", "000.0"))
+        str = L("radioDescFormat")
+        return Format(str, self:getData("enabled") and L("radioPowerOn") or L("radioPowerOff"), self:getData("freq", "000.0"))
     else
-        str = "A Functional Pager. Power: %s Frequency: %s"
-        return Format(str, self.entity:getData("enabled") and "On" or "Off", self.entity:getData("freq", "000.0"))
+        str = L("radioDescEntityFormat")
+        return Format(str, self.entity:getData("enabled") and L("radioPowerOn") or L("radioPowerOff"), self.entity:getData("freq", "000.0"))
     end
 end
 
