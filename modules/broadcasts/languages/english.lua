@@ -1,0 +1,19 @@
+﻿NAME = "English"
+LANGUAGE = {
+    classBroadcastNoPermission = "You don't have permission to use this!",
+    classBroadcastInvalidArgument = "Invalid argument (#1)",
+    classBroadcastNoValidClasses = "No valid classes selected",
+    classBroadcastSent = "Broadcast sent.",
+    factionBroadcastNoPermission = "You don't have permission to use this!",
+    factionBroadcastInvalidArgument = "Invalid argument (#1)",
+    factionBroadcastNoValidFactions = "No valid factions selected",
+    factionBroadcastSent = "Broadcast sent.",
+    selectClassesPrompt = "Select classes to broadcast to:",
+    selectFactionsPrompt = "Select factions to broadcast to:",
+    classBroadcastTitle = "Class Broadcast",
+    factionBroadcastTitle = "Faction Broadcast",
+    factionBroadcastLabel = "[Faction Broadcast]",
+    classBroadcastLabel = "[Class Broadcast]",
+    factionBroadcastSentTo = "This message was sent to %s.",
+    classBroadcastSentTo = "This message was sent to %s.",
+}

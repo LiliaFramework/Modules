@@ -4,14 +4,16 @@
     tChar:setData("warn", warnCount + 1)
     target:GodEnable()
     target:Freeze(true)
-    target:ChatPrint("You received a warning from " .. client:GetName() .. " Reason: " .. reason .. ". Your new total is " .. warnCount .. ".")
-    target:notify("You were frozen for " .. self.FreezeTime .. " seconds. Please read the warning!")
+    local chatMessage = L("warnPlayerReceived", client:GetName(), reason, warnCount + 1)
+    target:ChatPrint(chatMessage)
+    local notifyMessage = L("warnPlayerFrozen", self.FreezeTime)
+    target:notify(notifyMessage)
     timer.Simple(self.FreezeTime, function()
         if IsValid(target) then
             target:GodDisable()
             target:Freeze(false)
             if warnCount >= self.WarnsTillBan then
-                target:notify("Your character has been blocked for exceeding the allowed number of warnings!")
+                target:notify(L("warnPlayerBlocked"))
                 timer.Simple(5, function() tChar:ban(self.BanTime) end)
             end
         end

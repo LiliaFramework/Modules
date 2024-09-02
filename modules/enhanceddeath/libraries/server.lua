@@ -11,7 +11,7 @@
                 local moneyLoss = math.ceil(currentMoney * self.DeathMoneyLoss)
                 if moneyLoss > currentMoney then moneyLoss = currentMoney end
                 client:getChar():takeMoney(moneyLoss)
-                client:notify("You lost " .. lia.currency.get .. " " .. moneyLoss .. " on death.")
+                client:notify(L("moneyLossMessage", lia.currency.get, moneyLoss))
             end
         end)
     end

@@ -1,6 +1,5 @@
 local FreeLookEnabled = CreateClientConVar("freelook_enabled", 0, true)
 local freelooking, LookX, LookY, InitialAng, CoolAng, ZeroAngle = false, 0, 0, Angle(), Angle(), Angle()
-
 function MODULE:Isinsights(client)
     local weapon = client:GetActiveWeapon()
     return self.FreelookBlockADS and (client:KeyDown(IN_ATTACK2) or (weapon.GetInSights and weapon:GetInSights()) or (weapon.ArcCW and weapon:GetState() == ArcCW.STATE_SIGHTS) or (weapon.GetIronSights and weapon:GetIronSights()))
@@ -15,7 +14,7 @@ function MODULE:Holdingbind(client)
 end
 
 function MODULE:CalcView(client, _, angles)
-    if not client:getChar() or not FreeLookEnabled then return end
+    if not client:getChar() or not FreeLookEnabled:GetBool() then return end
     local smoothness = math.Clamp(self.FreelookSmooth, 0.1, 2)
     CoolAng = LerpAngle(0.15 * smoothness, CoolAng, Angle(LookY, -LookX, 0))
     if not self:Holdingbind(client) and CoolAng.p < 0.05 and CoolAng.p > -0.05 or self:Isinsights(client) and CoolAng.p < 0.05 and CoolAng.p > -0.05 or not system.HasFocus() or client:ShouldDrawLocalPlayer() then
@@ -31,7 +30,7 @@ end
 
 function MODULE:CalcViewModelView(wep, _, _, _, _, ang)
     local lp = LocalPlayer()
-    if not lp:getChar() or not FreeLookEnabled then return end
+    if not lp:getChar() or not FreeLookEnabled:GetBool() then return end
     local MWBased = wep.m_AimModeDeltaVelocity and -1.5 or 1
     ang.p = ang.p + CoolAng.p / 2.5 * MWBased
     ang.y = ang.y + CoolAng.y / 2.5 * MWBased
@@ -39,7 +38,7 @@ end
 
 function MODULE:InputMouseApply(cmd, x, y)
     local lp = LocalPlayer()
-    if not lp:getChar() or not FreeLookEnabled then return end
+    if not lp:getChar() or not FreeLookEnabled:GetBool() then return end
     if not self:Holdingbind(lp) or self:Isinsights(lp) or lp:ShouldDrawLocalPlayer() then
         LookX, LookY = 0, 0
         return
@@ -61,11 +60,13 @@ function MODULE:StartCommand(client, cmd)
 end
 
 function MODULE:SetupQuickMenu(menu)
-    menu:addCheck("Free look Enabled", function(_, state)
+    menu:addCheck(L("freelookEnabled"), function(_, state)
         if state then
             RunConsoleCommand("freelook_enabled", "1")
+            client:ChatPrint(L("freelookStatus", "enabled"))
         else
             RunConsoleCommand("freelook_enabled", "0")
+            client:ChatPrint(L("freelookStatus", "disabled"))
         end
     end, FreeLookEnabled:GetBool())
 end

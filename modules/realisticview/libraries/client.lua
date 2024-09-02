@@ -1,7 +1,7 @@
 ﻿local RealisticViewEnabled = CreateClientConVar("rview_enabled", 0, true)
 local RealisticViewUseFullBody = CreateClientConVar("rview_fullbody", 0, true)
 function MODULE:CalcView(client, origin, angles)
-    if not client:InVehicle() and self.FirstPersonViewEnabled and RealisticViewEnabled:GetBool() then
+    if not client:InVehicle() and RealisticViewEnabled:GetBool() then
         local view = {
             origin = origin,
             angles = angles,
@@ -38,23 +38,21 @@ function MODULE:CalcView(client, origin, angles)
 end
 
 function MODULE:SetupQuickMenu(menu)
-    if self.FirstPersonViewEnabled then
-        menu:addCheck("Realistic View Enabled", function(_, state)
-            if state then
-                RunConsoleCommand("rview_enabled", "1")
-            else
-                RunConsoleCommand("rview_enabled", "0")
-            end
-        end, RealisticViewEnabled:GetBool())
+    menu:addCheck(L("realisticViewEnabled"), function(_, state)
+        if state then
+            RunConsoleCommand("rview_enabled", "1")
+        else
+            RunConsoleCommand("rview_enabled", "0")
+        end
+    end, RealisticViewEnabled:GetBool())
 
-        menu:addCheck("Realistic View Uses Full Body", function(_, state)
-            if state then
-                RunConsoleCommand("rview_fullbody", "1")
-            else
-                RunConsoleCommand("rview_fullbody", "0")
-            end
-        end, RealisticViewUseFullBody:GetBool())
+    menu:addCheck(L("realisticViewUsesFullBody"), function(_, state)
+        if state then
+            RunConsoleCommand("rview_fullbody", "1")
+        else
+            RunConsoleCommand("rview_fullbody", "0")
+        end
+    end, RealisticViewUseFullBody:GetBool())
 
-        menu:addSpacer()
-    end
+    menu:addSpacer()
 end

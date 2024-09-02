@@ -4,7 +4,7 @@ local MultiplierWalk = CreateClientConVar("viewbob_mp_walk", 0.25, {FCVAR_CLIENT
 local MultiplierCrouch = CreateClientConVar("viewbob_mp_crouch", 0.1, {FCVAR_CLIENTCMD_CAN_EXECUTE, FCVAR_ARCHIVE})
 local MultiplierSprint = CreateClientConVar("viewbob_mp_sprint", 0.4, {FCVAR_CLIENTCMD_CAN_EXECUTE, FCVAR_ARCHIVE})
 function MODULE:SetupQuickMenu(menu)
-    menu:addCheck("Viewbob", function(_, state)
+    menu:addCheck(L("ToggleViewBob"), function(_, state)
         if state then
             RunConsoleCommand("viewbob", "1")
         else

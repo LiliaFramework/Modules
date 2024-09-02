@@ -21,7 +21,7 @@ function MODULE:SaveData()
     local validNotes = {}
     saveTable.noteEntities = {}
     for _, v in ents.Iterator() do
-        if v:GetClass() == "lia_note" then
+        if v.isPaperNote then
             table.insert(saveTable.noteEntities, {
                 pos = v:GetPos(),
                 ang = v:GetAngles(),
@@ -43,7 +43,7 @@ function MODULE:SaveData()
 end
 
 function MODULE:EntityRemoved(entity)
-    if not lia.shuttingDown and entity and IsValid(entity) and entity:GetClass() == "lia_note" and entity.id then if self.WritingData[entity.id] then self.WritingData[entity.id] = nil end end
+    if not lia.shuttingDown and entity and IsValid(entity) and entity.isPaperNote and entity.id then if self.WritingData[entity.id] then self.WritingData[entity.id] = nil end end
 end
 
 function MODULE:OnNoteSpawned(note, item, load)

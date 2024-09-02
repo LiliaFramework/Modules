@@ -2,10 +2,10 @@ lia.command.add("classbroadcast", {
     adminOnly = false,
     syntax = "<string text>",
     onRun = function(client, arguments)
-        if not arguments[1] then return "Invalid argument (#1)" end
+        if not arguments[1] then return L("classBroadcastInvalidArgument") end
         local message = table.concat(arguments, " ", 1)
         if not client:getChar():hasFlags("D") and not client:HasPrivilege("Staff Permissions - Can Use Class Broadcast") then
-            client:notify("You don't have permission to use this!")
+            client:notify(L("classBroadcastNoPermission"))
             return false
         end
 
@@ -14,7 +14,7 @@ lia.command.add("classbroadcast", {
             table.insert(options, class.name .. " (" .. class.uniqueID .. ")")
         end
 
-        client:requestOptions("Class Broadcast", "Select classes to broadcast to:", options, #options, function(selectedOptions)
+        client:requestOptions(L("classBroadcastTitle"), L("selectClassesPrompt"), options, #options, function(selectedOptions)
             local classList = {}
             local classListSimple = {}
             for _, v in ipairs(selectedOptions) do
@@ -28,7 +28,7 @@ lia.command.add("classbroadcast", {
             end
 
             if table.Count(classList) == 0 then
-                client:notify("No valid classes selected")
+                client:notify(L("classBroadcastNoValidClasses"))
                 return
             end
 
@@ -42,7 +42,7 @@ lia.command.add("classbroadcast", {
                 end
             end
 
-            client:notify("Broadcast sent.")
+            client:notify(L("classBroadcastSent"))
         end)
     end
 })
@@ -51,10 +51,10 @@ lia.command.add("factionbroadcast", {
     adminOnly = false,
     syntax = "<string text>",
     onRun = function(client, arguments)
-        if not arguments[1] then return "Invalid argument (#1)" end
+        if not arguments[1] then return L("factionBroadcastInvalidArgument") end
         local message = table.concat(arguments, " ", 1)
         if not client:getChar():hasFlags("B") and not client:HasPrivilege("Staff Permissions - Can Use Faction Broadcast") then
-            client:notify("You don't have permission to use this!")
+            client:notify(L("factionBroadcastNoPermission"))
             return false
         end
 
@@ -63,7 +63,7 @@ lia.command.add("factionbroadcast", {
             table.insert(options, faction.name .. " (" .. faction.uniqueID .. ")")
         end
 
-        client:requestOptions("Faction Broadcast", "Select factions to broadcast to:", options, #options, function(selectedOptions)
+        client:requestOptions(L("factionBroadcastTitle"), L("selectFactionsPrompt"), options, #options, function(selectedOptions)
             local factionList = {}
             local factionListSimple = {}
             for _, v in ipairs(selectedOptions) do
@@ -77,7 +77,7 @@ lia.command.add("factionbroadcast", {
             end
 
             if table.Count(factionList) == 0 then
-                client:notify("No valid factions selected")
+                client:notify(L("factionBroadcastNoValidFactions"))
                 return
             end
 
@@ -91,7 +91,7 @@ lia.command.add("factionbroadcast", {
                 end
             end
 
-            client:notify("Broadcast sent.")
+            client:notify(L("factionBroadcastSent"))
         end)
     end
 })

@@ -1,3 +1,3 @@
-﻿function MODULE:OnLoaded()
-    if self.DevServer then lia.util.DebugMessage("The development module is still active!") end
+﻿function MODULE:ModuleLoaded()
+    if self.DevServer then LiliaInformation(L("devServerActive")) end
 end

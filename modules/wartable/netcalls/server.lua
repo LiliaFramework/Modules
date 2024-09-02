@@ -17,7 +17,6 @@ netstream.Hook("SetWarTableMap", function(client, _, text)
     local tableEnt = getTableEnt(client:GetPos())
     if not tableEnt then return end
     for _, imageType in pairs(MODULE.allowedImageTypes) do
-        print(text, imageType)
         if string.find(text, string.lower(imageType)) then
             netstream.Start(player.GetAll(), "SetWarTableMap", tableEnt, text)
             break

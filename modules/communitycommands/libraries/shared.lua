@@ -7,7 +7,7 @@ function MODULE:InitializedModules()
                 if v ~= "" then
                     client:SendLua("gui.OpenURL('" .. v .. "')")
                 else
-                    client:notify("This URL isn't configured")
+                    client:notifyLocalized("notConfig")
                 end
             end
         })

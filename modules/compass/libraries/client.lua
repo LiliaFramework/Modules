@@ -24,6 +24,6 @@ function MODULE:HUDPaint()
 end
 
 function MODULE:SetupQuickMenu(menu)
-    menu:addCheck("Toggle compass", function(_, state) RunConsoleCommand("lia_compass", state and "1" or "0") end, CompassActive:GetBool())
+    menu:addCheck(L("ToggleCompass"), function(_, state) RunConsoleCommand("lia_compass", state and "1" or "0") end, CompassActive:GetBool())
     menu:addSpacer()
 end

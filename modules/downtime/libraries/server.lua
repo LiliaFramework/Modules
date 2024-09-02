@@ -6,7 +6,7 @@ function MODULE:PlayerLoadedChar()
         if not isDownTime then isDownTime = true end
     else
         if isDownTime then
-            lia.util.notify("Downtime is over.", player.GetAll())
+            lia.util.notify(L("DowntimeOver"), player.GetAll())
             isDownTime = false
         end
     end

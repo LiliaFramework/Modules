@@ -7,7 +7,7 @@ function PANEL:Init()
     self:SetBackgroundBlur(true)
     self:SetDeleteOnClose(true)
     self:MakePopup()
-    self:SetTitle("Customize Marker")
+    self:SetTitle(L("CustomizeMarker")) 
     self.bodygroups = self:Add("DScrollPanel")
     self.bodygroups:Dock(RIGHT)
 end
@@ -17,7 +17,7 @@ function PANEL:Display(target, pos)
     self.saveButton = self:Add("DButton")
     self.saveButton:Dock(BOTTOM)
     self.saveButton:DockMargin(0, 4, 0, 0)
-    self.saveButton:SetText("Submit")
+    self.saveButton:SetText(L("submit")) 
     self.saveButton.DoClick = function()
         local bodygroups = {}
         for _, v in pairs(self.bodygroupIndex) do
@@ -63,7 +63,7 @@ function PANEL:PopulateBodygroupOptions()
             self.bodygroupNext[v.id] = self.bodygroupBox[v.id]:Add("DButton")
             self.bodygroupNext[v.id].index = v.id
             self.bodygroupNext[v.id]:Dock(RIGHT)
-            self.bodygroupNext[v.id]:SetText("Next")
+            self.bodygroupNext[v.id]:SetText(L("next"))
             self.bodygroupNext[v.id].DoClick = function()
                 local index = v.id
                 if (self.model.Entity:GetBodygroupCount(index) - 1) <= self.bodygroupIndex[index].value then return end
@@ -82,7 +82,7 @@ function PANEL:PopulateBodygroupOptions()
             self.bodygroupPrevious[v.id] = self.bodygroupBox[v.id]:Add("DButton")
             self.bodygroupPrevious[v.id].index = v.id
             self.bodygroupPrevious[v.id]:Dock(RIGHT)
-            self.bodygroupPrevious[v.id]:SetText("Previous")
+            self.bodygroupPrevious[v.id]:SetText(L("previous")) 
             self.bodygroupPrevious[v.id].DoClick = function()
                 local index = v.id
                 if 0 == self.bodygroupIndex[index].value then return end

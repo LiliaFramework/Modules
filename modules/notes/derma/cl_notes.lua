@@ -1,9 +1,10 @@
 ﻿local PANEL = {}
+
 function PANEL:Init()
     self:SetSize(300, 400)
     self:MakePopup()
     self:Center()
-    self:SetTitle("Note")
+    self:SetTitle(L("noteTitle"))
     self.controls = self:Add("DPanel")
     self.controls:Dock(BOTTOM)
     self.controls:SetTall(30)
@@ -15,10 +16,11 @@ function PANEL:Init()
     self.confirm = self.controls:Add("DButton")
     self.confirm:Dock(RIGHT)
     self.confirm:SetDisabled(true)
-    self.confirm:SetText(L("finish"))
+    self.confirm:SetText(L("finishButton"))
+
     self.controls.Paint = function(_, _, h)
         local text = self.contents:GetValue()
-        draw.SimpleText(Format("Text Byte: %s/1000", string.len(text)), "DermaDefault", 10, h / 2, color_white, TEXT_ALIGN_LEFT, 1)
+        draw.SimpleText(Format(L("textByteFormat"), string.len(text), MODULE.NoteLimit), "DermaDefault", 10, h / 2, color_white, TEXT_ALIGN_LEFT, 1)
     end
 
     self.confirm.DoClick = function()

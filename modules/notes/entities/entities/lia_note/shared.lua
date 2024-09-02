@@ -6,6 +6,7 @@ ENT.AdminOnly = false
 ENT.Category = "Lilia"
 ENT.RenderGroup = RENDERGROUP_BOTH
 ENT.DrawEntityInfo = true
+ENT.isPaperNote = true
 function ENT:getOwner()
     return self:getNetVar("ownerChar")
 end

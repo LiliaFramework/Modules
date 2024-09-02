@@ -11,7 +11,7 @@
         panel.Paint = function(_, w, h) draw.RoundedBox(5, 0, h * 0.25, w, h * 0.75, Color(0, 0, 0, 150)) end
         local clearButton = vgui.Create("DButton", panel)
         clearButton:Dock(TOP)
-        clearButton:SetText("Clear out table")
+        clearButton:SetText(L("ClearWarTable"))
         clearButton:SetTextColor(Color(255, 255, 255))
         clearButton.DoClick = function()
             panel:Remove()
@@ -20,16 +20,16 @@
 
         local setMapButton = vgui.Create("DButton", panel)
         setMapButton:Dock(TOP)
-        setMapButton:SetText("Set new map")
+        setMapButton:SetText(L("SetNewMapTitle"))
         setMapButton:SetTextColor(Color(255, 255, 255))
         setMapButton.DoClick = function()
             panel:Remove()
-            Derma_StringRequest("Set new map", "Input the link to set a new map", "", function(text) netstream.Start("SetWarTableMap", tableEnt, text) end)
+            Derma_StringRequest(L("SetNewMapTitle"), L("SetNewMapPrompt"), "", function(text) netstream.Start("SetWarTableMap", tableEnt, text) end)
         end
 
         local exitButton = vgui.Create("DButton", panel)
         exitButton:Dock(TOP)
-        exitButton:SetText("Exit")
+        exitButton:SetText(L("exit"))
         exitButton:SetTextColor(Color(255, 255, 255))
         exitButton.DoClick = function() panel:Remove() end
     else

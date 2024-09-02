@@ -1,10 +1,11 @@
 ﻿local MODULE = MODULE
+
 lia.command.add("doorkick", {
     adminOnly = false,
     syntax = "",
     onRun = function(client)
         if table.HasValue(MODULE.KickDoorBlacklistedFactions, client:Team()) then
-            client:notify("You are too weak to kick this door in!")
+            client:notify(L("doorKickTooWeak"))
             return
         else
             if not client.isKickingDoor then
@@ -31,15 +32,15 @@ lia.command.add("doorkick", {
                                 end
                             end)
                         else
-                            client:notify("This door can not be kicked in!")
+                            client:notify(L("doorKickCannotKick"))
                         end
                     elseif dist < 60 then
-                        client:notify("You are too close to kick the door down!")
+                        client:notify(L("doorKickTooClose"))
                     elseif dist > 80 then
-                        client:notify("You are too far to kick the door down!")
+                        client:notify(L("doorKickTooFar"))
                     end
                 else
-                    client:notify("You are looking at an invalid door")
+                    client:notify(L("doorKickInvalid"))
                 end
             end
         end

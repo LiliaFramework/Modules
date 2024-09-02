@@ -11,9 +11,9 @@ lia.command.add("permaremove", {
             data[#data + 1] = {mapID, entity:MapCreationID()}
             entity:Remove()
             MODULE:setData(data)
-            client:notify("Map entity removed.")
+            client:notify(L("permRemoveSuccess"))
         else
-            client:notify("This is not a valid map entity")
+            client:notify(L("permRemoveInvalid"))
         end
     end
 })

@@ -2,44 +2,41 @@
 -- @playermeta Warrant
 local MODULE = MODULE
 local playerMeta = FindMetaTable("Player")
-local CanSeeWarrants = MODULE.CanSeeWarrants
-local CanSeeWarrantsNotifications = MODULE.CanSeeWarrantsNotifications
 
 if SERVER then
     --- Toggles the wanted status of the player.
-    -- @param warranter The player who issued or removed the warrant.
+    -- @client warranter The player who issued or removed the warrant.
     -- @realm server
     function playerMeta:ToggleWanted(warranter)
         local warranted = not self:IsWanted()
         self:setNetVar("wanted", warranted)
-        local warrantAction = warranted and "issued" or "removed"
-        self:notify(string.format("You have been %s an active warrant.", warrantAction))
-
+        local notificationMessage = warranted and L("WarrantIssued") or L("WarrantRemoved")
+        self:notify(notificationMessage)
         if IsValid(warranter) then
-            warranter:notify(string.format("You have %s an active warrant.", warrantAction))
+            local warranterNotification = warranted and L("WarrantIssuedNotify") or L("WarrantRemovedNotify")
+            warranter:notify(warranterNotification)
         end
-
+    
         for _, ply in pairs(player.GetAll()) do
             if ply:CanSeeWarrantsIssued() then
-                local expirationText = warranted and "was issued" or "has expired"
-                local description = self:getChar() and self:getChar():getDesc() or "unknown description"
-                ply:notify(string.format("A warrant has been %s for someone with %s %s.", warrantAction, description, expirationText))
+                local expirationText = warranted and L("WarrantExpirationIssued") or L("WarrantExpirationExpired")
+                local description = self:getChar() and self:getChar():getDesc() or L("UnknownDescription")
+                ply:notify(string.format(expirationText, description, warranted and L("issued") or L("expired")))
             end
         end
     end
-
     --- Checks if the player can warrant other players.
     -- @treturn bool True if the player can warrant others, false otherwise.
     -- @realm server
     function playerMeta:CanWarrantPlayers()
-        return self:getNetVar("wanted", false) or self:HasPrivilege("Staff Permissions - Can Warrant People")
+        return self:getChar():hasFlags("P") or self:HasPrivilege("Staff Permissions - Can Warrant People")
     end
 
     --- Checks if the player can see issued warrants.
     -- @treturn bool True if the player can see issued warrants, false otherwise.
     -- @realm server
     function playerMeta:CanSeeWarrantsIssued()
-        return self:HasPrivilege("Staff Permissions - Can See Warrant Notifications") or table.HasValue(CanSeeWarrantsNotifications, self:Team())
+        return self:HasPrivilege("Staff Permissions - Can See Warrant Notifications") or table.HasValue(MODULE.CanSeeWarrantsNotifications, self:Team())
     end
 end
 
@@ -54,5 +51,5 @@ end
 -- @treturn bool True if the player can see warrants, false otherwise.
 -- @realm shared
 function playerMeta:CanSeeWarrants()
-    return self:HasPrivilege("Staff Permissions - Can See Warrants") or table.HasValue(CanSeeWarrants, self:Team())
+    return self:HasPrivilege("Staff Permissions - Can See Warrants") or table.HasValue(MODULE.CanSeeWarrants, self:Team())
 end

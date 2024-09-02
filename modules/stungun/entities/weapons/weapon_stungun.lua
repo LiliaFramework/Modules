@@ -1,12 +1,9 @@
 ﻿local MODULE = MODULE
-if CLIENT then
-    SWEP.PrintName = "StunGun"
-    SWEP.Author = "76561198312513285"
-    SWEP.Instructions = "76561198312513285"
-    SWEP.Slot = 2
-    SWEP.SlotPos = 1
-end
-
+SWEP.PrintName = "StunGun"
+SWEP.Author = "76561198312513285"
+SWEP.Instructions = "76561198312513285"
+SWEP.Slot = 2
+SWEP.SlotPos = 1
 SWEP.UseHands = true
 SWEP.Spawnable = true
 SWEP.AdminSpawnable = true
@@ -37,27 +34,28 @@ SWEP.IronSightsAng = Vector(0.9, 0, 0)
 SWEP.ViewModelFlip = false
 SWEP.ViewModelFOV = 65
 SWEP.LastFired = 0
+
 function SWEP:Initialize()
     if SERVER then self.LastFired = 0 end
 end
 
 function SWEP:PrimaryAttack()
     local client = self:GetOwner()
-    local target = client:GetEyeTrace().Entity
+    local target = client:GetTracedEntity()
     if client:IsNPC() then return end
     local curTime = CurTime()
     if curTime < self.LastFired + 5 then return end
     local maxDistance = 400
     local distance = client:GetPos():Distance(target:GetPos())
     if IsValid(target) and target:IsPlayer() and target:isStaffOnDuty() then
-        target:notify("You were just attempted to be stunned by " .. client:Name() .. ".")
-        client:notify("You can't tie a staff member!")
+        target:notify(string.format(L("stunAttempted"), client:Name()))
+        client:notify(L("cannotStunStaff"))
         return
     end
 
     if distance > maxDistance then
         self.LastFired = curTime
-        client:ChatPrint("target is too far away!")
+        client:ChatPrint(L("targetTooFar"))
         return
     end
 
@@ -69,7 +67,7 @@ function SWEP:PrimaryAttack()
         if SERVER then MODULE:TasePlayer(client, target) end
     else
         self.LastFired = curTime
-        client:ChatPrint("Invalid Target/Miss Shot!")
+        client:ChatPrint(L("invalidTarget"))
     end
 end
 
@@ -94,10 +92,10 @@ function SWEP:GetViewModelPosition(pos, ang)
 end
 
 if CLIENT then
-    local LASER = Material('cable/redlaser')
+    local LASER = Material("cable/redlaser")
     local function DrawLaser()
         for _, client in pairs(player.GetAll()) do
-            if not client:Alive() or LocalPlayer() == client or client:GetActiveWeapon() == NULL or client:GetActiveWeapon():GetClass() ~= 'weapon_stungun' then continue end
+            if not client:Alive() or LocalPlayer() == client or client:GetActiveWeapon() == NULL or client:GetActiveWeapon():GetClass() ~= "weapon_stungun" then continue end
             render.SetMaterial(LASER)
             local bone = client:LookupBone("ValveBiped.Bip01_R_Hand")
             if bone == nil then return end
@@ -110,7 +108,7 @@ if CLIENT then
         end
     end
 
-    hook.Add('PostDrawOpaqueRenderables', 'PlyMustSeeLaser', function() DrawLaser() end)
+    hook.Add("PostDrawOpaqueRenderables", "PlyMustSeeLaser", function() DrawLaser() end)
     function SWEP:ViewModelDrawn()
         local vm = self.Owner:GetViewModel()
         if not IsValid(vm) then return end
@@ -137,7 +135,7 @@ if CLIENT then
     end
 
     function SWEP:DrawScreen()
-        local power = self:GetNWInt('power', 0)
+        local power = self:GetNWInt("power", 0)
         local i = power / 10
         draw.RoundedBox(0, 0, 0, 6, 10, Color(25, 25, 25, 255))
         draw.RoundedBox(0, 1, 0, 4, math.Clamp(i, 0, 10), Color(255 - power, 10 + power * 2, 25, 255))

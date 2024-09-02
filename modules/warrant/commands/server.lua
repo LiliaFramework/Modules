@@ -6,10 +6,10 @@
             if IsValid(target) and target:getChar() then
                 target:ToggleWanted(client)
             else
-                client:notify("Target player not found or invalid.")
+                client:notifyLocalized("plyNoExist")
             end
         else
-            client:notify("You do not have permission to run this command!")
+            client:notifyLocalized("noPerm")
         end
     end
 })
