@@ -7,7 +7,6 @@ lia.command.add("partytier", {
     onRun = function(client, arguments)
         local char = client:getChar()
         if not char then return L("mustBeOnCharacter") end
-        
         local target = lia.command.findPlayer(client, arguments[1])
         if not char:hasFlags("T") then
             client:notifyLocalized("noPerm")
@@ -16,7 +15,6 @@ lia.command.add("partytier", {
 
         local tier = arguments[2]
         if tonumber(tier) > #MODULE.Tiers then tier = 10 end
-        
         local tChar = target:getChar()
         if tChar then
             tChar:setData("party_tier", tier, false, player.GetAll())

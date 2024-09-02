@@ -16,7 +16,7 @@ if SERVER then
             local warranterNotification = warranted and L("WarrantIssuedNotify") or L("WarrantRemovedNotify")
             warranter:notify(warranterNotification)
         end
-    
+
         for _, ply in pairs(player.GetAll()) do
             if ply:CanSeeWarrantsIssued() then
                 local expirationText = warranted and L("WarrantExpirationIssued") or L("WarrantExpirationExpired")
