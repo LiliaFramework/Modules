@@ -2,6 +2,25 @@
 ITEM.desc = "Radio to use to talk to other people"
 ITEM.uniqueID = "radio"
 ITEM.model = "models/gibs/shield_scanner_gib1.mdl"
+ITEM.functions.sabotage = {
+    name = L("sabotage"),
+    icon = "icon16/disconnect.png",
+    onRun = function(item)
+        local client = item.player
+        local entity = item.entity
+        if not IsValid(entity) then return false end
+        client:setAction("Breaking", 5, function()
+            if IsValid(item.entity) then
+                item:remove()
+                lia.chat.send(client, "actions", "breaks the radio, placing it on the floor. This radio is now broken beyond repair", false)
+                lia.item.spawn("broken_radio", client:getItemDropPos())
+            end
+        end)
+        return false
+    end,
+    onCanRun = function(item) return IsValid(item.entity) end
+}
+
 ITEM.functions.enable = {
     name = L("radioTurnOn"),
     icon = "icon16/connect.png",

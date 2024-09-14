@@ -1,5 +1,6 @@
 ﻿NAME = "english"
 LANGUAGE = {
+    sabotage = "Sabotage",
     radioFreq = "Frequency",
     radioSubmit = "Submit",
     radioNoRadio = "You don't have any radio to adjust.",
