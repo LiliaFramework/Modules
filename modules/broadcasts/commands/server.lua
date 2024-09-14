@@ -2,8 +2,8 @@ lia.command.add("classbroadcast", {
     adminOnly = false,
     syntax = "<string text>",
     onRun = function(client, arguments)
-        if not arguments[1] then return L("classBroadcastInvalidArgument") end
         local message = table.concat(arguments, " ", 1)
+        if not message then return L("classBroadcastInvalidArgument") end
         if not client:getChar():hasFlags("D") and not client:HasPrivilege("Staff Permissions - Can Use Class Broadcast") then
             client:notify(L("classBroadcastNoPermission"))
             return false
@@ -51,8 +51,8 @@ lia.command.add("factionbroadcast", {
     adminOnly = false,
     syntax = "<string text>",
     onRun = function(client, arguments)
-        if not arguments[1] then return L("factionBroadcastInvalidArgument") end
         local message = table.concat(arguments, " ", 1)
+        if not message then return L("factionBroadcastInvalidArgument") end
         if not client:getChar():hasFlags("B") and not client:HasPrivilege("Staff Permissions - Can Use Faction Broadcast") then
             client:notify(L("factionBroadcastNoPermission"))
             return false
