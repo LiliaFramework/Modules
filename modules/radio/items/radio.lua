@@ -77,13 +77,10 @@ ITEM.functions.changeFreq = {
 }
 
 function ITEM:getDesc()
-    local str
     if not self.entity or not IsValid(self.entity) then
-        str = L("radioDescFormat")
-        return Format(str, self:getData("enabled") and L("radioPowerOn") or L("radioPowerOff"), self:getData("freq", "000.0"))
+        return L("radioDescFormat", self:getData("enabled") and L("radioPowerOn") or L("radioPowerOff"), self:getData("freq", "000.0"))
     else
-        str = L("radioDescEntityFormat")
-        return Format(str, self.entity:getData("enabled") and L("radioPowerOn") or L("radioPowerOff"), self.entity:getData("freq", "000.0"))
+        return L("radioDescEntityFormat", self.entity:getData("enabled") and L("radioPowerOn") or L("radioPowerOff"), self.entity:getData("freq", "000.0"))
     end
 end
 
