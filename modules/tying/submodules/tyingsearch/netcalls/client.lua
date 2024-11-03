@@ -1,19 +1,5 @@
 ﻿local MODULE = MODULE
 MODULE.searchPanels = MODULE.searchPanels or {}
-net.Receive("RequestID", function()
-    lia.util.notifQuery("requestID", "accept", "deny", true, NOT_CORRECT, function(code)
-        if code == 1 then
-            net.Start("ApproveID")
-            net.WriteBool(true)
-            net.SendToServer()
-        elseif code == 2 then
-            net.Start("ApproveID")
-            net.WriteBool(false)
-            net.SendToServer()
-        end
-    end)
-end)
-
 netstream.Hook("searchPly", function(target, id)
     local targetInv = lia.inventory.instances[id]
     if not targetInv then return netstream.Start("searchExit") end
@@ -51,18 +37,4 @@ netstream.Hook("searchExit", function()
     end
 
     MODULE.searchPanels = {}
-end)
-
-net.Receive("RequestSearch", function()
-    lia.util.notifQuery("requestSearchInventory.", "accept", "deny", true, NOT_CORRECT, function(code)
-        if code == 1 then
-            net.Start("ApproveSearch")
-            net.WriteBool(true)
-            net.SendToServer()
-        elseif code == 2 then
-            net.Start("ApproveSearch")
-            net.WriteBool(false)
-            net.SendToServer()
-        end
-    end)
 end)

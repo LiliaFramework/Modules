@@ -16,8 +16,8 @@ LANGUAGE = {
     searchDenied = "Player denied your request to view their inventory.",
     requestSearchSent = "Request to search sent.",
     requestSearch = "Request Search",
-    requestID = "A player is requesting to see your ID.",
     requestSearchInventory = "A player is requesting to search your inventory.",
+    requestSearchInventoryConfirm = "Are you sure you want to allow this player to search your inventory?",
     beingSearched = "Being Searched",
     alreadyBeingSearched = "This person is already being searched."
 }

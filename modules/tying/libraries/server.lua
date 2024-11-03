@@ -1,4 +1,4 @@
-function MODULE:PlayerBindPress(client, bind)
+﻿function MODULE:PlayerBindPress(client, bind)
     bind = bind:lower()
     if IsHandcuffed(client) and (string.find(bind, "+speed") or string.find(bind, "gm_showhelp") or string.find(bind, "+jump") or string.find(bind, "+walk") or string.find(bind, "+use")) then return true end
 end

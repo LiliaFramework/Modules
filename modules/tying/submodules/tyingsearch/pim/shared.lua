@@ -4,11 +4,19 @@ PIM:AddOption("Request Search", {
     shouldShow = function(client, target) return not target.SearchRequested and not client.SearchRequested and not IsBeingSearched(target) end,
     onRun = function(client, target)
         if not SERVER then return end
-        net.Start("RequestSearch")
-        net.Send(target)
-        client:notifyLocalized("requestSearchSent")
+        client:notify("Request to search sent.")
         target.SearchRequested = client
         client.SearchRequested = target
+        client:binaryQuestion("requestSearchInventory", "accept", "deny", false, function(choice)
+            if choice == 0 then
+                MODULE:searchPlayer(client, client)
+            else
+                client:notifyLocalized("searchDenied")
+            end
+
+            client.SearchRequested = nil
+            target.SearchRequested = nil
+        end)
     end
 })
 

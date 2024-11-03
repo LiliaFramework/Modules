@@ -3,7 +3,7 @@
     shouldShow = function(client, target)
         local es = ents.FindInSphere(client:GetPos(), 150)
         for _, v in pairs(es) do
-            if simfphys and v:isSimfphysCar() then return IsHandcuffed(target) end
+            if v:isSimfphysCar() then return IsHandcuffed(target) end
         end
         return false
     end,
@@ -11,7 +11,7 @@
         if not SERVER then return end
         local es = ents.FindInSphere(client:GetPos(), 150)
         for _, v in pairs(es) do
-            if simfphys and v:isSimfphysCar() then
+            if v:isSimfphysCar() then
                 local closestSeat = v:GetClosestSeat(target)
                 if not closestSeat or IsValid(closestSeat:GetDriver()) then
                     for i = 1, table.Count(v.pSeat) do

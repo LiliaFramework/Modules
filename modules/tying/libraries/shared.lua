@@ -1,3 +1,3 @@
-function IsHandcuffed(target)
+﻿function IsHandcuffed(target)
     return target:getNetVar("restricted", false)
 end
