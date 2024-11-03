@@ -9,7 +9,7 @@ PIM:AddOption("Request Search", {
         client.SearchRequested = target
         client:binaryQuestion("requestSearchInventory", "accept", "deny", false, function(choice)
             if choice == 0 then
-                MODULE:searchPlayer(client, client)
+                MODULE:searchPlayer(client, target)
             else
                 client:notifyLocalized("searchDenied")
             end
