@@ -36,6 +36,6 @@ function MODULE:DoPlayerDeath(client)
     end
 end
 
-function MODULE:ShouldSpawnClientRagdoll(client)
+function MODULE:ShouldSpawnClientRagdoll()
     return false
 end
