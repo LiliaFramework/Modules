@@ -31,7 +31,7 @@
         end
     end
 
-    dropdown.OnSelect = function(panel, index, value)
+    dropdown.OnSelect = function(_, _, value)
         modelPanel:SetModel(value)
         local mdl = modelPanel.Entity
         if IsValid(mdl) then

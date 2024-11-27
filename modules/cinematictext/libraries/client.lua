@@ -23,7 +23,7 @@ function PANEL:DrawBlackBars()
     self.topBar = self:Add("DPanel")
     self.topBar:SetSize(ScrW, self.barSize + 10)
     self.topBar:SetPos(0, -self.barSize)
-    self.topBar.Paint = function(this, w, h)
+    self.topBar.Paint = function(_, w, h)
         surface.SetDrawColor(0, 0, 0, 255)
         surface.DrawRect(0, 0, w, h)
     end
@@ -31,7 +31,7 @@ function PANEL:DrawBlackBars()
     self.bottomBar = self:Add("DPanel")
     self.bottomBar:SetSize(ScrW, self.barSize + 10)
     self.bottomBar:SetPos(0, ScrH)
-    self.bottomBar.Paint = function(this, w, h)
+    self.bottomBar.Paint = function(_, w, h)
         surface.SetDrawColor(0, 0, 0, 255)
         surface.DrawRect(0, 0, w, h)
     end
@@ -128,7 +128,7 @@ function PANEL:Init()
     textEntry:Dock(TOP)
     textEntry:DockMargin(20, 5, 20, 0)
     textEntry:SetUpdateOnType(true)
-    textEntry.OnValueChange = function(this, value) self.contents.text = value end
+    textEntry.OnValueChange = function(_, value) self.contents.text = value end
     textEntry:SetTall(textEntryTall)
     local bigTextLabel = self:Add("DLabel")
     bigTextLabel:SetText("Big Splash Text (Appears under normal text)")
@@ -142,7 +142,7 @@ function PANEL:Init()
     bigTextEntry:Dock(TOP)
     bigTextEntry:DockMargin(20, 5, 20, 0)
     bigTextEntry:SetUpdateOnType(true)
-    bigTextEntry.OnValueChange = function(this, value) self.contents.bigText = value end
+    bigTextEntry.OnValueChange = function(_, value) self.contents.bigText = value end
     bigTextEntry:SetTall(textEntryTall)
     local durationLabel = self:Add("DLabel")
     durationLabel:SetText("Splash Text Duration")
@@ -163,7 +163,7 @@ function PANEL:Init()
     blackBarBool:SetText("Draw Black Bars")
     blackBarBool:SetFont("CinematicSplashFontSmall")
     blackBarBool:SetValue(self.contents.blackBars)
-    blackBarBool.OnChange = function(this, bValue) self.contents.blackBars = bValue end
+    blackBarBool.OnChange = function(_, value) self.contents.blackBars = value end
     blackBarBool:Dock(TOP)
     blackBarBool:DockMargin(20, 5, 20, 0)
     blackBarBool:SizeToContents()
@@ -171,7 +171,7 @@ function PANEL:Init()
     musicBool:SetText("Play audio")
     musicBool:SetFont("CinematicSplashFontSmall")
     musicBool:SetValue(self.contents.music)
-    musicBool.OnChange = function(this, bValue) self.contents.music = bValue end
+    musicBool.OnChange = function(_, value) self.contents.music = value end
     musicBool:Dock(TOP)
     musicBool:DockMargin(20, 5, 20, 0)
     musicBool:SizeToContents()
@@ -222,7 +222,7 @@ function PANEL:Init()
     end
 
     self:SizeToContents()
-    Mixer.ValueChanged = function(this, col)
+    Mixer.ValueChanged = function(_, col)
         local newColor = Color(col.r, col.g, col.b)
         self.contents.color = newColor
         bigTextLabel:SetTextColor(newColor)
