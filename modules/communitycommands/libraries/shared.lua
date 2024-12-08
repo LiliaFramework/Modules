@@ -1,13 +1,16 @@
 function MODULE:InitializedModules()
-    for k, v in pairs(self.URLs) do
-        lia.command.add(k, {
+    for commandName, data in pairs(self.URLs) do
+        local url = data.URL
+        lia.command.add(commandName, {
             adminOnly = false,
             syntax = "",
             onRun = function(client)
-                if v ~= "" then
-                    client:SendLua("gui.OpenURL('" .. v .. "')")
-                else
-                    client:notifyLocalized("notConfig")
+                if SERVER then
+                    if url and url ~= "" then
+                        self:HandleCommunityURL(client, commandName)
+                    else
+                        client:notifyLocalized("notConfig")
+                    end
                 end
             end
         })
