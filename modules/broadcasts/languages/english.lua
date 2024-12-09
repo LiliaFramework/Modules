@@ -1,4 +1,4 @@
-﻿NAME = "English"
+﻿NAME = "english"
 LANGUAGE = {
     classBroadcastNoPermission = "You don't have permission to use this!",
     classBroadcastInvalidArgument = "Invalid argument (#1)",

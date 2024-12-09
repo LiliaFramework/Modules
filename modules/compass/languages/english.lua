@@ -1,4 +1,4 @@
-﻿NAME = "English"
+﻿NAME = "english"
 LANGUAGE = {
     ToggleCompass = "Toggle Compass.",
 }

@@ -1,4 +1,4 @@
-﻿NAME = "English"
+﻿NAME = "english"
 LANGUAGE = {
     warnReasonTitle = "Warn Reason",
     warnPlayerReceived = "You received a warning from %s. Reason: %s. Your new total is %d.",

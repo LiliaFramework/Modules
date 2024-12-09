@@ -1,4 +1,4 @@
-﻿NAME = "English"
+﻿NAME = "english"
 LANGUAGE = {
     identifyCorpseQuestion = "Do you want to identify this corpse?",
     identifyCorpse = "Press E to identify corpse",
