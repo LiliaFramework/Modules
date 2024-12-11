@@ -1,4 +1,4 @@
---- Configuration for Loyalism Module.
+--- Configuration for the Loyalism Module.
 -- @configuration Loyalism
 
 --- This table defines the default settings for the Loyalism Module.

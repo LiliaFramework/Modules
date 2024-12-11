@@ -1,4 +1,4 @@
---- Configuration for Alcoholism Module.
+--- Configuration for the Alcoholism Module.
 -- @configuration Alcoholism
 
 --- This table defines the default settings for the Alcoholism Module.

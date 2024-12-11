@@ -1,4 +1,4 @@
---- Configuration for Random Name Generator Module.
+--- Configuration for the Random Name Generator Module.
 -- @configuration RandomNameGenerator
 
 --- This table defines the default settings for the Random Name Generator Module.

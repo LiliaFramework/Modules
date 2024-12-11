@@ -1,4 +1,4 @@
---- Configuration for DownTime Notifier Module.
+--- Configuration for the DownTime Notifier Module.
 -- @configuration DownTimeNotifier
 
 --- This table defines the default settings for the DownTime Notifier Module.

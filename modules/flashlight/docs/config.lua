@@ -1,4 +1,4 @@
---- Configuration for Flashlight Module.
+--- Configuration for the Flashlight Module.
 -- @configuration Flashlight
 
 --- This table defines the default settings for the Flashlight Module.

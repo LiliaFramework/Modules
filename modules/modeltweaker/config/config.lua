@@ -1,4 +1,4 @@
---- Configuration for the Model Tweaker Module.
+--- Configuration for the the Model Tweaker Module.
 -- @configuration ModelTweaker
 
 --- This table defines the default settings for the Model Tweaker Module.

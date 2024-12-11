@@ -1,4 +1,4 @@
---- Configuration for Rumour Module.
+--- Configuration for the Rumour Module.
 -- @configuration Rumour
 
 --- This table defines the default settings for the Rumour Module.

@@ -1,4 +1,4 @@
---- Configuration for Chat Messages Module.
+--- Configuration for the Chat Messages Module.
 -- @configuration ChatMessages
 
 --- This table defines the default settings for the Chat Messages Module.

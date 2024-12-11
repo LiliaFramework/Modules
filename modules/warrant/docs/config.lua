@@ -1,4 +1,4 @@
---- Configuration for Warrant Module.
+--- Configuration for the Warrant Module.
 -- @configuration Warrant
 
 --- This table defines the default settings for the Warrant Module.

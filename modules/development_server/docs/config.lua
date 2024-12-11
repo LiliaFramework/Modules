@@ -1,4 +1,4 @@
---- Configuration for Development Server Module.
+--- Configuration for the Development Server Module.
 -- @configuration DevelopmentServer
 
 --- This table defines the default settings for the Development Server Module.

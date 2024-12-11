@@ -1,4 +1,4 @@
---- Configuration for Donation Bundle Module.
+--- Configuration for the Donation Bundle Module.
 -- @configuration DonationBundle
 
 --- This table defines the default settings for the Donation Bundle Module.

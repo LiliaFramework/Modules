@@ -1,4 +1,4 @@
---- Configuration for Advert Module.
+--- Configuration for the Advert Module.
 -- @configuration Advert
 
 --- This table defines the default settings for the Advert Module.

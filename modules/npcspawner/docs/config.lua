@@ -1,4 +1,4 @@
---- Configuration for NPC Spawner Module.
+--- Configuration for the NPC Spawner Module.
 -- @configuration NPCSpawner
 
 --- This table defines the default settings for the NPC Spawner Module.

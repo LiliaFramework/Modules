@@ -1,4 +1,4 @@
---- Configuration for Notes Module.
+--- Configuration for the Notes Module.
 -- @configuration Notes
 
 --- This table defines the default settings for the Notes Module.

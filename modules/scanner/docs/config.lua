@@ -1,4 +1,4 @@
---- Configuration for Scanner Module.
+--- Configuration for the Scanner Module.
 -- @configuration Scanner
 
 --- This table defines the default settings for the Scanner Module.

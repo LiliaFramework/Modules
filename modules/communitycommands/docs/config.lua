@@ -1,4 +1,4 @@
---- Configuration for Community Commands Module.
+--- Configuration for the Community Commands Module.
 -- @configuration CommunityCommands
 
 --- This table defines the default settings for the Community Commands Module.

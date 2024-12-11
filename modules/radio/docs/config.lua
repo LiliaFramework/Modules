@@ -1,4 +1,4 @@
---- Configuration for Radio Module.
+--- Configuration for the Radio Module.
 -- @configuration Radio
 
 --- This table defines the default settings for the Radio Module.

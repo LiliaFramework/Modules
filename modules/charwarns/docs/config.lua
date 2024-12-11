@@ -1,4 +1,4 @@
---- Configuration for Character Warns Module.
+--- Configuration for the Character Warns Module.
 -- @configuration CharacterWarns
 
 --- This table defines the default settings for the CharacterWarns Module.

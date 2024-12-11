@@ -1,4 +1,4 @@
---- Configuration for Cinematic Text Module.
+--- Configuration for the Cinematic Text Module.
 -- @configuration CinematicText
 
 --- This table defines the default settings for the Cinematic Text Module.

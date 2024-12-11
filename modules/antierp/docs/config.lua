@@ -1,4 +1,4 @@
---- Configuration for Anti ERP Module.
+--- Configuration for the Anti ERP Module.
 -- @configuration AntiERP
 
 --- This table defines the default settings for the AntiERP Module.

@@ -1,4 +1,4 @@
---- Configuration for Server Whitelist Module.
+--- Configuration for the Server Whitelist Module.
 -- @configuration Whitelist
 
 --- This table defines the default settings for the Whitelist Module.

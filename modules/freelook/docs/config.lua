@@ -1,4 +1,4 @@
---- Configuration for Free Look Module.
+--- Configuration for the Free Look Module.
 -- @configuration FreeLook
 
 --- This table defines the default settings for the Free Look Module.

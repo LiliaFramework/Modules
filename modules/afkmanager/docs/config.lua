@@ -1,4 +1,4 @@
---- Configuration for AFK Manager Module.
+--- Configuration for the AFK Manager Module.
 -- @configuration AFKManager
 
 --- This table defines the default settings for the AFK Manager Module.

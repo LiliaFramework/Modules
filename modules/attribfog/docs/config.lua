@@ -1,4 +1,4 @@
---- Configuration for Attribute Fog Module.
+--- Configuration for the Attribute Fog Module.
 -- @configuration AttributeFog
 
 --- This table defines the default settings for the Attribute Fog Module.

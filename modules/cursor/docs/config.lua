@@ -1,4 +1,4 @@
---- Configuration for Cursor Module.
+--- Configuration for the Cursor Module.
 -- @configuration Cursor
 
 --- This table defines the default settings for the Cursor Module.
