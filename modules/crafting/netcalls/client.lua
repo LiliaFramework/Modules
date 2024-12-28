@@ -28,7 +28,7 @@
 
     local btn = actPanel:Add("DButton")
     btn:Dock(TOP)
-    btn:SetText(L"Craft")
+    btn:SetText(L("Craft"))
     btn:SetColor(color_white)
     btn:DockMargin(5, 5, 5, 0)
     function btn.DoClick()

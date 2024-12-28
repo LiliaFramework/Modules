@@ -78,6 +78,7 @@ function MODULE:PlayerLeaveVehicle(client)
 end
 
 function HandcuffPlayer(target)
+    local cmd = target:GetCurrentCommand()
     target:SetRunSpeed(target:GetWalkSpeed())
     for _, v in pairs(target:getChar():getInv():getItems()) do
         if v.isWeapon and v:getData("equip") then v:setData("equip", nil) end
@@ -97,19 +98,19 @@ function HandcuffPlayer(target)
     end)
 
     target:StartHandcuffAnim()
-end
-
-function MODULE:StartCommand(client, cmd)
-    if IsHandcuffed(client) then
-        cmd:RemoveKey(IN_SPEED)
-        cmd:RemoveKey(IN_JUMP)
-    end
+    cmd:RemoveKey(IN_SPEED)
+    cmd:RemoveKey(IN_JUMP)
 end
 
 function OnHandcuffRemove(target)
+    local cmd = target:GetCurrentCommand()
     target:setNetVar("restricted", false)
     hook.Run("ResetSubModuleCuffData", target)
     target:EndHandcuffAnim()
+    if target:IsPlayer() then
+        cmd:AddKey(IN_SPEED)
+        cmd:AddKey(IN_JUMP)
+    end
 end
 
 function MODULE:CanPlayerJoinClass(client)
