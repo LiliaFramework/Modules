@@ -1,9 +1,4 @@
-﻿function MODULE:PlayerBindPress(client, bind)
-    bind = bind:lower()
-    if IsHandcuffed(client) and (string.find(bind, "+speed") or string.find(bind, "gm_showhelp") or string.find(bind, "+jump") or string.find(bind, "+walk") or string.find(bind, "+use")) then return true end
-end
-
-function MODULE:CheckValidSit(client)
+﻿function MODULE:CheckValidSit(client)
     if IsHandcuffed(client) then return false end
 end
 
@@ -98,19 +93,19 @@ function HandcuffPlayer(target)
     end)
 
     target:StartHandcuffAnim()
-    cmd:RemoveKey(IN_SPEED)
-    cmd:RemoveKey(IN_JUMP)
+end
+
+function MODULE:StartCommand(client, cmd)
+    if IsHandcuffed(client) then
+        cmd:RemoveKey(IN_SPEED)
+        cmd:RemoveKey(IN_JUMP)
+    end
 end
 
 function OnHandcuffRemove(target)
-    local cmd = target:GetCurrentCommand()
     target:setNetVar("restricted", false)
     hook.Run("ResetSubModuleCuffData", target)
     target:EndHandcuffAnim()
-    if target:IsPlayer() then
-        cmd:AddKey(IN_SPEED)
-        cmd:AddKey(IN_JUMP)
-    end
 end
 
 function MODULE:CanPlayerJoinClass(client)
