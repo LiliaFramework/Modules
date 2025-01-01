@@ -43,7 +43,7 @@ spawnmenu.AddContentType("item", function(container, object)
     icon:SetModel(item.model)
     icon:SetTooltip(item.name)
     icon.DoClick = function()
-        if LocalPlayer():HasPrivilege("Staff Permissions - Can Spawn Menu Items") then
+        if LocalPlayer():hasPrivilege("Staff Permissions - Can Spawn Menu Items") then
             surface.PlaySound("ui/buttonclickrelease.wav")
             netstream.Start("liaItemSpawn", item.uniqueID)
         else

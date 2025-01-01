@@ -5,7 +5,7 @@ ITEM.functions.use = {
     name = "Use",
     onRun = function(item)
         local client = item.player
-        local target = client:GetTracedEntity()
+        local target = client:getTracedEntity()
         if IsValid(target) and target:GetClass() == "prop_ragdoll" and IsValid(target:getNetVar("player")) then target = target:getNetVar("player") end
         if not IsValid(target) or not (target:IsPlayer() and target:getChar()) then
             client:notifyLocalized("aimPlayer")
@@ -25,7 +25,7 @@ ITEM.functions.use = {
 
         target:setAction("@beingTied", 3)
         client:setAction("@tying", 3, function()
-            local ete = client:GetTracedEntity()
+            local ete = client:getTracedEntity()
             if IsValid(ete) and ete == target then
                 HandcuffPlayer(target)
                 item:remove()

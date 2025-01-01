@@ -41,7 +41,7 @@ end
 
 function SWEP:PrimaryAttack()
     local client = self:GetOwner()
-    local target = client:GetTracedEntity()
+    local target = client:getTracedEntity()
     if client:IsNPC() then return end
     local curTime = CurTime()
     if curTime < self.LastFired + 5 then return end

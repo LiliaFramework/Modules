@@ -1,7 +1,7 @@
 ﻿local MODULE = MODULE
 
 net.Receive("ApplyWarn", function(_, client)
-    if client:HasPrivilege("Commands - Warn Players") then
+    if client:hasPrivilege("Commands - Warn Players") then
         local tCharID = net.ReadInt(32)
         local reason = net.ReadString()
         for _, target in pairs(player.GetAll()) do

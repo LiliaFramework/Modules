@@ -29,14 +29,14 @@ if SERVER then
     -- @treturn bool True if the player can warrant others, false otherwise.
     -- @realm server
     function playerMeta:CanWarrantPlayers()
-        return self:getChar():hasFlags("P") or self:HasPrivilege("Staff Permissions - Can Warrant People")
+        return self:getChar():hasFlags("P") or self:hasPrivilege("Staff Permissions - Can Warrant People")
     end
 
     --- Checks if the player can see issued warrants.
     -- @treturn bool True if the player can see issued warrants, false otherwise.
     -- @realm server
     function playerMeta:CanSeeWarrantsIssued()
-        return self:HasPrivilege("Staff Permissions - Can See Warrant Notifications") or table.HasValue(MODULE.CanSeeWarrantsNotifications, self:Team())
+        return self:hasPrivilege("Staff Permissions - Can See Warrant Notifications") or table.HasValue(MODULE.CanSeeWarrantsNotifications, self:Team())
     end
 end
 
@@ -51,5 +51,5 @@ end
 -- @treturn bool True if the player can see warrants, false otherwise.
 -- @realm shared
 function playerMeta:CanSeeWarrants()
-    return self:HasPrivilege("Staff Permissions - Can See Warrants") or table.HasValue(MODULE.CanSeeWarrants, self:Team())
+    return self:hasPrivilege("Staff Permissions - Can See Warrants") or table.HasValue(MODULE.CanSeeWarrants, self:Team())
 end

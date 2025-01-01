@@ -1,7 +1,7 @@
 util.AddNetworkString("OpenCinematicMenu")
 util.AddNetworkString("TriggerCinematic")
 net.Receive("TriggerCinematic", function(_, client)
-    if not client:HasPrivilege("Commands - Use Cinematic Menu") then return end
+    if not client:hasPrivilege("Commands - Use Cinematic Menu") then return end
     net.Start("TriggerCinematic")
     net.WriteString(net.ReadString())
     net.WriteString(net.ReadString())
