@@ -7,105 +7,113 @@
 
 # Contents
 
-- Advert
+- **AFK Manager**
 
-- AFK Manager (Anti AFK)
+- **Advert**
 
-- Alcoholic Drinks (Alcoholism)
+- **Alcoholism**
 
-- Announcements
+- **Announcements**
 
-- Anti ERP
+- **Anti ERP**
 
-- Attribute Fog
+- **Body Grouper**
 
-- Broadcasts
+- **Broadcasts**
 
-- Cassette Player
+- **Captions**
 
-- Character Warnings
+- **Cassette Player**
 
-- Chat Messages
+- **Chat Messages**
 
-- Climb
+- **Cinematic Text**
 
-- Combine Locks
+- **Climb**
 
-- Community Commands
+- **CM Blocks**
 
-- Compass
+- **Community Commands**
 
-- Crafting
+- **Compass**
 
-- Custom Cursor
+- **Corpseid**
 
-- Development Server
+- **Custom Cursor**
 
-- Development HUD
+- **Development Server**
 
-- Donator Bundle
+- **Development HUD**
 
-- Door Kicking
+- **Donator Bundle**
 
-- Downtime Notifier
+- **Door Kicking**
 
-- Enhanced Death
+- **Downtime Notifier**
 
-- Extended Descriptions
+- **Enhanced Death**
 
-- Flashlight
+- **Extended Descriptions**
 
-- Force Fields
+- **F1 Menu Expansions**
 
-- Free Look
+- **Flashlight**
 
-- Join & Leave Messages
+- **Force Fields**
 
-- Loyalism
+- **Free Look**
 
-- Map Cleaner
+- **Join & Leave Messages**
 
-- Night Vision Goggles
+- **Loyalism**
 
-- Paper Notes
+- **Map Cleaner**
 
-- Perma Remove
+- **Model Pay**
 
-- Perma Weapons
+- **Model Tweaker**
 
-- NPC Spawner
+- **Night Vision Goggles**
 
-- Text Radios
+- **Notes**
 
-- Random Name
+- **NPC Spawner**
 
-- Realistic View
+- **Perma Remove**
 
-- Rumour
+- **Perma Weapons**
 
-- Combine Scanner
+- **Radio**
 
-- Shootable Locks
+- **Raised Weapons**
 
-- Spawn Menu Items
+- **Realistic Damage**
 
-- Stun Gun
+- **Realistic View**
 
-- Tying
+- **Rumour**
 
-- Tying Search
+- **Shoot Lock**
 
-- View Bob
+- **Spawn Menu Items**
 
-- Text to Speech Voices
+- **Stun Gun**
 
-- Warrants
+- **Tying**
 
-- War Table
+- **Utils**
 
-- Whitelist
+- **View Bob**
 
-- Workshop Downloader
+- **Text to Speech Voices**
+
+- **Voices**
+
+- **Warrant**
+
+- **War Table**
+
+- **Whitelist**
 
 # Support
 
