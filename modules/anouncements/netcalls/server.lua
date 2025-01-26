@@ -1,1 +1,1 @@
-util.AddNetworkString("announcement_client")
+﻿util.AddNetworkString("announcement_client")

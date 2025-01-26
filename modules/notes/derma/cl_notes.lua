@@ -1,5 +1,4 @@
 ﻿local PANEL = {}
-
 function PANEL:Init()
     self:SetSize(300, 400)
     self:MakePopup()
@@ -17,10 +16,9 @@ function PANEL:Init()
     self.confirm:Dock(RIGHT)
     self.confirm:SetDisabled(true)
     self.confirm:SetText(L("finishButton"))
-
     self.controls.Paint = function(_, _, h)
         local text = self.contents:GetValue()
-        draw.SimpleText(Format(L("textByteFormat"), string.len(text), MODULE.NoteLimit), "DermaDefault", 10, h / 2, color_white, TEXT_ALIGN_LEFT, 1)
+        draw.SimpleText(Format(L("textByteFormat"), string.len(text), lia.config.get("NoteLimit", 100)), "DermaDefault", 10, h / 2, color_white, TEXT_ALIGN_LEFT, 1)
     end
 
     self.confirm.DoClick = function()

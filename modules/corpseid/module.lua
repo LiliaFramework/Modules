@@ -1,4 +1,4 @@
-MODULE.name = "Corpse ID"
+﻿MODULE.name = "Corpse ID"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "Stock"

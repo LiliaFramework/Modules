@@ -1,5 +1,4 @@
-﻿local MODULE = MODULE
-include("shared.lua")
+﻿include("shared.lua")
 ENT.DisplayScale = 0.1
 ENT.DisplayVector = Vector(62, 107.5, 30.1)
 ENT.DisplayAngle = Angle(180, 0, 180)
@@ -15,7 +14,7 @@ end
 local map = vgui.Create("HTML", mainBG)
 map:SetSize(mainBG:GetSize())
 map:SetMouseInputEnabled(false)
-map:OpenURL(MODULE.URL)
+map:OpenURL(lia.config.get("URL"))
 function ENT:Draw()
     self:DrawModel()
     if self:GetPos():DistToSqr(LocalPlayer():GetPos()) < 250000 then

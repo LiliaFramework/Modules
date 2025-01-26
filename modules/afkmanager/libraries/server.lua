@@ -1,5 +1,4 @@
 ﻿local MODULE = MODULE
-
 function MODULE:WarnPlayer(client)
     net.Start("AFKWarning")
     net.WriteBool(true)
@@ -35,17 +34,20 @@ function MODULE:PlayerButtonDown(client)
     self:ResetAFKTime(client)
 end
 
-timer.Create("AFKTimer", MODULE.TimerInterval, 0, function()
+timer.Create("AFKTimer", lia.config.get("AFKTimerInterval", 1), 0, function()
+    local warningTime = lia.config.get("AFKWarningTime", 570)
+    local kickTime = lia.config.get("AFKKickTime", 30)
+    local kickMessage = lia.config.get("AFKKickMessage", "Automatically kicked for being AFK for too long.")
     local clientCount = player.GetCount()
     local maxPlayers = game.MaxPlayers()
     for _, client in player.Iterator() do
         if not client:getChar() and clientCount < maxPlayers then continue end
-        if table.HasValue(MODULE.AFKAllowedPlayers, client:SteamID64()) or client:IsBot() then continue end
-        client.AFKTime = (client.AFKTime or 0) + MODULE.TimerInterval
-        if client.AFKTime >= MODULE.WarningTime and not client.HasWarning then MODULE:WarnPlayer(client) end
-        if client.AFKTime >= MODULE.WarningTime + MODULE.KickTime then
+        if table.HasValue(MODULE.AFKAllowedPlayers or {}, client:SteamID64()) or client:IsBot() then continue end
+        client.AFKTime = (client.AFKTime or 0) + lia.config.get("AFKTimerInterval", 1)
+        if client.AFKTime >= warningTime and not client.HasWarning then MODULE:WarnPlayer(client) end
+        if client.AFKTime >= warningTime + kickTime then
             if clientCount >= maxPlayers then
-                client:Kick(MODULE.KickMessage)
+                client:Kick(kickMessage)
             elseif client:getChar() then
                 MODULE:CharKick(client)
             end

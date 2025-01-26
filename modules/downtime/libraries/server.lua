@@ -1,12 +1,16 @@
 ﻿local isDownTime = false
 function MODULE:PlayerLoadedChar()
-    if not self.EnableDownTime then return end
+    if not lia.config.get("EnableDownTime", false) then return end
     local playerCount = player.GetCount()
-    if playerCount < self.RPMinimumPlayerCount then
+    local minimumPlayerCount = lia.config.get("RPMinimumPlayerCount", 5)
+    if playerCount < minimumPlayerCount then
         if not isDownTime then isDownTime = true end
     else
         if isDownTime then
-            lia.notices.notify(L("DowntimeOver"), player.GetAll())
+            for _, ply in player.Iterator() do
+                ply:ChatPrint(L("DowntimeOver"))
+            end
+
             isDownTime = false
         end
     end

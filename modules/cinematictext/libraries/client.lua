@@ -1,4 +1,4 @@
-local PANEL = {}
+﻿local PANEL = {}
 local ScrW, ScrH = ScrW(), ScrH()
 local music
 local contents = {
@@ -232,11 +232,10 @@ function PANEL:Init()
 end
 
 vgui.Register("CinematicSplashTextMenu", PANEL, "DFrame")
-
 function MODULE:LoadFonts()
-    local font = self.CinematicTextFont
-    local fontSizeBig = self.CinematicTextSizeBig
-    local fontSizeNormal = self.CinematicTextSize
+    local font = lia.config.get("CinematicTextFont", "Arial")
+    local fontSizeBig = lia.config.get("CinematicTextSizeBig", 30)
+    local fontSizeNormal = lia.config.get("CinematicTextSize", 18)
     surface.CreateFont("CinematicSplashFontBig", {
         font = font,
         size = ScreenScale(fontSizeBig),

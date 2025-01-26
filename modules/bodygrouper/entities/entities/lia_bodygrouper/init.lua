@@ -1,6 +1,5 @@
-﻿local MODULE = MODULE
-function ENT:Initialize()
-    self:SetModel(MODULE.BodyGrouperModel)
+﻿function ENT:Initialize()
+    self:SetModel(lia.config.get("BodyGrouperModel"))
     self:PhysicsInit(SOLID_VPHYSICS)
     self:SetMoveType(MOVETYPE_VPHYSICS)
     self:SetUseType(SIMPLE_USE)

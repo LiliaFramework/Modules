@@ -11,13 +11,7 @@ local PermaRaisedBases = {
     ["cw_base"] = true,
 }
 
---- The Player Meta for the Raise Weapons Module.
--- @playermeta RaiseWeapons
 local playerMeta = FindMetaTable("Player")
---- Checks if the player's weapon is raised.
--- This function determines whether the player's currently active weapon is raised based on various conditions.
--- @realm shared
--- @treturn boolean true if the weapon is raised, false otherwise.
 function playerMeta:isWepRaised()
     local weapon = self:GetActiveWeapon()
     local override = hook.Run("ShouldWeaponBeRaised", self, weapon)
@@ -31,17 +25,10 @@ function playerMeta:isWepRaised()
             return false
         end
     end
-
-    if MODULE.WepAlwaysRaised then return true end
     return self:getNetVar("raised", false)
 end
 
 if SERVER then
-    --- Sets the raised state of the player's weapon.
-    -- This function sets whether the player's active weapon should be raised or lowered and optionally sends a notification.
-    -- @realm server
-    -- @bool state The desired raised state (true for raised, false for lowered).
-    -- @bool[opt] notification Whether to send a notification about the action.
     function playerMeta:setWepRaised(state, notification)
         self:setNetVar("raised", state)
         if IsValid(self:GetActiveWeapon()) then
@@ -55,9 +42,6 @@ if SERVER then
         end
     end
 
-    --- Toggles the raised state of the player's weapon.
-    -- This function toggles the weapon's raised state and triggers corresponding events.
-    -- @realm server
     function playerMeta:toggleWepRaised()
         timer.Simple(1, function() self:setWepRaised(not self:isWepRaised(), ShouldPrintMessage) end)
         local weapon = self:GetActiveWeapon()

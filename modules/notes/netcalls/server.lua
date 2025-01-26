@@ -1,5 +1,4 @@
 ﻿local MODULE = MODULE
-
 local function FindNoteByID(id)
     for _, v in ents.Iterator() do
         if v.isPaperNote and v.id == id then return v end
@@ -7,7 +6,7 @@ local function FindNoteByID(id)
 end
 
 netstream.Hook("noteSendText", function(client, id, contents)
-    if string.len(contents) <= MODULE.NoteLimit then
+    if string.len(contents) <= lia.config.get("NoteLimit", 100) then
         local note = FindNoteByID(id)
         if note:canWrite(client) == false then return client:notify("You do not own this note") end
         MODULE.WritingData[id] = contents

@@ -1,4 +1,4 @@
-net.Receive("factionbroadcast_client", function()
+﻿net.Receive("factionbroadcast_client", function()
     local nick = net.ReadString()
     local message = net.ReadString()
     local factionListSimple = net.ReadTable()

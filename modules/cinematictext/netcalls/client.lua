@@ -1,4 +1,4 @@
-net.Receive("TriggerCinematic", function()
+﻿net.Receive("TriggerCinematic", function()
     contents.text = net.ReadString()
     contents.bigText = net.ReadString()
     contents.duration = net.ReadUInt(6)

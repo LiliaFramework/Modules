@@ -13,7 +13,10 @@ end
 lia.chat.register("radio", {
     format = "%s says in radio: \"%s\"",
     font = "liaRadioFont",
-    onGetColor = function() return Color(100, 255, 50) end,
+    onGetColor = function()
+        local colorConfig = lia.config.RadioChatColor
+        return Color(colorConfig.r, colorConfig.g, colorConfig.b)
+    end,
     onCanHear = function(speaker, listener)
         local dist = speaker:GetPos():Distance(listener:GetPos())
         local speakRange = ChatboxCore.ChatRange

@@ -1,5 +1,4 @@
 ﻿util.AddNetworkString("PlayerJoinedLeftAnnouncement")
-
 function MODULE:PlayerDisconnected(client)
     net.Start("PlayerJoinedLeftAnnouncement")
     net.WriteString(L("playerLeft", client:Nick()))

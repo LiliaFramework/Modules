@@ -1,10 +1,10 @@
 ﻿function MODULE:GenerateContentFromConfig(config)
-    local body = "<h1>" .. config.title .. "</h1>"
+    local body = "<h1>" .. (config.title or "Untitled") .. "</h1>"
     if config.introduction then body = body .. "<p>" .. config.introduction .. "</p>" end
     if config.rules then
         for _, rule in ipairs(config.rules) do
-            body = body .. "<h2>" .. rule.title .. "</h2>"
-            body = body .. "<p>" .. rule.content .. "</p>"
+            body = body .. "<h2>" .. (rule.title or "No Title") .. "</h2>"
+            body = body .. "<p>" .. (rule.content or "No Content") .. "</p>"
         end
     end
 
@@ -29,8 +29,8 @@
     if config.instructions then
         body = body .. "<h2>Instructions:</h2>"
         for _, instruction in ipairs(config.instructions) do
-            body = body .. "<h3>" .. instruction.stepTitle .. "</h3>"
-            body = body .. "<p>" .. instruction.stepContent .. "</p>"
+            body = body .. "<h3>" .. (instruction.stepTitle or "Step") .. "</h3>"
+            body = body .. "<p>" .. (instruction.stepContent or "No Content") .. "</p>"
         end
     end
 
@@ -39,16 +39,16 @@
 end
 
 function MODULE:BuildHelpMenu(tabs)
-    if self.FAQEnabled then
+    if lia.config.get("FAQEnabled", true) then
         tabs["FAQ"] = function()
             local body = ""
-            for title, text in SortedPairs(self.FAQQuestions) do
+            for title, text in SortedPairs(self.FAQQuestions or {}) do
                 body = body .. "<h2>" .. title .. "</h2>" .. text .. "<br /><br />"
             end
             return body
         end
     end
 
-    if self.RulesEnabled then tabs["Rules"] = function() return self:GenerateContentFromConfig(self.RulesConfig) end end
-    if self.TutorialEnabled then tabs["Tutorial"] = function() return self:GenerateContentFromConfig(self.TutorialConfig) end end
+    if lia.config.get("RulesEnabled", true) then tabs["Rules"] = function() return self:GenerateContentFromConfig(self.RulesConfig or {}) end end
+    if lia.config.get("TutorialEnabled", true) then tabs["Tutorial"] = function() return self:GenerateContentFromConfig(self.TutorialConfig or {}) end end
 end

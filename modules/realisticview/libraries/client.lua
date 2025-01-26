@@ -1,7 +1,17 @@
-﻿local RealisticViewEnabled = CreateClientConVar("rview_enabled", 0, true)
-local RealisticViewUseFullBody = CreateClientConVar("rview_fullbody", 0, true)
+﻿lia.option.add("realisticViewEnabled", "Enable Realistic View", "Enable or disable the realistic view system.", false, nil, {
+    category = "View",
+    type = "Boolean",
+    IsQuick = true
+})
+
+lia.option.add("realisticViewUseFullBody", "Use Full Body for Realistic View", "Enable or disable full-body angles in realistic view.", false, nil, {
+    category = "View",
+    type = "Boolean",
+    IsQuick = true
+})
+
 function MODULE:CalcView(client, origin, angles)
-    if not client:InVehicle() and RealisticViewEnabled:GetBool() then
+    if not client:InVehicle() and lia.option.get("realisticViewEnabled") then
         local view = {
             origin = origin,
             angles = angles,
@@ -28,31 +38,11 @@ function MODULE:CalcView(client, origin, angles)
         end
 
         view.origin = head.Pos + head.Ang:Up()
-        if RealisticViewUseFullBody:GetBool() then
+        if lia.option.get("realisticViewUseFullBody") then
             view.angles = head.Ang
         else
             view.angles = Angle(head.Ang.p, head.Ang.y, angles.r)
         end
         return view
     end
-end
-
-function MODULE:SetupQuickMenu(menu)
-    menu:addCheck(L("realisticViewEnabled"), function(_, state)
-        if state then
-            RunConsoleCommand("rview_enabled", "1")
-        else
-            RunConsoleCommand("rview_enabled", "0")
-        end
-    end, RealisticViewEnabled:GetBool())
-
-    menu:addCheck(L("realisticViewUsesFullBody"), function(_, state)
-        if state then
-            RunConsoleCommand("rview_fullbody", "1")
-        else
-            RunConsoleCommand("rview_fullbody", "0")
-        end
-    end, RealisticViewUseFullBody:GetBool())
-
-    menu:addSpacer()
 end

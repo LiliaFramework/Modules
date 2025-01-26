@@ -1,1 +1,1 @@
-util.AddNetworkString("AdvertiseMessageCall")
+﻿util.AddNetworkString("AdvertiseMessageCall")

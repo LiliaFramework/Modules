@@ -1,2 +1,2 @@
-util.AddNetworkString("AFKWarning")
+﻿util.AddNetworkString("AFKWarning")
 util.AddNetworkString("AFKAnnounce")

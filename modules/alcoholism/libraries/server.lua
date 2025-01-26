@@ -1,18 +1,18 @@
 ﻿function MODULE:Think()
     if not self.next_think then self.next_think = CurTime() end
     if self.next_think <= CurTime() then
-        for _, v in next, player.GetAll() do
-            local bac = v:GetNW2Int("lia_alcoholism_bac", 0)
-            if bac > 0 then v:SetNW2Int("lia_alcoholism_bac", math.Clamp(bac - self.DegradeRate, 0, 100)) end
+        for _, client in player.Iterator() do
+            local bac = client:GetNW2Int("lia_alcoholism_bac", 0)
+            if bac > 0 then client:SetNW2Int("lia_alcoholism_bac", math.Clamp(bac - lia.config.get("AlcoholDegradeRate", 5), 0, 100)) end
         end
 
-        self.next_think = CurTime() + self.TickTime
+        self.next_think = CurTime() + lia.config.get("AlcoholTickTime", 30)
     end
 end
 
 function MODULE:StartCommand(client, cmd)
     if (client.nextDrunkCheck or 0) < CurTime() then
-        client.nextDrunkCheck = CurTime() + 0.05
+        client.nextDrunkCheck = CurTime() + lia.config.get("AlcoholEffectDelay", 0.03)
         if client:GetNW2Int("lia_alcoholism_bac", 0) > 30 then
             cmd:ClearButtons()
             if (client.nextDrunkSide or 0) < CurTime() then

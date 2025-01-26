@@ -34,18 +34,17 @@ SWEP.IronSightsAng = Vector(0.9, 0, 0)
 SWEP.ViewModelFlip = false
 SWEP.ViewModelFOV = 65
 SWEP.LastFired = 0
-
+SWEP.MaxDist = 400
 function SWEP:Initialize()
     if SERVER then self.LastFired = 0 end
 end
 
 function SWEP:PrimaryAttack()
     local client = self:GetOwner()
-    local target = client:getTracedEntity()
     if client:IsNPC() then return end
     local curTime = CurTime()
     if curTime < self.LastFired + 5 then return end
-    local maxDistance = 400
+    local target = client:getTracedEntity()
     local distance = client:GetPos():Distance(target:GetPos())
     if IsValid(target) and target:IsPlayer() and target:isStaffOnDuty() then
         target:notify(string.format(L("stunAttempted"), client:Name()))
@@ -53,13 +52,13 @@ function SWEP:PrimaryAttack()
         return
     end
 
-    if distance > maxDistance then
+    if distance > self.MaxDist then
         self.LastFired = curTime
         client:ChatPrint(L("targetTooFar"))
         return
     end
 
-    if target:IsPlayer() and target:getChar() then
+    if IsValid(target) and target:IsPlayer() and target:getChar() then
         self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
         self:EmitSound(self.Primary.Sound)
         self.LastFired = curTime
@@ -76,7 +75,6 @@ function SWEP:GetViewModelPosition(pos, ang)
     pos = pos + ang:Forward() * -5
     local Offset = self.IronSightsPos
     if self.IronSightsAng then
-        ang = ang * 1
         ang:RotateAroundAxis(ang:Right(), self.IronSightsAng.x)
         ang:RotateAroundAxis(ang:Up(), self.IronSightsAng.y)
         ang:RotateAroundAxis(ang:Forward(), self.IronSightsAng.z)
@@ -85,53 +83,49 @@ function SWEP:GetViewModelPosition(pos, ang)
     local Right = ang:Right()
     local Up = ang:Up()
     local Forward = ang:Forward()
-    pos = pos + Offset.x * Right
-    pos = pos + Offset.y * Forward
-    pos = pos + Offset.z * Up
+    pos = pos + Offset.x * Right + Offset.y * Forward + Offset.z * Up
     return pos, ang
 end
 
 if CLIENT then
     local LASER = Material("cable/redlaser")
     local function DrawLaser()
-        for _, client in pairs(player.GetAll()) do
-            if not client:Alive() or LocalPlayer() == client or client:GetActiveWeapon() == NULL or client:GetActiveWeapon():GetClass() ~= "weapon_stungun" then continue end
+        for _, client in player.Iterator() do
+            if not client:Alive() or LocalPlayer() == client or not IsValid(client:GetActiveWeapon()) or client:GetActiveWeapon():GetClass() ~= "weapon_stungun" then continue end
             render.SetMaterial(LASER)
             local bone = client:LookupBone("ValveBiped.Bip01_R_Hand")
-            if bone == nil then return end
+            if not bone then continue end
             local m = client:GetBoneMatrix(bone)
-            if not IsValid(m) then return end
+            if not m then continue end
             local pos = m:GetTranslation() + client:EyeAngles():Forward() * 8 + Vector(0, 0, 0.1) + client:EyeAngles():Right() * -1
-            local hitpos = client:GetShootPos() + client:EyeAngles():Forward() * SWEPConfig.MaxDist
-            if client:GetEyeTrace().HitPos:Length() <= SWEPConfig.MaxDist then hitpos = client:GetEyeTrace().HitPos end
+            local trace = client:GetEyeTrace()
+            local hitpos = client:GetShootPos() + client:EyeAngles():Forward() * self.MaxDist
+            if client:GetShootPos():Distance(trace.HitPos) <= self.MaxDist then hitpos = trace.HitPos end
             render.DrawBeam(pos, hitpos, 2, 0, 12.5, Color(255, 0, 0, 255))
         end
     end
 
-    hook.Add("PostDrawOpaqueRenderables", "PlyMustSeeLaser", function() DrawLaser() end)
+    hook.Add("PostDrawOpaqueRenderables", "PlyMustSeeLaser", DrawLaser)
     function SWEP:ViewModelDrawn()
         local vm = self.Owner:GetViewModel()
         if not IsValid(vm) then return end
-        local bones = vm:LookupBone("Trigger")
-        local bone = vm:LookupBone("cartridge")
-        if not bone then return end
-        pos, ang = Vector(0, 0, 0), Angle(0, 0, 0)
-        local m = vm:GetBoneMatrix(bone)
-        local m2 = vm:GetBoneMatrix(bones)
-        if m then
+        local triggerBone = vm:LookupBone("Trigger")
+        local cartridgeBone = vm:LookupBone("cartridge")
+        if not cartridgeBone then return end
+        local pos, ang = Vector(0, 0, 0), Angle(0, 0, 0)
+        local m = vm:GetBoneMatrix(cartridgeBone)
+        local m2 = vm:GetBoneMatrix(triggerBone)
+        if m and m2 then
             pos, ang = m:GetTranslation(), m:GetAngles()
-            pos2, ang2 = m2:GetTranslation(), m2:GetAngles()
-        else
-            return
+            local pos2, ang2 = m2:GetTranslation(), m2:GetAngles()
+            render.SetMaterial(LASER)
+            render.DrawBeam(pos, self.Owner:GetEyeTrace().HitPos, 2, 0, 12.5, Color(255, 0, 0, 255))
+            ang2:RotateAroundAxis(ang2:Forward(), 90)
+            ang2:RotateAroundAxis(ang2:Right(), 90)
+            cam.Start3D2D(pos2 + ang2:Right() * -1 + ang2:Up() * 3.12 + ang2:Forward() * 0.12, ang2, 0.1)
+            self:DrawScreen(0, 0, 65, 123)
+            cam.End3D2D()
         end
-
-        render.SetMaterial(LASER)
-        render.DrawBeam(pos, self.Owner:GetEyeTrace().HitPos, 2, 0, 12.5, Color(255, 0, 0, 255))
-        ang2:RotateAroundAxis(ang2:Forward(), 90)
-        ang2:RotateAroundAxis(ang2:Right(), 90)
-        cam.Start3D2D(pos2 + ang2:Right() * -1 + ang2:Up() * 3.12 + ang2:Forward() * 0.12, ang2, 0.1)
-        self:DrawScreen(0, 0, 65, 123)
-        cam.End3D2D()
     end
 
     function SWEP:DrawScreen()

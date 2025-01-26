@@ -1,5 +1,4 @@
-﻿local MODULE = MODULE
-
+﻿local allowedImageTypes = {".PNG", ".JPG", ".JPEG"}
 local function getTableEnt(pos)
     for _, ent in pairs(ents.FindByClass("wartable")) do
         if ent:GetPos():DistToSqr(pos) < 25000 then return ent end
@@ -16,7 +15,7 @@ end)
 netstream.Hook("SetWarTableMap", function(client, _, text)
     local tableEnt = getTableEnt(client:GetPos())
     if not tableEnt then return end
-    for _, imageType in pairs(MODULE.allowedImageTypes) do
+    for _, imageType in pairs(allowedImageTypes) do
         if string.find(text, string.lower(imageType)) then
             netstream.Start(player.GetAll(), "SetWarTableMap", tableEnt, text)
             break

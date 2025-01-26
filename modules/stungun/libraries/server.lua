@@ -7,10 +7,12 @@
     target:setRagdolled(true, 5, 5, "Recovering Conscience")
     target:notify(string.format(L("tasedBy"), client:Nick()))
     timer.Simple(15, function()
+        if not IsValid(target) then return end
         client:notify(L("targetTooStunned"))
         target:notify(L("targetStunnedMove"))
         target:SetNoDraw(false)
         timer.Simple(5, function()
+            if not IsValid(target) then return end
             target:notify(L("nowAbleToMove"))
             client:notify(L("targetAbleToMove"))
             target:Freeze(false)

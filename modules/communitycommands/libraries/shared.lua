@@ -1,4 +1,4 @@
-function MODULE:InitializedModules()
+﻿function MODULE:InitializedModules()
     for commandName, data in pairs(self.URLs) do
         local url = data.URL
         lia.command.add(commandName, {

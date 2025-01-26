@@ -1,4 +1,4 @@
-function MODULE:PlayerUse(client, entity)
+﻿function MODULE:PlayerUse(client, entity)
     if IsValid(entity) and entity:GetClass() == "prop_ragdoll" and IsValid(entity:getNetVar("player")) and not client:GetNW2Bool("IdCooldown", false) then
         client:binaryQuestion(L("identifyCorpseQuestion"), L("yes"), L("no"), false, function(choice)
             if choice == 0 then

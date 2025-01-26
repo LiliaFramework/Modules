@@ -14,9 +14,9 @@
         DrawSharpen(1, 1)
         surface.SetDrawColor(0, 160, 0, 255)
         local client = LocalPlayer()
-        for _, v in pairs(player.GetAll()) do
-            if v ~= client and v.character and v:GetPos():Distance(client:GetPos()) <= 2000 then
-                local position = v:LocalToWorld(v:OBBCenter()):ToScreen()
+        for _, ply in player.Iterator() do
+            if ply ~= client and ply.character and ply:GetPos():Distance(client:GetPos()) <= 2000 then
+                local position = ply:LocalToWorld(ply:OBBCenter()):ToScreen()
                 local x, y = position.x, position.y
                 local mat = Material("models/wireframe")
                 surface.SetDrawColor(255, 255, 255, 220)

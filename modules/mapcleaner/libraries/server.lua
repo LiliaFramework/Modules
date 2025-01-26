@@ -1,35 +1,36 @@
 ﻿function MODULE:InitializedModules()
-    timer.Create("clearWorldItemsWarning", self.ItemCleanupTime - 60, 0, function()
-        for _, v in pairs(player.GetAll()) do
-            v:SendMessage(L("itemCleanupWarning"))
+    if not lia.config.get("MapCleanerEnabled", true) then return end
+    local itemCleanupTime = lia.config.get("ItemCleanupTime", 7200)
+    local mapCleanupTime = lia.config.get("MapCleanupTime", 21600)
+    timer.Create("clearWorldItemsWarning", itemCleanupTime - 60, 0, function()
+        for _, client in player.Iterator() do
+            client:ChatPrint(L("itemCleanupWarning"))
         end
     end)
 
-    timer.Create("AutomaticMapCleanupWarning", self.MapCleanupTime - 60, 0, function()
-        for _, v in pairs(player.GetAll()) do
-            v:SendMessage(L("mapCleanupWarning"))
+    timer.Create("AutomaticMapCleanupWarning", mapCleanupTime - 60, 0, function()
+        for _, client in player.Iterator() do
+            client:ChatPrint(L("mapCleanupWarning"))
         end
     end)
 
-    timer.Create("clearWorldItems", self.ItemCleanupTime, 0, function()
-        for _, v in pairs(player.GetAll()) do
-            v:SendMessage(L("itemCleanupFinalWarning"))
+    timer.Create("clearWorldItems", itemCleanupTime, 0, function()
+        for _, client in player.Iterator() do
+            client:ChatPrint(L("itemCleanupFinalWarning"))
         end
 
-        for _, v in pairs(ents.FindByClass("lia_item")) do
-            v:Remove()
+        for _, item in ents.FindByClass("lia_item") do
+            item:Remove()
         end
     end)
 
-    timer.Create("AutomaticMapCleanup", self.MapCleanupTime, 0, function()
-        for _, v in pairs(player.GetAll()) do
-            v:SendMessage(L("mapCleanupFinalWarning"))
+    timer.Create("AutomaticMapCleanup", mapCleanupTime, 0, function()
+        for _, client in player.Iterator() do
+            client:ChatPrint(L("mapCleanupFinalWarning"))
         end
 
-        for _, v in pairs(ents.GetAll()) do
-            if table.HasValue(self.MapCleanerEntitiesToRemove, v:GetClass()) then
-                v:Remove()
-            end
+        for _, ent in ents.Iterator() do
+            if table.HasValue(self.MapCleanerEntitiesToRemove, ent:GetClass()) then ent:Remove() end
         end
     end)
 end

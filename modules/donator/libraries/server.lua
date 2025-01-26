@@ -13,49 +13,49 @@ function MODULE:PlayerSpawn(client)
 end
 
 function AddOverrideCharSlots(client)
-    for _, v in pairs(player.GetAll()) do
-        if client and v == client then
+    for _, ply in player.Iterator() do
+        if client and ply == client then
             local contents = lia.data.get("charslotsteamids", {}, nil, true)
-            if contents[v:SteamID()] then
-                contents[v:SteamID()] = contents[v:SteamID()] + 1
+            if contents[ply:SteamID()] then
+                contents[ply:SteamID()] = contents[ply:SteamID()] + 1
             else
-                contents[v:SteamID()] = lia.config.MaxCharacters + 1
+                contents[ply:SteamID()] = lia.config.MaxCharacters + 1
             end
 
             lia.data.set("charslotsteamids", contents, nil, true)
-            v:setNetVar("overrideSlots", contents[v:SteamID()])
+            ply:setNetVar("overrideSlots", contents[ply:SteamID()])
         end
     end
 end
 
 function SubtractOverrideCharSlots(client)
-    for _, v in pairs(player.GetAll()) do
-        if client and v == client then
+    for _, ply in player.Iterator() do
+        if client and ply == client then
             local contents = lia.data.get("charslotsteamids", {}, nil, true)
-            if contents[v:SteamID()] then
-                contents[v:SteamID()] = contents[v:SteamID()] - 1
+            if contents[ply:SteamID()] then
+                contents[ply:SteamID()] = contents[ply:SteamID()] - 1
             else
-                contents[v:SteamID()] = lia.config.MaxCharacters
+                contents[ply:SteamID()] = lia.config.MaxCharacters
             end
 
             lia.data.set("charslotsteamids", contents, nil, true)
-            v:setNetVar("overrideSlots", contents[v:SteamID()])
+            ply:setNetVar("overrideSlots", contents[ply:SteamID()])
         end
     end
 end
 
 function OverrideCharSlots(client, value)
-    for _, v in pairs(player.GetAll()) do
-        if client and v == client then
+    for _, ply in player.Iterator() do
+        if client and ply == client then
             local contents = lia.data.get("charslotsteamids", {}, nil, true)
-            if contents[v:SteamID()] then
-                contents[v:SteamID()] = value
+            if contents[ply:SteamID()] then
+                contents[ply:SteamID()] = value
             else
-                contents[v:SteamID()] = value
+                contents[ply:SteamID()] = value
             end
 
             lia.data.set("charslotsteamids", contents, nil, true)
-            v:setNetVar("overrideSlots", contents[v:SteamID()])
+            ply:setNetVar("overrideSlots", contents[ply:SteamID()])
         end
     end
 end

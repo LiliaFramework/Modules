@@ -1,4 +1,4 @@
-if SERVER then
+﻿if SERVER then
     util.AddNetworkString("StartCaption")
     util.AddNetworkString("EndCaption")
 else

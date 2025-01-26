@@ -1,4 +1,4 @@
-function MODULE:PostDrawOpaqueRenderables()
+﻿function MODULE:PostDrawOpaqueRenderables()
     local client = LocalPlayer()
     if not IsValid(client) then return end
     for _, entity in ents.Iterator() do

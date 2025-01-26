@@ -1,11 +1,10 @@
-local FreeLookEnabled = CreateClientConVar("freelook_enabled", 0, true)
-local freelooking, LookX, LookY, InitialAng, CoolAng, ZeroAngle = false, 0, 0, Angle(), Angle(), Angle()
-function MODULE:Isinsights(client)
+﻿local freelooking, LookX, LookY, InitialAng, CoolAng, ZeroAngle = false, 0, 0, Angle(), Angle(), Angle()
+function MODULE:IsInSights(client)
     local weapon = client:GetActiveWeapon()
-    return self.FreelookBlockADS and (client:KeyDown(IN_ATTACK2) or (weapon.GetInSights and weapon:GetInSights()) or (weapon.ArcCW and weapon:GetState() == ArcCW.STATE_SIGHTS) or (weapon.GetIronSights and weapon:GetIronSights()))
+    return lia.option.get("freelookBlockADS") and (client:KeyDown(IN_ATTACK2) or (weapon.GetInSights and weapon:GetInSights()) or (weapon.ArcCW and weapon:GetState() == ArcCW.STATE_SIGHTS) or (weapon.GetIronSights and weapon:GetIronSights()))
 end
 
-function MODULE:Holdingbind(client)
+function MODULE:HoldingBind(client)
     if not input.LookupBinding("freelook") then
         return client:KeyDown(IN_WALK)
     else
@@ -14,10 +13,10 @@ function MODULE:Holdingbind(client)
 end
 
 function MODULE:CalcView(client, _, angles)
-    if not client:getChar() or not FreeLookEnabled:GetBool() then return end
-    local smoothness = math.Clamp(self.FreelookSmooth, 0.1, 2)
+    if not client:getChar() or not lia.option.get("freelookEnabled") then return end
+    local smoothness = math.Clamp(lia.option.get("freelookSmoothness"), 0.1, 2)
     CoolAng = LerpAngle(0.15 * smoothness, CoolAng, Angle(LookY, -LookX, 0))
-    if not self:Holdingbind(client) and CoolAng.p < 0.05 and CoolAng.p > -0.05 or self:Isinsights(client) and CoolAng.p < 0.05 and CoolAng.p > -0.05 or not system.HasFocus() or client:ShouldDrawLocalPlayer() then
+    if not self:HoldingBind(client) and math.abs(CoolAng.p) < 0.05 or self:IsInSights(client) and math.abs(CoolAng.p) < 0.05 or not system.HasFocus() or client:ShouldDrawLocalPlayer() then
         InitialAng = angles + CoolAng
         LookX, LookY = 0, 0
         CoolAng = ZeroAngle
@@ -30,7 +29,7 @@ end
 
 function MODULE:CalcViewModelView(wep, _, _, _, _, ang)
     local lp = LocalPlayer()
-    if not lp:getChar() or not FreeLookEnabled:GetBool() then return end
+    if not lp:getChar() or not lia.option.get("freelookEnabled") then return end
     local MWBased = wep.m_AimModeDeltaVelocity and -1.5 or 1
     ang.p = ang.p + CoolAng.p / 2.5 * MWBased
     ang.y = ang.y + CoolAng.y / 2.5 * MWBased
@@ -38,37 +37,36 @@ end
 
 function MODULE:InputMouseApply(cmd, x, y)
     local lp = LocalPlayer()
-    if not lp:getChar() or not FreeLookEnabled:GetBool() then return end
-    if not self:Holdingbind(lp) or self:Isinsights(lp) or lp:ShouldDrawLocalPlayer() then
+    if not lp:getChar() or not lia.option.get("freelookEnabled") then return end
+    if not self:HoldingBind(lp) or self:IsInSights(lp) or lp:ShouldDrawLocalPlayer() then
         LookX, LookY = 0, 0
         return
     end
 
     InitialAng.z = 0
     cmd:SetViewAngles(InitialAng)
-    LookX = math.Clamp(LookX + x * 0.02, -self.FreelookLimH, self.FreelookLimH)
-    LookY = math.Clamp(LookY + y * 0.02, -self.FreelookLimV, self.FreelookLimV)
+    LookX = math.Clamp(LookX + x * 0.02, -lia.option.get("freelookLimitHorizontal"), lia.option.get("freelookLimitHorizontal"))
+    LookY = math.Clamp(LookY + y * 0.02, -lia.option.get("freelookLimitVertical"), lia.option.get("freelookLimitVertical"))
     return true
 end
 
 function MODULE:StartCommand(client, cmd)
     if not client:IsPlayer() or not client:Alive() then return end
     if not client:getChar() then return end
-    if not self.FreelookBlockFire then return end
-    if not self:Holdingbind(client) or self:Isinsights(client) or client:ShouldDrawLocalPlayer() then return end
+    if not lia.option.get("freelookBlockADS") then return end
+    if not self:HoldingBind(client) or self:IsInSights(client) or client:ShouldDrawLocalPlayer() then return end
     cmd:RemoveKey(IN_ATTACK)
 end
 
 function MODULE:SetupQuickMenu(menu)
-    menu:addCheck(L("freelookEnabled"), function(_, state)
+    menu:addCheck(L("Enable Freelook"), function(_, state)
+        lia.option.set("freelookEnabled", state)
         if state then
-            RunConsoleCommand("freelook_enabled", "1")
-            client:ChatPrint(L("freelookStatus", "enabled"))
+            LocalPlayer():ChatPrint(L("Freelook has been enabled."))
         else
-            RunConsoleCommand("freelook_enabled", "0")
-            client:ChatPrint(L("freelookStatus", "disabled"))
+            LocalPlayer():ChatPrint(L("Freelook has been disabled."))
         end
-    end, FreeLookEnabled:GetBool())
+    end, lia.option.get("freelookEnabled"))
 end
 
 concommand.Add("+freelook", function() freelooking = true end)

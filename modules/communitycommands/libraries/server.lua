@@ -1,4 +1,4 @@
-util.AddNetworkString("OpenCommunityURL")
+﻿util.AddNetworkString("OpenCommunityURL")
 function MODULE:HandleCommunityURL(client, command)
     local commandTable = self.URLs[command]
     if not commandTable then
