@@ -34,7 +34,7 @@ function PANEL:Init()
         if IsValid(model) then model:SetSkin(math.Round(value)) end
     end
 
-    local color = lia.config.Color
+    local color = lia.config.get("Color")
     local h, s, v = ColorToHSV(color)
     s = s * 0.25
     local finaloutlinecolor = HSVToColor(h, s, v)

@@ -160,6 +160,6 @@ else
         y = y - 20
         local _, ty = drawText(playingText, x, y, colorAlpha(playingColor, alpha), 1, 1, nil, alpha * 0.65)
         y = y + ty * .9
-        drawText("Cassette Player", x, y, colorAlpha(lia.config.Color, alpha), 1, 1, nil, alpha * 0.65)
+        drawText("Cassette Player", x, y, colorAlpha(lia.config.get("Color"), alpha), 1, 1, nil, alpha * 0.65)
     end
 end

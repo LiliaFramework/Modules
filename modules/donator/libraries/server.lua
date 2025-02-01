@@ -19,7 +19,7 @@ function AddOverrideCharSlots(client)
             if contents[ply:SteamID()] then
                 contents[ply:SteamID()] = contents[ply:SteamID()] + 1
             else
-                contents[ply:SteamID()] = lia.config.MaxCharacters + 1
+                contents[ply:SteamID()] = lia.config.get("MaxCharacters") + 1
             end
 
             lia.data.set("charslotsteamids", contents, nil, true)
@@ -35,7 +35,7 @@ function SubtractOverrideCharSlots(client)
             if contents[ply:SteamID()] then
                 contents[ply:SteamID()] = contents[ply:SteamID()] - 1
             else
-                contents[ply:SteamID()] = lia.config.MaxCharacters
+                contents[ply:SteamID()] = lia.config.get("MaxCharacters")
             end
 
             lia.data.set("charslotsteamids", contents, nil, true)

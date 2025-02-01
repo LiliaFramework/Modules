@@ -14,7 +14,7 @@ lia.chat.register("radio", {
     format = "%s says in radio: \"%s\"",
     font = "liaRadioFont",
     onGetColor = function()
-        local colorConfig = lia.config.RadioChatColor
+        local colorConfig = lia.config.get("RadioChatColor")
         return Color(colorConfig.r, colorConfig.g, colorConfig.b)
     end,
     onCanHear = function(speaker, listener)
