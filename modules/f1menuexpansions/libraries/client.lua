@@ -49,6 +49,6 @@ function MODULE:BuildHelpMenu(tabs)
         end
     end
 
-    if lia.config.get("RulesEnabled", true) then tabs["Rules"] = function() return self:GenerateContentFromConfig(self.RulesConfig or {}) end end
-    if lia.config.get("TutorialEnabled", true) then tabs["Tutorial"] = function() return self:GenerateContentFromConfig(self.TutorialConfig or {}) end end
+    if lia.config.get("RulesEnabled", true) then tabs["Rules"] = function() return self:GenerateContentFromConfig(self.RulesConfig) end end
+    if lia.config.get("TutorialEnabled", true) then tabs["Tutorial"] = function() return self:GenerateContentFromConfig(self.TutorialConfig) end end
 end
