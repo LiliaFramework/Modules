@@ -1,4 +1,5 @@
 ﻿local MODULE = MODULE
+
 PIM:AddOption("Request Search", {
     runServer = true,
     shouldShow = function(client, target) return not target.SearchRequested and not client.SearchRequested and not IsBeingSearched(target) end,
@@ -7,7 +8,7 @@ PIM:AddOption("Request Search", {
         client:notify("Request to search sent.")
         target.SearchRequested = client
         client.SearchRequested = target
-        client:binaryQuestion("requestSearchInventory", "accept", "deny", false, function(choice)
+        target:binaryQuestion("requestSearchInventory", "accept", "deny", false, function(choice)
             if choice == 0 then
                 MODULE:searchPlayer(client, target)
             else

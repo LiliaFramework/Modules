@@ -8,7 +8,7 @@ ITEM.functions.use = {
         local target = client:getTracedEntity()
         if IsValid(target) and target:GetClass() == "prop_ragdoll" and IsValid(target:getNetVar("player")) then target = target:getNetVar("player") end
         if not IsValid(target) or not (target:IsPlayer() and target:getChar()) then
-            client:notifyLocalized("aimPlayer")
+            client:notifyLocalized("needAimPlayer")
             return false
         end
 

@@ -1,4 +1,4 @@
-﻿function MODULE:CheckValidSit(client)
+function MODULE:CheckValidSit(client)
     if IsHandcuffed(client) then return false end
 end
 
@@ -73,7 +73,6 @@ function MODULE:PlayerLeaveVehicle(client)
 end
 
 function HandcuffPlayer(target)
-    local cmd = target:GetCurrentCommand()
     target:SetRunSpeed(target:GetWalkSpeed())
     for _, v in pairs(target:getChar():getInv():getItems()) do
         if v.isWeapon and v:getData("equip") then v:setData("equip", nil) end

@@ -1,4 +1,5 @@
 ﻿local playerMeta = FindMetaTable("Player")
+
 function playerMeta:StartHandcuffAnim()
     if not self.getChar or not self:getChar() then return end
     if not self:LookupBone("ValveBiped.Bip01_L_UpperArm") then return end
