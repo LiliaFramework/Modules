@@ -1,11 +1,12 @@
 ﻿function MODULE:TasePlayer(client, target)
+    print(client, target)
     if not client:IsPlayer() then return end
     if not IsValid(client:GetActiveWeapon()) then return end
     if client:GetActiveWeapon():GetClass() ~= "weapon_stungun" then return end
     target:Freeze(true)
     target:SetNoDraw(true)
     target:setRagdolled(true, 5, 5, "Recovering Conscience")
-    target:notify(string.format(L("tasedBy"), client:Nick()))
+    target:notify(L("tasedBy", client:getChar():getDisplayedName(target)))
     timer.Simple(15, function()
         if not IsValid(target) then return end
         client:notify(L("targetTooStunned"))

@@ -1,5 +1,4 @@
-﻿MODULE.FlashlightItems = {"flashlight"}
-lia.config.add("FlashlightEnabled", "Enable Flashlight", true, nil, {
+﻿lia.config.add("FlashlightEnabled", "Enable Flashlight", true, nil, {
     desc = "Enables or disables the flashlight functionality.",
     category = "Flashlight",
     type = "Boolean"

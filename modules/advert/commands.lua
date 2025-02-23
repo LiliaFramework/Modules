@@ -1,6 +1,4 @@
 ﻿lia.command.add("advertisement", {
-    adminOnly = false,
-    syntax = "<string factions> <string text>",
     onRun = function(client, arguments)
         if not arguments[1] then return "Invalid argument (#1)" end
         local message = table.concat(arguments, " ", 1)
@@ -17,12 +15,14 @@
             client.advertdelay = CurTime() + advertCooldown
             client:getChar():takeMoney(advertPrice)
             client:notifyLocalized("AdvertDeductedMessage", advertPrice, lia.currency.plural)
-            net.Start("AdvertiseMessageCall")
-            net.WriteString(client:Nick())
-            net.WriteString(message)
-            net.Broadcast()
+            if not SERVER then return end
+            for _, ply in player.Iterator() do
+                local displayedName = client:getChar():getDisplayedName(ply)
+                chat.AddText(ply, Color(216, 190, 18), L("AdvertFormat", displayedName), Color(255, 255, 255), message)
+            end
         else
             client:notifyLocalized("AdvertInsufficientFunds")
         end
-    end
+    end,
+    alias = "advert"
 })

@@ -1,14 +1,13 @@
-﻿util.AddNetworkString("PlayerJoinedLeftAnnouncement")
-function MODULE:PlayerDisconnected(client)
-    net.Start("PlayerJoinedLeftAnnouncement")
-    net.WriteString(L("playerLeft", client:Nick()))
-    net.WriteBool(false)
-    net.Broadcast()
+﻿function MODULE:PlayerDisconnected(client)
+    local message = L("playerLeft", client:Nick())
+    for _, ply in player.Iterator() do
+        chat.AddText(ply, Color(255, 0, 0), message)
+    end
 end
 
 function MODULE:PlayerInitialSpawn(client)
-    net.Start("PlayerJoinedLeftAnnouncement")
-    net.WriteString(L("playerJoined", client:Nick()))
-    net.WriteBool(true)
-    net.Broadcast()
+    local message = L("playerJoined", client:Nick())
+    for _, ply in player.Iterator() do
+        chat.AddText(ply, Color(0, 255, 0), message)
+    end
 end

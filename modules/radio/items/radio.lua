@@ -1,7 +1,7 @@
 ﻿ITEM.name = "Radio"
 ITEM.desc = "Radio to use to talk to other people"
-ITEM.uniqueID = "radio"
-ITEM.model = "models/gibs/shield_scanner_gib1.mdl"
+ITEM.isRadio = true
+ITEM.model = "models/danradio/w_radio.mdl"
 ITEM.functions.sabotage = {
     name = L("sabotage"),
     icon = "icon16/disconnect.png",

@@ -19,7 +19,7 @@
             client:ChatPrint(L("itemCleanupFinalWarning"))
         end
 
-        for _, item in ents.FindByClass("lia_item") do
+        for _, item in pairs(ents.FindByClass("lia_item")) do
             item:Remove()
         end
     end)

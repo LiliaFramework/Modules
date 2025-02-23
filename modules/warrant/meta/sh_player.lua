@@ -1,5 +1,4 @@
-﻿local MODULE = MODULE
-local playerMeta = FindMetaTable("Player")
+﻿local playerMeta = FindMetaTable("Player")
 if SERVER then
     function playerMeta:ToggleWanted(warranter)
         local warranted = not self:IsWanted()
@@ -25,7 +24,8 @@ if SERVER then
     end
 
     function playerMeta:CanSeeWarrantsIssued()
-        return self:hasPrivilege("Staff Permissions - Can See Warrant Notifications") or table.HasValue(MODULE.CanSeeWarrantsNotifications, self:Team())
+        local faction = lia.faction.indices[self:Team()]
+        return self:hasPrivilege("Staff Permissions - Can See Warrant Notifications") or faction.CanSeeWarrantsNotifications
     end
 end
 
@@ -34,5 +34,6 @@ function playerMeta:IsWanted()
 end
 
 function playerMeta:CanSeeWarrants()
-    return self:hasPrivilege("Staff Permissions - Can See Warrants") or table.HasValue(MODULE.CanSeeWarrants, self:Team())
+    local faction = lia.faction.indices[self:Team()]
+    return self:hasPrivilege("Staff Permissions - Can See Warrants") or faction.CanSeeWarrants
 end

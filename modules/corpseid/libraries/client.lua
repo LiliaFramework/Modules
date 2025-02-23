@@ -2,7 +2,7 @@
     local client = LocalPlayer()
     if not IsValid(client) then return end
     for _, entity in ents.Iterator() do
-        if IsValid(entity) and entity:GetClass() == "prop_ragdoll" and IsValid(entity:getNetVar("player")) and entity:GetNW2Bool("ShowCorpseMessage", false) then
+        if IsValid(entity) and entity:GetClass() == "prop_ragdoll" and IsValid(entity:getNetVar("player")) and entity:getNetVar("ShowCorpseMessage", false) then
             local distance = client:GetPos():Distance(entity:GetPos())
             local maxDistance = 500
             if distance <= maxDistance then
@@ -16,9 +16,9 @@
     end
 end
 
-function MODULE:LoadFonts()
+function MODULE:LoadFonts(font)
     surface.CreateFont("OrbitronFont", {
-        font = "Orbitron",
+        font = font,
         size = 18,
         weight = 500,
         antialias = true

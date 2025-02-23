@@ -3,19 +3,15 @@
     local flashlightEnabled = lia.config.get("FlashlightEnabled", true)
     local flashlightNeedsItem = lia.config.get("FlashlightNeedsItem", true)
     local flashlightCooldown = lia.config.get("FlashlightCooldown", 0.5)
-    local itemNeeded = self.FlashlightItems
     local hasFlashlight = false
     if flashlightEnabled and (client.FlashlightCooldown or 0) < CurTime() then
         if flashlightNeedsItem then
-            if istable(itemNeeded) then
-                for _, item in ipairs(itemNeeded) do
-                    if client:getChar():getInv():hasItem(item) then
-                        hasFlashlight = true
-                        break
-                    end
+            for _, item in ipairs(itemNeeded) do
+                if not item.isFlashlight then continue end
+                if client:getChar():getInv():hasItem(item) then
+                    hasFlashlight = true
+                    break
                 end
-            else
-                if client:getChar():getInv():hasItem(itemNeeded) then hasFlashlight = true end
             end
         else
             hasFlashlight = true

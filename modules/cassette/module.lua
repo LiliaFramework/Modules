@@ -1,5 +1,0 @@
-﻿MODULE.name = "Cassette Player"
-MODULE.author = "76561198312513285"
-MODULE.discord = "@liliaplayer"
-MODULE.version = "Stock"
-MODULE.desc = "Collect cassette's and listen to your favorite tunes."

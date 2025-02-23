@@ -8,8 +8,8 @@ SWEP.UseHands = true
 SWEP.Spawnable = true
 SWEP.AdminSpawnable = true
 SWEP.Category = "StunGun"
-SWEP.ViewModel = "models/weapons/cg_ocrp2/v_taser.mdl"
-SWEP.WorldModel = "models/weapons/cg_ocrp2/w_taser.mdl"
+SWEP.ViewModel = "models/weapons/custom/taser.mdl"
+SWEP.WorldModel = "models/weapons/custom/w_taser.mdl"
 SWEP.HoldType = "pistol"
 SWEP.Weight = 5
 SWEP.AutoSwitchTo = false
@@ -44,30 +44,38 @@ function SWEP:PrimaryAttack()
     if client:IsNPC() then return end
     local curTime = CurTime()
     if curTime < self.LastFired + 5 then return end
-    local target = client:getTracedEntity()
-    local distance = client:GetPos():Distance(target:GetPos())
-    if IsValid(target) and target:IsPlayer() and target:isStaffOnDuty() then
-        target:notify(string.format(L("stunAttempted"), client:Name()))
-        client:notify(L("cannotStunStaff"))
-        return
+    self.LastFired = curTime
+    self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
+    self:EmitSound(self.Primary.Sound)
+    local bullet = {}
+    bullet.Num = 1
+    bullet.Src = client:GetShootPos()
+    local tr = client:GetEyeTrace()
+    bullet.Dir = (tr.HitPos - bullet.Src):GetNormalized()
+    bullet.Spread = Vector(0, 0, 0)
+    bullet.Tracer = 1
+    bullet.TracerName = "Tracer"
+    bullet.Force = 5
+    bullet.Damage = self.Primary.Damage
+    bullet.Callback = function(attacker, tr, dmginfo)
+        local target = tr.Entity
+        if IsValid(target) and target:IsPlayer() and target:getChar() then
+            local distance = client:GetPos():Distance(target:GetPos())
+            if distance > self.MaxDist then
+                client:notify(L("targetTooFar"))
+                return
+            end
+
+            if target:isStaffOnDuty() then
+                target:notify(L("stunAttempted", client:Name()))
+                client:notify(L("cannotStunStaff"))
+            else
+                if SERVER then MODULE:TasePlayer(client, target) end
+            end
+        end
     end
 
-    if distance > self.MaxDist then
-        self.LastFired = curTime
-        client:ChatPrint(L("targetTooFar"))
-        return
-    end
-
-    if IsValid(target) and target:IsPlayer() and target:getChar() then
-        self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
-        self:EmitSound(self.Primary.Sound)
-        self.LastFired = curTime
-        self:ShootBullet(0, 1, self.Primary.Cone)
-        if SERVER then MODULE:TasePlayer(client, target) end
-    else
-        self.LastFired = curTime
-        client:ChatPrint(L("invalidTarget"))
-    end
+    self:FireBullets(bullet)
 end
 
 function SWEP:GetViewModelPosition(pos, ang)
@@ -129,7 +137,7 @@ if CLIENT then
     end
 
     function SWEP:DrawScreen()
-        local power = self:GetNWInt("power", 0)
+        local power = self:getNetVar("power", 0)
         local i = power / 10
         draw.RoundedBox(0, 0, 0, 6, 10, Color(25, 25, 25, 255))
         draw.RoundedBox(0, 1, 0, 4, math.Clamp(i, 0, 10), Color(255 - power, 10 + power * 2, 25, 255))

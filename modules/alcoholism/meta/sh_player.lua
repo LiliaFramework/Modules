@@ -1,12 +1,12 @@
 ﻿local playerMeta = FindMetaTable("Player")
 if SERVER then
     function playerMeta:ResetBAC()
-        self:SetNW2Int("lia_alcoholism_bac", 0)
+        self:setNetVar("lia_alcoholism_bac", 0)
     end
 
     function playerMeta:AddBAC(amt)
         if not amt or not isnumber(amt) then return end
-        self:SetNW2Int("lia_alcoholism_bac", math.Clamp(self:GetNW2Int("lia_alcoholism_bac", 0) + amt, 0, 100))
+        self:setNetVar("lia_alcoholism_bac", math.Clamp(self:getNetVar("lia_alcoholism_bac", 0) + amt, 0, 100))
     end
 end
 
@@ -15,5 +15,5 @@ function playerMeta:IsDrunk()
 end
 
 function playerMeta:GetBAC()
-    return self:GetNW2Int("lia_alcoholism_bac", 0)
+    return self:getNetVar("lia_alcoholism_bac", 0)
 end

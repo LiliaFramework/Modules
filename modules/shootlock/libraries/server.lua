@@ -4,7 +4,7 @@
         if handle and dmgInfo:IsBulletDamage() then
             local client = dmgInfo:GetAttacker()
             local position = dmgInfo:GetDamagePosition()
-            if client:GetEyeTrace().Entity ~= entity or client:GetPos():Distance(position) > MODULE.ShootDistance then return end
+            if client:GetEyeTrace().Entity ~= entity or client:GetPos():Distance(position) > 100 then return end
             if IsValid(client) then
                 if hook.Run("CanPlayerBustLock", client, entity) == false then return end
                 local weapon = client:GetActiveWeapon()

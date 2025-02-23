@@ -23,11 +23,11 @@ lia.command.add("addcharslots", {
 lia.command.add("setcharslots", {
     privilege = "Characters - Set CharSlots",
     superAdminOnly = true,
-    syntax = "<string player> <string count>",
+    syntax = "<string player> <number count>",
     onRun = function(client, arguments)
         local target = lia.command.findPlayer(client, arguments[1])
-        local count = arguments[2]
-        if not (target or count) then return end
+        local count = tonumber(arguments[2])
+        if not target or not count then return end
         OverrideCharSlots(target, count)
     end
 })

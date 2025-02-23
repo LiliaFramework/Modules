@@ -1,9 +1,5 @@
 ﻿function MODULE:getOverrideChars(client)
-    if client:getNetVar("overrideSlots", nil) then
-        return client:getNetVar("overrideSlots")
-    else
-        return lia.config.get("MaxCharacters")
-    end
+    return client:getLiliaData("overrideSlots", lia.config.get("MaxCharacters"))
 end
 
 function MODULE:getRankChars(client)

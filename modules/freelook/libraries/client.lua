@@ -1,10 +1,10 @@
 ﻿local freelooking, LookX, LookY, InitialAng, CoolAng, ZeroAngle = false, 0, 0, Angle(), Angle(), Angle()
-function MODULE:IsInSights(client)
+local function IsInSights(client)
     local weapon = client:GetActiveWeapon()
     return lia.option.get("freelookBlockADS") and (client:KeyDown(IN_ATTACK2) or (weapon.GetInSights and weapon:GetInSights()) or (weapon.ArcCW and weapon:GetState() == ArcCW.STATE_SIGHTS) or (weapon.GetIronSights and weapon:GetIronSights()))
 end
 
-function MODULE:HoldingBind(client)
+local function HoldingBind(client)
     if not input.LookupBinding("freelook") then
         return client:KeyDown(IN_WALK)
     else
@@ -16,7 +16,7 @@ function MODULE:CalcView(client, _, angles)
     if not client:getChar() or not lia.option.get("freelookEnabled") then return end
     local smoothness = math.Clamp(lia.option.get("freelookSmoothness"), 0.1, 2)
     CoolAng = LerpAngle(0.15 * smoothness, CoolAng, Angle(LookY, -LookX, 0))
-    if not self:HoldingBind(client) and math.abs(CoolAng.p) < 0.05 or self:IsInSights(client) and math.abs(CoolAng.p) < 0.05 or not system.HasFocus() or client:ShouldDrawLocalPlayer() then
+    if not HoldingBind(client) and math.abs(CoolAng.p) < 0.05 or IsInSights(client) and math.abs(CoolAng.p) < 0.05 or not system.HasFocus() or client:ShouldDrawLocalPlayer() then
         InitialAng = angles + CoolAng
         LookX, LookY = 0, 0
         CoolAng = ZeroAngle
@@ -38,7 +38,7 @@ end
 function MODULE:InputMouseApply(cmd, x, y)
     local lp = LocalPlayer()
     if not lp:getChar() or not lia.option.get("freelookEnabled") then return end
-    if not self:HoldingBind(lp) or self:IsInSights(lp) or lp:ShouldDrawLocalPlayer() then
+    if not HoldingBind(lp) or self:IsInSights(lp) or lp:ShouldDrawLocalPlayer() then
         LookX, LookY = 0, 0
         return
     end
@@ -54,7 +54,7 @@ function MODULE:StartCommand(client, cmd)
     if not client:IsPlayer() or not client:Alive() then return end
     if not client:getChar() then return end
     if not lia.option.get("freelookBlockADS") then return end
-    if not self:HoldingBind(client) or self:IsInSights(client) or client:ShouldDrawLocalPlayer() then return end
+    if not HoldingBind(client) or self:IsInSights(client) or client:ShouldDrawLocalPlayer() then return end
     cmd:RemoveKey(IN_ATTACK)
 end
 

@@ -32,19 +32,18 @@
                 return
             end
 
+            local displayedName = hook.Run("GetDisplayedName", client)
             for _, ply in player.Iterator() do
-                if ply == client or (ply:getChar() and classList[ply:getChar():getClass()]) then
-                    net.Start("classbroadcast_client")
-                    net.WriteString(client:Nick())
-                    net.WriteString(message)
-                    net.WriteTable(classListSimple)
-                    net.Send(ply)
+                if ply == client or (ply:getChar() and classList[ply:getChar():getClass()]) and SERVER then
+                    chat.AddText(ply, Color(200, 200, 100), L("classBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), displayedName, Color(255, 255, 255), ": ", message)
+                    chat.AddText(ply, Color(200, 200, 100), L("classBroadcastLabel"), Color(255, 255, 255), ": ", L("classBroadcastSentTo", table.concat(classListSimple, ", ")))
                 end
             end
 
             client:notify(L("classBroadcastSent"))
         end)
-    end
+    end,
+    alias = "classbc"
 })
 
 lia.command.add("factionbroadcast", {
@@ -82,16 +81,14 @@ lia.command.add("factionbroadcast", {
             end
 
             for _, ply in player.Iterator() do
-                if ply == client or (ply:getChar() and factionList[ply:getChar():getFaction()]) then
-                    net.Start("factionbroadcast_client")
-                    net.WriteString(client:Nick())
-                    net.WriteString(message)
-                    net.WriteTable(factionListSimple)
-                    net.Send(ply)
+                if ply == client or (ply:getChar() and factionList[ply:getChar():getFaction()]) and SERVER then
+                    chat.AddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), client:GetDisplayedName(ply), Color(255, 255, 255), ": ", message)
+                    chat.AddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", L("factionBroadcastSentTo", table.concat(factionListSimple, ", ")))
                 end
             end
 
             client:notify(L("factionBroadcastSent"))
         end)
-    end
+    end,
+    alias = "factionbc"
 })

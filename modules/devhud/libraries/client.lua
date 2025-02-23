@@ -1,4 +1,5 @@
 ﻿local w, h = ScrW(), ScrH()
+
 function MODULE:HUDPaint()
     local client = LocalPlayer()
     if not IsValid(client:getChar()) then return end
@@ -12,9 +13,9 @@ function MODULE:HUDPaint()
     end
 end
 
-function MODULE:LoadFonts()
+function MODULE:LoadFonts(font)
     surface.CreateFont("DevHudServerName", {
-        font = "Times New Roman",
+        font = font,
         extended = false,
         size = 20 * h / 950,
         weight = 500,
@@ -32,7 +33,7 @@ function MODULE:LoadFonts()
     })
 
     surface.CreateFont("DevHudText", {
-        font = "Times New Roman",
+        font = font,
         extended = false,
         size = 20 * h / 1000,
         weight = 500,

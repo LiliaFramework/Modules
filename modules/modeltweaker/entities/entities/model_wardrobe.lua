@@ -1,5 +1,4 @@
-﻿local MODULE = MODULE
-ENT.Type = "anim"
+﻿ENT.Type = "anim"
 ENT.PrintName = "Model Wardrobe"
 ENT.Author = "@liliaplayer"
 ENT.Spawnable = true
@@ -24,13 +23,28 @@ if SERVER then
         local char = client:getChar()
         if not char then return end
         local faction = char:getFaction()
-        local models = MODULE.ModelList[faction] or {}
+        local class = char:getClass()
+        local models = {}
+        if lia.config.get("WardrobeEnableFactionModels", true) then
+            local factionModels = lia.faction.indices[faction] and lia.faction.indices[faction].models or {}
+            for _, m in ipairs(factionModels) do
+                table.insert(models, m)
+            end
+        end
+
+        if lia.config.get("WardrobeEnableClassModels", true) then
+            local classModels = lia.class.list[class] and lia.class.list[class].models or {}
+            for _, m in ipairs(classModels) do
+                table.insert(models, m)
+            end
+        end
+
         if not table.IsEmpty(models) then
             net.Start("SeeModelTable")
             net.WriteTable(models)
             net.Send(client)
         else
-            client:notify("There are no models available for your faction.")
+            client:notify("There are no models available for your faction & class.")
         end
     end
 end

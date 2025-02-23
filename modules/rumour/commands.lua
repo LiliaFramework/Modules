@@ -1,10 +1,9 @@
-﻿local MODULE = MODULE
-local AllowedFactions = {FACTION_STAFF}
-lia.command.add("rumour", {
+﻿lia.command.add("rumour", {
     adminOnly = false,
     syntax = "<string message>",
     onRun = function(client, arguments)
-        if not table.HasValue(AllowedFactions, client:Team()) then
+        local faction = lia.faction.indices[client:Team()]
+        if not faction or not faction.criminal then
             client:ChatPrint(L("rumourNotAllowed"))
             return
         end
@@ -20,15 +19,15 @@ lia.command.add("rumour", {
             local seconds = math.ceil(client.rumourdelay - CurTime())
             client:notifyLocalized("commandCooldownTimed", seconds)
             return
-        else
-            client.rumourdelay = CurTime() + lia.config.get("RumourCooldown", 60)
-            for _, target in player.Iterator() do
-                if table.HasValue(AllowedFactions, target:Team()) then
-                    net.Start("RumorMessageCall")
-                    net.WriteString(rumourMessage)
-                    net.Send(target)
-                end
-            end
+        end
+
+        client.rumourdelay = CurTime() + lia.config.get("RumourCooldown", 60)
+        local revealChance = lia.config.get("RumourRevealChance", 0.02)
+        local revealMath = math.random() < revealChance
+        for _, target in player.Iterator() do
+            local targetFaction = lia.faction.indices[target:Team()]
+            if targetFaction and targetFaction.criminal then chat.AddText(target, L("rumourMessagePrefix", rumourMessage)) end
+            if revealMath and targetFaction and targetFaction.police then chat.AddText(target, L("rumourMessagePrefix", rumourMessage)) end
         end
     end
 })

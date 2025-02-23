@@ -7,10 +7,6 @@ function playerMeta:distanceFromEnt(entity)
     return self:GetPos():Distance(entity:GetPos())
 end
 
-function playerMeta:isObserving()
-    return self:GetMoveType() == MOVETYPE_NOCLIP and not self:hasValidVehicle()
-end
-
 function playerMeta:isMoving()
     if not IsValid(self) or not self:Alive() then return false end
     local keydown = self:KeyDown(IN_FORWARD) or self:KeyDown(IN_BACK) or self:KeyDown(IN_MOVELEFT) or self:KeyDown(IN_MOVERIGHT)

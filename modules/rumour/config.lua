@@ -5,3 +5,11 @@
     min = 0,
     max = 3600
 })
+
+lia.config.add("RumourRevealChance", "Rumour Reveal Chance", 0.02, nil, {
+    desc = "The chance for a rumour to reveal the criminal's identity (default 2%).",
+    category = "Gameplay",
+    type = "Float",
+    min = 0,
+    max = 1
+})

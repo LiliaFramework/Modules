@@ -1,1 +1,0 @@
-﻿util.AddNetworkString("AdvertiseMessageCall")
