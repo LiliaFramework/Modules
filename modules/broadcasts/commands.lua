@@ -35,8 +35,8 @@
             local displayedName = hook.Run("GetDisplayedName", client)
             for _, ply in player.Iterator() do
                 if ply == client or (ply:getChar() and classList[ply:getChar():getClass()]) and SERVER then
-                    chat.AddText(ply, Color(200, 200, 100), L("classBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), displayedName, Color(255, 255, 255), ": ", message)
-                    chat.AddText(ply, Color(200, 200, 100), L("classBroadcastLabel"), Color(255, 255, 255), ": ", L("classBroadcastSentTo", table.concat(classListSimple, ", ")))
+                    ClientAddText(ply, Color(200, 200, 100), L("classBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), displayedName, Color(255, 255, 255), ": ", message)
+                    ClientAddText(ply, Color(200, 200, 100), L("classBroadcastLabel"), Color(255, 255, 255), ": ", L("classBroadcastSentTo", table.concat(classListSimple, ", ")))
                 end
             end
 
@@ -82,8 +82,8 @@ lia.command.add("factionbroadcast", {
 
             for _, ply in player.Iterator() do
                 if ply == client or (ply:getChar() and factionList[ply:getChar():getFaction()]) and SERVER then
-                    chat.AddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), client:GetDisplayedName(ply), Color(255, 255, 255), ": ", message)
-                    chat.AddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", L("factionBroadcastSentTo", table.concat(factionListSimple, ", ")))
+                    ClientAddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), client:GetDisplayedName(ply), Color(255, 255, 255), ": ", message)
+                    ClientAddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", L("factionBroadcastSentTo", table.concat(factionListSimple, ", ")))
                 end
             end
 

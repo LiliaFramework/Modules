@@ -18,7 +18,7 @@
             if not SERVER then return end
             for _, ply in player.Iterator() do
                 local displayedName = client:getChar():getDisplayedName(ply)
-                chat.AddText(ply, Color(216, 190, 18), L("AdvertFormat", displayedName), Color(255, 255, 255), message)
+                ClientAddText(ply, Color(216, 190, 18), L("AdvertFormat", displayedName), Color(255, 255, 255), message)
             end
         else
             client:notifyLocalized("AdvertInsufficientFunds")

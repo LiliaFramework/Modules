@@ -26,8 +26,8 @@
         local revealMath = math.random() < revealChance
         for _, target in player.Iterator() do
             local targetFaction = lia.faction.indices[target:Team()]
-            if targetFaction and targetFaction.criminal then chat.AddText(target, L("rumourMessagePrefix", rumourMessage)) end
-            if revealMath and targetFaction and targetFaction.police then chat.AddText(target, L("rumourMessagePrefix", rumourMessage)) end
+            if targetFaction and targetFaction.criminal then ClientAddText(target, L("rumourMessagePrefix", rumourMessage)) end
+            if revealMath and targetFaction and targetFaction.police then ClientAddText(target, L("rumourMessagePrefix", rumourMessage)) end
         end
     end
 })
