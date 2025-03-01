@@ -4,15 +4,15 @@
         shouldOpenIngame = true,
     },
     ["Discord"] = {
-        URL = "https://discord.gg/example",
+        URL = "https://discord.gg/2QyjggCUx4",
         shouldOpenIngame = false,
     },
     ["Content"] = {
-        URL = "https://example.com/content",
+        URL = "https://steamcommunity.com/sharedfiles/managecollection/?id=3367324267",
         shouldOpenIngame = false,
     },
     ["SteamGroup"] = {
-        URL = "https://steamcommunity.com/groups/example",
+        URL = "https://steamcommunity.com/groups/partumverse",
         shouldOpenIngame = false,
     },
 }
