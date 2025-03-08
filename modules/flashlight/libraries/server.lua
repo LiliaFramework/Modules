@@ -6,7 +6,7 @@
     local hasFlashlight = false
     if flashlightEnabled and (client.FlashlightCooldown or 0) < CurTime() then
         if flashlightNeedsItem then
-            for _, item in ipairs(itemNeeded) do
+            for _, item in ipairs(client:getChar():getItems()) do
                 if not item.isFlashlight then continue end
                 if client:getChar():getInv():hasItem(item) then
                     hasFlashlight = true
