@@ -15,7 +15,7 @@ lia.chat.register("radio", {
     end,
     onCanHear = function(speaker, listener)
         local dist = speaker:GetPos():Distance(listener:GetPos())
-        local speakRange = ChatboxCore.ChatRange
+        local speakRange = lia.config.get("ChatRange", 280)
         local listenerEnts = ents.FindInSphere(listener:GetPos(), speakRange)
         local listenerInv = listener:getChar():getInv()
         if not CURFREQ or CURFREQ == "" or not CURCHANNEL then return false end
@@ -45,7 +45,7 @@ lia.chat.register("radio", {
     end,
     onCanSay = function(speaker)
         local schar = speaker:getChar()
-        local speakRange = ChatboxCore.ChatRange
+        local speakRange = lia.config.get("ChatRange", 280)
         local speakEnts = ents.FindInSphere(speaker:GetPos(), speakRange)
         local speakerInv = schar:getInv()
         local freq, channel
