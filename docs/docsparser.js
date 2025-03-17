@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
+// Utility function to escape HTML
 function escapeHTML(str) {
     return str.replace(/[&<>"']/g, tag => {
         const chars = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -9,19 +10,9 @@ function escapeHTML(str) {
 }
 
 const modulesTxtPath = path.join(__dirname, "..", "modules.txt");
-if (!fs.existsSync(modulesTxtPath)) {
-    console.error("modules.txt not found. Exiting.");
-    process.exit(0);
-}
+if (!fs.existsSync(modulesTxtPath)) process.exit(0);
 
-let raw;
-try {
-    raw = fs.readFileSync(modulesTxtPath, "utf8");
-} catch (error) {
-    console.error("Error reading modules.txt:", error);
-    process.exit(1);
-}
-
+const raw = fs.readFileSync(modulesTxtPath, "utf8");
 const lines = raw.split("\n").map(l => l.trim()).filter(Boolean);
 const data = [];
 for (let i = 0; i < lines.length; i += 3) {
@@ -34,36 +25,75 @@ for (let i = 0; i < lines.length; i += 3) {
 const docsDir = path.join(__dirname);
 if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
 
-let index = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modules</title></head><body><h1>Modules</h1><ul>`;
+// Create a downloads folder within the docs folder to store ZIP files.
+const downloadsDir = path.join(docsDir, "downloads");
+if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
+
+// Copy repository.zip if exists
+const repoZipSrc = path.join(__dirname, "..", "repository.zip");
+let repoZipDest = null;
+if (fs.existsSync(repoZipSrc)) {
+    repoZipDest = path.join(downloadsDir, "repository.zip");
+    fs.copyFileSync(repoZipSrc, repoZipDest);
+}
+
+// Generate index.html
+let index = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Modules</title>
+</head>
+<body>
+  <h1>Modules</h1>
+  <ul>`;
 data.forEach(m => {
     const folder = m.name.replace(/\s+/g, "");
     index += `<li><a href="module-${folder}.html">${m.name}</a></li>`;
 });
-index += `</ul></body></html>`;
-
+index += `</ul>
+</body>
+</html>`;
 fs.writeFileSync(path.join(docsDir, "index.html"), index);
 
+// Generate detail pages and copy each module ZIP
 data.forEach(m => {
     const folder = m.name.replace(/\s+/g, "");
     const detailFile = `module-${folder}.html`;
-    let html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${m.name}</title></head><body><a href="index.html">Back</a><h2>${m.name}</h2><p>by ${m.author}</p><p>${m.desc}</p>`;
+    let html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>${m.name}</title>
+</head>
+<body>
+  <a href="index.html">Back</a>
+  <h2>${m.name}</h2>
+  <p>by ${m.author}</p>
+  <p>${m.desc}</p>`;
 
-    const zipPath = path.join(__dirname, "..", "modules", folder + ".zip");
-    if (fs.existsSync(zipPath)) {
-        html += `<p><a href="../modules/${folder}.zip" download>Download Module ZIP</a></p>`;
+    // Source path for the module ZIP
+    const moduleZipSrc = path.join(__dirname, "..", "modules", folder + ".zip");
+    let moduleZipDest = null;
+    if (fs.existsSync(moduleZipSrc)) {
+        // Copy the ZIP file to the downloads folder.
+        moduleZipDest = path.join(downloadsDir, folder + ".zip");
+        fs.copyFileSync(moduleZipSrc, moduleZipDest);
+        // Link to the ZIP file in the downloads folder.
+        html += `<p><a href="downloads/${folder}.zip" download>Download Module ZIP</a></p>`;
     } else {
         html += `<p>No Module ZIP found</p>`;
     }
 
-    const repoZipPath = path.join(__dirname, "..", "repository.zip");
-    if (fs.existsSync(repoZipPath)) {
-        html += `<p><a href="../repository.zip" download>Download Full Repo ZIP</a></p>`;
+    if (repoZipDest) {
+        html += `<p><a href="downloads/repository.zip" download>Download Full Repo ZIP</a></p>`;
     } else {
         html += `<p>No Repo ZIP found</p>`;
     }
-    html += `</body></html>`;
-
+    html += `</body>
+</html>`;
     fs.writeFileSync(path.join(docsDir, detailFile), html);
 });
 
+// Optionally, remove the modules.txt file if no longer needed.
 fs.unlinkSync(modulesTxtPath);
