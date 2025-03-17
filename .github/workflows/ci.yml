@@ -101,14 +101,18 @@ jobs:
           done
       - name: Extract And Rename Fields
         run: |
-          find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.discord|MODULE\.desc" {} \; | sed -E 's/^\xef\xbb\xbf//' | sed -E 's/MODULE\.name/Name/g; s/MODULE\.discord/Author/g; s/MODULE\.desc/Description/g' | sed 's/[\x00-\x1F\x7F]//g' > modules.txt
+          find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.discord|MODULE\.desc" {} \; \
+            | sed -E 's/^\xef\xbb\xbf//' \
+            | sed -E 's/MODULE\.name/Name/g; s/MODULE\.discord/Author/g; s/MODULE\.desc/Description/g' \
+            | sed 's/[\x00-\x1F\x7F]//g' \
+            > modules.txt
       - name: Zip Modules
         run: |
-          for folder in modules/*; do
+          cd modules
+          for folder in *; do
             if [ -d "$folder" ]; then
-              base=$(basename "$folder")
-              sanitized=$(echo "$base" | sed 's/ //g')
-              zip -r "modules/${sanitized}.zip" "$folder"
+              sanitized=$(echo "$folder" | sed 's/ //g')
+              zip -r "${sanitized}.zip" "$folder"
             fi
           done
       - name: Configure Git
@@ -127,7 +131,9 @@ jobs:
             echo "No changes to commit"
           fi
       - name: Cleanup Local Files
-        run: rm -f modules/*.zip modules.txt
+        run: |
+          rm -f modules/*.zip
+          rm -f modules.txt
 
   gh-pages:
     runs-on: ubuntu-latest
