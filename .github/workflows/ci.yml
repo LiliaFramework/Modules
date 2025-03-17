@@ -127,7 +127,7 @@ jobs:
             echo "No changes to commit"
           fi
       - name: Upload Module ZIPs
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v3
         with:
           name: module-zips
           path: modules/*.zip
