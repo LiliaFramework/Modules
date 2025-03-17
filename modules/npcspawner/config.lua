@@ -1,5 +1,5 @@
-﻿MODULE.SpawnPositions = {
-    --[[
+﻿MODULE.SpawnPositions = {}
+--[[
     ["gm_construct"] = {
         {
             ent = "npc_zombie",
@@ -35,8 +35,6 @@
         },
     }
     ]]
-}
-
 lia.config.add("SpawnRadius", "Spawn Radius", 2000, nil, {
     desc = "Sets the radius (in units) within which spawns occur.",
     category = "Spawning",

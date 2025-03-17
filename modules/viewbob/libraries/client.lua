@@ -1,5 +1,4 @@
 ﻿local stepvalue = 0
-
 local function applyViewPunch(client, angleX, angleY, angleZ)
     if IsValid(client) then client:ViewPunch(Angle(angleX, angleY, angleZ)) end
 end

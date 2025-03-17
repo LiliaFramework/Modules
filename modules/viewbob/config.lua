@@ -1,4 +1,4 @@
-if CLIENT then
+﻿if CLIENT then
     lia.option.add("viewbobEnable", "Enable ViewBob", "Enable or disable the viewbob effect.", false, nil, {
         category = "ViewBob",
         type = "Boolean",

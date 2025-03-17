@@ -1,4 +1,4 @@
-lia.config.add("AdvertPrice", "Advert Price", 10, nil, {
+﻿lia.config.add("AdvertPrice", "Advert Price", 10, nil, {
     desc = "The cost of sending an advertisement.",
     category = "Advertisements",
     type = "Int",
