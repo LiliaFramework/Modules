@@ -173,15 +173,17 @@ jobs:
         with:
           node-version: 16
 
-      - name: List Downloaded ZIPs
-        run: ls -la downloaded_zips || echo "No downloaded_zips found."
+      - name: Debug Downloaded
+        run: |
+          echo "Zips in downloaded_zips:"
+          ls -lah downloaded_zips || echo "No zips found"
 
       - name: Generate Site
         run: node docs/docsparser.js
 
-      - name: List Docs
+      - name: Debug Docs
         run: |
-          echo "Showing docs folder now..."
+          echo "Final docs folder structure before deploying:"
           ls -R docs
 
       - name: Deploy to GitHub Pages
