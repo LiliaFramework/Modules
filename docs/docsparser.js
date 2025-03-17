@@ -79,8 +79,8 @@ data.forEach(mod => {
   <p>by ${mod.author}</p>
   <p>${mod.desc}</p>
 `;
-    // Where the workflow downloaded artifact zips (now inside docs/downloaded_zips)
-    const moduleZipSrc = path.join(__dirname, "downloaded_zips", folder + ".zip");
+    // Where the workflow downloaded artifact zips (now inside docs/downloads)
+    const moduleZipSrc = path.join(__dirname, "downloads", folder + ".zip");
     if (fs.existsSync(moduleZipSrc)) {
         // Copy to docs/Downloads
         const moduleZipDest = path.join(downloadsDir, folder + ".zip");
