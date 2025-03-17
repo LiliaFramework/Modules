@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 SWEP.PrintName = "Rappel Gear"
 SWEP.DrawAmmo = false
 SWEP.DrawCrosshair = false
@@ -25,18 +25,18 @@ SWEP.IsAlwaysLowered = true
 SWEP.FireWhenLowered = true
 SWEP.HoldType = "passive"
 function SWEP:Initialize()
-	self:SetHoldType(self.HoldType)
+    self:SetHoldType(self.HoldType)
 end
 
 function SWEP:PrimaryAttack()
-	if not IsFirstTimePredicted() then return end
-	local owner = self:GetOwner()
-	if not IsValid(owner) or owner:GetMoveType() == MOVETYPE_NOCLIP then return end
-	if owner.rappelling then
-		MODULE:EndRappel(owner)
-	elseif owner:OnGround() then
-		MODULE:StartRappel(owner)
-	end
+    if not IsFirstTimePredicted() then return end
+    local owner = self:GetOwner()
+    if not IsValid(owner) or owner:GetMoveType() == MOVETYPE_NOCLIP then return end
+    if owner.rappelling then
+        MODULE:EndRappel(owner)
+    elseif owner:OnGround() then
+        MODULE:StartRappel(owner)
+    end
 end
 
 function SWEP:SecondaryAttack()
