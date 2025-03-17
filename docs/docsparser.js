@@ -16,7 +16,7 @@ function escapeHTML(str) {
 
 const modulesTxtPath = path.join(__dirname, "..", "modules.txt");
 if (!fs.existsSync(modulesTxtPath)) {
-    // If there's no modules.txt, just exit.
+    console.log("No modules.txt found, exiting docs build.");
     process.exit(0);
 }
 
@@ -35,51 +35,75 @@ for (let i = 0; i < lines.length; i += 3) {
     });
 }
 
-const docsDir = path.join(__dirname);
+const docsDir = __dirname;
 if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
 
 const downloadsBase = path.join(docsDir, "downloads");
 const downloadsDir = path.join(downloadsBase, "modules");
+if (!fs.existsSync(downloadsBase)) fs.mkdirSync(downloadsBase);
+if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
 
-if (!fs.existsSync(downloadsBase)) {
-    fs.mkdirSync(downloadsBase);
-}
-if (!fs.existsSync(downloadsDir)) {
-    fs.mkdirSync(downloadsDir);
-}
-
-// Build index page
-let index = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modules</title></head><body><h1>Modules</h1><ul>';
+// Build index.html
+let index = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Modules</title>
+</head>
+<body>
+<h1>Modules</h1>
+<ul>
+`;
 data.forEach(mod => {
     const folder = mod.name.replace(/\s+/g, "");
-    index += `<li><a href="module-${folder}.html">${mod.name}</a></li>`;
+    index += `<li><a href="module-${folder}.html">${mod.name}</a></li>\n`;
 });
-index += "</ul></body></html>";
-fs.writeFileSync(path.join(docsDir, "index.html"), index);
+index += `
+</ul>
+</body>
+</html>
+`;
+fs.writeFileSync(path.join(docsDir, "index.html"), index.trim());
 
-// Build detail pages + copy zips
+// Build detail pages and copy each module ZIP
 data.forEach(mod => {
     const folder = mod.name.replace(/\s+/g, "");
     const detailFile = `module-${folder}.html`;
-    let html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${mod.name}</title></head><body>`;
-    html += `<a href="index.html">Back</a><h2>${mod.name}</h2><p>by ${mod.author}</p><p>${mod.desc}</p>`;
 
-    // path to artifact-downloaded ZIP
+    let html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>${mod.name}</title>
+</head>
+<body>
+<a href="index.html">Back</a>
+<h2>${mod.name}</h2>
+<p>by ${mod.author}</p>
+<p>${mod.desc}</p>
+`;
+
+    // Path where the artifact step extracted them
     const moduleZipSrc = path.join(__dirname, "downloaded_zips", folder + ".zip");
     if (fs.existsSync(moduleZipSrc)) {
-        // copy the zip to docs/downloads/modules
+        // Copy it into docs/downloads/modules
         const moduleZipDest = path.join(downloadsDir, folder + ".zip");
         fs.copyFileSync(moduleZipSrc, moduleZipDest);
 
-        // Link to the copied zip
         html += `<p><a href="downloads/modules/${folder}.zip" download>Download Module ZIP</a></p>`;
     } else {
         html += "<p>No Module ZIP found</p>";
     }
-    html += "</body></html>";
 
-    fs.writeFileSync(path.join(docsDir, detailFile), html);
+    html += `
+</body>
+</html>
+`;
+
+    fs.writeFileSync(path.join(docsDir, detailFile), html.trim());
 });
 
-// Remove modules.txt so it doesn't stay in docs
+// Remove modules.txt so it doesn't stay in the docs folder
 fs.unlinkSync(modulesTxtPath);
