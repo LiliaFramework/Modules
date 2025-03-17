@@ -1,195 +1,52 @@
-name: CI
-on: [push, pull_request]
-permissions:
-  actions: write
-  checks: write
-  contents: write
-  deployments: write
-  id-token: write
-  issues: write
-  discussions: write
-  packages: write
-  pages: write
-  pull-requests: write
-  repository-projects: write
-  security-events: write
-  statuses: write
+gh-pages:
+  runs-on: ubuntu-latest
+  needs: scrape-modules
+  steps:
+    - name: Checkout Code from Main Branch
+      uses: actions/checkout@v3
+      with:
+        ref: main
+        fetch-depth: 0
 
-jobs:
-  linter:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Lilia Repository
-        uses: actions/checkout@v3
-        with:
-          path: modules
+    - name: Download Module ZIPs
+      uses: actions/download-artifact@v4
+      with:
+        name: module-zips
+        path: downloaded_zips
 
-      - name: Set Up Lua
-        uses: leafo/gh-actions-lua@v8.0.0
-        with:
-          luaVersion: 5.2
+    - name: Extract Module ZIPs
+      run: |
+        for zip in downloaded_zips/*.zip; do
+          # Extract each ZIP into its own folder named after the ZIP file (without extension)
+          folder="extracted_$(basename "$zip" .zip)"
+          mkdir -p "$folder"
+          unzip "$zip" -d "$folder"
+        done
 
-      - name: Set Up Luarocks
-        uses: leafo/gh-actions-luarocks@v4.0.0
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
 
-      - name: Pull GluaCheck
-        uses: actions/checkout@v3
-        with:
-          repository: LiliaFramework/GluaCheck
-          path: luacheck
+    - name: Debug Downloaded
+      run: |
+        echo "Zips in downloaded_zips:"
+        ls -lah downloaded_zips || echo "No zips found"
+        echo "Extracted directories:"
+        ls -d extracted_* || echo "No extracted folders found"
 
-      - name: Build GluaCheck
-        working-directory: luacheck
-        run: luarocks make
+    - name: Generate Site
+      run: node docs/docsparser.js
 
-      - name: Run Luacheck Linting
-        working-directory: modules
-        run: |
-          luacheck . \
-            --no-redefined \
-            --no-global --no-self \
-            --no-max-line-length --no-max-code-line-length \
-            --no-max-string-line-length --no-max-comment-line-length
+    - name: Debug Docs
+      run: |
+        echo "Final docs folder structure before deploying:"
+        ls -R docs
 
-  formatter:
-    runs-on: ubuntu-latest
-    needs: linter
-    steps:
-      - name: Checkout Lilia Repository
-        uses: actions/checkout@v3
-        with:
-          path: modules
-
-      - name: Download and Install GLuaLint
-        run: |
-          curl -L -o glualint.zip https://github.com/FPtje/GLuaFixer/releases/download/1.29.0/glualint-1.29.0-x86_64-linux.zip
-          unzip glualint.zip -d glualint_folder
-          chmod +x glualint_folder/glualint
-          sudo mv glualint_folder/glualint /usr/local/bin
-          rm -rf glualint.zip glualint_folder
-
-      - name: Run GLuaLint for Pretty Printing
-        working-directory: modules
-        run: glualint --pretty-print .
-
-      - name: Configure Git
-        working-directory: modules
-        run: |
-          git config user.email "githubactions@github.com"
-          git config user.name "GitHub Actions"
-
-      - name: Commit and Push Changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
-        working-directory: modules
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            git add .
-            git commit -m "Pretty Printed"
-            git push https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
-          else
-            echo "No changes to commit"
-          fi
-
-  scrape-modules:
-    runs-on: ubuntu-latest
-    needs: formatter
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Install zip
-        run: sudo apt-get update && sudo apt-get install -y zip
-
-      - name: Show Modules Folder Structure (Before Zipping)
-        run: |
-          echo "Listing modules folder before processing:"
-          ls -la modules || true
-
-      - name: Extract And Rename Fields
-        run: |
-          find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.discord|MODULE\.desc" {} \; \
-            | sed -E 's/^\xef\xbb\xbf//' \
-            | sed -E 's/MODULE\.name/Name/g; s/MODULE\.discord/Author/g; s/MODULE\.desc/Description/g' \
-            | sed 's/[\x00-\x1F\x7F]//g' > modules.txt
-          cat modules.txt
-
-      - name: Zip Each Module Folder
-        run: |
-          for folder in modules/*; do
-            if [ -d "$folder" ]; then
-              base=$(basename "$folder")
-              sanitized=$(echo "$base" | sed 's/ //g')
-              zip -r "modules/${sanitized}.zip" "$folder"
-            fi
-          done
-
-      - name: List Modules Folder ZIP Files
-        run: find modules -type f -name "*.zip" -exec ls -la {} \;
-
-      - name: Configure Git
-        run: |
-          git config user.email "githubactions@github.com"
-          git config user.name "GitHub Actions"
-
-      - name: Commit And Push modules.txt
-        env:
-          GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            git add modules.txt
-            git commit -m "Update modules.txt with debug info"
-            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
-          else
-            echo "No changes to commit"
-          fi
-
-      - name: Upload Module ZIPs
-        uses: actions/upload-artifact@v4
-        with:
-          name: module-zips
-          path: modules/*.zip
-
-  gh-pages:
-    runs-on: ubuntu-latest
-    needs: scrape-modules
-    steps:
-      - name: Checkout Code from Main Branch
-        uses: actions/checkout@v3
-        with:
-          ref: main
-          fetch-depth: 0
-
-      - name: Download Module ZIPs
-        uses: actions/download-artifact@v4
-        with:
-          name: module-zips
-          path: downloaded_zips
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Debug Downloaded
-        run: |
-          echo "Zips in downloaded_zips:"
-          ls -lah downloaded_zips || echo "No zips found"
-
-      - name: Generate Site
-        run: node docs/docsparser.js
-
-      - name: Debug Docs
-        run: |
-          echo "Final docs folder structure before deploying:"
-          ls -R docs
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.LiliaGitSecret }}
-          publish_branch: gh-pages
-          publish_dir: ./docs
-          force_orphan: true
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.LiliaGitSecret }}
+        publish_branch: gh-pages
+        publish_dir: ./docs
+        force_orphan: true
