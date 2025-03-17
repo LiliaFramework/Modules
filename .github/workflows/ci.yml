@@ -138,8 +138,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
         run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            git add modules.txt
+          # Only add modules.txt so that untracked ZIP files don't trigger a commit
+          git add modules.txt
+          if ! git diff --cached --quiet; then
             git commit -m "Update modules.txt with debug info"
             git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           else
