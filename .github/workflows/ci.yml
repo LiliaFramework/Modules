@@ -92,25 +92,37 @@ jobs:
           fetch-depth: 0
       - name: Install zip
         run: sudo apt-get update && sudo apt-get install -y zip
-      - name: Debug Show Modules
+      - name: Debug: Show Modules Folder Structure
         run: |
+          echo "Listing modules folder before processing:"
           ls -la modules || true
       - name: Extract And Rename Fields
         run: |
+          echo "Extracting module metadata from module.lua files..."
           find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.discord|MODULE\.desc" {} \; \
             | sed -E 's/^\xef\xbb\xbf//' \
             | sed -E 's/MODULE\.name/Name/g; s/MODULE\.discord/Author/g; s/MODULE\.desc/Description/g' \
             | sed 's/[\x00-\x1F\x7F]//g' \
             > modules.txt
+          echo "modules.txt created:"
+          cat modules.txt
       - name: Zip Each Module Folder
         run: |
+          echo "Creating ZIP files for each module folder..."
           for folder in modules/*; do
             if [ -d "$folder" ]; then
               base=$(basename "$folder")
               sanitized=$(echo "$base" | sed 's/ //g')
+              echo "Zipping folder: $folder as modules/${sanitized}.zip"
               zip -r "modules/${sanitized}.zip" "$folder"
             fi
           done
+      - name: Debug: Show ZIP Files in Modules Folder
+        run: |
+          echo "Listing modules folder after zipping:"
+          ls -la modules || true
+          echo "ZIP files present:"
+          ls -la modules/*.zip || echo "No ZIP files found."
       - name: Configure Git
         run: |
           git config user.email "githubactions@github.com"
@@ -120,15 +132,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-            # Force add the zip files and modules.txt even if they are ignored
+            echo "Changes detected, adding modules.txt and ZIP files to commit..."
             git add -f modules.txt modules/*.zip
-            git commit -m "Update modules.txt and module ZIPs"
+            git status
+            git commit -m "Update modules.txt and module ZIPs with debug info"
             git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           else
             echo "No changes to commit"
           fi
       - name: Cleanup
         run: |
+          echo "Cleaning up temporary ZIP files and modules.txt..."
           rm -f modules/*.zip
           rm -f modules.txt
 
@@ -144,6 +158,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: Debug: List Modules Folder from Checkout
+        run: |
+          echo "Checking for ZIP files in modules folder on gh-pages branch:"
+          ls -la modules || echo "Modules folder missing."
+          ls -la modules/*.zip || echo "No ZIP files found in modules folder."
       - name: Generate Site
         run: node docs/docsparser.js
       - name: Deploy to GitHub Pages
