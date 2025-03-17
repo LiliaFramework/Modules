@@ -65,6 +65,7 @@ jobs:
         working-directory: modules
         run: glualint --pretty-print .
       - name: Configure Git
+        working-directory: modules
         run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"

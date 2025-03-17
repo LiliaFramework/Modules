@@ -19,11 +19,7 @@ for (let i = 0; i < lines.length; i += 3) {
     const n = lines[i]?.match(/^Name\s*=\s*"(.*)"$/)?.[1] || "Untitled";
     const a = lines[i + 1]?.match(/^Author\s*=\s*"(.*)"$/)?.[1] || "Unknown";
     const d = lines[i + 2]?.match(/^Description\s*=\s*"(.*)"$/)?.[1] || "None";
-    data.push({
-        name: escapeHTML(n),
-        author: escapeHTML(a),
-        desc: escapeHTML(d)
-    });
+    data.push({ name: escapeHTML(n), author: escapeHTML(a), desc: escapeHTML(d) });
 }
 
 const docsDir = path.join(__dirname);
