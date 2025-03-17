@@ -120,7 +120,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-            git add modules.txt modules/*.zip
+            # Force add the zip files and modules.txt even if they are ignored
+            git add -f modules.txt modules/*.zip
             git commit -m "Update modules.txt and module ZIPs"
             git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           else
