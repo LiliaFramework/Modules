@@ -1,4 +1,6 @@
-﻿function MODULE:TranslateActivity(client, act)
+﻿local MODULE = MODULE
+
+function MODULE:TranslateActivity(client, act)
 	local modelClass = client.liaAnimModelClass or "player"
 
 	if not self.supportedModelClasses[modelClass] or not self.activityWhitelist[act] then
