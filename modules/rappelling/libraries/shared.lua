@@ -12,7 +12,7 @@ function MODULE:DoAnimationEvent(client)
 end
 
 local viewPunchAngle = Angle(7, 0, 0)
-function MODULE:OnPlayerHitGround(client, inWater, onFloater, speed)
+function MODULE:OnPlayerHitGround(client, _, _, speed)
 	if client.rappelling and client.rappelPos.z - client:GetPos().z > 64 then
 		self:EndRappel(client)
 		if SERVER then client:EmitSound("npc/combine_soldier/zipline_hitground" .. math.random(2) .. ".wav") end
