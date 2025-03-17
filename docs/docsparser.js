@@ -39,8 +39,8 @@ const downloadsDir = path.join(docsDir, "Downloads");
 if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
 
 // Build the index.html
-let indexHtml = `
-<!DOCTYPE html>
+let indexHtml =
+    `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -54,8 +54,8 @@ data.forEach(mod => {
     const folder = mod.name.replace(/\s+/g, "");
     indexHtml += `  <li><a href="module-${folder}.html">${mod.name}</a></li>\n`;
 });
-indexHtml += `
-</ul>
+indexHtml +=
+    `</ul>
 </body>
 </html>
 `;
@@ -66,8 +66,8 @@ data.forEach(mod => {
     const folder = mod.name.replace(/\s+/g, "");
     const detailFile = `module-${folder}.html`;
 
-    let html = `
-<!DOCTYPE html>
+    let html =
+        `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -79,22 +79,20 @@ data.forEach(mod => {
   <p>by ${mod.author}</p>
   <p>${mod.desc}</p>
 `;
-
-    // Where the workflow downloaded artifact zips
+    // Where the workflow downloaded artifact zips (now inside docs/downloaded_zips)
     const moduleZipSrc = path.join(__dirname, "downloaded_zips", folder + ".zip");
     if (fs.existsSync(moduleZipSrc)) {
         // Copy to docs/Downloads
         const moduleZipDest = path.join(downloadsDir, folder + ".zip");
         fs.copyFileSync(moduleZipSrc, moduleZipDest);
-
         // Link points to "Downloads/folder.zip"
         html += `  <p><a href="Downloads/${folder}.zip" download>Download Module ZIP</a></p>\n`;
     } else {
         html += `  <p>No Module ZIP found</p>\n`;
     }
 
-    html += `
-</body>
+    html +=
+        `</body>
 </html>
 `;
     fs.writeFileSync(path.join(docsDir, detailFile), html.trim());
