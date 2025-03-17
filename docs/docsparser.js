@@ -1,1 +1,54 @@
-const fs = require("fs"); const path = require("path"); function escapeHTML(r) { return r.replace(/[&<>"']/g, t => { const e = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }; return e[t] || t }) } const modulesTxtPath = path.join(__dirname, "..", "modules.txt"); if (!fs.existsSync(modulesTxtPath)) process.exit(0); const raw = fs.readFileSync(modulesTxtPath, "utf8"), lines = raw.split("\n").map(r => r.trim()).filter(Boolean), data = []; for (let r = 0; r < lines.length; r += 3) { const t = lines[r]?.match(/^Name\s*=\s*"(.*)"$/)?.[1] || "Untitled", e = lines[r + 1]?.match(/^Author\s*=\s*"(.*)"$/)?.[1] || "Unknown", i = lines[r + 2]?.match(/^Description\s*=\s*"(.*)"$/)?.[1] || "None"; data.push({ name: escapeHTML(t), author: escapeHTML(e), desc: escapeHTML(i) }) } const docsDir = path.join(__dirname); fs.existsSync(docsDir) || fs.mkdirSync(docsDir); const downloadsDir = path.join(docsDir, "downloads"); fs.existsSync(downloadsDir) || fs.mkdirSync(downloadsDir); const repoZipSrc = path.join(__dirname, "..", "repository.zip"); let repoZipDest = null; if (fs.existsSync(repoZipSrc)) { repoZipDest = path.join(downloadsDir, "repository.zip"); fs.copyFileSync(repoZipSrc, repoZipDest) } let index = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modules</title></head><body><h1>Modules</h1><ul>'; data.forEach(r => { const t = r.name.replace(/\s+/g, ""); index += `<li><a href="module-${t}.html">${r.name}</a></li>` }), index += "</ul></body></html>", fs.writeFileSync(path.join(docsDir, "index.html"), index), data.forEach(r => { const t = r.name.replace(/\s+/g, ""), e = `module-${t}.html`; let i = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${r.name}</title></head><body><a href="index.html">Back</a><h2>${r.name}</h2><p>by ${r.author}</p><p>${r.desc}</p>`; const o = path.join(__dirname, "..", "modules", t + ".zip"); let s = null; if (fs.existsSync(o)) { s = path.join(downloadsDir, t + ".zip"), fs.copyFileSync(o, s), i += `<p><a href="downloads/${t}.zip" download>Download Module ZIP</a></p>` } else i += "<p>No Module ZIP found</p>"; repoZipDest ? i += '<p><a href="downloads/repository.zip" download>Download Full Repo ZIP</a></p>' : i += "<p>No Repo ZIP found</p>", i += "</body></html>", fs.writeFileSync(path.join(docsDir, e), i) }), fs.unlinkSync(modulesTxtPath);
+const fs = require("fs");
+const path = require("path");
+
+function escapeHTML(str) {
+    return str.replace(/[&<>"']/g, tag => {
+        const chars = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+        return chars[tag] || tag;
+    });
+}
+
+const modulesTxtPath = path.join(__dirname, "..", "modules.txt");
+if (!fs.existsSync(modulesTxtPath)) process.exit(0);
+
+const raw = fs.readFileSync(modulesTxtPath, "utf8");
+const lines = raw.split("\n").map(l => l.trim()).filter(Boolean);
+const data = [];
+for (let i = 0; i < lines.length; i += 3) {
+    const n = lines[i]?.match(/^Name\s*=\s*"(.*)"$/)?.[1] || "Untitled";
+    const a = lines[i + 1]?.match(/^Author\s*=\s*"(.*)"$/)?.[1] || "Unknown";
+    const d = lines[i + 2]?.match(/^Description\s*=\s*"(.*)"$/)?.[1] || "None";
+    data.push({ name: escapeHTML(n), author: escapeHTML(a), desc: escapeHTML(d) });
+}
+
+const docsDir = path.join(__dirname);
+if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
+
+const downloadsDir = path.join(docsDir, "downloads");
+if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
+
+let index = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modules</title></head><body><h1>Modules</h1><ul>';
+data.forEach(mod => {
+    const folder = mod.name.replace(/\s+/g, "");
+    index += `<li><a href="module-${folder}.html">${mod.name}</a></li>`;
+});
+index += "</ul></body></html>";
+fs.writeFileSync(path.join(docsDir, "index.html"), index);
+
+data.forEach(mod => {
+    const folder = mod.name.replace(/\s+/g, "");
+    const detailFile = `module-${folder}.html`;
+    let html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${mod.name}</title></head><body><a href="index.html">Back</a><h2>${mod.name}</h2><p>by ${mod.author}</p><p>${mod.desc}</p>`;
+    const moduleZipSrc = path.join(__dirname, "..", "modules", folder + ".zip");
+    if (fs.existsSync(moduleZipSrc)) {
+        const moduleZipDest = path.join(downloadsDir, folder + ".zip");
+        fs.copyFileSync(moduleZipSrc, moduleZipDest);
+        html += `<p><a href="downloads/${folder}.zip" download>Download Module ZIP</a></p>`;
+    } else {
+        html += "<p>No Module ZIP found</p>";
+    }
+    html += "</body></html>";
+    fs.writeFileSync(path.join(docsDir, detailFile), html);
+});
+
+fs.unlinkSync(modulesTxtPath);
