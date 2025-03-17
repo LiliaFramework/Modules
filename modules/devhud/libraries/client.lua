@@ -1,5 +1,4 @@
 ﻿local w, h = ScrW(), ScrH()
-
 function MODULE:HUDPaint()
     local client = LocalPlayer()
     if not IsValid(client:getChar()) then return end

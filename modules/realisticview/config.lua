@@ -1,4 +1,4 @@
-if CLIENT then
+﻿if CLIENT then
     lia.option.add("realisticViewEnabled", "Enable Realistic View", "Enable or disable the realistic view system.", false, nil, {
         category = "View",
         type = "Boolean",

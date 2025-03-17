@@ -232,8 +232,6 @@ function PANEL:Init()
 end
 
 vgui.Register("CinematicSplashTextMenu", PANEL, "DFrame")
-
-
 function MODULE:LoadFonts()
     local font = lia.config.get("CinematicTextFont", "Arial")
     local fontSizeBig = lia.config.get("CinematicTextSizeBig", 30)
