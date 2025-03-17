@@ -92,7 +92,7 @@ jobs:
           fetch-depth: 0
       - name: Install zip
         run: sudo apt-get update && sudo apt-get install -y zip
-      - name:  Show Modules Folder Structure
+      - name: Show Modules Folder Structure
         run: |
           echo "Listing modules folder before processing:"
           ls -la modules || true
@@ -142,7 +142,7 @@ jobs:
           fi
       - name: Cleanup
         run: |
-          echo "Cleaning up temporary ZIP files and modules.txt..."
+          echo "Cleaning up temporary modules.txt..."
           rm -f modules.txt
 
   gh-pages:
