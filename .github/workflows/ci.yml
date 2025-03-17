@@ -167,16 +167,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: module-zips
-          path: docs/downloaded_zips
+          path: docs/downloads
 
       - name: Debug Artifact Download
         run: |
-          echo "Listing contents of docs/downloaded_zips directory:"
-          find docs/downloaded_zips -type f || echo "No files found."
+          echo "Listing contents of docs/downloads directory:"
+          find docs/downloads -type f || echo "No files found."
 
       - name: Extract Module ZIPs
         run: |
-          for zip in docs/downloaded_zips/*.zip; do
+          for zip in docs/downloads/*.zip; do
             if [ -f "$zip" ]; then
               folder="extracted_$(basename "$zip" .zip)"
               mkdir -p "$folder"
