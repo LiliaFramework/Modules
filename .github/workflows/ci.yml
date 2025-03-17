@@ -19,7 +19,7 @@ jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Lilia Repository (modules only)
+      - name: Checkout Lilia Repository
         uses: actions/checkout@v3
         with:
           path: modules
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: linter
     steps:
-      - name: Checkout Lilia Repository (modules only)
+      - name: Checkout Lilia Repository
         uses: actions/checkout@v3
         with:
           path: modules
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: formatter
     steps:
-      - name: Checkout Repository (sparse: modules only)
+      - name: Checkout Repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
