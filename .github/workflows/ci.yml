@@ -179,7 +179,7 @@ jobs:
       - name: Generate Site
         run: node docs/docsparser.js
 
-      - name: Debug: List Docs
+      - name: List Docs
         run: |
           echo "Showing docs folder now..."
           ls -R docs
