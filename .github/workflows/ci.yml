@@ -105,7 +105,7 @@ jobs:
           find modules -type f -name "module.lua" -exec cat {} \; > modules.txt
 
       - name: Upload Scraped Modules Artifact
-        uses: actions/upload-artifact@v3.0.2
+        uses: actions/upload-artifact@v2
         with:
           name: modules-text
           path: modules.txt
