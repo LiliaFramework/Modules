@@ -101,6 +101,19 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Ensure we have the zip utility
+      - name: Install zip
+        run: sudo apt-get update && sudo apt-get install -y zip
+
+      - name: Debug: Show modules folders
+        run: |
+          echo "Listing modules directory:"
+          ls -la modules || true
+          echo "Listing subfolders in modules:"
+          for f in modules/*; do
+            echo "$f"
+          done
+
       - name: Extract and Rename Module Fields
         run: |
           find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.discord|MODULE\.desc" {} \; | \
@@ -110,12 +123,12 @@ jobs:
 
       - name: Zip Each Module Folder
         run: |
-          # For each folder in modules, zip it up with a name that matches how docsparser expects it:
-          # (module name with spaces removed).  E.g. "Test Module" => "TestModule.zip"
           for folder in modules/*; do
             if [ -d "$folder" ]; then
               base=$(basename "$folder")
+              # Remove spaces from the folder name for the ZIP, matching docsparser's expected name
               sanitized=$(echo "$base" | sed 's/ //g')
+              echo "Zipping $folder -> modules/${sanitized}.zip"
               (cd modules && zip -r "${sanitized}.zip" "${base}")
             fi
           done
