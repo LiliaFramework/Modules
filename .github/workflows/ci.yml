@@ -129,7 +129,7 @@ jobs:
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             git add modules.txt modules/*.zip repository.zip
-            git commit -m "Update modules.txt, module ZIPs, and repository.zip"
+            git commit -m -f "Update modules.txt, module ZIPs, and repository.zip"
             git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           else
             echo "No changes to commit"
