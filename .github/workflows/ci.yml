@@ -173,18 +173,16 @@ jobs:
         with:
           node-version: 16
 
-      - name: List Modules Folder from Checkout
-        run: |
-          ls -la modules || echo "Modules folder missing."
-          ls -la modules/*.zip || echo "No ZIP files found in modules folder."
+      - name: List Downloaded ZIPs
+        run: ls -la downloaded_zips || echo "No downloaded_zips found."
 
       - name: Generate Site
         run: node docs/docsparser.js
 
-      - name: Verify Docs Folder Structure
+      - name: Debug: List Docs
         run: |
-          echo "Final docs directory structure before deploying:"
-          find docs -type f
+          echo "Showing docs folder now..."
+          ls -R docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
