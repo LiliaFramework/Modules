@@ -92,7 +92,7 @@ jobs:
           fetch-depth: 0
       - name: Install zip
         run: sudo apt-get update && sudo apt-get install -y zip
-      - name: Debug: Show Modules Folder Structure
+      - name:  Show Modules Folder Structure
         run: |
           echo "Listing modules folder before processing:"
           ls -la modules || true
@@ -117,7 +117,7 @@ jobs:
               zip -r "modules/${sanitized}.zip" "$folder"
             fi
           done
-      - name: Debug: Show ZIP Files in Modules Folder
+      - name: Show ZIP Files in Modules Folder
         run: |
           echo "Listing modules folder after zipping:"
           ls -la modules || true
@@ -158,7 +158,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Debug: List Modules Folder from Checkout
+      - name: List Modules Folder from Checkout
         run: |
           echo "Checking for ZIP files in modules folder on gh-pages branch:"
           ls -la modules || echo "Modules folder missing."
