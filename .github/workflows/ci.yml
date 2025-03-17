@@ -1,7 +1,5 @@
 name: CI
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 permissions:
   actions: write
   checks: write
@@ -28,7 +26,7 @@ jobs:
       - name: Set Up Lua
         uses: leafo/gh-actions-lua@v8.0.0
         with:
-          luaVersion: '5.2'
+          luaVersion: 5.2
       - name: Set Up Luarocks
         uses: leafo/gh-actions-luarocks@v4.0.0
       - name: Pull GluaCheck
@@ -119,7 +117,7 @@ jobs:
               zip -r "modules/${sanitized}.zip" "$folder"
             fi
           done
-      - name: Debug: List Modules Folder ZIP Files
+      - name: List Modules Folder ZIP Files
         run: |
           echo "Listing modules folder ZIP files:"
           find modules -type f -name "*.zip" -exec ls -la {} \;
@@ -157,7 +155,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 16
       - name: List Modules Folder from Checkout
         run: |
           echo "Checking for ZIP files in modules folder on main branch:"
@@ -165,7 +163,7 @@ jobs:
           ls -la modules/*.zip || echo "No ZIP files found in modules folder."
       - name: Generate Site
         run: node docs/docsparser.js
-      - name: Debug: List Generated Docs Folder
+      - name: List Generated Docs Folder
         run: |
           echo "Listing docs folder contents:"
           find docs -type f
