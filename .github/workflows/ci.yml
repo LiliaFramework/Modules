@@ -97,13 +97,12 @@ jobs:
           sed -E 's/^\xef\xbb\xbf//' | \
           sed -E 's/MODULE\.name/Name/g; s/MODULE\.discord/Author/g; s/MODULE\.desc/Description/g' | \
           sed 's/[\x00-\x1F\x7F]//g' > modules.txt
-      - name: Zip Modules
+      - name: Zip Each Module Folder
         run: |
           for folder in modules/*; do
             if [ -d "$folder" ]; then
               base=$(basename "$folder")
-              slug=$(echo "$base" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
-              (cd modules && zip -r "$slug.zip" "$base")
+              (cd modules && zip -r "${base}.zip" "${base}")
             fi
           done
       - name: Configure Git Identity
