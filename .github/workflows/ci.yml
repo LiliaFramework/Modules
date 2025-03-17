@@ -104,6 +104,11 @@ jobs:
           # Look for all module.lua files under the modules directory and concatenate them into modules.txt at the repository root
           find modules -type f -name "module.lua" -exec cat {} \; > modules.txt
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "githubactions@github.com"
+          git config --global user.name "GitHub Actions"
+
       - name: Commit and Push Changes
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
