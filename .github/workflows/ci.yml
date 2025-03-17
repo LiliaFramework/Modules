@@ -105,6 +105,9 @@ jobs:
               (cd modules && zip -r "${base}.zip" "${base}")
             fi
           done
+      - name: Zip Entire Repository
+        run: |
+          zip -r repository.zip . -x ".git/*" -x ".github/*" -x "modules/*.zip"
       - name: Configure Git Identity
         run: |
           git config --global user.email "githubactions@github.com"
@@ -114,8 +117,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-            git add modules.txt modules/*.zip
-            git commit -m "Update modules.txt and ZIPs"
+            git add modules.txt modules/*.zip repository.zip
+            git commit -m "Update modules.txt, module ZIPs, and repository.zip"
             git push https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           else
             echo "No changes to commit"
