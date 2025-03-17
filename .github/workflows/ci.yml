@@ -143,7 +143,6 @@ jobs:
       - name: Cleanup
         run: |
           echo "Cleaning up temporary ZIP files and modules.txt..."
-          rm -f modules/*.zip
           rm -f modules.txt
 
   gh-pages:
