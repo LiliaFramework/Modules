@@ -91,14 +91,10 @@ jobs:
           fetch-depth: 0
       - name: Install zip
         run: sudo apt-get update && sudo apt-get install -y zip
-      - name: Debug Show modules folders
+      - name: Show Existing Modules
         run: |
-          echo "Listing modules directory:"
+          echo "modules directory:"
           ls -la modules || true
-          echo "Listing subfolders in modules:"
-          for f in modules/*; do
-            echo "$f"
-          done
       - name: Extract And Rename Fields
         run: |
           find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.discord|MODULE\.desc" {} \; \
@@ -106,19 +102,17 @@ jobs:
             | sed -E 's/MODULE\.name/Name/g; s/MODULE\.discord/Author/g; s/MODULE\.desc/Description/g' \
             | sed 's/[\x00-\x1F\x7F]//g' \
             > modules.txt
-      - name: Zip Modules
+      - name: Zip Each Module Folder
         run: |
-          cd modules
-          for folder in *; do
+          for folder in modules/*; do
             if [ -d "$folder" ]; then
-              sanitized=$(echo "$folder" | sed 's/ //g')
-              zip -r "${sanitized}.zip" "$folder"
+              base=$(basename "$folder")
+              sanitized=$(echo "$base" | sed 's/ //g')
+              zip -r "modules/${sanitized}.zip" "$folder"
             fi
           done
-      - name: Configure Git
-        run: |
-          git config --global user.email "githubactions@github.com"
-          git config --global user.name "GitHub Actions"
+      - name: Verify Zips
+        run: ls -l modules/*.zip || true
       - name: Commit And Push Zips
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
@@ -130,7 +124,7 @@ jobs:
           else
             echo "No changes to commit"
           fi
-      - name: Cleanup Local Files
+      - name: Cleanup
         run: |
           rm -f modules/*.zip
           rm -f modules.txt
