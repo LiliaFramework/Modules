@@ -15,22 +15,22 @@ const docsDir = path.join(__dirname);
 if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
 let index = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modules</title></head><body><h1>Modules</h1><ul>`;
 modules.forEach(m => {
-    const slug = m.name.replace(/\s+/g, "-").toLowerCase();
-    index += `<li><a href="module-${slug}.html">${m.name}</a></li>`;
+    const folder = m.name.replace(/\s/g, "");
+    index += `<li><a href="module-${folder}.html">${m.name}</a></li>`;
 });
 index += `</ul></body></html>`;
 fs.writeFileSync(path.join(docsDir, "index.html"), index);
-const modulesDir = path.join(__dirname, "..", "modules");
 modules.forEach(m => {
-    const slug = m.name.replace(/\s+/g, "-").toLowerCase();
+    const folder = m.name.replace(/\s/g, "");
+    const detailFile = `module-${folder}.html`;
     let detail = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${m.name}</title></head><body><a href="index.html">Back</a><h2>${m.name}</h2><p>by ${m.author}</p><p>${m.desc}</p>`;
-    const zipPath = path.join(modulesDir, slug + ".zip");
+    const zipPath = path.join(__dirname, "..", "modules", folder + ".zip");
     if (fs.existsSync(zipPath)) {
-        detail += `<p><a href="../modules/${slug}.zip" download>Download ZIP</a></p>`;
+        detail += `<p><a href="../modules/${folder}.zip" download>Download ZIP</a></p>`;
     } else {
         detail += `<p><a href="https://github.com/USER/REPO/archive/refs/heads/main.zip">Download Repo ZIP</a></p>`;
     }
     detail += `</body></html>`;
-    fs.writeFileSync(path.join(docsDir, `module-${slug}.html`), detail);
+    fs.writeFileSync(path.join(docsDir, detailFile), detail);
 });
 fs.unlinkSync(p);
