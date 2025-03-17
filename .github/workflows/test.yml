@@ -1,0 +1,24 @@
+name: Scrape Module Files
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  scrape-modules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Concatenate module.lua files
+        run: |
+          # Find all module.lua files and concatenate their content into modules.txt
+          find . -type f -name "module.lua" -exec cat {} \; > modules.txt
+
+      - name: Upload scraped modules artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: modules-text
+          path: modules.txt
