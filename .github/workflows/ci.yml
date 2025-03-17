@@ -1,4 +1,5 @@
 name: CI
+
 on: [push, pull_request]
 
 permissions:
@@ -50,8 +51,7 @@ jobs:
             --no-redefined \
             --no-global --no-self \
             --no-max-line-length --no-max-code-line-length \
-            --no-max-string-line-length --no-max-comment-line-length \
-            --no-max-cyclomatic-complexity
+            --no-max-string-line-length --no-max-comment-line-length
 
   formatter:
     runs-on: ubuntu-latest
@@ -91,3 +91,21 @@ jobs:
           else
             echo "No changes to commit"
           fi
+
+  scrape-modules:
+    runs-on: ubuntu-latest
+    needs: formatter
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Concatenate module.lua Files
+        run: |
+          # Look for all module.lua files under the modules directory and concatenate them into modules.txt
+          find modules -type f -name "module.lua" -exec cat {} \; > modules.txt
+
+      - name: Upload Scraped Modules Artifact
+        uses: actions/upload-artifact@v3.0.2
+        with:
+          name: modules-text
+          path: modules.txt
