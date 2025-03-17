@@ -92,7 +92,7 @@ jobs:
           fetch-depth: 0
       - name: Install zip
         run: sudo apt-get update && sudo apt-get install -y zip
-      - name: Show Modules Folder Structure
+      - name: Show Modules Folder Structure (Before Zipping)
         run: |
           echo "Listing modules folder before processing:"
           ls -la modules || true
@@ -117,12 +117,10 @@ jobs:
               zip -r "modules/${sanitized}.zip" "$folder"
             fi
           done
-      - name: Show ZIP Files in Modules Folder
+      - name: Debug: List Modules Folder ZIP Files
         run: |
-          echo "Listing modules folder after zipping:"
-          ls -la modules || true
-          echo "ZIP files present:"
-          ls -la modules/*.zip || echo "No ZIP files found."
+          echo "Listing modules folder ZIP files:"
+          find modules -type f -name "*.zip" -exec ls -la {} \;
       - name: Configure Git
         run: |
           git config user.email "githubactions@github.com"
@@ -149,9 +147,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: scrape-modules
     steps:
-      - name: Checkout Code
+      - name: Checkout Code from Main Branch
         uses: actions/checkout@v3
         with:
+          ref: main
           fetch-depth: 0
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -159,11 +158,15 @@ jobs:
           node-version: 16
       - name: List Modules Folder from Checkout
         run: |
-          echo "Checking for ZIP files in modules folder on gh-pages branch:"
+          echo "Checking for ZIP files in modules folder on main branch:"
           ls -la modules || echo "Modules folder missing."
           ls -la modules/*.zip || echo "No ZIP files found in modules folder."
       - name: Generate Site
         run: node docs/docsparser.js
+      - name: Debug: List Generated Docs Folder
+        run: |
+          echo "Listing docs folder contents:"
+          find docs -type f
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
