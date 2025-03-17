@@ -1,6 +1,7 @@
 local MODULE = MODULE
 MODULE.name = "Rappelling"
 MODULE.author = "wowm0d & bloodycop"
+MODULE.discord = "bloodycop"
 MODULE.version = "Stock"
 MODULE.desc = "Adds a rappel gear."
 function MODULE:StartRappel(client)

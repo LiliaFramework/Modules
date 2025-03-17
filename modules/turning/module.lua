@@ -1,6 +1,7 @@
 local MODULE = MODULE
 MODULE.name = "Turning"
 MODULE.author = "TankNut & bloodycop"
+MODULE.discord = "bloodycop"
 MODULE.version = "Stock"
 MODULE.desc = "Adds support for playermodels playing turning animations."
 MODULE.supportedModelClasses = {
