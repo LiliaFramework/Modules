@@ -25,20 +25,25 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: modules
+
       - name: Set Up Lua
         uses: leafo/gh-actions-lua@v8.0.0
         with:
           luaVersion: "5.2"
+
       - name: Set Up Luarocks
         uses: leafo/gh-actions-luarocks@v4.0.0
+
       - name: Pull GluaCheck
         uses: actions/checkout@v3
         with:
           repository: LiliaFramework/GluaCheck
           path: luacheck
+
       - name: Build GluaCheck
         working-directory: luacheck
         run: luarocks make
+
       - name: Run Luacheck Linting
         working-directory: modules
         run: |
@@ -56,6 +61,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: modules
+
       - name: Download and Install GLuaLint
         run: |
           curl -L -o glualint.zip https://github.com/FPtje/GLuaFixer/releases/download/1.29.0/glualint-1.29.0-x86_64-linux.zip
@@ -63,13 +69,16 @@ jobs:
           chmod +x glualint_folder/glualint
           sudo mv glualint_folder/glualint /usr/local/bin
           rm -rf glualint.zip glualint_folder
+
       - name: Run GLuaLint for Pretty Printing
         working-directory: modules
         run: glualint --pretty-print .
+
       - name: Configure Git
         run: |
           git config --global user.email "githubactions@github.com"
           git config --global user.name "GitHub Actions"
+
       - name: Commit and Push Changes
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
@@ -91,27 +100,38 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Extract and Rename Module Fields
         run: |
           find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.discord|MODULE\.desc" {} \; | \
           sed -E 's/^\xef\xbb\xbf//' | \
           sed -E 's/MODULE\.name/Name/g; s/MODULE\.discord/Author/g; s/MODULE\.desc/Description/g' | \
           sed 's/[\x00-\x1F\x7F]//g' > modules.txt
+
       - name: Zip Each Module Folder
         run: |
+          # For each folder in modules, zip it up with a name that matches how docsparser expects it:
+          # (module name with spaces removed).  E.g. "Test Module" => "TestModule.zip"
           for folder in modules/*; do
             if [ -d "$folder" ]; then
               base=$(basename "$folder")
-              (cd modules && zip -r "${base}.zip" "${base}")
+              sanitized=$(echo "$base" | sed 's/ //g')
+              (cd modules && zip -r "${sanitized}.zip" "${base}")
             fi
           done
+
       - name: Zip Entire Repository
         run: |
-          zip -r repository.zip . -x ".git/*" -x ".github/*" -x "modules/*.zip"
+          zip -r repository.zip . \
+            -x ".git/*" \
+            -x ".github/*" \
+            -x "modules/*.zip"
+
       - name: Configure Git Identity
         run: |
           git config --global user.email "githubactions@github.com"
           git config --global user.name "GitHub Actions"
+
       - name: Commit and Push Changes
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
@@ -132,12 +152,15 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
+
       - name: Generate site
         run: node docs/docsparser.js
+
       - name: Commit and push to gh-pages
         run: |
           git config user.name github-actions
