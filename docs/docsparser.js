@@ -37,7 +37,6 @@ for (let i = 0; i < lines.length; i += 3) {
 
 const docsDir = path.join(__dirname);
 if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
-if (!fs.existsSync(path.join(docsDir, "downloads"))) {
 
 const downloadsBase = path.join(docsDir, "downloads");
 const downloadsDir = path.join(downloadsBase, "modules");
