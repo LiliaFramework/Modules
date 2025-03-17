@@ -1,5 +1,7 @@
 name: CI
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
 permissions:
   actions: write
   checks: write
@@ -26,7 +28,7 @@ jobs:
       - name: Set Up Lua
         uses: leafo/gh-actions-lua@v8.0.0
         with:
-          luaVersion: 5.2
+          luaVersion: '5.2'
       - name: Set Up Luarocks
         uses: leafo/gh-actions-luarocks@v4.0.0
       - name: Pull GluaCheck
@@ -155,7 +157,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: '16'
       - name: List Modules Folder from Checkout
         run: |
           echo "Checking for ZIP files in modules folder on main branch:"
