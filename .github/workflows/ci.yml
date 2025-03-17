@@ -102,10 +102,10 @@ jobs:
       - name: Extract and Rename Module Fields
         run: |
           # Find all module.lua files under the modules directory,
-          # extract lines with MODULE.name, discord, or desc,
-          # then replace 'discord' with 'autohor' and 'desc' with 'desciption',
-          # and remove any non-printable control characters.
-          find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|discord|desc" {} \; | \
+          # extract lines with MODULE.name, MODULE.description (or MODULE.desciption) or discord,
+          # then replace 'discord' with 'autohor' and if any key is just 'desc', change it to 'desciption',
+          # and remove non-printable control characters.
+          find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.(description|desciption)|discord" {} \; | \
           sed -E 's/\bdiscord\b/autohor/g; s/\bdesc\b/desciption/g' | \
           sed 's/[\x00-\x1F\x7F]//g' > modules.txt
 
