@@ -25,7 +25,10 @@ for (let i = 0; i < lines.length; i += 3) {
 const docsDir = path.join(__dirname);
 if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
 
-const downloadsDir = path.join(docsDir, "downloads");
+const downloadsDir = path.join(docsDir, "downloads", "zips");
+if (!fs.existsSync(path.join(docsDir, "downloads"))) {
+    fs.mkdirSync(path.join(docsDir, "downloads"));
+}
 if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
 
 let index = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modules</title></head><body><h1>Modules</h1><ul>';
@@ -45,7 +48,7 @@ data.forEach(mod => {
     if (fs.existsSync(moduleZipSrc)) {
         const moduleZipDest = path.join(downloadsDir, folder + ".zip");
         fs.copyFileSync(moduleZipSrc, moduleZipDest);
-        html += `<p><a href="downloads/${folder}.zip" download>Download Module ZIP</a></p>`;
+        html += `<p><a href="downloads/zips/${folder}.zip" download>Download Module ZIP</a></p>`;
     } else {
         html += "<p>No Module ZIP found</p>";
     }
