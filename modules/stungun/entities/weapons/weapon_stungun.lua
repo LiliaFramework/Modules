@@ -57,7 +57,7 @@ function SWEP:PrimaryAttack()
     bullet.TracerName = "Tracer"
     bullet.Force = 5
     bullet.Damage = self.Primary.Damage
-    bullet.Callback = function(attacker, tr, dmginfo)
+    bullet.Callback = function(_, tr, _)
         local target = tr.Entity
         if IsValid(target) and target:IsPlayer() and target:getChar() then
             local distance = client:GetPos():Distance(target:GetPos())
@@ -120,11 +120,10 @@ if CLIENT then
         local triggerBone = vm:LookupBone("Trigger")
         local cartridgeBone = vm:LookupBone("cartridge")
         if not cartridgeBone then return end
-        local pos, ang = Vector(0, 0, 0), Angle(0, 0, 0)
         local m = vm:GetBoneMatrix(cartridgeBone)
         local m2 = vm:GetBoneMatrix(triggerBone)
         if m and m2 then
-            pos, ang = m:GetTranslation(), m:GetAngles()
+            local pos, _ = m:GetTranslation(), m:GetAngles()
             local pos2, ang2 = m2:GetTranslation(), m2:GetAngles()
             render.SetMaterial(LASER)
             render.DrawBeam(pos, self.Owner:GetEyeTrace().HitPos, 2, 0, 12.5, Color(255, 0, 0, 255))

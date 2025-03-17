@@ -1,22 +1,5 @@
 ﻿local ModelPay = {
     ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
-    ["models/player/barney.mdl"] = 25,
 }
 
 function MODULE:GetSalaryAmount(client)

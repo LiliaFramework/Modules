@@ -44,7 +44,7 @@ local function consoleFindPlayer(name)
     return lia.command.findPlayer(dummy, name)
 end
 
-concommand.Add("lia_givecharacters", function(ply, cmd, args)
+concommand.Add("lia_givecharacters", function(ply, _, args)
     if IsValid(ply) then return end
     local steamid = args[1]
     local count = tonumber(args[2])
@@ -63,7 +63,7 @@ concommand.Add("lia_givecharacters", function(ply, cmd, args)
     print("Gave " .. count .. " additional character slots to " .. target:Nick())
 end)
 
-concommand.Add("lia_givemoney", function(ply, cmd, args)
+concommand.Add("lia_givemoney", function(ply, _, args)
     if IsValid(ply) then return end
     local steamid = args[1]
     local amount = tonumber(args[2])
@@ -88,7 +88,7 @@ concommand.Add("lia_givemoney", function(ply, cmd, args)
     print("Gave " .. amount .. " money to " .. target:Nick())
 end)
 
-concommand.Add("lia_giveflags", function(ply, cmd, args)
+concommand.Add("lia_giveflags", function(ply, _, args)
     if IsValid(ply) then return end
     local steamid = args[1]
     local flags = args[2]
@@ -113,7 +113,7 @@ concommand.Add("lia_giveflags", function(ply, cmd, args)
     print("Gave flags " .. flags .. " to " .. target:Nick())
 end)
 
-concommand.Add("lia_giveitem", function(ply, cmd, args)
+concommand.Add("lia_giveitem", function(ply, _, args)
     if IsValid(ply) then return end
     local steamid = args[1]
     local uniqueID = args[2]
