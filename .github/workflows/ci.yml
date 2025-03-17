@@ -101,11 +101,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Ensure we have the zip utility
       - name: Install zip
-        run: sudo apt-get update && sudo apt-get install -y zip
+        run: |
+          sudo apt-get update && sudo apt-get install -y zip
 
-      - name: Debug: Show modules folders
+      - name: "Debug Show modules folders"
         run: |
           echo "Listing modules directory:"
           ls -la modules || true
@@ -114,14 +114,14 @@ jobs:
             echo "$f"
           done
 
-      - name: Extract and Rename Module Fields
+      - name: "Extract and Rename Module Fields"
         run: |
-          find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.discord|MODULE\.desc" {} \; | \
-          sed -E 's/^\xef\xbb\xbf//' | \
-          sed -E 's/MODULE\.name/Name/g; s/MODULE\.discord/Author/g; s/MODULE\.desc/Description/g' | \
-          sed 's/[\x00-\x1F\x7F]//g' > modules.txt
+          find modules -type f -name "module.lua" -exec grep -E "MODULE\\.name|MODULE\\.discord|MODULE\\.desc" {} \\; | \
+          sed -E 's/^\\xef\\xbb\\xbf//' | \
+          sed -E 's/MODULE\\.name/Name/g; s/MODULE\\.discord/Author/g; s/MODULE\\.desc/Description/g' | \
+          sed 's/[\\x00-\\x1F\\x7F]//g' > modules.txt
 
-      - name: Zip Each Module Folder
+      - name: "Zip Each Module Folder"
         run: |
           for folder in modules/*; do
             if [ -d "$folder" ]; then
@@ -133,19 +133,19 @@ jobs:
             fi
           done
 
-      - name: Zip Entire Repository
+      - name: "Zip Entire Repository"
         run: |
           zip -r repository.zip . \
             -x ".git/*" \
             -x ".github/*" \
             -x "modules/*.zip"
 
-      - name: Configure Git Identity
+      - name: "Configure Git Identity"
         run: |
           git config --global user.email "githubactions@github.com"
           git config --global user.name "GitHub Actions"
 
-      - name: Commit and Push Changes
+      - name: "Commit and Push Changes"
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
         run: |
@@ -161,20 +161,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: scrape-modules
     steps:
-      - name: Check out
+      - name: "Check out"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Set up Node
+      - name: "Set up Node"
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: Generate site
+      - name: "Generate site"
         run: node docs/docsparser.js
 
-      - name: Commit and push to gh-pages
+      - name: "Commit and push to gh-pages"
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
