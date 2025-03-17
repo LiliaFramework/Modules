@@ -138,25 +138,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: scrape-modules
     steps:
-      - name: Check out
+      - name: Check out code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Set up Node
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: Generate site
         run: node docs/docsparser.js
-      - name: Commit and push to gh-pages
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git checkout -B gh-pages
-          git add docs
-          if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "Publish site"
-            git push -f origin gh-pages
-          else
-            echo "No changes to commit"
-          fi
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.LiliaGitSecret }}
+          publish_dir: ./docs
