@@ -66,8 +66,8 @@ jobs:
         run: glualint --pretty-print .
       - name: Configure Git
         run: |
-          git config --global user.email "githubactions@github.com"
-          git config --global user.name "GitHub Actions"
+          git config user.email "githubactions@github.com"
+          git config user.name "GitHub Actions"
       - name: Commit and Push Changes
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
@@ -91,9 +91,8 @@ jobs:
           fetch-depth: 0
       - name: Install zip
         run: sudo apt-get update && sudo apt-get install -y zip
-      - name: Show Existing Modules
+      - name: Debug Show Modules
         run: |
-          echo "modules directory:"
           ls -la modules || true
       - name: Extract And Rename Fields
         run: |
@@ -111,8 +110,10 @@ jobs:
               zip -r "modules/${sanitized}.zip" "$folder"
             fi
           done
-      - name: Verify Zips
-        run: ls -l modules/*.zip || true
+      - name: Configure Git
+        run: |
+          git config user.email "githubactions@github.com"
+          git config user.name "GitHub Actions"
       - name: Commit And Push Zips
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}

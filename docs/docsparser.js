@@ -32,8 +32,7 @@ if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
 const downloadsDir = path.join(docsDir, "downloads");
 if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
 
-let index = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modules</title></head><body>
-  <h1>Modules</h1><ul>`;
+let index = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Modules</title></head><body><h1>Modules</h1><ul>';
 data.forEach(mod => {
     const folder = mod.name.replace(/\s+/g, "");
     index += `<li><a href="module-${folder}.html">${mod.name}</a></li>`;
@@ -44,10 +43,8 @@ fs.writeFileSync(path.join(docsDir, "index.html"), index);
 data.forEach(mod => {
     const folder = mod.name.replace(/\s+/g, "");
     const detailFile = `module-${folder}.html`;
-    let html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
-    <title>${mod.name}</title></head><body>
-    <a href="index.html">Back</a><h2>${mod.name}</h2>
-    <p>by ${mod.author}</p><p>${mod.desc}</p>`;
+    let html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${mod.name}</title></head><body>`;
+    html += `<a href="index.html">Back</a><h2>${mod.name}</h2><p>by ${mod.author}</p><p>${mod.desc}</p>`;
     const moduleZipSrc = path.join(__dirname, "..", "modules", folder + ".zip");
     if (fs.existsSync(moduleZipSrc)) {
         const moduleZipDest = path.join(downloadsDir, folder + ".zip");
