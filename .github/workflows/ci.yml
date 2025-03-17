@@ -99,18 +99,31 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Extract and Rename Module Fields
+      - name: Extract, Rename, and Insert Default Fields
         run: |
-          # Find all module.lua files under the modules directory,
-          # extract lines with MODULE.name, MODULE.autohor, or MODULE.description (including the misspelled version),
-          # then replace the keys:
-          #   MODULE.name       -> Name
-          #   MODULE.autohor    -> Author
+          # Extract lines for MODULE.name, MODULE.autohor, and MODULE.description (or MODULE.desciption)
+          # Then rename keys:
+          #   MODULE.name -> Name
+          #   MODULE.autohor -> Author
           #   MODULE.description or MODULE.desciption -> Description
-          # Finally, remove any non-printable control characters.
+          # Remove non-printable characters and remove any BOM.
           find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.autohor|MODULE\.(description|desciption)" {} \; | \
+          sed -E 's/^\xef\xbb\xbf//' | \
           sed -E 's/MODULE\.name/Name/g; s/MODULE\.autohor/Author/g; s/MODULE\.(description|desciption)/Description/g' | \
-          sed 's/[\x00-\x1F\x7F]//g' > modules.txt
+          sed 's/[\x00-\x1F\x7F]//g' \
+          > temp_modules.txt
+
+          # If a module block only contains a Name line, append default Author and Description.
+          # This sed command appends two lines after every line starting with "Name ="
+          # if they are not already followed by an "Author =" line.
+          sed '/^Name =/ {
+            N
+            /Author =/! {
+              s/\(Name =.*\)/\1\nAuthor = "unknown"\nDescription = "unknown"/
+            }
+          }' temp_modules.txt > modules.txt
+
+          rm temp_modules.txt
 
       - name: Configure Git Identity
         run: |
