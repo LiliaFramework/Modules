@@ -23,25 +23,20 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: modules
-
       - name: Set Up Lua
         uses: leafo/gh-actions-lua@v8.0.0
         with:
           luaVersion: 5.2
-
       - name: Set Up Luarocks
         uses: leafo/gh-actions-luarocks@v4.0.0
-
       - name: Pull GluaCheck
         uses: actions/checkout@v3
         with:
           repository: LiliaFramework/GluaCheck
           path: luacheck
-
       - name: Build GluaCheck
         working-directory: luacheck
         run: luarocks make
-
       - name: Run Luacheck Linting
         working-directory: modules
         run: |
@@ -59,7 +54,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: modules
-
       - name: Download and Install GLuaLint
         run: |
           curl -L -o glualint.zip https://github.com/FPtje/GLuaFixer/releases/download/1.29.0/glualint-1.29.0-x86_64-linux.zip
@@ -67,17 +61,14 @@ jobs:
           chmod +x glualint_folder/glualint
           sudo mv glualint_folder/glualint /usr/local/bin
           rm -rf glualint.zip glualint_folder
-
       - name: Run GLuaLint for Pretty Printing
         working-directory: modules
         run: glualint --pretty-print .
-
       - name: Configure Git
         working-directory: modules
         run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-
       - name: Commit and Push Changes
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
@@ -99,15 +90,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - name: Install zip
         run: sudo apt-get update && sudo apt-get install -y zip
-
       - name: Show Modules Folder Structure (Before Zipping)
         run: |
           echo "Listing modules folder before processing:"
           ls -la modules || true
-
       - name: Extract And Rename Fields
         run: |
           find modules -type f -name "module.lua" -exec grep -E "MODULE\.name|MODULE\.discord|MODULE\.desc" {} \; \
@@ -115,7 +103,6 @@ jobs:
             | sed -E 's/MODULE\.name/Name/g; s/MODULE\.discord/Author/g; s/MODULE\.desc/Description/g' \
             | sed 's/[\x00-\x1F\x7F]//g' > modules.txt
           cat modules.txt
-
       - name: Zip Each Module Folder
         run: |
           for folder in modules/*; do
@@ -125,20 +112,16 @@ jobs:
               zip -r "modules/${sanitized}.zip" "$folder"
             fi
           done
-
       - name: List Modules Folder ZIP Files
         run: find modules -type f -name "*.zip" -exec ls -la {} \;
-
       - name: Configure Git
         run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-
       - name: Commit And Push modules.txt
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
         run: |
-          # Only add modules.txt so that untracked ZIP files don't trigger a commit
           git add modules.txt
           if ! git diff --cached --quiet; then
             git commit -m "Update modules.txt with debug info"
@@ -146,7 +129,6 @@ jobs:
           else
             echo "No changes to commit"
           fi
-
       - name: Upload Module ZIPs
         uses: actions/upload-artifact@v4
         with:
@@ -162,21 +144,18 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-
       - name: Download Module ZIPs
         uses: actions/download-artifact@v4
         with:
           name: module-zips
-          path: docs/downloads
-
+          path: docs/Downloads
       - name: Debug Artifact Download
         run: |
-          echo "Listing contents of docs/downloads directory:"
-          find docs/downloads -type f || echo "No files found."
-
+          echo "Listing contents of docs/Downloads directory:"
+          find docs/Downloads -type f || echo "No files found."
       - name: Extract Module ZIPs
         run: |
-          for zip in docs/downloads/*.zip; do
+          for zip in docs/Downloads/*.zip; do
             if [ -f "$zip" ]; then
               folder="extracted_$(basename "$zip" .zip)"
               mkdir -p "$folder"
@@ -185,25 +164,20 @@ jobs:
               echo "No zip file found at $zip"
             fi
           done
-
       - name: Debug Extracted Folders
         run: |
           echo "Extracted folders:"
           ls -d extracted_* || echo "No extracted folders found."
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
       - name: Generate Site
         run: node docs/docsparser.js
-
       - name: Debug Docs
         run: |
           echo "Final docs folder structure before deploying:"
           ls -R docs
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
