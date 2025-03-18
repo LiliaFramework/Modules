@@ -5,9 +5,9 @@ local PermaRaisedWeapons = {
 }
 
 local PermaRaisedBases = {
-    ["tfa_gun_base"] = true,
-    ["arccw_base"] = true,
-    ["cw_base"] = true,
+    ["tfa_gun_base"] = false,
+    ["arccw_base"] = false,
+    ["cw_base"] = false,
 }
 
 local playerMeta = FindMetaTable("Player")
