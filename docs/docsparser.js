@@ -180,13 +180,16 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 .download-btn {
-  display: inline-block;
-  padding: 12px 24px;
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
   background-color: rgb(37,116,108);
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
   font-weight: bold;
+  text-align: center;
+  font-size: 1rem;
 }
 .download-btn:hover {
   opacity: 0.9;
@@ -216,10 +219,7 @@ ${baseCSS}
 </head>
 <body>
 <div class="top-bar">
-<a href="#">Search</a>
 <a href="#">Home</a>
-<a href="#">Plugins</a>
-<a href="#">Submit</a>
 </div>
 <div class="teal-bar">Lilia Module Center</div>
 <div class="module-list">
@@ -264,10 +264,7 @@ ${baseCSS}
 </head>
 <body>
 <div class="top-bar">
-<a href="#">Search</a>
 <a href="index.html">Home</a>
-<a href="index.html">Plugins</a>
-<a href="#">Submit</a>
 </div>
 <div class="teal-bar">Lilia Module Center</div>
 <div class="detail-container">
@@ -292,7 +289,6 @@ ${mod.license}
 <div class="right-column">
 <div class="download-box">
 `;
-
   if (foundZip) {
     detailHtml += `
 <a class="download-btn" href="Downloads/${foundZip}" download>Download</a>
@@ -300,7 +296,6 @@ ${mod.license}
   } else {
     detailHtml += `<p>No download found.</p>`;
   }
-
   detailHtml += `
 </div>
 </div>
