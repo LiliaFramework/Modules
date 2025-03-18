@@ -1,4 +1,4 @@
-﻿MODULE.name = "Salary Per Model"
+﻿MODULE.name = "Model Pay"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0"
