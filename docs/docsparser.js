@@ -14,11 +14,9 @@ if (!fs.existsSync(modulesTxtPath)) {
     process.exit(0);
 }
 
-// Read modules.txt lines
 const raw = fs.readFileSync(modulesTxtPath, "utf8");
 const lines = raw.split("\n").map(l => l.trim()).filter(Boolean);
 
-// Parse them in triplets: Name = "X", Author = "Y", Description = "Z"
 const data = [];
 for (let i = 0; i < lines.length; i += 3) {
     const nameLine = lines[i]?.match(/^Name\s*=\s*"(.*)"$/)?.[1] || "Untitled";
@@ -34,11 +32,9 @@ for (let i = 0; i < lines.length; i += 3) {
 const docsDir = __dirname;
 if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
 
-// Put zips directly into docs/Downloads
 const downloadsDir = path.join(docsDir, "Downloads");
 if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
 
-// Build the index.html
 let indexHtml =
     `<!DOCTYPE html>
 <html>
@@ -61,7 +57,6 @@ indexHtml +=
 `;
 fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml.trim());
 
-// Build each module detail page & copy .zip if it exists
 data.forEach(mod => {
     const folder = mod.name.replace(/\s+/g, "");
     const detailFile = `module-${folder}.html`;
@@ -79,13 +74,10 @@ data.forEach(mod => {
   <p>by ${mod.author}</p>
   <p>${mod.desc}</p>
 `;
-    // Where the workflow downloaded artifact zips (now inside docs/downloads)
-    const moduleZipSrc = path.join(__dirname, "downloads", folder + ".zip");
+    const moduleZipSrc = path.join(__dirname, "Downloads", folder + ".zip");
     if (fs.existsSync(moduleZipSrc)) {
-        // Copy to docs/Downloads
         const moduleZipDest = path.join(downloadsDir, folder + ".zip");
         fs.copyFileSync(moduleZipSrc, moduleZipDest);
-        // Link points to "Downloads/folder.zip"
         html += `  <p><a href="Downloads/${folder}.zip" download>Download Module ZIP</a></p>\n`;
     } else {
         html += `  <p>No Module ZIP found</p>\n`;
@@ -98,5 +90,4 @@ data.forEach(mod => {
     fs.writeFileSync(path.join(docsDir, detailFile), html.trim());
 });
 
-// Remove modules.txt so it won't remain in docs
 fs.unlinkSync(modulesTxtPath);
