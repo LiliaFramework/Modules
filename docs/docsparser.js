@@ -57,7 +57,7 @@ data.forEach(mod => {
 `;
     const downloadsFolder = path.join(__dirname, "Downloads");
     let files = [];
-    try { files = fs.readdirSync(downloadsFolder); } catch (e) { files = []; }
+    try { files = fs.readdirSync(downloadsFolder).map(f => f.trim()); } catch (e) { files = []; }
     let found = files.find(file => file.toLowerCase() === (folder.toLowerCase() + ".zip"));
     if (found) {
         const moduleZipSrc = path.join(downloadsFolder, found);
