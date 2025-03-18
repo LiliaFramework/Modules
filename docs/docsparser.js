@@ -3,7 +3,13 @@ const path = require("path");
 
 function escapeHTML(str) {
   return str.replace(/[&<>"']/g, t => {
-    const c = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+    const c = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    };
     return c[t] || t;
   });
 }
@@ -42,40 +48,161 @@ if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
 
 const baseCSS = `
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;background-color:#f6f6f6;color:#333}
-.top-bar{background-color:#2a2a2a;padding:8px 16px;display:flex;align-items:center;justify-content:flex-end}
-.top-bar a{color:#fff;text-decoration:none;margin-left:16px}
-.top-bar a:hover{text-decoration:underline}
-.purple-bar{background-color:#6a2f82;padding:16px;color:#fff;font-size:1.3rem;font-weight:bold}
-.module-list{max-width:1200px;margin:24px auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:0 20px}
-.module-card{background:#fff;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.2);padding:16px;display:flex;flex-direction:column;min-height:100px}
-.module-title{font-size:1.2rem;color:#444;margin-bottom:4px}
-.module-author{font-style:italic;color:#666;margin-bottom:6px}
-.module-date{font-size:.9rem;color:#999;margin-top:auto;text-align:right}
-.module-card a{text-decoration:none;color:#6a2f82;font-weight:bold}
-.module-card a:hover{text-decoration:underline}
-.detail-container{max-width:1200px;margin:20px auto;display:flex;gap:20px;padding:0 20px 40px}
-.left-column{flex:2}
-.detail-header h1{font-size:1.8rem;color:#444;font-weight:normal;margin-bottom:0}
-.detail-header .author{margin-top:4px;font-size:1rem;color:#666}
-.tabs{display:flex;list-style:none;padding:0;margin:20px 0 0;border-bottom:1px solid #eee}
-.tabs li{margin-right:20px;padding-bottom:8px;cursor:pointer;color:#6a2f82}
-.tabs li.active{font-weight:bold;border-bottom:2px solid #6a2f82}
-.tab-content{background:#fff;margin-top:8px;border-radius:4px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
-.right-column{flex:1;display:flex;flex-direction:column;gap:16px}
-.download-box{background:#6a2f82;color:#fff;padding:16px;text-align:center;border-radius:4px}
-.download-box h2{margin:0 0 8px}
-.download-box a{color:#fff;text-decoration:underline}
-.download-box a:hover{opacity:.9}
-.info-box{background:#fff;border-radius:4px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
-.info-label{font-weight:bold;margin-bottom:4px;color:#666}
-.report-link{text-align:center;margin-top:auto}
-.report-link a{color:#6a2f82;font-weight:bold;text-decoration:none}
-.report-link a:hover{text-decoration:underline}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f6f6f6;
+  color: #333;
+}
+.top-bar {
+  background-color: #2a2a2a;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.top-bar a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 16px;
+}
+.top-bar a:hover {
+  text-decoration: underline;
+}
+.teal-bar {
+  background-color: rgb(37,116,108);
+  padding: 16px;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.module-list {
+  max-width: 1200px;
+  margin: 24px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 0 20px;
+}
+.module-card {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+}
+.module-title {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 4px;
+}
+.module-author {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 6px;
+}
+.module-date {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: auto;
+  text-align: right;
+}
+.module-card a {
+  text-decoration: none;
+  color: rgb(37,116,108);
+  font-weight: bold;
+}
+.module-card a:hover {
+  text-decoration: underline;
+}
+.detail-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  gap: 20px;
+  padding: 0 20px 40px;
+}
+.left-column {
+  flex: 2;
+}
+.detail-header h1 {
+  font-size: 1.8rem;
+  color: #444;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+.detail-header .author {
+  margin-top: 4px;
+  font-size: 1rem;
+  color: #666;
+}
+.tabs {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  border-bottom: 1px solid #eee;
+}
+.tabs li {
+  margin-right: 20px;
+  padding-bottom: 8px;
+  cursor: pointer;
+  color: rgb(37,116,108);
+}
+.tabs li.active {
+  font-weight: bold;
+  border-bottom: 2px solid rgb(37,116,108);
+}
+.tab-content {
+  background: #fff;
+  margin-top: 8px;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.download-box {
+  background: #fff;
+  padding: 16px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.download-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: rgb(37,116,108);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.download-btn:hover {
+  opacity: 0.9;
+}
 </style>
 <script>
-function switchTab(t){var e=document.querySelectorAll(".tab-section"),n=document.querySelectorAll(".tabs li");e.forEach(a=>{a.style.display=a.id===t?"block":"none"}),n.forEach(a=>{a.classList.toggle("active",a.getAttribute("data-tab")===t)})}
+function switchTab(t){
+  var sections = document.querySelectorAll(".tab-section");
+  var tabs = document.querySelectorAll(".tabs li");
+  sections.forEach(s => {
+    s.style.display = (s.id === t) ? "block" : "none";
+  });
+  tabs.forEach(a => {
+    a.classList.toggle("active", a.getAttribute("data-tab") === t);
+  });
+}
 </script>
 `;
 
@@ -84,7 +211,7 @@ let indexHtml = `
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Helix Plugin Center</title>
+<title>Lilia Module Center</title>
 ${baseCSS}
 </head>
 <body>
@@ -94,7 +221,7 @@ ${baseCSS}
 <a href="#">Plugins</a>
 <a href="#">Submit</a>
 </div>
-<div class="purple-bar">Helix Plugin Center</div>
+<div class="teal-bar">Lilia Module Center</div>
 <div class="module-list">
 `;
 
@@ -121,7 +248,11 @@ data.forEach(mod => {
   const folder = mod.name.replace(/\s+/g, "");
   const detailFile = `module-${folder}.html`;
   let files = [];
-  try { files = fs.readdirSync(downloadsDir).map(f => f.trim()) } catch (e) { files = [] }
+  try {
+    files = fs.readdirSync(downloadsDir).map(f => f.trim());
+  } catch (e) {
+    files = [];
+  }
   const foundZip = files.find(f => f.toLowerCase() === (folder.toLowerCase() + ".zip"));
   let detailHtml = `
 <!DOCTYPE html>
@@ -138,7 +269,7 @@ ${baseCSS}
 <a href="index.html">Plugins</a>
 <a href="#">Submit</a>
 </div>
-<div class="purple-bar">Helix Plugin Center</div>
+<div class="teal-bar">Lilia Module Center</div>
 <div class="detail-container">
 <div class="left-column">
 <div class="detail-header">
@@ -147,15 +278,11 @@ ${baseCSS}
 </div>
 <ul class="tabs">
 <li class="active" data-tab="desc-tab" onclick="switchTab('desc-tab')">Description</li>
-<li data-tab="opts-tab" onclick="switchTab('opts-tab')">Options</li>
 <li data-tab="lic-tab" onclick="switchTab('lic-tab')">License</li>
 </ul>
 <div class="tab-content">
 <div id="desc-tab" class="tab-section">
 ${mod.desc}
-</div>
-<div id="opts-tab" class="tab-section" style="display:none">
-${mod.options}
 </div>
 <div id="lic-tab" class="tab-section" style="display:none">
 ${mod.license}
@@ -164,32 +291,17 @@ ${mod.license}
 </div>
 <div class="right-column">
 <div class="download-box">
-<h2>Download</h2>
 `;
+
   if (foundZip) {
     detailHtml += `
-<a href="Downloads/${foundZip}" download>via GitHub</a>
-<a href="#">View source &raquo;</a>
+<a class="download-btn" href="Downloads/${foundZip}" download>Download</a>
 `;
   } else {
     detailHtml += `<p>No download found.</p>`;
   }
+
   detailHtml += `
-</div>
-<div class="info-box">
-<div class="info-label">Schema</div>
-${mod.schema}
-</div>
-<div class="info-box">
-<div class="info-label">Last Updated</div>
-${mod.lastUpdated}
-</div>
-<div class="info-box">
-<div class="info-label">Published</div>
-${mod.published}
-</div>
-<div class="report-link">
-<a href="#">Report plugin</a>
 </div>
 </div>
 </div>
@@ -198,4 +310,5 @@ ${mod.published}
 `;
   fs.writeFileSync(path.join(docsDir, detailFile), detailHtml);
 });
+
 fs.unlinkSync(modulesTxtPath);
