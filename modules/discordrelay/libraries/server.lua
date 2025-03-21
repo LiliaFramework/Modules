@@ -1,17 +1,9 @@
 ﻿local DiscordWebhook = ""
-local function installed(name)
-    local fmt = "%s_%s"
-    local suffix = "win64"
-    if file.Exists(string.format(fmt, name, suffix), "GAME") then return true end
-    if jit.versionnum ~= 20004 and jit.arch == "x86" and system.IsLinux() then return file.Exists(string.format(fmt, name, "linux32"), "GAME") end
-    return false
-end
-
-if installed("chttp") then
-    print("chttp is installed")
+if util.IsBinaryModuleInstalled("chttp") then
+    require("chttp")
     function MODULE:OnServerLog(_, _, logString)
         if DiscordWebhook == "" then return end
-        chttp.request({
+        CHTTP({
             url = DiscordWebhook,
             method = "POST",
             headers = {
