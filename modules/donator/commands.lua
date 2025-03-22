@@ -4,7 +4,11 @@
     syntax = "<string player>",
     onRun = function(client, arguments)
         local target = lia.command.findPlayer(client, arguments[1])
-        if not target then return end
+        if not target or not IsValid(target) then
+            client:notifyLocalized("noTarget")
+            return
+        end
+
         SubtractOverrideCharSlots(target)
     end
 })
@@ -15,7 +19,11 @@ lia.command.add("addcharslots", {
     syntax = "<string player>",
     onRun = function(client, arguments)
         local target = lia.command.findPlayer(client, arguments[1])
-        if not target then return end
+        if not target or not IsValid(target) then
+            client:notifyLocalized("noTarget")
+            return
+        end
+
         AddOverrideCharSlots(target)
     end
 })
@@ -27,7 +35,12 @@ lia.command.add("setcharslots", {
     onRun = function(client, arguments)
         local target = lia.command.findPlayer(client, arguments[1])
         local count = tonumber(arguments[2])
-        if not target or not count then return end
+        if not target or not IsValid(target) then
+            client:notifyLocalized("noTarget")
+            return
+        end
+
+        if not count then client:notify("You didn't specify a count!") end
         OverrideCharSlots(target, count)
     end
 })

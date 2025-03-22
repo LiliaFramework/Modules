@@ -12,8 +12,19 @@ lia.command.add("partytier", {
             return
         end
 
-        local tier = arguments[2]
-        if tonumber(tier) > #MODULE.Tiers then tier = 10 end
+        if not target or not IsValid(target) then
+            client:notifyLocalized("noTarget")
+            return
+        end
+
+        local tierArg = arguments[2]
+        if not tierArg or tonumber(tierArg) == nil then
+            client:notifyLocalized("invalidPartyTier")
+            return
+        end
+
+        local tier = tonumber(tierArg)
+        if tier > #MODULE.Tiers then tier = 10 end
         local tChar = target:getChar()
         if tChar then
             tChar:setData("party_tier", tier, false, player.GetAll())
