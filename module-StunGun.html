@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Stun Gun</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f6f6f6;
+  color: #333;
+}
+.top-bar {
+  background-color: #2a2a2a;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.top-bar a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 16px;
+}
+.top-bar a:hover {
+  text-decoration: underline;
+}
+.teal-bar {
+  background-color: rgb(37,116,108);
+  padding: 16px;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.module-list {
+  max-width: 1200px;
+  margin: 24px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 0 20px;
+}
+.module-card {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+}
+.module-title {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 4px;
+}
+.module-author {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 6px;
+}
+.module-date {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: auto;
+  text-align: right;
+}
+.module-card a {
+  text-decoration: none;
+  color: rgb(37,116,108);
+  font-weight: bold;
+}
+.module-card a:hover {
+  text-decoration: underline;
+}
+.detail-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  gap: 20px;
+  padding: 0 20px 40px;
+}
+.left-column {
+  flex: 2;
+}
+.detail-header h1 {
+  font-size: 1.8rem;
+  color: #444;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+.detail-header .author {
+  margin-top: 4px;
+  font-size: 1rem;
+  color: #666;
+}
+.tabs {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  border-bottom: 1px solid #eee;
+}
+.tabs li {
+  margin-right: 20px;
+  padding-bottom: 8px;
+  cursor: pointer;
+  color: rgb(37,116,108);
+}
+.tabs li.active {
+  font-weight: bold;
+  border-bottom: 2px solid rgb(37,116,108);
+}
+.tab-content {
+  background: #fff;
+  margin-top: 8px;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.download-box {
+  background: #fff;
+  padding: 16px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.download-btn {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  background-color: rgb(37,116,108);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1rem;
+}
+.download-btn:hover {
+  opacity: 0.9;
+}
+</style>
+<script>
+function switchTab(t){
+  var sections = document.querySelectorAll(".tab-section");
+  var tabs = document.querySelectorAll(".tabs li");
+  sections.forEach(s => {
+    s.style.display = (s.id === t) ? "block" : "none";
+  });
+  tabs.forEach(a => {
+    a.classList.toggle("active", a.getAttribute("data-tab") === t);
+  });
+}
+</script>
+
+</head>
+<body>
+<div class="top-bar">
+<a href="index.html">Home</a>
+</div>
+<div class="teal-bar">Lilia Module Center</div>
+<div class="detail-container">
+<div class="left-column">
+<div class="detail-header">
+<h1>Stun Gun</h1>
+<div class="author">by @liliaplayer</div>
+</div>
+<ul class="tabs">
+<li class="active" data-tab="desc-tab" onclick="switchTab('desc-tab')">Description</li>
+<li data-tab="lic-tab" onclick="switchTab('lic-tab')">License</li>
+</ul>
+<div class="tab-content">
+<div id="desc-tab" class="tab-section">
+An Stun Gun Reworked from CustomHQ
+</div>
+<div id="lic-tab" class="tab-section" style="display:none">
+
+</div>
+</div>
+</div>
+<div class="right-column">
+<div class="download-box">
+
+<a class="download-btn" href="Downloads/stungun.zip" download>Download</a>
+
+</div>
+</div>
+</div>
+</body>
+</html>
