@@ -27,12 +27,12 @@ function ENT:GiveDonatorWeapons(client)
     end
 end
 
-function ENT:Use(activator)
-    if IsValid(activator) and activator:IsPlayer() and MODULE.DonatorWeapons[client:SteamID64()] then
-        self:GiveDonatorWeapons(activator)
-        activator:notify("Enjoy your weapons, donator!")
+function ENT:Use(client)
+    if IsValid(client) and client:IsPlayer() and MODULE.DonatorWeapons[client:SteamID64()] then
+        self:GiveDonatorWeapons(client)
+        client:notify("Enjoy your weapons, donator!")
     else
-        activator:notify("You have no permanent weapons!")
+        client:notify("You have no permanent weapons!")
     end
 end
 
