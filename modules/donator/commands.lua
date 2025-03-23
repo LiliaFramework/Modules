@@ -1,5 +1,5 @@
 ﻿lia.command.add("subtractcharslots", {
-    privilege = "Characters - Subtract CharSlots",
+    privilege = "Subtract CharSlots",
     superAdminOnly = true,
     syntax = "<string player>",
     onRun = function(client, arguments)
@@ -14,7 +14,7 @@
 })
 
 lia.command.add("addcharslots", {
-    privilege = "Characters - Add CharSlots",
+    privilege = "Add CharSlots",
     superAdminOnly = true,
     syntax = "<string player>",
     onRun = function(client, arguments)
@@ -29,7 +29,7 @@ lia.command.add("addcharslots", {
 })
 
 lia.command.add("setcharslots", {
-    privilege = "Characters - Set CharSlots",
+    privilege = "Set CharSlots",
     superAdminOnly = true,
     syntax = "<string player> <number count>",
     onRun = function(client, arguments)
