@@ -1,49 +1,32 @@
-﻿MODULE.SpawnPositions = {}
---[[
-    ["gm_construct"] = {
-        {
-            ent = "npc_zombie",
-            pos = Vector(5229.57, 4160.89, 64.03)
+﻿MODULE.SpawnPositions = {
+    ["rp_nycity_day"] = {
+        ["City Center"] = {
+            pos = Vector(-8768.493164, -3394.535400, 91.223183),
+            radius = 250,
+            maxNPCs = 5,
+            maxPerType = {
+                ["npc_citizen"] = 8,
+                ["npc_combine_s"] = 4,
+                ["npc_metropolice"] = 2
+            }
         },
-        {
-            ent = "npc_zombie",
-            pos = Vector(5300.00, 4200.00, 64.03)
-        },
-        {
-            ent = "npc_zombie",
-            pos = Vector(5400.00, 4300.00, 64.03)
-        },
-        {
-            ent = "npc_zombie",
-            pos = Vector(5500.00, 4400.00, 64.03)
-        },
-        {
-            ent = "npc_zombie",
-            pos = Vector(5600.00, 4500.00, 64.03)
-        },
-        {
-            ent = "npc_zombie",
-            pos = Vector(5700.00, 4600.00, 64.03)
-        },
-        {
-            ent = "npc_zombie",
-            pos = Vector(5800.00, 4700.00, 64.03)
-        },
-        {
-            ent = "npc_zombie",
-            pos = Vector(5900.00, 4800.00, 64.03)
+        ["Burgers"] = {
+            pos = Vector(-10140.128906, -2080.388428, 90.029953),
+            radius = 150,
+            maxNPCs = 5,
+            maxPerType = {
+                ["npc_citizen"] = 5,
+                ["npc_combine_s"] = 2,
+                ["npc_zombie"] = 3
+            }
         },
     }
-    ]]
-lia.config.add("SpawnRadius", "Spawn Radius", 2000, nil, {
-    desc = "Sets the radius (in units) within which spawns occur.",
-    category = "Spawning",
-    type = "Int",
-    min = 100,
-    max = 10000
-})
+}
 
-lia.config.add("SpawnCooldown", "Spawn Cooldown", 240, nil, {
+lia.config.add("SpawnCooldown", "Spawn Cooldown", 240, function(newValue, oldValue)
+    if timer.Exists("NPCSpawnTimer") then timer.Remove("NPCSpawnTimer") end
+    timer.Create("NPCSpawnTimer", newValue, 0, spawnCycle)
+end, {
     desc = "Sets the cooldown time (in seconds) between spawns.",
     category = "Spawning",
     type = "Int",

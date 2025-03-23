@@ -1,27 +1,125 @@
-﻿function MODULE:Think()
-    local map = game.GetMap()
-    local mapSpawns = self.SpawnPositions[map]
-    if not mapSpawns or #mapSpawns == 0 then return end
-    local spawnCooldown = lia.config.get("SpawnCooldown", 240)
-    local spawnRadius = lia.config.get("SpawnRadius", 2000)
-    if CurTime() >= (self.nextSpawnTime or 0) then
-        self.nextSpawnTime = CurTime() + spawnCooldown
-        for _, spawn in ipairs(mapSpawns) do
-            local found = false
-            for _, entity in ipairs(ents.FindInSphere(spawn.pos, spawnRadius)) do
-                if entity:GetClass() == spawn.ent then
-                    found = true
-                    break
-                end
-            end
+﻿local MODULE = MODULE
+local function isSafeSpawnPos(pos)
+    local hull = {}
+    hull.start = pos + Vector(0, 0, 50)
+    hull.endpos = pos
+    hull.mins = Vector(-16, -16, 0)
+    hull.maxs = Vector(16, 16, 72)
+    hull.mask = MASK_PLAYERSOLID_BRUSHONLY
+    local hullTrace = util.TraceHull(hull)
+    if hullTrace.Hit then return false end
+    local ground = {}
+    ground.start = pos
+    ground.endpos = pos - Vector(0, 0, 100)
+    ground.mask = MASK_SOLID
+    local groundTrace = util.TraceLine(ground)
+    if not groundTrace.Hit then return false end
+    return true
+end
 
-            if not found then
-                local ent = ents.Create(spawn.ent)
-                if IsValid(ent) then
-                    ent:SetPos(spawn.pos)
-                    ent:Spawn()
-                end
+local function spawnNPC(zone, npcType, group)
+    local randomOffset = Vector(math.Rand(-zone.radius, zone.radius), math.Rand(-zone.radius, zone.radius), 0)
+    local spawnPos = zone.pos + randomOffset
+    if not isSafeSpawnPos(spawnPos) then return false end
+    local npc = ents.Create(npcType)
+    if not IsValid(npc) then return false end
+    npc:SetPos(spawnPos)
+    npc:setNetVar("setNetVar", group)
+    npc:Spawn()
+    table.insert(zone.spawnedNPCs, npc)
+    return true
+end
+
+local function getNPCCount(zone, npcType)
+    local count = 0
+    for _, npc in ipairs(zone.spawnedNPCs or {}) do
+        if IsValid(npc) and npc:GetClass() == npcType then count = count + 1 end
+    end
+    return count
+end
+
+local function processZone(zone, group)
+    zone.spawnedNPCs = zone.spawnedNPCs or {}
+    local groupAlive = false
+    for _, npc in ipairs(zone.spawnedNPCs) do
+        if IsValid(npc) and npc:getNetVar("setNetVar") == group then
+            groupAlive = true
+            break
+        end
+    end
+
+    if groupAlive then
+        return false, "Old NPCs still alive"
+    else
+        zone.spawnedNPCs = {}
+    end
+
+    local overallCount = 0
+    for _, npc in ipairs(zone.spawnedNPCs) do
+        if IsValid(npc) then overallCount = overallCount + 1 end
+    end
+
+    if overallCount >= zone.maxNPCs then return false end
+    for npcType, maxCount in pairs(zone.maxPerType) do
+        local currentCount = getNPCCount(zone, npcType)
+        local remainingForType = maxCount - currentCount
+        if remainingForType > 0 then
+            local overallRemaining = zone.maxNPCs - overallCount
+            if overallRemaining <= 0 then break end
+            local spawnCount = math.min(remainingForType, overallRemaining)
+            for i = 1, spawnCount do
+                if spawnNPC(zone, npcType, group) then overallCount = overallCount + 1 end
             end
         end
     end
+    return true
 end
+
+local function spawnCycle()
+    local zones = MODULE.SpawnPositions[game.GetMap()]
+    if not zones then return end
+    for group, zone in pairs(zones) do
+        processZone(zone, group)
+    end
+end
+
+function MODULE:InitializedModules()
+    if not timer.Exists("NPCSpawnTimer") then timer.Create("NPCSpawnTimer", lia.config.get("SpawnCooldown"), 0, spawnCycle) end
+end
+
+lia.command.add("forcenpcspawn", {
+    privilege = "Force NPC Spawn",
+    superAdminOnly = true,
+    onRun = function(client, arguments)
+        local map = game.GetMap()
+        local zones = MODULE.SpawnPositions[map]
+        if not zones then
+            client:notify("No NPC Spawns here")
+            return
+        end
+
+        local options = {}
+        for spawnerName, _ in pairs(zones) do
+            table.insert(options, spawnerName)
+        end
+
+        client:requestDropdown("Select Spawner", "Choose a spawner zone to force a spawn:", options, function(selectedSpawner)
+            if not selectedSpawner then return end
+            local zone = zones[selectedSpawner]
+            if zone then
+                local spawned, err = processZone(zone, selectedSpawner)
+                if spawned then
+                    client:notify("Forced spawn on spawner: " .. selectedSpawner)
+                else
+                    if err then
+                        client:notify("Force spawn did not occur on spawner: " .. selectedSpawner .. " because old NPCs are still alive.")
+                    else
+                        client:notify("Force spawn did not occur on spawner: " .. selectedSpawner)
+                    end
+                end
+            else
+                client:notify("Spawner not found!")
+            end
+        end)
+    end
+})
