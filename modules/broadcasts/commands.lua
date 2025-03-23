@@ -1,4 +1,4 @@
-﻿lia.command.add("classbroadcast", {
+lia.command.add("classbroadcast", {
     adminOnly = false,
     syntax = "<string text>",
     onRun = function(client, arguments)
@@ -82,7 +82,9 @@ lia.command.add("factionbroadcast", {
 
             for _, ply in player.Iterator() do
                 if ply == client or (ply:getChar() and factionList[ply:getChar():getFaction()]) and SERVER then
-                    ClientAddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), client:GetDisplayedName(ply), Color(255, 255, 255), ": ", message)
+                    local displayName = ply:getChar() and ply:getChar():getDisplayedName(client)
+
+                    ClientAddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), displayName, Color(255, 255, 255), ": ", message)
                     ClientAddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", L("factionBroadcastSentTo", table.concat(factionListSimple, ", ")))
                 end
             end
