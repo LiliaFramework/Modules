@@ -23,7 +23,7 @@
     }
 }
 
-lia.config.add("SpawnCooldown", "Spawn Cooldown", 240, function(newValue, oldValue)
+lia.config.add("SpawnCooldown", "Spawn Cooldown", 240, function(newValue)
     if timer.Exists("NPCSpawnTimer") then timer.Remove("NPCSpawnTimer") end
     timer.Create("NPCSpawnTimer", newValue, 0, spawnCycle)
 end, {

@@ -67,7 +67,7 @@ local function processZone( zone, group )
             local overallRemaining = zone.maxNPCs - overallCount
             if overallRemaining <= 0 then break end
             local spawnCount = math.min( remainingForType, overallRemaining )
-            for i = 1, spawnCount do
+            for _ = 1, spawnCount do
                 if spawnNPC( zone, npcType, group ) then overallCount = overallCount + 1 end
             end
         end

@@ -59,7 +59,7 @@ jobs:
           unzip glualint.zip -d tmp && chmod +x tmp/glualint && sudo mv tmp/glualint /usr/local/bin
           rm -rf glualint.zip tmp
 
-      - run: glualint --pretty-print .
+      - run: glualint --config glualint.json --pretty-print-files .
         working-directory: modules
 
       - run: |

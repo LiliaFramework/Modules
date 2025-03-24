@@ -3,7 +3,7 @@
     superAdminOnly = true,
     syntax = "[string spawnerName]",
     desc = "Force-spawns NPCs at the chosen spawn zone, overriding cooldown if possible.",
-    onRun = function( client, arguments )
+    onRun = function( client )
         local map = game.GetMap()
         local zones = MODULE.SpawnPositions[ map ]
         if not zones then
