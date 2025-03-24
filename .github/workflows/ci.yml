@@ -71,16 +71,20 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: sudo apt-get update && sudo apt-get install -y zip
+      - run: sudo apt-get update && sudo apt-get install -y jq zip
       - run: |
-          printf "%s\n" "--------------------------------------------------------" > modules.txt
+          echo "[]" > modules.json
           for module in */module.lua; do
             name=$(grep -Po '(?<=MODULE\.name\s*=\s*")[^"]+' "$module" || echo "")
             author=$(grep -Po '(?<=MODULE\.Author\s*=\s*")[^"]+' "$module" || echo "")
             desc=$(grep -Po '(?<=MODULE\.Description\s*=\s*")[^"]+' "$module" || echo "")
             version=$(grep -Po '(?<=MODULE\.Version\s*=\s*")[^"]+' "$module" || echo "1.0")
-            printf "MODULE.name = \"%s\"\nMODULE.Author = \"%s\"\nMODULE.Description = \"%s\"\nMODULE.Version = \"%s\"\n" "$name" "$author" "$desc" "$version" >> modules.txt
-            printf "%s\n" "--------------------------------------------------------" >> modules.txt
+            jq --arg name "$name" \
+               --arg author "$author" \
+               --arg desc "$desc" \
+               --arg version "$version" \
+               '. += [{"name":$name,"author":$author,"description":$desc,"version":$version}]' modules.json > tmp.json
+            mv tmp.json modules.json
           done
       - run: |
           for folder in */; do
@@ -89,9 +93,9 @@ jobs:
       - run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add modules.txt
+          git add modules.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update modules.txt with version info"
+            git commit -m "Update modules.json"
             git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           fi
       - uses: actions/upload-artifact@v4
