@@ -1,336 +1,294 @@
 [
   {
     "name": "Advert",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a Advert Command",
     "version": "1.0",
     "download": "Downloads/advert.zip"
   },
   {
     "name": "Alcoholism",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds Alcohol and Effects to it.",
     "version": "1.0",
     "download": "Downloads/alcoholism.zip"
   },
   {
     "name": "Bodygrouper",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a bodygroup menu and bodygroup closet, akin to BodygroupR on GModStore",
     "version": "1.0",
     "download": "Downloads/bodygrouper.zip"
   },
   {
     "name": "Broadcasts",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a Faction & Class Broadcast Command",
     "version": "1.0",
     "download": "Downloads/broadcasts.zip"
   },
   {
     "name": "Captions",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a easy way of adding in-game captions.",
     "version": "1.0",
     "download": "Downloads/captions.zip"
   },
   {
     "name": "Chat Messages",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds Simple Adverts.",
     "version": "1.0",
     "download": "Downloads/chatmessages.zip"
   },
   {
     "name": "Cinematic Text",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Cinematic looking splash text for that extra flair",
     "version": "1.0",
     "download": "Downloads/cinematictext.zip"
   },
   {
     "name": "Climb",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds the ability to climb up ledges.",
     "version": "1.0",
     "download": "Downloads/climb.zip"
   },
   {
     "name": "Code Utils",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a few extensions to the lia.util library.",
     "version": "1.0",
     "download": "Downloads/codeutils.zip"
   },
   {
     "name": "Community Commands",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds links to the various content",
     "version": "1.0",
     "download": "Downloads/community commands.zip"
   },
   {
     "name": "Corpse ID",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a corpse identification mechanic.",
     "version": "1.0",
     "download": "Downloads/corpseid.zip"
   },
   {
     "name": "Cursor",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a Cursor.",
     "version": "1.0",
     "download": "Downloads/cursor.zip"
   },
   {
     "name": "Development HUD",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a Development HUD",
     "version": "1.0",
     "download": "Downloads/developmenthud.zip"
   },
   {
     "name": "Development Server",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds the option for a Development Server, which can run specific functions.",
     "version": "1.0",
     "download": "Downloads/developmentserver.zip"
   },
   {
     "name": "Discord Relay",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Relays Logs to Discord.",
     "version": "1.0",
     "download": "Downloads/discordrelay.zip"
   },
   {
     "name": "Donator",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds Several Donation Related Libraries.",
     "version": "1.0",
     "download": "Downloads/donator.zip"
   },
   {
     "name": "Door Kick",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Allows you to kick doors open.",
     "version": "1.0",
     "download": "Downloads/doorkick.zip"
   },
   {
     "name": "Hospitals",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds Hospitals that Spawn you after dying",
     "version": "1.0",
     "download": "Downloads/enhanceddeath.zip"
   },
   {
     "name": "Extended Descriptions",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "This Module focuses on adding Extended Descriptions.",
     "version": "1.0",
     "download": "Downloads/extendeddescriptions.zip"
   },
   {
     "name": "Flashlight",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Makes Flashlight a bit more serious",
     "version": "1.0",
     "download": "Downloads/flashlight.zip"
   },
   {
     "name": "Free Look",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds Free Look similar to EFT",
     "version": "1.0",
     "download": "Downloads/freelook.zip"
   },
   {
     "name": "Join Leave Messages",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds Join and Leave Messages",
     "version": "1.0",
     "download": "Downloads/joinleavemessages.zip"
   },
   {
     "name": "Loyalism",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "System for loyalist points.",
     "version": "1.0",
     "download": "Downloads/loyalism.zip"
   },
   {
     "name": "Map Cleaner",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a Map Cleaner with configurable timings",
     "version": "1.0",
     "download": "Downloads/mapcleaner.zip"
   },
   {
     "name": "Model Pay",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a system to pay per model",
     "version": "1.0",
     "download": "Downloads/modelpay.zip"
   },
   {
     "name": "Model Tweaker",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a Model Tweaker Entity.",
     "version": "",
     "download": "Downloads/modeltweaker.zip"
   },
   {
     "name": "NPC Spawner",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds automatic npc spawning",
     "version": "1.0",
     "download": "Downloads/npcspawner.zip"
   },
   {
     "name": "Perma Remove",
-    "author": "Boz [Base Code] & Samael [Minor Optimizations]",
-    "discord": "bozdev",
+    "author": "bozdev",
     "description": "Allows staff to permanently remove map entities",
     "version": "",
     "download": "Downloads/permaremove.zip"
   },
   {
     "name": "Radio",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Radio",
     "version": "1.0",
     "download": "Downloads/radio.zip"
   },
   {
     "name": "Raised Weapons",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a safety system that holsters sweps.",
     "version": "1.0",
     "download": "Downloads/raisedweapons.zip"
   },
   {
     "name": "Rappelling",
-    "author": "wowm0d & bloodycop",
-    "discord": "bloodycop",
+    "author": "bloodycop",
     "description": "Adds a rappel gear.",
     "version": "1.0",
     "download": "Downloads/rappelling.zip"
   },
   {
     "name": "Realistic Damage",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds Damage Scalers for Realism",
     "version": "1.0",
     "download": "Downloads/realisticdamage.zip"
   },
   {
     "name": "Realistic View",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds an realistic 1st Person View that allows to see the entire body.",
     "version": "1.0",
     "download": "Downloads/realisticview.zip"
   },
   {
     "name": "Rumour",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a Rumour Command",
     "version": "1.0",
     "download": "Downloads/rumour.zip"
   },
   {
     "name": "Shoot Locks",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Shoot locks to open doors.",
     "version": "1.0",
     "download": "Downloads/shootlock.zip"
   },
   {
     "name": "Stun Gun",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "An Stun Gun Reworked from CustomHQ",
     "version": "1.0",
     "download": "Downloads/stungun.zip"
   },
   {
     "name": "Turning",
-    "author": "TankNut & bloodycop",
-    "discord": "bloodycop",
+    "author": "bloodycop",
     "description": "Adds support for playermodels playing turning animations.",
     "version": "1.0",
     "download": "Downloads/turning.zip"
   },
   {
     "name": "Tying",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds Tying Items That Serve As Handcuffs. Enchance Roleplay Overall.",
     "version": "1.0",
     "download": "Downloads/tying.zip"
   },
   {
     "name": "View Bob",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds an custom View Bob.",
     "version": "1.0",
     "download": "Downloads/viewbob.zip"
   },
   {
     "name": "Warrant",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds Warrants",
     "version": "1.0",
     "download": "Downloads/warrants.zip"
   },
   {
     "name": "War Table",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a interactive War Table",
     "version": "1.0",
     "download": "Downloads/wartable.zip"
   },
   {
     "name": "Whitelist",
-    "author": "76561198312513285",
-    "discord": "@liliaplayer",
+    "author": "@liliaplayer",
     "description": "Adds a Server Whitelist",
     "version": "1.0",
     "download": "Downloads/whitelist.zip"
