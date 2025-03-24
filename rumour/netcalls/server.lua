@@ -1,1 +1,1 @@
-﻿util.AddNetworkString("RumorMessageCall")
+﻿util.AddNetworkString( "RumorMessageCall" )

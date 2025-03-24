@@ -1,3 +1,3 @@
-﻿function IsBeingSearched(target)
-    return target:getNetVar("searcher")
+﻿function IsBeingSearched( target )
+	return target:getNetVar( "searcher" )
 end
