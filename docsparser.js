@@ -279,7 +279,6 @@ modules.forEach(mod => {
       </div>
     </div>
     <div class="info-block">
-
       <p>
         <strong>Description:</strong><br>
         ${mod.description || "No description provided."}
