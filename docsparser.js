@@ -16,6 +16,7 @@ const data = JSON.parse(fs.readFileSync(jsonPath, "utf8")).map(mod => ({
   desc: escapeHTML(mod.description),
   license: escapeHTML(mod.license || ""),
   version: escapeHTML(mod.version),
+  download: escapeHTML(mod.download),
   published: escapeHTML(mod.published || "")
 }));
 
@@ -24,7 +25,10 @@ const downloadsDir = path.join(docsDir, "Downloads");
 if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
 if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
 
-const baseCSS = `...`; // your existing CSS/JS
+const baseCSS = `
+<style>/* your CSS here */</style>
+<script>function switchTab(t){document.querySelectorAll(".tab-section").forEach(s=>s.style.display=s.id===t?"block":"none");document.querySelectorAll(".tabs li").forEach(li=>li.classList.toggle("active",li.dataset.tab===t));}</script>
+`;
 
 let indexHtml = `
 <!DOCTYPE html>
@@ -55,9 +59,8 @@ fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml);
 
 data.forEach(mod => {
   const id = mod.name.replace(/\s+/g, "");
-  const zipName = `${id}.zip`;
-  const downloadBtn = fs.existsSync(path.join(downloadsDir, zipName))
-    ? `<a class="download-btn" href="Downloads/${zipName}" download>Download</a>`
+  const downloadBtn = mod.download && fs.existsSync(path.join(downloadsDir, path.basename(mod.download)))
+    ? `<a class="download-btn" href="${mod.download}" download>Download</a>`
     : "<p>No download found.</p>";
 
   const detailHtml = `
