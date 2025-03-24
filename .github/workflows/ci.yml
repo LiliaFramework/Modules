@@ -84,31 +84,29 @@ jobs:
             version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
 
             # Parse WorkshopContent line (if any).
-            # This looks for either:
             #   MODULE.WorkshopContent = { "ID1", "ID2" }
             #   MODULE.WorkshopContent = "ID"
             workshop_line=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|".*")' "$module" || echo "")
-            # Trim the 'MODULE.WorkshopContent = ' part out
+            # Strip the leading 'MODULE.WorkshopContent ='
             workshop_line=$(echo "$workshop_line" | sed -E 's/MODULE\.WorkshopContent\s*=\s*//g')
 
-            # We'll store workshop IDs in an array (JSON).
-            # If workshop_line is { "111", "222" }, transform it into ["111","222"]
-            # If workshop_line is "111", store it as ["111"]
+            # Convert to a JSON array
             if [[ "$workshop_line" =~ ^\{.*\}$ ]]; then
-              # Convert Lua-ish { "111", "222" } => ["111","222"]
+              # Convert { "111", "222" } -> ["111","222"]
               workshop_line=$(echo "$workshop_line" \
                 | sed -E 's/^\{\s*(.*)\s*\}$/[\1]/' \
                 | sed -E 's/"\s*,\s*"/","/g')
             elif [ -n "$workshop_line" ]; then
-              # Single ID in quotes => ["12345"]
+              # Single ID -> ["12345"]
               workshop_line="[${workshop_line}]"
             else
-              # No workshop content found => empty array
+              # No workshop IDs
               workshop_line="[]"
             fi
 
             folder=$(basename "$(dirname "$module")")
             uniqueID=$folder
+            # Updated to use the gh-pages branch’s artifact
             download="https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/${folder}.zip"
             source="https://github.com/LiliaFramework/Modules/tree/main/${folder}"
 
