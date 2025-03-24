@@ -20,8 +20,8 @@ if (!fs.existsSync(docsDir)) {
 // RGB Values for styling
 const primaryColor = "rgb(37, 116, 108)"; // Teal
 const hoverColor = "rgb(29, 95, 88)"; // Darker teal
-const buttonColor = "rgb(90, 46, 166)"; // Purple
-const buttonHoverColor = "rgb(75, 35, 146)"; // Darker purple
+const buttonColor = "rgb((37, 116, 108)"; // Purple
+const buttonHoverColor = "rgb(29, 95, 88)"; // Darker purple
 
 // 3. Build index.html
 const indexHtml = `<!DOCTYPE html>
