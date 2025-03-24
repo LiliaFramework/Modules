@@ -4,6 +4,7 @@ MODULE.author = "TankNut & bloodycop"
 MODULE.discord = "bloodycop"
 MODULE.version = "1.0"
 MODULE.desc = "Adds support for playermodels playing turning animations."
+MODULE.Public = true
 MODULE.supportedModelClasses = {
 	metrocop = true,
 	overwatch = true,

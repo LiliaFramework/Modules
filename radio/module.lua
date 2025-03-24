@@ -4,3 +4,4 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0"
 MODULE.desc = "Radio"
 MODULE.WorkshopContent = "3431349806"
+MODULE.Public = true

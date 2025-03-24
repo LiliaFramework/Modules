@@ -4,6 +4,7 @@ MODULE.author = "wowm0d & bloodycop"
 MODULE.discord = "bloodycop"
 MODULE.version = "1.0"
 MODULE.desc = "Adds a rappel gear."
+MODULE.Public = true
 function MODULE:StartRappel( client )
 	client.rappelling = true
 	client.rappelPos = client:GetPos()

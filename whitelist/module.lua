@@ -4,3 +4,4 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0"
 MODULE.desc = "Adds a Server Whitelist"
 MODULE.identifier = "WhitelistCore"
+MODULE.Public = true
