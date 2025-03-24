@@ -5,7 +5,8 @@
     "description": "Adds a Advert Command",
     "version": "1.0",
     "download": "Downloads/advert.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/advert"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/advert",
+    "uniqueID": "advert"
   },
   {
     "name": "Alcoholism",
@@ -13,7 +14,8 @@
     "description": "Adds Alcohol and Effects to it.",
     "version": "1.0",
     "download": "Downloads/alcoholism.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/alcoholism"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/alcoholism",
+    "uniqueID": "alcoholism"
   },
   {
     "name": "Bodygrouper",
@@ -21,7 +23,8 @@
     "description": "Adds a bodygroup menu and bodygroup closet, akin to BodygroupR on GModStore",
     "version": "1.0",
     "download": "Downloads/bodygrouper.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/bodygrouper"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/bodygrouper",
+    "uniqueID": "bodygrouper"
   },
   {
     "name": "Broadcasts",
@@ -29,7 +32,8 @@
     "description": "Adds a Faction & Class Broadcast Command",
     "version": "1.0",
     "download": "Downloads/broadcasts.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/broadcasts"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/broadcasts",
+    "uniqueID": "broadcasts"
   },
   {
     "name": "Captions",
@@ -37,7 +41,8 @@
     "description": "Adds a easy way of adding in-game captions.",
     "version": "1.0",
     "download": "Downloads/captions.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/captions"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/captions",
+    "uniqueID": "captions"
   },
   {
     "name": "Chat Messages",
@@ -45,7 +50,8 @@
     "description": "Adds Simple Adverts.",
     "version": "1.0",
     "download": "Downloads/chatmessages.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/chatmessages"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/chatmessages",
+    "uniqueID": "chatmessages"
   },
   {
     "name": "Cinematic Text",
@@ -53,7 +59,8 @@
     "description": "Cinematic looking splash text for that extra flair",
     "version": "1.0",
     "download": "Downloads/cinematictext.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/cinematictext"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/cinematictext",
+    "uniqueID": "cinematictext"
   },
   {
     "name": "Climb",
@@ -61,7 +68,8 @@
     "description": "Adds the ability to climb up ledges.",
     "version": "1.0",
     "download": "Downloads/climb.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/climb"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/climb",
+    "uniqueID": "climb"
   },
   {
     "name": "Code Utils",
@@ -69,7 +77,8 @@
     "description": "Adds a few extensions to the lia.util library.",
     "version": "1.0",
     "download": "Downloads/codeutils.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/codeutils"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/codeutils",
+    "uniqueID": "codeutils"
   },
   {
     "name": "Community Commands",
@@ -77,7 +86,8 @@
     "description": "Adds links to the various content",
     "version": "1.0",
     "download": "Downloads/community commands.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/community commands"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/community commands",
+    "uniqueID": "community commands"
   },
   {
     "name": "Corpse ID",
@@ -85,7 +95,8 @@
     "description": "Adds a corpse identification mechanic.",
     "version": "1.0",
     "download": "Downloads/corpseid.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/corpseid"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/corpseid",
+    "uniqueID": "corpseid"
   },
   {
     "name": "Cursor",
@@ -93,7 +104,8 @@
     "description": "Adds a Cursor.",
     "version": "1.0",
     "download": "Downloads/cursor.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/cursor"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/cursor",
+    "uniqueID": "cursor"
   },
   {
     "name": "Development HUD",
@@ -101,7 +113,8 @@
     "description": "Adds a Development HUD",
     "version": "1.0",
     "download": "Downloads/developmenthud.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/developmenthud"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/developmenthud",
+    "uniqueID": "developmenthud"
   },
   {
     "name": "Development Server",
@@ -109,7 +122,8 @@
     "description": "Adds the option for a Development Server, which can run specific functions.",
     "version": "1.0",
     "download": "Downloads/developmentserver.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/developmentserver"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/developmentserver",
+    "uniqueID": "developmentserver"
   },
   {
     "name": "Discord Relay",
@@ -117,7 +131,8 @@
     "description": "Relays Logs to Discord.",
     "version": "1.0",
     "download": "Downloads/discordrelay.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/discordrelay"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/discordrelay",
+    "uniqueID": "discordrelay"
   },
   {
     "name": "Donator",
@@ -125,7 +140,8 @@
     "description": "Adds Several Donation Related Libraries.",
     "version": "1.0",
     "download": "Downloads/donator.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/donator"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/donator",
+    "uniqueID": "donator"
   },
   {
     "name": "Door Kick",
@@ -133,7 +149,8 @@
     "description": "Allows you to kick doors open.",
     "version": "1.0",
     "download": "Downloads/doorkick.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/doorkick"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/doorkick",
+    "uniqueID": "doorkick"
   },
   {
     "name": "Hospitals",
@@ -141,7 +158,8 @@
     "description": "Adds Hospitals that Spawn you after dying",
     "version": "1.0",
     "download": "Downloads/enhanceddeath.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/enhanceddeath"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/enhanceddeath",
+    "uniqueID": "enhanceddeath"
   },
   {
     "name": "Extended Descriptions",
@@ -149,7 +167,8 @@
     "description": "This Module focuses on adding Extended Descriptions.",
     "version": "1.0",
     "download": "Downloads/extendeddescriptions.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/extendeddescriptions"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/extendeddescriptions",
+    "uniqueID": "extendeddescriptions"
   },
   {
     "name": "Flashlight",
@@ -157,7 +176,8 @@
     "description": "Makes Flashlight a bit more serious",
     "version": "1.0",
     "download": "Downloads/flashlight.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/flashlight"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/flashlight",
+    "uniqueID": "flashlight"
   },
   {
     "name": "Free Look",
@@ -165,7 +185,8 @@
     "description": "Adds Free Look similar to EFT",
     "version": "1.0",
     "download": "Downloads/freelook.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/freelook"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/freelook",
+    "uniqueID": "freelook"
   },
   {
     "name": "Join Leave Messages",
@@ -173,7 +194,8 @@
     "description": "Adds Join and Leave Messages",
     "version": "1.0",
     "download": "Downloads/joinleavemessages.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/joinleavemessages"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/joinleavemessages",
+    "uniqueID": "joinleavemessages"
   },
   {
     "name": "Loyalism",
@@ -181,7 +203,8 @@
     "description": "System for loyalist points.",
     "version": "1.0",
     "download": "Downloads/loyalism.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/loyalism"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/loyalism",
+    "uniqueID": "loyalism"
   },
   {
     "name": "Map Cleaner",
@@ -189,7 +212,8 @@
     "description": "Adds a Map Cleaner with configurable timings",
     "version": "1.0",
     "download": "Downloads/mapcleaner.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/mapcleaner"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/mapcleaner",
+    "uniqueID": "mapcleaner"
   },
   {
     "name": "Model Pay",
@@ -197,7 +221,8 @@
     "description": "Adds a system to pay per model",
     "version": "1.0",
     "download": "Downloads/modelpay.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/modelpay"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/modelpay",
+    "uniqueID": "modelpay"
   },
   {
     "name": "Model Tweaker",
@@ -205,7 +230,8 @@
     "description": "Adds a Model Tweaker Entity.",
     "version": "",
     "download": "Downloads/modeltweaker.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/modeltweaker"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/modeltweaker",
+    "uniqueID": "modeltweaker"
   },
   {
     "name": "NPC Spawner",
@@ -213,7 +239,8 @@
     "description": "Adds automatic npc spawning",
     "version": "1.0",
     "download": "Downloads/npcspawner.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/npcspawner"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/npcspawner",
+    "uniqueID": "npcspawner"
   },
   {
     "name": "Perma Remove",
@@ -221,7 +248,8 @@
     "description": "Allows staff to permanently remove map entities",
     "version": "",
     "download": "Downloads/permaremove.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/permaremove"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/permaremove",
+    "uniqueID": "permaremove"
   },
   {
     "name": "Radio",
@@ -229,7 +257,8 @@
     "description": "Radio",
     "version": "1.0",
     "download": "Downloads/radio.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/radio"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/radio",
+    "uniqueID": "radio"
   },
   {
     "name": "Raised Weapons",
@@ -237,7 +266,8 @@
     "description": "Adds a safety system that holsters sweps.",
     "version": "1.0",
     "download": "Downloads/raisedweapons.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/raisedweapons"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/raisedweapons",
+    "uniqueID": "raisedweapons"
   },
   {
     "name": "Rappelling",
@@ -245,7 +275,8 @@
     "description": "Adds a rappel gear.",
     "version": "1.0",
     "download": "Downloads/rappelling.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/rappelling"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/rappelling",
+    "uniqueID": "rappelling"
   },
   {
     "name": "Realistic Damage",
@@ -253,7 +284,8 @@
     "description": "Adds Damage Scalers for Realism",
     "version": "1.0",
     "download": "Downloads/realisticdamage.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/realisticdamage"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/realisticdamage",
+    "uniqueID": "realisticdamage"
   },
   {
     "name": "Realistic View",
@@ -261,7 +293,8 @@
     "description": "Adds an realistic 1st Person View that allows to see the entire body.",
     "version": "1.0",
     "download": "Downloads/realisticview.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/realisticview"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/realisticview",
+    "uniqueID": "realisticview"
   },
   {
     "name": "Rumour",
@@ -269,7 +302,8 @@
     "description": "Adds a Rumour Command",
     "version": "1.0",
     "download": "Downloads/rumour.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/rumour"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/rumour",
+    "uniqueID": "rumour"
   },
   {
     "name": "Shoot Locks",
@@ -277,7 +311,8 @@
     "description": "Shoot locks to open doors.",
     "version": "1.0",
     "download": "Downloads/shootlock.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/shootlock"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/shootlock",
+    "uniqueID": "shootlock"
   },
   {
     "name": "Stun Gun",
@@ -285,7 +320,8 @@
     "description": "An Stun Gun Reworked from CustomHQ",
     "version": "1.0",
     "download": "Downloads/stungun.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/stungun"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/stungun",
+    "uniqueID": "stungun"
   },
   {
     "name": "Turning",
@@ -293,7 +329,8 @@
     "description": "Adds support for playermodels playing turning animations.",
     "version": "1.0",
     "download": "Downloads/turning.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/turning"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/turning",
+    "uniqueID": "turning"
   },
   {
     "name": "Tying",
@@ -301,7 +338,8 @@
     "description": "Adds Tying Items That Serve As Handcuffs. Enchance Roleplay Overall.",
     "version": "1.0",
     "download": "Downloads/tying.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/tying"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/tying",
+    "uniqueID": "tying"
   },
   {
     "name": "View Bob",
@@ -309,7 +347,8 @@
     "description": "Adds an custom View Bob.",
     "version": "1.0",
     "download": "Downloads/viewbob.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/viewbob"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/viewbob",
+    "uniqueID": "viewbob"
   },
   {
     "name": "Warrant",
@@ -317,7 +356,8 @@
     "description": "Adds Warrants",
     "version": "1.0",
     "download": "Downloads/warrants.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/warrants"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/warrants",
+    "uniqueID": "warrants"
   },
   {
     "name": "War Table",
@@ -325,7 +365,8 @@
     "description": "Adds a interactive War Table",
     "version": "1.0",
     "download": "Downloads/wartable.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/wartable"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/wartable",
+    "uniqueID": "wartable"
   },
   {
     "name": "Whitelist",
@@ -333,6 +374,7 @@
     "description": "Adds a Server Whitelist",
     "version": "1.0",
     "download": "Downloads/whitelist.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/whitelist"
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/whitelist",
+    "uniqueID": "whitelist"
   }
 ]
