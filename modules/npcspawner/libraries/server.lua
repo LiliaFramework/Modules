@@ -1,48 +1,48 @@
-﻿local MODULE = MODULE
-local function isSafeSpawnPos(pos)
+local MODULE = MODULE
+local function isSafeSpawnPos( pos )
     local hull = {}
-    hull.start = pos + Vector(0, 0, 50)
+    hull.start = pos + Vector( 0, 0, 50 )
     hull.endpos = pos
-    hull.mins = Vector(-16, -16, 0)
-    hull.maxs = Vector(16, 16, 72)
+    hull.mins = Vector( -16, -16, 0 )
+    hull.maxs = Vector( 16, 16, 72 )
     hull.mask = MASK_PLAYERSOLID_BRUSHONLY
-    local hullTrace = util.TraceHull(hull)
+    local hullTrace = util.TraceHull( hull )
     if hullTrace.Hit then return false end
     local ground = {}
     ground.start = pos
-    ground.endpos = pos - Vector(0, 0, 100)
+    ground.endpos = pos - Vector( 0, 0, 100 )
     ground.mask = MASK_SOLID
-    local groundTrace = util.TraceLine(ground)
+    local groundTrace = util.TraceLine( ground )
     if not groundTrace.Hit then return false end
     return true
 end
 
-local function spawnNPC(zone, npcType, group)
-    local randomOffset = Vector(math.Rand(-zone.radius, zone.radius), math.Rand(-zone.radius, zone.radius), 0)
+local function spawnNPC( zone, npcType, group )
+    local randomOffset = Vector( math.Rand( -zone.radius, zone.radius ), math.Rand( -zone.radius, zone.radius ), 0 )
     local spawnPos = zone.pos + randomOffset
-    if not isSafeSpawnPos(spawnPos) then return false end
-    local npc = ents.Create(npcType)
-    if not IsValid(npc) then return false end
-    npc:SetPos(spawnPos)
-    npc:setNetVar("setNetVar", group)
+    if not isSafeSpawnPos( spawnPos ) then return false end
+    local npc = ents.Create( npcType )
+    if not IsValid( npc ) then return false end
+    npc:SetPos( spawnPos )
+    npc:setNetVar( "setNetVar", group )
     npc:Spawn()
-    table.insert(zone.spawnedNPCs, npc)
+    table.insert( zone.spawnedNPCs, npc )
     return true
 end
 
-local function getNPCCount(zone, npcType)
+local function getNPCCount( zone, npcType )
     local count = 0
-    for _, npc in ipairs(zone.spawnedNPCs or {}) do
-        if IsValid(npc) and npc:GetClass() == npcType then count = count + 1 end
+    for _, npc in ipairs( zone.spawnedNPCs or {} ) do
+        if IsValid( npc ) and npc:GetClass() == npcType then count = count + 1 end
     end
     return count
 end
 
-local function processZone(zone, group)
+local function processZone( zone, group )
     zone.spawnedNPCs = zone.spawnedNPCs or {}
     local groupAlive = false
-    for _, npc in ipairs(zone.spawnedNPCs) do
-        if IsValid(npc) and npc:getNetVar("setNetVar") == group then
+    for _, npc in ipairs( zone.spawnedNPCs ) do
+        if IsValid( npc ) and npc:getNetVar( "setNetVar" ) == group then
             groupAlive = true
             break
         end
@@ -55,20 +55,20 @@ local function processZone(zone, group)
     end
 
     local overallCount = 0
-    for _, npc in ipairs(zone.spawnedNPCs) do
-        if IsValid(npc) then overallCount = overallCount + 1 end
+    for _, npc in ipairs( zone.spawnedNPCs ) do
+        if IsValid( npc ) then overallCount = overallCount + 1 end
     end
 
     if overallCount >= zone.maxNPCs then return false end
-    for npcType, maxCount in pairs(zone.maxPerType) do
-        local currentCount = getNPCCount(zone, npcType)
+    for npcType, maxCount in pairs( zone.maxPerType ) do
+        local currentCount = getNPCCount( zone, npcType )
         local remainingForType = maxCount - currentCount
         if remainingForType > 0 then
             local overallRemaining = zone.maxNPCs - overallCount
             if overallRemaining <= 0 then break end
-            local spawnCount = math.min(remainingForType, overallRemaining)
+            local spawnCount = math.min( remainingForType, overallRemaining )
             for i = 1, spawnCount do
-                if spawnNPC(zone, npcType, group) then overallCount = overallCount + 1 end
+                if spawnNPC( zone, npcType, group ) then overallCount = overallCount + 1 end
             end
         end
     end
@@ -76,50 +76,13 @@ local function processZone(zone, group)
 end
 
 local function spawnCycle()
-    local zones = MODULE.SpawnPositions[game.GetMap()]
+    local zones = MODULE.SpawnPositions[ game.GetMap() ]
     if not zones then return end
-    for group, zone in pairs(zones) do
-        processZone(zone, group)
+    for group, zone in pairs( zones ) do
+        processZone( zone, group )
     end
 end
 
 function MODULE:InitializedModules()
-    if not timer.Exists("NPCSpawnTimer") then timer.Create("NPCSpawnTimer", lia.config.get("SpawnCooldown"), 0, spawnCycle) end
+    if not timer.Exists( "NPCSpawnTimer" ) then timer.Create( "NPCSpawnTimer", lia.config.get( "SpawnCooldown" ), 0, spawnCycle ) end
 end
-
-lia.command.add("forcenpcspawn", {
-    privilege = "Force NPC Spawn",
-    superAdminOnly = true,
-    onRun = function(client, arguments)
-        local map = game.GetMap()
-        local zones = MODULE.SpawnPositions[map]
-        if not zones then
-            client:notify("No NPC Spawns here")
-            return
-        end
-
-        local options = {}
-        for spawnerName, _ in pairs(zones) do
-            table.insert(options, spawnerName)
-        end
-
-        client:requestDropdown("Select Spawner", "Choose a spawner zone to force a spawn:", options, function(selectedSpawner)
-            if not selectedSpawner then return end
-            local zone = zones[selectedSpawner]
-            if zone then
-                local spawned, err = processZone(zone, selectedSpawner)
-                if spawned then
-                    client:notify("Forced spawn on spawner: " .. selectedSpawner)
-                else
-                    if err then
-                        client:notify("Force spawn did not occur on spawner: " .. selectedSpawner .. " because old NPCs are still alive.")
-                    else
-                        client:notify("Force spawn did not occur on spawner: " .. selectedSpawner)
-                    end
-                end
-            else
-                client:notify("Spawner not found!")
-            end
-        end)
-    end
-})

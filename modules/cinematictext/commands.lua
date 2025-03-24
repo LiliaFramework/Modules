@@ -1,8 +1,9 @@
-﻿lia.command.add("cinematicmenu", {
+﻿lia.command.add( "cinematicmenu", {
     privilege = "Use Cinematic Menu",
     adminOnly = true,
-    onRun = function(client)
-        net.Start("OpenCinematicMenu")
-        net.Send(client)
+    desc = "Opens the cinematic menu for camera controls.",
+    onRun = function( client )
+        net.Start( "OpenCinematicMenu" )
+        net.Send( client )
     end
-})
+} )

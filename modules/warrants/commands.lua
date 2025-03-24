@@ -1,15 +1,17 @@
-﻿lia.command.add("warrant", {
+﻿lia.command.add( "warrant", {
     adminOnly = false,
-    onRun = function(client, arguments)
-        local target = lia.command.findPlayer(client, arguments[1])
+    syntax = "[string targetPlayer]",
+    desc = "Toggles a wanted warrant on the specified player.",
+    onRun = function( client, arguments )
+        local target = lia.command.findPlayer( client, arguments[ 1 ] )
         if client:CanWarrantPlayers() then
-            if IsValid(target) and target:getChar() then
-                target:ToggleWanted(client)
+            if IsValid( target ) and target:getChar() then
+                target:ToggleWanted( client )
             else
-                client:notifyLocalized("plyNoExist")
+                client:notifyLocalized( "plyNoExist" )
             end
         else
-            client:notifyLocalized("noPerm")
+            client:notifyLocalized( "noPerm" )
         end
     end
-})
+} )

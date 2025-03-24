@@ -1,17 +1,17 @@
 ﻿MODULE.URLs = {
-    ["Rules"] = {
+    [ "Rules" ] = {
         URL = "https://example.com/rules",
         shouldOpenIngame = true,
     },
-    ["Discord"] = {
+    [ "Discord" ] = {
         URL = "https://discord.gg/2QyjggCUx4",
         shouldOpenIngame = false,
     },
-    ["Content"] = {
+    [ "Content" ] = {
         URL = "https://steamcommunity.com/sharedfiles/managecollection/?id=3367324267",
         shouldOpenIngame = false,
     },
-    ["SteamGroup"] = {
+    [ "SteamGroup" ] = {
         URL = "https://steamcommunity.com/groups/partumverse",
         shouldOpenIngame = false,
     },
