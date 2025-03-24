@@ -5,7 +5,7 @@
     onRun = function(client, arguments)
         local target = lia.command.findPlayer(client, arguments[1])
         if not target or not IsValid(target) then
-            client:notifyLocalized("noTarget")
+            client:notifyLocalized("targetNotFound")
             return
         end
 
@@ -20,7 +20,7 @@ lia.command.add("addcharslots", {
     onRun = function(client, arguments)
         local target = lia.command.findPlayer(client, arguments[1])
         if not target or not IsValid(target) then
-            client:notifyLocalized("noTarget")
+            client:notifyLocalized("targetNotFound")
             return
         end
 
@@ -36,7 +36,7 @@ lia.command.add("setcharslots", {
         local target = lia.command.findPlayer(client, arguments[1])
         local count = tonumber(arguments[2])
         if not target or not IsValid(target) then
-            client:notifyLocalized("noTarget")
+            client:notifyLocalized("targetNotFound")
             return
         end
 

@@ -6,7 +6,7 @@
         local text = arguments[1]
         local duration = tonumber(arguments[2]) or 5
         if not target or not IsValid(target) then
-            client:notifyLocalized("noTarget")
+            client:notifyLocalized("targetNotFound")
             return
         end
 

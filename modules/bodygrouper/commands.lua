@@ -5,7 +5,7 @@
     onRun = function(client, arguments)
         local target = lia.command.findPlayer(client, arguments[1] or "")
         if not target or not IsValid(target) then
-            client:notifyLocalized("noTarget")
+            client:notifyLocalized("targetNotFound")
             return
         end
 

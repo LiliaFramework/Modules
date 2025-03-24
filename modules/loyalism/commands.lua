@@ -13,7 +13,7 @@ lia.command.add("partytier", {
         end
 
         if not target or not IsValid(target) then
-            client:notifyLocalized("noTarget")
+            client:notifyLocalized("targetNotFound")
             return
         end
 
