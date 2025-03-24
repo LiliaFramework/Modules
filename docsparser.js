@@ -41,20 +41,57 @@ const indexHtml = `<!DOCTYPE html>
     .modules-link { color: #fff; text-decoration: none; font-weight: bold; margin-right: 20px; font-size: 1.1rem; }
     .modules-link:hover { text-decoration: underline; }
     .search-bar { position: relative; }
-    .search-bar input { padding: 6px 8px; border-radius: 4px; border: none; outline: none; background-color: #333; color: #fff; }
+    .search-bar input {
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      background-color: #333;
+      color: #fff;
+    }
     main { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
     .plugin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     @media(max-width: 800px) { .plugin-grid { grid-template-columns: 1fr; } }
-    .plugin-card { background-color: #2e2e2e; border-radius: 4px; padding: 25px 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; font-size: 1.1rem; }
+    .plugin-card {
+      background-color: #2e2e2e;
+      border-radius: 4px;
+      padding: 25px 15px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
     .plugin-card-header { margin-bottom: 10px; }
     .plugin-card-title { font-size: 1.2rem; font-weight: bold; color: ${darkTextColor}; }
     .plugin-card-author { font-size: 1rem; color: #bbb; margin-top: 10px; }
     .plugin-card-version { font-size: 1rem; color: #777; margin-top: 5px; }
-    .view-button { margin-top: 15px; padding: 14px 28px; background-color: ${buttonColor}; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 1.4rem; }
+    .view-button {
+      margin-top: 15px;
+      padding: 14px 28px;
+      background-color: ${buttonColor};
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.4rem;
+    }
     .view-button:hover { background-color: ${buttonHoverColor}; }
     .pagination { display: flex; justify-content: center; margin: 20px 0; gap: 5px; }
-    .pagination button { background-color: #2e2e2e; border: 1px solid #555; border-radius: 4px; padding: 12px 24px; cursor: pointer; color: ${darkTextColor}; font-size: 1.1rem; }
-    .pagination button.active { background-color: ${primaryColor}; color: #fff; border-color: ${primaryColor}; }
+    .pagination button {
+      background-color: #2e2e2e;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 12px 24px;
+      cursor: pointer;
+      color: ${darkTextColor};
+      font-size: 1.1rem;
+    }
+    .pagination button.active {
+      background-color: ${primaryColor};
+      color: #fff;
+      border-color: ${primaryColor};
+    }
     .pagination button:hover { background-color: #444; }
   </style>
 </head>
@@ -158,26 +195,74 @@ fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml, "utf8");
 modules.forEach(mod => {
   const slug = slugify(mod.name);
 
+  let workshopHtml = "None";
+  if (Array.isArray(mod.workshop) && mod.workshop.length > 0) {
+    workshopHtml = mod.workshop
+      .map(id => `https://steamcommunity.com/sharedfiles/filedetails/?id=${id}`)
+      .join("<br>");
+  }
+
   const detailHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>${mod.name || "Module Detail"}</title>
   <style>
-    body { font-family: Arial, sans-serif; background-color: ${darkBackgroundColor}; color: ${darkTextColor}; margin: 0; padding: 0; }
-    .container { max-width: 900px; margin: 40px auto; background-color: #333; padding: 25px 35px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: ${darkBackgroundColor};
+      color: ${darkTextColor};
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: #333;
+      padding: 25px 35px;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
     .header { display: flex; justify-content: space-between; align-items: flex-start; }
     .header-left { max-width: 60%; }
-    .header-left h1 { margin: 0 0 10px 0; font-size: 2rem; color: ${darkTextColor}; }
-    .header-left .author { color: #bbb; margin-bottom: 15px; }
-    .header-left .version { color: #777; }
+    .header-left h1 {
+      margin: 0 0 10px 0;
+      font-size: 2rem;
+      color: ${darkTextColor};
+    }
     .header-right { text-align: right; }
-    .download-button, .view-source-button { display: inline-block; background-color: ${buttonColor}; color: #fff; padding: 20px 40px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.4rem; }
-    .download-button:hover, .view-source-button:hover { background-color: ${buttonHoverColor}; }
-    .view-source-button { margin-top: 12px; }
-    .description, .version { margin-top: 25px; color: ${darkTextColor}; line-height: 1.5; font-size: 1.1rem; }
-    .description strong, .version strong { display: inline-block; margin-bottom: 8px; font-size: 1.2rem; }
-    .back-link { display: inline-block; margin-bottom: 25px; color: ${primaryColor}; text-decoration: none; font-weight: bold; }
+    .action-button {
+      display: block;
+      background-color: ${buttonColor};
+      color: #fff;
+      padding: 20px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.4rem;
+      margin: 0;
+    }
+    .action-button:hover {
+      background-color: ${buttonHoverColor};
+    }
+    .action-button + .action-button {
+      margin-top: 12px;
+    }
+    .info-block {
+      margin-top: 20px;
+      line-height: 1.5;
+      font-size: 1.1rem;
+    }
+    .info-block p {
+      margin-bottom: 15px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+      color: ${primaryColor};
+      text-decoration: none;
+      font-weight: bold;
+    }
     .back-link:hover { text-decoration: underline; }
   </style>
 </head>
@@ -187,21 +272,23 @@ modules.forEach(mod => {
     <div class="header">
       <div class="header-left">
         <h1>${mod.name || "Untitled Module"}</h1>
-        <div class="author"><strong>Author:</strong> ${mod.author || "Unknown"}</div>
-        <div class="version"><strong>Version:</strong> ${mod.version || "N/A"}</div>
       </div>
       <div class="header-right">
-        <a class="download-button" href="${mod.download}">Download via GitHub</a>
-        <a class="view-source-button" href="${mod.source}">View Source</a>
+        <a class="action-button" href="${mod.download}">Download via GitHub</a>
+        <a class="action-button" href="${mod.source}">View Source</a>
       </div>
     </div>
-    <div class="description">
-      <strong>Description:</strong>
-      <p>${mod.description || "No description provided."}</p>
-    </div>
-    <div class="version">
-      <strong>Version:</strong>
-      <p>${mod.version || "N/A"}</p>
+    <div class="info-block">
+      <p><strong>Author:</strong> ${mod.author || "Unknown"}</p>
+      <p><strong>Version:</strong> ${mod.version || "N/A"}</p>
+      <p>
+        <strong>Description:</strong><br>
+        ${mod.description || "No description provided."}
+      </p>
+      <p>
+        <strong>Workshop:</strong><br>
+        ${workshopHtml}
+      </p>
     </div>
   </div>
 </body>
