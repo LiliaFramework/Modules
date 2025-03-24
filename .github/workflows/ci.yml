@@ -107,7 +107,7 @@ jobs:
             folder=$(basename "$(dirname "$module")")
             uniqueID=$folder
             # Updated to use the gh-pages branch’s artifact
-            download="https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/${folder}.zip"
+            download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/${folder}.zip"
             source="https://github.com/LiliaFramework/Modules/tree/main/${folder}"
 
             jq --arg name "$name" \
