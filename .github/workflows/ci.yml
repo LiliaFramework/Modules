@@ -52,7 +52,7 @@ jobs:
           curl -L -o glualint.zip https://github.com/FPtje/GLuaFixer/releases/download/1.29.0/glualint-1.29.0-x86_64-linux.zip
           unzip glualint.zip -d tmp && chmod +x tmp/glualint && sudo mv tmp/glualint /usr/local/bin
           rm -rf glualint.zip tmp
-      - run: glualint --config glualint.json --pretty-print-files .
+      - run: glualint --config glualint.json --pretty-print-files . 
         working-directory: modules
       - run: |
           git config user.email "githubactions@github.com"
@@ -81,6 +81,7 @@ jobs:
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
             folder=$(basename "$(dirname "$module")")
+            uniqueID=$folder  # Set uniqueID based on the folder name
             download="Downloads/${folder}.zip"
             source="https://github.com/LiliaFramework/Modules/tree/main/${folder}"
             jq --arg name "$name" \
@@ -89,7 +90,8 @@ jobs:
                --arg version "$version" \
                --arg download "$download" \
                --arg source "$source" \
-               '. += [{"name":$name,"author":$author,"description":$desc,"version":$version,"download":$download,"source":$source}]' modules.json > tmp.json
+               --arg uniqueID "$uniqueID" \
+               '. += [{"name":$name,"author":$author,"description":$desc,"version":$version,"download":$download,"source":$source,"uniqueID":$uniqueID}]' modules.json > tmp.json
             mv tmp.json modules.json
           done
       - run: |
