@@ -8,10 +8,7 @@ if (!fs.existsSync(jsonPath)) {
 }
 
 function slugify(str) {
-  return str
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
+  return str.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 }
 
 const rawData = fs.readFileSync(jsonPath, "utf8");
@@ -133,11 +130,9 @@ const indexHtml = `<!DOCTYPE html>
       const startIndex = (currentPage - 1) * pageSize;
       const endIndex = startIndex + pageSize;
       const pageItems = filteredModules.slice(startIndex, endIndex);
-
       pageItems.forEach((mod) => {
         const card = document.createElement("div");
         card.className = "plugin-card";
-
         card.innerHTML = \`
           <div class="plugin-card-header">
             <div class="plugin-card-title">\${mod.name}</div>
@@ -146,13 +141,11 @@ const indexHtml = `<!DOCTYPE html>
           </div>
           <button class="view-button">View</button>
         \`;
-
         const viewBtn = card.querySelector(".view-button");
         viewBtn.addEventListener("click", () => {
           const slug = slugify(mod.name);
           window.location.href = slug + ".html";
         });
-
         pluginGrid.appendChild(card);
       });
     }
@@ -162,13 +155,10 @@ const indexHtml = `<!DOCTYPE html>
       const totalItems = filteredModules.length;
       const totalPages = Math.ceil(totalItems / pageSize);
       if (totalPages <= 1) return;
-
       for (let p = 1; p <= totalPages; p++) {
         const btn = document.createElement("button");
         btn.textContent = p;
-        if (p === currentPage) {
-          btn.classList.add("active");
-        }
+        if (p === currentPage) btn.classList.add("active");
         btn.addEventListener("click", () => {
           currentPage = p;
           render();
@@ -178,10 +168,7 @@ const indexHtml = `<!DOCTYPE html>
     }
 
     function slugify(str) {
-      return str
-        .toLowerCase()
-        .replace(/\\s+/g, '-')
-        .replace(/[^a-z0-9-]/g, '');
+      return str.toLowerCase().replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     }
 
     render();
@@ -194,12 +181,9 @@ fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml, "utf8");
 
 modules.forEach(mod => {
   const slug = slugify(mod.name);
-
   let workshopHtml = "None";
   if (Array.isArray(mod.workshop) && mod.workshop.length > 0) {
-    workshopHtml = mod.workshop
-      .map(id => `https://steamcommunity.com/sharedfiles/filedetails/?id=${id}`)
-      .join("<br>");
+    workshopHtml = mod.workshop.map(id => `https://steamcommunity.com/sharedfiles/filedetails/?id=${id}`).join("<br>");
   }
 
   const detailHtml = `<!DOCTYPE html>
@@ -223,14 +207,23 @@ modules.forEach(mod => {
       border-radius: 4px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    .header { display: flex; justify-content: space-between; align-items: flex-start; }
-    .header-left { max-width: 60%; }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .header-left {
+      max-width: 60%;
+    }
     .header-left h1 {
       margin: 0 0 10px 0;
       font-size: 2rem;
       color: ${darkTextColor};
     }
-    .header-right { text-align: right; }
+    .header-right {
+      text-align: center;
+      width: 40%;
+    }
     .action-button {
       display: block;
       background-color: ${buttonColor};
@@ -240,21 +233,22 @@ modules.forEach(mod => {
       text-decoration: none;
       font-weight: bold;
       font-size: 1.4rem;
-      margin: 0;
+      margin: 0 auto 15px auto;
     }
     .action-button:hover {
       background-color: ${buttonHoverColor};
     }
-    .action-button + .action-button {
-      margin-top: 12px;
-    }
     .info-block {
-      margin-top: 20px;
-      line-height: 1.5;
-      font-size: 1.1rem;
+      margin-top: 30px;
+      line-height: 1.8;
+      font-size: 1.3rem;
+      background-color: #3a3a3a;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
     .info-block p {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .back-link {
       display: inline-block;
@@ -263,7 +257,9 @@ modules.forEach(mod => {
       text-decoration: none;
       font-weight: bold;
     }
-    .back-link:hover { text-decoration: underline; }
+    .back-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -281,19 +277,12 @@ modules.forEach(mod => {
     <div class="info-block">
       <p><strong>Author:</strong> ${mod.author || "Unknown"}</p>
       <p><strong>Version:</strong> ${mod.version || "N/A"}</p>
-      <p>
-        <strong>Description:</strong><br>
-        ${mod.description || "No description provided."}
-      </p>
-      <p>
-        <strong>Workshop:</strong><br>
-        ${workshopHtml}
-      </p>
+      <p><strong>Description:</strong><br>${mod.description || "No description provided."}</p>
+      <p><strong>Workshop:</strong><br>${workshopHtml}</p>
     </div>
   </div>
 </body>
-</html>
-`;
+</html>`;
 
   fs.writeFileSync(path.join(docsDir, `${slug}.html`), detailHtml, "utf8");
 });
