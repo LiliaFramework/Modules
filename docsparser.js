@@ -1,120 +1,260 @@
 const fs = require("fs");
 const path = require("path");
 
-function escapeHTML(str = "") {
-  return str.replace(/[&<>"']/g, t => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[t] || t);
-}
-
-// Use the correct path to modules.json assuming it's in the repository root.
+// 1. Read modules.json
+//    Make sure modules.json is in the same folder as docsparser.js
 const jsonPath = path.join(__dirname, "modules.json");
-if (!fs.existsSync(jsonPath)) process.exit(0);
-
-const data = JSON.parse(fs.readFileSync(jsonPath, "utf8")).map(mod => ({
-  name: escapeHTML(mod.name),
-  author: escapeHTML(mod.author),
-  desc: escapeHTML(mod.description),
-  license: escapeHTML(mod.license || ""),
-  version: escapeHTML(mod.version),
-  download: escapeHTML(mod.download),
-  published: escapeHTML(mod.published || "")
-}));
-
-// Generate the site in the "docs" folder (used by GitHub Pages)
-const docsDir = path.join(__dirname, "docs");
-if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir);
-
-const downloadsDir = path.join(docsDir, "Downloads");
-if (!fs.existsSync(downloadsDir)) fs.mkdirSync(downloadsDir);
-
-const baseCSS = `
-<style>/* your CSS here */</style>
-<script>
-function switchTab(t) {
-  document.querySelectorAll(".tab-section").forEach(s => {
-    s.style.display = s.id === t ? "block" : "none";
-  });
-  document.querySelectorAll(".tabs li").forEach(li => {
-    li.classList.toggle("active", li.dataset.tab === t);
-  });
+if (!fs.existsSync(jsonPath)) {
+  console.log("modules.json not found, skipping site generation.");
+  process.exit(0);
 }
-</script>
-`;
 
-let indexHtml = `
-<!DOCTYPE html>
-<html>
+const rawData = fs.readFileSync(jsonPath, "utf8");
+const modules = JSON.parse(rawData);
+
+// 2. Ensure a docs folder exists (GitHub Pages will publish from here)
+const docsDir = path.join(__dirname, "docs");
+if (!fs.existsSync(docsDir)) {
+  fs.mkdirSync(docsDir);
+}
+
+// 3. Build index.html with a grid layout and pagination
+//    We'll inject the modules data into a <script> tag and then
+//    do client-side rendering of the grid + pagination.
+
+const indexHtml = `<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lilia Module Center</title>
-  ${baseCSS}
+  <title>Helix Plugin Center</title>
+  <style>
+    /* --- Basic Reset & Body --- */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+    }
+
+    /* --- Header / Nav Bar --- */
+    .header {
+      display: flex;
+      align-items: center;
+      background-color: #6a1b9a; /* purple bar */
+      color: #fff;
+      padding: 10px 20px;
+    }
+    .header .title {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .search-bar {
+      margin-left: 20px;
+      position: relative;
+    }
+    .search-bar input {
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+    }
+
+    /* --- Main Layout --- */
+    main {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    /* --- Plugin Grid --- */
+    .plugin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2 columns */
+      gap: 10px;
+    }
+    @media(max-width: 800px) {
+      .plugin-grid {
+        grid-template-columns: 1fr; /* 1 column on smaller screens */
+      }
+    }
+    .plugin-card {
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 15px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .plugin-card-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .plugin-card-title {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .plugin-card-date {
+      font-size: 0.85rem;
+      color: #999;
+    }
+    .plugin-card-author {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* --- Pagination --- */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      gap: 5px;
+    }
+    .pagination button {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    .pagination button.active {
+      background-color: #6a1b9a;
+      color: #fff;
+      border-color: #6a1b9a;
+    }
+    .pagination button:hover {
+      background-color: #eee;
+    }
+  </style>
 </head>
 <body>
-  <div class="top-bar"><a href="#">Home</a></div>
-  <div class="teal-bar">Lilia Module Center</div>
-  <div class="module-list">
+
+  <!-- Top Bar / Header -->
+  <header class="header">
+    <div class="title">Helix Plugin Center</div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Plugins</a>
+      <a href="#">Submit</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search...">
+    </div>
+  </header>
+
+  <main>
+    <!-- The grid and pagination will be rendered via JS below -->
+    <div class="plugin-grid" id="pluginGrid"></div>
+    <div class="pagination" id="pagination"></div>
+  </main>
+
+  <script>
+    // We'll load module data into a global array in JS.
+    // In a real environment, you'd do server-side rendering or fetch JSON.
+    const modules = ${JSON.stringify(modules, null, 2)};
+
+    // Pagination settings
+    const pageSize = 8; // 8 cards per page
+    let currentPage = 1;
+    let filteredModules = [...modules]; // By default, show all
+
+    // --- Query DOM elements ---
+    const pluginGrid = document.getElementById("pluginGrid");
+    const pagination = document.getElementById("pagination");
+    const searchInput = document.getElementById("search");
+
+    // --- Listen for search changes ---
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      filteredModules = modules.filter(m => {
+        return (
+          m.name.toLowerCase().includes(query) ||
+          m.author.toLowerCase().includes(query) ||
+          m.description.toLowerCase().includes(query)
+        );
+      });
+      currentPage = 1;
+      render();
+    });
+
+    // --- Render function (grid + pagination) ---
+    function render() {
+      renderGrid();
+      renderPagination();
+    }
+
+    // --- Render the plugin grid for the current page ---
+    function renderGrid() {
+      pluginGrid.innerHTML = "";
+      const startIndex = (currentPage - 1) * pageSize;
+      const endIndex = startIndex + pageSize;
+      const pageItems = filteredModules.slice(startIndex, endIndex);
+
+      pageItems.forEach(mod => {
+        // Use published date or fallback
+        const dateStr = mod.published || "No date";
+
+        const card = document.createElement("div");
+        card.className = "plugin-card";
+
+        card.innerHTML = \`
+          <div class="plugin-card-header">
+            <div class="plugin-card-title">\${mod.name}</div>
+            <div class="plugin-card-date">\${dateStr}</div>
+          </div>
+          <div class="plugin-card-author">
+            by \${mod.author || "Unknown"}
+          </div>
+        \`;
+        pluginGrid.appendChild(card);
+      });
+    }
+
+    // --- Render pagination buttons ---
+    function renderPagination() {
+      pagination.innerHTML = "";
+      const totalItems = filteredModules.length;
+      const totalPages = Math.ceil(totalItems / pageSize);
+
+      // If only 1 page, no need for pagination
+      if (totalPages <= 1) return;
+
+      for (let p = 1; p <= totalPages; p++) {
+        const btn = document.createElement("button");
+        btn.textContent = p;
+        if (p === currentPage) {
+          btn.classList.add("active");
+        }
+        btn.addEventListener("click", () => {
+          currentPage = p;
+          render();
+        });
+        pagination.appendChild(btn);
+      }
+    }
+
+    // Initial render
+    render();
+  </script>
+
+</body>
+</html>
 `;
 
-data.forEach(mod => {
-  const id = mod.name.replace(/\s+/g, "");
-  indexHtml += `
-  <div class="module-card">
-    <div class="module-title">${mod.name}</div>
-    <div class="module-author">by ${mod.author}</div>
-    <div class="module-date">${mod.published}</div>
-    <a href="module-${id}.html">View Details</a>
-  </div>`;
-});
+// 4. Write the new index.html to the docs folder
+fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml, "utf8");
 
-indexHtml += `
-  </div>
-</body>
-</html>`;
-
-fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml);
-
-data.forEach(mod => {
-  const id = mod.name.replace(/\s+/g, "");
-  const downloadBtn = mod.download && fs.existsSync(path.join(downloadsDir, path.basename(mod.download)))
-    ? `<a class="download-btn" href="${mod.download}" download>Download</a>`
-    : "<p>No download found.</p>";
-
-  const detailHtml = `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>${mod.name}</title>
-  ${baseCSS}
-</head>
-<body>
-  <div class="top-bar"><a href="index.html">Home</a></div>
-  <div class="teal-bar">Lilia Module Center</div>
-  <div class="detail-container">
-    <div class="left-column">
-      <div class="detail-header">
-        <h1>${mod.name}</h1>
-        <div class="author">by ${mod.author}</div>
-      </div>
-      <ul class="tabs">
-        <li class="active" data-tab="desc-tab" onclick="switchTab('desc-tab')">Description</li>
-        <li data-tab="lic-tab" onclick="switchTab('lic-tab')">License</li>
-      </ul>
-      <div class="tab-content">
-        <div id="desc-tab" class="tab-section">${mod.desc}</div>
-        <div id="lic-tab" class="tab-section" style="display:none">${mod.license}</div>
-      </div>
-    </div>
-    <div class="right-column">
-      <div class="download-box">${downloadBtn}</div>
-    </div>
-  </div>
-</body>
-</html>`;
-  fs.writeFileSync(path.join(docsDir, `module-${id}.html`), detailHtml);
-});
+console.log("Generated docs/index.html with a Helix-style plugin grid!");
