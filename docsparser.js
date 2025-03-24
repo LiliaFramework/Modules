@@ -18,11 +18,11 @@ if (!fs.existsSync(docsDir)) {
 }
 
 // 3. Build index.html
-//    - Teal header bar (#25746C)
-//    - "Modules" link (returns home) next to search
-//    - Search only by module name
+//    - Teal header (#25746C)
+//    - "Modules" link next to search bar
+//    - Search by name only
 //    - Grid layout & pagination
-//    - Clicking the entire card opens that module’s detail page
+//    - A "View" button opens the module’s detail page
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,11 +95,8 @@ const indexHtml = `<!DOCTYPE html>
       display: flex;
       flex-direction: column;
       justify-content: center;
-      cursor: pointer; /* indicates it's clickable */
     }
     .plugin-card-header {
-      display: flex;
-      justify-content: space-between;
       margin-bottom: 6px;
     }
     .plugin-card-title {
@@ -107,13 +104,28 @@ const indexHtml = `<!DOCTYPE html>
       font-weight: bold;
       color: #333;
     }
-    .plugin-card-date {
-      font-size: 0.85rem;
-      color: #999;
-    }
     .plugin-card-author {
       font-size: 0.9rem;
       color: #555;
+    }
+    .plugin-card-version {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    /* --- View Button --- */
+    .view-button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #25746C;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .view-button:hover {
+      background-color: #1d5f58;
     }
 
     /* --- Pagination --- */
@@ -189,22 +201,25 @@ const indexHtml = `<!DOCTYPE html>
       const pageItems = filteredModules.slice(startIndex, endIndex);
 
       pageItems.forEach((mod, idx) => {
-        const dateStr = mod.published || "No date";
         const card = document.createElement("div");
         card.className = "plugin-card";
 
         card.innerHTML = \`
           <div class="plugin-card-header">
             <div class="plugin-card-title">\${mod.name}</div>
-            <div class="plugin-card-date">\${dateStr}</div>
           </div>
           <div class="plugin-card-author">
             by \${mod.author || "Unknown"}
           </div>
+          <div class="plugin-card-version">
+            Version: \${mod.version || "N/A"}
+          </div>
+          <button class="view-button">View</button>
         \`;
 
-        // Make the entire card clickable -> open detail page
-        card.addEventListener("click", () => {
+        // Clicking the "View" button -> open detail page
+        const viewBtn = card.querySelector(".view-button");
+        viewBtn.addEventListener("click", () => {
           const slug = slugify(mod.name);
           window.location.href = slug + ".html";
         });
@@ -235,7 +250,10 @@ const indexHtml = `<!DOCTYPE html>
 
     // Create a slug from the module name
     function slugify(str) {
-      return str.toLowerCase().replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      return str
+        .toLowerCase()
+        .replace(/\\s+/g, '-')
+        .replace(/[^a-z0-9-]/g, '');
     }
 
     // Initial render
@@ -252,6 +270,7 @@ fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml, "utf8");
 modules.forEach(mod => {
   const slug = slugify(mod.name);
 
+  // Removed "published" and added "Version"
   const detailHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -308,7 +327,7 @@ modules.forEach(mod => {
     <h1>${mod.name || "Untitled Module"}</h1>
     <div class="meta">
       <p><strong>Author:</strong> ${mod.author || "Unknown"}</p>
-      <p><strong>Published:</strong> ${mod.published || "N/A"}</p>
+      <p><strong>Version:</strong> ${mod.version || "N/A"}</p>
     </div>
     <div class="description">
       ${mod.description || "No description provided."}
@@ -329,17 +348,4 @@ function slugify(str) {
     .replace(/[^a-z0-9-]/g, '');
 }
 
-console.log("Generated docs with index.html and individual module pages!");
-
-
-/* 
-  EXPLANATION OF CHANGES:
-
-  1) Removed the original “Helix Plugin Center” text. 
-  2) Added a “Modules” link in the header that always returns to index.html.
-  3) Removed the modal logic entirely. 
-     Instead, each plugin card has a click listener that navigates to a detail page (slug-based filename).
-  4) Search is now only by module title (m.name).
-  5) For each module, we generate a separate <slug>.html file that shows its details.
-  6) The user can return from any detail page by clicking “Modules” in the header.
-*/
+console.log("Generated docs with updated index.html and detail pages (no published date, added version, plus 'View' button).");
