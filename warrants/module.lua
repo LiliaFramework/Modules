@@ -4,19 +4,19 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0"
 MODULE.desc = "Adds Warrants"
 MODULE.CAMIPrivileges = {
-    {
-        Name = "Staff Permissions - Can Warrant People",
-        MinAccess = "superadmin",
-        Description = "Allows access to warranting people.",
-    },
-    {
-        Name = "Staff Permissions - Can See Warrants",
-        MinAccess = "superadmin",
-        Description = "Allows access to seeing warrants.",
-    },
-    {
-        Name = "Staff Permissions - Can See Warrant Notifications",
-        MinAccess = "superadmin",
-        Description = "Allows access to seeing warrant notifications.",
-    },
+	{
+		Name = "Staff Permissions - Can Warrant People",
+		MinAccess = "superadmin",
+		Description = "Allows access to warranting people.",
+	},
+	{
+		Name = "Staff Permissions - Can See Warrants",
+		MinAccess = "superadmin",
+		Description = "Allows access to seeing warrants.",
+	},
+	{
+		Name = "Staff Permissions - Can See Warrant Notifications",
+		MinAccess = "superadmin",
+		Description = "Allows access to seeing warrant notifications.",
+	},
 }
