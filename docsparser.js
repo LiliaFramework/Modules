@@ -8,6 +8,13 @@ if (!fs.existsSync(jsonPath)) {
   process.exit(0);
 }
 
+function slugify(str) {
+  return str
+    .toLowerCase()
+    .replace(/\s+/g, '-')  // Replace spaces with hyphens
+    .replace(/[^a-z0-9-]/g, '');  // Remove any non-alphanumeric characters (except hyphens)
+}
+
 const rawData = fs.readFileSync(jsonPath, "utf8");
 const modules = JSON.parse(rawData);
 
