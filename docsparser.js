@@ -65,7 +65,7 @@ const indexHtml = `<!DOCTYPE html>
     .plugin-card-header { margin-bottom: 10px; }
     .plugin-card-title { font-size: 1.2rem; font-weight: bold; color: ${darkTextColor}; }
     .plugin-card-author { font-size: 1rem; color: #bbb; margin-top: 10px; }
-    .plugin-card-version { font-size: 1rem; color: #777; margin-top: 5px; }
+    .plugin-card-version { font-size: 1rem; color: #bbb; margin-top: 5px; }
     .view-button {
       margin-top: 15px;
       padding: 14px 28px;
@@ -279,6 +279,8 @@ modules.forEach(mod => {
       </div>
     </div>
     <div class="info-block">
+      <p><strong>Author:</strong> ${mod.author || "Unknown"}</p>
+      <p><strong>Version:</strong> ${mod.version || "N/A"}</p>
       <p>
         <strong>Description:</strong><br>
         ${mod.description || "No description provided."}
