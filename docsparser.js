@@ -30,7 +30,7 @@ const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Lilia Modules</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; background-color: ${darkBackgroundColor}; color: ${darkTextColor}; }
@@ -94,7 +94,7 @@ const indexHtml = `<!DOCTYPE html>
 </head>
 <body>
   <header class="header">
-    <a href="index.html" class="modules-link">Lilia Modules</a>
+    <a href="index.html" class="modules-link"></a>
     <div class="search-bar">
       <input type="text" id="search" placeholder="Search by Title...">
     </div>
