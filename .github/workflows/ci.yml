@@ -80,11 +80,14 @@ jobs:
             author=$(grep -Po '(?<=MODULE\.Author\s*=\s*")[^"]+' "$module" || echo "")
             desc=$(grep -Po '(?<=MODULE\.Description\s*=\s*")[^"]+' "$module" || echo "")
             version=$(grep -Po '(?<=MODULE\.Version\s*=\s*")[^"]+' "$module" || echo "1.0")
+            folder=$(basename "$(dirname "$module")")
+            download="Downloads/${folder}.zip"
             jq --arg name "$name" \
                --arg author "$author" \
                --arg desc "$desc" \
                --arg version "$version" \
-               '. += [{"name":$name,"author":$author,"description":$desc,"version":$version}]' modules.json > tmp.json
+               --arg download "$download" \
+               '. += [{"name":$name,"author":$author,"description":$desc,"version":$version,"download":$download}]' modules.json > tmp.json
             mv tmp.json modules.json
           done
       - run: |
