@@ -279,8 +279,7 @@ modules.forEach(mod => {
       </div>
     </div>
     <div class="info-block">
-      <p><strong>Author:</strong> ${mod.author || "Unknown"}</p>
-      <p><strong>Version:</strong> ${mod.version || "N/A"}</p>
+
       <p>
         <strong>Description:</strong><br>
         ${mod.description || "No description provided."}
