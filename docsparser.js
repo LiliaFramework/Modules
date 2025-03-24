@@ -26,8 +26,8 @@ const primaryColor = "rgb(37, 116, 108)";
 const hoverColor = "rgb(29, 95, 88)";
 const buttonColor = "rgb(37, 116, 108)";
 const buttonHoverColor = "rgb(29, 95, 88)";
-const darkBackgroundColor = "#1f1f1f"; // Dark background for the website
-const darkTextColor = "#e0e0e0"; // Light text for readability
+const darkBackgroundColor = "#1f1f1f";
+const darkTextColor = "#e0e0e0";
 
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
