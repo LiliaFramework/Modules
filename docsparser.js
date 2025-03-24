@@ -17,12 +17,13 @@ if (!fs.existsSync(docsDir)) {
   fs.mkdirSync(docsDir);
 }
 
+// RGB Values for styling
+const primaryColor = "rgb(37, 116, 108)"; // Teal
+const hoverColor = "rgb(29, 95, 88)"; // Darker teal
+const buttonColor = "rgb(90, 46, 166)"; // Purple
+const buttonHoverColor = "rgb(75, 35, 146)"; // Darker purple
+
 // 3. Build index.html
-//    - Teal header (#25746C)
-//    - "Modules" link next to search bar
-//    - Search by name only
-//    - Grid layout & pagination
-//    - A "View" button opens the module’s detail page
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +45,7 @@ const indexHtml = `<!DOCTYPE html>
     .header {
       display: flex;
       align-items: center;
-      background-color: #25746C; /* teal */
+      background-color: ${primaryColor}; /* teal */
       color: #fff;
       padding: 10px 20px;
       justify-content: space-between;
@@ -117,7 +118,7 @@ const indexHtml = `<!DOCTYPE html>
     .view-button {
       margin-top: 10px;
       padding: 6px 12px;
-      background-color: #25746C;
+      background-color: ${primaryColor};
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -125,7 +126,7 @@ const indexHtml = `<!DOCTYPE html>
       font-size: 0.9rem;
     }
     .view-button:hover {
-      background-color: #1d5f58;
+      background-color: ${hoverColor};
     }
 
     /* --- Pagination --- */
@@ -143,9 +144,9 @@ const indexHtml = `<!DOCTYPE html>
       cursor: pointer;
     }
     .pagination button.active {
-      background-color: #25746C;
+      background-color: ${primaryColor};
       color: #fff;
-      border-color: #25746C;
+      border-color: ${primaryColor};
     }
     .pagination button:hover {
       background-color: #eee;
@@ -270,11 +271,7 @@ fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml, "utf8");
 modules.forEach(mod => {
   const slug = slugify(mod.name);
 
-  // Here is the updated detail page layout:
-  // - Big heading with "Module Name by Author"
-  // - A right-side purple "Download via GitHub" button & "View source" link
-  // - Show "Description" & "Version" sections clearly
-  // Adjust as needed if your JSON has different fields (e.g. 'downloadUrl', 'sourceUrl', etc.)
+  // Updated detail page with View Source link and RGB color
   const detailHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -317,7 +314,7 @@ modules.forEach(mod => {
     }
     .download-button {
       display: inline-block;
-      background-color: #5a2ea6; /* Purple */
+      background-color: ${buttonColor}; /* Purple */
       color: #fff;
       padding: 10px 18px;
       border-radius: 4px;
@@ -325,12 +322,12 @@ modules.forEach(mod => {
       font-weight: bold;
     }
     .download-button:hover {
-      background-color: #4b2392;
+      background-color: ${buttonHoverColor};
     }
     .view-source {
       display: block;
       margin-top: 8px;
-      color: #5a2ea6;
+      color: ${buttonColor};
       text-decoration: none;
       font-weight: normal;
     }
@@ -351,7 +348,7 @@ modules.forEach(mod => {
     .back-link {
       display: inline-block;
       margin-bottom: 20px;
-      color: #25746C;
+      color: ${primaryColor};
       text-decoration: none;
       font-weight: bold;
     }
@@ -371,9 +368,8 @@ modules.forEach(mod => {
         </div>
       </div>
       <div class="header-right">
-        <!-- Replace '#' with actual links if your JSON has them -->
         <a class="download-button" href="#">Download via GitHub</a>
-        <a class="view-source" href="#">View source »</a>
+        <a class="view-source" href="${mod.source}">View source »</a>
       </div>
     </div>
     <div class="description">
@@ -392,12 +388,4 @@ modules.forEach(mod => {
   fs.writeFileSync(path.join(docsDir, `${slug}.html`), detailHtml, "utf8");
 });
 
-// Helper function for slug
-function slugify(str) {
-  return str
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
-}
-
-console.log("Generated docs with an index page and a new detail page layout (Description & Version, plus a purple Download button).");
+console.log("Generated docs with index.html and detailed pages with View Source links and RGB styling.");
