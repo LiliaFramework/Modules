@@ -18,12 +18,11 @@ if (!fs.existsSync(docsDir)) {
 }
 
 // 3. Build index.html
-//    - Single page with a top bar in #25746C
-//    - Search bar (titles only)
-//    - "Modules" link next to the search bar
-//    - Grid layout
-//    - Pagination
-//    - A "View" button that opens a new page for that module
+//    - Teal header bar (#25746C)
+//    - "Modules" link (returns home) next to search
+//    - Search only by module name
+//    - Grid layout & pagination
+//    - Clicking the entire card opens that module’s detail page
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +31,8 @@ const indexHtml = `<!DOCTYPE html>
   <style>
     /* --- Basic Reset & Body --- */
     * {
-      margin: 0; 
-      padding: 0; 
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
     body {
@@ -45,27 +44,21 @@ const indexHtml = `<!DOCTYPE html>
     .header {
       display: flex;
       align-items: center;
-      background-color: rgb(37,116,108); /* #25746C */
+      background-color: #25746C; /* teal */
       color: #fff;
       padding: 10px 20px;
       justify-content: space-between;
     }
-
-    /* Remove the old .title usage; we won't display "Helix Plugin Center" anymore */
-    .modules-bar {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .modules-link a {
+    .modules-link {
       color: #fff;
       text-decoration: none;
       font-weight: bold;
+      margin-right: 20px;
+      font-size: 1.1rem;
     }
-    .modules-link a:hover {
+    .modules-link:hover {
       text-decoration: underline;
     }
-
     .search-bar {
       position: relative;
     }
@@ -102,6 +95,7 @@ const indexHtml = `<!DOCTYPE html>
       display: flex;
       flex-direction: column;
       justify-content: center;
+      cursor: pointer; /* indicates it's clickable */
     }
     .plugin-card-header {
       display: flex;
@@ -121,19 +115,6 @@ const indexHtml = `<!DOCTYPE html>
       font-size: 0.9rem;
       color: #555;
     }
-    .view-button {
-      margin-top: 8px;
-      align-self: flex-start;
-      padding: 6px 12px;
-      background-color: rgb(37,116,108);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .view-button:hover {
-      background-color: #1d5f58; /* Darken on hover */
-    }
 
     /* --- Pagination --- */
     .pagination {
@@ -150,9 +131,9 @@ const indexHtml = `<!DOCTYPE html>
       cursor: pointer;
     }
     .pagination button.active {
-      background-color: rgb(37,116,108);
+      background-color: #25746C;
       color: #fff;
-      border-color: rgb(37,116,108);
+      border-color: #25746C;
     }
     .pagination button:hover {
       background-color: #eee;
@@ -161,15 +142,11 @@ const indexHtml = `<!DOCTYPE html>
 </head>
 <body>
 
-  <!-- Header with "Modules" link and search bar (titles only) -->
+  <!-- Top Bar / Header -->
   <header class="header">
-    <div class="modules-bar">
-      <div class="modules-link">
-        <a href="index.html">Modules</a>
-      </div>
-    </div>
+    <a href="index.html" class="modules-link">Modules</a>
     <div class="search-bar">
-      <input type="text" id="search" placeholder="Search by title...">
+      <input type="text" id="search" placeholder="Search by Title...">
     </div>
   </header>
 
@@ -182,8 +159,6 @@ const indexHtml = `<!DOCTYPE html>
     const modules = ${JSON.stringify(modules, null, 2)};
     const pageSize = 8;
     let currentPage = 1;
-
-    // We'll only search against 'mod.name'
     let filteredModules = [...modules];
 
     // DOM elements
@@ -194,21 +169,14 @@ const indexHtml = `<!DOCTYPE html>
     // Search only by module name
     searchInput.addEventListener("input", () => {
       const query = searchInput.value.trim().toLowerCase();
-      filteredModules = modules.filter(m =>
-        m.name.toLowerCase().includes(query)
-      );
+      filteredModules = modules.filter(m => {
+        return m.name.toLowerCase().includes(query);
+      });
       currentPage = 1;
       render();
     });
 
-    // When user clicks "View," open a new page for that module
-    function openModulePage(mod) {
-      // For example, we can go to a page named after the module
-      // You could also do window.open(...) if you want a new tab
-      const moduleUrl = \`module-\${encodeURIComponent(mod.name)}.html\`;
-      window.location.href = moduleUrl;
-    }
-
+    // Render function
     function render() {
       renderGrid();
       renderPagination();
@@ -220,7 +188,7 @@ const indexHtml = `<!DOCTYPE html>
       const endIndex = startIndex + pageSize;
       const pageItems = filteredModules.slice(startIndex, endIndex);
 
-      pageItems.forEach((mod) => {
+      pageItems.forEach((mod, idx) => {
         const dateStr = mod.published || "No date";
         const card = document.createElement("div");
         card.className = "plugin-card";
@@ -233,12 +201,12 @@ const indexHtml = `<!DOCTYPE html>
           <div class="plugin-card-author">
             by \${mod.author || "Unknown"}
           </div>
-          <button class="view-button">View</button>
         \`;
 
-        // On click => go to the module's page
-        card.querySelector(".view-button").addEventListener("click", () => {
-          openModulePage(mod);
+        // Make the entire card clickable -> open detail page
+        card.addEventListener("click", () => {
+          const slug = slugify(mod.name);
+          window.location.href = slug + ".html";
         });
 
         pluginGrid.appendChild(card);
@@ -265,6 +233,11 @@ const indexHtml = `<!DOCTYPE html>
       }
     }
 
+    // Create a slug from the module name
+    function slugify(str) {
+      return str.toLowerCase().replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    }
+
     // Initial render
     render();
   </script>
@@ -272,7 +245,101 @@ const indexHtml = `<!DOCTYPE html>
 </html>
 `;
 
-// 4. Write index.html to docs
+// Write index.html
 fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml, "utf8");
 
-console.log("Generated docs/index.html with the requested adjustments!"); 
+// 4. Generate a detail page for each module
+modules.forEach(mod => {
+  const slug = slugify(mod.name);
+
+  const detailHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>${mod.name || "Module Detail"}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+      margin: 0; 
+      padding: 0;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      background-color: #25746C;
+      color: #fff;
+      padding: 10px 20px;
+      justify-content: space-between;
+    }
+    .modules-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .modules-link:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .meta {
+      margin-bottom: 20px;
+      color: #555;
+    }
+    .description {
+      line-height: 1.4;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="modules-link">Modules</a>
+  </header>
+  <main>
+    <h1>${mod.name || "Untitled Module"}</h1>
+    <div class="meta">
+      <p><strong>Author:</strong> ${mod.author || "Unknown"}</p>
+      <p><strong>Published:</strong> ${mod.published || "N/A"}</p>
+    </div>
+    <div class="description">
+      ${mod.description || "No description provided."}
+    </div>
+  </main>
+</body>
+</html>
+`;
+
+  fs.writeFileSync(path.join(docsDir, `${slug}.html`), detailHtml, "utf8");
+});
+
+// Helper function for slug
+function slugify(str) {
+  return str
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
+console.log("Generated docs with index.html and individual module pages!");
+
+
+/* 
+  EXPLANATION OF CHANGES:
+
+  1) Removed the original “Helix Plugin Center” text. 
+  2) Added a “Modules” link in the header that always returns to index.html.
+  3) Removed the modal logic entirely. 
+     Instead, each plugin card has a click listener that navigates to a detail page (slug-based filename).
+  4) Search is now only by module title (m.name).
+  5) For each module, we generate a separate <slug>.html file that shows its details.
+  6) The user can return from any detail page by clicking “Modules” in the header.
+*/
