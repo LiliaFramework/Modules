@@ -19,15 +19,16 @@ if (!fs.existsSync(docsDir)) {
 
 // 3. Build index.html
 //    - Single page with a top bar in #25746C
-//    - Search bar
+//    - Search bar (titles only)
+//    - "Modules" link next to the search bar
 //    - Grid layout
 //    - Pagination
-//    - “View” button -> opens a modal with module details
+//    - A "View" button that opens a new page for that module
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Helix Plugin Center</title>
+  <title>Plugin Modules</title>
   <style>
     /* --- Basic Reset & Body --- */
     * {
@@ -49,10 +50,22 @@ const indexHtml = `<!DOCTYPE html>
       padding: 10px 20px;
       justify-content: space-between;
     }
-    .header .title {
-      font-size: 1.4rem;
+
+    /* Remove the old .title usage; we won't display "Helix Plugin Center" anymore */
+    .modules-bar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .modules-link a {
+      color: #fff;
+      text-decoration: none;
       font-weight: bold;
     }
+    .modules-link a:hover {
+      text-decoration: underline;
+    }
+
     .search-bar {
       position: relative;
     }
@@ -144,61 +157,19 @@ const indexHtml = `<!DOCTYPE html>
     .pagination button:hover {
       background-color: #eee;
     }
-
-    /* --- Modal Styles --- */
-    .modal {
-      display: none; /* hidden by default */
-      position: fixed; 
-      z-index: 999; 
-      left: 0; 
-      top: 0; 
-      width: 100%; 
-      height: 100%; 
-      overflow: auto; 
-      background-color: rgba(0,0,0,0.5);
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: 100px auto;
-      padding: 20px;
-      border-radius: 4px;
-      max-width: 600px;
-      position: relative;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: #aaa;
-    }
-    .close-btn:hover {
-      color: #000;
-    }
-    .modal-title {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-    }
-    .modal-author {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 8px;
-    }
-    .modal-description {
-      font-size: 0.95rem;
-      color: #333;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Top Bar / Header (No extra links) -->
+  <!-- Header with "Modules" link and search bar (titles only) -->
   <header class="header">
-    <div class="title">Helix Plugin Center</div>
+    <div class="modules-bar">
+      <div class="modules-link">
+        <a href="index.html">Modules</a>
+      </div>
+    </div>
     <div class="search-bar">
-      <input type="text" id="search" placeholder="Search...">
+      <input type="text" id="search" placeholder="Search by title...">
     </div>
   </header>
 
@@ -207,65 +178,37 @@ const indexHtml = `<!DOCTYPE html>
     <div class="pagination" id="pagination"></div>
   </main>
 
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close-btn" id="closeModal">&times;</span>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-author" id="modalAuthor"></div>
-      <div class="modal-description" id="modalDescription"></div>
-    </div>
-  </div>
-
   <script>
     const modules = ${JSON.stringify(modules, null, 2)};
     const pageSize = 8;
     let currentPage = 1;
+
+    // We'll only search against 'mod.name'
     let filteredModules = [...modules];
 
     // DOM elements
     const pluginGrid = document.getElementById("pluginGrid");
     const pagination = document.getElementById("pagination");
     const searchInput = document.getElementById("search");
-    const modal = document.getElementById("modal");
-    const closeModalBtn = document.getElementById("closeModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalAuthor = document.getElementById("modalAuthor");
-    const modalDescription = document.getElementById("modalDescription");
 
-    // Search
+    // Search only by module name
     searchInput.addEventListener("input", () => {
       const query = searchInput.value.trim().toLowerCase();
-      filteredModules = modules.filter(m => {
-        return (
-          m.name.toLowerCase().includes(query) ||
-          m.author.toLowerCase().includes(query) ||
-          m.description.toLowerCase().includes(query)
-        );
-      });
+      filteredModules = modules.filter(m =>
+        m.name.toLowerCase().includes(query)
+      );
       currentPage = 1;
       render();
     });
 
-    // Modal
-    function openModal(index) {
-      const mod = filteredModules[index];
-      modalTitle.textContent = mod.name || "Untitled";
-      modalAuthor.textContent = "by " + (mod.author || "Unknown");
-      modalDescription.textContent = mod.description || "No description.";
-      modal.style.display = "block";
+    // When user clicks "View," open a new page for that module
+    function openModulePage(mod) {
+      // For example, we can go to a page named after the module
+      // You could also do window.open(...) if you want a new tab
+      const moduleUrl = \`module-\${encodeURIComponent(mod.name)}.html\`;
+      window.location.href = moduleUrl;
     }
-    function closeModal() {
-      modal.style.display = "none";
-    }
-    closeModalBtn.addEventListener("click", closeModal);
-    window.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
 
-    // Render function
     function render() {
       renderGrid();
       renderPagination();
@@ -277,7 +220,7 @@ const indexHtml = `<!DOCTYPE html>
       const endIndex = startIndex + pageSize;
       const pageItems = filteredModules.slice(startIndex, endIndex);
 
-      pageItems.forEach((mod, idx) => {
+      pageItems.forEach((mod) => {
         const dateStr = mod.published || "No date";
         const card = document.createElement("div");
         card.className = "plugin-card";
@@ -293,13 +236,9 @@ const indexHtml = `<!DOCTYPE html>
           <button class="view-button">View</button>
         \`;
 
-        // When user clicks "View," open the modal with this plugin's data
-        const viewBtn = card.querySelector(".view-button");
-        viewBtn.addEventListener("click", () => {
-          // Because pageItems is a slice of filteredModules, 
-          // we can figure out the actual index in filteredModules
-          const actualIndex = startIndex + idx;
-          openModal(actualIndex);
+        // On click => go to the module's page
+        card.querySelector(".view-button").addEventListener("click", () => {
+          openModulePage(mod);
         });
 
         pluginGrid.appendChild(card);
@@ -336,4 +275,4 @@ const indexHtml = `<!DOCTYPE html>
 // 4. Write index.html to docs
 fs.writeFileSync(path.join(docsDir, "index.html"), indexHtml, "utf8");
 
-console.log("Generated docs/index.html with a Helix-style plugin grid, teal bar, search, and modal UI!");
+console.log("Generated docs/index.html with the requested adjustments!"); 
