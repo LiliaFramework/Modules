@@ -77,19 +77,17 @@ jobs:
           for module in */module.lua; do
             [ -f "$module" ] || continue
             name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
-            author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
-            discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
+            author=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
             folder=$(basename "$(dirname "$module")")
             download="Downloads/${folder}.zip"
             jq --arg name "$name" \
                --arg author "$author" \
-               --arg discord "$discord" \
                --arg desc "$desc" \
                --arg version "$version" \
                --arg download "$download" \
-               '. += [{"name":$name,"author":$author,"discord":$discord,"description":$desc,"version":$version,"download":$download}]' modules.json > tmp.json
+               '. += [{"name":$name,"author":$author,"description":$desc,"version":$version,"download":$download}]' modules.json > tmp.json
             mv tmp.json modules.json
           done
       - run: |
