@@ -4,7 +4,7 @@
     "author": "@liliaplayer",
     "description": "Adds a Advert Command",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/advert.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/advert.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/advert",
     "uniqueID": "advert",
     "workshop": []
@@ -14,7 +14,7 @@
     "author": "@liliaplayer",
     "description": "Adds Alcohol and Effects to it.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/alcoholism.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/alcoholism.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/alcoholism",
     "uniqueID": "alcoholism",
     "workshop": []
@@ -24,7 +24,7 @@
     "author": "@liliaplayer",
     "description": "Adds a bodygroup menu and bodygroup closet, akin to BodygroupR on GModStore",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/bodygrouper.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/bodygrouper.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/bodygrouper",
     "uniqueID": "bodygrouper",
     "workshop": []
@@ -34,7 +34,7 @@
     "author": "@liliaplayer",
     "description": "Adds a Faction & Class Broadcast Command",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/broadcasts.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/broadcasts.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/broadcasts",
     "uniqueID": "broadcasts",
     "workshop": []
@@ -44,7 +44,7 @@
     "author": "@liliaplayer",
     "description": "Adds a easy way of adding in-game captions.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/captions.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/captions.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/captions",
     "uniqueID": "captions",
     "workshop": []
@@ -54,7 +54,7 @@
     "author": "@liliaplayer",
     "description": "Adds Simple Adverts.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/chatmessages.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/chatmessages.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/chatmessages",
     "uniqueID": "chatmessages",
     "workshop": []
@@ -64,7 +64,7 @@
     "author": "@liliaplayer",
     "description": "Cinematic looking splash text for that extra flair",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/cinematictext.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cinematictext.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/cinematictext",
     "uniqueID": "cinematictext",
     "workshop": []
@@ -74,7 +74,7 @@
     "author": "@liliaplayer",
     "description": "Adds the ability to climb up ledges.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/climb.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/climb.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/climb",
     "uniqueID": "climb",
     "workshop": []
@@ -84,7 +84,7 @@
     "author": "@liliaplayer",
     "description": "Adds a few extensions to the lia.util library.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/codeutils.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/codeutils.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/codeutils",
     "uniqueID": "codeutils",
     "workshop": []
@@ -94,7 +94,7 @@
     "author": "@liliaplayer",
     "description": "Adds links to the various content",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/community commands.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/community commands.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/community commands",
     "uniqueID": "community commands",
     "workshop": []
@@ -104,7 +104,7 @@
     "author": "@liliaplayer",
     "description": "Adds a corpse identification mechanic.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/corpseid.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/corpseid.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/corpseid",
     "uniqueID": "corpseid",
     "workshop": []
@@ -114,7 +114,7 @@
     "author": "@liliaplayer",
     "description": "Adds a Cursor.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/cursor.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cursor.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/cursor",
     "uniqueID": "cursor",
     "workshop": []
@@ -124,7 +124,7 @@
     "author": "@liliaplayer",
     "description": "Adds a Development HUD",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/developmenthud.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/developmenthud.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/developmenthud",
     "uniqueID": "developmenthud",
     "workshop": []
@@ -134,7 +134,7 @@
     "author": "@liliaplayer",
     "description": "Adds the option for a Development Server, which can run specific functions.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/developmentserver.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/developmentserver.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/developmentserver",
     "uniqueID": "developmentserver",
     "workshop": []
@@ -144,7 +144,7 @@
     "author": "@liliaplayer",
     "description": "Relays Logs to Discord.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/discordrelay.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/discordrelay.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/discordrelay",
     "uniqueID": "discordrelay",
     "workshop": []
@@ -154,7 +154,7 @@
     "author": "@liliaplayer",
     "description": "Adds Several Donation Related Libraries.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/donator.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/donator.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/donator",
     "uniqueID": "donator",
     "workshop": []
@@ -164,7 +164,7 @@
     "author": "@liliaplayer",
     "description": "Allows you to kick doors open.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/doorkick.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/doorkick.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/doorkick",
     "uniqueID": "doorkick",
     "workshop": []
@@ -174,7 +174,7 @@
     "author": "@liliaplayer",
     "description": "Adds Hospitals that Spawn you after dying",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/enhanceddeath.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/enhanceddeath.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/enhanceddeath",
     "uniqueID": "enhanceddeath",
     "workshop": []
@@ -184,7 +184,7 @@
     "author": "@liliaplayer",
     "description": "This Module focuses on adding Extended Descriptions.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/extendeddescriptions.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/extendeddescriptions.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/extendeddescriptions",
     "uniqueID": "extendeddescriptions",
     "workshop": []
@@ -194,7 +194,7 @@
     "author": "@liliaplayer",
     "description": "Makes Flashlight a bit more serious",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/flashlight.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/flashlight.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/flashlight",
     "uniqueID": "flashlight",
     "workshop": []
@@ -204,7 +204,7 @@
     "author": "@liliaplayer",
     "description": "Adds Free Look similar to EFT",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/freelook.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/freelook.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/freelook",
     "uniqueID": "freelook",
     "workshop": []
@@ -214,7 +214,7 @@
     "author": "@liliaplayer",
     "description": "Adds Join and Leave Messages",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/joinleavemessages.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/joinleavemessages.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/joinleavemessages",
     "uniqueID": "joinleavemessages",
     "workshop": []
@@ -224,7 +224,7 @@
     "author": "@liliaplayer",
     "description": "System for loyalist points.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/loyalism.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/loyalism.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/loyalism",
     "uniqueID": "loyalism",
     "workshop": []
@@ -234,7 +234,7 @@
     "author": "@liliaplayer",
     "description": "Adds a Map Cleaner with configurable timings",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/mapcleaner.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/mapcleaner.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/mapcleaner",
     "uniqueID": "mapcleaner",
     "workshop": []
@@ -244,7 +244,7 @@
     "author": "@liliaplayer",
     "description": "Adds a system to pay per model",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/modelpay.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/modelpay.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/modelpay",
     "uniqueID": "modelpay",
     "workshop": []
@@ -254,7 +254,7 @@
     "author": "@liliaplayer",
     "description": "Adds a Model Tweaker Entity.",
     "version": "",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/modeltweaker.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/modeltweaker.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/modeltweaker",
     "uniqueID": "modeltweaker",
     "workshop": []
@@ -264,7 +264,7 @@
     "author": "@liliaplayer",
     "description": "Adds automatic npc spawning",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/npcspawner.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/npcspawner.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/npcspawner",
     "uniqueID": "npcspawner",
     "workshop": []
@@ -274,7 +274,7 @@
     "author": "bozdev",
     "description": "Allows staff to permanently remove map entities",
     "version": "",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/permaremove.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/permaremove.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/permaremove",
     "uniqueID": "permaremove",
     "workshop": []
@@ -284,7 +284,7 @@
     "author": "@liliaplayer",
     "description": "Radio",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/radio.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/radio.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/radio",
     "uniqueID": "radio",
     "workshop": [
@@ -296,7 +296,7 @@
     "author": "@liliaplayer",
     "description": "Adds a safety system that holsters sweps.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/raisedweapons.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/raisedweapons.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/raisedweapons",
     "uniqueID": "raisedweapons",
     "workshop": []
@@ -306,7 +306,7 @@
     "author": "bloodycop",
     "description": "Adds a rappel gear.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/rappelling.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/rappelling.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/rappelling",
     "uniqueID": "rappelling",
     "workshop": []
@@ -316,7 +316,7 @@
     "author": "@liliaplayer",
     "description": "Adds Damage Scalers for Realism",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/realisticdamage.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/realisticdamage.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/realisticdamage",
     "uniqueID": "realisticdamage",
     "workshop": []
@@ -326,7 +326,7 @@
     "author": "@liliaplayer",
     "description": "Adds an realistic 1st Person View that allows to see the entire body.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/realisticview.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/realisticview.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/realisticview",
     "uniqueID": "realisticview",
     "workshop": []
@@ -336,7 +336,7 @@
     "author": "@liliaplayer",
     "description": "Adds a Rumour Command",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/rumour.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/rumour.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/rumour",
     "uniqueID": "rumour",
     "workshop": []
@@ -346,7 +346,7 @@
     "author": "@liliaplayer",
     "description": "Shoot locks to open doors.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/shootlock.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/shootlock.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/shootlock",
     "uniqueID": "shootlock",
     "workshop": []
@@ -356,7 +356,7 @@
     "author": "@liliaplayer",
     "description": "An Stun Gun Reworked from CustomHQ",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/stungun.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/stungun.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/stungun",
     "uniqueID": "stungun",
     "workshop": [
@@ -368,7 +368,7 @@
     "author": "bloodycop",
     "description": "Adds support for playermodels playing turning animations.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/turning.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/turning.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/turning",
     "uniqueID": "turning",
     "workshop": []
@@ -378,7 +378,7 @@
     "author": "@liliaplayer",
     "description": "Adds Tying Items That Serve As Handcuffs. Enchance Roleplay Overall.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/tying.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/tying.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/tying",
     "uniqueID": "tying",
     "workshop": []
@@ -388,7 +388,7 @@
     "author": "@liliaplayer",
     "description": "Adds an custom View Bob.",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/viewbob.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/viewbob.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/viewbob",
     "uniqueID": "viewbob",
     "workshop": []
@@ -398,7 +398,7 @@
     "author": "@liliaplayer",
     "description": "Adds Warrants",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/warrants.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/warrants.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/warrants",
     "uniqueID": "warrants",
     "workshop": []
@@ -408,7 +408,7 @@
     "author": "@liliaplayer",
     "description": "Adds a interactive War Table",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/wartable.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/wartable.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/wartable",
     "uniqueID": "wartable",
     "workshop": [
@@ -420,7 +420,7 @@
     "author": "@liliaplayer",
     "description": "Adds a Server Whitelist",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/blob/gh-pages/Downloads/whitelist.zip",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/whitelist.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/whitelist",
     "uniqueID": "whitelist",
     "workshop": []
