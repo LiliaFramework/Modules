@@ -1,5 +1,0 @@
-﻿MODULE.name = "Join Leave Messages"
-MODULE.author = "76561198312513285"
-MODULE.discord = "@liliaplayer"
-MODULE.version = "Stock"
-MODULE.desc = "Adds Join and Leave Messages"
