@@ -76,11 +76,10 @@ jobs:
           printf "%s\n" "--------------------------------------------------------" > modules.txt
           for module in */module.lua; do
             name=$(grep -Po '(?<=MODULE\.name\s*=\s*")[^"]+' "$module" || echo "")
-            author=$(grep -Po '(?<=MODULE\.discord\s*=\s*")[^"]+' "$module" || echo "")
-            desc=$(grep -Po '(?<=MODULE\.desc\s*=\s*")[^"]+' "$module" || echo "")
-            version=$(grep -Po '(?<=MODULE\.version\s*=\s*")[^"]+' "$module" || echo "1.0")
-            printf "MODULE.name = \"%s\"\nMODULE.Author = \"%s\"\nMODULE.Description = \"%s\"\nMODULE.Version = \"%s\"\n" \
-              "$name" "$author" "$desc" "$version" >> modules.txt
+            author=$(grep -Po '(?<=MODULE\.Author\s*=\s*")[^"]+' "$module" || echo "")
+            desc=$(grep -Po '(?<=MODULE\.Description\s*=\s*")[^"]+' "$module" || echo "")
+            version=$(grep -Po '(?<=MODULE\.Version\s*=\s*")[^"]+' "$module" || echo "1.0")
+            printf "MODULE.name = \"%s\"\nMODULE.Author = \"%s\"\nMODULE.Description = \"%s\"\nMODULE.Version = \"%s\"\n" "$name" "$author" "$desc" "$version" >> modules.txt
             printf "%s\n" "--------------------------------------------------------" >> modules.txt
           done
       - run: |
