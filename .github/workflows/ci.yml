@@ -73,14 +73,16 @@ jobs:
           fetch-depth: 0
       - run: sudo apt-get update && sudo apt-get install -y zip
       - run: |
-          echo -e "Name\tAuthor\tDescription\tVersion" > modules.txt
+          printf "%s\n" "--------------------------------------------------------" > modules.txt
           for module in */module.lua; do
             name=$(grep -Po '(?<=MODULE\.name\s*=\s*")[^"]+' "$module" || echo "")
             author=$(grep -Po '(?<=MODULE\.discord\s*=\s*")[^"]+' "$module" || echo "")
             desc=$(grep -Po '(?<=MODULE\.desc\s*=\s*")[^"]+' "$module" || echo "")
             version=$(grep -Po '(?<=MODULE\.version\s*=\s*")[^"]+' "$module" || echo "1.0")
-            echo -e "${name}\t${author}\t${desc}\t${version}"
-          done >> modules.txt
+            printf "MODULE.name = \"%s\"\nMODULE.Author = \"%s\"\nMODULE.Description = \"%s\"\nMODULE.Version = \"%s\"\n" \
+              "$name" "$author" "$desc" "$version" >> modules.txt
+            printf "%s\n" "--------------------------------------------------------" >> modules.txt
+          done
       - run: |
           for folder in */; do
             [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
