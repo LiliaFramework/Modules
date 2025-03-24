@@ -76,17 +76,19 @@ jobs:
           echo "[]" > modules.json
           for module in */module.lua; do
             name=$(grep -Po '(?<=MODULE\.name\s*=\s*")[^"]+' "$module" || echo "")
-            author=$(grep -Po '(?<=MODULE\.discord\s*=\s*")[^"]+' "$module" || echo "")
+            author=$(grep -Po '(?<=MODULE\.author\s*=\s*")[^"]+' "$module" || echo "")
+            discord=$(grep -Po '(?<=MODULE\.discord\s*=\s*")[^"]+' "$module" || echo "")
             desc=$(grep -Po '(?<=MODULE\.desc\s*=\s*")[^"]+' "$module" || echo "")
             version=$(grep -Po '(?<=MODULE\.version\s*=\s*")[^"]+' "$module" || echo "1.0")
             folder=$(basename "$(dirname "$module")")
             download="Downloads/${folder}.zip"
             jq --arg name "$name" \
                --arg author "$author" \
+               --arg discord "$discord" \
                --arg desc "$desc" \
                --arg version "$version" \
                --arg download "$download" \
-               '. += [{"name":$name,"author":$author,"description":$desc,"version":$version,"download":$download}]' modules.json > tmp.json
+               '. += [{"name":$name,"author":$author,"discord":$discord,"description":$desc,"version":$version,"download":$download}]' modules.json > tmp.json
             mv tmp.json modules.json
           done
       - run: |
