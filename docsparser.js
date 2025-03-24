@@ -26,6 +26,8 @@ const primaryColor = "rgb(37, 116, 108)";
 const hoverColor = "rgb(29, 95, 88)";
 const buttonColor = "rgb(37, 116, 108)";
 const buttonHoverColor = "rgb(29, 95, 88)";
+const darkBackgroundColor = "#1f1f1f"; // Dark background for the website
+const darkTextColor = "#e0e0e0"; // Light text for readability
 
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
@@ -34,26 +36,26 @@ const indexHtml = `<!DOCTYPE html>
   <title>Plugin Modules</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; background-color: #fafafa; }
+    body { font-family: Arial, sans-serif; background-color: ${darkBackgroundColor}; color: ${darkTextColor}; }
     .header { display: flex; align-items: center; background-color: ${primaryColor}; color: #fff; padding: 10px 20px; justify-content: space-between; }
     .modules-link { color: #fff; text-decoration: none; font-weight: bold; margin-right: 20px; font-size: 1.1rem; }
     .modules-link:hover { text-decoration: underline; }
     .search-bar { position: relative; }
-    .search-bar input { padding: 6px 8px; border-radius: 4px; border: none; outline: none; }
+    .search-bar input { padding: 6px 8px; border-radius: 4px; border: none; outline: none; background-color: #333; color: #fff; }
     main { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
     .plugin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     @media(max-width: 800px) { .plugin-grid { grid-template-columns: 1fr; } }
-    .plugin-card { background-color: #fff; border-radius: 4px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; }
+    .plugin-card { background-color: #2e2e2e; border-radius: 4px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; }
     .plugin-card-header { margin-bottom: 6px; }
-    .plugin-card-title { font-size: 1rem; font-weight: bold; color: #333; }
-    .plugin-card-author { font-size: 0.9rem; color: #555; }
+    .plugin-card-title { font-size: 1rem; font-weight: bold; color: ${darkTextColor}; }
+    .plugin-card-author { font-size: 0.9rem; color: #bbb; }
     .plugin-card-version { font-size: 0.9rem; color: #777; }
-    .view-button { margin-top: 10px; padding: 6px 12px; background-color: ${buttonColor}; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
+    .view-button { margin-top: 10px; padding: 12px 24px; background-color: ${buttonColor}; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 1.2rem; }
     .view-button:hover { background-color: ${buttonHoverColor}; }
     .pagination { display: flex; justify-content: center; margin: 20px 0; gap: 5px; }
-    .pagination button { background-color: #fff; border: 1px solid #ccc; border-radius: 4px; padding: 6px 10px; cursor: pointer; }
+    .pagination button { background-color: #2e2e2e; border: 1px solid #555; border-radius: 4px; padding: 10px 20px; cursor: pointer; color: ${darkTextColor}; }
     .pagination button.active { background-color: ${primaryColor}; color: #fff; border-color: ${primaryColor}; }
-    .pagination button:hover { background-color: #eee; }
+    .pagination button:hover { background-color: #444; }
   </style>
 </head>
 <body>
@@ -166,18 +168,18 @@ modules.forEach(mod => {
   <meta charset="UTF-8">
   <title>${mod.name || "Module Detail"}</title>
   <style>
-    body { font-family: Arial, sans-serif; background-color: #fafafa; margin: 0; padding: 0; }
-    .container { max-width: 900px; margin: 40px auto; background-color: #fff; padding: 20px 30px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    body { font-family: Arial, sans-serif; background-color: ${darkBackgroundColor}; color: ${darkTextColor}; margin: 0; padding: 0; }
+    .container { max-width: 900px; margin: 40px auto; background-color: #333; padding: 20px 30px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     .header { display: flex; justify-content: space-between; align-items: flex-start; }
     .header-left { max-width: 60%; }
-    .header-left h1 { margin: 0 0 5px 0; font-size: 1.5rem; color: #333; }
-    .header-left .author { color: #555; margin-bottom: 10px; }
+    .header-left h1 { margin: 0 0 5px 0; font-size: 1.5rem; color: ${darkTextColor}; }
+    .header-left .author { color: #bbb; margin-bottom: 10px; }
     .header-right { text-align: right; }
-    .download-button { display: inline-block; background-color: ${buttonColor}; color: #fff; padding: 10px 18px; border-radius: 4px; text-decoration: none; font-weight: bold; }
+    .download-button { display: inline-block; background-color: ${buttonColor}; color: #fff; padding: 18px 36px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 1.2rem; }
     .download-button:hover { background-color: ${buttonHoverColor}; }
     .view-source { display: block; margin-top: 8px; color: ${buttonColor}; text-decoration: none; font-weight: normal; }
     .view-source:hover { text-decoration: underline; }
-    .description, .version { margin-top: 20px; color: #333; line-height: 1.4; }
+    .description, .version { margin-top: 20px; color: ${darkTextColor}; line-height: 1.4; }
     .description strong, .version strong { display: inline-block; margin-bottom: 6px; }
     .back-link { display: inline-block; margin-bottom: 20px; color: ${primaryColor}; text-decoration: none; font-weight: bold; }
     .back-link:hover { text-decoration: underline; }
@@ -192,7 +194,7 @@ modules.forEach(mod => {
         <div class="author">by ${mod.author || "Unknown"}</div>
       </div>
       <div class="header-right">
-        <a class="download-button" href="#">Download via GitHub</a>
+        <a class="download-button" href="${mod.source}">Download via GitHub</a>
         <a class="view-source" href="${mod.source}">View source »</a>
       </div>
     </div>
