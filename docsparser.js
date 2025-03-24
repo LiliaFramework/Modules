@@ -33,7 +33,7 @@ const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Plugin Modules</title>
+  <title>Lilia Modules</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; background-color: ${darkBackgroundColor}; color: ${darkTextColor}; }
@@ -60,7 +60,7 @@ const indexHtml = `<!DOCTYPE html>
 </head>
 <body>
   <header class="header">
-    <a href="index.html" class="modules-link">Modules</a>
+    <a href="index.html" class="modules-link">Lilia Modules</a>
     <div class="search-bar">
       <input type="text" id="search" placeholder="Search by Title...">
     </div>
@@ -104,12 +104,8 @@ const indexHtml = `<!DOCTYPE html>
         card.innerHTML = \`
           <div class="plugin-card-header">
             <div class="plugin-card-title">\${mod.name}</div>
-          </div>
-          <div class="plugin-card-author">
-            <strong>Author:</strong> \${mod.author || "Unknown"}
-          </div>
-          <div class="plugin-card-version">
-            <strong>Version:</strong> \${mod.version || "N/A"}
+            <div class="plugin-card-author"><strong>Author:</strong> \${mod.author || "Unknown"}</div>
+            <div class="plugin-card-version"><strong>Version:</strong> \${mod.version || "N/A"}</div>
           </div>
           <button class="view-button">View</button>
         \`;
@@ -174,11 +170,11 @@ modules.forEach(mod => {
     .header-left { max-width: 60%; }
     .header-left h1 { margin: 0 0 10px 0; font-size: 2rem; color: ${darkTextColor}; }
     .header-left .author { color: #bbb; margin-bottom: 15px; }
+    .header-left .version { color: #777; }
     .header-right { text-align: right; }
-    .download-button { display: inline-block; background-color: ${buttonColor}; color: #fff; padding: 20px 40px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.4rem; }
-    .download-button:hover { background-color: ${buttonHoverColor}; }
-    .view-source { display: block; margin-top: 12px; color: ${buttonColor}; text-decoration: none; font-weight: normal; font-size: 1.2rem; }
-    .view-source:hover { text-decoration: underline; }
+    .download-button, .view-source-button { display: inline-block; background-color: ${buttonColor}; color: #fff; padding: 20px 40px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.4rem; }
+    .download-button:hover, .view-source-button:hover { background-color: ${buttonHoverColor}; }
+    .view-source-button { margin-top: 12px; }
     .description, .version { margin-top: 25px; color: ${darkTextColor}; line-height: 1.5; font-size: 1.1rem; }
     .description strong, .version strong { display: inline-block; margin-bottom: 8px; font-size: 1.2rem; }
     .back-link { display: inline-block; margin-bottom: 25px; color: ${primaryColor}; text-decoration: none; font-weight: bold; }
@@ -192,10 +188,11 @@ modules.forEach(mod => {
       <div class="header-left">
         <h1>${mod.name || "Untitled Module"}</h1>
         <div class="author"><strong>Author:</strong> ${mod.author || "Unknown"}</div>
+        <div class="version"><strong>Version:</strong> ${mod.version || "N/A"}</div>
       </div>
       <div class="header-right">
-        <a class="download-button" href="${mod.source}">Download via GitHub</a>
-        <a class="view-source" href="${mod.source}">View source »</a>
+        <a class="download-button" href="${mod.download}">Download via GitHub</a>
+        <a class="view-source-button" href="${mod.source}">View Source</a>
       </div>
     </div>
     <div class="description">
@@ -213,5 +210,3 @@ modules.forEach(mod => {
 
   fs.writeFileSync(path.join(docsDir, `${slug}.html`), detailHtml, "utf8");
 });
-
-console.log("Generated docs with index.html and detailed pages with View Source links and RGB styling.");
