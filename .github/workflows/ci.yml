@@ -82,12 +82,14 @@ jobs:
             version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
             folder=$(basename "$(dirname "$module")")
             download="Downloads/${folder}.zip"
+            source="https://github.com/LiliaFramework/Modules/tree/main/${folder}"
             jq --arg name "$name" \
                --arg author "$author" \
                --arg desc "$desc" \
                --arg version "$version" \
                --arg download "$download" \
-               '. += [{"name":$name,"author":$author,"description":$desc,"version":$version,"download":$download}]' modules.json > tmp.json
+               --arg source "$source" \
+               '. += [{"name":$name,"author":$author,"description":$desc,"version":$version,"download":$download,"source":$source}]' modules.json > tmp.json
             mv tmp.json modules.json
           done
       - run: |
@@ -99,7 +101,7 @@ jobs:
           git config user.name "GitHub Actions"
           git add modules.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update modules.json"
+            git commit -m "Update modules.json with source URLs"
             git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           fi
       - uses: actions/upload-artifact@v4
