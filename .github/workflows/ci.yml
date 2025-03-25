@@ -175,3 +175,59 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ./docs
           force_orphan: true
+
+  release:
+    needs: formatter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: modules
+
+      - name: Delete existing release/tag
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const tag = 'release';
+            try {
+              const rel = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag
+              });
+              await github.rest.repos.deleteRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: rel.data.id
+              });
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `tags/${tag}`
+              });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+            }
+
+      - name: Package Modules
+        run: |
+          mkdir packaged
+          cp -R modules packaged/modules
+          zip -r modules.zip packaged
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: release
+          release_name: Modules
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: modules.zip
+          asset_name: modules.zip
+          asset_content_type: application/zip
