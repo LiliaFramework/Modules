@@ -94,9 +94,9 @@
     "author": "@liliaplayer",
     "description": "Adds links to the various content",
     "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/community commands.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/community commands",
-    "uniqueID": "community commands",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/communitycommands.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/communitycommands",
+    "uniqueID": "communitycommands",
     "workshop": []
   },
   {
