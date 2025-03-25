@@ -41,31 +41,8 @@ jobs:
             --no-max-string-line-length --no-max-comment-line-length
         working-directory: modules
 
-  formatter:
-    needs: linter
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          path: modules
-      - run: |
-          curl -L -o glualint.zip https://github.com/FPtje/GLuaFixer/releases/download/1.29.0/glualint-1.29.0-x86_64-linux.zip
-          unzip glualint.zip -d tmp && chmod +x tmp/glualint && sudo mv tmp/glualint /usr/local/bin
-          rm -rf glualint.zip tmp
-      - run: glualint --config glualint.json --pretty-print-files .
-        working-directory: modules
-      - run: |
-          git config user.email "githubactions@github.com"
-          git config user.name "GitHub Actions"
-          if [ -n "$(git status --porcelain)" ]; then
-            git add .
-            git commit -m "Pretty Printed"
-            git push https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
-          fi
-        working-directory: modules
-
   scrape-modules:
-    needs: formatter
+    needs: linter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -76,40 +53,23 @@ jobs:
           echo "[]" > modules.json
           for module in */module.lua; do
             [ -f "$module" ] || continue
-
-            # Parse core fields
             name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             author=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
-
-            # Parse WorkshopContent line (if any).
-            #   MODULE.WorkshopContent = { "ID1", "ID2" }
-            #   MODULE.WorkshopContent = "ID"
             workshop_line=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|".*")' "$module" || echo "")
-            # Strip the leading 'MODULE.WorkshopContent ='
             workshop_line=$(echo "$workshop_line" | sed -E 's/MODULE\.WorkshopContent\s*=\s*//g')
-
-            # Convert to a JSON array
             if [[ "$workshop_line" =~ ^\{.*\}$ ]]; then
-              # Convert { "111", "222" } -> ["111","222"]
-              workshop_line=$(echo "$workshop_line" \
-                | sed -E 's/^\{\s*(.*)\s*\}$/[\1]/' \
-                | sed -E 's/"\s*,\s*"/","/g')
+              workshop_line=$(echo "$workshop_line" | sed -E 's/^\{\s*(.*)\s*\}$/[\1]/' | sed -E 's/"\s*,\s*"/","/g')
             elif [ -n "$workshop_line" ]; then
-              # Single ID -> ["12345"]
               workshop_line="[${workshop_line}]"
             else
-              # No workshop IDs
               workshop_line="[]"
             fi
-
             folder=$(basename "$(dirname "$module")")
             uniqueID=$folder
-            # Updated to use the gh-pages branch’s artifact
             download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/${folder}.zip"
             source="https://github.com/LiliaFramework/Modules/tree/main/${folder}"
-
             jq --arg name "$name" \
                --arg author "$author" \
                --arg desc "$desc" \
@@ -118,16 +78,7 @@ jobs:
                --arg source "$source" \
                --arg uniqueID "$uniqueID" \
                --argjson workshop "$workshop_line" \
-               '. += [{
-                  "name":$name,
-                  "author":$author,
-                  "description":$desc,
-                  "version":$version,
-                  "download":$download,
-                  "source":$source,
-                  "uniqueID":$uniqueID,
-                  "workshop":$workshop
-                }]' modules.json > tmp.json
+               '. += [{name:$name,author:$author,description:$desc,version:$version,download:$download,source:$source,uniqueID:$uniqueID,workshop:$workshop}]' modules.json > tmp.json
             mv tmp.json modules.json
           done
       - run: |
@@ -175,6 +126,7 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ./docs
           force_orphan: true
+
   release:
     needs: gh-pages
     runs-on: ubuntu-latest
@@ -183,7 +135,6 @@ jobs:
         name: Checkout SCPRP Repository
         with:
           path: scprp
-
       - name: Remove existing release & tag (if any)
         uses: actions/github-script@v6
         with:
@@ -213,14 +164,12 @@ jobs:
                 throw error;
               }
             }
-
       - name: Prepare and Zip
         run: |
           mkdir packaged
           cp -R scprp packaged/scprp
           cd packaged
           zip -r ../scprp.zip scprp
-
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
@@ -231,7 +180,6 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
-
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
         with:
