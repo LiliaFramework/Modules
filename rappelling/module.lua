@@ -54,5 +54,5 @@ function MODULE:RemoveRope(client)
     client.rappelRope = nil
     client.oneTimeRappelSound = nil
     local sequence = client:LookupSequence("rappelloop")
-    if sequence ~= 1 and client:GetNetVar("forcedSequence") == sequence then client:SetNetVar("forcedSequence", nil) end
+    if sequence ~= 1 and client:getNetVar("forcedSequence") == sequence then client:SetNetVar("forcedSequence", nil) end
 end
