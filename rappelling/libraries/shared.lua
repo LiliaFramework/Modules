@@ -54,7 +54,7 @@ function MODULE:Move(client, moveData)
         if rappelFalling then
             if SERVER then
                 local sequence = client:LookupSequence("rappelloop")
-                if sequence ~= -1 then client:SetNetVar("forcedSequence", sequence) end
+                if sequence ~= -1 then client:setNetVar("forcedSequence", sequence) end
                 if not client.oneTimeRappelSound then
                     client.oneTimeRappelSound = true
                     client:EmitSound("npc/combine_soldier/zipline" .. math.random(2) .. ".wav")
@@ -65,7 +65,7 @@ function MODULE:Move(client, moveData)
         else
             if SERVER then
                 local sequence = client:LookupSequence("rappelloop")
-                if sequence ~= 1 and client:getNetVar("forcedSequence") == sequence then client:SetNetVar("forcedSequence", nil) end
+                if sequence ~= 1 and client:getNetVar("forcedSequence") == sequence then client:setNetVar("forcedSequence", nil) end
             end
 
             local origin = moveData:GetOrigin()
