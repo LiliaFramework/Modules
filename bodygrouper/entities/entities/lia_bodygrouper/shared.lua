@@ -4,19 +4,19 @@ ENT.Category = "Lilia"
 ENT.Spawnable = true
 ENT.AdminOnly = true
 ENT.IsPersistent = true
-function ENT:HasUser( user )
-	self.users = self.users or {}
-	return self.users[ user ] == true
+function ENT:HasUser(user)
+    self.users = self.users or {}
+    return self.users[user] == true
 end
 
-function ENT:AddUser( user )
-	self.users = self.users or {}
-	self.users[ user ] = true
-	hook.Run( "BodygrouperClosetAddUser", self, user )
+function ENT:AddUser(user)
+    self.users = self.users or {}
+    self.users[user] = true
+    hook.Run("BodygrouperClosetAddUser", self, user)
 end
 
-function ENT:RemoveUser( user )
-	self.users = self.users or {}
-	self.users[ user ] = nil
-	hook.Run( "BodygrouperClosetRemoveUser", self, user )
+function ENT:RemoveUser(user)
+    self.users = self.users or {}
+    self.users[user] = nil
+    hook.Run("BodygrouperClosetRemoveUser", self, user)
 end

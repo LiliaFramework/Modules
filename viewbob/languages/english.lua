@@ -1,4 +1,4 @@
 ﻿NAME = "english"
 LANGUAGE = {
-	ToggleViewBob = "Toggle ViewBob.",
+    ToggleViewBob = "Toggle ViewBob.",
 }

@@ -1,3 +1,3 @@
 ﻿function ENT:Draw()
-	self:DrawModel()
+    self:DrawModel()
 end
