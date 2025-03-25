@@ -175,3 +175,69 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ./docs
           force_orphan: true
+  release:
+    needs: gh-pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout SCPRP Repository
+        with:
+          path: scprp
+
+      - name: Remove existing release & tag (if any)
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const tag = 'release';
+            try {
+              const release = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag
+              });
+              await github.rest.repos.deleteRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: release.data.id
+              });
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `tags/${tag}`
+              });
+              core.info(`Deleted existing release & tag "${tag}"`);
+            } catch (error) {
+              if (error.status === 404) {
+                core.info('No existing release/tag to delete');
+              } else {
+                throw error;
+              }
+            }
+
+      - name: Prepare and Zip
+        run: |
+          mkdir packaged
+          cp -R scprp packaged/scprp
+          cd packaged
+          zip -r ../scprp.zip scprp
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: release
+          release_name: SCPRP
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: scprp.zip
+          asset_name: scprp.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
