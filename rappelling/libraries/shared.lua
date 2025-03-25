@@ -8,7 +8,7 @@ function MODULE:PlayerLoadout(client)
 end
 
 function MODULE:DoAnimationEvent(client)
-    if client:GetNetVar("forcedSequence") == client:LookupSequence("rappelloop") then return ACT_INVALID end
+    if client:getNetVar("forcedSequence") == client:LookupSequence("rappelloop") then return ACT_INVALID end
 end
 
 local viewPunchAngle = Angle(7, 0, 0)
@@ -65,7 +65,7 @@ function MODULE:Move(client, moveData)
         else
             if SERVER then
                 local sequence = client:LookupSequence("rappelloop")
-                if sequence ~= 1 and client:GetNetVar("forcedSequence") == sequence then client:SetNetVar("forcedSequence", nil) end
+                if sequence ~= 1 and client:getNetVar("forcedSequence") == sequence then client:SetNetVar("forcedSequence", nil) end
             end
 
             local origin = moveData:GetOrigin()
