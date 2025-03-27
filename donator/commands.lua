@@ -4,7 +4,7 @@
     syntax = "[string targetPlayer]",
     desc = "Removes one character slot from the specified player.",
     onRun = function(client, arguments)
-        local target = lia.command.findPlayer(client, arguments[1])
+        local target = lia.util.findPlayer(client, arguments[1])
         if not target or not IsValid(target) then
             client:notifyLocalized("targetNotFound")
             return
@@ -20,7 +20,7 @@ lia.command.add("addcharslots", {
     syntax = "[string targetPlayer]",
     desc = "Grants one extra character slot to the specified player.",
     onRun = function(client, arguments)
-        local target = lia.command.findPlayer(client, arguments[1])
+        local target = lia.util.findPlayer(client, arguments[1])
         if not target or not IsValid(target) then
             client:notifyLocalized("targetNotFound")
             return
@@ -36,7 +36,7 @@ lia.command.add("setcharslots", {
     syntax = "[string targetPlayer] [number slotCount]",
     desc = "Sets the total number of character slots for the specified player.",
     onRun = function(client, arguments)
-        local target = lia.command.findPlayer(client, arguments[1])
+        local target = lia.util.findPlayer(client, arguments[1])
         local count = tonumber(arguments[2])
         if not target or not IsValid(target) then
             client:notifyLocalized("targetNotFound")

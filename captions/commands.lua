@@ -3,7 +3,7 @@
     syntax = "[string targetPlayer] [string caption] [number duration]",
     desc = "Sends a caption message to a specific player for a set duration.",
     onRun = function(client, arguments)
-        local target = lia.command.findPlayer(client, arguments[1])
+        local target = lia.util.findPlayer(client, arguments[1])
         local text = arguments[2]
         local duration = tonumber(arguments[3]) or 5
         if not target or not IsValid(target) then

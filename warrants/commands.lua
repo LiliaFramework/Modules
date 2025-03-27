@@ -3,7 +3,7 @@
     syntax = "[string targetPlayer]",
     desc = "Toggles a wanted warrant on the specified player.",
     onRun = function(client, arguments)
-        local target = lia.command.findPlayer(client, arguments[1])
+        local target = lia.util.findPlayer(client, arguments[1])
         if client:CanWarrantPlayers() then
             if IsValid(target) and target:getChar() then
                 target:ToggleWanted(client)

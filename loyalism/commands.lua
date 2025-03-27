@@ -7,7 +7,7 @@ lia.command.add("partytier", {
     onRun = function(client, arguments)
         local char = client:getChar()
         if not char then return L("mustBeOnCharacter") end
-        local target = lia.command.findPlayer(client, arguments[1])
+        local target = lia.util.findPlayer(client, arguments[1])
         if not char:hasFlags("T") then
             client:notifyLocalized("noPerm")
             return

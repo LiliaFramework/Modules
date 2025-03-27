@@ -41,7 +41,7 @@ local function consoleFindPlayer(name)
     function dummy:notifyLocalized(msg)
         print(msg)
     end
-    return lia.command.findPlayer(dummy, name)
+    return lia.util.findPlayer(dummy, name)
 end
 
 concommand.Add("lia_givecharacters", function(ply, _, args)
