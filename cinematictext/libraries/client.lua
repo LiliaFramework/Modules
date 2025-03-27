@@ -200,12 +200,12 @@ function PANEL:Init()
     postButton:SetTall(ScrH * 0.05)
     postButton.DoClick = function()
         if not (self.contents and (self.contents.text or self.contents.bigText)) then
-            lia.util.notify("Something went horribly wrong. Try reloading this panel")
+            lia.notices.notify("Something went horribly wrong. Try reloading this panel")
             return
         end
 
         if self.contents.text == "" and self.contents.bigText == "" then
-            lia.util.notify("Text is missing. Enter some text to display")
+            lia.notices.notify("Text is missing. Enter some text to display")
             return
         end
 
@@ -217,7 +217,7 @@ function PANEL:Init()
         net.WriteBool(self.contents.music)
         net.WriteColor(self.contents.color)
         net.SendToServer()
-        lia.util.notify("Splash Text Sent")
+        lia.notices.notify("Splash Text Sent")
         self:Remove()
     end
 
