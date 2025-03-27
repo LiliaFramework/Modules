@@ -210,6 +210,16 @@
     "workshop": []
   },
   {
+    "name": "Extra HUD Elements",
+    "author": "@liliaplayer",
+    "description": "Implements Extra HUD Elements.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/hud_extras.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/hud_extras",
+    "uniqueID": "hud_extras",
+    "workshop": []
+  },
+  {
     "name": "Join Leave Messages",
     "author": "@liliaplayer",
     "description": "Adds Join and Leave Messages",
