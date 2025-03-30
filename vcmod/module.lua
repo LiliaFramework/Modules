@@ -1,6 +1,7 @@
-MODULE.name = "Extra HUD Elements"
+﻿MODULE.name = "VCMod"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0"
-MODULE.desc = "Implements Extra HUD Elements."
+MODULE.desc = "Adds VCMod Compatibility to Lilia."
+MODULE.enabled = VCMod ~= nil
 MODULE.Public = true
