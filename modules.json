@@ -280,6 +280,16 @@
     "workshop": []
   },
   {
+    "name": "PAC3",
+    "author": "@liliaplayer",
+    "description": "Adds PAC Compatibility",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/pac.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/pac",
+    "uniqueID": "pac",
+    "workshop": []
+  },
+  {
     "name": "Perma Remove",
     "author": "bozdev",
     "description": "Allows staff to permanently remove map entities",
@@ -287,6 +297,16 @@
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/permaremove.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/permaremove",
     "uniqueID": "permaremove",
+    "workshop": []
+  },
+  {
+    "name": "Prone Mod",
+    "author": "@liliaplayer",
+    "description": "Adds Compatibility to Prone Mod",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/prone.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/prone",
+    "uniqueID": "prone",
     "workshop": []
   },
   {
@@ -362,6 +382,26 @@
     "workshop": []
   },
   {
+    "name": "Simfphys",
+    "author": "@liliaplayer",
+    "description": "Adds Simfphys Compatibility",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/simfphys.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/simfphys",
+    "uniqueID": "simfphys",
+    "workshop": []
+  },
+  {
+    "name": "Sitting Anywhere",
+    "author": "@liliaplayer",
+    "description": "Adds Sitting Anywhere Compatibility to Lilia.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/sitanywhere.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/sitanywhere",
+    "uniqueID": "sitanywhere",
+    "workshop": []
+  },
+  {
     "name": "Stun Gun",
     "author": "@liliaplayer",
     "description": "An Stun Gun Reworked from CustomHQ",
@@ -394,6 +434,16 @@
     "workshop": []
   },
   {
+    "name": "VCMod",
+    "author": "@liliaplayer",
+    "description": "Adds VCMod Compatibility to Lilia.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/vcmod.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/vcmod",
+    "uniqueID": "vcmod",
+    "workshop": []
+  },
+  {
     "name": "View Bob",
     "author": "@liliaplayer",
     "description": "Adds an custom View Bob.",
@@ -401,6 +451,26 @@
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/viewbob.zip",
     "source": "https://github.com/LiliaFramework/Modules/tree/main/viewbob",
     "uniqueID": "viewbob",
+    "workshop": []
+  },
+  {
+    "name": "VJBase",
+    "author": "@liliaplayer",
+    "description": "Adds VJBase Compatibility",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/vjbase.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/vjbase",
+    "uniqueID": "vjbase",
+    "workshop": []
+  },
+  {
+    "name": "VManip",
+    "author": "@liliaplayer",
+    "description": "Adds VManip Compatibility to Lilia.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/vmanip.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/vmanip",
+    "uniqueID": "vmanip",
     "workshop": []
   },
   {
@@ -424,6 +494,16 @@
     "workshop": [
       "3431351432"
     ]
+  },
+  {
+    "name": "Easy Weapons",
+    "author": "@liliaplayer",
+    "description": "Adds an Easy Way of Making Weapons.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/wepgenerator.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/wepgenerator",
+    "uniqueID": "wepgenerator",
+    "workshop": []
   },
   {
     "name": "Whitelist",
