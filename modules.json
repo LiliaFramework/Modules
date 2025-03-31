@@ -496,16 +496,6 @@
     ]
   },
   {
-    "name": "Easy Weapons",
-    "author": "@liliaplayer",
-    "description": "Adds an Easy Way of Making Weapons.",
-    "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/wepgenerator.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/wepgenerator",
-    "uniqueID": "wepgenerator",
-    "workshop": []
-  },
-  {
     "name": "Whitelist",
     "author": "@liliaplayer",
     "description": "Adds a Server Whitelist",
