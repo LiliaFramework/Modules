@@ -232,28 +232,24 @@ function PANEL:Init()
 end
 
 vgui.Register("CinematicSplashTextMenu", PANEL, "DFrame")
-function MODULE:LoadFonts()
-    local font = lia.config.get("CinematicTextFont", "Arial")
-    local fontSizeBig = lia.config.get("CinematicTextSizeBig", 30)
-    local fontSizeNormal = lia.config.get("CinematicTextSize", 18)
-    surface.CreateFont("CinematicSplashFontBig", {
-        font = font,
-        size = ScreenScale(fontSizeBig),
-        extended = true,
-        weight = 1000
-    })
 
-    surface.CreateFont("CinematicSplashFont", {
-        font = font,
-        size = ScreenScale(fontSizeNormal),
-        extended = true,
-        weight = 800
-    })
+lia.font.register("CinematicSplashFontBig", {
+    font = lia.config.get("CinematicTextFont", "Arial"),
+    size = ScreenScale(lia.config.get("CinematicTextSizeBig", 30)),
+    extended = true,
+    weight = 1000
+})
 
-    surface.CreateFont("CinematicSplashFontSmall", {
-        font = font,
-        size = ScreenScale(10),
-        extended = true,
-        weight = 800
-    })
-end
+lia.font.register("CinematicSplashFont", {
+    font = lia.config.get("CinematicTextFont", "Arial"),
+    size = ScreenScale(lia.config.get("CinematicTextSize", 18)),
+    extended = true,
+    weight = 800
+})
+
+lia.font.register("CinematicSplashFontSmall", {
+    font = lia.config.get("CinematicTextFont", "Arial"),
+    size = ScreenScale(10),
+    extended = true,
+    weight = 800
+})

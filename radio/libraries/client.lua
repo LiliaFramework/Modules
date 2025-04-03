@@ -1,20 +1,4 @@
-﻿function MODULE:LoadFonts()
-    surface.CreateFont("liaDialFont", {
-        font = "Arial",
-        size = 20,
-        weight = 500,
-        antialias = true,
-        shadow = false
-    })
-
-    surface.CreateFont("liaRadioFont", {
-        font = "Lucida Sans Typewriter",
-        size = math.max(ScreenScale(7), 17),
-        weight = 100
-    })
-end
-
-function MODULE:LoadCharInformation()
+﻿function MODULE:LoadCharInformation()
     local client = LocalPlayer()
     hook.Run("AddSection", "Radio", Color(0, 0, 0), 8)
     local status, frequency = self:GetPlayerRadioFrequency(client)
@@ -31,3 +15,17 @@ function MODULE:GetPlayerRadioFrequency(player)
     local frequency = radio:getData("freq", "000.0")
     return status, frequency
 end
+
+lia.font.register("liaDialFont", {
+    font = "Arial",
+    size = 20,
+    weight = 500,
+    antialias = true,
+    shadow = false
+})
+
+lia.font.register("liaRadioFont", {
+    font = "Lucida Sans Typewriter",
+    size = math.max(ScreenScale(7), 17),
+    weight = 100
+})

@@ -16,11 +16,9 @@
     end
 end
 
-function MODULE:LoadFonts(font)
-    surface.CreateFont("OrbitronFont", {
-        font = font,
-        size = 18,
-        weight = 500,
-        antialias = true
-    })
-end
+lia.font.register("OrbitronFont", {
+    font = lia.config.get("Font"),
+    size = 18,
+    weight = 500,
+    antialias = true
+})
