@@ -2,7 +2,7 @@
 - Modules</h1>
 
 <p align="center">
-  <img src="https://i.imgur.com/xddGdsS.png" alt="Lilia Icon">
+  <img src="https://i.imgur.com/xddGdsS.png" alt="Lilia Icon" width="512" height="512">
 </p>
 
 # Support
