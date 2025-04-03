@@ -6,3 +6,8 @@ function MODULE:LoadCharInformation()
     local client = LocalPlayer()
     hook.Run("AddTextField", "General Info", "wanted", "Wanted", function() return client:IsWanted() and "Wanted" or "Upstanding" end)
 end
+
+function MODULE:LoadMainMenuInformation(info)
+    local client = LocalPlayer()
+    if client:IsWanted() then table.insert(info, "Reputation: " .. (client:IsWanted() and "Wanted" or "Outstanding")) end
+end
