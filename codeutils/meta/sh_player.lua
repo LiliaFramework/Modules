@@ -21,3 +21,15 @@ function playerMeta:isOutside()
     })
     return trace.HitSky
 end
+
+function playerMeta:openPage(url)
+    net.Start("OpenPage")
+    net.WriteString(url)
+    net.Send(self)
+end
+
+function playerMeta:openUI(panel)
+    net.Start("OpenVGUI")
+    net.WriteString(panel)
+    net.Send(self)
+end
