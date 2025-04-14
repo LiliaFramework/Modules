@@ -11,9 +11,7 @@ function MODULE:LoadCharInformation()
     hook.Run("AddTextField", "General Info", "partytier", "Party Tier", function() return self.Tiers[tier] end)
 end
 
-function MODULE:LoadMainMenuInformation(info)
-    local client = LocalPlayer()
-    local character = client:getChar()
+function MODULE:LoadMainMenuInformation(info, character)
     local tier = tonumber(character:getData("party_tier", 0))
     table.insert(info, "Party Tier: " .. self.Tiers[tier])
 end

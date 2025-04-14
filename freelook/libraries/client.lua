@@ -38,7 +38,7 @@ end
 function MODULE:InputMouseApply(cmd, x, y)
     local lp = LocalPlayer()
     if not lp:getChar() or not lia.option.get("freelookEnabled") then return end
-    if not HoldingBind(lp) or self:IsInSights(lp) or lp:ShouldDrawLocalPlayer() then
+    if not HoldingBind(lp) or IsInSights(lp) or lp:ShouldDrawLocalPlayer() then
         LookX, LookY = 0, 0
         return
     end
@@ -54,7 +54,7 @@ function MODULE:StartCommand(client, cmd)
     if not client:IsPlayer() or not client:Alive() then return end
     if not client:getChar() then return end
     if not lia.option.get("freelookBlockADS") then return end
-    if not HoldingBind(client) or self:IsInSights(client) or client:ShouldDrawLocalPlayer() then return end
+    if not HoldingBind(client) or IsInSights(client) or client:ShouldDrawLocalPlayer() then return end
     cmd:RemoveKey(IN_ATTACK)
 end
 

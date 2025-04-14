@@ -1,6 +1,7 @@
 local blurGoal, blurValue = 0, 0
 local vignetteAlphaGoal, vignetteAlphaDelta = 0, 0
 local hasVignetteMaterial = lia.util.getMaterial("lilia/gui/vignette.png") ~= "___error"
+local mathApproach = math.Approach
 local function DrawFPS()
     local f = math.Round(1 / FrameTime())
     local minF = MODULE.minFPS or 60
@@ -68,7 +69,7 @@ end
 function MODULE:HUDPaint()
     local client = LocalPlayer()
     if client:Alive() and client:getChar() then
-        if lia.option.getF("FPSDraw", false) then DrawFPS() end
+        if lia.option.get("FPSDraw", false) then DrawFPS() end
         if lia.config.get("Vignette", true) then DrawVignette() end
         if canDrawWatermark() then drawWatermark() end
     end
@@ -77,3 +78,19 @@ end
 function MODULE:HUDPaintBackground()
     if ShouldDrawBlur() then DrawBlur() end
 end
+
+timer.Create("liaVignetteChecker", 1, 0, function()
+    local client = LocalPlayer()
+    if IsValid(client) then
+        local d = {}
+        d.start = client:GetPos()
+        d.endpos = d.start + Vector(0, 0, 768)
+        d.filter = client
+        local tr = util.TraceLine(d)
+        if tr and tr.Hit then
+            vignetteAlphaGoal = 80
+        else
+            vignetteAlphaGoal = 0
+        end
+    end
+end)

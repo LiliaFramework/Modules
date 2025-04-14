@@ -1,13 +1,19 @@
-﻿function MODULE:getOverrideChars(client)
-    return client:getLiliaData("overrideSlots", lia.config.get("MaxCharacters"))
+﻿local MODULE = MODULE
+local function getOverrideChars(client)
+    client = CLIENT and LocalPlayer() or client
+    if client and client.getLiliaData then
+        local override = client:getLiliaData("overrideSlots", 0)
+        return override or 0
+    end
+    return 0
 end
 
-function MODULE:getRankChars(client)
+local function getRankChars(client)
     local rank = client:GetUserGroup()
-    if self.OverrideCharLimit[rank] then return self.OverrideCharLimit[rank] end
+    if MODULE.OverrideCharLimit and MODULE.OverrideCharLimit[rank] then return MODULE.OverrideCharLimit[rank] end
     return lia.config.get("MaxCharacters")
 end
 
 function MODULE:GetMaxPlayerChar(client)
-    return math.max(lia.config.get("MaxCharacters"), self:getOverrideChars(client), self:getRankChars(client)) + client:GetAdditionalCharSlots()
+    return math.max(lia.config.get("MaxCharacters"), getOverrideChars(client), getRankChars(client)) + client:GetAdditionalCharSlots()
 end

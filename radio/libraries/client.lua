@@ -6,10 +6,12 @@
     hook.Run("AddTextField", "Radio", "radiofrequency", "Frequency", function() return frequency end)
 end
 
-function MODULE:GetPlayerRadioFrequency(player)
-    local char = player:getChar()
-    if not char then return end
-    local radio = char:getInv():getFirstItemOfType("radio")
+function MODULE:GetPlayerRadioFrequency(client)
+    local char = client:getChar()
+    if not char then return "You don't own a radio", "000.0" end
+    local inv = char:getInv()
+    if not inv then return "You don't own a radio", "000.0" end
+    local radio = inv:getFirstItemOfType("radio")
     if not radio then return "You don't own a radio!", "000.0" end
     local status = radio:getData("enabled") and "On" or "Off"
     local frequency = radio:getData("freq", "000.0")
