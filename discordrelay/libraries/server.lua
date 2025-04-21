@@ -16,6 +16,6 @@ if util.IsBinaryModuleInstalled("chttp") then
         })
     end
 else
-    print("Discord Relay won't work until it is installed.")
+    print("Discord Relay won't work until CHTTP it is installed.")
     print("Install it at https://github.com/timschumi/gmod-chttp")
 end
