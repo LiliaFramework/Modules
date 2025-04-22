@@ -135,30 +135,33 @@ jobs:
         name: Checkout Modules Repository
         with:
           path: modules
-      - name: Remove existing release & tag
+      - name: Remove existing release & tag (if any)
         uses: actions/github-script@v6
         with:
           script: |
-            const tag = 'release'
+            const tag = 'release';
             try {
               const release = await github.rest.repos.getReleaseByTag({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 tag
-              })
+              });
               await github.rest.repos.deleteRelease({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 release_id: release.data.id
-              })
+              });
               await github.rest.git.deleteRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 ref: `tags/${tag}`
-              })
+              });
+              core.info(`Deleted existing release & tag "${tag}"`);
             } catch (error) {
-              if (error.status !== 404) {
-                throw error
+              if (error.status === 404) {
+                core.info('No existing release/tag to delete');
+              } else {
+                throw error;
               }
             }
       - name: Prepare and Zip
@@ -186,26 +189,3 @@ jobs:
           asset_content_type: application/zip
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
-
-  publish-json:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: bleonheart/bleonheart.github.io
-          token: ${{ secrets.BLEONHEART_TOKEN }}
-          path: site
-      - uses: actions/checkout@v3
-        with:
-          path: source
-      - run: cp source/modules.json site/modules.json
-      - run: |
-          cd site
-          git config user.email "githubactions@github.com"
-          git config user.name "GitHub Actions"
-          git add modules.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Update modules.json"
-            git push
-          fi
