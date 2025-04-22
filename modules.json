@@ -230,6 +230,16 @@
     "workshop": []
   },
   {
+    "name": "Load Messages",
+    "author": "@liliaplayer",
+    "description": "Sends faction-based messages to players when they first load their character.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/loadmessages.zip",
+    "source": "https://github.com/LiliaFramework/Modules/tree/main/loadmessages",
+    "uniqueID": "loadmessages",
+    "workshop": []
+  },
+  {
     "name": "Loyalism",
     "author": "@liliaplayer",
     "description": "System for loyalist points.",
@@ -412,16 +422,6 @@
     "workshop": [
       "3432649835"
     ]
-  },
-  {
-    "name": "Turning",
-    "author": "bloodycop",
-    "description": "Adds support for playermodels playing turning animations.",
-    "version": "1.0",
-    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/turning.zip",
-    "source": "https://github.com/LiliaFramework/Modules/tree/main/turning",
-    "uniqueID": "turning",
-    "workshop": []
   },
   {
     "name": "Tying",
