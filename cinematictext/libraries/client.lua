@@ -9,6 +9,25 @@ local contents = {
     music = true
 }
 
+net.Receive("TriggerCinematic", function()
+    contents.text = net.ReadString()
+    contents.bigText = net.ReadString()
+    contents.duration = net.ReadUInt(6)
+    local blackbars = net.ReadBool()
+    contents.music = net.ReadBool()
+    contents.color = net.ReadColor()
+    if contents.text == "" then contents.text = nil end
+    if contents.bigText == "" then contents.bigText = nil end
+    local splashText = vgui.Create("CinematicSplashText")
+    if blackbars then
+        splashText:DrawBlackBars()
+        splashText:TriggerBlackBars()
+    else
+        splashText:TriggerText()
+    end
+end)
+
+net.Receive("OpenCinematicMenu", function() vgui.Create("CinematicTextMenu") end)
 function PANEL:Init()
     if lia.gui.cinematicSplashText then lia.gui.cinematicSplashText:Remove() end
     lia.gui.cinematicSplashText = self
@@ -231,8 +250,7 @@ function PANEL:Init()
     end
 end
 
-vgui.Register("CinematicSplashTextMenu", PANEL, "DFrame")
-
+vgui.Register("CinematicTextMenu", PANEL, "DFrame")
 lia.font.register("CinematicSplashFontBig", {
     font = lia.config.get("CinematicTextFont", "Arial"),
     size = ScreenScale(lia.config.get("CinematicTextSizeBig", 30)),

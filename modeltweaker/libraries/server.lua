@@ -21,6 +21,3 @@ net.Receive("WardrobeChangeModel", function(_, client)
         client:notify("Invalid model selected.")
     end
 end)
-
-util.AddNetworkString("SeeModelTable")
-util.AddNetworkString("WardrobeChangeModel")

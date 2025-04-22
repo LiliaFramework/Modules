@@ -29,7 +29,7 @@ function MODULE:PlayerUse(client, entity)
 end
 
 function MODULE:DoPlayerDeath(client)
-    local corpse = client:CreateRagdoll()
+    local corpse = client:createRagdoll()
     if IsValid(corpse) then
         corpse:setNetVar("ShowCorpseMessage", true)
         corpse:setNetVar("player", client)

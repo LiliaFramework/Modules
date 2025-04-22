@@ -1,7 +1,4 @@
-﻿util.AddNetworkString("OpenDetailedDescriptions")
-util.AddNetworkString("SetDetailedDescriptions")
-util.AddNetworkString("EditDetailedDescriptions")
-net.Receive("EditDetailedDescriptions", function()
+﻿net.Receive("EditDetailedDescriptions", function()
     local textEntryURL = net.ReadString()
     local text = net.ReadString()
     local callingClientSteamName = net.ReadString()
