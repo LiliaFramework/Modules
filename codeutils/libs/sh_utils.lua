@@ -593,7 +593,7 @@ if SERVER then
                     newEnt:Spawn()
                 end
             else
-                LiliaInformation("Invalid position for entity", entity)
+                lia.information("Invalid position for entity", entity)
             end
         end
     end

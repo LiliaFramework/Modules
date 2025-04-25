@@ -3,5 +3,5 @@
 end
 
 function MODULE:InitializedModules()
-    if lia.config.get("DevServer", false) then LiliaInformation(L("devServerActive")) end
+    if lia.config.get("DevServer", false) then lia.information(L("devServerActive")) end
 end
