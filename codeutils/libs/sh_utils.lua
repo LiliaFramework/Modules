@@ -222,88 +222,7 @@ function math.ClampedRemap(val, frommin, frommax, tomin, tomax)
 end
 
 --[[
-   Function: lia.time.toNumber
-
-   Description:
-      Converts a string timestamp (YYYY-MM-DD HH:MM:SS) to a table with numeric fields:
-      year, month, day, hour, min, sec. Defaults to current time if not provided.
-
-   Parameters:
-      str (string) — The time string to convert (optional).
-
-   Returns:
-      (table) A table with numeric year, month, day, hour, min, sec.
-
-   Realm:
-      Shared
-
-   Example Usage:
-      local t = lia.time.toNumber("2025-03-27 14:30:00")
-      print(t.year, t.month, t.day, t.hour, t.min, t.sec)
-]]
-function lia.time.toNumber(str)
-    str = str or os.date("%Y-%m-%d %H:%M:%S", os.time())
-    return {
-        year = tonumber(str:sub(1, 4)),
-        month = tonumber(str:sub(6, 7)),
-        day = tonumber(str:sub(9, 10)),
-        hour = tonumber(str:sub(12, 13)),
-        min = tonumber(str:sub(15, 16)),
-        sec = tonumber(str:sub(18, 19)),
-    }
-end
-
---[[
-    Function: lia.time.TimeSince
- 
-    Description:
-       Returns a human-readable string indicating how long ago a given time occurred (e.g., "5 minutes ago").
- 
-    Parameters:
-       strTime (string or number) — The time in string or timestamp form.
- 
-    Returns:
-       (string) The time since the given date/time in a readable format.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       print(lia.time.TimeSince("2025-03-27"))
- ]]
-function lia.time.TimeSince(strTime)
-    local timestamp
-    if isnumber(strTime) then
-        timestamp = strTime
-    elseif isstring(strTime) then
-        local year, month, day = lia.time.ParseTime(strTime)
-        if not (year and month and day) then return "Invalid date" end
-        timestamp = os.time({
-            year = year,
-            month = month,
-            day = day,
-            hour = 0,
-            min = 0,
-            sec = 0
-        })
-    else
-        return "Invalid input"
-    end
-
-    local diff = os.time() - timestamp
-    if diff < 60 then
-        return diff .. " seconds ago"
-    elseif diff < 3600 then
-        return math.floor(diff / 60) .. " minutes ago"
-    elseif diff < 86400 then
-        return math.floor(diff / 3600) .. " hours ago"
-    else
-        return math.floor(diff / 86400) .. " days ago"
-    end
-end
-
---[[
-    Function: lia.time.TimeUntil
+    Function: lia.utilities.TimeUntil
  
     Description:
        Returns the time remaining until a specified future date/time, in a readable format.
@@ -318,9 +237,9 @@ end
        Shared
  
     Example Usage:
-       print(lia.time.TimeUntil("14:30:00 - 28/03/2025"))
+       print(lia.utilities.TimeUntil("14:30:00 - 28/03/2025"))
  ]]
-function lia.time.TimeUntil(strTime)
+function lia.utilities.TimeUntil(strTime)
     local pattern = "(%d+):(%d+):(%d+)%s*%-%s*(%d+)/(%d+)/(%d+)"
     local hour, minute, second, day, month, year = strTime:match(pattern)
     if not (hour and minute and second and day and month and year) then return "Invalid time format. Expected 'HH:MM:SS - DD/MM/YYYY'." end
@@ -352,7 +271,7 @@ function lia.time.TimeUntil(strTime)
 end
 
 --[[
-    Function: lia.time.CurrentLocalTime
+    Function: lia.utilities.CurrentLocalTime
  
     Description:
        Returns the current local system time as a formatted string "HH:MM:SS - DD/MM/YYYY".
@@ -367,16 +286,16 @@ end
        Shared
  
     Example Usage:
-       print(lia.time.CurrentLocalTime())
+       print(lia.utilities.CurrentLocalTime())
  ]]
-function lia.time.CurrentLocalTime()
+function lia.utilities.CurrentLocalTime()
     local now = os.time()
     local t = os.date("*t", now)
     return string.format("%02d:%02d:%02d - %02d/%02d/%04d", t.hour, t.min, t.sec, t.day, t.month, t.year)
 end
 
 --[[
-    Function: lia.time.SecondsToDHMS
+    Function: lia.utilities.SecondsToDHMS
  
     Description:
        Converts a total number of seconds into days, hours, minutes, and seconds.
@@ -391,10 +310,10 @@ end
        Shared
  
     Example Usage:
-       local d, h, m, s = lia.time.SecondsToDHMS(98765)
+       local d, h, m, s = lia.utilities.SecondsToDHMS(98765)
        print(d, "days,", h, "hours,", m, "minutes,", s, "seconds")
  ]]
-function lia.time.SecondsToDHMS(seconds)
+function lia.utilities.SecondsToDHMS(seconds)
     local days = math.floor(seconds / 86400)
     seconds = seconds % 86400
     local hours = math.floor(seconds / 3600)
@@ -405,7 +324,7 @@ function lia.time.SecondsToDHMS(seconds)
 end
 
 --[[
-    Function: lia.time.HMSToSeconds
+    Function: lia.utilities.HMSToSeconds
  
     Description:
        Converts hours, minutes, and seconds to total seconds.
@@ -422,15 +341,15 @@ end
        Shared
  
     Example Usage:
-       local totalSeconds = lia.time.HMSToSeconds(2, 30, 15)
+       local totalSeconds = lia.utilities.HMSToSeconds(2, 30, 15)
        print(totalSeconds) -- 9015
  ]]
-function lia.time.HMSToSeconds(hour, minute, second)
+function lia.utilities.HMSToSeconds(hour, minute, second)
     return hour * 3600 + minute * 60 + second
 end
 
 --[[
-    Function: lia.time.FormatTimestamp
+    Function: lia.utilities.FormatTimestamp
  
     Description:
        Formats an epoch timestamp into "HH:MM:SS - DD/MM/YYYY".
@@ -445,60 +364,15 @@ end
        Shared
  
     Example Usage:
-       print(lia.time.FormatTimestamp(os.time()))
+       print(lia.utilities.FormatTimestamp(os.time()))
  ]]
-function lia.time.FormatTimestamp(timestamp)
+function lia.utilities.FormatTimestamp(timestamp)
     local t = os.date("*t", timestamp)
     return string.format("%02d:%02d:%02d - %02d/%02d/%04d", t.hour, t.min, t.sec, t.day, t.month, t.year)
 end
 
 --[[
-    Function: lia.time.DaysBetween
- 
-    Description:
-       Calculates the number of days between two date/time strings, each in "HH:MM:SS - DD/MM/YYYY" format.
- 
-    Parameters:
-       strTime1 (string) — The first date/time string.
-       strTime2 (string) — The second date/time string.
- 
-    Returns:
-       (number or string) The number of days between the two dates, or "Invalid dates" on error.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       print(lia.time.DaysBetween("00:00:00 - 01/01/2025", "00:00:00 - 10/01/2025"))
- ]]
-function lia.time.DaysBetween(strTime1, strTime2)
-    local y1, mo1, d1 = lia.time.ParseTime(strTime1)
-    local y2, mo2, d2 = lia.time.ParseTime(strTime2)
-    if not (y1 and y2) then return "Invalid dates" end
-    local t1 = os.time({
-        year = y1,
-        month = mo1,
-        day = d1,
-        hour = 0,
-        min = 0,
-        sec = 0
-    })
-
-    local t2 = os.time({
-        year = y2,
-        month = mo2,
-        day = d2,
-        hour = 0,
-        min = 0,
-        sec = 0
-    })
-
-    local diff = os.difftime(t2, t1)
-    return math.floor(diff / 86400)
-end
-
---[[
-    Function: lia.time.WeekdayName
+    Function: lia.utilities.WeekdayName
  
     Description:
        Returns the weekday name for a given date/time string in "HH:MM:SS - DD/MM/YYYY" format.
@@ -513,10 +387,10 @@ end
        Shared
  
     Example Usage:
-       print(lia.time.WeekdayName("14:30:00 - 27/03/2025"))
+       print(lia.utilities.WeekdayName("14:30:00 - 27/03/2025"))
  ]]
-function lia.time.WeekdayName(strTime)
-    local y, mo, d, h, mi, s = lia.time.ParseTime(strTime)
+function lia.utilities.WeekdayName(strTime)
+    local y, mo, d, h, mi, s = lia.utilities.ParseTime(strTime)
     if not y then return "Invalid date" end
     local t = os.time({
         year = y,
@@ -530,7 +404,7 @@ function lia.time.WeekdayName(strTime)
 end
 
 --[[
-    Function: lia.time.TimeDifference
+    Function: lia.utilities.TimeDifference
  
     Description:
        Calculates the difference in days between a specified target date/time (in "HH:MM:SS - DD/MM/YYYY" format) and the current date/time.
@@ -545,9 +419,9 @@ end
        Shared
  
     Example Usage:
-       print(lia.time.TimeDifference("14:30:00 - 30/03/2025"))
+       print(lia.utilities.TimeDifference("14:30:00 - 30/03/2025"))
  ]]
-function lia.time.TimeDifference(strTime)
+function lia.utilities.TimeDifference(strTime)
     local pattern = "(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)"
     local hour, minute, second, day, month, year = strTime:match(pattern)
     if not (hour and minute and second and day and month and year) then return nil end
