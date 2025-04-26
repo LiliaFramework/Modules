@@ -69,7 +69,7 @@ jobs:
             folder=$(basename "$(dirname "$module")")
             uniqueID=$folder
             download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/${folder}.zip"
-            source="https://github.com/LiliaFramework/Modules/tree/main/${folder}"
+            source="https://liliaframework.github.io/Modules/${folder}.html"
             jq --arg name "$name" \
                --arg author "$author" \
                --arg desc "$desc" \
