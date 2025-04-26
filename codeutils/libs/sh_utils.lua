@@ -7,6 +7,332 @@ function lia.utilities.SpeedTest(func, n)
     return (SysTime() - start) / n
 end
 
+local function normalize(min, max, val)
+    local delta = max - min
+    return (val - min) / delta
+end
+
+--[[
+     Function: lia.time.DaysBetween
+  
+     Description:
+        Calculates the number of days between two date/time strings, each in "HH:MM:SS - DD/MM/YYYY" format.
+  
+     Parameters:
+        strTime1 (string) — The first date/time string.
+        strTime2 (string) — The second date/time string.
+  
+     Returns:
+        (number or string) The number of days between the two dates, or "Invalid dates" on error.
+  
+     Realm:
+        Shared
+  
+     Example Usage:
+        print(lia.time.DaysBetween("00:00:00 - 01/01/2025", "00:00:00 - 10/01/2025"))
+  ]]
+function lia.time.DaysBetween(strTime1, strTime2)
+    local y1, mo1, d1 = lia.time.ParseTime(strTime1)
+    local y2, mo2, d2 = lia.time.ParseTime(strTime2)
+    if not (y1 and y2) then return "Invalid dates" end
+    local t1 = os.time({
+        year = y1,
+        month = mo1,
+        day = d1,
+        hour = 0,
+        min = 0,
+        sec = 0
+    })
+
+    local t2 = os.time({
+        year = y2,
+        month = mo2,
+        day = d2,
+        hour = 0,
+        min = 0,
+        sec = 0
+    })
+
+    local diff = os.difftime(t2, t1)
+    return math.floor(diff / 86400)
+end
+
+--[[
+        Function: lia.utilities.LerpHSV
+ 
+        Description:
+           Interpolates between two colors in the HSV color space based on the current value within a specified range.
+           The function linearly interpolates between the HSV values of the start and end colors.
+ 
+        Parameters:
+           start_color  (Color)  - The starting color (defaults to green if nil).
+           end_color    (Color)  - The ending color (defaults to red if nil).
+           maxValue     (number) - The maximum value of the range.
+           currentValue (number) - The current value within the range.
+           minValue     (number, optional) - The minimum value of the range (defaults to 0 if not provided).
+ 
+        Returns:
+           Color - The interpolated color converted back from HSV to a Color.
+ 
+        Realm:
+           Shared
+ 
+        Example Usage:
+           local interpColor = lia.utilities.LerpHSV(Color("green"), Color("red"), 100, 50)
+     ]]
+function lia.utilities.LerpHSV(start_color, end_color, maxValue, currentValue, minValue)
+    start_color = start_color or Color("green")
+    end_color = end_color or Color("red")
+    minValue = minValue or 0
+    local hsv_start = ColorToHSV(end_color)
+    local hsv_end = ColorToHSV(start_color)
+    local linear = Lerp(normalize(minValue, maxValue, currentValue), hsv_start, hsv_end)
+    return HSVToColor(linear, 1, 1)
+end
+
+--[[
+    Function: lia.utilities.Darken
+ 
+    Description:
+       Darkens the given color by decreasing its lightness component in the HSL color space.
+       The function converts the color to HSL, decreases the lightness, and then converts it back to a Color.
+ 
+    Parameters:
+       color  (Color)  - The original color.
+       amount (number) - The amount to darken the color (subtracted from the normalized lightness).
+ 
+    Returns:
+       Color - A new, darkened color.
+ 
+    Realm:
+       Shared
+ 
+    Example Usage:
+       local darkerColor = lia.utilities.Darken(Color(200, 200, 200, 255), 0.1)
+ ]]
+function lia.utilities.Darken(color, amount)
+    local hue, saturation, lightness = ColorToHSL(color)
+    lightness = math.Clamp(lightness / 255 - amount, 0, 1)
+    return HSLToColor(hue, saturation, lightness)
+end
+
+--[[
+    Function: lia.utilities.LerpColor
+ 
+    Description:
+       Linearly interpolates between two colors based on the provided fraction.
+       The interpolation is applied to each RGBA component separately.
+ 
+    Parameters:
+       frac (number)  - The interpolation factor (0 to 1).
+       from (Color)   - The starting color.
+       to (Color)     - The target color.
+ 
+    Returns:
+       Color - The interpolated color.
+ 
+    Realm:
+       Shared
+ 
+    Example Usage:
+       local resultColor = lia.utilities.LerpColor(0.5, Color(255, 0, 0, 255), Color(0, 0, 255, 255))
+ ]]
+function lia.utilities.LerpColor(frac, from, to)
+    local col = Color(Lerp(frac, from.r, to.r), Lerp(frac, from.g, to.g), Lerp(frac, from.b, to.b), Lerp(frac, from.a, to.a))
+    return col
+end
+
+--[[
+    Function: lia.utilities.Blend
+ 
+    Description:
+       Blends two colors together based on the provided ratio.
+       A ratio of 0 returns color1, while a ratio of 1 returns color2.
+ 
+    Parameters:
+       color1 (Color) - The first color.
+       color2 (Color) - The second color.
+       ratio  (number) - The blend ratio (between 0 and 1).
+ 
+    Returns:
+       Color - The blended color.
+ 
+    Realm:
+       Shared
+ 
+    Example Usage:
+       local blendedColor = lia.utilities.Blend(Color(255, 0, 0), Color(0, 0, 255), 0.5)
+ ]]
+function lia.utilities.Blend(color1, color2, ratio)
+    ratio = math.Clamp(ratio, 0, 1)
+    local r = Lerp(ratio, color1.r, color2.r)
+    local g = Lerp(ratio, color1.g, color2.g)
+    local b = Lerp(ratio, color1.b, color2.b)
+    return Color(r, g, b)
+end
+
+--[[
+    Function: lia.utilities.rgb
+ 
+    Description:
+       Creates a Color from given red, green, and blue values.
+       The input values (0-255) are normalized to create a Color.
+ 
+    Parameters:
+       r (number) - The red component (0-255).
+       g (number) - The green component (0-255).
+       b (number) - The blue component (0-255).
+ 
+    Returns:
+       Color - A new Color with normalized RGB values.
+ 
+    Realm:
+       Shared
+ 
+    Example Usage:
+       local col = lia.utilities.rgb(255, 128, 64)
+ ]]
+function lia.utilities.rgb(r, g, b)
+    return Color(r / 255, g / 255, b / 255)
+end
+
+--[[
+    Function: lia.utilities.Rainbow
+ 
+    Description:
+       Generates a rainbow color based on the current time and a frequency parameter.
+       It uses the HSV color model to create a smoothly cycling color effect.
+ 
+    Parameters:
+       frequency (number) - The frequency at which the color cycles.
+ 
+    Returns:
+       Color - A color from the rainbow spectrum.
+ 
+    Realm:
+       Shared
+ 
+    Example Usage:
+       local rainbowColor = lia.utilities.Rainbow(1)
+ ]]
+function lia.utilities.Rainbow(frequency)
+    return HSVToColor(CurTime() * frequency % 360, 1, 1)
+end
+
+--[[
+    Function: lia.utilities.ColorCycle
+ 
+    Description:
+       Creates a cyclic blend between two colors over time using a sine-based interpolation.
+       The function gradually shifts between col1 and col2 based on the sine of the current time.
+ 
+    Parameters:
+       col1 (Color) - The first color.
+       col2 (Color) - The second color.
+       freq (number) - The frequency of the color cycle (default is 1).
+ 
+    Returns:
+       Color - A new color that cycles between col1 and col2.
+ 
+    Realm:
+       Shared
+ 
+    Example Usage:
+       local cyclingColor = lia.utilities.ColorCycle(Color(255, 0, 0), Color(0, 0, 255), 1)
+ ]]
+function lia.utilities.ColorCycle(col1, col2, freq)
+    freq = freq or 1
+    local difference = Color(col1.r - col2.r, col1.g - col2.g, col1.b - col2.b)
+    local time = CurTime()
+    local rgb = {
+        r = 0,
+        g = 0,
+        b = 0
+    }
+
+    for k, _ in pairs(rgb) do
+        if col1[k] > col2[k] then
+            rgb[k] = col2[k]
+        else
+            rgb[k] = col1[k]
+        end
+    end
+    return Color(rgb.r + math.abs(math.sin(time * freq) * difference.r), rgb.g + math.abs(math.sin(time * freq + 2) * difference.g), rgb.b + math.abs(math.sin(time * freq + 4) * difference.b))
+end
+
+--[[
+    Function: lia.utilities.ColorToHex
+ 
+    Description:
+       Converts a Color value to its hexadecimal string representation.
+       The output format is "0xRRGGBB", where RR, GG, and BB represent the red, green, and blue channels.
+ 
+    Parameters:
+       color (Color) - The color to convert.
+ 
+    Returns:
+       string - The hexadecimal string representation of the color.
+ 
+    Realm:
+       Shared
+ 
+    Example Usage:
+       local hex = lia.utilities.ColorToHex(Color(255, 0, 0))
+ ]]
+function lia.utilities.ColorToHex(color)
+    return "0x" .. bit.tohex(color.r, 2) .. bit.tohex(color.g, 2) .. bit.tohex(color.b, 2)
+end
+
+--[[
+    Function: lia.utilities.Lighten
+ 
+    Description:
+       Lightens the given color by increasing its lightness component in the HSL color space.
+       The function converts the color to HSL, increases the lightness, and then converts it back to a Color.
+ 
+    Parameters:
+       color  (Color)  - The original color.
+       amount (number) - The amount to lighten the color (added to the normalized lightness).
+ 
+    Returns:
+       Color - A new, lightened color.
+ 
+    Realm:
+       Shared
+ 
+    Example Usage:
+       local lighterColor = lia.utilities.Lighten(Color(100, 100, 100, 255), 0.1)
+ ]]
+function lia.utilities.Lighten(color, amount)
+    local hue, saturation, lightness = ColorToHSL(color)
+    lightness = math.Clamp(lightness / 255 + amount, 0, 1)
+    return HSLToColor(hue, saturation, lightness)
+end
+
+--[[
+    Function: lia.utilities.toText
+ 
+    Description:
+       Converts a Color value into a comma-separated string representing its RGBA components.
+       If the provided value is not a valid Color, the function returns nil.
+ 
+    Parameters:
+       color (Color) - The color to convert.
+ 
+    Returns:
+       string - A string in the format "r,g,b,a".
+ 
+    Realm:
+       Shared
+ 
+    Example Usage:
+       local colorString = lia.utilities.toText(Color(255, 255, 255, 255))
+ ]]
+function lia.utilities.toText(color)
+    if not IsColor(color) then return end
+    return (color.r or 255) .. "," .. (color.g or 255) .. "," .. (color.b or 255) .. "," .. (color.a or 255)
+end
+
 function lia.utilities.SerializeVector(vector)
     return util.TableToJSON({vector.x, vector.y, vector.z})
 end
