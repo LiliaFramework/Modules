@@ -1,4 +1,4 @@
-﻿PIM:AddOption("Open Detailed Description", {
+﻿AddInteraction("Open Detailed Description", {
     runServer = true,
     shouldShow = function(_, target) return IsValid(target) end,
     onRun = function(client, target)

@@ -1,4 +1,4 @@
-﻿PIM:AddOption("Put in vehicle", {
+﻿AddInteraction("Put in vehicle", {
     runServer = true,
     shouldShow = function(client, target)
         local es = ents.FindInSphere(client:GetPos(), 150)
@@ -37,7 +37,7 @@
     end
 })
 
-PIM:AddOption("Remove Cuffed Passengers", {
+AddInteraction("Remove Cuffed Passengers", {
     runServer = true,
     shouldShow = function(client)
         for _, v in pairs(ents.FindInSphere(client:GetPos(), 150)) do
@@ -53,7 +53,7 @@ PIM:AddOption("Remove Cuffed Passengers", {
     end
 })
 
-PIM:AddOption("Tie", {
+AddInteraction("Tie", {
     runServer = true,
     shouldShow = function(client, target) return client:getChar():getInv():hasItem("tie") and IsValid(target) and not IsHandcuffed(target) end,
     onRun = function(client, target)
@@ -77,7 +77,7 @@ PIM:AddOption("Tie", {
     end
 })
 
-PIM:AddOption("UnTie", {
+AddInteraction("UnTie", {
     runServer = true,
     shouldShow = function(_, target) return IsHandcuffed(target) end,
     onRun = function(client, target)

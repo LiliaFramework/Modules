@@ -1,5 +1,5 @@
 ﻿local MODULE = MODULE
-PIM:AddOption("Request Search", {
+AddInteraction("Request Search", {
     runServer = true,
     shouldShow = function(client, target) return not target.SearchRequested and not client.SearchRequested and not IsBeingSearched(target) end,
     onRun = function(client, target)
@@ -20,7 +20,7 @@ PIM:AddOption("Request Search", {
     end
 })
 
-PIM:AddOption("Search", {
+AddInteraction("Search", {
     runServer = true,
     shouldShow = function(_, target) return IsHandcuffed(target) and not IsBeingSearched(target) end,
     onRun = function(client, target)
