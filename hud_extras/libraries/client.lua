@@ -1,4 +1,5 @@
 local blurGoal, blurValue = 0, 0
+
 local vignetteAlphaGoal, vignetteAlphaDelta = 0, 0
 local hasVignetteMaterial = lia.util.getMaterial("lilia/gui/vignette.png") ~= "___error"
 local mathApproach = math.Approach

@@ -1,7 +1,6 @@
 ﻿local PANEL = {}
 function PANEL:Init()
-    local pWidth, pHeight = ScrW() * 0.75, ScrH() * 0.75
-    self:SetSize(pWidth, pHeight)
+    self:SetSize(ScrW() * 0.75, ScrH() * 0.75)
     self:Center()
     self:SetBackgroundBlur(true)
     self:SetDeleteOnClose(true)
@@ -12,7 +11,6 @@ function PANEL:Init()
 end
 
 function PANEL:Display(target, pos)
-    local pWidth, pHeight = ScrW() * 0.75, ScrH() * 0.75
     self.saveButton = self:Add("DButton")
     self.saveButton:Dock(BOTTOM)
     self.saveButton:DockMargin(0, 4, 0, 0)
@@ -28,7 +26,7 @@ function PANEL:Display(target, pos)
     end
 
     self.model = self:Add("DModelPanel")
-    self.model:SetSize(pWidth * 1 / 2, pHeight)
+    self.model:SetSize(ScrW() * 0.75 * 1 / 2, ScrH() * 0.75)
     self.model:Dock(LEFT)
     self.model:SetModel(target:GetModel())
     self.model:SetFOV(5)

@@ -1,4 +1,5 @@
-﻿net.Receive("OpenCommunityURL", function()
+﻿
+net.Receive("OpenCommunityURL", function()
     local commandName = net.ReadString()
     local url = net.ReadString()
     local openIngame = net.ReadBool()

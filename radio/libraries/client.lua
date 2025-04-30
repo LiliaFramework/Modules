@@ -20,10 +20,8 @@ end
 
 lia.font.register("liaDialFont", {
     font = "Arial",
-    size = 20,
-    weight = 500,
-    antialias = true,
-    shadow = false
+    size = math.max(ScreenScale(7), 17),
+    weight = 100
 })
 
 lia.font.register("liaRadioFont", {

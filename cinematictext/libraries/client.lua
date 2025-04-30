@@ -1,5 +1,5 @@
 ﻿local PANEL = {}
-local ScrW, ScrH = ScrW(), ScrH()
+
 local music
 local contents = {
     text = "",
@@ -31,8 +31,8 @@ net.Receive("OpenCinematicMenu", function() vgui.Create("CinematicTextMenu") end
 function PANEL:Init()
     if lia.gui.cinematicSplashText then lia.gui.cinematicSplashText:Remove() end
     lia.gui.cinematicSplashText = self
-    self:SetSize(ScrW, ScrH)
-    self.barSize = ScrH * 0.13
+    self:SetSize(ScrW(), ScrH())
+    self.barSize = ScrH() * 0.13
 end
 
 function PANEL:Paint()
@@ -40,7 +40,7 @@ end
 
 function PANEL:DrawBlackBars()
     self.topBar = self:Add("DPanel")
-    self.topBar:SetSize(ScrW, self.barSize + 10)
+    self.topBar:SetSize(ScrW(), self.barSize + 10)
     self.topBar:SetPos(0, -self.barSize)
     self.topBar.Paint = function(_, w, h)
         surface.SetDrawColor(0, 0, 0, 255)
@@ -48,8 +48,8 @@ function PANEL:DrawBlackBars()
     end
 
     self.bottomBar = self:Add("DPanel")
-    self.bottomBar:SetSize(ScrW, self.barSize + 10)
-    self.bottomBar:SetPos(0, ScrH)
+    self.bottomBar:SetSize(ScrW(), self.barSize + 10)
+    self.bottomBar:SetPos(0, ScrH())
     self.bottomBar.Paint = function(_, w, h)
         surface.SetDrawColor(0, 0, 0, 255)
         surface.DrawRect(0, 0, w, h)
@@ -59,7 +59,7 @@ end
 function PANEL:TriggerBlackBars()
     if not (IsValid(self.topBar) and IsValid(self.bottomBar)) then return end
     self.topBar:MoveTo(0, 0, 2, 0, 0.5)
-    self.bottomBar:MoveTo(0, ScrH - self.barSize, 2, 0, 0.5, function() self:TriggerText() end)
+    self.bottomBar:MoveTo(0, ScrH() - self.barSize, 2, 0, 0.5, function() self:TriggerText() end)
 end
 
 function PANEL:TriggerText()
@@ -102,7 +102,7 @@ function PANEL:TriggerText()
     if textPanel.text then textPanel.text:DockMargin(panelWide / 2 - textPanel.text.textWide / 2, 0, 0, 20) end
     if textPanel.bigText then textPanel.bigText:DockMargin(panelWide / 2 - textPanel.bigText.textWide / 2, 0, 0, 20) end
     textPanel:InvalidateLayout(true)
-    textPanel:SetPos(ScrW - textPanel:GetWide() - ScrW * 0.05, ScrH * 0.68)
+    textPanel:SetPos(ScrW() - textPanel:GetWide() - ScrW() * 0.05, ScrH() * 0.68)
     if contents.music then
         music = CreateSound(LocalPlayer(), lia.config.get("CinematicTextMusic", "music/stingers/industrial_suspense2.wav"))
         music:PlayEx(0, 100)
@@ -130,8 +130,8 @@ function PANEL:Init()
         color = color_white
     }
 
-    local textEntryTall = ScrH * 0.045
-    self:SetSize(ScrW * 0.6, ScrH * 0.6)
+    local textEntryTall = ScrH() * 0.045
+    self:SetSize(ScrW() * 0.6, ScrH() * 0.6)
     self:Center()
     self:MakePopup()
     self:SetTitle("Cinematic Splash Text Menu")
@@ -208,7 +208,7 @@ function PANEL:Init()
     quitButton:SetText("CANCEL")
     quitButton:SetTextColor(Color(255, 0, 0))
     quitButton:SetFont("CinematicSplashFontSmall")
-    quitButton:SetTall(ScrH * 0.05)
+    quitButton:SetTall(ScrH() * 0.05)
     quitButton.DoClick = function() self:Remove() end
     local postButton = self:Add("DButton")
     postButton:Dock(BOTTOM)
@@ -216,7 +216,7 @@ function PANEL:Init()
     postButton:SetText("POST")
     postButton:SetTextColor(color_white)
     postButton:SetFont("CinematicSplashFontSmall")
-    postButton:SetTall(ScrH * 0.05)
+    postButton:SetTall(ScrH() * 0.05)
     postButton.DoClick = function()
         if not (self.contents and (self.contents.text or self.contents.bigText)) then
             lia.notices.notify("Something went horribly wrong. Try reloading this panel")
