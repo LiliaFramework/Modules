@@ -1,7 +1,5 @@
 name: CI
-on:
-  - push
-  - pull_request
+on: [push, pull_request]
 
 permissions:
   actions: write
@@ -28,10 +26,6 @@ jobs:
       - uses: leafo/gh-actions-lua@v8.0.0
         with:
           luaVersion: 5.2
-      - name: Install Luacheck dependencies
-        run: |
-          luarocks install luafilesystem
-          luarocks install argparse
       - uses: leafo/gh-actions-luarocks@v4.0.0
       - uses: actions/checkout@v3
         with:
@@ -39,8 +33,7 @@ jobs:
           path: luacheck
       - run: luarocks make
         working-directory: luacheck
-      - name: Run Luacheck
-        run: |
+      - run: |
           luacheck . \
             --no-redefined \
             --no-global --no-self \
@@ -56,8 +49,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: sudo apt-get update && sudo apt-get install -y jq zip
-      - name: Build modules.json
-        run: |
+      - run: |
           echo "[]" > modules.json
           for module in */module.lua; do
             [ -f "$module" ] || continue
@@ -66,7 +58,7 @@ jobs:
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
             workshop_line=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|".*")' "$module" || echo "")
-            workshop_line=${workshop_line#*=}
+            workshop_line=$(echo "$workshop_line" | sed -E 's/MODULE\.WorkshopContent\s*=\s*//g')
             if [[ "$workshop_line" =~ ^\{.*\}$ ]]; then
               workshop_line=$(echo "$workshop_line" | sed -E 's/^\{\s*(.*)\s*\}$/[\1]/' | sed -E 's/"\s*,\s*"/","/g')
             elif [ -n "$workshop_line" ]; then
@@ -89,19 +81,17 @@ jobs:
                '. += [{name:$name,author:$author,description:$desc,version:$version,download:$download,source:$source,uniqueID:$uniqueID,workshop:$workshop}]' modules.json > tmp.json
             mv tmp.json modules.json
           done
-      - name: Zip module folders
-        run: |
+      - run: |
           for folder in */; do
-            zip -r "${folder%/}.zip" "$folder"
+            [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
           done
-      - name: Commit modules.json
-        run: |
+      - run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
           git add modules.json
           if ! git diff --cached --quiet; then
             git commit -m "Update modules.json with source URLs"
-            git push -f "https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git" main
+            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           fi
       - uses: actions/upload-artifact@v4
         with:
@@ -119,8 +109,7 @@ jobs:
         with:
           name: module-zips
           path: docs/Downloads
-      - name: Unzip modules
-        run: |
+      - run: |
           for zip in docs/Downloads/*.zip; do
             folder=$(basename "$zip" .zip)
             unzip "$zip" -d "extracted_${folder}"
@@ -128,7 +117,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Generate site
+      - name: Generate Site
         run: node docsparser.js
       - uses: peaceiris/actions-gh-pages@v3
         with:
@@ -142,9 +131,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        name: Checkout Modules Repository
         with:
           path: modules
-      - name: Remove existing release and tag
+      - name: Remove existing release & tag (if any)
         uses: actions/github-script@v6
         with:
           script: |
@@ -165,16 +155,21 @@ jobs:
                 repo: context.repo.repo,
                 ref: `tags/${tag}`
               });
+              core.info(`Deleted existing release & tag "${tag}"`);
             } catch (error) {
-              if (error.status !== 404) throw error;
+              if (error.status === 404) {
+                core.info('No existing release/tag to delete');
+              } else {
+                throw error;
+              }
             }
-      - name: Prepare and zip modules
+      - name: Prepare and Zip
         run: |
           mkdir packaged
           cp -R modules packaged/modules
           cd packaged
           zip -r ../modules.zip modules
-      - name: Create GitHub release
+      - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         with:
