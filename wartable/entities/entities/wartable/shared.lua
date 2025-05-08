@@ -25,14 +25,14 @@ function ENT:Initialize()
         self.Panel = vgui.Create("DPanel")
         self.Panel:SetScaledSize(1920, 1080)
         self.Panel:SetPaintedManually(true)
-        function self.Panel:Paint(w, h)
+        function self.Panel:Paint()
         end
 
         self.MapHTML = vgui.Create("HTML", self.Panel)
         self.MapHTML:Dock(FILL)
         self.MapHTML:SetMouseInputEnabled(false)
         self.MapHTML:OpenURL(lia.config.get("URL"))
-        function self.MapHTML:Paint(w, h)
+        function self.MapHTML:Paint()
         end
     end
 end
