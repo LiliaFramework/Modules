@@ -1,5 +1,5 @@
 ﻿lia.utilities = lia.utilities or {}
---[[ 
+--[[
 lia.utilities.SpeedTest
 Description:
     Measures the average execution time (in seconds) of a function over n runs.
@@ -26,7 +26,7 @@ local function normalize(min, max, val)
     return (val - min) / delta
 end
 
---[[ 
+--[[
 lia.utilities.DaysBetween
 Description:
     Calculates the number of whole days between two date/time strings.
@@ -66,7 +66,7 @@ function lia.utilities.DaysBetween(strTime1, strTime2)
     return math.floor(diff / 86400)
 end
 
---[[ 
+--[[
 lia.utilities.LerpHSV
 Description:
     Interpolates between two colors in HSV space based on where currentValue lies within [minValue, maxValue].
@@ -94,7 +94,7 @@ function lia.utilities.LerpHSV(start_color, end_color, maxValue, currentValue, m
     return HSVToColor(linear, 1, 1)
 end
 
---[[ 
+--[[
 lia.utilities.Darken
 Description:
     Darkens a color by decreasing its lightness in HSL space.
@@ -114,7 +114,7 @@ function lia.utilities.Darken(color, amount)
     return HSLToColor(h, s, l)
 end
 
---[[ 
+--[[
 lia.utilities.LerpColor
 Description:
     Linearly interpolates between two RGBA colors.
@@ -133,7 +133,7 @@ function lia.utilities.LerpColor(frac, from, to)
     return Color(Lerp(frac, from.r, to.r), Lerp(frac, from.g, to.g), Lerp(frac, from.b, to.b), Lerp(frac, from.a, to.a))
 end
 
---[[ 
+--[[
 lia.utilities.Blend
 Description:
     Blends two RGB colors by a given ratio.
@@ -153,7 +153,7 @@ function lia.utilities.Blend(color1, color2, ratio)
     return Color(Lerp(ratio, color1.r, color2.r), Lerp(ratio, color1.g, color2.g), Lerp(ratio, color1.b, color2.b))
 end
 
---[[ 
+--[[
 lia.utilities.rgb
 Description:
     Creates a Color from integer RGB 0–255.
@@ -172,7 +172,7 @@ function lia.utilities.rgb(r, g, b)
     return Color(r / 255, g / 255, b / 255)
 end
 
---[[ 
+--[[
 lia.utilities.Rainbow
 Description:
     Generates a cycling rainbow color over time.
@@ -189,7 +189,7 @@ function lia.utilities.Rainbow(frequency)
     return HSVToColor((CurTime() * frequency) % 360, 1, 1)
 end
 
---[[ 
+--[[
 lia.utilities.ColorCycle
 Description:
     Cyclically blends between two colors using a sine wave.
@@ -211,7 +211,7 @@ function lia.utilities.ColorCycle(col1, col2, freq)
     return Color(math.min(col1.r, col2.r) + math.abs(math.sin(t * freq) * diff.r), math.min(col1.g, col2.g) + math.abs(math.sin(t * freq + 2) * diff.g), math.min(col1.b, col2.b) + math.abs(math.sin(t * freq + 4) * diff.b))
 end
 
---[[ 
+--[[
 lia.utilities.ColorToHex
 Description:
     Converts a Color to a hex string.
@@ -228,7 +228,7 @@ function lia.utilities.ColorToHex(color)
     return "0x" .. bit.tohex(color.r, 2) .. bit.tohex(color.g, 2) .. bit.tohex(color.b, 2)
 end
 
---[[ 
+--[[
 lia.utilities.Lighten
 Description:
     Lightens a color by increasing its HSL lightness.
@@ -248,7 +248,7 @@ function lia.utilities.Lighten(color, amount)
     return HSLToColor(h, s, l)
 end
 
---[[ 
+--[[
 lia.utilities.toText
 Description:
     Serializes a Color to "r,g,b,a".
@@ -266,7 +266,7 @@ function lia.utilities.toText(color)
     return (color.r or 255) .. "," .. (color.g or 255) .. "," .. (color.b or 255) .. "," .. (color.a or 255)
 end
 
---[[ 
+--[[
 lia.utilities.SerializeVector
 Description:
     Converts a Vector to a JSON array string.
@@ -283,7 +283,7 @@ function lia.utilities.SerializeVector(vector)
     return util.TableToJSON({vector.x, vector.y, vector.z})
 end
 
---[[ 
+--[[
 lia.utilities.DeserializeVector
 Description:
     Parses a JSON array string into a Vector.
@@ -300,7 +300,7 @@ function lia.utilities.DeserializeVector(data)
     return Vector(unpack(util.JSONToTable(data)))
 end
 
---[[ 
+--[[
 lia.utilities.SerializeAngle
 Description:
     Converts an Angle to a JSON array string.
@@ -317,7 +317,7 @@ function lia.utilities.SerializeAngle(ang)
     return util.TableToJSON({ang.p, ang.y, ang.r})
 end
 
---[[ 
+--[[
 lia.utilities.DeserializeAngle
 Description:
     Parses a JSON array string into an Angle.
@@ -334,7 +334,7 @@ function lia.utilities.DeserializeAngle(data)
     return Angle(unpack(util.JSONToTable(data)))
 end
 
---[[ 
+--[[
 lia.utilities.dprint
 Description:
     Prints debug messages prefixed with "[DEBUG]".
@@ -352,7 +352,7 @@ function lia.utilities.dprint(...)
 end
 
 -- chance helper added to math
---[[ 
+--[[
 math.chance
 Description:
     Returns true with given percent probability.
@@ -369,7 +369,7 @@ function math.chance(chance)
     return math.random(0, 100) <= chance
 end
 
---[[ 
+--[[
 string.generateRandom
 Description:
     Generates a random alphanumeric string.
@@ -392,7 +392,7 @@ function string.generateRandom(length)
     return table.concat(ret)
 end
 
---[[ 
+--[[
 string.quote
 Description:
     Returns a Lua-quoted version of a string, escaping backslashes and quotes.
@@ -410,7 +410,7 @@ function string.quote(str)
     return '"' .. escaped .. '"'
 end
 
---[[ 
+--[[
 string.FirstToUpper
 Description:
     Capitalizes the first letter of a string.
@@ -427,7 +427,7 @@ function string.FirstToUpper(str)
     return str:gsub("^%l", string.upper)
 end
 
---[[ 
+--[[
 string.CommaNumber
 Description:
     Formats a number with commas every three digits.
@@ -449,7 +449,7 @@ function string.CommaNumber(amount)
     return formatted
 end
 
---[[ 
+--[[
 string.Clean
 Description:
     Removes non-printable ASCII characters.
@@ -466,7 +466,7 @@ function string.Clean(str)
     return str:gsub("[^\32-\127]", "")
 end
 
---[[ 
+--[[
 string.Gibberish
 Description:
     Randomly injects gibberish chars into a string.
@@ -484,7 +484,7 @@ function string.Gibberish(str, prob)
     local ret = ""
     for c in str:gmatch(".") do
         if math.random(1, 100) < prob then
-            for i = 1, math.random(0, 2) do
+            for _  = 1, math.random(0, 2) do
                 ret = ret .. table.Random{"#", "@", "&", "%", "$", "/", "<", ">", ";", "*"}
             end
         end
@@ -507,7 +507,7 @@ local digitToString = {
     ["9"] = "nine"
 }
 
---[[ 
+--[[
 string.DigitToString
 Description:
     Converts a single digit (0–9) to its English word.
@@ -524,7 +524,7 @@ function string.DigitToString(digit)
     return digitToString[tostring(digit)] or "invalid"
 end
 
---[[ 
+--[[
 table.Sum
 Description:
     Recursively sums all numeric values in a table.
@@ -549,7 +549,7 @@ function table.Sum(tbl)
     return sum
 end
 
---[[ 
+--[[
 table.Lookupify
 Description:
     Converts an array of values into a lookup table (value→true).
@@ -570,7 +570,7 @@ function table.Lookupify(tbl)
     return lookup
 end
 
---[[ 
+--[[
 table.MakeAssociative
 Description:
     Alias of table.Lookupify.
@@ -591,7 +591,7 @@ function table.MakeAssociative(tab)
     return ret
 end
 
---[[ 
+--[[
 table.Unique
 Description:
     Returns the unique values of an array.
@@ -608,7 +608,7 @@ function table.Unique(tab)
     return table.GetKeys(table.MakeAssociative(tab))
 end
 
---[[ 
+--[[
 table.FullCopy
 Description:
     Deep-copies a table, including vectors and angles.
@@ -637,7 +637,7 @@ function table.FullCopy(tab)
     return res
 end
 
---[[ 
+--[[
 table.Filter
 Description:
     In-place filters an array by a predicate.
@@ -666,7 +666,7 @@ function table.Filter(tab, func)
     return tab
 end
 
---[[ 
+--[[
 table.FilterCopy
 Description:
     Returns a new array of elements passing a predicate.
@@ -688,7 +688,7 @@ function table.FilterCopy(tab, func)
     return ret
 end
 
---[[ 
+--[[
 math.UnitsToInches
 Description:
     Converts game units to inches.
@@ -705,7 +705,7 @@ function math.UnitsToInches(units)
     return units * 0.75
 end
 
---[[ 
+--[[
 math.UnitsToCentimeters
 Description:
     Converts game units to centimeters.
@@ -722,7 +722,7 @@ function math.UnitsToCentimeters(units)
     return math.UnitsToInches(units) * 2.54
 end
 
---[[ 
+--[[
 math.UnitsToMeters
 Description:
     Converts game units to meters.
@@ -739,7 +739,7 @@ function math.UnitsToMeters(units)
     return math.UnitsToInches(units) * 0.0254
 end
 
---[[ 
+--[[
 math.Bias
 Description:
     Applies a bias curve to x.
@@ -758,7 +758,7 @@ function math.Bias(x, amount)
     return math.pow(x, exp)
 end
 
---[[ 
+--[[
 math.Gain
 Description:
     Applies a gain curve to x.
@@ -780,7 +780,7 @@ function math.Gain(x, amount)
     end
 end
 
---[[ 
+--[[
 math.ApproachSpeed
 Description:
     Moves start towards dest by distance proportionally to speed.
@@ -799,7 +799,7 @@ function math.ApproachSpeed(start, dest, speed)
     return math.Approach(start, dest, math.abs(start - dest) / speed)
 end
 
---[[ 
+--[[
 math.ApproachVectorSpeed
 Description:
     Vector version of ApproachSpeed.
@@ -821,7 +821,7 @@ function math.ApproachVectorSpeed(start, dest, speed)
     return Vector(ap(start.x, dest.x), ap(start.y, dest.y), ap(start.z, dest.z))
 end
 
---[[ 
+--[[
 math.ApproachAngleSpeed
 Description:
     Angle version of ApproachSpeed.
@@ -843,7 +843,7 @@ function math.ApproachAngleSpeed(start, dest, speed)
     return Angle(ap(start.p, dest.p), ap(start.y, dest.y), ap(start.r, dest.r))
 end
 
---[[ 
+--[[
 math.InRange
 Description:
     Checks if val ∈ [min, max].
@@ -862,7 +862,7 @@ function math.InRange(val, min, max)
     return val >= min and val <= max
 end
 
---[[ 
+--[[
 math.ClampAngle
 Description:
     Clamps each component of an Angle between min and max Angles.
@@ -881,7 +881,7 @@ function math.ClampAngle(val, min, max)
     return Angle(math.Clamp(val.p, min.p, max.p), math.Clamp(val.y, min.y, max.y), math.Clamp(val.r, min.r, max.r))
 end
 
---[[ 
+--[[
 math.ClampedRemap
 Description:
     Remaps val from [fmin,fmax]→[tmin,tmax], then clamps to [min(tmin,tmax),max(tmin,tmax)].
@@ -902,7 +902,7 @@ function math.ClampedRemap(val, fmin, fmax, tmin, tmax)
     return math.Clamp(math.Remap(val, fmin, fmax, tmin, tmax), math.min(tmin, tmax), math.max(tmin, tmax))
 end
 
---[[ 
+--[[
 lia.utilities.TimeUntil
 Description:
     Computes human-readable time remaining until a future timestamp.
@@ -947,7 +947,7 @@ function lia.utilities.TimeUntil(strTime)
     return string.format("%d years, %d months, %d days, %d hours, %d minutes, %d seconds", yrs, mos, days, hrs, mins, secs)
 end
 
---[[ 
+--[[
 lia.utilities.CurrentLocalTime
 Description:
     Returns current local time formatted as "HH:MM:SS - DD/MM/YYYY".
@@ -963,7 +963,7 @@ function lia.utilities.CurrentLocalTime()
     return string.format("%02d:%02d:%02d - %02d/%02d/%04d", t.hour, t.min, t.sec, t.day, t.month, t.year)
 end
 
---[[ 
+--[[
 lia.utilities.SecondsToDHMS
 Description:
     Converts total seconds to days, hours, minutes, seconds.
@@ -985,7 +985,7 @@ function lia.utilities.SecondsToDHMS(seconds)
     return days, hours, minutes, seconds % 60
 end
 
---[[ 
+--[[
 lia.utilities.HMSToSeconds
 Description:
     Converts hours, minutes, seconds to total seconds.
@@ -1004,7 +1004,7 @@ function lia.utilities.HMSToSeconds(hour, minute, second)
     return hour * 3600 + minute * 60 + second
 end
 
---[[ 
+--[[
 lia.utilities.FormatTimestamp
 Description:
     Formats an epoch timestamp as "HH:MM:SS - DD/MM/YYYY".
@@ -1022,7 +1022,7 @@ function lia.utilities.FormatTimestamp(timestamp)
     return string.format("%02d:%02d:%02d - %02d/%02d/%04d", t.hour, t.min, t.sec, t.day, t.month, t.year)
 end
 
---[[ 
+--[[
 lia.utilities.WeekdayName
 Description:
     Returns the weekday for a given date/time string.
@@ -1050,7 +1050,7 @@ function lia.utilities.WeekdayName(strTime)
     return os.date("%A", ts)
 end
 
---[[ 
+--[[
 lia.utilities.TimeDifference
 Description:
     Day difference between target datetime and now.
@@ -1078,7 +1078,7 @@ function lia.utilities.TimeDifference(strTime)
     return math.floor(os.difftime(target, os.time()) / 86400)
 end
 
---[[ 
+--[[
 lia.utilities.spawnProp
 Description:
     Spawns a physics prop with options.
@@ -1114,7 +1114,7 @@ function lia.utilities.spawnProp(model, position, force, lifetime, angles, colli
     return ent
 end
 
---[[ 
+--[[
 lia.utilities.spawnEntities
 Description:
     Spawns multiple entities at given positions.
