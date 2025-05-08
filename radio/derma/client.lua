@@ -57,7 +57,7 @@ vgui.Register("liaRadioDial", PANEL, "DPanel")
 PANEL = {}
 function PANEL:Init()
     self:SetTitle(L("radioFrequencyTitle"))
-    self:SetSize(350, 180)
+    self:SetScaledSize(350, 180)
     self:Center()
     self:MakePopup()
     local dialsContainer = self:Add("DPanel")
