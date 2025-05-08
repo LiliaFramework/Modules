@@ -1,4 +1,18 @@
 ﻿lia.utilities = lia.utilities or {}
+--[[ 
+lia.utilities.SpeedTest
+Description:
+    Measures the average execution time (in seconds) of a function over n runs.
+Parameters:
+    func (function) — The function to test.
+    n    (number)   — Number of times to run func.
+Returns:
+    (number) Average time per call in seconds.
+Realm:
+    Shared
+Example Usage:
+    print(lia.utilities.SpeedTest(function() return math.sqrt(2) end, 1000))
+]]
 function lia.utilities.SpeedTest(func, n)
     local start = SysTime()
     for _ = 1, n do
@@ -12,28 +26,23 @@ local function normalize(min, max, val)
     return (val - min) / delta
 end
 
---[[
-     Function: lia.time.DaysBetween
-  
-     Description:
-        Calculates the number of days between two date/time strings, each in "HH:MM:SS - DD/MM/YYYY" format.
-  
-     Parameters:
-        strTime1 (string) — The first date/time string.
-        strTime2 (string) — The second date/time string.
-  
-     Returns:
-        (number or string) The number of days between the two dates, or "Invalid dates" on error.
-  
-     Realm:
-        Shared
-  
-     Example Usage:
-        print(lia.time.DaysBetween("00:00:00 - 01/01/2025", "00:00:00 - 10/01/2025"))
-  ]]
-function lia.time.DaysBetween(strTime1, strTime2)
-    local y1, mo1, d1 = lia.time.ParseTime(strTime1)
-    local y2, mo2, d2 = lia.time.ParseTime(strTime2)
+--[[ 
+lia.utilities.DaysBetween
+Description:
+    Calculates the number of whole days between two date/time strings.
+Parameters:
+    strTime1 (string) — First date/time, format "HH:MM:SS - DD/MM/YYYY".
+    strTime2 (string) — Second date/time, same format.
+Returns:
+    (number|string) Number of days difference, or "Invalid dates" on error.
+Realm:
+    Shared
+Example Usage:
+    print(lia.utilities.DaysBetween("00:00:00 - 01/01/2025", "00:00:00 - 10/01/2025"))
+]]
+function lia.utilities.DaysBetween(strTime1, strTime2)
+    local y1, mo1, d1 = lia.utilities.ParseTime(strTime1)
+    local y2, mo2, d2 = lia.utilities.ParseTime(strTime2)
     if not (y1 and y2) then return "Invalid dates" end
     local t1 = os.time({
         year = y1,
@@ -57,354 +66,430 @@ function lia.time.DaysBetween(strTime1, strTime2)
     return math.floor(diff / 86400)
 end
 
---[[
-        Function: lia.utilities.LerpHSV
- 
-        Description:
-           Interpolates between two colors in the HSV color space based on the current value within a specified range.
-           The function linearly interpolates between the HSV values of the start and end colors.
- 
-        Parameters:
-           start_color  (Color)  - The starting color (defaults to green if nil).
-           end_color    (Color)  - The ending color (defaults to red if nil).
-           maxValue     (number) - The maximum value of the range.
-           currentValue (number) - The current value within the range.
-           minValue     (number, optional) - The minimum value of the range (defaults to 0 if not provided).
- 
-        Returns:
-           Color - The interpolated color converted back from HSV to a Color.
- 
-        Realm:
-           Shared
- 
-        Example Usage:
-           local interpColor = lia.utilities.LerpHSV(Color("green"), Color("red"), 100, 50)
-     ]]
+--[[ 
+lia.utilities.LerpHSV
+Description:
+    Interpolates between two colors in HSV space based on where currentValue lies within [minValue, maxValue].
+Parameters:
+    start_color  (Color)  — Color at minValue (defaults to green).
+    end_color    (Color)  — Color at maxValue (defaults to red).
+    maxValue     (number) — Upper bound of the range.
+    currentValue (number) — Value within the range to interpolate for.
+    minValue     (number) — Lower bound of the range (defaults to 0).
+Returns:
+    (Color) Interpolated HSV color converted back to RGB.
+Realm:
+    Shared
+Example Usage:
+    local c = lia.utilities.LerpHSV(nil, nil, 100, 50)
+]]
 function lia.utilities.LerpHSV(start_color, end_color, maxValue, currentValue, minValue)
     start_color = start_color or Color("green")
     end_color = end_color or Color("red")
     minValue = minValue or 0
-    local hsv_start = ColorToHSV(end_color)
-    local hsv_end = ColorToHSV(start_color)
-    local linear = Lerp(normalize(minValue, maxValue, currentValue), hsv_start, hsv_end)
+    local hsv_start = ColorToHSV(start_color)
+    local hsv_end = ColorToHSV(end_color)
+    local t = normalize(minValue, maxValue, currentValue)
+    local linear = Lerp(t, hsv_start, hsv_end)
     return HSVToColor(linear, 1, 1)
 end
 
---[[
-    Function: lia.utilities.Darken
- 
-    Description:
-       Darkens the given color by decreasing its lightness component in the HSL color space.
-       The function converts the color to HSL, decreases the lightness, and then converts it back to a Color.
- 
-    Parameters:
-       color  (Color)  - The original color.
-       amount (number) - The amount to darken the color (subtracted from the normalized lightness).
- 
-    Returns:
-       Color - A new, darkened color.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local darkerColor = lia.utilities.Darken(Color(200, 200, 200, 255), 0.1)
- ]]
+--[[ 
+lia.utilities.Darken
+Description:
+    Darkens a color by decreasing its lightness in HSL space.
+Parameters:
+    color  (Color) — Original color.
+    amount (number) — Amount to subtract from lightness (0–1).
+Returns:
+    (Color) Darkened color.
+Realm:
+    Shared
+Example Usage:
+    local c2 = lia.utilities.Darken(Color(200,200,200), 0.1)
+]]
 function lia.utilities.Darken(color, amount)
-    local hue, saturation, lightness = ColorToHSL(color)
-    lightness = math.Clamp(lightness / 255 - amount, 0, 1)
-    return HSLToColor(hue, saturation, lightness)
+    local h, s, l = ColorToHSL(color)
+    l = math.Clamp(l / 255 - amount, 0, 1)
+    return HSLToColor(h, s, l)
 end
 
---[[
-    Function: lia.utilities.LerpColor
- 
-    Description:
-       Linearly interpolates between two colors based on the provided fraction.
-       The interpolation is applied to each RGBA component separately.
- 
-    Parameters:
-       frac (number)  - The interpolation factor (0 to 1).
-       from (Color)   - The starting color.
-       to (Color)     - The target color.
- 
-    Returns:
-       Color - The interpolated color.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local resultColor = lia.utilities.LerpColor(0.5, Color(255, 0, 0, 255), Color(0, 0, 255, 255))
- ]]
+--[[ 
+lia.utilities.LerpColor
+Description:
+    Linearly interpolates between two RGBA colors.
+Parameters:
+    frac (number) — Interpolation factor (0–1).
+    from (Color) — Start color.
+    to   (Color) — End color.
+Returns:
+    (Color) Resulting color.
+Realm:
+    Shared
+Example Usage:
+    local c = lia.utilities.LerpColor(0.5, Color(255,0,0), Color(0,0,255))
+]]
 function lia.utilities.LerpColor(frac, from, to)
-    local col = Color(Lerp(frac, from.r, to.r), Lerp(frac, from.g, to.g), Lerp(frac, from.b, to.b), Lerp(frac, from.a, to.a))
-    return col
+    return Color(Lerp(frac, from.r, to.r), Lerp(frac, from.g, to.g), Lerp(frac, from.b, to.b), Lerp(frac, from.a, to.a))
 end
 
---[[
-    Function: lia.utilities.Blend
- 
-    Description:
-       Blends two colors together based on the provided ratio.
-       A ratio of 0 returns color1, while a ratio of 1 returns color2.
- 
-    Parameters:
-       color1 (Color) - The first color.
-       color2 (Color) - The second color.
-       ratio  (number) - The blend ratio (between 0 and 1).
- 
-    Returns:
-       Color - The blended color.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local blendedColor = lia.utilities.Blend(Color(255, 0, 0), Color(0, 0, 255), 0.5)
- ]]
+--[[ 
+lia.utilities.Blend
+Description:
+    Blends two RGB colors by a given ratio.
+Parameters:
+    color1 (Color) — First color.
+    color2 (Color) — Second color.
+    ratio  (number) — Blend ratio (0→all color1, 1→all color2).
+Returns:
+    (Color) Blended color.
+Realm:
+    Shared
+Example Usage:
+    local c = lia.utilities.Blend(Color(255,0,0), Color(0,0,255), 0.3)
+]]
 function lia.utilities.Blend(color1, color2, ratio)
     ratio = math.Clamp(ratio, 0, 1)
-    local r = Lerp(ratio, color1.r, color2.r)
-    local g = Lerp(ratio, color1.g, color2.g)
-    local b = Lerp(ratio, color1.b, color2.b)
-    return Color(r, g, b)
+    return Color(Lerp(ratio, color1.r, color2.r), Lerp(ratio, color1.g, color2.g), Lerp(ratio, color1.b, color2.b))
 end
 
---[[
-    Function: lia.utilities.rgb
- 
-    Description:
-       Creates a Color from given red, green, and blue values.
-       The input values (0-255) are normalized to create a Color.
- 
-    Parameters:
-       r (number) - The red component (0-255).
-       g (number) - The green component (0-255).
-       b (number) - The blue component (0-255).
- 
-    Returns:
-       Color - A new Color with normalized RGB values.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local col = lia.utilities.rgb(255, 128, 64)
- ]]
+--[[ 
+lia.utilities.rgb
+Description:
+    Creates a Color from integer RGB 0–255.
+Parameters:
+    r (number) — Red component.
+    g (number) — Green component.
+    b (number) — Blue component.
+Returns:
+    (Color) New color.
+Realm:
+    Shared
+Example Usage:
+    local c = lia.utilities.rgb(128,64,255)
+]]
 function lia.utilities.rgb(r, g, b)
     return Color(r / 255, g / 255, b / 255)
 end
 
---[[
-    Function: lia.utilities.Rainbow
- 
-    Description:
-       Generates a rainbow color based on the current time and a frequency parameter.
-       It uses the HSV color model to create a smoothly cycling color effect.
- 
-    Parameters:
-       frequency (number) - The frequency at which the color cycles.
- 
-    Returns:
-       Color - A color from the rainbow spectrum.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local rainbowColor = lia.utilities.Rainbow(1)
- ]]
+--[[ 
+lia.utilities.Rainbow
+Description:
+    Generates a cycling rainbow color over time.
+Parameters:
+    frequency (number) — Speed of hue rotation.
+Returns:
+    (Color) Rainbow color.
+Realm:
+    Shared
+Example Usage:
+    local c = lia.utilities.Rainbow(0.5)
+]]
 function lia.utilities.Rainbow(frequency)
-    return HSVToColor(CurTime() * frequency % 360, 1, 1)
+    return HSVToColor((CurTime() * frequency) % 360, 1, 1)
 end
 
---[[
-    Function: lia.utilities.ColorCycle
- 
-    Description:
-       Creates a cyclic blend between two colors over time using a sine-based interpolation.
-       The function gradually shifts between col1 and col2 based on the sine of the current time.
- 
-    Parameters:
-       col1 (Color) - The first color.
-       col2 (Color) - The second color.
-       freq (number) - The frequency of the color cycle (default is 1).
- 
-    Returns:
-       Color - A new color that cycles between col1 and col2.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local cyclingColor = lia.utilities.ColorCycle(Color(255, 0, 0), Color(0, 0, 255), 1)
- ]]
+--[[ 
+lia.utilities.ColorCycle
+Description:
+    Cyclically blends between two colors using a sine wave.
+Parameters:
+    col1 (Color) — First color.
+    col2 (Color) — Second color.
+    freq (number) — Cycle frequency.
+Returns:
+    (Color) Cycling color.
+Realm:
+    Shared
+Example Usage:
+    local c = lia.utilities.ColorCycle(Color(255,0,0), Color(0,0,255), 1)
+]]
 function lia.utilities.ColorCycle(col1, col2, freq)
     freq = freq or 1
-    local difference = Color(col1.r - col2.r, col1.g - col2.g, col1.b - col2.b)
-    local time = CurTime()
-    local rgb = {
-        r = 0,
-        g = 0,
-        b = 0
-    }
-
-    for k, _ in pairs(rgb) do
-        if col1[k] > col2[k] then
-            rgb[k] = col2[k]
-        else
-            rgb[k] = col1[k]
-        end
-    end
-    return Color(rgb.r + math.abs(math.sin(time * freq) * difference.r), rgb.g + math.abs(math.sin(time * freq + 2) * difference.g), rgb.b + math.abs(math.sin(time * freq + 4) * difference.b))
+    local diff = Color(col1.r - col2.r, col1.g - col2.g, col1.b - col2.b)
+    local t = CurTime()
+    return Color(math.min(col1.r, col2.r) + math.abs(math.sin(t * freq) * diff.r), math.min(col1.g, col2.g) + math.abs(math.sin(t * freq + 2) * diff.g), math.min(col1.b, col2.b) + math.abs(math.sin(t * freq + 4) * diff.b))
 end
 
---[[
-    Function: lia.utilities.ColorToHex
- 
-    Description:
-       Converts a Color value to its hexadecimal string representation.
-       The output format is "0xRRGGBB", where RR, GG, and BB represent the red, green, and blue channels.
- 
-    Parameters:
-       color (Color) - The color to convert.
- 
-    Returns:
-       string - The hexadecimal string representation of the color.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local hex = lia.utilities.ColorToHex(Color(255, 0, 0))
- ]]
+--[[ 
+lia.utilities.ColorToHex
+Description:
+    Converts a Color to a hex string.
+Parameters:
+    color (Color) — Color to convert.
+Returns:
+    (string) Hex representation like "0xFFA07A".
+Realm:
+    Shared
+Example Usage:
+    local h = lia.utilities.ColorToHex(Color(255,160,122))
+]]
 function lia.utilities.ColorToHex(color)
     return "0x" .. bit.tohex(color.r, 2) .. bit.tohex(color.g, 2) .. bit.tohex(color.b, 2)
 end
 
---[[
-    Function: lia.utilities.Lighten
- 
-    Description:
-       Lightens the given color by increasing its lightness component in the HSL color space.
-       The function converts the color to HSL, increases the lightness, and then converts it back to a Color.
- 
-    Parameters:
-       color  (Color)  - The original color.
-       amount (number) - The amount to lighten the color (added to the normalized lightness).
- 
-    Returns:
-       Color - A new, lightened color.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local lighterColor = lia.utilities.Lighten(Color(100, 100, 100, 255), 0.1)
- ]]
+--[[ 
+lia.utilities.Lighten
+Description:
+    Lightens a color by increasing its HSL lightness.
+Parameters:
+    color  (Color) — Original color.
+    amount (number) — Amount to add to lightness (0–1).
+Returns:
+    (Color) Lightened color.
+Realm:
+    Shared
+Example Usage:
+    local c = lia.utilities.Lighten(Color(50,50,50), 0.2)
+]]
 function lia.utilities.Lighten(color, amount)
-    local hue, saturation, lightness = ColorToHSL(color)
-    lightness = math.Clamp(lightness / 255 + amount, 0, 1)
-    return HSLToColor(hue, saturation, lightness)
+    local h, s, l = ColorToHSL(color)
+    l = math.Clamp(l / 255 + amount, 0, 1)
+    return HSLToColor(h, s, l)
 end
 
---[[
-    Function: lia.utilities.toText
- 
-    Description:
-       Converts a Color value into a comma-separated string representing its RGBA components.
-       If the provided value is not a valid Color, the function returns nil.
- 
-    Parameters:
-       color (Color) - The color to convert.
- 
-    Returns:
-       string - A string in the format "r,g,b,a".
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local colorString = lia.utilities.toText(Color(255, 255, 255, 255))
- ]]
+--[[ 
+lia.utilities.toText
+Description:
+    Serializes a Color to "r,g,b,a".
+Parameters:
+    color (Color) — Color object.
+Returns:
+    (string) Comma-separated RGBA.
+Realm:
+    Shared
+Example Usage:
+    local s = lia.utilities.toText(Color(255,255,255,128))
+]]
 function lia.utilities.toText(color)
     if not IsColor(color) then return end
     return (color.r or 255) .. "," .. (color.g or 255) .. "," .. (color.b or 255) .. "," .. (color.a or 255)
 end
 
+--[[ 
+lia.utilities.SerializeVector
+Description:
+    Converts a Vector to a JSON array string.
+Parameters:
+    vector (Vector) — Vector to serialize.
+Returns:
+    (string) JSON like "[x,y,z]".
+Realm:
+    Server
+Example Usage:
+    local j = lia.utilities.SerializeVector(Vector(1,2,3))
+]]
 function lia.utilities.SerializeVector(vector)
     return util.TableToJSON({vector.x, vector.y, vector.z})
 end
 
+--[[ 
+lia.utilities.DeserializeVector
+Description:
+    Parses a JSON array string into a Vector.
+Parameters:
+    data (string) — JSON array "[x,y,z]".
+Returns:
+    (Vector) New vector.
+Realm:
+    Server
+Example Usage:
+    local v = lia.utilities.DeserializeVector('[1,2,3]')
+]]
 function lia.utilities.DeserializeVector(data)
     return Vector(unpack(util.JSONToTable(data)))
 end
 
+--[[ 
+lia.utilities.SerializeAngle
+Description:
+    Converts an Angle to a JSON array string.
+Parameters:
+    ang (Angle) — Angle to serialize.
+Returns:
+    (string) JSON like "[p,y,r]".
+Realm:
+    Server
+Example Usage:
+    local j = lia.utilities.SerializeAngle(Angle(10,20,30))
+]]
 function lia.utilities.SerializeAngle(ang)
     return util.TableToJSON({ang.p, ang.y, ang.r})
 end
 
+--[[ 
+lia.utilities.DeserializeAngle
+Description:
+    Parses a JSON array string into an Angle.
+Parameters:
+    data (string) — JSON array "[p,y,r]".
+Returns:
+    (Angle) New angle.
+Realm:
+    Server
+Example Usage:
+    local a = lia.utilities.DeserializeAngle('[10,20,30]')
+]]
 function lia.utilities.DeserializeAngle(data)
     return Angle(unpack(util.JSONToTable(data)))
 end
 
-function dprint(...)
+--[[ 
+lia.utilities.dprint
+Description:
+    Prints debug messages prefixed with "[DEBUG]".
+Parameters:
+    ... — Values to print.
+Returns:
+    nil
+Realm:
+    Server
+Example Usage:
+    lia.utilities.dprint("Value is", x)
+]]
+function lia.utilities.dprint(...)
     print("[DEBUG]", ...)
 end
 
+-- chance helper added to math
+--[[ 
+math.chance
+Description:
+    Returns true with given percent probability.
+Parameters:
+    chance (number) — 0–100 percent.
+Returns:
+    (boolean)
+Realm:
+    Server
+Example Usage:
+    if math.chance(25) then print("25% chance") end
+]]
 function math.chance(chance)
-    local rand = math.random(0, 100)
-    if rand <= chance then return true end
-    return false
+    return math.random(0, 100) <= chance
 end
 
+--[[ 
+string.generateRandom
+Description:
+    Generates a random alphanumeric string.
+Parameters:
+    length (number) — Desired length (default 16).
+Returns:
+    (string)
+Realm:
+    Server
+Example Usage:
+    local s = string.generateRandom(8)
+]]
 function string.generateRandom(length)
     length = length or 16
     local chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-    local randomString = {}
+    local ret = {}
     for _ = 1, length do
-        local rand = math.random(1, #chars)
-        table.insert(randomString, chars:sub(rand, rand))
+        ret[#ret + 1] = chars:sub(math.random(#chars), math.random(#chars))
     end
-    return table.concat(randomString)
+    return table.concat(ret)
 end
 
+--[[ 
+string.quote
+Description:
+    Returns a Lua-quoted version of a string, escaping backslashes and quotes.
+Parameters:
+    str (string)
+Returns:
+    (string)
+Realm:
+    Server
+Example Usage:
+    local q = string.quote('He said "Hi"')
+]]
 function string.quote(str)
-    local escapedStr = string.gsub(str, "\\", "\\\\")
-    escapedStr = string.gsub(escapedStr, '"', '\\"')
-    return '"' .. escapedStr .. '"'
+    local escaped = str:gsub("\\", "\\\\"):gsub('"', '\\"')
+    return '"' .. escaped .. '"'
 end
 
+--[[ 
+string.FirstToUpper
+Description:
+    Capitalizes the first letter of a string.
+Parameters:
+    str (string)
+Returns:
+    (string)
+Realm:
+    Server
+Example Usage:
+    print(string.FirstToUpper("hello"))
+]]
 function string.FirstToUpper(str)
     return str:gsub("^%l", string.upper)
 end
 
+--[[ 
+string.CommaNumber
+Description:
+    Formats a number with commas every three digits.
+Parameters:
+    amount (number|string)
+Returns:
+    (string)
+Realm:
+    Server
+Example Usage:
+    print(string.CommaNumber(1234567)) -- "1,234,567"
+]]
 function string.CommaNumber(amount)
     local formatted = tostring(amount)
     while true do
-        local k
-        formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", "%1,%2")
+        formatted, k = formatted:gsub("^(-?%d+)(%d%d%d)", "%1,%2")
         if k == 0 then break end
     end
     return formatted
 end
 
+--[[ 
+string.Clean
+Description:
+    Removes non-printable ASCII characters.
+Parameters:
+    str (string)
+Returns:
+    (string)
+Realm:
+    Server
+Example Usage:
+    print(string.Clean("Hello\x01World"))
+]]
 function string.Clean(str)
-    return string.gsub(str, "[^\32-\127]", "")
+    return str:gsub("[^\32-\127]", "")
 end
 
+--[[ 
+string.Gibberish
+Description:
+    Randomly injects gibberish chars into a string.
+Parameters:
+    str  (string)
+    prob (number) — 0–100 percent chance per character.
+Returns:
+    (string)
+Realm:
+    Server
+Example Usage:
+    print(string.Gibberish("test", 20))
+]]
 function string.Gibberish(str, prob)
     local ret = ""
-    for _, v in pairs(string.Explode("", str)) do
+    for c in str:gmatch(".") do
         if math.random(1, 100) < prob then
-            v = ""
-            for _ = 1, math.random(0, 2) do
-                ret = ret .. table.Random({"#", "@", "&", "%", "$", "/", "<", ">", ";", "*", "*", "*", "*", "*", "*", "*", "*"})
+            for i = 1, math.random(0, 2) do
+                ret = ret .. table.Random{"#", "@", "&", "%", "$", "/", "<", ">", ";", "*"}
             end
         end
 
-        ret = ret .. v
+        ret = ret .. c
     end
     return ret
 end
@@ -422,10 +507,36 @@ local digitToString = {
     ["9"] = "nine"
 }
 
+--[[ 
+string.DigitToString
+Description:
+    Converts a single digit (0–9) to its English word.
+Parameters:
+    digit (string|number)
+Returns:
+    (string) e.g. "five" or "invalid"
+Realm:
+    Server
+Example Usage:
+    print(string.DigitToString(7))
+]]
 function string.DigitToString(digit)
     return digitToString[tostring(digit)] or "invalid"
 end
 
+--[[ 
+table.Sum
+Description:
+    Recursively sums all numeric values in a table.
+Parameters:
+    tbl (table)
+Returns:
+    (number)
+Realm:
+    Server
+Example Usage:
+    print(table.Sum({1,2,{3,4}})) -- 10
+]]
 function table.Sum(tbl)
     local sum = 0
     for _, v in pairs(tbl) do
@@ -438,6 +549,19 @@ function table.Sum(tbl)
     return sum
 end
 
+--[[ 
+table.Lookupify
+Description:
+    Converts an array of values into a lookup table (value→true).
+Parameters:
+    tbl (table) — Array
+Returns:
+    (table)
+Realm:
+    Server
+Example Usage:
+    local l = table.Lookupify({"a","b"})
+]]
 function table.Lookupify(tbl)
     local lookup = {}
     for _, v in pairs(tbl) do
@@ -446,6 +570,19 @@ function table.Lookupify(tbl)
     return lookup
 end
 
+--[[ 
+table.MakeAssociative
+Description:
+    Alias of table.Lookupify.
+Parameters:
+    tab (table)
+Returns:
+    (table)
+Realm:
+    Server
+Example Usage:
+    local a = table.MakeAssociative({1,2,3})
+]]
 function table.MakeAssociative(tab)
     local ret = {}
     for _, v in pairs(tab) do
@@ -454,10 +591,36 @@ function table.MakeAssociative(tab)
     return ret
 end
 
+--[[ 
+table.Unique
+Description:
+    Returns the unique values of an array.
+Parameters:
+    tab (table)
+Returns:
+    (table) Array of unique entries.
+Realm:
+    Server
+Example Usage:
+    print(unpack(table.Unique({1,2,2,3}))) -- 1,2,3
+]]
 function table.Unique(tab)
     return table.GetKeys(table.MakeAssociative(tab))
 end
 
+--[[ 
+table.FullCopy
+Description:
+    Deep-copies a table, including vectors and angles.
+Parameters:
+    tab (table)
+Returns:
+    (table)
+Realm:
+    Server
+Example Usage:
+    local c = table.FullCopy({a=1,b={2}})
+]]
 function table.FullCopy(tab)
     local res = {}
     for k, v in pairs(tab) do
@@ -474,6 +637,20 @@ function table.FullCopy(tab)
     return res
 end
 
+--[[ 
+table.Filter
+Description:
+    In-place filters an array by a predicate.
+Parameters:
+    tab  (table)   — Array.
+    func (function) — Returns truthy to keep element.
+Returns:
+    (table) Filtered array.
+Realm:
+    Server
+Example Usage:
+    lia.utilities.Filter({1,2,3}, function(x) return x>1 end) -- {2,3}
+]]
 function table.Filter(tab, func)
     local c = 1
     for i = 1, #tab do
@@ -489,6 +666,20 @@ function table.Filter(tab, func)
     return tab
 end
 
+--[[ 
+table.FilterCopy
+Description:
+    Returns a new array of elements passing a predicate.
+Parameters:
+    tab  (table)
+    func (function)
+Returns:
+    (table)
+Realm:
+    Server
+Example Usage:
+    local f = table.FilterCopy({1,2,3}, function(x) return x<3 end) -- {1,2}
+]]
 function table.FilterCopy(tab, func)
     local ret = {}
     for i = 1, #tab do
@@ -497,24 +688,90 @@ function table.FilterCopy(tab, func)
     return ret
 end
 
+--[[ 
+math.UnitsToInches
+Description:
+    Converts game units to inches.
+Parameters:
+    units (number)
+Returns:
+    (number)
+Realm:
+    Server
+Example Usage:
+    print(math.UnitsToInches(64))
+]]
 function math.UnitsToInches(units)
     return units * 0.75
 end
 
+--[[ 
+math.UnitsToCentimeters
+Description:
+    Converts game units to centimeters.
+Parameters:
+    units (number)
+Returns:
+    (number)
+Realm:
+    Server
+Example Usage:
+    print(math.UnitsToCentimeters(64))
+]]
 function math.UnitsToCentimeters(units)
     return math.UnitsToInches(units) * 2.54
 end
 
+--[[ 
+math.UnitsToMeters
+Description:
+    Converts game units to meters.
+Parameters:
+    units (number)
+Returns:
+    (number)
+Realm:
+    Server
+Example Usage:
+    print(math.UnitsToMeters(64))
+]]
 function math.UnitsToMeters(units)
     return math.UnitsToInches(units) * 0.0254
 end
 
+--[[ 
+math.Bias
+Description:
+    Applies a bias curve to x.
+Parameters:
+    x      (number)
+    amount (number) — Bias amount ≠ -1.
+Returns:
+    (number)
+Realm:
+    Server
+Example Usage:
+    print(math.Bias(0.3, 2))
+]]
 function math.Bias(x, amount)
-    local exp = 0
-    if amount ~= -1 then exp = math.log(amount) * -1.4427 end
+    local exp = amount ~= -1 and math.log(amount) * -1.4427 or 0
     return math.pow(x, exp)
 end
 
+--[[ 
+math.Gain
+Description:
+    Applies a gain curve to x.
+Parameters:
+    x      (number)
+    amount (number)
+Returns:
+    (number)
+Realm:
+    Server
+Example Usage:
+    print(math.Gain(0.6, 0.5))
+]]
 function math.Gain(x, amount)
     if x < 0.5 then
         return 0.5 * math.Bias(2 * x, 1 - amount)
@@ -523,278 +780,364 @@ function math.Gain(x, amount)
     end
 end
 
+--[[ 
+math.ApproachSpeed
+Description:
+    Moves start towards dest by distance proportionally to speed.
+Parameters:
+    start (number)
+    dest  (number)
+    speed (number)
+Returns:
+    (number)
+Realm:
+    Server
+Example Usage:
+    print(math.ApproachSpeed(0,10,5))
+]]
 function math.ApproachSpeed(start, dest, speed)
     return math.Approach(start, dest, math.abs(start - dest) / speed)
 end
 
+--[[ 
+math.ApproachVectorSpeed
+Description:
+    Vector version of ApproachSpeed.
+Parameters:
+    start (Vector)
+    dest  (Vector)
+    speed (number)
+Returns:
+    (Vector)
+Realm:
+    Server
+Example Usage:
+    local v = math.ApproachVectorSpeed(Vector(0,0,0), Vector(10,0,0), 5)
+]]
 function math.ApproachVectorSpeed(start, dest, speed)
-    return Vector(math.ApproachSpeed(start.x, dest.x, speed), math.ApproachSpeed(start.y, dest.y, speed), math.ApproachSpeed(start.z, dest.z, speed))
+    local function ap(a, b)
+        return math.ApproachSpeed(a, b, speed)
+    end
+    return Vector(ap(start.x, dest.x), ap(start.y, dest.y), ap(start.z, dest.z))
 end
 
+--[[ 
+math.ApproachAngleSpeed
+Description:
+    Angle version of ApproachSpeed.
+Parameters:
+    start (Angle)
+    dest  (Angle)
+    speed (number)
+Returns:
+    (Angle)
+Realm:
+    Server
+Example Usage:
+    local a = math.ApproachAngleSpeed(Angle(0,0,0), Angle(90,0,0), 5)
+]]
 function math.ApproachAngleSpeed(start, dest, speed)
-    return Angle(math.ApproachSpeed(start.p, dest.p, speed), math.ApproachSpeed(start.y, dest.y, speed), math.ApproachSpeed(start.r, dest.r, speed))
+    local function ap(a, b)
+        return math.ApproachSpeed(a, b, speed)
+    end
+    return Angle(ap(start.p, dest.p), ap(start.y, dest.y), ap(start.r, dest.r))
 end
 
+--[[ 
+math.InRange
+Description:
+    Checks if val ∈ [min, max].
+Parameters:
+    val (number)
+    min (number)
+    max (number)
+Returns:
+    (boolean)
+Realm:
+    Server
+Example Usage:
+    print(math.InRange(5,1,10)) -- true
+]]
 function math.InRange(val, min, max)
     return val >= min and val <= max
 end
 
+--[[ 
+math.ClampAngle
+Description:
+    Clamps each component of an Angle between min and max Angles.
+Parameters:
+    val (Angle)
+    min (Angle)
+    max (Angle)
+Returns:
+    (Angle)
+Realm:
+    Server
+Example Usage:
+    local a = math.ClampAngle(Angle(100,0,0), Angle(0,0,0), Angle(90,90,90))
+]]
 function math.ClampAngle(val, min, max)
     return Angle(math.Clamp(val.p, min.p, max.p), math.Clamp(val.y, min.y, max.y), math.Clamp(val.r, min.r, max.r))
 end
 
-function math.ClampedRemap(val, frommin, frommax, tomin, tomax)
-    return math.Clamp(math.Remap(val, frommin, frommax, tomin, tomax), math.min(tomin, tomax), math.max(tomin, tomax))
+--[[ 
+math.ClampedRemap
+Description:
+    Remaps val from [fmin,fmax]→[tmin,tmax], then clamps to [min(tmin,tmax),max(tmin,tmax)].
+Parameters:
+    val  (number)
+    fmin (number)
+    fmax (number)
+    tmin (number)
+    tmax (number)
+Returns:
+    (number)
+Realm:
+    Server
+Example Usage:
+    print(math.ClampedRemap(5,0,10,100,200)) -- 150
+]]
+function math.ClampedRemap(val, fmin, fmax, tmin, tmax)
+    return math.Clamp(math.Remap(val, fmin, fmax, tmin, tmax), math.min(tmin, tmax), math.max(tmin, tmax))
 end
 
---[[
-    Function: lia.utilities.TimeUntil
- 
-    Description:
-       Returns the time remaining until a specified future date/time, in a readable format.
- 
-    Parameters:
-       strTime (string) — The time string in the format "HH:MM:SS - DD/MM/YYYY".
- 
-    Returns:
-       (string) A human-readable duration until the specified time, or an error message if invalid.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       print(lia.utilities.TimeUntil("14:30:00 - 28/03/2025"))
- ]]
+--[[ 
+lia.utilities.TimeUntil
+Description:
+    Computes human-readable time remaining until a future timestamp.
+Parameters:
+    strTime (string) — "HH:MM:SS - DD/MM/YYYY".
+Returns:
+    (string) e.g. "0 years, 2 months, 3 days, 4 hours, 5 minutes, 6 seconds", or error.
+Realm:
+    Shared
+Example Usage:
+    print(lia.utilities.TimeUntil("14:30:00 - 28/03/2025"))
+]]
 function lia.utilities.TimeUntil(strTime)
-    local pattern = "(%d+):(%d+):(%d+)%s*%-%s*(%d+)/(%d+)/(%d+)"
-    local hour, minute, second, day, month, year = strTime:match(pattern)
-    if not (hour and minute and second and day and month and year) then return "Invalid time format. Expected 'HH:MM:SS - DD/MM/YYYY'." end
-    hour, minute, second, day, month, year = tonumber(hour), tonumber(minute), tonumber(second), tonumber(day), tonumber(month), tonumber(year)
-    if hour < 0 or hour > 23 or minute < 0 or minute > 59 or second < 0 or second > 59 or day < 1 or day > 31 or month < 1 or month > 12 or year < 1970 then return "Invalid time values." end
-    local inputTimestamp = os.time({
-        year = year,
-        month = month,
-        day = day,
-        hour = hour,
-        min = minute,
-        sec = second
-    })
+    local pat = "(%d+):(%d+):(%d+)%s*%-%s*(%d+)/(%d+)/(%d+)"
+    local h, m, s, d, mo, y = strTime:match(pat)
+    if not (h and m and s and d and mo and y) then return "Invalid time format. Expected 'HH:MM:SS - DD/MM/YYYY'." end
+    h, m, s = tonumber(h), tonumber(m), tonumber(s)
+    d, mo, y = tonumber(d), tonumber(mo), tonumber(y)
+    if h > 23 or m > 59 or s > 59 or d < 1 or d > 31 or mo < 1 or mo > 12 or y < 1970 then return "Invalid time values." end
+    local inputTs = os.time{
+        year = y,
+        month = mo,
+        day = d,
+        hour = h,
+        min = m,
+        sec = s
+    }
 
-    local currentTimestamp = os.time()
-    if inputTimestamp <= currentTimestamp then return "The specified time is in the past." end
-    local diffSeconds = inputTimestamp - currentTimestamp
-    local years = math.floor(diffSeconds / (365.25 * 24 * 3600))
-    diffSeconds = diffSeconds % (365.25 * 24 * 3600)
-    local months = math.floor(diffSeconds / (30.44 * 24 * 3600))
-    diffSeconds = diffSeconds % (30.44 * 24 * 3600)
-    local days = math.floor(diffSeconds / (24 * 3600))
-    diffSeconds = diffSeconds % (24 * 3600)
-    local hours = math.floor(diffSeconds / 3600)
-    diffSeconds = diffSeconds % 3600
-    local minutes = math.floor(diffSeconds / 60)
-    local seconds = diffSeconds % 60
-    return string.format("%d years, %d months, %d days, %d hours, %d minutes, %d seconds", years, months, days, hours, minutes, seconds)
+    local currTs = os.time()
+    if inputTs <= currTs then return "The specified time is in the past." end
+    local diff = inputTs - currTs
+    local yrs = math.floor(diff / (365.25 * 24 * 3600))
+    diff = diff % (365.25 * 24 * 3600)
+    local mos = math.floor(diff / (30.44 * 24 * 3600))
+    diff = diff % (30.44 * 24 * 3600)
+    local days = math.floor(diff / 86400)
+    diff = diff % 86400
+    local hrs = math.floor(diff / 3600)
+    diff = diff % 3600
+    local mins = math.floor(diff / 60)
+    local secs = diff % 60
+    return string.format("%d years, %d months, %d days, %d hours, %d minutes, %d seconds", yrs, mos, days, hrs, mins, secs)
 end
 
---[[
-    Function: lia.utilities.CurrentLocalTime
- 
-    Description:
-       Returns the current local system time as a formatted string "HH:MM:SS - DD/MM/YYYY".
- 
-    Parameters:
-       None
- 
-    Returns:
-       (string) The formatted current local time.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       print(lia.utilities.CurrentLocalTime())
- ]]
+--[[ 
+lia.utilities.CurrentLocalTime
+Description:
+    Returns current local time formatted as "HH:MM:SS - DD/MM/YYYY".
+Returns:
+    (string)
+Realm:
+    Shared
+Example Usage:
+    print(lia.utilities.CurrentLocalTime())
+]]
 function lia.utilities.CurrentLocalTime()
-    local now = os.time()
-    local t = os.date("*t", now)
+    local t = os.date("*t", os.time())
     return string.format("%02d:%02d:%02d - %02d/%02d/%04d", t.hour, t.min, t.sec, t.day, t.month, t.year)
 end
 
---[[
-    Function: lia.utilities.SecondsToDHMS
- 
-    Description:
-       Converts a total number of seconds into days, hours, minutes, and seconds.
- 
-    Parameters:
-       seconds (number) — The total number of seconds.
- 
-    Returns:
-       (number, number, number, number) days, hours, minutes, and seconds.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local d, h, m, s = lia.utilities.SecondsToDHMS(98765)
-       print(d, "days,", h, "hours,", m, "minutes,", s, "seconds")
- ]]
+--[[ 
+lia.utilities.SecondsToDHMS
+Description:
+    Converts total seconds to days, hours, minutes, seconds.
+Parameters:
+    seconds (number)
+Returns:
+    (number,number,number,number) days, hours, minutes, seconds
+Realm:
+    Shared
+Example Usage:
+    local d,h,m,s = lia.utilities.SecondsToDHMS(98765)
+]]
 function lia.utilities.SecondsToDHMS(seconds)
     local days = math.floor(seconds / 86400)
     seconds = seconds % 86400
     local hours = math.floor(seconds / 3600)
     seconds = seconds % 3600
     local minutes = math.floor(seconds / 60)
-    local secs = seconds % 60
-    return days, hours, minutes, secs
+    return days, hours, minutes, seconds % 60
 end
 
---[[
-    Function: lia.utilities.HMSToSeconds
- 
-    Description:
-       Converts hours, minutes, and seconds to total seconds.
- 
-    Parameters:
-       hour (number) — The hour component.
-       minute (number) — The minute component.
-       second (number) — The second component.
- 
-    Returns:
-       (number) The total number of seconds.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       local totalSeconds = lia.utilities.HMSToSeconds(2, 30, 15)
-       print(totalSeconds) -- 9015
- ]]
+--[[ 
+lia.utilities.HMSToSeconds
+Description:
+    Converts hours, minutes, seconds to total seconds.
+Parameters:
+    hour   (number)
+    minute (number)
+    second (number)
+Returns:
+    (number)
+Realm:
+    Shared
+Example Usage:
+    print(lia.utilities.HMSToSeconds(2,30,15)) -- 9015
+]]
 function lia.utilities.HMSToSeconds(hour, minute, second)
     return hour * 3600 + minute * 60 + second
 end
 
---[[
-    Function: lia.utilities.FormatTimestamp
- 
-    Description:
-       Formats an epoch timestamp into "HH:MM:SS - DD/MM/YYYY".
- 
-    Parameters:
-       timestamp (number) — The epoch timestamp to format.
- 
-    Returns:
-       (string) A formatted date/time string.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       print(lia.utilities.FormatTimestamp(os.time()))
- ]]
+--[[ 
+lia.utilities.FormatTimestamp
+Description:
+    Formats an epoch timestamp as "HH:MM:SS - DD/MM/YYYY".
+Parameters:
+    timestamp (number)
+Returns:
+    (string)
+Realm:
+    Shared
+Example Usage:
+    print(lia.utilities.FormatTimestamp(os.time()))
+]]
 function lia.utilities.FormatTimestamp(timestamp)
     local t = os.date("*t", timestamp)
     return string.format("%02d:%02d:%02d - %02d/%02d/%04d", t.hour, t.min, t.sec, t.day, t.month, t.year)
 end
 
---[[
-    Function: lia.utilities.WeekdayName
- 
-    Description:
-       Returns the weekday name for a given date/time string in "HH:MM:SS - DD/MM/YYYY" format.
- 
-    Parameters:
-       strTime (string) — The date/time string.
- 
-    Returns:
-       (string) The weekday name, or "Invalid date" on error.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       print(lia.utilities.WeekdayName("14:30:00 - 27/03/2025"))
- ]]
+--[[ 
+lia.utilities.WeekdayName
+Description:
+    Returns the weekday for a given date/time string.
+Parameters:
+    strTime (string) — "HH:MM:SS - DD/MM/YYYY".
+Returns:
+    (string) Weekday name or "Invalid date".
+Realm:
+    Shared
+Example Usage:
+    print(lia.utilities.WeekdayName("14:30:00 - 27/03/2025"))
+]]
 function lia.utilities.WeekdayName(strTime)
-    local y, mo, d, h, mi, s = lia.utilities.ParseTime(strTime)
-    if not y then return "Invalid date" end
-    local t = os.time({
+    local pat = "(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)"
+    local h, m, s, d, mo, y = strTime:match(pat)
+    if not h then return "Invalid date" end
+    local ts = os.time{
         year = y,
         month = mo,
         day = d,
-        hour = h,
-        min = mi,
-        sec = s
-    })
-    return os.date("%A", t)
+        hour = tonumber(h),
+        min = tonumber(m),
+        sec = tonumber(s)
+    }
+    return os.date("%A", ts)
 end
 
---[[
-    Function: lia.utilities.TimeDifference
- 
-    Description:
-       Calculates the difference in days between a specified target date/time (in "HH:MM:SS - DD/MM/YYYY" format) and the current date/time.
- 
-    Parameters:
-       strTime (string) — The target date/time string.
- 
-    Returns:
-       (number) The day difference as an integer, or nil if invalid.
- 
-    Realm:
-       Shared
- 
-    Example Usage:
-       print(lia.utilities.TimeDifference("14:30:00 - 30/03/2025"))
- ]]
+--[[ 
+lia.utilities.TimeDifference
+Description:
+    Day difference between target datetime and now.
+Parameters:
+    strTime (string) — "HH:MM:SS - DD/MM/YYYY".
+Returns:
+    (number|nil) Days difference, or nil if invalid.
+Realm:
+    Shared
+Example Usage:
+    print(lia.utilities.TimeDifference("14:30:00 - 30/03/2025"))
+]]
 function lia.utilities.TimeDifference(strTime)
-    local pattern = "(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)"
-    local hour, minute, second, day, month, year = strTime:match(pattern)
-    if not (hour and minute and second and day and month and year) then return nil end
-    hour, minute, second, day, month, year = tonumber(hour), tonumber(minute), tonumber(second), tonumber(day), tonumber(month), tonumber(year)
-    local targetDate = os.time({
-        year = year,
-        month = month,
-        day = day,
-        hour = hour,
-        min = minute,
-        sec = second
-    })
-
-    local currentDate = os.time()
-    local differenceInDays = math.floor(os.difftime(targetDate, currentDate) / (24 * 60 * 60))
-    return differenceInDays
+    local pat = "(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)"
+    local h, m, s, d, mo, y = strTime:match(pat)
+    if not (h and m and s and d and mo and y) then return end
+    local target = os.time{
+        year = tonumber(y),
+        month = tonumber(mo),
+        day = tonumber(d),
+        hour = tonumber(h),
+        min = tonumber(m),
+        sec = tonumber(s)
+    }
+    return math.floor(os.difftime(target, os.time()) / 86400)
 end
 
-if SERVER then
-    function lia.utilities.spawnProp(model, position, force, lifetime, angles, collision)
-        local entity = ents.Create("prop_physics")
-        entity:SetModel(model)
-        entity:Spawn()
-        entity:SetCollisionGroup(collision or COLLISION_GROUP_WEAPON)
-        entity:SetAngles(angles or angle_zero)
-        if type(position) == "Player" then position = position:GetItemDropPos(entity) end
-        entity:SetPos(position)
-        if force then
-            local phys = entity:GetPhysicsObject()
-            if IsValid(phys) then phys:ApplyForceCenter(force) end
-        end
-
-        if (lifetime or 0) > 0 then timer.Simple(lifetime, function() if IsValid(entity) then entity:Remove() end end) end
-        return entity
+--[[ 
+lia.utilities.spawnProp
+Description:
+    Spawns a physics prop with options.
+Parameters:
+    model     (string)
+    position  (Vector|Player)
+    force     (Vector|nil)
+    lifetime  (number|nil)
+    angles    (Angle|nil)
+    collision (number|nil)
+Returns:
+    (Entity) The spawned prop.
+Realm:
+    Server
+Example Usage:
+    lia.utilities.spawnProp("models/props_c17/oildrum001.mdl", Vector(0,0,0), Vector(0,0,1000), 10)
+]]
+function lia.utilities.spawnProp(model, position, force, lifetime, angles, collision)
+    if not SERVER then return end
+    local ent = ents.Create("prop_physics")
+    ent:SetModel(model)
+    ent:Spawn()
+    ent:SetCollisionGroup(collision or COLLISION_GROUP_WEAPON)
+    ent:SetAngles(angles or angle_zero)
+    if type(position) == "Player" then position = position:GetItemDropPos(ent) end
+    ent:SetPos(position)
+    if force then
+        local phys = ent:GetPhysicsObject()
+        if IsValid(phys) then phys:ApplyForceCenter(force) end
     end
 
-    function lia.utilities.spawnEntities(entityTable)
-        for entity, position in pairs(entityTable) do
-            if isvector(position) then
-                local newEnt = ents.Create(entity)
-                if IsValid(newEnt) then
-                    newEnt:SetPos(position)
-                    newEnt:Spawn()
-                end
-            else
-                lia.information("Invalid position for entity", entity)
+    if (lifetime or 0) > 0 then timer.Simple(lifetime, function() if IsValid(ent) then ent:Remove() end end) end
+    return ent
+end
+
+--[[ 
+lia.utilities.spawnEntities
+Description:
+    Spawns multiple entities at given positions.
+Parameters:
+    entityTable (table) — Keys=class names, Values=Vector positions.
+Returns:
+    nil
+Realm:
+    Server
+Example Usage:
+    lia.utilities.spawnEntities({["npc_zombie"]=Vector(0,0,0)})
+]]
+function lia.utilities.spawnEntities(entityTable)
+    if not SERVER then return end
+    for class, pos in pairs(entityTable) do
+        if isvector(pos) then
+            local e = ents.Create(class)
+            if IsValid(e) then
+                e:SetPos(pos)
+                e:Spawn()
             end
+        else
+            lia.information("Invalid position for entity", class)
         end
     end
 end
