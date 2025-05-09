@@ -5,7 +5,7 @@
     local frame = vgui.Create("DFrame")
     frame:SetScaledSize(800, 600)
     frame:Center()
-    frame:SetTitle("Detailed Description - " .. ply:Name())
+    frame:SetTitle(L("detailedDescTitle", ply:Name()))
     frame:MakePopup()
     local leftPanel = vgui.Create("DPanel", frame)
     leftPanel:Dock(LEFT)
@@ -17,7 +17,7 @@
     textEntry:SetText(descText)
     local htmlPanel = vgui.Create("DHTML", frame)
     htmlPanel:Dock(FILL)
-    if descURL ~= "No detailed description found." then htmlPanel:OpenURL(descURL) end
+    if descURL ~= L("openDetDescFallback") then htmlPanel:OpenURL(descURL) end
 end)
 
 net.Receive("SetDetailedDescriptions", function()
@@ -25,7 +25,7 @@ net.Receive("SetDetailedDescriptions", function()
     local frame = vgui.Create("DFrame")
     frame:SetScaledSize(800, 600)
     frame:Center()
-    frame:SetTitle("Edit Detailed Description")
+    frame:SetTitle(L("editDescTitle"))
     frame:MakePopup()
     local textEntry = vgui.Create("DTextEntry", frame)
     textEntry:Dock(FILL)
@@ -40,12 +40,12 @@ net.Receive("SetDetailedDescriptions", function()
     if prevURL then
         urlEntry:SetText(prevURL)
     else
-        urlEntry:SetText("Reference Image URL")
+        urlEntry:SetText(L("refImagePlaceholder"))
     end
 
     local button = vgui.Create("liaSmallButton", frame)
     button:Dock(BOTTOM)
-    button:SetText("Edit")
+    button:SetText(L("edit"))
     button.DoClick = function()
         net.Start("EditDetailedDescriptions")
         net.WriteString(urlEntry:GetValue())

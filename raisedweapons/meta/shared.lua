@@ -28,16 +28,12 @@ function playerMeta:isWepRaised()
 end
 
 if SERVER then
-    function playerMeta:setWepRaised(state, notification)
+    function playerMeta:setWepRaised(state)
         self:setNetVar("raised", state)
         if IsValid(self:GetActiveWeapon()) then
             local weapon = self:GetActiveWeapon()
             weapon:SetNextPrimaryFire(CurTime() + 1)
             weapon:SetNextSecondaryFire(CurTime() + 1)
-            local weaponClass = weapon:GetClass()
-            local action = state and "raises" or "lowers"
-            local itemType = weaponClass == "lia_hands" and "hands" or "weapon"
-            if notification then lia.chat.send(self, "actions", action .. " his " .. itemType, false) end
         end
     end
 

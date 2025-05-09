@@ -2,15 +2,15 @@
 ITEM.model = "models/Items/BoxSRounds.mdl"
 ITEM.width = 1
 ITEM.height = 1
-ITEM.abv = 10
+ITEM.abv = 0
 ITEM.category = "Alcohol"
 function ITEM:getDesc()
-    return string.format("A alcoholic beverage with %d%% ABV.", self.abv)
+    return L("alcoholDesc", self.abv)
 end
 
 ITEM.functions.use = {
-    name = "Drink",
-    tip = "drinkTip",
+    name = L("drinkAction"),
+    tip = L("drinkTip"),
     icon = "icon16/add.png",
     onRun = function(item)
         local client = item.player

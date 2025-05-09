@@ -2,7 +2,7 @@
 lia.command.add("permaremove", {
     adminOnly = true,
     privilege = "Remove Map Entities",
-    desc = "Permanently removes the targeted map entity.",
+    desc = L("permRemoveDesc"),
     onRun = function(client)
         local entity = client:GetEyeTraceNoCursor().Entity
         local data = MODULE:getData({})

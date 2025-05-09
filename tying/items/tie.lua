@@ -2,7 +2,7 @@
 ITEM.desc = "A pair of ties used in the process of restraining individuals by binding their hands."
 ITEM.model = "models/items/crossbowrounds.mdl"
 ITEM.functions.use = {
-    name = "Use",
+    name = L("use"),
     onRun = function(item)
         local client = item.player
         local target = client:getTracedEntity()

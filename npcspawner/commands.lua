@@ -2,12 +2,12 @@
     privilege = "Force NPC Spawn",
     superAdminOnly = true,
     syntax = "[string spawnerName]",
-    desc = "Force-spawns NPCs at the chosen spawn zone, overriding cooldown if possible.",
+    desc = L("forceNPCSpawnDesc"),
     onRun = function(client)
         local map = game.GetMap()
         local zones = MODULE.SpawnPositions[map]
         if not zones then
-            client:notify("No NPC Spawns here")
+            client:notify(L("noNPCSpawns"))
             return
         end
 
@@ -16,22 +16,22 @@
             table.insert(options, spawnerName)
         end
 
-        client:requestDropdown("Select Spawner", "Choose a spawner zone to force a spawn:", options, function(selectedSpawner)
+        client:requestDropdown(L("selectSpawnerTitle"), L("selectSpawnerPrompt"), options, function(selectedSpawner)
             if not selectedSpawner then return end
             local zone = zones[selectedSpawner]
             if zone then
                 local spawned, err = processZone(zone, selectedSpawner)
                 if spawned then
-                    client:notify("Forced spawn on spawner: " .. selectedSpawner)
+                    client:notify(L("forcedSpawnSuccess", selectedSpawner))
                 else
                     if err then
-                        client:notify("Force spawn did not occur on spawner: " .. selectedSpawner .. " because old NPCs are still alive.")
+                        client:notify(L("forcedSpawnBlocked", selectedSpawner))
                     else
-                        client:notify("Force spawn did not occur on spawner: " .. selectedSpawner)
+                        client:notify(L("forcedSpawnFailed", selectedSpawner))
                     end
                 end
             else
-                client:notify("Spawner not found!")
+                client:notify(L("spawnerNotFound"))
             end
         end)
     end

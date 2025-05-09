@@ -3,7 +3,7 @@ lia.command.add("partytier", {
     adminOnly = true,
     privilege = "Management - Assign Party Tiers",
     syntax = "[string targetPlayer] [number tier]",
-    desc = "Assigns or removes a party tier for the specified player.",
+    desc = L("partytierCommandDesc"),
     onRun = function(client, arguments)
         local char = client:getChar()
         if not char then return L("mustBeOnCharacter") end

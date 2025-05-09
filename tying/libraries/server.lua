@@ -15,7 +15,7 @@ function MODULE:CanExitVehicle(_, client)
 end
 
 function MODULE:CanPlayerUseChar(client)
-    if IsHandcuffed(client) then return false, "You're currently handcuffed." end
+    if IsHandcuffed(client) then return false, L("youAreTied") end
 end
 
 function MODULE:PostPlayerLoadout(client)
@@ -46,8 +46,8 @@ function MODULE:PlayerUse(client, entity)
     if IsHandcuffed(client) then return false end
     if IsHandcuffed(entity) and entity:IsPlayer() and not entity.liaBeingUnTied then
         entity.liaBeingUnTied = true
-        entity:setAction("@beingUntied", 5)
-        client:setAction("@unTying", 5)
+        entity:setAction(L("beingUntied"), 5)
+        client:setAction(L("untying"), 5)
         client:doStaredAction(entity, function()
             OnHandcuffRemove(entity)
             entity.liaBeingUnTied = false

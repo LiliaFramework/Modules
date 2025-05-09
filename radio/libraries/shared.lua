@@ -8,7 +8,7 @@ end
 
 lia.chat.register("radio", {
     format = "%s says in radio: \"%s\"",
-    font = "liaRadioFont",
+    font = lia.config.get("RadioFont", "Lucida Console"),
     onGetColor = function()
         local colorConfig = lia.config.get("RadioChatColor")
         return Color(colorConfig.r, colorConfig.g, colorConfig.b)
@@ -22,23 +22,17 @@ lia.chat.register("radio", {
         if dist <= speakRange then return true end
         if listenerInv then
             for _, v in pairs(listenerInv:getItems()) do
-                if v.isRadio and v:getData("enabled", false) then
-                    if CURFREQ == v:getData("freq", "000.0") and CURCHANNEL == v:getData("channel", 1) then
-                        EndChatter(listener)
-                        return true
-                    end
+                if v.isRadio and v:getData("enabled", false) and CURFREQ == v:getData("freq", "000.0") and CURCHANNEL == v:getData("channel", 1) then
+                    EndChatter(listener)
+                    return true
                 end
             end
         end
 
         for _, v in ipairs(listenerEnts) do
-            if v:GetClass() == "lia_item" then
-                if v.isRadio and v:getData("enabled", false) then
-                    if CURFREQ == v:getData("freq", "000.0") and CURCHANNEL == v:getData("channel", 1) then
-                        MODULE:EndChatter(listener)
-                        return true
-                    end
-                end
+            if v:GetClass() == "lia_item" and v.isRadio and v:getData("enabled", false) and CURFREQ == v:getData("freq", "000.0") and CURCHANNEL == v:getData("channel", 1) then
+                MODULE:EndChatter(listener)
+                return true
             end
         end
         return false

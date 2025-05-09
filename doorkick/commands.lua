@@ -1,7 +1,7 @@
 ﻿local MODULE = MODULE
 lia.command.add("doorkick", {
     adminOnly = false,
-    desc = "Attempts to kick open the targeted door if you’re the correct distance away and not blacklisted.",
+    desc = L("doorkickCommandDesc"),
     onRun = function(client)
         local ent = client:GetEyeTraceNoCursor().Entity
         if IsValid(ent) and ent:isDoor() and ent:getNetVar("disabled", false) then

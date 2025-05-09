@@ -1,5 +1,4 @@
 ﻿local PANEL = {}
-
 local music
 local contents = {
     text = "",
@@ -67,10 +66,10 @@ function PANEL:TriggerText()
     textPanel.Paint = function() end
     local panelWide, panelTall = 300, 300
     textPanel:SetScaledSize(panelWide, panelTall)
-    if contents.text and contents.text ~= "" then
+    if contents.text then
         textPanel.text = textPanel:Add("DLabel")
         textPanel.text:SetFont("CinematicSplashFont")
-        textPanel.text:SetTextColor(contents.color or color_white)
+        textPanel.text:SetTextColor(contents.color)
         textPanel.text:SetText(contents.text)
         textPanel.text:SetAutoStretchVertical(true)
         textPanel.text:Dock(TOP)
@@ -78,15 +77,15 @@ function PANEL:TriggerText()
         textPanel.text:AlphaTo(255, 2, 0, function() if not contents.bigText then self:TriggerCountdown() end end)
         surface.SetFont("CinematicSplashFont")
         textPanel.text.textWide, textPanel.text.textTall = surface.GetTextSize(contents.text)
-        panelWide = panelWide > textPanel.text.textWide and panelWide or textPanel.text.textWide
+        panelWide = math.max(panelWide, textPanel.text.textWide)
         panelTall = panelTall + textPanel.text.textTall
         textPanel:SetScaledSize(panelWide, panelTall)
     end
 
-    if contents.bigText and contents.bigText ~= "" then
+    if contents.bigText then
         textPanel.bigText = textPanel:Add("DLabel")
         textPanel.bigText:SetFont("CinematicSplashFontBig")
-        textPanel.bigText:SetTextColor(contents.color or color_white)
+        textPanel.bigText:SetTextColor(contents.color)
         textPanel.bigText:SetText(contents.bigText)
         textPanel.bigText:SetAutoStretchVertical(true)
         textPanel.bigText:Dock(TOP)
@@ -94,7 +93,7 @@ function PANEL:TriggerText()
         textPanel.bigText:AlphaTo(255, 2, 1, function() self:TriggerCountdown() end)
         surface.SetFont("CinematicSplashFontBig")
         textPanel.bigText.textWide, textPanel.bigText.textTall = surface.GetTextSize(contents.bigText)
-        panelWide = panelWide > textPanel.bigText.textWide and panelWide or textPanel.bigText.textWide
+        panelWide = math.max(panelWide, textPanel.bigText.textWide)
         panelTall = panelTall + textPanel.bigText.textTall
         textPanel:SetScaledSize(panelWide, panelTall)
     end
@@ -134,9 +133,9 @@ function PANEL:Init()
     self:SetSize(ScrW() * 0.6, ScrH() * 0.6)
     self:Center()
     self:MakePopup()
-    self:SetTitle("Cinematic Splash Text Menu")
+    self:SetTitle(L("cinematicMenuTitle"))
     local textLabel = self:Add("DLabel")
-    textLabel:SetText("Splash Text")
+    textLabel:SetText(L("splashTextLabel"))
     textLabel:SetFont("CinematicSplashFontSmall")
     textLabel:SetTextColor(lia.config.get("color", Color(75, 119, 190)))
     textLabel:Dock(TOP)
@@ -150,7 +149,7 @@ function PANEL:Init()
     textEntry.OnValueChange = function(_, value) self.contents.text = value end
     textEntry:SetTall(textEntryTall)
     local bigTextLabel = self:Add("DLabel")
-    bigTextLabel:SetText("Big Splash Text (Appears under normal text)")
+    bigTextLabel:SetText(L("bigSplashTextLabel"))
     bigTextLabel:SetFont("CinematicSplashFontSmall")
     bigTextLabel:SetTextColor(lia.config.get("color", Color(75, 119, 190)))
     bigTextLabel:Dock(TOP)
@@ -164,7 +163,7 @@ function PANEL:Init()
     bigTextEntry.OnValueChange = function(_, value) self.contents.bigText = value end
     bigTextEntry:SetTall(textEntryTall)
     local durationLabel = self:Add("DLabel")
-    durationLabel:SetText("Splash Text Duration")
+    durationLabel:SetText(L("durationLabel"))
     durationLabel:SetFont("CinematicSplashFontSmall")
     durationLabel:SetTextColor(lia.config.get("color", Color(75, 119, 190)))
     durationLabel:Dock(TOP)
@@ -179,7 +178,7 @@ function PANEL:Init()
     durationSlider:DockMargin(10, 0, 0, 5)
     durationSlider.OnValueChanged = function(_, val) self.contents.duration = math.Round(val) end
     local blackBarBool = self:Add("DCheckBoxLabel")
-    blackBarBool:SetText("Draw Black Bars")
+    blackBarBool:SetText(L("drawBlackBars"))
     blackBarBool:SetFont("CinematicSplashFontSmall")
     blackBarBool:SetValue(self.contents.blackBars)
     blackBarBool.OnChange = function(_, value) self.contents.blackBars = value end
@@ -187,7 +186,7 @@ function PANEL:Init()
     blackBarBool:DockMargin(20, 5, 20, 0)
     blackBarBool:SizeToContents()
     local musicBool = self:Add("DCheckBoxLabel")
-    musicBool:SetText("Play audio")
+    musicBool:SetText(L("playAudio"))
     musicBool:SetFont("CinematicSplashFontSmall")
     musicBool:SetValue(self.contents.music)
     musicBool.OnChange = function(_, value) self.contents.music = value end
@@ -205,7 +204,7 @@ function PANEL:Init()
     local quitButton = self:Add("DButton")
     quitButton:Dock(BOTTOM)
     quitButton:DockMargin(20, 5, 20, 0)
-    quitButton:SetText("CANCEL")
+    quitButton:SetText(string.upper(L("cancel")))
     quitButton:SetTextColor(Color(255, 0, 0))
     quitButton:SetFont("CinematicSplashFontSmall")
     quitButton:SetTall(ScrH() * 0.05)
@@ -213,18 +212,18 @@ function PANEL:Init()
     local postButton = self:Add("DButton")
     postButton:Dock(BOTTOM)
     postButton:DockMargin(20, 5, 20, 0)
-    postButton:SetText("POST")
+    postButton:SetText(string.upper(L("post")))
     postButton:SetTextColor(color_white)
     postButton:SetFont("CinematicSplashFontSmall")
     postButton:SetTall(ScrH() * 0.05)
     postButton.DoClick = function()
-        if not (self.contents and (self.contents.text or self.contents.bigText)) then
-            lia.notices.notify("Something went horribly wrong. Try reloading this panel")
+        if not (self.contents.text or self.contents.bigText) then
+            lia.notices.notify(L("errorPanelReload"))
             return
         end
 
         if self.contents.text == "" and self.contents.bigText == "" then
-            lia.notices.notify("Text is missing. Enter some text to display")
+            lia.notices.notify(L("errorMissingText"))
             return
         end
 
@@ -236,7 +235,7 @@ function PANEL:Init()
         net.WriteBool(self.contents.music)
         net.WriteColor(self.contents.color)
         net.SendToServer()
-        lia.notices.notify("Splash Text Sent")
+        lia.notices.notify(L("splashTextSent"))
         self:Remove()
     end
 

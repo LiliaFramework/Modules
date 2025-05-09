@@ -30,9 +30,9 @@ end
 function ENT:Use(client)
     if IsValid(client) and client:IsPlayer() and MODULE.DonatorWeapons[client:SteamID64()] then
         self:GiveDonatorWeapons(client)
-        client:notify("Enjoy your weapons, donator!")
+        client:notify(L("donatorEnjoyWeapons"))
     else
-        client:notify("You have no permanent weapons!")
+        client:notify(L("noPermanentWeapons"))
     end
 end
 

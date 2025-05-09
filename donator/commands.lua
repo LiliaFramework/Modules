@@ -2,7 +2,7 @@
     privilege = "Subtract CharSlots",
     superAdminOnly = true,
     syntax = "[string targetPlayer]",
-    desc = "Removes one character slot from the specified player.",
+    desc = L("subtractCharSlotsDesc"),
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
         if not target or not IsValid(target) then
@@ -18,7 +18,7 @@ lia.command.add("addcharslots", {
     privilege = "Add CharSlots",
     superAdminOnly = true,
     syntax = "[string targetPlayer]",
-    desc = "Grants one extra character slot to the specified player.",
+    desc = L("addCharSlotsDesc"),
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
         if not target or not IsValid(target) then
@@ -34,7 +34,7 @@ lia.command.add("setcharslots", {
     privilege = "Set CharSlots",
     superAdminOnly = true,
     syntax = "[string targetPlayer] [number slotCount]",
-    desc = "Sets the total number of character slots for the specified player.",
+    desc = L("setCharSlotsDesc"),
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
         local count = tonumber(arguments[2])
@@ -44,7 +44,7 @@ lia.command.add("setcharslots", {
         end
 
         if not count then
-            client:notify("You didn't specify a valid slot count!")
+            client:notify(L("invalidSlotCount"))
             return
         end
 

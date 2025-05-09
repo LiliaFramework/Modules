@@ -1,7 +1,7 @@
 ﻿lia.command.add("rumour", {
     adminOnly = false,
     syntax = "[string message]",
-    desc = "Broadcasts a secret rumour to criminal factions, with a small chance of alerting police.",
+    desc = L("rumourCommandDesc"),
     onRun = function(client, arguments)
         local faction = lia.faction.indices[client:Team()]
         if not faction or not faction.criminal then
@@ -27,8 +27,11 @@
         local revealMath = math.random() < revealChance
         for _, target in player.Iterator() do
             local targetFaction = lia.faction.indices[target:Team()]
-            if targetFaction and targetFaction.criminal then ClientAddText(target, L("rumourMessagePrefix", rumourMessage)) end
-            if revealMath and targetFaction and targetFaction.police then ClientAddText(target, L("rumourMessagePrefix", rumourMessage)) end
+            if targetFaction and targetFaction.criminal then
+                ClientAddText(target, L("rumourMessagePrefix", rumourMessage))
+            elseif revealMath and targetFaction and targetFaction.police then
+                ClientAddText(target, L("rumourMessagePrefix", rumourMessage))
+            end
         end
     end
 })

@@ -12,7 +12,7 @@ ITEM.functions.sabotage = {
         client:setAction("Breaking", 5, function()
             if IsValid(item.entity) then
                 item:remove()
-                lia.chat.send(client, "actions", "breaks the radio, placing it on the floor. This radio is now broken beyond repair", false)
+                lia.chat.send(client, "actions", L("radioBreakAction"), false)
                 lia.item.spawn("broken_radio", client:getItemDropPos())
             end
         end)
@@ -30,7 +30,7 @@ ITEM.functions.enable = {
         client.RadioCount = client.RadioCount or {}
         for _, v in pairs(items) do
             if v.id ~= item.id and v.uniqueID == item.uniqueID and v:getData("enabled") then
-                client:notify("You already have a radio equipped!")
+                client:notifyLocalized("radioAlreadyEquipped")
                 return false
             end
         end
@@ -78,9 +78,9 @@ ITEM.functions.changeFreq = {
 
 function ITEM:getDesc()
     if not self.entity or not IsValid(self.entity) then
-        return L("radioDescFormat", self:getData("enabled") and L("radioPowerOn") or L("radioPowerOff"), self:getData("freq", "000.0"))
+        return L("radioDescFormat", self:getData("enabled") and L("on") or L("off"), self:getData("freq", "000.0"))
     else
-        return L("radioDescEntityFormat", self.entity:getData("enabled") and L("radioPowerOn") or L("radioPowerOff"), self.entity:getData("freq", "000.0"))
+        return L("radioDescEntityFormat", self.entity:getData("enabled") and L("on") or L("off"), self.entity:getData("freq", "000.0"))
     end
 end
 

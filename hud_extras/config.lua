@@ -16,8 +16,6 @@ lia.config.add("GamemodeVersion", "Gamemode Version", "", nil, {
     type = "Generic"
 })
 
-if CLIENT then
-    lia.option.add("FPSDraw", "FPS Draw", "Enable FPS display on the HUD", false, nil, {
-        category = "HUD",
-    })
-end
+lia.option.add("FPSDraw", "FPS Draw", "Enable FPS display on the HUD", false, nil, {
+    category = "HUD",
+})

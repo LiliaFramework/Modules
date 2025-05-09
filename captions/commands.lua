@@ -1,7 +1,7 @@
 ﻿lia.command.add("sendCaption", {
     adminOnly = true,
     syntax = "[string targetPlayer] [string caption] [number duration]",
-    desc = "Sends a caption message to a specific player for a set duration.",
+    desc = L("sendCaptionDesc"),
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
         local text = arguments[2]
@@ -14,7 +14,7 @@
         if text then
             lia.caption.start(target, text, duration)
         else
-            client:notify("You must provide a valid player and caption text.")
+            client:notify(L("sendCaptionError"))
         end
     end
 })
@@ -22,7 +22,7 @@
 lia.command.add("broadcastCaption", {
     adminOnly = true,
     syntax = "[string caption] [number duration]",
-    desc = "Broadcasts a caption message to all players for a set duration.",
+    desc = L("broadcastCaptionDesc"),
     onRun = function(client, arguments)
         local text = arguments[1]
         local duration = tonumber(arguments[2]) or 5
@@ -31,7 +31,7 @@ lia.command.add("broadcastCaption", {
                 lia.caption.start(target, text, duration)
             end
         else
-            client:notify("You must provide a caption text.")
+            client:notify(L("broadcastCaptionError"))
         end
     end
 })

@@ -5,9 +5,13 @@ end
 
 function MODULE:LoadCharInformation()
     local character = LocalPlayer():getChar()
-    hook.Run("AddTextField", "General Info", "wanted", "Wanted", function() return character:IsWanted() and "Wanted" or "Upstanding" end)
+    hook.Run("AddTextField", L("generalinfo"), "wanted", L("wanted"), function() return character:IsWanted() and L("wanted") or L("upstanding") end)
 end
 
 function MODULE:LoadMainMenuInformation(info, character)
-    if character:IsWanted() then table.insert(info, "Reputation: " .. (character:IsWanted() and "Wanted" or "Outstanding")) end
+    if character:IsWanted() then
+        table.insert(info, L("reputationField") .. ": " .. L("wanted"))
+    else
+        table.insert(info, L("reputationField") .. ": " .. L("upstanding"))
+    end
 end

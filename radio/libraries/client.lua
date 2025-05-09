@@ -1,19 +1,19 @@
 ﻿function MODULE:LoadCharInformation()
     local client = LocalPlayer()
-    hook.Run("AddSection", "Radio", Color(0, 0, 0), 8)
+    hook.Run("AddSection", L("radio"), Color(0, 0, 0), 8)
     local status, frequency = self:GetPlayerRadioFrequency(client)
-    hook.Run("AddTextField", "Radio", "radiostatus", "Radio", function() return status end)
-    hook.Run("AddTextField", "Radio", "radiofrequency", "Frequency", function() return frequency end)
+    hook.Run("AddTextField", L("radio"), "radiostatus", L("radio"), function() return status end)
+    hook.Run("AddTextField", L("radio"), "radiofrequency", L("frequency"), function() return frequency end)
 end
 
 function MODULE:GetPlayerRadioFrequency(client)
     local char = client:getChar()
-    if not char then return "You don't own a radio", "000.0" end
+    if not char then return L("radioNotOwned"), "000.0" end
     local inv = char:getInv()
-    if not inv then return "You don't own a radio", "000.0" end
+    if not inv then return L("radioNotOwned"), "000.0" end
     local radio = inv:getFirstItemOfType("radio")
-    if not radio then return "You don't own a radio!", "000.0" end
-    local status = radio:getData("enabled") and "On" or "Off"
+    if not radio then return L("radioNotOwned"), "000.0" end
+    local status = radio:getData("enabled") and L("on") or L("off")
     local frequency = radio:getData("freq", "000.0")
     return status, frequency
 end

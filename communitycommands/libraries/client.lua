@@ -1,5 +1,4 @@
-﻿
-net.Receive("OpenCommunityURL", function()
+﻿net.Receive("OpenCommunityURL", function()
     local commandName = net.ReadString()
     local url = net.ReadString()
     local openIngame = net.ReadBool()
@@ -17,6 +16,6 @@ net.Receive("OpenCommunityURL", function()
             gui.OpenURL(url)
         end
     else
-        chat.AddText(Color(255, 0, 0), "Invalid URL received.")
+        chat.AddText(Color(255, 0, 0), L("invalidURLReceived"))
     end
 end)

@@ -12,28 +12,28 @@ if SERVER then
 
         for _, ply in player.Iterator() do
             if ply:CanSeeWarrantsIssued() then
-                local expirationText = warranted and L("WarrantExpirationIssued") or L("WarrantExpirationExpired")
+                local expirationText = warranted and L("WarrantExpirationIssued", self:getDesc()) or L("WarrantExpirationExpired", self:getDesc())
                 local description = self and self:getDesc() or L("UnknownDescription")
                 ply:notify(string.format(expirationText, description, warranted and L("issued") or L("expired")))
             end
         end
+
+        function characterMeta:CanWarrantPlayers()
+            return self:hasFlags("P") or self:hasPrivilege("Staff Permissions - Can Warrant People")
+        end
+
+        function characterMeta:CanSeeWarrantsIssued()
+            local faction = lia.faction.indices[self:Team()]
+            return self:hasPrivilege("Staff Permissions - Can See Warrant Notifications") or faction.CanSeeWarrantsNotifications
+        end
     end
 
-    function characterMeta:CanWarrantPlayers()
-        return self:hasFlags("P") or self:hasPrivilege("Staff Permissions - Can Warrant People")
+    function characterMeta:IsWanted()
+        return self:getData("wanted", false)
     end
 
-    function characterMeta:CanSeeWarrantsIssued()
+    function characterMeta:CanSeeWarrants()
         local faction = lia.faction.indices[self:Team()]
-        return self:hasPrivilege("Staff Permissions - Can See Warrant Notifications") or faction.CanSeeWarrantsNotifications
+        return self:hasPrivilege("Staff Permissions - Can See Warrants") or faction.CanSeeWarrants
     end
-end
-
-function characterMeta:IsWanted()
-    return self:getData("wanted", false)
-end
-
-function characterMeta:CanSeeWarrants()
-    local faction = lia.faction.indices[self:Team()]
-    return self:hasPrivilege("Staff Permissions - Can See Warrants") or faction.CanSeeWarrants
 end

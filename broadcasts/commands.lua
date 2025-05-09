@@ -2,10 +2,10 @@
     adminOnly = false,
     alias = "classbc",
     syntax = "[string message]",
-    desc = "Sends a broadcast message to all players of selected class(es).",
+    desc = L("classBroadcastTitle"),
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)
-        if not message then return L("classBroadcastInvalidArgument") end
+        if not message then return L("invalidArg") end
         if not client:getChar():hasFlags("D") and not client:hasPrivilege("Staff Permissions - Can Use Class Broadcast") then
             client:notify(L("classBroadcastNoPermission"))
             return false
@@ -51,10 +51,10 @@ lia.command.add("factionbroadcast", {
     adminOnly = false,
     alias = "factionbc",
     syntax = "[string message]",
-    desc = "Sends a broadcast message to all players of selected faction(s).",
+    desc = L("factionBroadcastTitle"),
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)
-        if not message then return L("factionBroadcastInvalidArgument") end
+        if not message then return L("invalidArg") end
         if not client:getChar():hasFlags("B") and not client:hasPrivilege("Staff Permissions - Can Use Faction Broadcast") then
             client:notify(L("factionBroadcastNoPermission"))
             return false

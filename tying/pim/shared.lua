@@ -1,4 +1,4 @@
-﻿AddInteraction("Put in vehicle", {
+﻿AddInteraction(L("putInVehicle"), {
     runServer = true,
     shouldShow = function(client, target)
         local es = ents.FindInSphere(client:GetPos(), 150)
@@ -37,7 +37,7 @@
     end
 })
 
-AddInteraction("Remove Cuffed Passengers", {
+AddInteraction(L("removeCuffedPassengers"), {
     runServer = true,
     shouldShow = function(client)
         for _, v in pairs(ents.FindInSphere(client:GetPos(), 150)) do
@@ -53,7 +53,7 @@ AddInteraction("Remove Cuffed Passengers", {
     end
 })
 
-AddInteraction("Tie", {
+AddInteraction(L("tie"), {
     runServer = true,
     shouldShow = function(client, target) return client:getChar():getInv():hasItem("tie") and IsValid(target) and not IsHandcuffed(target) end,
     onRun = function(client, target)
@@ -65,8 +65,8 @@ AddInteraction("Tie", {
             return false
         end
 
-        target:setAction("@beingTied", 3)
-        client:setAction("@tying", 3)
+        target:setAction(L("beingUntied"), 3)
+        client:setAction(L("untying"), 3)
         client:doStaredAction(target, function()
             HandcuffPlayer(target)
             item:remove()
@@ -77,13 +77,13 @@ AddInteraction("Tie", {
     end
 })
 
-AddInteraction("UnTie", {
+AddInteraction(L("unTie"), {
     runServer = true,
     shouldShow = function(_, target) return IsHandcuffed(target) end,
     onRun = function(client, target)
         if not SERVER then return end
-        target:setAction("@beingUntied", 3)
-        client:setAction("@unTying", 3)
+        target:setAction(L("beingUntied"), 3)
+        client:setAction(L("untying"), 3)
         client:doStaredAction(target, function() OnHandcuffRemove(target) end, 3, function()
             client:stopAction()
             target:stopAction()

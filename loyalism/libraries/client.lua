@@ -8,10 +8,10 @@ function MODULE:LoadCharInformation()
     local client = LocalPlayer()
     local character = client:getChar()
     local tier = tonumber(character:getData("party_tier", 0))
-    hook.Run("AddTextField", "General Info", "partytier", "Party Tier", function() return self.Tiers[tier] end)
+    hook.Run("AddTextField", L("generalinfo"), "partytier", L("partyTier"), function() return self.Tiers[tier] end)
 end
 
 function MODULE:LoadMainMenuInformation(info, character)
     local tier = tonumber(character:getData("party_tier", 0))
-    table.insert(info, "Party Tier: " .. self.Tiers[tier])
+    table.insert(info, L("partyTierDisplay", self.Tiers[tier]))
 end

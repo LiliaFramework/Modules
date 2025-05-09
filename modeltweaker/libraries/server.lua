@@ -16,8 +16,8 @@ net.Receive("WardrobeChangeModel", function(_, client)
     if isValid then
         char:setModel(newModel)
         client:SetModel(newModel)
-        client:notify("Your model has been changed successfully.")
+        client:notify(L("wardrobeModelChanged"))
     else
-        client:notify("Invalid model selected.")
+        client:notify(L("wardrobeModelInvalid"))
     end
 end)

@@ -3,9 +3,9 @@
 end
 
 function MODULE:DrawCharInfo(client, _, info)
-    if client:IsDrunk() then info[#info + 1] = {"This Person Is Heavily Intoxicated", Color(245, 215, 110)} end
+    if client:IsDrunk() then info[#info + 1] = {L("intoxicatedStatus"), Color(245, 215, 110)} end
 end
 
 function MODULE:LoadCharInformation()
-    hook.Run("AddTextField", "General Info", "drunkness", "Drunkness", function() return LocalPlayer():getNetVar("lia_alcoholism_bac", 0) .. "%" end)
+    hook.Run("AddTextField", L("generalInfo"), "drunkness", L("drunkness"), function() return LocalPlayer():getNetVar("lia_alcoholism_bac", 0) .. "%" end)
 end

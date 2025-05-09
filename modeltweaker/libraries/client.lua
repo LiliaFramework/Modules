@@ -4,12 +4,12 @@
     local frame = vgui.Create("DFrame")
     frame:SetScaledSize(700, 800)
     frame:Center()
-    frame:SetTitle("Select Your Model")
+    frame:SetTitle(L("wardrobeSelectTitle"))
     frame:MakePopup()
     local dropdown = vgui.Create("DComboBox", frame)
     dropdown:SetPos(100, 50)
     dropdown:SetScaledSize(500, 50)
-    dropdown:SetValue("Select a Model")
+    dropdown:SetValue(L("wardrobeSelectPrompt"))
     for _, model in ipairs(models) do
         dropdown:AddChoice(model)
     end
@@ -56,7 +56,7 @@
     end
 
     local confirmButton = vgui.Create("DButton", frame)
-    confirmButton:SetText("Confirm")
+    confirmButton:SetText(L("wardrobeConfirmButton"))
     confirmButton:SetPos(100, 650)
     confirmButton:SetScaledSize(500, 60)
     confirmButton:SetColor(Color(255, 255, 255))
@@ -64,13 +64,13 @@
     confirmButton:SetContentAlignment(5)
     confirmButton.DoClick = function()
         local selected = dropdown:GetSelected()
-        if selected and selected ~= "Select a Model" then
+        if selected and selected ~= L("wardrobeSelectPrompt") then
             net.Start("WardrobeChangeModel")
             net.WriteString(selected)
             net.SendToServer()
             frame:Close()
         else
-            chat.AddText(Color(255, 0, 0), "Please select a valid model.")
+            chat.AddText(Color(255, 0, 0), L("wardrobeSelectError"))
         end
     end
 end)

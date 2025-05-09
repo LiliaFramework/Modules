@@ -59,12 +59,12 @@ function MODULE:StartCommand(client, cmd)
 end
 
 function MODULE:SetupQuickMenu(menu)
-    menu:addCheck(L("Enable Freelook"), function(_, state)
+    menu:addCheck(L("enableFreelookLabel"), function(_, state)
         lia.option.set("freelookEnabled", state)
         if state then
-            LocalPlayer():ChatPrint(L("Freelook has been enabled."))
+            LocalPlayer():ChatPrint(L("freelookOnMessage"))
         else
-            LocalPlayer():ChatPrint(L("Freelook has been disabled."))
+            LocalPlayer():ChatPrint(L("freelookOffMessage"))
         end
     end, lia.option.get("freelookEnabled"))
 end

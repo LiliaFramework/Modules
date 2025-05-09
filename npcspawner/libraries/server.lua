@@ -49,7 +49,7 @@ local function processZone(zone, group)
     end
 
     if groupAlive then
-        return false, "Old NPCs still alive"
+        return false, L("npcSpawnOldAlive")
     else
         zone.spawnedNPCs = {}
     end
