@@ -9,7 +9,7 @@ function MODULE:LoadCharInformation()
 end
 
 function MODULE:LoadMainMenuInformation(info, character)
-    if character:IsWanted() then
+    if character:getData("wanted", false) then
         table.insert(info, L("reputationField") .. ": " .. L("wanted"))
     else
         table.insert(info, L("reputationField") .. ": " .. L("upstanding"))
