@@ -4,8 +4,11 @@
 end
 
 function MODULE:LoadCharInformation()
-    local character = LocalPlayer():getChar()
-    hook.Run("AddTextField", L("generalinfo"), "wanted", L("wanted"), function() return character:IsWanted() and L("wanted") or L("upstanding") end)
+    hook.Run("AddTextField", L("generalinfo"), "wanted", L("wanted"), function()
+        local character = LocalPlayer():getChar()
+        if character and character.getData and character:getData("wanted", false) then return L("wanted") end
+        return L("upstanding")
+    end)
 end
 
 function MODULE:LoadMainMenuInformation(info, character)
