@@ -317,7 +317,7 @@ if CLIENT then
         local mCartridge = vm:GetBoneMatrix(boneCartridge)
         local mTrigger = vm:GetBoneMatrix(boneTrigger)
         if mCartridge and mTrigger then
-            local pos, ang = mCartridge:GetTranslation(), mCartridge:GetAngles()
+            local pos = mCartridge:GetTranslation()
             local pos2, ang2 = mTrigger:GetTranslation(), mTrigger:GetAngles()
             if self.Laser then
                 render.SetMaterial(Material("cable/redlaser"))
@@ -332,7 +332,7 @@ if CLIENT then
         end
     end
 
-    function SWEP:DrawScreen(x, y, w, h)
+    function SWEP:DrawScreen(x, y)
         local power = self:GetNWInt("power", 0)
         local i = power / 10
         draw.RoundedBox(0, x, y, 6, 10, Color(25, 25, 25, 255))
