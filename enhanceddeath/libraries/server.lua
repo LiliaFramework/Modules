@@ -11,7 +11,7 @@
                 local moneyLoss = math.ceil(currentMoney * moneyLossPercentage)
                 if moneyLoss > 0 then
                     client:getChar():takeMoney(moneyLoss)
-                    client:notify(L("moneyLossMessage", lia.currency.get(moneyLoss)))
+                    client:notifyLocalized("moneyLossMessage", lia.currency.get(moneyLoss))
                 end
             end
         end

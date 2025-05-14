@@ -4,14 +4,14 @@ AddInteraction(L("requestSearch"), {
     shouldShow = function(client, target) return not target.SearchRequested and not client.SearchRequested and not IsBeingSearched(target) end,
     onRun = function(client, target)
         if not SERVER then return end
-        client:notify(L("requestSearchSent"))
+        client:notifyLocalized("requestSearchSent")
         target.SearchRequested = client
         client.SearchRequested = target
         target:binaryQuestion(L("requestSearchInventory"), L("accept"), L("deny"), false, function(choice)
             if choice == 0 then
                 MODULE:searchPlayer(client, target)
             else
-                client:notify(L("searchDenied"))
+                client:notifyLocalized("searchDenied")
             end
 
             client.SearchRequested = nil

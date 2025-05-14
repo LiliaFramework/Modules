@@ -19,7 +19,7 @@ function MODULE:PlayerUse(client, entity)
             if choice == 0 then
                 IdentifyCorpse(client, entity)
             else
-                client:notify(L("identifyCorpseDeclined"))
+                client:notifyLocalized("identifyCorpseDeclined")
             end
         end)
 

@@ -44,7 +44,7 @@ lia.command.add("setcharslots", {
         end
 
         if not count then
-            client:notify(L("invalidSlotCount"))
+            client:notifyLocalized("invalidSlotCount")
             return
         end
 

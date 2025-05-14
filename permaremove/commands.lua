@@ -11,9 +11,9 @@ lia.command.add("permaremove", {
             data[#data + 1] = {mapID, entity:MapCreationID()}
             entity:Remove()
             MODULE:setData(data)
-            client:notify(L("permRemoveSuccess"))
+            client:notifyLocalized("permRemoveSuccess")
         else
-            client:notify(L("permRemoveInvalid"))
+            client:notifyLocalized("permRemoveInvalid")
         end
     end
 })

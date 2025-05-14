@@ -14,7 +14,7 @@
         if text then
             lia.caption.start(target, text, duration)
         else
-            client:notify(L("sendCaptionError"))
+            client:notifyLocalized("sendCaptionError")
         end
     end
 })
@@ -31,7 +31,7 @@ lia.command.add("broadcastCaption", {
                 lia.caption.start(target, text, duration)
             end
         else
-            client:notify(L("broadcastCaptionError"))
+            client:notifyLocalized("broadcastCaptionError")
         end
     end
 })

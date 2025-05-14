@@ -8,13 +8,13 @@
     target:notify(L("tasedBy", client:getChar():getDisplayedName(target)))
     timer.Simple(15, function()
         if not IsValid(target) then return end
-        client:notify(L("targetTooStunned"))
-        target:notify(L("targetStunnedMove"))
+        client:notifyLocalized("targetTooStunned")
+        target:notifyLocalized("targetStunnedMove")
         target:SetNoDraw(false)
         timer.Simple(5, function()
             if not IsValid(target) then return end
-            target:notify(L("nowAbleToMove"))
-            client:notify(L("targetAbleToMove"))
+            target:notifyLocalized("nowAbleToMove")
+            client:notifyLocalized("targetAbleToMove")
             target:Freeze(false)
         end)
     end)

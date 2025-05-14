@@ -7,7 +7,7 @@
         local map = game.GetMap()
         local zones = MODULE.SpawnPositions[map]
         if not zones then
-            client:notify(L("noNPCSpawns"))
+            client:notifyLocalized("noNPCSpawns")
             return
         end
 
@@ -22,16 +22,16 @@
             if zone then
                 local spawned, err = processZone(zone, selectedSpawner)
                 if spawned then
-                    client:notify(L("forcedSpawnSuccess", selectedSpawner))
+                    client:notifyLocalized("forcedSpawnSuccess", selectedSpawner)
                 else
                     if err then
-                        client:notify(L("forcedSpawnBlocked", selectedSpawner))
+                        client:notifyLocalized("forcedSpawnBlocked", selectedSpawner)
                     else
-                        client:notify(L("forcedSpawnFailed", selectedSpawner))
+                        client:notifyLocalized("forcedSpawnFailed", selectedSpawner)
                     end
                 end
             else
-                client:notify(L("spawnerNotFound"))
+                client:notifyLocalized("spawnerNotFound")
             end
         end)
     end

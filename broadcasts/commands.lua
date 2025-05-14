@@ -7,7 +7,7 @@
         local message = table.concat(arguments, " ", 1)
         if not message then return L("invalidArg") end
         if not client:getChar():hasFlags("D") and not client:hasPrivilege("Staff Permissions - Can Use Class Broadcast") then
-            client:notify(L("classBroadcastNoPermission"))
+            client:notifyLocalized("classBroadcastNoPermission")
             return false
         end
 
@@ -30,7 +30,7 @@
             end
 
             if table.Count(classList) == 0 then
-                client:notify(L("classBroadcastNoValidClasses"))
+                client:notifyLocalized("classBroadcastNoValidClasses")
                 return
             end
 
@@ -42,7 +42,7 @@
                 end
             end
 
-            client:notify(L("classBroadcastSent"))
+            client:notifyLocalized("classBroadcastSent")
         end)
     end,
 })
@@ -56,7 +56,7 @@ lia.command.add("factionbroadcast", {
         local message = table.concat(arguments, " ", 1)
         if not message then return L("invalidArg") end
         if not client:getChar():hasFlags("B") and not client:hasPrivilege("Staff Permissions - Can Use Faction Broadcast") then
-            client:notify(L("factionBroadcastNoPermission"))
+            client:notifyLocalized("factionBroadcastNoPermission")
             return false
         end
 
@@ -79,7 +79,7 @@ lia.command.add("factionbroadcast", {
             end
 
             if table.Count(factionList) == 0 then
-                client:notify(L("factionBroadcastNoValidFactions"))
+                client:notifyLocalized("factionBroadcastNoValidFactions")
                 return
             end
 
@@ -91,7 +91,7 @@ lia.command.add("factionbroadcast", {
                 end
             end
 
-            client:notify(L("factionBroadcastSent"))
+            client:notifyLocalized("factionBroadcastSent")
         end)
     end,
 })

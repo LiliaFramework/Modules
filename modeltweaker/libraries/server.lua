@@ -16,8 +16,8 @@ net.Receive("WardrobeChangeModel", function(_, client)
     if isValid then
         char:setModel(newModel)
         client:SetModel(newModel)
-        client:notify(L("wardrobeModelChanged"))
+        client:notifyLocalized("wardrobeModelChanged")
     else
-        client:notify(L("wardrobeModelInvalid"))
+        client:notifyLocalized("wardrobeModelInvalid")
     end
 end)
