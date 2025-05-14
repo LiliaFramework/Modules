@@ -1,132 +1,329 @@
-﻿local MODULE = MODULE
-SWEP.PrintName = "StunGun"
-SWEP.Author = "76561198312513285"
-SWEP.Instructions = "76561198312513285"
+﻿SWEP.PrintName = "StunGun"
+SWEP.Author = "Samael"
+SWEP.Purpose = "A StunGun"
+SWEP.Instructions = "Samael"
 SWEP.Slot = 2
 SWEP.SlotPos = 1
 SWEP.UseHands = true
 SWEP.Spawnable = true
 SWEP.AdminSpawnable = true
-SWEP.Category = "StunGun"
-SWEP.ViewModel = "models/weapons/custom/taser.mdl"
-SWEP.WorldModel = "models/weapons/custom/w_taser.mdl"
+SWEP.Category = "Lilia"
+SWEP.ViewModel = "models/weapons/Custom/taser.mdl"
+SWEP.WorldModel = "models/weapons/Custom/w_taser.mdl"
 SWEP.HoldType = "pistol"
 SWEP.Weight = 5
 SWEP.AutoSwitchTo = false
 SWEP.AutoSwitchFrom = false
-SWEP.Primary.Sound = Sound("weapons/clipempty_rifle.wav")
-SWEP.Primary.Recoil = 0.1
-SWEP.Primary.Damage = 0
-SWEP.Primary.NumShots = 1
-SWEP.Primary.Cone = 0.5
-SWEP.Primary.ClipSize = 1
-SWEP.Primary.Delay = 0.06
-SWEP.Primary.DefaultClip = 55
-SWEP.Primary.Automatic = true
-SWEP.Primary.Ammo = "pistol"
+SWEP.Primary = {
+    Sound = Sound("weapons/clipempty_rifle.wav"),
+    Recoil = 0.1,
+    Damage = 0,
+    NumShots = 1,
+    Cone = 0.05,
+    ClipSize = 1,
+    Delay = 0.06,
+    DefaultClip = 55,
+    Automatic = true,
+    Ammo = "pistol"
+}
+
+SWEP.Secondary = {
+    ClipSize = -1,
+    DefaultClip = -1,
+    Automatic = false,
+    Ammo = "none"
+}
+
 SWEP.DrawCrosshair = false
-SWEP.Secondary.ClipSize = -1
-SWEP.Secondary.DefaultClip = -1
-SWEP.Secondary.Automatic = false
-SWEP.Secondary.Ammo = "none"
 SWEP.IronSightsPos = Vector(-6, 2.2, -2)
 SWEP.IronSightsAng = Vector(0.9, 0, 0)
 SWEP.ViewModelFlip = false
 SWEP.ViewModelFOV = 65
-SWEP.LastFired = 0
-SWEP.MaxDist = 400
 function SWEP:Initialize()
-    if SERVER then self.LastFired = 0 end
+    if SERVER then
+        self.Laser = false
+        self.LastUpdated = CurTime()
+    end
+end
+
+function SWEP:MinutkaBreda(ply, ent)
+    local maxDist = lia.config.get("MaxDist")
+    ent:SetPoint(ply:GetShootPos() + ply:GetForward() * maxDist / 2)
+end
+
+function SWEP:CreateFakeRope()
+    if IsValid(self.ent2) then self.ent2:Remove() end
+    self.ent2 = ents.Create("aprop")
+    self.ent2:Spawn()
+    self.ent2:SetColor(Color(0, 0, 0, 0))
+    self.ent2:SetMoveType(MOVETYPE_NONE)
+    local hand = self:GetOwner():LookupBone("ValveBiped.Bip01_r_hand") or 0
+    local pos, ang = self:GetOwner():GetBonePosition(hand)
+    self.ent2:SetPos(pos + ang:Forward() * 20)
+    local dist = lia.config.get("MaxDist")
+    constraint.Rope(self.ent, self.ent2, 0, 0, Vector(0.1, 0.1, 0), Vector(), dist, 80, 0, 1, "cable/blue_elec", false)
+    constraint.Rope(self.ent, self.ent2, 0, 0, Vector(-0.1, -0.1, 0), Vector(), dist, 80, 0, 1, "cable/redlaser", false)
+    self.Target = self.ent2
+    self.dist = dist
+    self:MinutkaBreda(self:GetOwner(), self.ent2)
+end
+
+function SWEP:CreateMarionete(ply)
+    if not IsValid(ply) or not ply:IsPlayer() then return end
+    if IsValid(ply.HelpEnt) then ply.HelpEnt:Remove() end
+    ply.HelpEnt = ents.Create("prop_physics")
+    ply.HelpEnt:SetModel("models/hunter/plates/plate.mdl")
+    ply.HelpEnt:PhysicsInit(SOLID_VPHYSICS)
+    ply.HelpEnt:Spawn()
+    ply.HelpEnt:DrawShadow(false)
+    ply.HelpEnt:SetMoveType(MOVETYPE_VPHYSICS)
+    ply.HelpEnt:Activate()
+    ply.HelpEnt:GetPhysicsObject():SetMass(5500)
+    ply.HelpEnt:SetAngles(Angle())
+    ply.HelpEnt:SetPos(ply:GetPos())
+    ply.HelpEnt:SetModelScale(0.2, 0)
+    ply.HelpEnt:SetSolid(SOLID_NONE)
+    ply.HelpEnt:SetParent(ply)
+    ply.HelpEnt:Fire("SetParentAttachmentMaintainOffset", "chest", 0.01)
+    return ply.HelpEnt
+end
+
+function SWEP:CreateHelpingProp()
+    if IsValid(self.ent) then self.ent:Remove() end
+    self.ent = ents.Create("aprop")
+    self.ent:Spawn()
+    local hand = self:GetOwner():LookupBone("ValveBiped.Bip01_r_hand") or 0
+    local pos, ang = self:GetOwner():GetBonePosition(hand)
+    self.ent:SetAngles(ang)
+    self.ent:SetPos(pos + self.ent:GetForward() * 3 + self.ent:GetUp() * -3 + self.ent:GetRight() * 1.2)
+    self.ent:SetParentAE(self:GetOwner())
+    self.OverPower = false
+    self.Taser = nil
+    self.Target = nil
+end
+
+local function GetSound(isFemale)
+    if isFemale then return "vo/npc/female01/pain0" .. math.random(1, 9) .. ".wav" end
+    return "vo/npc/male01/pain0" .. math.random(1, 9) .. ".wav"
+end
+
+function SWEP:FuckingStun(ply, tims)
+    if not IsValid(ply) or not ply:IsPlayer() then return end
+    ply:SetMoveType(MOVETYPE_FLYGRAVITY)
+    ply:EmitSound(GetSound(ply:IsFemale()))
+    timer.Create("antistun" .. ply:SteamID(), 1, 1, function()
+        if IsValid(ply) then ply:SetMoveType(MOVETYPE_WALK) end
+        if IsValid(self) then self.Taser = false end
+    end)
+
+    net.Start("fucking_stun")
+    net.WriteEntity(ply)
+    net.WriteDouble(tims)
+    net.Broadcast()
+end
+
+function SWEP:FuckingOverStun(ply)
+    if not IsValid(ply) or not ply:IsPlayer() then return end
+    ply:TakeDamage(lia.config.get("Damage"), nil, nil)
+    ply:Freeze(true)
+    ply:EmitSound(GetSound(ply:IsFemale()))
+    timer.Create("antistun2" .. ply:SteamID(), lia.config.get("StunTime"), 1, function()
+        if IsValid(ply) then
+            ply:SetMoveType(MOVETYPE_WALK)
+            ply:Freeze(false)
+        end
+    end)
+
+    net.Start("fucking_stun2")
+    net.WriteEntity(ply)
+    net.Broadcast()
+end
+
+function SWEP:FuckThis(n)
+    if IsValid(self.ent) then self.ent:SetTarget(self.Target, self.dist) end
+    local help = self.Target and self.Target.HelpEnt
+    self.Target = nil
+    timer.Simple(n, function()
+        if IsValid(self.ent) then
+            self.ent:Remove()
+            self:CreateHelpingProp()
+        end
+
+        if IsValid(self.ent2) then self.ent2:Remove() end
+        if IsValid(help) then help:Remove() end
+    end)
+end
+
+function SWEP:Deploy()
+    self:SetWeaponHoldType("pistol")
+    self.Power = 100
+    self.Taser = nil
+    if SERVER and not IsValid(self.ent) then self:CreateHelpingProp() end
+    return true
+end
+
+function SWEP:Holster()
+    self:SetWeaponHoldType("pistol")
+    if SERVER then
+        self.Target = nil
+        if IsValid(self.ent2) then self.ent2:Remove() end
+        if IsValid(self.ent) then self:FuckThis(2) end
+    end
+    return true
+end
+
+function SWEP:OnDrop()
+    if SERVER then
+        self.Target = nil
+        if IsValid(self.ent2) then self.ent2:Remove() end
+        if IsValid(self.ent) then self.ent:Remove() end
+    end
+end
+
+function SWEP:OnRemove()
+    if SERVER then
+        self.Target = nil
+        if IsValid(self.ent2) then self.ent2:Remove() end
+        if IsValid(self.ent) then self.ent:Remove() end
+    end
+end
+
+function SWEP:Reload()
+    if not self:DefaultReload(ACT_VM_RELOAD) then return end
+    if SERVER then
+        self:FuckThis(3)
+        self:SetNextPrimaryFire(CurTime() + 3)
+        self.Laser = false
+        self:SetNWInt("power", 0)
+        net.Start("omglaser")
+        net.WriteEntity(self)
+        net.WriteBit(self.Laser)
+        net.Broadcast()
+    end
+
+    self.Reloading = true
+    self:GetOwner():SetAnimation(PLAYER_RELOAD)
+    timer.Simple(2, function()
+        if not IsValid(self) then return end
+        self.Reloading = false
+        self.Power = 100
+        self:SetNWInt("power", self.Power)
+    end)
+end
+
+function SWEP:Think()
+    if SERVER and IsValid(self.Target) and self.dist and IsValid(self.ent) then if self.ent:GetPos():Distance(self.Target:GetPos()) > self.dist + lia.config.get("MaxDist") then self:FuckThis(10) end end
+end
+
+function SWEP:SecondaryAttack()
+    self:SendWeaponAnim(ACT_VM_SECONDARYATTACK)
+    if SERVER and self.Power > 0 then
+        timer.Simple(0.6, function()
+            if not IsValid(self) then return end
+            local owner = self:GetOwner()
+            owner:EmitSound("Weapon_Pistol.Empty")
+            self.Laser = not self.Laser
+            net.Start("omglaser")
+            net.WriteEntity(self)
+            net.WriteBit(self.Laser)
+            net.Broadcast()
+        end)
+    end
 end
 
 function SWEP:PrimaryAttack()
-    local client = self:GetOwner()
-    if client:IsNPC() then return end
-    local curTime = CurTime()
-    if curTime < self.LastFired + 5 then return end
-    self.LastFired = curTime
-    self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
-    self:EmitSound(self.Primary.Sound)
-    local bullet = {}
-    bullet.Num = 1
-    bullet.Src = client:GetShootPos()
-    local tr = client:GetEyeTrace()
-    bullet.Dir = (tr.HitPos - bullet.Src):GetNormalized()
-    bullet.Spread = Vector(0, 0, 0)
-    bullet.Tracer = 1
-    bullet.TracerName = "Tracer"
-    bullet.Force = 5
-    bullet.Damage = self.Primary.Damage
-    bullet.Callback = function(_, tr, _)
-        local target = tr.Entity
-        if IsValid(target) and target:IsPlayer() and target:getChar() then
-            local distance = client:GetPos():Distance(target:GetPos())
-            if distance > self.MaxDist then
-                client:notify(L("targetTooFar"))
-                return
-            end
-
-            if target:isStaffOnDuty() then
-                target:notify(L("stunAttempted", client:Name()))
-                client:notify(L("cannotStunStaff"))
-            else
-                if SERVER then MODULE:TasePlayer(client, target) end
-            end
-        end
+    self.Power = self.Power or 0
+    if SERVER and self.LastUpdated + 0.2 < CurTime() then
+        self.LastUpdated = CurTime()
+        self:SetNWInt("power", self.Power)
     end
 
-    self:FireBullets(bullet)
+    if self.Power <= 0 then
+        if not self.OverPower then
+            if SERVER then
+                self.Laser = false
+                net.Start("omglaser")
+                net.WriteEntity(self)
+                net.WriteBit(self.Laser)
+                net.Broadcast()
+                self:FuckingOverStun(self.Target)
+            end
+
+            self.OverPower = true
+        end
+        return
+    end
+
+    self.Power = self.Power - 1
+    if self:Clip1() <= 0 then
+        local owner = self:GetOwner()
+        if self.Target then
+            owner:EmitSound("Weapon_Pistol.Empty")
+            owner:EmitSound("Weapon_SMG1.Empty")
+            if not self.Taser then
+                self.Taser = true
+                self:FuckingStun(self.Target, 0.9)
+            end
+        else
+            self:EmitSound("weapons/clipempty_rifle.wav")
+            self:SetNextPrimaryFire(CurTime() + 2)
+        end
+        return
+    end
+
+    self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
+    self:EmitSound(self.Primary.Sound)
+    if SERVER then
+        local owner = self:GetOwner()
+        local target = owner:GetEyeTrace().Entity
+        local maxDist = lia.config.get("MaxDist")
+        if IsValid(self.ent) and IsValid(target) and target:IsPlayer() and owner:GetPos():Distance(target:GetPos()) <= maxDist then
+            self.Target = target
+            self.dist = owner:GetPos():Distance(target:GetPos())
+            if not IsValid(target.HelpEnt) then self:CreateMarionete(target) end
+            local posLocal = target.HelpEnt:WorldToLocal(owner:GetEyeTrace().HitPos)
+            constraint.Rope(self.ent, target.HelpEnt, 0, 0, Vector(0.1, 0.1, 0), posLocal, self.dist, 80, 0, 1, "cable/blue_elec", false)
+            constraint.Rope(self.ent, target.HelpEnt, 0, 0, Vector(-0.1, -0.1, 0), posLocal, self.dist, 80, 0, 1, "cable/redlaser", false)
+        elseif not self.Target then
+            self:CreateFakeRope()
+        end
+
+        self:SetNextPrimaryFire(CurTime() + 0.5)
+    end
+
+    self:TakePrimaryAmmo(1)
+    if not self:GetOwner():IsNPC() then self:GetOwner():ViewPunch(Angle(math.Rand(-0.2, -0.1) * self.Primary.Recoil, math.Rand(-0.1, 0.1) * self.Primary.Recoil, 0)) end
+    self.LastPrimaryAttack = CurTime()
 end
 
 function SWEP:GetViewModelPosition(pos, ang)
     if not self.IronSightsPos then return pos, ang end
     pos = pos + ang:Forward() * -5
-    local Offset = self.IronSightsPos
-    if self.IronSightsAng then
-        ang:RotateAroundAxis(ang:Right(), self.IronSightsAng.x)
-        ang:RotateAroundAxis(ang:Up(), self.IronSightsAng.y)
-        ang:RotateAroundAxis(ang:Forward(), self.IronSightsAng.z)
-    end
-
-    local Right = ang:Right()
-    local Up = ang:Up()
-    local Forward = ang:Forward()
-    pos = pos + Offset.x * Right + Offset.y * Forward + Offset.z * Up
-    return pos, ang
+    local offset = self.IronSightsPos
+    local angMod = Angle(ang.x, ang.y, ang.z)
+    angMod:RotateAroundAxis(angMod:Right(), self.IronSightsAng.x)
+    angMod:RotateAroundAxis(angMod:Up(), self.IronSightsAng.y)
+    angMod:RotateAroundAxis(angMod:Forward(), self.IronSightsAng.z)
+    pos = pos + offset.x * angMod:Right() + offset.y * angMod:Forward() + offset.z * angMod:Up()
+    return pos, angMod
 end
 
 if CLIENT then
-    local LASER = Material("cable/redlaser")
-    local function DrawLaser()
-        for _, client in player.Iterator() do
-            if not client:Alive() or LocalPlayer() == client or not IsValid(client:GetActiveWeapon()) or client:GetActiveWeapon():GetClass() ~= "weapon_stungun" then continue end
-            render.SetMaterial(LASER)
-            local bone = client:LookupBone("ValveBiped.Bip01_R_Hand")
-            if not bone then continue end
-            local m = client:GetBoneMatrix(bone)
-            if not m then continue end
-            local pos = m:GetTranslation() + client:EyeAngles():Forward() * 8 + Vector(0, 0, 0.1) + client:EyeAngles():Right() * -1
-            local trace = client:GetEyeTrace()
-            local hitpos = client:GetShootPos() + client:EyeAngles():Forward() * self.MaxDist
-            if client:GetShootPos():Distance(trace.HitPos) <= self.MaxDist then hitpos = trace.HitPos end
-            render.DrawBeam(pos, hitpos, 2, 0, 12.5, Color(255, 0, 0, 255))
-        end
-    end
-
-    hook.Add("PostDrawOpaqueRenderables", "PlyMustSeeLaser", DrawLaser)
     function SWEP:ViewModelDrawn()
-        local vm = self.Owner:GetViewModel()
+        local vm = self:GetOwner():GetViewModel()
         if not IsValid(vm) then return end
-        local triggerBone = vm:LookupBone("Trigger")
-        local cartridgeBone = vm:LookupBone("cartridge")
-        if not cartridgeBone then return end
-        local m = vm:GetBoneMatrix(cartridgeBone)
-        local m2 = vm:GetBoneMatrix(triggerBone)
-        if m and m2 then
-            local pos, _ = m:GetTranslation(), m:GetAngles()
-            local pos2, ang2 = m2:GetTranslation(), m2:GetAngles()
-            render.SetMaterial(LASER)
-            render.DrawBeam(pos, self.Owner:GetEyeTrace().HitPos, 2, 0, 12.5, Color(255, 0, 0, 255))
+        local boneCartridge = vm:LookupBone("cartridge") or 0
+        local boneTrigger = vm:LookupBone("Trigger") or 0
+        local mCartridge = vm:GetBoneMatrix(boneCartridge)
+        local mTrigger = vm:GetBoneMatrix(boneTrigger)
+        if mCartridge and mTrigger then
+            local pos, ang = mCartridge:GetTranslation(), mCartridge:GetAngles()
+            local pos2, ang2 = mTrigger:GetTranslation(), mTrigger:GetAngles()
+            if self.Laser then
+                render.SetMaterial(LASER)
+                render.DrawBeam(pos, self:GetOwner():GetEyeTrace().HitPos, 2, 0, 12.5, Color(255, 0, 0, 255))
+            end
+
             ang2:RotateAroundAxis(ang2:Forward(), 90)
             ang2:RotateAroundAxis(ang2:Right(), 90)
             cam.Start3D2D(pos2 + ang2:Right() * -1 + ang2:Up() * 3.12 + ang2:Forward() * 0.12, ang2, 0.1)
@@ -135,10 +332,10 @@ if CLIENT then
         end
     end
 
-    function SWEP:DrawScreen()
-        local power = self:getNetVar("power", 0)
+    function SWEP:DrawScreen(x, y, w, h)
+        local power = self:GetNWInt("power", 0)
         local i = power / 10
-        draw.RoundedBox(0, 0, 0, 6, 10, Color(25, 25, 25, 255))
-        draw.RoundedBox(0, 1, 0, 4, math.Clamp(i, 0, 10), Color(255 - power, 10 + power * 2, 25, 255))
+        draw.RoundedBox(0, x, y, 6, 10, Color(25, 25, 25, 255))
+        draw.RoundedBox(0, x + 1, y, 4, math.Clamp(i, 0, 10), Color(255 - power, 10 + power * 2, 25, 255))
     end
 end
