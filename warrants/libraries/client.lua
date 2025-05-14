@@ -1,6 +1,6 @@
 ﻿function MODULE:DrawCharInfo(client, _, info)
     local character = client:getChar()
-    if character:IsWanted() and LocalPlayer():CanSeeWarrants() then info[#info + 1] = {L("WarrantedText"), Color(255, 0, 0)} end
+    if character and character.IsWanted and character:IsWanted() and LocalPlayer():CanSeeWarrants() then info[#info + 1] = {L("WarrantedText"), Color(255, 0, 0)} end
 end
 
 function MODULE:LoadCharInformation()
