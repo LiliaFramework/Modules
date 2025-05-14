@@ -1,5 +1,4 @@
 ﻿function MODULE:TasePlayer(client, target)
-    print(client, target)
     if not client:IsPlayer() then return end
     if not IsValid(client:GetActiveWeapon()) then return end
     if client:GetActiveWeapon():GetClass() ~= "weapon_stungun" then return end
