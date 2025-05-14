@@ -1,16 +1,9 @@
-﻿function IdentifyCorpse(client, corpse)
+﻿local function IdentifyCorpse(client, corpse)
+    if not IsValid(corpse) then return end
+    local targetPlayer = corpse:getNetVar("player")
+    if not IsValid(targetPlayer) then return end
     local IDTime = lia.config.get("IdentificationTime", 5)
-    if IsValid(corpse) and corpse:getNetVar("player") then
-        local targetPlayer = corpse:getNetVar("player")
-        client:setAction(L("identifyingCorpse"), IDTime)
-        client:doStaredAction(corpse, function() client:ChatPrint(L("identifiedCorpseMessage", targetPlayer:Nick())) end, IDTime, function()
-            if IsValid(client) then
-                client:setAction()
-                client:setNetVar("IdCooldown", false)
-                corpse:setNetVar("ShowCorpseMessage", false)
-            end
-        end)
-    end
+    client:setAction(L("identifyingCorpse"), IDTime, function() client:ChatPrint(L("identifiedCorpseMessage", targetPlayer:Nick())) end)
 end
 
 function MODULE:PlayerUse(client, entity)
