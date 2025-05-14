@@ -110,7 +110,7 @@ end
 function SWEP:FuckingStun(ply, tims)
     if not IsValid(ply) or not ply:IsPlayer() then return end
     ply:SetMoveType(MOVETYPE_FLYGRAVITY)
-    ply:EmitSound(GetSound(ply:IsFemale()))
+    ply:EmitSound(GetSound(ply:isFemale()))
     timer.Create("antistun" .. ply:SteamID(), 1, 1, function()
         if IsValid(ply) then ply:SetMoveType(MOVETYPE_WALK) end
         if IsValid(self) then self.Taser = false end
@@ -126,7 +126,7 @@ function SWEP:FuckingOverStun(ply)
     if not IsValid(ply) or not ply:IsPlayer() then return end
     ply:TakeDamage(lia.config.get("Damage"), nil, nil)
     ply:Freeze(true)
-    ply:EmitSound(GetSound(ply:IsFemale()))
+    ply:EmitSound(GetSound(ply:isFemale()))
     timer.Create("antistun2" .. ply:SteamID(), lia.config.get("StunTime"), 1, function()
         if IsValid(ply) then
             ply:SetMoveType(MOVETYPE_WALK)
@@ -320,7 +320,7 @@ if CLIENT then
             local pos, ang = mCartridge:GetTranslation(), mCartridge:GetAngles()
             local pos2, ang2 = mTrigger:GetTranslation(), mTrigger:GetAngles()
             if self.Laser then
-                render.SetMaterial(LASER)
+                render.SetMaterial(Material("cable/redlaser"))
                 render.DrawBeam(pos, self:GetOwner():GetEyeTrace().HitPos, 2, 0, 12.5, Color(255, 0, 0, 255))
             end
 
