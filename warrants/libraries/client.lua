@@ -13,8 +13,8 @@ end
 
 function MODULE:LoadMainMenuInformation(info, character)
     if character:getData("wanted", false) then
-        table.insert(info, L("reputationField") .. ": " .. L("wanted"))
+        table.insert(info, L("reputation") .. ": " .. L("wanted"))
     else
-        table.insert(info, L("reputationField") .. ": " .. L("upstanding"))
+        table.insert(info, L("reputation") .. ": " .. L("upstanding"))
     end
 end
