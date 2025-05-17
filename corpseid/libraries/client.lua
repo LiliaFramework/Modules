@@ -9,16 +9,9 @@
                 local pos = entity:GetPos() + Vector(0, 0, 25)
                 local ang = Angle(0, client:EyeAngles().y - 90, 90)
                 cam.Start3D2D(pos, ang, 0.1)
-                draw.SimpleText(L("identifyCorpse"), "Trebuchet24", 0, 0, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+                draw.SimpleText(L("identifyCorpse"), lia.config.get("CorpseMessageFont"), 0, 0, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
                 cam.End3D2D()
             end
         end
     end
 end
-
-lia.font.register("OrbitronFont", {
-    font = lia.config.get("Font"),
-    size = 18,
-    weight = 500,
-    antialias = true
-})

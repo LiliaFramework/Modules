@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Corpse ID"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.4"
+MODULE.version = "1.0.5"
 MODULE.desc = "Adds a corpse identification mechanic."
 MODULE.Public = true
 lia.config.add("IdentificationTime", "Identification Time", 5, nil, {
@@ -10,4 +10,11 @@ lia.config.add("IdentificationTime", "Identification Time", 5, nil, {
     type = "Int",
     min = 1,
     max = 60
+})
+
+lia.config.add("CorpseMessageFont", "Corpse Message Font", "Trebuchet24", nil, {
+    desc = "Font used for the identify-corpse 3D2D display",
+    category = "Fonts",
+    type = "Table",
+    options = CLIENT and lia.font.getAvailableFonts() or {"Arial"}
 })
