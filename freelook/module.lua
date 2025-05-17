@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Free Look"
-MODULE.author = "76561198312513285"
+MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.2"
 MODULE.desc = "Adds Free Look similar to EFT"

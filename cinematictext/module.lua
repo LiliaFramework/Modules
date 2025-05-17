@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Cinematic Text"
-MODULE.author = "76561198312513285"
+MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.5"
 MODULE.desc = "Cinematic looking splash text for that extra flair"

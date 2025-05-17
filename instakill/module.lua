@@ -1,6 +1,6 @@
-﻿MODULE.name = "Cursor"
+MODULE.name = "Instant Killing"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0"
-MODULE.desc = "Adds a Cursor."
+MODULE.desc = "Enables instant kills on headshots"
 MODULE.Public = true

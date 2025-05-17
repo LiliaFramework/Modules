@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Community Commands"
-MODULE.author = "76561198312513285"
+MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.4"
 MODULE.desc = "Adds links to the various content"
