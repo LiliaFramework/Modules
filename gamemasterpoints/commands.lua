@@ -1,0 +1,52 @@
+lia.command.add("gmtpremove", {
+    adminOnly = true,
+    privilege = "Manage Gamemaster Teleport Points",
+    desc = L("deletePoint"),
+    syntax = "<string name>",
+    onRun = function(client, arguments) PLUGIN:RemovePoint(client, table.concat(arguments, " ")) end
+})
+
+lia.command.add("gmtpnewname", {
+    adminOnly = true,
+    privilege = "Manage Gamemaster Teleport Points",
+    desc = L("renamePoint"),
+    syntax = "<string name>",
+    onRun = function(client, arguments) netstream.Start("gmTPNewName", table.concat(arguments, " ")) end
+})
+
+lia.command.add("gmtpmenu", {
+    adminOnly = true,
+    privilege = "Manage Gamemaster Teleport Points",
+    desc = L("tpPointsTitle"),
+    onRun = function(client)
+        local tbl = {}
+        for _, v in pairs(PLUGIN.tpPoints) do
+            table.insert(tbl, {
+                name = v.name,
+                sound = v.sound,
+                effect = v.effect
+            })
+        end
+
+        netstream.Start(client, "gmTPMenu", tbl)
+    end
+})
+
+lia.command.add("gmtpmoveto", {
+    adminOnly = true,
+    privilege = "Manage Gamemaster Teleport Points",
+    desc = L("moveToPoint"),
+    syntax = "[string target] <string name>",
+    onRun = function(client, arguments)
+        local target, name
+        if lia.util.findPlayer(client, arguments[1]) then
+            target = lia.util.findPlayer(client, arguments[1])
+            name = table.concat(arguments, " ", 2)
+        else
+            target = client
+            name = table.concat(arguments, " ")
+        end
+
+        PLUGIN:MoveToPoint(target, name)
+    end
+})
