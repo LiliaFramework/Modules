@@ -4,7 +4,7 @@ function MODULE:InitializedModules()
     timer.Create("AutoRestarter_Timer", 1, 0, function()
         if os.time() >= self.nextRestart then
             self.nextRestart = os.time() + lia.config.get("RestartInterval")
-            for _, ply in ipairs(player.GetAll()) do
+            for _, ply in player.Iterator() do
                 net.Start("RestartDisplay")
                 net.WriteInt(self.nextRestart, 32)
                 net.Send(ply)

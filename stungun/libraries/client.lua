@@ -87,7 +87,7 @@ net.Receive("omglaser", function()
 end)
 
 hook.Add("PostDrawOpaqueRenderables", "PlyMustSeeLaser", function()
-    for _, ply in pairs(player.GetAll()) do
+    for _, ply in player.Iterator() do
         if ply:Alive() and ply ~= LocalPlayer() and ply:GetActiveWeapon():GetClass() == "weapon_stungun" and ply:GetActiveWeapon().Laser then
             render.SetMaterial(LASER)
             local bone = ply:LookupBone("ValveBiped.Bip01_R_Hand") or 0
