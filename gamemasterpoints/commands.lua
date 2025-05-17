@@ -3,7 +3,7 @@ lia.command.add("gmtpremove", {
     privilege = "Manage Gamemaster Teleport Points",
     desc = L("deletePoint"),
     syntax = "<string name>",
-    onRun = function(client, arguments) PLUGIN:RemovePoint(client, table.concat(arguments, " ")) end
+    onRun = function(client, arguments) MODULE:RemovePoint(client, table.concat(arguments, " ")) end
 })
 
 lia.command.add("gmtpnewname", {
@@ -20,7 +20,7 @@ lia.command.add("gmtpmenu", {
     desc = L("tpPointsTitle"),
     onRun = function(client)
         local tbl = {}
-        for _, v in pairs(PLUGIN.tpPoints) do
+        for _, v in pairs(MODULE.tpPoints) do
             table.insert(tbl, {
                 name = v.name,
                 sound = v.sound,
@@ -47,6 +47,6 @@ lia.command.add("gmtpmoveto", {
             name = table.concat(arguments, " ")
         end
 
-        PLUGIN:MoveToPoint(target, name)
+        MODULE:MoveToPoint(target, name)
     end
 })
