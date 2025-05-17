@@ -16,3 +16,10 @@ MODULE.CAMIPrivileges = {
         Description = "Allows access to Development HUD.",
     }
 }
+
+lia.config.add("DevHudFont", "Development HUD Font", "Arial", nil, {
+    desc = "Font used for all development/staff HUD text",
+    category = "Fonts",
+    type = "Table",
+    options = CLIENT and lia.font.getAvailableFonts() or {"Arial"}
+})
