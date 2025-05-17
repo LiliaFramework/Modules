@@ -1,6 +1,6 @@
 MODULE.fadeDelay = 2
 MODULE.cutscenes = {
-    ["mystery_intro"] = {
+    ["Mistery Info"] = {
         {
             image = "https://i.imgur.com/JKLmnO1.png",
             sound = "ambient/forest_day.mp3",
@@ -41,7 +41,7 @@ MODULE.cutscenes = {
             songFade = true
         }
     },
-    ["battle_intro"] = {
+    ["Battle Intro"] = {
         {
             image = "https://i.imgur.com/UvyZ7X3.png",
             sound = "music/epic_battle_start.mp3",
@@ -76,7 +76,7 @@ MODULE.cutscenes = {
             songFade = true
         }
     },
-    ["victory_celebration"] = {
+    ["Victory Celebration"] = {
         {
             image = "https://i.imgur.com/WmNOpQ5.png",
             sound = "music/victory_fanfare.mp3",

@@ -1,3 +1,4 @@
+local MODULE = MODULE
 function MODULE:runCutscene(id)
     local cs = self.cutscenes[id]
     if not cs then return end

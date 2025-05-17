@@ -1,31 +1,52 @@
 local MODULE = MODULE
 lia.command.add("cutscene", {
     adminOnly = true,
-    syntax = "[string target] <string cutscene>",
+    privilege = "Use Cutscenes",
+    syntax = "<string target?>",
+    desc = L("cutsceneCommandDesc"),
     onRun = function(ply, args)
-        local target, id
-        if #args == 1 then
-            id = args[1]
-        else
+        local target
+        if args[1] then
             target = lia.util.findPlayer(ply, args[1])
-            id = args[2]
+            if not IsValid(target) or not target:getChar() then
+                ply:notify(L("invalidTarget"))
+                return false
+            end
         end
 
-        if not id then
-            ply:notify("Missing cutscene ID.")
-            return false
+        local options = {}
+        for id in pairs(MODULE.cutscenes) do
+            table.insert(options, id)
         end
 
-        if not MODULE.cutscenes[id] then
-            ply:notify("Invalid cutscene " .. id .. ".")
-            return false
+        client:requestDropdown(L("selectCutsceneTitle"), L("selectCutscenePrompt"), options, function(selection)
+            if not MODULE.cutscenes[selection] then
+                client:notify(L("invalidCutscene"))
+                return
+            end
+
+            MODULE:runCutscene(target, selection)
+        end)
+    end
+})
+
+lia.command.add("globalcutscene", {
+    adminOnly = true,
+    privilege = "Use Cutscenes",
+    desc = L("globalCutsceneCommandDesc"),
+    onRun = function()
+        local options = {}
+        for id in pairs(MODULE.cutscenes) do
+            table.insert(options, id)
         end
 
-        if target and (not IsValid(target) or not target:getChar()) then
-            ply:notify("Invalid target.")
-            return false
-        end
+        client:requestDropdown(L("selectCutsceneTitle"), L("globalCutscenePrompt"), options, function(selection)
+            if not MODULE.cutscenes[selection] then
+                client:notify(L("invalidCutscene"))
+                return
+            end
 
-        MODULE:runCutscene(target, id)
+            MODULE:runCutscene(nil, selection)
+        end)
     end
 })
