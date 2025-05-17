@@ -3,6 +3,7 @@ local vignetteAlphaGoal, vignetteAlphaDelta = 0, 0
 local hasVignetteMaterial = lia.util.getMaterial("lilia/gui/vignette.png") ~= "___error"
 local mathApproach = math.Approach
 local function DrawFPS()
+    local fpsFont = lia.config.get("FPSHudFont")
     local f = math.Round(1 / FrameTime())
     local minF = MODULE.minFPS or 60
     local maxF = MODULE.maxFPS or 100
@@ -10,11 +11,20 @@ local function DrawFPS()
     MODULE.barH = mathApproach(MODULE.barH, f / maxF * 100, 0.5)
     if f > maxF then MODULE.maxFPS = f end
     if f < minF then MODULE.minFPS = f end
-    draw.SimpleText(f .. " FPS", "liaMediumFont", ScrW() - 10, ScrH() / 2 + 20, Color(255, 255, 255), TEXT_ALIGN_RIGHT, 1)
-    draw.RoundedBox(0, ScrW() - 30, ScrH() / 2 - MODULE.barH, 20, MODULE.barH, Color(255, 255, 255))
-    draw.SimpleText("Max : " .. (MODULE.maxFPS or maxF), "liaMediumFont", ScrW() - 10, ScrH() / 2 + 40, Color(150, 255, 150), TEXT_ALIGN_RIGHT, 1)
-    draw.SimpleText("Min : " .. (MODULE.minFPS or minF), "liaMediumFont", ScrW() - 10, ScrH() / 2 + 55, Color(255, 150, 150), TEXT_ALIGN_RIGHT, 1)
+    local x = ScrW() - 10
+    local centerY = ScrH() / 2
+    draw.SimpleText(f .. " FPS", fpsFont, x, centerY + 20, Color(255, 255, 255), TEXT_ALIGN_RIGHT, 1)
+    draw.RoundedBox(0, x - 20, centerY - MODULE.barH, 20, MODULE.barH, Color(255, 255, 255))
+    draw.SimpleText("Max : " .. MODULE.maxFPS, fpsFont, x, centerY + 40, Color(150, 255, 150), TEXT_ALIGN_RIGHT, 1)
+    draw.SimpleText("Min : " .. MODULE.minFPS, fpsFont, x, centerY + 55, Color(255, 150, 150), TEXT_ALIGN_RIGHT, 1)
 end
+
+lia.config.add("FPSHudFont", "FPS HUD Font", "Arial", nil, {
+    desc = "Font used for the FPS display",
+    category = "Fonts",
+    type = "Table",
+    options = CLIENT and lia.font.getAvailableFonts() or {"Arial"}
+})
 
 local function DrawVignette()
     if hasVignetteMaterial then
