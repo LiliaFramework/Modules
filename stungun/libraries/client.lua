@@ -10,7 +10,7 @@ local function MakeAllGood()
     end)
 end
 
-hook.Add("HUDPaint", "DrawPP", function()
+function MODULE:HUDPaint()
     if not lia.config.get("DrawPostProcess") then return end
     local ply = LocalPlayer()
     if not ply.Sens then return end
@@ -31,7 +31,7 @@ hook.Add("HUDPaint", "DrawPP", function()
     DrawColorModify(tab)
     DrawMotionBlur(0.35, ply.alpha_value / 100, 0)
     DrawMotionBlur(0.35, ply.relation, 0)
-end)
+end
 
 net.Receive("fucking_stun", function()
     local ply = net.ReadEntity()
@@ -86,19 +86,23 @@ net.Receive("omglaser", function()
     if IsValid(ent) then ent.Laser = net.ReadBit() end
 end)
 
-hook.Add("PostDrawOpaqueRenderables", "PlyMustSeeLaser", function()
+function MODULE:PostDrawOpaqueRenderables()
     for _, ply in player.Iterator() do
-        if ply:Alive() and ply ~= LocalPlayer() and ply:GetActiveWeapon():GetClass() == "weapon_stungun" and ply:GetActiveWeapon().Laser then
-            render.SetMaterial(LASER)
-            local bone = ply:LookupBone("ValveBiped.Bip01_R_Hand") or 0
-            local mat = ply:GetBoneMatrix(bone)
-            if mat then
-                local start = mat:GetTranslation() + ply:EyeAngles():Forward() * 8 + ply:EyeAngles():Right() * -1
-                local maxDist = lia.config.get("MaxDist")
-                local hitpos = ply:GetEyeTrace().HitPos
-                if start:Distance(hitpos) > maxDist then hitpos = ply:GetShootPos() + ply:EyeAngles():Forward() * maxDist end
-                render.DrawBeam(start, hitpos, 2, 0, 12.5, Color(255, 0, 0, 255))
+        if ply:Alive() and ply ~= LocalPlayer() then
+            local wep = ply:GetActiveWeapon()
+            if IsValid(wep) and wep:GetClass() == "weapon_stungun" and wep.Laser then
+                local boneIndex = ply:LookupBone("ValveBiped.Bip01_R_Hand") or 0
+                local boneMatrix = ply:GetBoneMatrix(boneIndex)
+                if boneMatrix then
+                    local startPos = boneMatrix:GetTranslation() + ply:EyeAngles():Forward() * 8 + ply:EyeAngles():Right() * -1
+                    local maxDist = lia.config.get("MaxDist")
+                    local trace = ply:GetEyeTrace()
+                    local endPos = trace.HitPos
+                    if startPos:Distance(endPos) > maxDist then endPos = ply:GetShootPos() + ply:EyeAngles():Forward() * maxDist end
+                    render.SetMaterial(LASER)
+                    render.DrawBeam(startPos, endPos, 2, 0, 12.5, Color(255, 0, 0, 255))
+                end
             end
         end
     end
-end)
+end
