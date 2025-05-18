@@ -11,7 +11,7 @@ lia.command.add("gmtpnewname", {
     privilege = "Manage Gamemaster Teleport Points",
     desc = L("renamePoint"),
     syntax = "<string name>",
-    onRun = function(client, arguments) netstream.Start("gmTPNewName", table.concat(arguments, " ")) end
+    onRun = function(_, arguments) netstream.Start("gmTPNewName", table.concat(arguments, " ")) end
 })
 
 lia.command.add("gmtpmenu", {
