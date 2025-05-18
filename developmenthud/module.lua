@@ -17,7 +17,7 @@ MODULE.CAMIPrivileges = {
     }
 }
 
-lia.config.add("DevHudFont", "Development HUD Font", "PoppinsMedium", function() hook.Run("RefreshFonts") end, {
+lia.config.add("DevHudFont", "Development HUD Font", "PoppinsMedium", function() if not CLIENT then return end hook.Run("RefreshFonts") end, {
     desc = "Font used for all development/staff HUD text",
     category = "Fonts",
     type = "Table",

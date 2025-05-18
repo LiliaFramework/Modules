@@ -19,7 +19,7 @@ local function DrawFPS()
     draw.SimpleText("Min : " .. MODULE.minFPS, fpsFont, x, centerY + 55, Color(255, 150, 150), TEXT_ALIGN_RIGHT, 1)
 end
 
-lia.config.add("FPSHudFont", "FPS HUD Font", "PoppinsMedium", function() hook.Run("RefreshFonts") end, {
+lia.config.add("FPSHudFont", "FPS HUD Font", "PoppinsMedium", function() if not CLIENT then return end hook.Run("RefreshFonts") end, {
     desc = "Font used for the FPS display",
     category = "Fonts",
     type = "Table",

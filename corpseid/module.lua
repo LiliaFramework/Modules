@@ -12,7 +12,7 @@ lia.config.add("IdentificationTime", "Identification Time", 5, nil, {
     max = 60
 })
 
-lia.config.add("CorpseMessageFont", "Corpse Message Font", "PoppinsMedium", function() hook.Run("RefreshFonts") end, {
+lia.config.add("CorpseMessageFont", "Corpse Message Font", "PoppinsMedium", function() if not CLIENT then return end hook.Run("RefreshFonts") end, {
     desc = "Font used for the identify-corpse 3D2D display",
     category = "Fonts",
     type = "Table",
