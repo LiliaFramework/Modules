@@ -17,9 +17,9 @@ MODULE.CAMIPrivileges = {
     }
 }
 
-lia.config.add("DevHudFont", "Development HUD Font", "Arial", nil, {
+lia.config.add("DevHudFont", "Development HUD Font", "PoppinsMedium", nil, {
     desc = "Font used for all development/staff HUD text",
     category = "Fonts",
     type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"Arial"}
+    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })

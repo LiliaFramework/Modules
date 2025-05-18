@@ -5,9 +5,9 @@ MODULE.version = "1.0.7"
 MODULE.desc = "Radio"
 MODULE.WorkshopContent = "3431349806"
 MODULE.Public = true
-lia.config.add("RadioFont", "Radio Font", "Lucida Console", nil, {
+lia.config.add("RadioFont", "Radio Font", "PoppinsMedium", nil, {
     desc = "Specifies the font used for radio-related text and displays.",
     category = "Fonts",
     type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"Lucida Console"}
+    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })

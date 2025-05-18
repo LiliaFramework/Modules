@@ -19,7 +19,7 @@ function MODULE:GetPlayerRadioFrequency(client)
 end
 
 lia.font.register("liaDialFont", {
-    font = "Arial",
+    font = "PoppinsMedium",
     size = math.max(ScreenScale(7), 17),
     weight = 100
 })

@@ -1,4 +1,4 @@
-﻿lia.config.add("CinematicTextFont", "Cinematic Text Font", "Arial", nil, {
+﻿lia.config.add("CinematicTextFont", "Cinematic Text Font", "PoppinsMedium", nil, {
     desc = "The font used for cinematic text.",
     category = "Cinematic",
     type = "Generic"

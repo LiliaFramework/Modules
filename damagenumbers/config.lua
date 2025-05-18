@@ -1,8 +1,8 @@
-﻿lia.config.add("DamageFont", "Damage Number Font", headingFont, nil, {
+﻿lia.config.add("DamageFont", "Damage Number Font", "PoppinsMedium", nil, {
     desc = "Specifies the font family used for floating damage numbers.",
     category = "Fonts",
     type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"Arial"}
+    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })
 
 lia.option.add("damageNumberTime", "Damage Number Duration", "How long (in seconds) floating damage numbers stay on screen", 2, nil, {

@@ -12,9 +12,9 @@ lia.config.add("IdentificationTime", "Identification Time", 5, nil, {
     max = 60
 })
 
-lia.config.add("CorpseMessageFont", "Corpse Message Font", "Trebuchet24", nil, {
+lia.config.add("CorpseMessageFont", "Corpse Message Font", "PoppinsMedium", nil, {
     desc = "Font used for the identify-corpse 3D2D display",
     category = "Fonts",
     type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"Arial"}
+    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })
