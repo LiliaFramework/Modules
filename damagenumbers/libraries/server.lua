@@ -1,4 +1,4 @@
-function MODULE:PostEntityTakeDamage(ent, _, tookDamage)
+function MODULE:PostEntityTakeDamage(ent, dmgInfo, tookDamage)
     if not tookDamage or not ent:IsPlayer() then return end
     local atk = dmgInfo:GetAttacker()
     if not IsValid(atk) or not atk:IsPlayer() then return end
