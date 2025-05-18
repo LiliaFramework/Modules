@@ -20,6 +20,16 @@
     "workshop": []
   },
   {
+    "name": "Auto Restarter",
+    "author": "@liliaplayer",
+    "description": "Automatically restarts the server every interval.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/autorestarter.zip",
+    "source": "https://liliaframework.github.io/Modules/autorestarter.html",
+    "uniqueID": "autorestarter",
+    "workshop": []
+  },
+  {
     "name": "Bodygrouper",
     "author": "@liliaplayer",
     "description": "Adds a bodygroup menu and bodygroup closet, akin to BodygroupR on GModStore",
@@ -47,6 +57,16 @@
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/captions.zip",
     "source": "https://liliaframework.github.io/Modules/captions.html",
     "uniqueID": "captions",
+    "workshop": []
+  },
+  {
+    "name": "Cards",
+    "author": "@liliaplayer",
+    "description": "Adds the ability to draw a random card from a card deck",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cards.zip",
+    "source": "https://liliaframework.github.io/Modules/cards.html",
+    "uniqueID": "cards",
     "workshop": []
   },
   {
@@ -103,7 +123,7 @@
     "name": "Corpse ID",
     "author": "@liliaplayer",
     "description": "Adds a corpse identification mechanic.",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/corpseid.zip",
     "source": "https://liliaframework.github.io/Modules/corpseid.html",
     "uniqueID": "corpseid",
@@ -117,6 +137,26 @@
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cursor.zip",
     "source": "https://liliaframework.github.io/Modules/cursor.html",
     "uniqueID": "cursor",
+    "workshop": []
+  },
+  {
+    "name": "Simple Cutscenes",
+    "author": "@liliaplayer",
+    "description": "A system for simple cutscenes",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cutscenes.zip",
+    "source": "https://liliaframework.github.io/Modules/cutscenes.html",
+    "uniqueID": "cutscenes",
+    "workshop": []
+  },
+  {
+    "name": "Damage Numbers",
+    "author": "@liliaplayer",
+    "description": "Display damage numbers when you hit someone, or when you get hit.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/damagenumbers.zip",
+    "source": "https://liliaframework.github.io/Modules/damagenumbers.html",
+    "uniqueID": "damagenumbers",
     "workshop": []
   },
   {
@@ -190,6 +230,16 @@
     "workshop": []
   },
   {
+    "name": "First Person Effects",
+    "author": "@liliaplayer",
+    "description": "Realistic first person effects.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/firstpersoneffects.zip",
+    "source": "https://liliaframework.github.io/Modules/firstpersoneffects.html",
+    "uniqueID": "firstpersoneffects",
+    "workshop": []
+  },
+  {
     "name": "Flashlight",
     "author": "@liliaplayer",
     "description": "Makes Flashlight a bit more serious",
@@ -210,6 +260,16 @@
     "workshop": []
   },
   {
+    "name": "Gamemaster Teleport Points",
+    "author": "@liliaplayer",
+    "description": "Allow GMs to teleport to predefined points on the map",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/gamemasterpoints.zip",
+    "source": "https://liliaframework.github.io/Modules/gamemasterpoints.html",
+    "uniqueID": "gamemasterpoints",
+    "workshop": []
+  },
+  {
     "name": "Extra HUD Elements",
     "author": "@liliaplayer",
     "description": "Implements Extra HUD Elements.",
@@ -217,6 +277,16 @@
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/hud_extras.zip",
     "source": "https://liliaframework.github.io/Modules/hud_extras.html",
     "uniqueID": "hud_extras",
+    "workshop": []
+  },
+  {
+    "name": "Instant Killing",
+    "author": "@liliaplayer",
+    "description": "Enables instant kills on headshots",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/instakill.zip",
+    "source": "https://liliaframework.github.io/Modules/instakill.html",
+    "uniqueID": "instakill",
     "workshop": []
   },
   {
