@@ -194,7 +194,7 @@ function SWEP:Reload()
         self:FuckThis(3)
         self:SetNextPrimaryFire(CurTime() + 3)
         self.Laser = false
-        self:SetNWInt("power", 0)
+        self:SetNW2Int("power", 0)
         net.Start("omglaser")
         net.WriteEntity(self)
         net.WriteBit(self.Laser)
@@ -207,7 +207,7 @@ function SWEP:Reload()
         if not IsValid(self) then return end
         self.Reloading = false
         self.Power = 100
-        self:SetNWInt("power", self.Power)
+        self:SetNW2Int("power", self.Power)
     end)
 end
 
@@ -235,7 +235,7 @@ function SWEP:PrimaryAttack()
     self.Power = self.Power or 0
     if SERVER and self.LastUpdated + 0.2 < CurTime() then
         self.LastUpdated = CurTime()
-        self:SetNWInt("power", self.Power)
+        self:SetNW2Int("power", self.Power)
     end
 
     if self.Power <= 0 then
@@ -333,7 +333,7 @@ if CLIENT then
     end
 
     function SWEP:DrawScreen(x, y)
-        local power = self:GetNWInt("power", 0)
+        local power = self:GetNW2Int("power", 0)
         local i = power / 10
         draw.RoundedBox(0, x, y, 6, 10, Color(25, 25, 25, 255))
         draw.RoundedBox(0, x + 1, y, 4, math.Clamp(i, 0, 10), Color(255 - power, 10 + power * 2, 25, 255))
