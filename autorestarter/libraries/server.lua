@@ -15,6 +15,12 @@ function MODULE:InitializedModules()
     end)
 end
 
+function MODULE:OnReloaded()
+    net.Start("RestartDisplay")
+    net.WriteInt(self.nextRestart, 32)
+    net.Broadcast()
+end
+
 function MODULE:PlayerInitialSpawn(client)
     net.Start("RestartDisplay")
     net.WriteInt(self.nextRestart, 32)
