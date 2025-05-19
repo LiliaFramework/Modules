@@ -4,9 +4,9 @@ end
 
 function MODULE:HUDPaintBackground()
     if not LocalPlayer().getChar(LocalPlayer()) then return end
-    if IsHandcuffed(LocalPlayer()) then lia.util.drawText(L"restricted", ScrW() * 0.5, ScrH() * 0.33, nil, 1, 1, "liaBigFont") end
+    if LocalPlayer():IsHandcuffed() then lia.util.drawText(L"restricted", ScrW() * 0.5, ScrH() * 0.33, nil, 1, 1, "liaBigFont") end
 end
 
 function MODULE:PlayerBindPress(_, bind, _)
-    if IsHandcuffed(LocalPlayer()) and (bind == "+jump" or bind == "+speed") then return true end
+    if LocalPlayer():IsHandcuffed() and (bind == "+jump" or bind == "+speed") then return true end
 end
