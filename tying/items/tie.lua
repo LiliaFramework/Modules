@@ -18,7 +18,7 @@ ITEM.functions.use = {
             return false
         end
 
-        if IsHandcuffed(target) then
+        if target:IsHandcuffed() then
             client:notifyLocalized("alreadyCuffed")
             return false
         end

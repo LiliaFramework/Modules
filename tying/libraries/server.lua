@@ -1,21 +1,21 @@
 ﻿function MODULE:CheckValidSit(client)
-    if IsHandcuffed(client) then return false end
+    if client:IsHandcuffed() then return false end
 end
 
 function MODULE:CanDeleteChar(client)
-    if IsHandcuffed(client) then return true end
+    if client:IsHandcuffed() then return true end
 end
 
 function MODULE:PlayerSwitchWeapon(client)
-    if IsHandcuffed(client) then return true end
+    if client:IsHandcuffed() then return true end
 end
 
 function MODULE:CanExitVehicle(_, client)
-    if IsHandcuffed(client) then return false end
+    if client:IsHandcuffed() then return false end
 end
 
 function MODULE:CanPlayerUseChar(client)
-    if IsHandcuffed(client) then return false, L("youAreTied") end
+    if client:IsHandcuffed() then return false, L("youAreTied") end
 end
 
 function MODULE:PostPlayerLoadout(client)
@@ -23,28 +23,28 @@ function MODULE:PostPlayerLoadout(client)
 end
 
 function MODULE:ShouldWeaponBeRaised(client)
-    if IsHandcuffed(client) then return false end
+    if client:IsHandcuffed() then return false end
 end
 
 function MODULE:CanPlayerUseDoor(client)
-    if IsHandcuffed(client) then return false end
+    if client:IsHandcuffed() then return false end
 end
 
 function MODULE:CanPlayerInteractItem(client)
-    if IsHandcuffed(client) then return false end
+    if client:IsHandcuffed() then return false end
 end
 
 function MODULE:VC_canEnterPassengerSeat(client)
-    return not IsHandcuffed(client)
+    return not client:IsHandcuffed()
 end
 
 function MODULE:CanPlayerInteractItem(client)
-    if IsHandcuffed(client) then return false end
+    if client:IsHandcuffed() then return false end
 end
 
 function MODULE:PlayerUse(client, entity)
-    if IsHandcuffed(client) then return false end
-    if IsHandcuffed(entity) and entity:IsPlayer() and not entity.liaBeingUnTied then
+    if client:IsHandcuffed() then return false end
+    if entity:IsHandcuffed() and entity:IsPlayer() and not entity.liaBeingUnTied then
         entity.liaBeingUnTied = true
         entity:setAction(L("beingUntied"), 5)
         client:setAction(L("untying"), 5)
@@ -61,7 +61,7 @@ function MODULE:PlayerUse(client, entity)
 end
 
 function MODULE:CanPlayerEnterVehicle(client)
-    if IsHandcuffed(client) then return false end
+    if client:IsHandcuffed() then return false end
     return true
 end
 
@@ -101,14 +101,14 @@ function OnHandcuffRemove(target)
 end
 
 function MODULE:CanPlayerJoinClass(client)
-    if IsHandcuffed(client) then
+    if client:IsHandcuffed() then
         client:notifyLocalized("cuffCannotChangeClass")
         return false
     end
 end
 
 function MODULE:KeyPress(client, key)
-    if IsHandcuffed(client) and key == IN_DUCK then
+    if client:IsHandcuffed() and key == IN_DUCK then
         client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_UpperArm"), Angle(29.4, 43, 0))
         client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(0.9, 85.7, 0))
         client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_Hand"), Angle(0, 0, 0))
@@ -119,7 +119,7 @@ function MODULE:KeyPress(client, key)
 end
 
 function MODULE:KeyRelease(client, key)
-    if IsHandcuffed(client) and key == IN_DUCK then
+    if client:IsHandcuffed() and key == IN_DUCK then
         client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_UpperArm"), Angle(20, 8.8, 0))
         client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(15, 0, 0))
         client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_Hand"), Angle(0, 0, 75))

@@ -1,7 +1,7 @@
 ﻿local MODULE = MODULE
 AddInteraction(L("requestSearch"), {
     runServer = true,
-    shouldShow = function(client, target) return not target.SearchRequested and not client.SearchRequested and not IsBeingSearched(target) end,
+    shouldShow = function(client, target) return not target.SearchRequested and not client.SearchRequested and not target:IsBeingSearched() end,
     onRun = function(client, target)
         if not SERVER then return end
         client:notifyLocalized("requestSearchSent")
@@ -22,7 +22,7 @@ AddInteraction(L("requestSearch"), {
 
 AddInteraction(L("search"), {
     runServer = true,
-    shouldShow = function(_, target) return IsHandcuffed(target) and not IsBeingSearched(target) end,
+    shouldShow = function(_, target) return target:IsHandcuffed() and not target:IsBeingSearched() end,
     onRun = function(client, target)
         if not SERVER then return end
         MODULE:searchPlayer(client, target)

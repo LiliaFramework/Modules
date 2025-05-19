@@ -1,4 +1,5 @@
-﻿function IsHandcuffed(target)
-    local isRestricted = target:getNetVar("restricted", false)
-    return isRestricted
+﻿local playerMeta = FindMetaTable("Player")
+
+function playerMeta:IsHandcuffed()
+    return self:getNetVar("restricted", false)
 end

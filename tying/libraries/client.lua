@@ -1,5 +1,5 @@
 ﻿function MODULE:DrawCharInfo(client, _, info)
-    if IsHandcuffed(client) then info[#info + 1] = {L("isTied"), Color(245, 215, 110)} end
+    if client:IsHandcuffed() then info[#info + 1] = {L("isTied"), Color(245, 215, 110)} end
 end
 
 function MODULE:HUDPaintBackground()

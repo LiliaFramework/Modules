@@ -1,9 +1,10 @@
 ﻿AddInteraction(L("putInVehicle"), {
     runServer = true,
     shouldShow = function(client, target)
+        if not simfphys then return false end
         local es = ents.FindInSphere(client:GetPos(), 150)
         for _, v in pairs(es) do
-            if v:isSimfphysCar() then return IsHandcuffed(target) end
+            if v:isSimfphysCar() then return target:IsHandcuffed() end
         end
         return false
     end,
@@ -41,21 +42,21 @@ AddInteraction(L("removeCuffedPassengers"), {
     runServer = true,
     shouldShow = function(client)
         for _, v in pairs(ents.FindInSphere(client:GetPos(), 150)) do
-            if v:IsPlayer() and v:InVehicle() and IsHandcuffed(v) then return true end
+            if v:IsPlayer() and v:InVehicle() and v:IsHandcuffed() then return true end
         end
     end,
     onRun = function(_, target)
         if not SERVER then return end
         for i = 2, #target.pSeat do
             local driver = target.pSeat[i]:GetDriver()
-            if IsValid(driver) and IsHandcuffed(driver) then driver:ExitVehicle() end
+            if IsValid(driver) and driver:IsHandcuffed() then driver:ExitVehicle() end
         end
     end
 })
 
 AddInteraction(L("tie"), {
     runServer = true,
-    shouldShow = function(client, target) return client:getChar():getInv():hasItem("tie") and IsValid(target) and not IsHandcuffed(target) end,
+    shouldShow = function(client, target) return client:getChar():getInv():hasItem("tie") and IsValid(target) and not target:IsHandcuffed() end,
     onRun = function(client, target)
         if not SERVER then return end
         local item = client:getChar():getInv():getFirstItemOfType("tie")
@@ -79,7 +80,7 @@ AddInteraction(L("tie"), {
 
 AddInteraction(L("unTie"), {
     runServer = true,
-    shouldShow = function(_, target) return IsHandcuffed(target) end,
+    shouldShow = function(_, target) return target:IsHandcuffed() end,
     onRun = function(client, target)
         if not SERVER then return end
         target:setAction(L("beingUntied"), 3)
