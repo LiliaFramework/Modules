@@ -1,12 +1,7 @@
 name: CI
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+on: [push, pull_request]
 env:
   DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-
 permissions:
   actions: write
   checks: write
@@ -62,7 +57,7 @@ jobs:
             name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             author=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
-            version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
+            version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' "$module" || echo "1.0")
             workshop_line=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|".*")' "$module" || echo "")
             workshop_line=$(echo "$workshop_line" | sed -E 's/MODULE\.WorkshopContent\s*=\s*//g')
             if [[ "$workshop_line" =~ ^\{.*\}$ ]]; then
@@ -88,45 +83,23 @@ jobs:
             mv tmp.json modules.json
           done
       - run: |
-          for folder in */; do
-            [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
-          done
-      - name: Detect updated modules
-        id: detect_updates
-        run: |
-          git fetch origin main --unshallow || true
-          if git ls-tree -r HEAD --name-only | grep -q modules.json; then
-            git show HEAD:modules.json > old_modules.json
-          else
-            echo '[]' > old_modules.json
+          git fetch origin main --depth=1
+          git show origin/main:modules.json > old_modules.json 2>/dev/null || echo "[]" > old_modules.json
+          jq -r '.[] | "\(.uniqueID):\(.version)"' old_modules.json > old_versions.txt
+          jq -r '.[] | "\(.uniqueID):\(.version)"' modules.json > new_versions.txt
+          awk -F: 'NR==FNR { m[$1]=$2; next } m[$1] != $2 { print $1 " updated from " m[$1] " to " $2 }' old_versions.txt new_versions.txt > changes.txt
+          if [ -s changes.txt ]; then
+            payload="{\"content\":\"Module versions updated:\n$(sed ':a;N;$!ba;s/\n/\\n/g' changes.txt)\"}"
+            curl -X POST -H "Content-Type: application/json" -d "$payload" $DISCORD_WEBHOOK_URL
           fi
-          jq -r '.[] | "\(.uniqueID):\(.version)"' old_modules.json > old.list
-          jq -r '.[] | "\(.uniqueID):\(.version)"' modules.json > new.list
-          modules=$(awk -F: 'NR==FNR{old[$1]=$2;next} {if(old[$1]!=$2) print $1}' old.list new.list | jq -R -s -c 'split("\n")[:-1]')
-          echo "::set-output name=modules::$modules"
-      - name: Notify Discord of module updates
-        if: steps.detect_updates.outputs.modules != '[]'
-        run: |
-          payload=$(jq -n \
-            --arg ref "$GITHUB_REF" \
-            --arg before "$(git rev-parse HEAD^1)" \
-            --arg after "$(git rev-parse HEAD)" \
-            --arg repo "$GITHUB_REPOSITORY" \
-            --argjson modules "${{ steps.detect_updates.outputs.modules }}" \
-            '{"ref":$ref,"before":$before,"after":$after,"repository":{"full_name":$repo},"modules_updated":$modules}')
-          curl -X POST -H "Content-Type: application/json" --data "$payload" $DISCORD_WEBHOOK_URL
       - run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
           git add modules.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update modules.json with source URLs [skip ci]"
+            git commit -m "Update modules.json with source URLs"
             git push https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           fi
-      - uses: actions/upload-artifact@v4
-        with:
-          name: module-zips
-          path: ./*.zip
 
   gh-pages:
     needs: scrape-modules
@@ -147,14 +120,15 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Generate Site
-        run: node docsparser.js
+      - run: node docsparser.js
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
           publish_branch: gh-pages
           publish_dir: ./docs
           force_orphan: true
+      - run: |
+          curl -X POST -H "Content-Type: application/json" -d "{\"content\":\"The documentation site has just been updated on gh-pages.\"}" $DISCORD_WEBHOOK_URL
 
   release:
     needs: gh-pages
@@ -164,7 +138,6 @@ jobs:
         with:
           path: modules
       - uses: actions/github-script@v6
-        name: Remove existing release & tag
         with:
           script: |
             const tag = 'release';
@@ -185,25 +158,20 @@ jobs:
                 ref: `tags/${tag}`
               });
             } catch (error) {
-              if (error.status !== 404) throw error;
             }
       - run: |
           mkdir packaged
           cp -R modules packaged/modules
           cd packaged
           zip -r ../modules.zip modules
-      - uses: actions/create-release@v1
-        id: create_release
-        name: Create GitHub Release
+      - id: create_release
+        uses: actions/create-release@v1
         with:
           tag_name: release
           release_name: Modules
-          draft: false
-          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
       - uses: actions/upload-release-asset@v1
-        name: Upload release asset
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: modules.zip
