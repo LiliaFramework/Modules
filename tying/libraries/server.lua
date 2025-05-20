@@ -44,7 +44,7 @@ end
 
 function MODULE:PlayerUse(client, entity)
     if client:IsHandcuffed() then return false end
-    if entity:IsHandcuffed() and entity:IsPlayer() and not entity.liaBeingUnTied then
+    if entity:IsPlayer() and entity:IsHandcuffed() and not entity.liaBeingUnTied then
         entity.liaBeingUnTied = true
         entity:setAction(L("beingUntied"), 5)
         client:setAction(L("untying"), 5)
