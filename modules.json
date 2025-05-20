@@ -350,6 +350,16 @@
     "workshop": []
   },
   {
+    "name": "NPC Drops",
+    "author": "@liliaplayer",
+    "description": "Adds NPCs that drop items",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/npcdrop.zip",
+    "source": "https://liliaframework.github.io/Modules/npcdrop.html",
+    "uniqueID": "npcdrop",
+    "workshop": []
+  },
+  {
     "name": "NPC Spawner",
     "author": "@liliaplayer",
     "description": "Adds automatic npc spawning",
@@ -419,6 +429,16 @@
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/shootlock.zip",
     "source": "https://liliaframework.github.io/Modules/shootlock.html",
     "uniqueID": "shootlock",
+    "workshop": []
+  },
+  {
+    "name": "Heavy Weapons",
+    "author": "@liliaplayer",
+    "description": "A module that allows you to make certain weapons that slow you down",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/slowweapons.zip",
+    "source": "https://liliaframework.github.io/Modules/slowweapons.html",
+    "uniqueID": "slowweapons",
     "workshop": []
   },
   {
