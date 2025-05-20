@@ -1,5 +1,9 @@
 name: CI
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 env:
   DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
@@ -105,7 +109,7 @@ jobs:
         run: |
           payload=$(jq -n \
             --arg ref "$GITHUB_REF" \
-            --arg before "$(git rev-parse HEAD)" \
+            --arg before "$(git rev-parse HEAD^1)" \
             --arg after "$(git rev-parse HEAD)" \
             --arg repo "$GITHUB_REPOSITORY" \
             --argjson modules "${{ steps.detect_updates.outputs.modules }}" \
@@ -116,7 +120,7 @@ jobs:
           git config user.name "GitHub Actions"
           git add modules.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update modules.json with source URLs"
+            git commit -m "Update modules.json with source URLs [skip ci]"
             git push https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           fi
       - uses: actions/upload-artifact@v4
@@ -157,11 +161,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        name: Checkout Modules Repository
         with:
           path: modules
-      - name: Remove existing release & tag (if any)
-        uses: actions/github-script@v6
+      - uses: actions/github-script@v6
+        name: Remove existing release & tag
         with:
           script: |
             const tag = 'release';
@@ -181,23 +184,17 @@ jobs:
                 repo: context.repo.repo,
                 ref: `tags/${tag}`
               });
-              core.info(`Deleted existing release & tag "${tag}"`);
             } catch (error) {
-              if (error.status === 404) {
-                core.info('No existing release/tag to delete');
-              } else {
-                throw error;
-              }
+              if (error.status !== 404) throw error;
             }
-      - name: Prepare and Zip
-        run: |
+      - run: |
           mkdir packaged
           cp -R modules packaged/modules
           cd packaged
           zip -r ../modules.zip modules
-      - name: Create GitHub Release
+      - uses: actions/create-release@v1
         id: create_release
-        uses: actions/create-release@v1
+        name: Create GitHub Release
         with:
           tag_name: release
           release_name: Modules
@@ -205,8 +202,8 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
-      - name: Upload release asset
-        uses: actions/upload-release-asset@v1
+      - uses: actions/upload-release-asset@v1
+        name: Upload release asset
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: modules.zip
