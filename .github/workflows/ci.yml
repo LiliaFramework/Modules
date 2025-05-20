@@ -131,7 +131,7 @@ jobs:
         run: |
           curl -X POST \
             -H "Content-Type: application/json" \
-            -d "{\"content\":\"The documentation site has just been updated on gh-pages.\"}" \
+            --data "@${GITHUB_EVENT_PATH}" \
             $DISCORD_WEBHOOK_URL
 
   release:
