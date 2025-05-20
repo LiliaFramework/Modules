@@ -1,7 +1,6 @@
 name: CI
 on: [push, pull_request]
-env:
-  DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
 permissions:
   actions: write
   checks: write
@@ -35,7 +34,11 @@ jobs:
       - run: luarocks make
         working-directory: luacheck
       - run: |
-          luacheck . --no-redefined --no-global --no-self --no-max-line-length --no-max-code-line-length --no-max-string-line-length --no-max-comment-line-length
+          luacheck . \
+            --no-redefined \
+            --no-global --no-self \
+            --no-max-line-length --no-max-code-line-length \
+            --no-max-string-line-length --no-max-comment-line-length
         working-directory: modules
 
   scrape-modules:
@@ -53,7 +56,7 @@ jobs:
             name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             author=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
-            version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' "$module" || echo "1.0")
+            version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
             workshop_line=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|".*")' "$module" || echo "")
             workshop_line=$(echo "$workshop_line" | sed -E 's/MODULE\.WorkshopContent\s*=\s*//g')
             if [[ "$workshop_line" =~ ^\{.*\}$ ]]; then
@@ -64,37 +67,40 @@ jobs:
               workshop_line="[]"
             fi
             folder=$(basename "$(dirname "$module")")
-            jq --arg name "$name" --arg author "$author" --arg desc "$desc" --arg version "$version" --arg download "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/${folder}.zip" --arg source "https://liliaframework.github.io/Modules/${folder}.html" --arg uniqueID "$folder" --argjson workshop "$workshop_line" '. += [{name:$name,author:$author,description:$desc,version:$version,download:$download,source:$source,uniqueID:$uniqueID,workshop:$workshop}]' modules.json > tmp.json
+            uniqueID=$folder
+            download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/${folder}.zip"
+            source="https://liliaframework.github.io/Modules/${folder}.html"
+            jq --arg name "$name" \
+               --arg author "$author" \
+               --arg desc "$desc" \
+               --arg version "$version" \
+               --arg download "$download" \
+               --arg source "$source" \
+               --arg uniqueID "$uniqueID" \
+               --argjson workshop "$workshop_line" \
+               '. += [{name:$name,author:$author,description:$desc,version:$version,download:$download,source:$source,uniqueID:$uniqueID,workshop:$workshop}]' modules.json > tmp.json
             mv tmp.json modules.json
           done
       - run: |
-          for folder in */; do [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"; done
-      - uses: actions/upload-artifact@v4
-        with:
-          name: module-zips
-          path: ./*.zip
-      - run: |
-          git fetch origin main --depth=1
-          git show origin/main:modules.json > old.json 2>/dev/null || echo "[]" > old.json
-          jq -r '.[] | "\(.uniqueID):\(.version)"' old.json > old.txt
-          jq -r '.[] | "\(.uniqueID):\(.version)"' modules.json > new.txt
-          awk -F: 'NR==FNR{m[$1]=$2;next}m[$1]!=$2{print $1 " updated to " $2}' old.txt new.txt > diff.txt
-          if [ -s diff.txt ]; then
-            payload="{\"content\":\"Module updates:\n$(sed ':a;N;$!ba;s/\n/\\n/g' diff.txt)\"}"
-            curl -X POST -H "Content-Type: application/json" -d "$payload" $DISCORD_WEBHOOK_URL
-          fi
+          for folder in */; do
+            [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
+          done
       - run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
           git add modules.json
-          if ! git diff --cached --quiet; then git commit -m "Update modules.json" && git push https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main; fi
+          if ! git diff --cached --quiet; then
+            git commit -m "Update modules.json with source URLs"
+            git push https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: module-zips
+          path: ./*.zip
 
   gh-pages:
     needs: scrape-modules
     runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: write
     steps:
       - uses: actions/checkout@v3
         with:
@@ -104,27 +110,81 @@ jobs:
           name: module-zips
           path: docs/Downloads
       - run: |
-          for zip in docs/Downloads/*.zip; do folder=$(basename "$zip" .zip); unzip "$zip" -d "extracted_${folder}"; done
+          for zip in docs/Downloads/*.zip; do
+            folder=$(basename "$zip" .zip)
+            unzip "$zip" -d "extracted_${folder}"
+          done
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: node docsparser.js
+      - name: Generate Site
+        run: node docsparser.js
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
           publish_branch: gh-pages
           publish_dir: ./docs
           force_orphan: true
-      - run: curl -X POST -H "Content-Type: application/json" -d "{\"content\":\"Documentation updated\"}" $DISCORD_WEBHOOK_URL
 
   release:
     needs: gh-pages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        name: Checkout Modules Repository
         with:
           path: modules
-      - uses: actions/github-script@v6
+      - name: Remove existing release & tag (if any)
+        uses: actions/github-script@v6
         with:
           script: |
-            const tag='release';try{const r=await github.rest.repos.getReleaseByTag({owner:context.repo.owner,repo:context.repo.repo,tag});await github.rest.repos.deleteRelease({owner:context.repo.owner,repo:context.repo.repo,release_id:r.data.id});await github.rest.git.deleteRef({owner:context.repo.owner,repo:context.repo.repo,ref:`tags_
+            const tag = 'release';
+            try {
+              const release = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag
+              });
+              await github.rest.repos.deleteRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: release.data.id
+              });
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `tags/${tag}`
+              });
+              core.info(`Deleted existing release & tag "${tag}"`);
+            } catch (error) {
+              if (error.status === 404) {
+                core.info('No existing release/tag to delete');
+              } else {
+                throw error;
+              }
+            }
+      - name: Prepare and Zip
+        run: |
+          mkdir packaged
+          cp -R modules packaged/modules
+          cd packaged
+          zip -r ../modules.zip modules
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: release
+          release_name: Modules
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: modules.zip
+          asset_name: modules.zip
+          asset_content_type: application/zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
