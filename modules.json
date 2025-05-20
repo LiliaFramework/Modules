@@ -3,7 +3,7 @@
     "name": "Advert",
     "author": "@liliaplayer",
     "description": "Adds a Advert Command",
-    "version": "Advert\nSamael\n@liliaplayer\n1.0.2\nAdds a Advert Command\nMODULE.Public = true",
+    "version": "Advert\nSamael\n@liliaplayer\n1.0.1\nAdds a Advert Command\nMODULE.Public = true",
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/advert.zip",
     "source": "https://liliaframework.github.io/Modules/advert.html",
     "uniqueID": "advert",
