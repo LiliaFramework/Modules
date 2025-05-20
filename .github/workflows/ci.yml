@@ -87,6 +87,30 @@ jobs:
           for folder in */; do
             [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
           done
+      - name: Detect updated modules
+        id: detect_updates
+        run: |
+          git fetch origin main --unshallow || true
+          if git ls-tree -r HEAD --name-only | grep -q modules.json; then
+            git show HEAD:modules.json > old_modules.json
+          else
+            echo '[]' > old_modules.json
+          fi
+          jq -r '.[] | "\(.uniqueID):\(.version)"' old_modules.json > old.list
+          jq -r '.[] | "\(.uniqueID):\(.version)"' modules.json > new.list
+          modules=$(awk -F: 'NR==FNR{old[$1]=$2;next} {if(old[$1]!=$2) print $1}' old.list new.list | jq -R -s -c 'split("\n")[:-1]')
+          echo "::set-output name=modules::$modules"
+      - name: Notify Discord of module updates
+        if: steps.detect_updates.outputs.modules != '[]'
+        run: |
+          payload=$(jq -n \
+            --arg ref "$GITHUB_REF" \
+            --arg before "$(git rev-parse HEAD)" \
+            --arg after "$(git rev-parse HEAD)" \
+            --arg repo "$GITHUB_REPOSITORY" \
+            --argjson modules "${{ steps.detect_updates.outputs.modules }}" \
+            '{"ref":$ref,"before":$before,"after":$after,"repository":{"full_name":$repo},"modules_updated":$modules}')
+          curl -X POST -H "Content-Type: application/json" --data "$payload" $DISCORD_WEBHOOK_URL
       - run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
@@ -127,12 +151,6 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ./docs
           force_orphan: true
-      - name: Notify Discord
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            --data "@${GITHUB_EVENT_PATH}" \
-            $DISCORD_WEBHOOK_URL
 
   release:
     needs: gh-pages
