@@ -92,12 +92,12 @@ jobs:
           path: ./*.zip
       - run: |
           git fetch origin main --depth=1
-          git show origin/main:modules.json > old_modules.json 2>/dev/null || echo "[]" > old_modules.json
-          jq -r '.[] | "\(.uniqueID):\(.version)"' old_modules.json > old_versions.txt
-          jq -r '.[] | "\(.uniqueID):\(.version)"' modules.json > new_versions.txt
-          awk -F: 'NR==FNR {m[$1]=$2; next} m[$1]!= $2 {print $1 " updated from " m[$1] " to " $2}' old_versions.txt new_versions.txt > changes.txt
-          if [ -s changes.txt ]; then
-            payload="{\"content\":\"Module versions updated:\n$(sed ':a;N;$!ba;s/\n/\\n/g' changes.txt)\"}"
+          git show origin/main:modules.json > old.json 2>/dev/null || echo "[]" > old.json
+          jq -r '.[] | "\(.uniqueID):\(.version)"' old.json > old.txt
+          jq -r '.[] | "\(.uniqueID):\(.version)"' modules.json > new.txt
+          awk -F: 'NR==FNR{m[$1]=$2;next} m[$1]!=$2{print $1 " updated to " $2}' old.txt new.txt > diff.txt
+          if [ -s diff.txt ]; then
+            payload="{\"content\":\"Module versions updated:\n$(sed ':a;N;$!ba;s/\n/\\n/g' diff.txt)\"}"
             curl -X POST -H "Content-Type: application/json" -d "$payload" $DISCORD_WEBHOOK_URL
           fi
       - run: |
@@ -105,7 +105,7 @@ jobs:
           git config user.name "GitHub Actions"
           git add modules.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update modules.json with source URLs"
+            git commit -m "Update modules.json"
             git push https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           fi
 
@@ -139,7 +139,7 @@ jobs:
           publish_dir: ./docs
           force_orphan: true
       - run: |
-          curl -X POST -H "Content-Type: application/json" -d "{\"content\":\"The documentation site has just been updated on gh-pages.\"}" $DISCORD_WEBHOOK_URL
+          curl -X POST -H "Content-Type: application/json" -d "{\"content\":\"Documentation updated\"}" $DISCORD_WEBHOOK_URL
 
   release:
     needs: gh-pages
@@ -153,21 +153,9 @@ jobs:
           script: |
             const tag='release'
             try{
-              const release=await github.rest.repos.getReleaseByTag({
-                owner:context.repo.owner,
-                repo:context.repo.repo,
-                tag
-              })
-              await github.rest.repos.deleteRelease({
-                owner:context.repo.owner,
-                repo:context.repo.repo,
-                release_id:release.data.id
-              })
-              await github.rest.git.deleteRef({
-                owner:context.repo.owner,
-                repo:context.repo.repo,
-                ref:`tags/${tag}`
-              })
+              const r=await github.rest.repos.getReleaseByTag({owner:context.repo.owner,repo:context.repo.repo,tag})
+              await github.rest.repos.deleteRelease({owner:context.repo.owner,repo:context.repo.repo,release_id:r.data.id})
+              await github.rest.git.deleteRef({owner:context.repo.owner,repo:context.repo.repo,ref:`tags/${tag}`})
             }catch{}
       - run: |
           mkdir packaged
