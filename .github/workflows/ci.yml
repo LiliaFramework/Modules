@@ -91,7 +91,7 @@ jobs:
           git add modules.json
           if ! git diff --cached --quiet; then
             git commit -m "Update modules.json with source URLs"
-            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
+            git push https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           fi
       - uses: actions/upload-artifact@v4
         with:
