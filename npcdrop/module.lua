@@ -1,0 +1,14 @@
+﻿MODULE.name = "NPC Drops"
+MODULE.author = "Samael"
+MODULE.discord = "@liliaplayer"
+MODULE.version = "1.0"
+MODULE.desc = "Adds NPCs that drop items"
+MODULE.Public = true
+MODULE.DropTable = {
+    ["npc_zombie"] = {
+        ["soda"] = 25,
+        ["cola"] = 10,
+        ["water"] = 50,
+        ["beer"] = 15
+    }
+}
