@@ -1,5 +1,7 @@
 name: CI
 on: [push, pull_request]
+env:
+  DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
 permissions:
   actions: write
@@ -125,6 +127,12 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ./docs
           force_orphan: true
+      - name: Notify Discord
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d "{\"content\":\"The documentation site has just been updated on gh-pages.\"}" \
+            $DISCORD_WEBHOOK_URL
 
   release:
     needs: gh-pages
