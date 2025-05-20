@@ -173,7 +173,7 @@
     "name": "Development Server",
     "author": "@liliaplayer",
     "description": "Adds the option for a Development Server, which can run specific functions.",
-    "version": "Development Server\nSamael\n@liliaplayer\n1.0.1\nAdds the option for a Development Server, which can run specific functions.\nMODULE.Public = true",
+    "version": "Development Server\nSamael\n@liliaplayer\n1.0.2\nAdds the option for a Development Server, which can run specific functions.\nMODULE.Public = true",
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/developmentserver.zip",
     "source": "https://liliaframework.github.io/Modules/developmentserver.html",
     "uniqueID": "developmentserver",
