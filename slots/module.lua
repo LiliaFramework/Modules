@@ -1,0 +1,6 @@
+MODULE.name = "Slots"
+MODULE.author = "Samael"
+MODULE.discord = "@liliaplayer"
+MODULE.version = "1.0"
+MODULE.desc = "Adds a Slots Machine."
+MODULE.Public = true

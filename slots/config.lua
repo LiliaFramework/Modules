@@ -1,0 +1,12 @@
+--   MODULE.GamblingPrice         = cost (in T) to play the slot machine
+--   MODULE.JackpotChance        = the upper bound for the random jackpot check
+--   MODULE.TripleBarClover      = payout for landing triple bar clover on jackpot
+--   MODULE.SingleBarDollarSign  = payout for landing single bar dollar sign on jackpot
+--   MODULE.Lucky7Diamond        = payout for landing lucky 7 diamond on jackpot
+--   MODULE.HorseShoeDoubleBar   = payout for landing horseshoe double bar on jackpot
+MODULE.GamblingPrice = 13
+MODULE.JackpotChance = 32
+MODULE.TripleBarClover = 200
+MODULE.SingleBarDollarSign = 50
+MODULE.Lucky7Diamond = 500
+MODULE.HorseShoeDoubleBar = 100
