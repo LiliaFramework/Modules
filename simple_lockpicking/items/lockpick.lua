@@ -43,6 +43,6 @@ ITEM.functions.Use = {
     onCanRun = function(item) return not IsValid(item.entity) end
 }
 
-function ITEM:onCanBeTransfered(inventory, newInventory)
+function ITEM:onCanBeTransfered()
     return not self.beingUsed
 end
