@@ -432,6 +432,26 @@
     "workshop": []
   },
   {
+    "name": "Lockpicking",
+    "author": "@liliaplayer",
+    "description": "Adds simple Lockpicking to bruteforce doors!",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/simple_lockpicking.zip",
+    "source": "https://liliaframework.github.io/Modules/simple_lockpicking.html",
+    "uniqueID": "simple_lockpicking",
+    "workshop": []
+  },
+  {
+    "name": "Slots",
+    "author": "@liliaplayer",
+    "description": "Adds a Slots Machine.",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/slots.zip",
+    "source": "https://liliaframework.github.io/Modules/slots.html",
+    "uniqueID": "slots",
+    "workshop": []
+  },
+  {
     "name": "Heavy Weapons",
     "author": "@liliaplayer",
     "description": "A module that allows you to make certain weapons that slow you down",
