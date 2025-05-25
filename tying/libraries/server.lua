@@ -106,25 +106,3 @@ function MODULE:CanPlayerJoinClass(client)
         return false
     end
 end
-
-function MODULE:KeyPress(client, key)
-    if client:IsHandcuffed() and key == IN_DUCK then
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_UpperArm"), Angle(29.4, 43, 0))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(0.9, 85.7, 0))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_Hand"), Angle(0, 0, 0))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(0, 80.143, 0))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, 0))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(-39.3, 85.4, -30.4))
-    end
-end
-
-function MODULE:KeyRelease(client, key)
-    if client:IsHandcuffed() and key == IN_DUCK then
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_UpperArm"), Angle(20, 8.8, 0))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_Forearm"), Angle(15, 0, 0))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_L_Hand"), Angle(0, 0, 75))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_R_Forearm"), Angle(-15, 0, 0))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_R_Hand"), Angle(0, 0, -75))
-        client:ManipulateBoneAngles(client:LookupBone("ValveBiped.Bip01_R_UpperArm"), Angle(-20, 16.6, 0))
-    end
-end
