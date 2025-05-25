@@ -56,25 +56,16 @@ function ENT:Initialize()
 end
 
 function ENT:Use(client)
-	print("ENT:Use called by", client, "on entity", self:EntIndex())
 	local character = client:getChar()
-	print("ENT:Use called by", client, "on entity", self:EntIndex())
-	if not self.IsPlaying then
-		print("Machine is already spinning")
-		return
-	end
-
+	if not self.IsPlaying then return end
 	if not character:hasMoney(MODULE.GamblingPrice) then
-		print("Client has insufficient funds:", character:getMoney(), "needed:", MODULE.GamblingPrice)
 		client:notify("You don't have enough money!")
 		return
 	end
 
 	timer.Create("SpinWheels" .. self:EntIndex(), 0, 1, function()
-		print("Starting spin sequence for", self:EntIndex())
 		self.IsPlaying = false
 		character:takeMoney(MODULE.GamblingPrice)
-		print("Took money:", MODULE.GamblingPrice, "Remaining:", character:getMoney())
 		self:EmitSound("ambient/levels/labs/coinslot1.wav", 60, 100)
 		self:EmitSound("spin.wav", 100, 100)
 		for i = 1, 3 do
@@ -86,22 +77,15 @@ function ENT:Use(client)
 		self.SelectThree = true
 		self.Jackpot = false
 		self.Lucky = math.random(1, MODULE.JackpotChance)
-		print("Lucky roll:", self.Lucky, "Threshold:", math.Round(MODULE.JackpotChance / 2))
 		if self.Lucky == math.Round(MODULE.JackpotChance / 2) then
 			self.Pick = math.Rand(1, 12)
 			self.Jackpot = true
-			print("Jackpot triggered, pick seed:", self.Pick)
 		end
 
 		timer.Create("StopWheels" .. self:EntIndex(), 0.75, 3, function()
-			if not self.Jackpot then
-				self.Pick = math.random(1, 12)
-				print("Random pick for non-jackpot:", self.Pick)
-			end
-
+			if not self.Jackpot then self.Pick = math.random(1, 12) end
 			if self.SelectOne then
 				self.spin_1:SetSkin(self.Pick)
-				print("Wheel 1 stopped at skin", self.Pick)
 				self:EmitSound("drum_stop.wav", 100, 100)
 				self.SelectOne = false
 				return
@@ -109,7 +93,6 @@ function ENT:Use(client)
 
 			if self.SelectTwo then
 				self.spin_2:SetSkin(self.Pick)
-				print("Wheel 2 stopped at skin", self.Pick)
 				self:EmitSound("drum_stop.wav", 100, 100)
 				self.SelectTwo = false
 				return
@@ -117,7 +100,6 @@ function ENT:Use(client)
 
 			if self.SelectThree then
 				self.spin_3:SetSkin(self.Pick)
-				print("Wheel 3 stopped at skin", self.Pick)
 				self:EmitSound("drum_stop.wav", 100, 100)
 				self.SelectThree = false
 			end
@@ -128,10 +110,8 @@ function ENT:Use(client)
 				if skin == 1 or skin == 3 or skin == 4 or skin == 5 or skin == 8 or skin == 9 or skin == 10 or skin == 12 then payout = payout + 5 end
 			end
 
-			print("Base payout before jackpot logic:", payout)
 			if self.Jackpot then
 				local finalSkin = self.spin_3:GetSkin()
-				print("Final skin for jackpot evaluation:", finalSkin)
 				if finalSkin == 1 or finalSkin == 8 then
 					payout = MODULE.TripleBarClover
 				elseif finalSkin == 3 or finalSkin == 12 then
@@ -141,17 +121,10 @@ function ENT:Use(client)
 				elseif finalSkin == 5 or finalSkin == 10 then
 					payout = MODULE.HorseShoeDoubleBar
 				end
-
-				print("Payout after jackpot logic:", payout)
 			end
 
-			if payout > MODULE.SingleBarDollarSign - 1 then
-				print("Playing jackpot sound for payout", payout)
-				self:EmitSound("jackpot.wav", 100, 100)
-			end
-
+			if payout > MODULE.SingleBarDollarSign - 1 then self:EmitSound("jackpot.wav", 100, 100) end
 			if payout > 9 then
-				print("Awarding payout to client:", payout)
 				self:EmitSound("payout.wav", 100, 100)
 				character:giveMoney(payout)
 				client:notify("Your payout is " .. payout .. "T")
@@ -159,7 +132,6 @@ function ENT:Use(client)
 
 			self.IsPlaying = true
 			self.Jackpot = false
-			print("Spin sequence complete, machine ready again")
 		end)
 	end)
 end
