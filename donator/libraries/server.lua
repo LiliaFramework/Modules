@@ -20,6 +20,12 @@ function AddOverrideCharSlots(client)
     end
 end
 
+function MODULE:GetDefaultInventorySize(client)
+    local grp = client:GetUserGroup()
+    local sz = self.GroupInventorySize[grp]
+    if sz then return sz[1], sz[2] end
+end
+
 function SubtractOverrideCharSlots(client)
     for _, ply in player.Iterator() do
         if client and ply == client then
