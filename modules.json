@@ -193,7 +193,7 @@
     "name": "Donator",
     "author": "@liliaplayer",
     "description": "Adds Several Donation Related Libraries.",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/donator.zip",
     "source": "https://liliaframework.github.io/Modules/donator.html",
     "uniqueID": "donator",
@@ -449,7 +449,9 @@
     "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/slots.zip",
     "source": "https://liliaframework.github.io/Modules/slots.html",
     "uniqueID": "slots",
-    "workshop": []
+    "workshop": [
+      "3482441716"
+    ]
   },
   {
     "name": "Heavy Weapons",
