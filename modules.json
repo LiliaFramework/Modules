@@ -402,6 +402,16 @@
     "workshop": []
   },
   {
+    "name": "Realistic Damage",
+    "author": "@liliaplayer",
+    "description": "Adds Damage Scalers for Realism",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/realisticdamage.zip",
+    "source": "https://liliaframework.github.io/Modules/realisticdamage.html",
+    "uniqueID": "realisticdamage",
+    "workshop": []
+  },
+  {
     "name": "Realistic View",
     "author": "@liliaplayer",
     "description": "Adds an realistic 1st Person View that allows to see the entire body.",
