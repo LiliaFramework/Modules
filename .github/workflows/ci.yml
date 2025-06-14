@@ -188,3 +188,8 @@ jobs:
           asset_content_type: application/zip
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
+
+          
+Write the docs to the branch gh-pages, not the root of the current branch
+
+So instead of modules.json being in "main", it'd be on gh-pages instead.,
