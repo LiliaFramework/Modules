@@ -82,17 +82,12 @@ jobs:
             mv tmp.json modules.json
           done
       - run: |
+          mkdir -p docs
+          mv modules.json docs/modules.json
+      - run: |
           for folder in */; do
             [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
           done
-      - run: |
-          git config user.email "githubactions@github.com"
-          git config user.name "GitHub Actions"
-          git add modules.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Update modules.json with source URLs"
-            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
-          fi
       - uses: actions/upload-artifact@v4
         with:
           name: module-zips
@@ -117,8 +112,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Generate Site
-        run: node docsparser.js
+      - run: node docsparser.js
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
@@ -134,8 +128,7 @@ jobs:
         name: Checkout Modules Repository
         with:
           path: modules
-      - name: Remove existing release & tag (if any)
-        uses: actions/github-script@v6
+      - uses: actions/github-script@v6
         with:
           script: |
             const tag = 'release';
@@ -155,22 +148,15 @@ jobs:
                 repo: context.repo.repo,
                 ref: `tags/${tag}`
               });
-              core.info(`Deleted existing release & tag "${tag}"`);
             } catch (error) {
-              if (error.status === 404) {
-                core.info('No existing release/tag to delete');
-              } else {
-                throw error;
-              }
+              if (error.status !== 404) throw error;
             }
-      - name: Prepare and Zip
-        run: |
+      - run: |
           mkdir packaged
           cp -R modules packaged/modules
           cd packaged
           zip -r ../modules.zip modules
-      - name: Create GitHub Release
-        id: create_release
+      - id: create_release
         uses: actions/create-release@v1
         with:
           tag_name: release
@@ -179,8 +165,7 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
-      - name: Upload release asset
-        uses: actions/upload-release-asset@v1
+      - uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: modules.zip
@@ -188,8 +173,3 @@ jobs:
           asset_content_type: application/zip
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
-
-          
-Write the docs to the branch gh-pages, not the root of the current branch
-
-So instead of modules.json being in "main", it'd be on gh-pages instead.,
