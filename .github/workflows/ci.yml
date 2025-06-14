@@ -48,6 +48,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: gh-pages
       - run: sudo apt-get update && sudo apt-get install -y jq zip
       - run: |
           echo "[]" > modules.json
@@ -82,12 +83,17 @@ jobs:
             mv tmp.json modules.json
           done
       - run: |
-          mkdir -p docs
-          mv modules.json docs/modules.json
-      - run: |
           for folder in */; do
             [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
           done
+      - run: |
+          git config user.email "githubactions@github.com"
+          git config user.name "GitHub Actions"
+          git add modules.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update modules.json with source URLs"
+            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git gh-pages
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: module-zips
@@ -112,7 +118,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: node docsparser.js
+      - name: Generate Site
+        run: node docsparser.js
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
@@ -128,7 +135,8 @@ jobs:
         name: Checkout Modules Repository
         with:
           path: modules
-      - uses: actions/github-script@v6
+      - name: Remove existing release & tag (if any)
+        uses: actions/github-script@v6
         with:
           script: |
             const tag = 'release';
@@ -148,15 +156,22 @@ jobs:
                 repo: context.repo.repo,
                 ref: `tags/${tag}`
               });
+              core.info(`Deleted existing release & tag "${tag}"`);
             } catch (error) {
-              if (error.status !== 404) throw error;
+              if (error.status === 404) {
+                core.info('No existing release/tag to delete');
+              } else {
+                throw error;
+              }
             }
-      - run: |
+      - name: Prepare and Zip
+        run: |
           mkdir packaged
           cp -R modules packaged/modules
           cd packaged
           zip -r ../modules.zip modules
-      - id: create_release
+      - name: Create GitHub Release
+        id: create_release
         uses: actions/create-release@v1
         with:
           tag_name: release
@@ -165,7 +180,8 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
-      - uses: actions/upload-release-asset@v1
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: modules.zip
