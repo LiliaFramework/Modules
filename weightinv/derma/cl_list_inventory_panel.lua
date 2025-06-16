@@ -12,7 +12,7 @@ function PANEL:Init()
 	self.weightBar = self.weight:Add("DPanel")
 	self.weightBar:Dock(FILL)
 	self.weightBar:DockMargin(PADDING, PADDING, PADDING, PADDING)
-	self.weightBar.Paint = function(this, w, h) self:paintWeightBar(w, h) end
+	self.weightBar.Paint = function(_, w, h) self:paintWeightBar(w, h) end
 	self.weightLabel = self.weight:Add("DLabel")
 	self.weightLabel:SetFont("liaChatFont")
 	self.weightLabel:Dock(FILL)
@@ -103,7 +103,7 @@ function PANEL:itemPaintBehind(w, h)
 	surface.DrawOutlinedRect(0, 0, w, h)
 end
 
-function PANEL:onItemPressed(itemIcon, keyCode)
+function PANEL:onItemPressed(itemIcon)
 	itemIcon:openActionMenu()
 end
 

@@ -29,35 +29,32 @@ end
 function PANEL:setStorage(storage)
 	if self.storage and IsValid(self.storage) then self.storage:RemoveCallOnRemove("ListStorageView") end
 	local char = LocalPlayer():getChar()
-	if not (IsValid(storage) and char and storage:getInv() and char:getInv()) then return self:Remove() end
+	if not (IsValid(storage) and char and storage:getInv() and char:getInv()) then
+		if IsValid(self) then self:Remove() end
+		return
+	end
+
 	self.storage = storage
 	storage:CallOnRemove("ListStorageView", function() if IsValid(self) then self:Remove() end end)
-	local invLocal, invStorage = char:getInv(), storage:getInv()
+	local invLocal = char:getInv()
+	local invStorage = storage:getInv()
 	local stacksLocal = lia.module.list["weightinv"]:getItemStacks(invLocal)
-	local stacksStorage = lia.module.list["weightinv"]:getItemStacks(invStorage)
-	local countLocal, countStorage = 0, 0
-	for _, v in pairs(stacksLocal) do
-		countLocal = countLocal + 1
-	end
-
-	for _, v in pairs(stacksStorage) do
-		countStorage = countStorage + 1
-	end
-
+	local stacksStore = lia.module.list["weightinv"]:getItemStacks(invStorage)
+	local countLocal = table.Count(stacksLocal)
+	local countStore = table.Count(stacksStore)
 	if countLocal < 1 then countLocal = 1 end
-	if countStorage < 1 then countStorage = 1 end
+	if countStore < 1 then countStore = 1 end
 	local iconSize = 64 + PADDING
-	local minCols, defaultCols = 6, 12
+	local minCols = 6
+	local defaultCols = 12
 	local baseWidth = defaultCols * iconSize + BORDER_FIX_W
-	local halfW = baseWidth * 0.5
-	local cols = math.floor((halfW - BORDER_FIX_W) / iconSize)
+	local cols = math.floor((baseWidth * 0.5 - BORDER_FIX_W) / iconSize)
 	if cols < minCols then cols = minCols end
-	halfW = cols * iconSize + BORDER_FIX_W
-	local maxCount = math.max(countLocal, countStorage)
+	local halfW = cols * iconSize + BORDER_FIX_W
+	local maxCount = math.max(countLocal, countStore)
 	local rows = math.ceil(maxCount / cols)
 	local frameH = rows * iconSize + PADDING + HEADER_HEIGHT + BORDER_FIX_H + WEIGHT_PANEL_HEIGHT + FOOTER_HEIGHT
-	local maxH = ScrH()
-	if frameH > maxH then frameH = maxH end
+	if frameH > ScrH() then frameH = ScrH() end
 	local totalW = halfW * 2 + PADDING
 	self:SetSize(totalW, frameH)
 	self.storagePane:SetWide(halfW)

@@ -5,7 +5,6 @@ local HEADER_HEIGHT = 22
 local WEIGHT_PANEL_HEIGHT = 32
 local BORDER_FIX_W = 8
 local BORDER_FIX_H = 14
-local PANEL = {}
 function PANEL:Init()
 	self:MakePopup()
 	self:Center()

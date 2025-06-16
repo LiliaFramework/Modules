@@ -1,5 +1,5 @@
 local WeightInv = lia.Inventory:extend("WeightInv")
-local function CanAccessInventoryIfCharacterIsOwner(inventory, action, context)
+local function CanAccessInventoryIfCharacterIsOwner(inventory, _, context)
 	local ownerID = inventory:getData("char")
 	local client = context.client
 	if table.HasValue(client.liaCharList, ownerID) then return true end
@@ -68,7 +68,7 @@ function WeightInv:getMaxWeight()
 	return baseMax
 end
 
-function WeightInv:canItemFitInInventory(item, x, y)
+function WeightInv:canItemFitInInventory(item)
 	local ratio = lia.config.get("invRatio", 1)
 	local incomingWeight
 	if item.width and item.height then
@@ -116,7 +116,7 @@ if SERVER then
 
 		local items = {}
 		local itemType = item.uniqueID
-		for i = 1, quantity do
+		for _ = 1, quantity do
 			lia.item.instance(self:getID(), itemType, nil, 0, 0, function(newItem)
 				self:addItem(newItem)
 				items[#items + 1] = newItem
