@@ -1,5 +1,4 @@
 name: CI
-
 on: [push, pull_request]
 
 permissions:
@@ -49,6 +48,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: gh-pages
       - run: sudo apt-get update && sudo apt-get install -y jq zip
       - run: |
           echo "[]" > modules.json
@@ -86,14 +86,18 @@ jobs:
           for folder in */; do
             [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
           done
+      - run: |
+          git config user.email "githubactions@github.com"
+          git config user.name "GitHub Actions"
+          git add modules.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update modules.json with source URLs"
+            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git gh-pages
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: module-zips
           path: ./*.zip
-      - uses: actions/upload-artifact@v4
-        with:
-          name: modules-json
-          path: modules.json
 
   gh-pages:
     needs: scrape-modules
@@ -102,14 +106,15 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository }}
+          ref: gh-pages
+          path: gh-pages-branch
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
           path: docs/Downloads
-      - uses: actions/download-artifact@v4
-        with:
-          name: modules-json
-          path: docs
       - run: |
           for zip in docs/Downloads/*.zip; do
             folder=$(basename "$zip" .zip)
@@ -120,12 +125,12 @@ jobs:
           node-version: 16
       - name: Generate Site
         run: node docsparser.js
+      - run: cp gh-pages-branch/modules.json docs/modules.json
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
           publish_branch: gh-pages
           publish_dir: ./docs
-          keep_files: true
 
   release:
     needs: gh-pages
@@ -139,25 +144,30 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const tag = 'release'
+            const tag = 'release';
             try {
               const release = await github.rest.repos.getReleaseByTag({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 tag
-              })
+              });
               await github.rest.repos.deleteRelease({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 release_id: release.data.id
-              })
+              });
               await github.rest.git.deleteRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 ref: `tags/${tag}`
-              })
+              });
+              core.info(`Deleted existing release & tag "${tag}"`);
             } catch (error) {
-              if (error.status !== 404) throw error
+              if (error.status === 404) {
+                core.info('No existing release/tag to delete');
+              } else {
+                throw error;
+              }
             }
       - name: Prepare and Zip
         run: |
