@@ -556,5 +556,15 @@
     "source": "https://liliaframework.github.io/Modules/whitelist.html",
     "uniqueID": "whitelist",
     "workshop": []
+  },
+  {
+    "name": "Word Filter",
+    "author": "@liliaplayer",
+    "description": "Filters unwanted words out of the chat",
+    "version": "1.0",
+    "download": "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/wordfilter.zip",
+    "source": "https://liliaframework.github.io/Modules/wordfilter.html",
+    "uniqueID": "wordfilter",
+    "workshop": []
   }
 ]
