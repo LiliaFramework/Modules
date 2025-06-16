@@ -125,7 +125,7 @@ jobs:
           github_token: ${{ secrets.LiliaGitSecret }}
           publish_branch: gh-pages
           publish_dir: ./docs
-          force_orphan: true
+          keep_files: true
 
   release:
     needs: gh-pages
