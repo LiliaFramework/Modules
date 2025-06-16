@@ -48,7 +48,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: gh-pages
       - run: sudo apt-get update && sudo apt-get install -y jq zip
       - run: |
           echo "[]" > modules.json
@@ -92,7 +91,7 @@ jobs:
           git add modules.json
           if ! git diff --cached --quiet; then
             git commit -m "Update modules.json with source URLs"
-            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git gh-pages
+            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
           fi
       - uses: actions/upload-artifact@v4
         with:
@@ -106,11 +105,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/checkout@v3
-        with:
-          repository: ${{ github.repository }}
-          ref: gh-pages
-          path: gh-pages-branch
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
@@ -125,12 +119,12 @@ jobs:
           node-version: 16
       - name: Generate Site
         run: node docsparser.js
-      - run: cp gh-pages-branch/modules.json docs/modules.json
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
           publish_branch: gh-pages
-          publish_dir: ./docs
+          publish_dir: docs
+          force_orphan: true
 
   release:
     needs: gh-pages
