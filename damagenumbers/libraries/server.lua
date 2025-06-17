@@ -8,3 +8,8 @@ function MODULE:PostEntityTakeDamage(ent, dmgInfo, tookDamage)
     net.WriteUInt(dmg, 32)
     net.Send({ent, atk})
 end
+
+local networkStrings = {"expDamageNumbers",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
+end

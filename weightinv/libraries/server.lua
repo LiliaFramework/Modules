@@ -11,3 +11,8 @@ function MODULE:PlayerLoadedChar(client, character)
         end
     end
 end
+
+local networkStrings = {"liaStorageOpen", "liaStorageUnlock", "liaStorageExit", "liaStorageTransfer", "trunkInitStorage", "VendorTrade", "VendorExit", "VendorMoney", "VendorStock", "VendorMaxStock", "VendorAllowFaction", "VendorAllowClass", "VendorEdit", "VendorMode", "VendorPrice", "VendorSync", "VendorOpen",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
+end

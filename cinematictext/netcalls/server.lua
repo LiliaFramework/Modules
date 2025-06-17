@@ -9,3 +9,8 @@
     net.WriteColor(net.ReadColor())
     net.Broadcast()
 end)
+
+local networkStrings = {"OpenCinematicMenu", "TriggerCinematic",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
+end

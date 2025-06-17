@@ -9,3 +9,8 @@
         end
     end
 end)
+
+local networkStrings = {"OpenDetailedDescriptions", "SetDetailedDescriptions", "EditDetailedDescriptions",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
+end

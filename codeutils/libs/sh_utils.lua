@@ -484,7 +484,7 @@ function string.Gibberish(str, prob)
     local ret = ""
     for c in str:gmatch(".") do
         if math.random(1, 100) < prob then
-            for _  = 1, math.random(0, 2) do
+            for _ = 1, math.random(0, 2) do
                 ret = ret .. table.Random{"#", "@", "&", "%", "$", "/", "<", ">", ";", "*"}
             end
         end
@@ -1139,5 +1139,12 @@ function lia.utilities.spawnEntities(entityTable)
         else
             lia.information("Invalid position for entity", class)
         end
+    end
+end
+
+if SERVER then
+    local networkStrings = {"OpenPage", "OpenVGUI",}
+    for _, netString in ipairs(networkStrings) do
+        util.AddNetworkString(netString)
     end
 end

@@ -21,3 +21,8 @@ net.Receive("WardrobeChangeModel", function(_, client)
         client:notifyLocalized("wardrobeModelInvalid")
     end
 end)
+
+local networkStrings = {"SeeModelTable", "WardrobeChangeModel",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
+end
