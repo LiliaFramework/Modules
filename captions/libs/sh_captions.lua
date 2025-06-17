@@ -10,6 +10,11 @@
         net.Start("EndCaption")
         net.Send(client)
     end
+
+    local networkStrings = {"StartCaption", "EndCaption",}
+    for _, netString in ipairs(networkStrings) do
+        util.AddNetworkString(netString)
+    end
 else
     function lia.caption.start(text, duration)
         RunConsoleCommand("closecaption", "1")
