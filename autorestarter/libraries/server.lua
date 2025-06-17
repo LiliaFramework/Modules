@@ -48,3 +48,8 @@ function MODULE:PlayerInitialSpawn(client)
     net.WriteInt(self.nextRestart, 32)
     net.Send(client)
 end
+
+local networkStrings = {"RestartDisplay",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
+end
