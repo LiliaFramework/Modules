@@ -89,10 +89,11 @@ jobs:
       - run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
+          git checkout -B gh-pages
           git add modules.json
           if ! git diff --cached --quiet; then
             git commit -m "Update modules.json with source URLs"
-            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git main
+            git push -f https://${{ secrets.LiliaGitSecret }}@github.com/${{ github.repository }}.git gh-pages
           fi
       - uses: actions/upload-artifact@v4
         with:
@@ -118,10 +119,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Generate Site
-        run: node docsparser.js
-      - name: Copy modules.json to site
-        run: cp modules.json docs/modules.json
+      - run: node docsparser.js
+      - run: cp modules.json docs/modules.json
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
@@ -137,28 +136,27 @@ jobs:
         with:
           path: modules
       - uses: actions/github-script@v6
-        name: Remove existing release & tag
         with:
           script: |
-            const tag = 'release';
+            const tag = 'release'
             try {
               const release = await github.rest.repos.getReleaseByTag({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 tag
-              });
+              })
               await github.rest.repos.deleteRelease({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 release_id: release.data.id
-              });
+              })
               await github.rest.git.deleteRef({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 ref: `tags/${tag}`
-              });
+              })
             } catch (error) {
-              if (error.status !== 404) throw error;
+              if (error.status !== 404) throw error
             }
       - run: |
           mkdir packaged
