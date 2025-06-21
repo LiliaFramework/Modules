@@ -99,6 +99,10 @@ jobs:
         with:
           name: module-zips
           path: ./*.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: modules-json
+          path: modules.json
 
   gh-pages:
     needs: scrape-modules
@@ -111,6 +115,10 @@ jobs:
         with:
           name: module-zips
           path: docs/Downloads
+      - uses: actions/download-artifact@v4
+        with:
+          name: modules-json
+          path: .
       - run: |
           for zip in docs/Downloads/*.zip; do
             folder=$(basename "$zip" .zip)
