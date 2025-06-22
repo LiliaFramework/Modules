@@ -23,69 +23,72 @@ local function CanAddItemIfNotWeightRestricted(inventory, action, context)
 	if weight + incomingWeight > maxWeight then return false, "noFit" end
 	return true
 end
-
 function WeightInv:configure()
-	if SERVER then
-		self:addAccessRule(CanAddItemIfNotWeightRestricted)
-		self:addAccessRule(CanAccessInventoryIfCharacterIsOwner)
-	end
+        if SERVER then
+                self:addAccessRule(CanAddItemIfNotWeightRestricted)
+                self:addAccessRule(CanAccessInventoryIfCharacterIsOwner)
+        end
 end
+
 
 function WeightInv:getItemsOfType(itemType)
-	local items = {}
-	for _, item in pairs(self.items) do
-		if item.uniqueID == itemType then items[#items + 1] = item end
-	end
-	return items
+        local items = {}
+        for _, item in pairs(self.items) do
+                if item.uniqueID == itemType then items[#items + 1] = item end
+        end
+        return items
 end
+
 
 function WeightInv:getWeight()
-	local totalWeight = 0
-	local ratio = lia.config.get("invRatio", 1)
-	for _, item in pairs(self.items) do
-		local itemWeight
-		if item.width and item.height then
-			local blocks = item.width * item.height
-			itemWeight = math.max(blocks / ratio, 1)
-		else
-			itemWeight = item.weight or 1
-		end
+        local totalWeight = 0
+        local ratio = lia.config.get("invRatio", 1)
+        for _, item in pairs(self.items) do
+                local itemWeight
+                if item.width and item.height then
+                        local blocks = item.width * item.height
+                        itemWeight = math.max(blocks / ratio, 1)
+                else
+                        itemWeight = item.weight or 1
+                end
 
-		totalWeight = totalWeight + math.max(itemWeight, 0)
-	end
-	return totalWeight
+                totalWeight = totalWeight + math.max(itemWeight, 0)
+        end
+        return totalWeight
 end
+
 
 function WeightInv:getMaxWeight()
-	local defaultMax = lia.config.get("invMaxWeight", 150)
-	local baseMax = tonumber(self:getData("maxWeight", defaultMax))
-	for _, item in pairs(self.items) do
-		if item.weight and item.weight < 0 then baseMax = baseMax - item.weight end
-	end
+        local defaultMax = lia.config.get("invMaxWeight", 150)
+        local baseMax = tonumber(self:getData("maxWeight", defaultMax))
+        for _, item in pairs(self.items) do
+                if item.weight and item.weight < 0 then baseMax = baseMax - item.weight end
+        end
 
-	local override = hook.Run("WeightInvGetMaxWeight", self, baseMax)
-	if isnumber(override) then return override end
-	return baseMax
+        local override = hook.Run("WeightInvGetMaxWeight", self, baseMax)
+        if isnumber(override) then return override end
+        return baseMax
 end
 
+
 function WeightInv:canItemFitInInventory(item)
-	local ratio = lia.config.get("invRatio", 1)
-	local incomingWeight
-	if item.width and item.height then
-		local blocks = item.width * item.height
-		incomingWeight = math.max(blocks / ratio, 1)
-	else
-		incomingWeight = item.weight or 1
-	end
-	return self:getWeight() + incomingWeight <= self:getMaxWeight()
+        local ratio = lia.config.get("invRatio", 1)
+        local incomingWeight
+        if item.width and item.height then
+                local blocks = item.width * item.height
+                incomingWeight = math.max(blocks / ratio, 1)
+        else
+                incomingWeight = item.weight or 1
+        end
+        return self:getWeight() + incomingWeight <= self:getMaxWeight()
 end
 
 if SERVER then
-	function WeightInv:add(itemTypeOrItem, quantity, forced)
-		quantity = quantity or 1
-		assert(isnumber(quantity), "quantity must be a number")
-		local d = deferred.new()
-		if quantity <= 0 then return d:reject("quantity must be positive") end
+        function WeightInv:add(itemTypeOrItem, quantity, forced)
+                quantity = quantity or 1
+                assert(isnumber(quantity), "quantity must be a number")
+                local d = deferred.new()
+                if quantity <= 0 then return d:reject("quantity must be positive") end
 		local item, justAddDirectly
 		if lia.item.isItem(itemTypeOrItem) then
 			item = itemTypeOrItem
@@ -126,11 +129,11 @@ if SERVER then
 		return d
 	end
 
-	function WeightInv:remove(itemTypeOrID, quantity)
-		quantity = quantity or 1
-		assert(isnumber(quantity), "quantity must be a number")
-		local d = deferred.new()
-		if quantity <= 0 then return d:reject("quantity must be positive") end
+        function WeightInv:remove(itemTypeOrID, quantity)
+                quantity = quantity or 1
+                assert(isnumber(quantity), "quantity must be a number")
+                local d = deferred.new()
+                if quantity <= 0 then return d:reject("quantity must be positive") end
 		if isnumber(itemTypeOrID) then
 			self:removeItem(itemTypeOrID)
 		else
@@ -144,11 +147,11 @@ if SERVER then
 		return d
 	end
 
-	function WeightInv:wipeItems()
-		local ids = {}
-		for _, item in pairs(self.items) do
-			ids[#ids + 1] = item:getID()
-		end
+        function WeightInv:wipeItems()
+                local ids = {}
+                for _, item in pairs(self.items) do
+                        ids[#ids + 1] = item:getID()
+                end
 
 		for _, id in pairs(ids) do
 			self:removeItem(id)
