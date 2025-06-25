@@ -1,0 +1,23 @@
+NAME = "English"
+LANGUAGE = {
+    cardDrawAction = "cardDrawAction",
+    cardsCommandDesc = "cardsCommandDesc",
+    noCardDeck = "noCardDeck",
+    rankAce = "rankAce",
+    rankEight = "rankEight",
+    rankFive = "rankFive",
+    rankFour = "rankFour",
+    rankJack = "rankJack",
+    rankKing = "rankKing",
+    rankNine = "rankNine",
+    rankQueen = "rankQueen",
+    rankSeven = "rankSeven",
+    rankSix = "rankSix",
+    rankTen = "rankTen",
+    rankThree = "rankThree",
+    rankTwo = "rankTwo",
+    suitClubs = "suitClubs",
+    suitDiamonds = "suitDiamonds",
+    suitHearts = "suitHearts",
+    suitSpades = "suitSpades",
+}

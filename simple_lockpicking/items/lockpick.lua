@@ -36,7 +36,7 @@ ITEM.functions.Use = {
                 timer.Remove(timerID)
             end)
         else
-            item.player:notifyLocalized("Target is already unlocked.")
+            item.player:notifyLocalized("targetUnlocked")
         end
         return false
     end,
