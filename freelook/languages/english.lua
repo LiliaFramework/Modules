@@ -1,6 +1,6 @@
 NAME = "English"
 LANGUAGE = {
-    enableFreelookLabel = "enableFreelookLabel",
-    freelookOffMessage = "freelookOffMessage",
-    freelookOnMessage = "freelookOnMessage",
+    enableFreelookLabel = "Enable freelook",
+    freelookOffMessage = "Freelook disabled.",
+    freelookOnMessage = "Freelook enabled."
 }

@@ -1,10 +1,10 @@
 NAME = "English"
 LANGUAGE = {
-    cutsceneCommandDesc = "cutsceneCommandDesc",
-    globalCutsceneCommandDesc = "globalCutsceneCommandDesc",
-    globalCutscenePrompt = "globalCutscenePrompt",
-    invalidCutscene = "invalidCutscene",
-    invalidTarget = "invalidTarget",
-    selectCutscenePrompt = "selectCutscenePrompt",
-    selectCutsceneTitle = "selectCutsceneTitle",
+    cutsceneCommandDesc = "Play a cutscene for a target player.",
+    globalCutsceneCommandDesc = "Play a cutscene for everyone.",
+    globalCutscenePrompt = "Select a cutscene to play globally:",
+    invalidCutscene = "Invalid cutscene selected.",
+    invalidTarget = "Invalid target player.",
+    selectCutscenePrompt = "Select a cutscene to play:",
+    selectCutsceneTitle = "Choose Cutscene"
 }

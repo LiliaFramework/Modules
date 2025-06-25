@@ -1,11 +1,11 @@
 NAME = "English"
 LANGUAGE = {
-    ClearWarTable = "ClearWarTable",
-    CustomizeMarker = "CustomizeMarker",
-    SetNewMapPrompt = "SetNewMapPrompt",
-    SetNewMapTitle = "SetNewMapTitle",
-    exit = "exit",
-    next = "next",
-    previous = "previous",
-    submit = "submit",
+    ClearWarTable = "Clear War Table",
+    CustomizeMarker = "Customize Marker",
+    SetNewMapPrompt = "Enter the map name:",
+    SetNewMapTitle = "Set War Map",
+    exit = "Exit",
+    next = "Next",
+    previous = "Previous",
+    submit = "Submit",
 }
