@@ -1,14 +1,14 @@
 NAME = "English"
 LANGUAGE = {
-    generalinfo = "generalinfo",
-    invalidPartyTier = "invalidPartyTier",
-    mustBeOnCharacter = "mustBeOnCharacter",
-    noPerm = "noPerm",
-    partyTier = "partyTier",
-    partyTierDisplay = "partyTierDisplay",
-    partyTierRemoved = "partyTierRemoved",
-    partyTierSet = "partyTierSet",
-    partyTierUpdated = "partyTierUpdated",
-    partytierCommandDesc = "partytierCommandDesc",
-    targetNotFound = "targetNotFound",
+    generalinfo = "General Information",
+    invalidPartyTier = "Invalid party tier.",
+    mustBeOnCharacter = "You must be on your character to do that.",
+    noPerm = "You don't have permission to do that.",
+    partyTier = "Loyalty Tier",
+    partyTierDisplay = "Loyalty Tier: %s",
+    partyTierRemoved = "Your loyalty tier has been cleared by %s.",
+    partyTierSet = "Your loyalty tier is now %s.",
+    partyTierUpdated = "%s's loyalty tier is now %s.",
+    partytierCommandDesc = "Set a player's loyalty tier.",
+    targetNotFound = "Target not found."
 }

@@ -1,5 +1,5 @@
 NAME = "English"
 LANGUAGE = {
-    playerJoined = "playerJoined",
-    playerLeft = "playerLeft",
+    playerJoined = "%s has joined the server.",
+    playerLeft = "%s has left the server."
 }

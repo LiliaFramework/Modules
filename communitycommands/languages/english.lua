@@ -1,7 +1,7 @@
 NAME = "English"
 LANGUAGE = {
-    invalidCommand = "invalidCommand",
-    invalidURLReceived = "invalidURLReceived",
-    urlCommandDesc = "urlCommandDesc",
-    urlNotConfig = "urlNotConfig",
+    invalidCommand = "Unknown command.",
+    invalidURLReceived = "Invalid URL received.",
+    urlCommandDesc = "Opens the %s link.",
+    urlNotConfig = "This URL has not been configured."
 }

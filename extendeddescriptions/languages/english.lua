@@ -1,11 +1,11 @@
 NAME = "English"
 LANGUAGE = {
-    detailedDescTitle = "detailedDescTitle",
-    edit = "edit",
-    editDescTitle = "editDescTitle",
-    openDetDescFallback = "openDetDescFallback",
-    openDetDescLabel = "openDetDescLabel",
-    refImagePlaceholder = "refImagePlaceholder",
-    setExtDescCommand = "setExtDescCommand",
-    viewExtDescCommand = "viewExtDescCommand",
+    detailedDescTitle = "%s's Detailed Description",
+    edit = "Save",
+    editDescTitle = "Edit Detailed Description",
+    openDetDescFallback = "No description available.",
+    openDetDescLabel = "Detailed Description",
+    refImagePlaceholder = "Image URL",
+    setExtDescCommand = "Edit a player's description.",
+    viewExtDescCommand = "View your detailed description.",
 }

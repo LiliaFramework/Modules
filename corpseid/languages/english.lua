@@ -1,10 +1,10 @@
 NAME = "English"
 LANGUAGE = {
-    identifiedCorpseMessage = "identifiedCorpseMessage",
-    identifyCorpse = "identifyCorpse",
-    identifyCorpseDeclined = "identifyCorpseDeclined",
-    identifyCorpseQuestion = "identifyCorpseQuestion",
-    identifyingCorpse = "identifyingCorpse",
-    no = "no",
-    yes = "yes",
+    identifiedCorpseMessage = "This corpse belonged to %s.",
+    identifyCorpse = "Identify corpse",
+    identifyCorpseDeclined = "Identification cancelled.",
+    identifyCorpseQuestion = "Do you want to identify this corpse?",
+    identifyingCorpse = "Identifying corpse...",
+    no = "No",
+    yes = "Yes"
 }
