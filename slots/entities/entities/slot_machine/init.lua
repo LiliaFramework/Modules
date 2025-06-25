@@ -58,10 +58,10 @@ end
 function ENT:Use(client)
 	local character = client:getChar()
 	if not self.IsPlaying then return end
-	if not character:hasMoney(MODULE.GamblingPrice) then
-		client:notify("You don't have enough money!")
-		return
-	end
+       if not character:hasMoney(MODULE.GamblingPrice) then
+               client:notifyLocalized("slotNotEnoughMoney")
+               return
+       end
 
 	timer.Create("SpinWheels" .. self:EntIndex(), 0, 1, function()
 		self.IsPlaying = false
@@ -124,11 +124,11 @@ function ENT:Use(client)
 			end
 
 			if payout > MODULE.SingleBarDollarSign - 1 then self:EmitSound("jackpot.wav", 100, 100) end
-			if payout > 9 then
-				self:EmitSound("payout.wav", 100, 100)
-				character:giveMoney(payout)
-				client:notify("Your payout is " .. payout .. "T")
-			end
+                       if payout > 9 then
+                               self:EmitSound("payout.wav", 100, 100)
+                               character:giveMoney(payout)
+                               client:notifyLocalized("slotPayout", payout)
+                       end
 
 			self.IsPlaying = true
 			self.Jackpot = false

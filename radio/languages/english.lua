@@ -1,0 +1,20 @@
+NAME = "English"
+LANGUAGE = {
+    frequency = "frequency",
+    noRadio = "noRadio",
+    off = "off",
+    on = "on",
+    radio = "radio",
+    radioAlreadyEquipped = "radioAlreadyEquipped",
+    radioBreakAction = "radioBreakAction",
+    radioChangeFreq = "radioChangeFreq",
+    radioDescEntityFormat = "radioDescEntityFormat",
+    radioDescFormat = "radioDescFormat",
+    radioFrequencyTitle = "radioFrequencyTitle",
+    radioNoRadioComm = "radioNoRadioComm",
+    radioNotOwned = "radioNotOwned",
+    radioTurnOff = "radioTurnOff",
+    radioTurnOn = "radioTurnOn",
+    sabotage = "sabotage",
+    submit = "submit",
+}

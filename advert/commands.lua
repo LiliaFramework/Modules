@@ -2,7 +2,7 @@
     alias = "advert",
     adminOnly = false,
     syntax = "[string message]",
-    desc = "Broadcasts a paid advertisement to all players, charging you money and applying a cooldown.",
+    desc = L("advertCommandDesc"),
     onRun = function(client, arguments)
         if not arguments[1] then return "Invalid argument (#1)" end
         local message = table.concat(arguments, " ", 1)

@@ -43,8 +43,8 @@ if SERVER then
             net.Start("SeeModelTable")
             net.WriteTable(models)
             net.Send(client)
-        else
-            client:notify("There are no models available for your faction & class.")
-        end
+       else
+            client:notifyLocalized("wardrobeNoModels")
+       end
     end
 end

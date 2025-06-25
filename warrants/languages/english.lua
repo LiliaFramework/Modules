@@ -1,0 +1,20 @@
+NAME = "English"
+LANGUAGE = {
+    UnknownDescription = "UnknownDescription",
+    WarrantExpirationExpired = "WarrantExpirationExpired",
+    WarrantExpirationIssued = "WarrantExpirationIssued",
+    WarrantIssued = "WarrantIssued",
+    WarrantIssuedNotify = "WarrantIssuedNotify",
+    WarrantRemoved = "WarrantRemoved",
+    WarrantRemovedNotify = "WarrantRemovedNotify",
+    WarrantedText = "WarrantedText",
+    expired = "expired",
+    generalinfo = "generalinfo",
+    issued = "issued",
+    noPerm = "noPerm",
+    plyNoExist = "plyNoExist",
+    reputation = "reputation",
+    upstanding = "upstanding",
+    wanted = "wanted",
+    warrantCommandDesc = "warrantCommandDesc",
+}
