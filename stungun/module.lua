@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Stun Gun"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.1.2"
+MODULE.version = "1.1.3"
 MODULE.Public = true
 MODULE.desc = "An Stun Gun Reworked from CustomHQ"
 MODULE.WorkshopContent = {"3432649835"}

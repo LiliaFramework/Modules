@@ -1,9 +1,9 @@
 ﻿local MODULE = MODULE
-MODULE.currAng = MODULE.currAng or Angle(0, 0, 0)
-MODULE.currPos = MODULE.currPos or Vector(0, 0, 0)
-MODULE.targetAng = MODULE.targetAng or Angle(0, 0, 0)
-MODULE.targetPos = MODULE.targetPos or Vector(0, 0, 0)
-MODULE.resultAng = MODULE.resultAng or Angle(0, 0, 0)
+MODULE.currAng = MODULE.currAng or angle_zero
+MODULE.currPos = MODULE.currPos or vector_origin
+MODULE.targetAng = MODULE.targetAng or angle_zero
+MODULE.targetPos = MODULE.targetPos or vector_origin
+MODULE.resultAng = MODULE.resultAng or angle_zero
 local entMeta = FindMetaTable("Entity")
 local vecMeta = FindMetaTable("Vector")
 local velo = entMeta.GetVelocity
@@ -30,8 +30,8 @@ function MODULE:CalcView(pl, pos, ang, fov)
         end
     else
         if pl:WaterLevel() >= 2 then
-            self.targetAng = Angle(0, 0, 0)
-            self.targetPos = Vector(0, 0, 0)
+            self.targetAng = angle_zero
+            self.targetPos = vector_origin
         else
             vel = math.abs(pl:GetVelocity().z)
             local af = 0

@@ -9,7 +9,7 @@ function ENT:onShouldDrawEntityInfo()
 end
 
 function ENT:onDrawEntityInfo(alpha)
-    local position = toScreen(self.LocalToWorld(self, self.OBBCenter(self)) + Vector(0, 0, 0))
+    local position = toScreen(self.LocalToWorld(self, self.OBBCenter(self)) + vector_origin)
     local x, y = position.x, position.y
     lia.util.drawText(L("permaWeaponsNPC"), x, y - 65, ColorAlpha(lia.config.get("Color"), alpha), 1, 1, nil, alpha * 0.65)
 end

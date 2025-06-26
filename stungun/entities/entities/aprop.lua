@@ -50,10 +50,10 @@ function ENT:Think()
 
         if self.Target:GetPos():Distance(self:GetPos()) > numb then
             local dist = self.Target:GetPos():Distance(self:GetPos())
-            self:SetAngles((self.Target:GetPos() + Vector(0, 0, 0) - self:GetPos()):Angle())
+            self:SetAngles((self.Target:GetPos() + vector_origin - self:GetPos()):Angle())
             self:SetLocalVelocity(self:GetForward() * dist * power)
         else
-            self:SetLocalVelocity(Vector(0, 0, 0))
+            self:SetLocalVelocity(vector_origin)
         end
     elseif self.Vec and self.Timer and CurTime() < self.Timer then
         local dist = self.Vec:Distance(self:GetPos())
@@ -61,7 +61,7 @@ function ENT:Think()
         self:SetLocalVelocity(self:GetForward() * 980)
     elseif self.Timer then
         self:SetMoveType(5)
-        self:SetLocalVelocity(Vector(0, 0, 0))
+        self:SetLocalVelocity(vector_origin)
         self.Timer = nil
     end
 end

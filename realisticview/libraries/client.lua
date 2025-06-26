@@ -22,7 +22,7 @@
                 end
             end
 
-            if IsValid(matrix) then matrix:SetScale(Vector(0, 0, 0)) end
+            if IsValid(matrix) then matrix:SetScale(vector_origin) end
         end
 
         view.origin = head.Pos + head.Ang:Up()

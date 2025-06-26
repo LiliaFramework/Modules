@@ -23,9 +23,9 @@ function MODULE:KeyPress(client, key)
         local bones = {
             ["ValveBiped.Bip01_L_UpperArm"] = Angle(29.4, 43, 0),
             ["ValveBiped.Bip01_L_Forearm"] = Angle(0.9, 85.7, 0),
-            ["ValveBiped.Bip01_L_Hand"] = Angle(0, 0, 0),
+            ["ValveBiped.Bip01_L_Hand"] = angle_zero,
             ["ValveBiped.Bip01_R_Forearm"] = Angle(0, 80.143, 0),
-            ["ValveBiped.Bip01_R_Hand"] = Angle(0, 0, 0),
+            ["ValveBiped.Bip01_R_Hand"] = angle_zero,
             ["ValveBiped.Bip01_R_UpperArm"] = Angle(-39.3, 85.4, -30.4),
         }
 
