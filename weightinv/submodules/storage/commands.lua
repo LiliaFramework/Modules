@@ -26,6 +26,7 @@
 
 lia.command.add("trunk", {
     adminOnly = false,
+    syntax = "",
     desc = L("trunkOpenDesc"),
     onRun = function(client)
         local entity = client:getTracedEntity()

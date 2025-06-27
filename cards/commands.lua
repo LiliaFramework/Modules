@@ -1,4 +1,5 @@
 lia.command.add("cards", {
+    syntax = ""
     description = L("cardsCommandDesc"),
     onRun = function(client)
         local inv = client:getChar():getInv()

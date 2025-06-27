@@ -33,6 +33,7 @@ lia.command.add("cutscene", {
 lia.command.add("globalcutscene", {
     adminOnly = true,
     privilege = "Use Cutscenes",
+    syntax = "",
     desc = L("globalCutsceneCommandDesc"),
     onRun = function()
         local options = {}
