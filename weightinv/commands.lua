@@ -2,7 +2,7 @@ lia.command.add("updateinvsize", {
     adminOnly = true,
     privilege = "Set Inventory Weight",
     desc = L("updateInventoryWeightDesc"),
-    syntax = "[string playerName]",
+    syntax = "[string Player Name]",
     onRun = function(client, args)
         local target = lia.util.findPlayer(client, args[1])
         if not target or not IsValid(target) then
@@ -39,7 +39,7 @@ lia.command.add("setinventorysize", {
     adminOnly = true,
     privilege = "Set Inventory Weight",
     desc = L("setInventoryWeightDesc"),
-    syntax = "[string playerName] [number maxWeight]",
+    syntax = "[string Player Name] [number Max Weight]",
     onRun = function(client, args)
         local target = lia.util.findPlayer(client, args[1])
         if not target or not IsValid(target) then

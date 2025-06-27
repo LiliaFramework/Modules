@@ -1,7 +1,7 @@
 ﻿lia.command.add("classbroadcast", {
     adminOnly = false,
     alias = "classbc",
-    syntax = "[string message]",
+    syntax = "[string Message]",
     desc = L("classBroadcastTitle"),
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)
@@ -50,7 +50,7 @@
 lia.command.add("factionbroadcast", {
     adminOnly = false,
     alias = "factionbc",
-    syntax = "[string message]",
+    syntax = "[string Message]",
     desc = L("factionBroadcastTitle"),
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)

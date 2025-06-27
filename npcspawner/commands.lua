@@ -1,7 +1,7 @@
 ﻿lia.command.add("forcenpcspawn", {
     privilege = "Force NPC Spawn",
     superAdminOnly = true,
-    syntax = "[string spawnerName]",
+    syntax = "[string Spawner Name]",
     desc = L("forceNPCSpawnDesc"),
     onRun = function(client)
         local map = game.GetMap()

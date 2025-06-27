@@ -1,7 +1,7 @@
 ﻿lia.command.add("advertisement", {
     alias = "advert",
     adminOnly = false,
-    syntax = "[string message]",
+    syntax = "[string Message]",
     desc = L("advertCommandDesc"),
     onRun = function(client, arguments)
         if not arguments[1] then return "Invalid argument (#1)" end
