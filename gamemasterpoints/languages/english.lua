@@ -22,5 +22,5 @@ LANGUAGE = {
     tpNotice = "You have been teleported.",
     tpPointAdded = "Teleport point %s added.",
     tpPointRemoved = "Teleport point %s removed.",
-    tpPointsTitle = "Teleport Points",
+    tpPointsTitle = "Manage teleport points.",
 }

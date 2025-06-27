@@ -2,7 +2,7 @@
 lia.command.add("partytier", {
     adminOnly = true,
     privilege = "Management - Assign Party Tiers",
-    syntax = "[string Target Player] [number Tier]",
+    syntax = "[player Target Player] [number Tier]",
     desc = L("partytierCommandDesc"),
     onRun = function(client, arguments)
         local char = client:getChar()

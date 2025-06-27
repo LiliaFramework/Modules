@@ -1,6 +1,6 @@
 ﻿lia.command.add("warrant", {
     adminOnly = false,
-    syntax = "[string Target Player]",
+    syntax = "[player Target Player]",
     desc = L("warrantCommandDesc"),
     onRun = function(client, arguments)
         local character = client:getChar()

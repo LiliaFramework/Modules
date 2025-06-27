@@ -2,7 +2,7 @@ local MODULE = MODULE
 lia.command.add("cutscene", {
     adminOnly = true,
     privilege = "Use Cutscenes",
-    syntax = "[string Target?]",
+    syntax = "[player Target?]",
     desc = L("cutsceneCommandDesc"),
     onRun = function(ply, args)
         local target
