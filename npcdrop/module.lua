@@ -1,7 +1,7 @@
 ﻿MODULE.name = "NPC Drops"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0"
+MODULE.version = "1.0.1"
 MODULE.desc = "Adds NPCs that drop items"
 MODULE.Public = true
 MODULE.DropTable = {

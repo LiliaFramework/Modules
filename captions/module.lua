@@ -2,6 +2,6 @@
 MODULE.name = "Captions"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.3"
+MODULE.version = "1.0.4"
 MODULE.desc = "Adds a easy way of adding in-game captions."
 MODULE.Public = true
