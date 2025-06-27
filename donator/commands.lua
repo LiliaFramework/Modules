@@ -1,7 +1,7 @@
 ﻿lia.command.add("subtractcharslots", {
     privilege = "Subtract CharSlots",
     superAdminOnly = true,
-    syntax = "[string Target Player]",
+    syntax = "[player Target Player]",
     desc = L("subtractCharSlotsDesc"),
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
@@ -17,7 +17,7 @@
 lia.command.add("addcharslots", {
     privilege = "Add CharSlots",
     superAdminOnly = true,
-    syntax = "[string Target Player]",
+    syntax = "[player Target Player]",
     desc = L("addCharSlotsDesc"),
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
@@ -33,7 +33,7 @@ lia.command.add("addcharslots", {
 lia.command.add("setcharslots", {
     privilege = "Set CharSlots",
     superAdminOnly = true,
-    syntax = "[string Target Player] [number Slot Count]",
+    syntax = "[player Target Player] [number Slot Count]",
     desc = L("setCharSlotsDesc"),
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
