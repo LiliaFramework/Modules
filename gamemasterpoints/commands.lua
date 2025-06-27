@@ -17,7 +17,6 @@ lia.command.add("gmtpnewname", {
 lia.command.add("gmtpmenu", {
     adminOnly = true,
     privilege = "Manage Gamemaster Teleport Points",
-    syntax = "",
     desc = L("tpPointsTitle"),
     onRun = function(client)
         local tbl = {}

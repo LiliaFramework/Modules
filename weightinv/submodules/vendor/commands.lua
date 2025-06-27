@@ -1,7 +1,6 @@
 ﻿lia.command.add("restockvendor", {
     privilege = "Manage Vendors",
     superAdminOnly = true,
-    syntax = ""
     desc = L("restockVendorDesc"),
     AdminStick = {
         Name = L("restockVendorStickName"),
@@ -30,7 +29,6 @@
 lia.command.add("restockallvendors", {
     privilege = "Manage Vendors",
     superAdminOnly = true,
-    syntax = ""
     desc = L("restockAllVendorsDesc"),
     onRun = function(client)
         local count = 0
@@ -114,7 +112,6 @@ lia.command.add("restockvendormoney", {
 
 lia.command.add("savevendors", {
     privilege = "Manage Vendors",
-    syntax = ""
     superAdminOnly = true,
     desc = L("saveVendorsDesc"),
     onRun = function(client)

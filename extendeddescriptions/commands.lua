@@ -1,5 +1,4 @@
 ﻿lia.command.add("viewextdescription", {
-    syntax = ""
     adminOnly = false,
     desc = L("viewExtDescCommand"),
     onRun = function(client)
@@ -13,7 +12,6 @@
 
 lia.command.add("charsetextdescription", {
     adminOnly = true,
-    syntax = ""
     privilege = "Change Description",
     desc = L("setExtDescCommand"),
     onRun = function(client)
