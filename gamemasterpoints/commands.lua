@@ -2,7 +2,7 @@ lia.command.add("gmtpremove", {
     adminOnly = true,
     privilege = "Manage Gamemaster Teleport Points",
     desc = L("deletePoint"),
-    syntax = "[string name]",
+    syntax = "[string Name]",
     onRun = function(client, arguments) MODULE:RemovePoint(client, table.concat(arguments, " ")) end
 })
 
@@ -10,7 +10,7 @@ lia.command.add("gmtpnewname", {
     adminOnly = true,
     privilege = "Manage Gamemaster Teleport Points",
     desc = L("renamePoint"),
-    syntax = "[string name]",
+    syntax = "[string Name]",
     onRun = function(_, arguments) netstream.Start("gmTPNewName", table.concat(arguments, " ")) end
 })
 
@@ -36,7 +36,7 @@ lia.command.add("gmtpmoveto", {
     adminOnly = true,
     privilege = "Manage Gamemaster Teleport Points",
     desc = L("moveToPoint"),
-    syntax = "[string target] [string name]",
+    syntax = "[string Target] [string Name]",
     onRun = function(client, arguments)
         local target, name
         if lia.util.findPlayer(client, arguments[1]) then

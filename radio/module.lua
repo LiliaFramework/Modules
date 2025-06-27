@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Radio"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.7"
+MODULE.version = "1.0.8"
 MODULE.desc = "Radio"
 MODULE.WorkshopContent = "3431349806"
 MODULE.Public = true

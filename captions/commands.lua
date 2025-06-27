@@ -1,6 +1,6 @@
 ﻿lia.command.add("sendCaption", {
     adminOnly = true,
-    syntax = "[string targetPlayer] [string caption] [number duration]",
+    syntax = "[string Target Player] [string Caption] [number Duration]",
     desc = L("sendCaptionDesc"),
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
@@ -21,7 +21,7 @@
 
 lia.command.add("broadcastCaption", {
     adminOnly = true,
-    syntax = "[string caption] [number duration]",
+    syntax = "[string Caption] [number Duration]",
     desc = L("broadcastCaptionDesc"),
     onRun = function(client, arguments)
         local text = arguments[1]
