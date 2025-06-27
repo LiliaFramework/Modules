@@ -27,7 +27,6 @@
 lia.command.add("trunk", {
     adminOnly = false,
     desc = L("trunkOpenDesc"),
-    syntax = nil,
     onRun = function(client)
         local entity = client:getTracedEntity()
         local maxDistance = 110
