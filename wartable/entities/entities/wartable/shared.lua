@@ -8,6 +8,9 @@ ENT.RenderGroup = RENDERGROUP_BOTH
 ENT.DisplayScale = 0.1
 ENT.DisplayVector = Vector(62, 107.5, 30.1)
 ENT.DisplayAngle = Angle(180, 0, 180)
+ENT.NoPhysgun = true
+ENT.NoRemover = true
+ENT.IsPersistent = true
 function ENT:Clear()
     for _, child in pairs(self:GetChildren()) do
         if IsValid(child) then child:Remove() end

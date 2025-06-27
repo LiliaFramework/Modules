@@ -1,4 +1,4 @@
-﻿LIA_VENDORS = LIA_VENDORS or {}
+﻿LiliaVendors = LiliaVendors or {}
 ENT.Type = "anim"
 ENT.PrintName = "Vendor"
 ENT.Category = "Lilia"
@@ -6,6 +6,8 @@ ENT.Spawnable = true
 ENT.AdminOnly = true
 ENT.isVendor = true
 ENT.DrawEntityInfo = true
+ENT.NoPhysgun = true
+ENT.NoRemover = true
 function ENT:setupVars()
     if SERVER then
         self:setNetVar("name", "John Doe")
@@ -41,7 +43,7 @@ function ENT:Initialize()
         physObj:Sleep()
     end
 
-    LIA_VENDORS[self:EntIndex()] = self
+    LiliaVendors[self:EntIndex()] = self
 end
 
 function ENT:getMoney()

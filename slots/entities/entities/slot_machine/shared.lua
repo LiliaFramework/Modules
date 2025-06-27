@@ -6,3 +6,6 @@ ENT.Spawnable = true
 ENT.AdminSpawnable = true
 ENT.AdminOnly = true
 ENT.IsPersistent = true
+ENT.NoPhysgun = true
+ENT.NoRemover = true
+ENT.IsPersistent = true

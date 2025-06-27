@@ -4,6 +4,8 @@ ENT.Category = "Lilia"
 ENT.Spawnable = true
 ENT.AdminOnly = true
 ENT.IsPersistent = true
+ENT.NoPhysgun = true
+ENT.NoRemover = true
 function ENT:HasUser(user)
     self.users = self.users or {}
     return self.users[user] == true

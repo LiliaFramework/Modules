@@ -5,6 +5,9 @@ ENT.Spawnable = true
 ENT.AdminOnly = true
 ENT.Category = "Lilia"
 ENT.RenderGroup = RENDERGROUP_TRANSLUCENT
+ENT.NoPhysgun = true
+ENT.NoRemover = true
+ENT.IsPersistent = true
 if SERVER then
     function ENT:Initialize()
         self:SetModel(lia.config.get("ModelTweakerModel"))
@@ -43,8 +46,8 @@ if SERVER then
             net.Start("SeeModelTable")
             net.WriteTable(models)
             net.Send(client)
-       else
+        else
             client:notifyLocalized("wardrobeNoModels")
-       end
+        end
     end
 end

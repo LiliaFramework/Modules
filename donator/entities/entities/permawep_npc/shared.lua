@@ -6,4 +6,6 @@ ENT.Spawnable = true
 ENT.AdminOnly = true
 ENT.RenderGroup = RENDERGROUP_BOTH
 ENT.Category = "Lilia"
-ENT.IsLeonNPC = true
+ENT.NoPhysgun = true
+ENT.NoRemover = true
+ENT.IsPersistent = true
