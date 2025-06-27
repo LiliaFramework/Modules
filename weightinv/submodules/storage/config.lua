@@ -51,12 +51,11 @@ MODULE.StorageDefinitions = {
             entity:ResetSequence("Close")
             timer.Create("CloseLid" .. entity:EntIndex(), 2, 1, function() if IsValid(entity) then entity:ResetSequence("Open") end end)
         end
+    },
+    vehicle = {
+        name = "Trunk",
+        desc = "A car's trunk.",
+        invType = "WeightInv",
+        weight = 15
     }
-}
-
-MODULE.VehicleTrunk = {
-    name = "Trunk",
-    desc = "A car's trunk.",
-    invType = "WeightInv",
-    weight = 15
 }
