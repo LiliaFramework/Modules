@@ -1,5 +1,5 @@
 lia.command.add("cards", {
-    description = L("cardsCommandDesc"),
+    desc = L("cardsCommandDesc"),
     onRun = function(client)
         local inv = client:getChar():getInv()
         if not inv:hasItem("carddeck") then
