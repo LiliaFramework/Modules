@@ -6,5 +6,7 @@ LANGUAGE = {
     invalidCutscene = "Invalid cutscene selected.",
     invalidTarget = "Invalid target player.",
     selectCutscenePrompt = "Select a cutscene to play:",
-    selectCutsceneTitle = "Choose Cutscene"
+    selectCutsceneTitle = "Choose Cutscene",
+    moderationTools = "Moderation Tools",
+    cutscenes = "Cutscenes"
 }

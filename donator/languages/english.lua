@@ -8,4 +8,6 @@ LANGUAGE = {
     setCharSlotsDesc = "Set how many character slots a player has.",
     subtractCharSlotsDesc = "Remove a character slot from a player.",
     targetNotFound = "Player not found.",
+    characterManagement = "Character Management",
+    charSlots = "Character Slots",
 }

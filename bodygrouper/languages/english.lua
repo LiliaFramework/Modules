@@ -13,4 +13,6 @@ LANGUAGE = {
     skin = "Skin",
     targetNotFound = "Player not found.",
     viewBodygroupsDesc = "View or edit a player's bodygroups.",
+    characterManagement = "Character Management",
+    bodygrouper = "Bodygrouper",
 }

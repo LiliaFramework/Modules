@@ -10,5 +10,7 @@ LANGUAGE = {
     partyTierSet = "Your loyalty tier is now %s.",
     partyTierUpdated = "%s's loyalty tier is now %s.",
     partytierCommandDesc = "Set a player's loyalty tier.",
-    targetNotFound = "Target not found."
+    targetNotFound = "Target not found.",
+    moderationTools = "Moderation Tools",
+    partyTiers = "Party Tiers"
 }
