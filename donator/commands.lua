@@ -3,7 +3,11 @@
     superAdminOnly = true,
     syntax = "[player Target Player]",
     desc = L("subtractCharSlotsDesc"),
-    AdminStick = {Name = L("subtractCharSlotsDesc")},
+    AdminStick = {
+        Name = L("subtractCharSlotsDesc"),
+        Category = "characterManagement",
+        SubCategory = "charSlots"
+    },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
         if not target or not IsValid(target) then
@@ -20,7 +24,11 @@ lia.command.add("addcharslots", {
     superAdminOnly = true,
     syntax = "[player Target Player]",
     desc = L("addCharSlotsDesc"),
-    AdminStick = {Name = L("addCharSlotsDesc")},
+    AdminStick = {
+        Name = L("addCharSlotsDesc"),
+        Category = "characterManagement",
+        SubCategory = "charSlots"
+    },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
         if not target or not IsValid(target) then
@@ -37,7 +45,11 @@ lia.command.add("setcharslots", {
     superAdminOnly = true,
     syntax = "[player Target Player] [number Slot Count]",
     desc = L("setCharSlotsDesc"),
-    AdminStick = {Name = L("setCharSlotsDesc")},
+    AdminStick = {
+        Name = L("setCharSlotsDesc"),
+        Category = "characterManagement",
+        SubCategory = "charSlots"
+    },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
         local count = tonumber(arguments[2])

@@ -2,7 +2,11 @@
     adminOnly = false,
     syntax = "[player Target Player]",
     desc = L("warrantCommandDesc"),
-    AdminStick = {Name = L("warrantCommandDesc")},
+    AdminStick = {
+        Name = L("warrantCommandDesc"),
+        Category = "moderationTools",
+        SubCategory = "warrants"
+    },
     onRun = function(client, arguments)
         local character = client:getChar()
         local target = lia.util.findPlayer(client, arguments[1])

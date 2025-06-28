@@ -36,7 +36,11 @@ lia.command.add("gmtpmoveto", {
     adminOnly = true,
     privilege = "Manage Gamemaster Teleport Points",
     desc = L("moveToPoint"),
-    AdminStick = {Name = L("moveToPoint")},
+    AdminStick = {
+        Name = L("moveToPoint"),
+        Category = "moderationTools",
+        SubCategory = "teleport"
+    },
     syntax = "[player Target] [string Name]",
     onRun = function(client, arguments)
         local target, name
