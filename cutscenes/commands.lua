@@ -4,6 +4,7 @@ lia.command.add("cutscene", {
     privilege = "Use Cutscenes",
     syntax = "[player Target?]",
     desc = L("cutsceneCommandDesc"),
+    AdminStick = {},
     onRun = function(ply, args)
         local target
         if args[1] then

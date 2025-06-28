@@ -2,6 +2,7 @@
     adminOnly = true,
     syntax = "[player Target Player] [string Caption] [number Duration]",
     desc = L("sendCaptionDesc"),
+    AdminStick = {},
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
         local text = arguments[2]
