@@ -5,6 +5,7 @@ function MODULE:CreateInventoryPanel(inventory, parent)
     panel:Center()
     return panel
 end
+
 function MODULE:getItemStackKey(item)
     local elements = {}
     for key, value in SortedPairs(item.data) do
@@ -25,6 +26,7 @@ function MODULE:getItemStacks(inventory)
     end
     return stacks
 end
+
 function panelMeta:liaListenForInventoryChanges(inventory)
     assert(inventory, "No inventory has been set!")
     local id = inventory:getID()
@@ -62,6 +64,7 @@ function panelMeta:liaListenForInventoryChanges(inventory)
 
     table.insert(self.liaToRemoveHooks[id], "ItemDataChanged")
 end
+
 function panelMeta:liaDeleteInventoryHooks(id)
     if not self.liaHookID then return end
     if id == nil then
