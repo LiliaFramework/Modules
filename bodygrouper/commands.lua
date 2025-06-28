@@ -5,8 +5,8 @@
     desc = L("viewBodygroupsDesc"),
     AdminStick = {
         Name = L("viewBodygroupsDesc"),
-        Category = "characterManagement",
-        SubCategory = "bodygrouper"
+        Category = L("characterManagement"),
+        SubCategory = L("bodygrouper")
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1] or "")

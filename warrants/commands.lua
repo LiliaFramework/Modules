@@ -4,8 +4,8 @@
     desc = L("warrantCommandDesc"),
     AdminStick = {
         Name = L("warrantCommandDesc"),
-        Category = "moderationTools",
-        SubCategory = "warrants"
+        Category = L("moderationTools"),
+        SubCategory = L("warrants")
     },
     onRun = function(client, arguments)
         local character = client:getChar()

@@ -38,8 +38,8 @@ lia.command.add("gmtpmoveto", {
     desc = L("moveToPoint"),
     AdminStick = {
         Name = L("moveToPoint"),
-        Category = "moderationTools",
-        SubCategory = "teleport"
+        Category = L("moderationTools"),
+        SubCategory = L("teleport")
     },
     syntax = "[player Target] [string Name]",
     onRun = function(client, arguments)

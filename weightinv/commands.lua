@@ -4,8 +4,8 @@ lia.command.add("updateinvsize", {
     desc = L("updateInventoryWeightDesc"),
     AdminStick = {
         Name = L("updateInventoryWeightDesc"),
-        Category = "characterManagement",
-        SubCategory = "inventory"
+        Category = L("characterManagement"),
+        SubCategory = L("inventory")
     },
     syntax = "[player Target Player]",
     onRun = function(client, args)
@@ -46,8 +46,8 @@ lia.command.add("setinventorysize", {
     desc = L("setInventoryWeightDesc"),
     AdminStick = {
         Name = L("setInventoryWeightDesc"),
-        Category = "characterManagement",
-        SubCategory = "inventory"
+        Category = L("characterManagement"),
+        SubCategory = L("inventory")
     },
     syntax = "[player Target Player] [number Max Weight]",
     onRun = function(client, args)

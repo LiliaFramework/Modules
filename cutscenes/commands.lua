@@ -6,8 +6,8 @@ lia.command.add("cutscene", {
     desc = L("cutsceneCommandDesc"),
     AdminStick = {
         Name = L("cutsceneCommandDesc"),
-        Category = "moderationTools",
-        SubCategory = "cutscenes"
+        Category = L("moderationTools"),
+        SubCategory = L("cutscenes")
     },
     onRun = function(ply, args)
         local target

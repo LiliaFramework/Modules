@@ -4,8 +4,8 @@
     desc = L("sendCaptionDesc"),
     AdminStick = {
         Name = L("sendCaptionDesc"),
-        Category = "moderationTools",
-        SubCategory = "captions"
+        Category = L("moderationTools"),
+        SubCategory = L("captions")
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
