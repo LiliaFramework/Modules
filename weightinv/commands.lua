@@ -2,7 +2,7 @@ lia.command.add("updateinvsize", {
     adminOnly = true,
     privilege = "Set Inventory Weight",
     desc = L("updateInventoryWeightDesc"),
-    AdminStick = {},
+    AdminStick = {Name = L("updateInventoryWeightDesc")},
     syntax = "[player Target Player]",
     onRun = function(client, args)
         local target = lia.util.findPlayer(client, args[1])
@@ -40,7 +40,7 @@ lia.command.add("setinventorysize", {
     adminOnly = true,
     privilege = "Set Inventory Weight",
     desc = L("setInventoryWeightDesc"),
-    AdminStick = {},
+    AdminStick = {Name = L("setInventoryWeightDesc")},
     syntax = "[player Target Player] [number Max Weight]",
     onRun = function(client, args)
         local target = lia.util.findPlayer(client, args[1])

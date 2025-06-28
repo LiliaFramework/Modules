@@ -4,7 +4,7 @@ lia.command.add("partytier", {
     privilege = "Management - Assign Party Tiers",
     syntax = "[player Target Player] [number Tier]",
     desc = L("partytierCommandDesc"),
-    AdminStick = {},
+    AdminStick = {Name = L("partytierCommandDesc")},
     onRun = function(client, arguments)
         local char = client:getChar()
         if not char then return L("mustBeOnCharacter") end
