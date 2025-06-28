@@ -5,4 +5,6 @@ LANGUAGE = {
     sendCaptionDesc = "Send a caption to a player.",
     sendCaptionError = "You must specify caption text.",
     targetNotFound = "Player not found.",
+    moderationTools = "Moderation Tools",
+    captions = "Captions",
 }

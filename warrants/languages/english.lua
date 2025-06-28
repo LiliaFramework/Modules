@@ -17,4 +17,6 @@ LANGUAGE = {
     upstanding = "upstanding",
     wanted = "wanted",
     warrantCommandDesc = "Toggle a player's wanted status.",
+    moderationTools = "Moderation Tools",
+    warrants = "Warrants",
 }

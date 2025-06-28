@@ -96,4 +96,6 @@ LANGUAGE = {
     vendorYourItems = "Your Items",
     weight = "Weight",
     wrongPassword = "Incorrect password.",
+    characterManagement = "Character Management",
+    inventory = "Inventory",
 }
