@@ -1,19 +1,17 @@
 ﻿MODULE.name = "Broadcasts"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.2"
+MODULE.version = "1.0.3"
 MODULE.desc = "Adds a Faction & Class Broadcast Command"
 MODULE.Public = true
 MODULE.CAMIPrivileges = {
     {
         Name = "Staff Permissions - Can Use Faction Broadcast",
         MinAccess = "superadmin",
-        Description = "Allows access to Faction Broadcast",
     },
     {
         Name = "Staff Permissions - Can Use Class Broadcast",
         MinAccess = "superadmin",
-        Description = "Allows access to Class Broadcast.",
     }
 }
 
