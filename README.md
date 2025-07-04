@@ -1,6 +1,15 @@
+<p align="center">
+  <img src="https://github.com/LiliaFramework/Lilia/blob/main/logo.png?raw=true" alt="Lilia Logo" width="200" />
+</p>
+
+<p align="center">
+  <b>Official modules for the Lilia framework.</b><br/>
+  Extend your server with new mechanics and features.
+</p>
+
 # Lilia – Modules Collection
 
-Official gameplay extensions for the [Lilia](https://github.com/LiliaFramework/Lilia) framework. Modules drop directly into your `lilia/modules/` folder and expand your RP experience with new mechanics, UI features and quality of life improvements.
+This repository houses gameplay extensions for the [Lilia](https://github.com/LiliaFramework/Lilia) framework. Modules drop directly into your `lilia/modules/` folder and expand your RP experience with new mechanics, UI features and quality of life improvements.
 
 ---
 
@@ -38,4 +47,3 @@ This project is distributed under the terms of the [GNU General Public License v
 ## 💬 Support
 
 Need help or want to chat with other users? Join our community on [Discord](https://discord.gg/52MSnh39vw).
-
