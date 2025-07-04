@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="https://github.com/LiliaFramework/Lilia/blob/main/logo.png?raw=true" alt="Lilia Logo" width="200" />
+  <b>Official modules for the Lilia framework.</b><br/>
+  Extend your server with new mechanics and features.
 </p>
 
 <p align="center">
-  <b>Official modules for the Lilia framework.</b><br/>
-  Extend your server with new mechanics and features.
+  <img src="https://github.com/LiliaFramework/Lilia/blob/main/logo.png?raw=true" alt="Lilia Logo" width="200" />
 </p>
 
 # Lilia – Modules Collection
