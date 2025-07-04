@@ -1,56 +1,41 @@
-# Lilia – Gameplay Extensions
+# Lilia – Modules Collection
 
-A collection of **gameplay extension modules** for the Lilia framework—drop-in scripts that add new mechanics, UI elements, and systems with minimal setup.
-
----
-
-## 📥 Downloading Addons
-
-All official gameplay extensions (addons) for Lilia can be browsed and downloaded here:  
-[https://liliaframework.github.io/Modules/](https://liliaframework.github.io/Modules/)
-
-Simply pick the modules you want, clone or download them into your `lilia/modules/` folder, and load them in your schema—no extra setup required.
+Official gameplay extensions for the [Lilia](https://github.com/LiliaFramework/Lilia) framework. Modules drop directly into your `lilia/modules/` folder and expand your RP experience with new mechanics, UI features and quality of life improvements.
 
 ---
 
-## ⚙️ Module Configuration
+## 📥 Downloading Modules
 
-### 1. Modules with a `config.lua`
-
-* **Location:** `lilia/modules/<module_name>/config.lua`
-* **How to override:**
-
-  1. Copy the module’s `config.lua` into your schema’s `config/` folder.
-  2. Edit values (cooldowns, spawn rates, UI positions, etc.) directly in the file.
-  3. Restart the server to apply changes.
-
-### 2. Modules without a `config.lua`
-
-* **In-Game Configuration:**
-
-  * These modules expose their settings via the f1 settings tab.
-  * Changes take effect immediately or after a map restart, depending on the module.
-
-> 💡 *Tip:* If you’re not sure whether a module has a `config.lua`, take a look in its folder under `lilia/modules/<module_name>/`. If there’s no `config.lua`, search for a “Settings” section in its README or test the in-game console (`?` → find `lilia_<module>`).
+Browse all maintained modules on the [Lilia Modules site](https://liliaframework.github.io/Modules/). Select the addons you want and place them inside `lilia/modules/` on your server.
 
 ---
 
-## 💡 Contributing
+## ⚙️ Configuration
 
-We welcome code contributions, documentation improvements, and feedback:
+### Modules with a `config.lua`
+- **Location:** `lilia/modules/<module_name>/config.lua`
+- **Override:** Copy the file to your schema's `config/` folder and edit the values. Restart the server to apply your changes.
 
-1. Fork the repository  
-2. Create a feature branch  
-3. Submit a pull request  
+### Modules without a `config.lua`
+- Configure these from the in-game F1 settings tab. Some changes may require a map restart.
 
-Your contributions help build a richer, more stable RP experience!
+> 💡 *Tip:* If you're unsure whether a module has a `config.lua`, check its folder or look for settings in game via `?` and searching `lilia_<module>`.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Fork the repository, create a feature branch and submit a pull request. Please read our [Code of Conduct](Code_Of_Conduct.md) before participating.
 
 ---
 
-## 🤝 Support
+## 📝 License
 
-Need help or want to connect with the community?
-Join us on Discord:
-[https://discord.gg/52MSnh39vw](https://discord.gg/52MSnh39vw)
+This project is distributed under the terms of the [GNU General Public License v3](License). You are free to share and modify the code as long as you keep it under the same license.
 
 ---
+
+## 💬 Support
+
+Need help or want to chat with other users? Join our community on [Discord](https://discord.gg/52MSnh39vw).
+
