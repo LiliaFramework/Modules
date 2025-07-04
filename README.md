@@ -53,4 +53,8 @@ Please read our [Code of Conduct](Code_Of_Conduct.md) before participating.
 
 ## 🎓 Learning & Adaptation
 
-All modules are released under the [GNU General Public License v3](License). You are free to study, modify and adapt them for your own server. Commercial resale is discouraged, but learning and experimentation are highly encouraged to support the community.
+All [**Lilia**](https://github.com/LiliaFramework/Lilia) content is open source under the **GNU General Public License v3.0**. See the [License](./License) file for details. You are free to study, modify and adapt it for your own server. Commercial resale is discouraged, but educational use is encouraged.
+
+Official modules for Lilia can be found here: [https://github.com/LiliaFramework/Modules](https://github.com/LiliaFramework/Modules)
+
+Participation in this project is subject to the [Code of Conduct](./Code_Of_Conduct.md).
