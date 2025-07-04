@@ -7,7 +7,7 @@ end
 
 function MODULE:PlayerSpawn(client)
     local currentSlots = client:getLiliaData("overrideSlots", nil)
-    if currentSlots then MsgC(Color(0, 255, 0), "Player " .. client:Nick() .. " previously donated and has " .. currentSlots .. " slots\n") end
+    if currentSlots then MsgC(Color(0, 255, 0), L("donatedSlotsInfo", client:Nick(), currentSlots) .. "\n") end
 end
 
 function AddOverrideCharSlots(client)
@@ -55,18 +55,18 @@ concommand.Add("lia_givecharacters", function(ply, _, args)
     local steamid = args[1]
     local count = tonumber(args[2])
     if not steamid or not count then
-        print("Usage: lia_givecharacters [steamid] [count]")
+        print(L("usageGiveCharacters"))
         return
     end
 
     local target = consoleFindPlayer(steamid)
     if not IsValid(target) then
-        print("Player not found.")
+        print(L("targetNotFound"))
         return
     end
 
     target:GiveAdditionalCharSlots(count)
-    print("Gave " .. count .. " additional character slots to " .. target:Nick())
+    print(L("gaveCharSlots", count, target:Nick()))
 end)
 
 concommand.Add("lia_givemoney", function(ply, _, args)
@@ -74,24 +74,24 @@ concommand.Add("lia_givemoney", function(ply, _, args)
     local steamid = args[1]
     local amount = tonumber(args[2])
     if not steamid or not amount then
-        print("Usage: lia_givemoney [steamid] [amount]")
+        print(L("usageGiveMoney"))
         return
     end
 
     local target = consoleFindPlayer(steamid)
     if not IsValid(target) then
-        print("Player not found.")
+        print(L("targetNotFound"))
         return
     end
 
     local char = target:getChar()
     if not char then
-        print("Target has no character.")
+        print(L("targetNoCharacter"))
         return
     end
 
     char:giveMoney(amount)
-    print("Gave " .. amount .. " money to " .. target:Nick())
+    print(L("gaveMoney", amount, target:Nick()))
 end)
 
 concommand.Add("lia_giveflags", function(ply, _, args)
@@ -99,24 +99,24 @@ concommand.Add("lia_giveflags", function(ply, _, args)
     local steamid = args[1]
     local flags = args[2]
     if not steamid or not flags then
-        print("Usage: lia_giveflags [steamid] [flags]")
+        print(L("usageGiveFlags"))
         return
     end
 
     local target = consoleFindPlayer(steamid)
     if not IsValid(target) then
-        print("Player not found.")
+        print(L("targetNotFound"))
         return
     end
 
     local char = target:getChar()
     if not char then
-        print("Target has no character.")
+        print(L("targetNoCharacter"))
         return
     end
 
     char:giveFlags(flags)
-    print("Gave flags " .. flags .. " to " .. target:Nick())
+    print(L("gaveFlags", flags, target:Nick()))
 end)
 
 concommand.Add("lia_giveitem", function(ply, _, args)
@@ -124,28 +124,28 @@ concommand.Add("lia_giveitem", function(ply, _, args)
     local steamid = args[1]
     local uniqueID = args[2]
     if not steamid or not uniqueID then
-        print("Usage: lia_giveitem [steamid] [item_uniqueID]")
+        print(L("usageGiveItem"))
         return
     end
 
     local target = consoleFindPlayer(steamid)
     if not IsValid(target) then
-        print("Player not found.")
+        print(L("targetNotFound"))
         return
     end
 
     local char = target:getChar()
     if not char then
-        print("Target has no character.")
+        print(L("targetNoCharacter"))
         return
     end
 
     local inv = char:getInv()
     if not inv then
-        print("Target has no inventory.")
+        print(L("targetNoInventory"))
         return
     end
 
     inv:add(uniqueID)
-    print("Gave item " .. uniqueID .. " to " .. target:Nick())
+    print(L("gaveItem", uniqueID, target:Nick()))
 end)

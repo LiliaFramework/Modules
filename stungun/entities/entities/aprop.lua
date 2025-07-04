@@ -56,8 +56,6 @@ function ENT:Think()
             self:SetLocalVelocity(vector_origin)
         end
     elseif self.Vec and self.Timer and CurTime() < self.Timer then
-        local dist = self.Vec:Distance(self:GetPos())
-        print(dist)
         self:SetLocalVelocity(self:GetForward() * 980)
     elseif self.Timer then
         self:SetMoveType(5)
