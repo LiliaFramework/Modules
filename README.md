@@ -19,6 +19,12 @@ Browse all maintained modules on the [Lilia Modules site](https://liliaframework
 
 ---
 
+## 📚 Documentation
+
+Full usage instructions for every addon can be found on the [Lilia Modules site](https://liliaframework.github.io/Modules/).
+
+---
+
 ## ⚙️ Configuration
 
 ### Modules with a `config.lua`
