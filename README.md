@@ -1,5 +1,5 @@
 <p align="center">
-  <b>Official modules for the Lilia framework.</b><br/>
+  <b>Official modules repository for Lilia, the advanced roleplay framework for Garry's Mod.</b><br/>
   Extend your server with new mechanics and features.
 </p>
 
@@ -7,49 +7,50 @@
   <img src="https://github.com/LiliaFramework/Lilia/blob/main/logo.png?raw=true" alt="Lilia Logo" width="200" />
 </p>
 
-# Lilia – Modules Collection
+<h1 align="center">Lilia Modules</h1>
 
-This repository houses gameplay extensions for the [Lilia](https://github.com/LiliaFramework/Lilia) framework. Modules drop directly into your `lilia/modules/` folder and expand your RP experience with new mechanics, UI features and quality of life improvements.
+Welcome to **Lilia Modules**, the companion repository that houses extra gameplay modules for the [Lilia framework](https://github.com/LiliaFramework/Lilia). Drop-in addons expand the core experience with additional mechanics, UI improvements and helpful utilities.
 
----
+## 🚀 Getting Started
 
-## 📥 Downloading Modules
+Browse all official modules on the [Lilia Modules site](https://liliaframework.github.io/Modules/). Clone or download the desired addons and place them inside `lilia/modules/` on your server.
 
-Browse all maintained modules on the [Lilia Modules site](https://liliaframework.github.io/Modules/). Select the addons you want and place them inside `lilia/modules/` on your server.
+## ✨ Features
 
----
+- **Plug & Play Addons** that simply drop into `lilia/modules/`
+- **Gameplay Enhancements** such as new systems and weapons
+- **UI Improvements** including menus and HUD elements
+- **Server Utilities** for administration and quality of life
+- **Hot Reload Support** for rapid iteration
+
+> Each module includes its own instructions and configuration options.
+
+## 📦 Workshop Content
+
+Some modules rely on additional assets. Check the [workshop collection](https://steamcommunity.com/sharedfiles/filedetails/?id=2959728255) and each module's documentation to ensure you have everything installed.
 
 ## 📚 Documentation
 
-Full usage instructions for every addon can be found on the [Lilia Modules site](https://liliaframework.github.io/Modules/).
+Read the full wiki for usage guides and module configuration:
 
----
+https://liliaframework.github.io/Modules/
 
-## ⚙️ Configuration
+## 💬 Community Support
 
-### Modules with a `config.lua`
-- **Location:** `lilia/modules/<module_name>/config.lua`
-- **Override:** Copy the file to your schema's `config/` folder and edit the values. Restart the server to apply your changes.
+Join our Discord to get help and share suggestions:
 
-### Modules without a `config.lua`
-- Configure these from the in-game F1 settings tab. Some changes may require a map restart.
+https://discord.gg/esCRH5ckbQ
 
-> 💡 *Tip:* If you're unsure whether a module has a `config.lua`, check its folder or look for settings in game via `?` and searching `lilia_<module>`.
+## 💡 Contributing
 
----
+We welcome pull requests and improvements:
 
-## 🤝 Contributing
+1. Fork the repo
+2. Create a feature branch
+3. Submit a pull request
 
-Contributions are welcome! Fork the repository, create a feature branch and submit a pull request. Please read our [Code of Conduct](Code_Of_Conduct.md) before participating.
+Please read our [Code of Conduct](Code_Of_Conduct.md) before participating.
 
----
+## 🎓 Learning & Adaptation
 
-## 📝 License
-
-This project is distributed under the terms of the [GNU General Public License v3](License). You are free to share and modify the code as long as you keep it under the same license.
-
----
-
-## 💬 Support
-
-Need help or want to chat with other users? Join our community on [Discord](https://discord.gg/52MSnh39vw).
+All modules are released under the [GNU General Public License v3](License). You are free to study, modify and adapt them for your own server. Commercial resale is discouraged, but learning and experimentation are highly encouraged to support the community.
