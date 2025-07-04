@@ -43,7 +43,7 @@ Example Usage:
 function lia.utilities.DaysBetween(strTime1, strTime2)
     local y1, mo1, d1 = lia.utilities.ParseTime(strTime1)
     local y2, mo2, d2 = lia.utilities.ParseTime(strTime2)
-    if not (y1 and y2) then return "Invalid dates" end
+    if not (y1 and y2) then return L("invalidDates") end
     local t1 = os.time({
         year = y1,
         month = mo1,
@@ -918,10 +918,10 @@ Example Usage:
 function lia.utilities.TimeUntil(strTime)
     local pat = "(%d+):(%d+):(%d+)%s*%-%s*(%d+)/(%d+)/(%d+)"
     local h, m, s, d, mo, y = strTime:match(pat)
-    if not (h and m and s and d and mo and y) then return "Invalid time format. Expected 'HH:MM:SS - DD/MM/YYYY'." end
+    if not (h and m and s and d and mo and y) then return L("invalidTimeFormat") end
     h, m, s = tonumber(h), tonumber(m), tonumber(s)
     d, mo, y = tonumber(d), tonumber(mo), tonumber(y)
-    if h > 23 or m > 59 or s > 59 or d < 1 or d > 31 or mo < 1 or mo > 12 or y < 1970 then return "Invalid time values." end
+    if h > 23 or m > 59 or s > 59 or d < 1 or d > 31 or mo < 1 or mo > 12 or y < 1970 then return L("invalidTimeValues") end
     local inputTs = os.time{
         year = y,
         month = mo,
@@ -932,7 +932,7 @@ function lia.utilities.TimeUntil(strTime)
     }
 
     local currTs = os.time()
-    if inputTs <= currTs then return "The specified time is in the past." end
+    if inputTs <= currTs then return L("timeIsPast") end
     local diff = inputTs - currTs
     local yrs = math.floor(diff / (365.25 * 24 * 3600))
     diff = diff % (365.25 * 24 * 3600)
@@ -1038,7 +1038,7 @@ Example Usage:
 function lia.utilities.WeekdayName(strTime)
     local pat = "(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)"
     local h, m, s, d, mo, y = strTime:match(pat)
-    if not h then return "Invalid date" end
+    if not h then return L("invalidDate") end
     local ts = os.time{
         year = y,
         month = mo,
@@ -1137,7 +1137,7 @@ function lia.utilities.spawnEntities(entityTable)
                 e:Spawn()
             end
         else
-            lia.information("Invalid position for entity", class)
+            lia.information(L("invalidEntityPosition"), class)
         end
     end
 end
