@@ -26,6 +26,7 @@ ITEM.functions.Use = {
                 item:remove()
                 ply:EmitSound("doors/door_latch3.wav")
                 target:Fire("unlock")
+                lia.log.add(ply, "lockpick", target)
                 if target:IsVehicle() and target.IsSimfphyscar then target.IsLocked = false end
                 ply:setNetVar("isPicking")
                 timer.Remove(timerID)

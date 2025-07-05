@@ -34,6 +34,7 @@ lia.command.add("doorkick", {
                         if IsValid(ent) then
                             ent:Fire("unlock")
                             ent:Fire("open")
+                            lia.log.add(client, "doorkick", ent)
                         end
                     end)
                 else
