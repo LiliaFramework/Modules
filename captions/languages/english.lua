@@ -4,7 +4,7 @@ LANGUAGE = {
     broadcastCaptionError = "You must specify text to broadcast.",
     sendCaptionDesc = "Send a caption to a player.",
     sendCaptionError = "You must specify caption text.",
-    targetNotFound = "Player not found.",
+    targetNotFound = "Target not found.",
     moderationTools = "Moderation Tools",
     captions = "Captions",
 }

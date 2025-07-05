@@ -7,5 +7,5 @@ function MODULE:DrawCharInfo(client, _, info)
 end
 
 function MODULE:LoadCharInformation()
-    hook.Run("AddTextField", L("generalInfo"), "drunkness", L("drunkness"), function() return LocalPlayer():getNetVar("lia_alcoholism_bac", 0) .. "%" end)
+    hook.Run("AddTextField", L("generalinfo"), "drunkness", L("drunkness"), function() return LocalPlayer():getNetVar("lia_alcoholism_bac", 0) .. "%" end)
 end

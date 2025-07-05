@@ -4,6 +4,6 @@ LANGUAGE = {
     drinkAction = "Drink",
     drinkTip = "Consume this beverage.",
     drunkness = "BAC",
-    generalInfo = "General Information",
+    generalinfo = "General Information",
     intoxicatedStatus = "Intoxicated"
 }
