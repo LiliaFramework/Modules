@@ -28,6 +28,7 @@ ITEM.functions.use = {
             local ete = client:getTracedEntity()
             if IsValid(ete) and ete == target then
                 HandcuffPlayer(target)
+                lia.log.add(client, "tie", target)
                 item:remove()
             end
         end)
