@@ -43,6 +43,7 @@
             end
 
             client:notifyLocalized("classBroadcastSent")
+            lia.log.add(client, "classbroadcast", message)
         end)
     end,
 })
@@ -92,6 +93,7 @@ lia.command.add("factionbroadcast", {
             end
 
             client:notifyLocalized("factionBroadcastSent")
+            lia.log.add(client, "factionbroadcast", message)
         end)
     end,
 })

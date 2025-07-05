@@ -8,6 +8,7 @@ if SERVER then
         if IsValid(warranter) then
             local warranterNotification = warranted and L("WarrantIssuedNotify") or L("WarrantRemovedNotify")
             warranter:notify(warranterNotification)
+            lia.log.add(warranter, warranted and "warrantIssue" or "warrantRemove", self:getPlayer() or self)
         end
 
         for _, ply in player.Iterator() do
