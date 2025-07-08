@@ -4,7 +4,7 @@ include("shared.lua")
 util.AddNetworkString("ciga")
 util.AddNetworkString("cigaArm")
 util.AddNetworkString("cigaTalking")
-function cigaUpdate(ply, cigaID)
+function MODULE.cigaUpdate(ply, cigaID)
 	if not ply.cigaCount then ply.cigaCount = 0 end
 	if not ply.cantStartciga then ply.cantStartciga = false end
 	if ply.cigaCount == 0 and ply.cantStartciga then return end
@@ -17,21 +17,18 @@ function cigaUpdate(ply, cigaID)
 		net.WriteBool(true)
 		net.Broadcast()
 	end
-
 	if ply.cigaCount >= 50 then
 		ply.cantStartciga = true
-		Releaseciga(ply)
+                MODULE.Releaseciga(ply)
 	end
 end
-
 hook.Add("KeyRelease", "DocigaHook", function(ply, key)
-	if key == IN_ATTACK then
-		Releaseciga(ply)
-		ply.cantStartciga = false
-	end
+        if key == IN_ATTACK then
+                MODULE.Releaseciga(ply)
+                ply.cantStartciga = false
+        end
 end)
-
-function Releaseciga(ply)
+function MODULE.Releaseciga(ply)
 	if not ply.cigaCount then ply.cigaCount = 0 end
 	if IsValid(ply:GetActiveWeapon()) and ply:GetActiveWeapon():GetClass():sub(1, 11) == "weapon_ciga" then
 		if ply.cigaCount >= 5 then
@@ -42,7 +39,6 @@ function Releaseciga(ply)
 			net.Broadcast()
 		end
 	end
-
 	if ply.cigaArm then
 		ply.cigaArm = false
 		net.Start("cigaArm")
@@ -50,6 +46,5 @@ function Releaseciga(ply)
 		net.WriteBool(false)
 		net.Broadcast()
 	end
-
 	ply.cigaCount = 0
 end
