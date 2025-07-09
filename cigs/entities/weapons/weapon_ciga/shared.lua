@@ -4,7 +4,7 @@ SWEP.Author = "Samael"
 SWEP.Category = "Samael"
 SWEP.Slot = 1
 SWEP.SlotPos = 0
-SWEP.ViewModelFOV = 62 
+SWEP.ViewModelFOV = 62
 SWEP.BounceWeaponIcon = false
 SWEP.ViewModel = "models/oldcigshib.mdl"
 SWEP.WorldModel = "models/oldcigshib.mdl"
@@ -24,8 +24,10 @@ SWEP.cigaID = 1
 function SWEP:Deploy()
 	self:SetHoldType("slam")
 end
+
 function SWEP:SecondaryAttack()
 end
+
 function SWEP:Initialize()
 	if not self.CigaInitialized then
 		self.CigaInitialized = true
@@ -45,6 +47,7 @@ function SWEP:Initialize()
 				bodygroup = {}
 			}
 		}
+
 		self.OldCigaModel = self.ViewModel
 		self.ViewModel = "models/weapons/c_slam.mdl"
 		self.UseHands = true
@@ -114,12 +117,13 @@ function SWEP:Initialize()
 			}
 		}
 	end
+
 	if CLIENT then
 		self.VElements = table.FullCopy(self.VElements)
 		self.WElements = table.FullCopy(self.WElements)
 		self.ViewModelBoneMods = table.FullCopy(self.ViewModelBoneMods)
-		self:CreateModels(self.VElements) 
-		self:CreateModels(self.WElements) 
+		self:CreateModels(self.VElements)
+		self:CreateModels(self.WElements)
 		if IsValid(self:GetOwner()) then
 			local vm = self:GetOwner():GetViewModel()
 			if IsValid(vm) then
@@ -133,21 +137,26 @@ function SWEP:Initialize()
 			end
 		end
 	end
+
 	if self.Initialize2 then self:Initialize2() end
 end
+
 function SWEP:PrimaryAttack()
-        if SERVER then MODULE.cigaUpdate(self:GetOwner(), self.cigaID) end
+	if SERVER then MODULE.cigaUpdate(self:GetOwner(), self.cigaID) end
 	self:SetNextPrimaryFire(CurTime() + 0.1)
 end
+
 function SWEP:Reload()
 end
+
 function SWEP:Holster()
-        if SERVER and IsValid(self:GetOwner()) then MODULE.Releaseciga(self:GetOwner()) end
+	if SERVER and IsValid(self:GetOwner()) then MODULE.Releaseciga(self:GetOwner()) end
 	if CLIENT and IsValid(self:GetOwner()) then
 		local vm = self:GetOwner():GetViewModel()
 		if IsValid(vm) then self:ResetBonePositions(vm) end
 	end
 	return true
 end
+
 SWEP.OnDrop = SWEP.Holster
 SWEP.OnRemove = SWEP.Holster

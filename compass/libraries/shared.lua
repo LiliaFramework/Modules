@@ -320,7 +320,6 @@ else
     updateCompassSettings()
     local cl_mCompass_MarkerTable = cl_mCompass_MarkerTable or {}
     local mat = Material("compass/compass_marker_01")
-    local mat2 = Material("compass/compass_marker_02")
     net.Receive("mCompass_AddMarker", function()
         local id = net.ReadInt(4)
         local isEntity = net.ReadBool()
