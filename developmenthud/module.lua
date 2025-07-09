@@ -3,8 +3,8 @@ MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.5"
 MODULE.desc = "Adds a Development HUD"
-MODULE.Public = true
 MODULE.CAMIPrivileges = {
+
     {
         Name = "Staff Permissions - Staff HUD",
         MinAccess = "superadmin",
@@ -22,5 +22,5 @@ end, {
     desc = "Font used for all development/staff HUD text",
     category = "Fonts",
     type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
-})
+    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
+MODULE.Public = true

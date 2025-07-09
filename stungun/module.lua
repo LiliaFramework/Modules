@@ -2,9 +2,9 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.1.5"
-MODULE.Public = true
 MODULE.desc = "An Stun Gun Reworked from CustomHQ"
 MODULE.WorkshopContent = "3432649835"
+
 lia.config.add("StunTime", "Stun Time", 4, nil, {
     desc = "Duration of the stun effect in seconds",
     category = "Weapon",
@@ -32,3 +32,4 @@ lia.config.add("Damage", "Over‐Stun Damage", 5, nil, {
     min = 0,
     max = 100
 })
+MODULE.Public = true
