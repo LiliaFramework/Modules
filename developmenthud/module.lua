@@ -14,6 +14,7 @@ MODULE.CAMIPrivileges = {
         MinAccess = "superadmin",
     }
 }
+MODULE.Public = true
 
 lia.config.add("DevHudFont", "Development HUD Font", "PoppinsMedium", function()
     if not CLIENT then return end
@@ -23,4 +24,3 @@ end, {
     category = "Fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
-MODULE.Public = true

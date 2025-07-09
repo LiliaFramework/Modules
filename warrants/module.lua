@@ -17,6 +17,7 @@ MODULE.CAMIPrivileges = {
         MinAccess = "superadmin",
     },
 }
+MODULE.Public = true
 
 if SERVER then
     lia.log.addType("warrantIssue", function(client, target)
@@ -27,4 +28,3 @@ if SERVER then
         return string.format("%s removed a warrant from %s", client:Name(), target:Name())
     end, "Player")
 end
-MODULE.Public = true

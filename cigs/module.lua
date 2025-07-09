@@ -4,5 +4,5 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.1"
 MODULE.desc = "Adds cigarette items players can smoke."
 MODULE.WorkshopContent = "3519851007"
-
 MODULE.Public = true
+
