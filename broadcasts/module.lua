@@ -13,6 +13,7 @@ MODULE.CAMIPrivileges = {
         MinAccess = "superadmin",
     }
 }
+MODULE.Public = true
 
 if SERVER then
     lia.log.addType("classbroadcast", function(client, message)
@@ -24,4 +25,3 @@ if SERVER then
     end, "Player")
 end
 lia.flag.add("B", "Access to Faction Broadcast")lia.flag.add("D", "Access to Class Broadcast")
-MODULE.Public = true
