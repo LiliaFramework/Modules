@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 MODULE.tpPoints = MODULE.tpPoints or {}
 function MODULE:LoadData()
     self.tpPoints = lia.data.get("TPPoints", {}, false, false)

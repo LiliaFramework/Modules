@@ -1,4 +1,4 @@
-lia.config.add("RestartInterval", "Server restart interval (seconds)", 3600, function(_, newInterval)
+﻿lia.config.add("RestartInterval", "Server restart interval (seconds)", 3600, function(_, newInterval)
     if CLIENT then return end
     MODULE.nextRestart = os.time() + newInterval
     net.Start("RestartDisplay")

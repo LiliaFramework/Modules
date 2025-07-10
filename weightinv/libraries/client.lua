@@ -1,4 +1,4 @@
-function MODULE:CreateInventoryPanel(inventory, parent)
+﻿function MODULE:CreateInventoryPanel(inventory, parent)
     local panel = parent:Add("liaListInventory")
     panel:setInventory(inventory)
     panel:Center()

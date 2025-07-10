@@ -1,4 +1,4 @@
-function MODULE:Move(client, moveData)
+﻿function MODULE:Move(client, moveData)
     local wep = client:GetActiveWeapon()
     if not IsValid(wep) then return end
     local baseSpeed = self.WeaponsSpeed[wep:GetClass()]

@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     detailedDescTitle = "%s's Detailed Description",
     editDescTitle = "Edit Detailed Description",

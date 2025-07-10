@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     bigSplashTextLabel = "Large Splash Text",
     cinematicMenuDesc = "Open the cinematic text menu.",

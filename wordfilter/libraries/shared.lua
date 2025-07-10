@@ -1,4 +1,4 @@
-local blacklist = {"nigger", "faggot", "chink", "kike", "spic", "gook", "wetback", "dyke", "tranny", "retard", "coon", "raghead", "nip", "honky", "gyp", "beaner", "paki", "slant", "slope", "jap"}
+﻿local blacklist = {"nigger", "faggot", "chink", "kike", "spic", "gook", "wetback", "dyke", "tranny", "retard", "coon", "raghead", "nip", "honky", "gyp", "beaner", "paki", "slant", "slope", "jap"}
 function MODULE:PlayerSay(ply, text)
     local lowerText = text:lower()
     for _, bad in pairs(blacklist) do

@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     permRemoveDesc = "Permanently remove the entity you're looking at.",
     permRemoveInvalid = "You must be looking at a map entity.",

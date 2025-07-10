@@ -4,7 +4,6 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.7"
 MODULE.desc = "Adds a corpse identification mechanic."
 MODULE.Public = true
-
 lia.config.add("IdentificationTime", "Identification Time", 5, nil, {
     desc = "The time (in seconds) required to identify a corpse.",
     category = "Identification",
@@ -13,13 +12,14 @@ lia.config.add("IdentificationTime", "Identification Time", 5, nil, {
     max = 60
 })
 
-lia.config.add("CorpseMessageFont", "Corpse Message Font", "PoppinsMedium", function() if not CLIENT then return end hook.Run("RefreshFonts") end, {
+lia.config.add("CorpseMessageFont", "Corpse Message Font", "PoppinsMedium", function()
+    if not CLIENT then return end
+    hook.Run("RefreshFonts")
+end, {
     desc = "Font used for the identify-corpse 3D2D display",
     category = "Fonts",
     type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
-MODULE.Features = {
-    "Adds the ability to identify corpses after IdentificationTime",
-    "Adds use of CorpseMessageFont for 3D2D text",
-    "Adds info display above bodies",
-}
+    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
+})
+
+MODULE.Features = {"Adds the ability to identify corpses after IdentificationTime", "Adds use of CorpseMessageFont for 3D2D text", "Adds info display above bodies",}

@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     itemCleanupFinalWarning = "World items have been cleaned up.",
     itemCleanupWarning = "World items will be cleaned up in 60 seconds!",

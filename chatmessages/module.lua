@@ -4,7 +4,6 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.3"
 MODULE.desc = "Adds Simple Adverts."
 MODULE.Public = true
-
 lia.config.add("ChatMessagesInterval", "Chat Messages Interval", 300, nil, {
     desc = "Time interval (in seconds) between each automatic chat message.",
     category = "Chat",
@@ -12,8 +11,5 @@ lia.config.add("ChatMessagesInterval", "Chat Messages Interval", 300, nil, {
     min = 10,
     max = 3600
 })
-MODULE.Features = {
-    "Adds periodic server adverts to chat",
-    "Adds interval control via ChatMessagesInterval",
-    "Adds localized message support",
-}
+
+MODULE.Features = {"Adds periodic server adverts to chat", "Adds interval control via ChatMessagesInterval", "Adds localized message support",}

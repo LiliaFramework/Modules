@@ -1,4 +1,4 @@
-ENT.Type = "anim"
+﻿ENT.Type = "anim"
 ENT.PrintName = "Slot Machine"
 ENT.Author = "Samael"
 ENT.Category = "Lilia"

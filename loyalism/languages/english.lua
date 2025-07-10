@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     generalinfo = "General Information",
     invalidPartyTier = "Invalid party tier.",

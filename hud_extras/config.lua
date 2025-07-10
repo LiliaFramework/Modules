@@ -1,4 +1,4 @@
-lia.config.add("WatermarkEnabled", "Enable Watermark", false, nil, {
+﻿lia.config.add("WatermarkEnabled", "Enable Watermark", false, nil, {
     desc = "Enables the watermark display",
     category = "Visuals",
     type = "Boolean"

@@ -1,4 +1,4 @@
-mCompass_Settings = {}
+﻿mCompass_Settings = {}
 mCompass_Settings.Compass_Enabled = true
 mCompass_Settings.Force_Server_Style = false
 mCompass_Settings.Use_FastDL = true
@@ -49,6 +49,7 @@ mCompass_Settings.Styles = {
         color = Color(255, 255, 255)
     }
 }
+
 if SERVER then
     util.AddNetworkString("mCompass_AddMarker")
     util.AddNetworkString("mCompass_RemoveMarker")
@@ -82,9 +83,11 @@ if SERVER then
             net.WriteString(name)
             net.Broadcast()
         end
+
         table.insert(mCompass_MarkerTable, {id, pos, time, color, icon, name})
         return id
     end
+
     function MODULE.AddEntityMarker(ply, ent, players, time, color, icon, name)
         name = name or ""
         icon = icon or ""
@@ -114,9 +117,11 @@ if SERVER then
             net.WriteString(name)
             net.Broadcast()
         end
+
         table.insert(mCompass_MarkerTable, {id, pos, time, color, icon, name})
         return id
     end
+
     function MODULE.RemoveMarker(markerID)
         for k, v in pairs(mCompass_MarkerTable) do
             if markerID == v[1] then
@@ -127,15 +132,18 @@ if SERVER then
             end
         end
     end
+
     if mCompass_Settings.Use_FastDL then
         resource.AddFile("materials/compass/compass_marker_01.vmt")
         resource.AddFile("materials/compass/compass_marker_02.vmt")
         resource.AddFile("resource/fonts/exo/Exo-Regular.ttf")
     end
+
     local function v(arg)
         arg = tonumber(arg)
         return math.Clamp(arg or 255, 0, 255)
     end
+
     concommand.Add("mcompass_spot", function(ply, _, args)
         if not mCompass_Settings.Allow_Player_Spotting then return end
         local color = string.ToColor(v(args[1]) .. " " .. v(args[2]) .. " " .. v(args[3]) .. " " .. v(args[4]))
@@ -144,6 +152,7 @@ if SERVER then
             endpos = ply:EyePos() + ply:EyeAngles():Forward() * mCompass_Settings.Max_Spot_Distance,
             filter = ply
         })
+
         local t = CurTime() + mCompass_Settings.Spot_Duration
         if tr.Entity and not tr.HitWorld then
             MODULE.AddEntityMarker(ply, tr.Entity, nil, t, color)
@@ -164,12 +173,14 @@ else
         RunConsoleCommand("mcompass_ratio", "1.8")
         RunConsoleCommand("mcompass_color", "255", "255", "255", "255")
     end)
+
     local cl_cvar_mcompass_enabled, cl_cvar_mcompass_style, cl_cvar_mcompass_heading
     local cl_cvar_mcompass_xposition, cl_cvar_mcompass_yposition, cl_cvar_mcompass_width, cl_cvar_mcompass_height
     local cl_cvar_mcompass_spacing, cl_cvar_mcompass_ratio, cl_cvar_mcompass_color
     local function loadFonts()
         hook.Call("mCompass_loadFonts")
     end
+
     local cl_style_selected_str, compass_style
     local function updateCompassSettings()
         cl_style_selected_str = cl_cvar_mcompass_style == 1 and "fortnite" or cl_cvar_mcompass_style == 2 and "squad" or "pubg"
@@ -187,30 +198,36 @@ else
             maxMarkerSize = 1,
             minMarkerSize = 0.5
         }
+
         if mCompass_Settings.Force_Server_Style then compass_style.style = mCompass_Settings.Style_Selected end
         loadFonts()
     end
+
     local function v(arg)
         arg = tonumber(arg)
         return math.Clamp(arg or 255, 0, 255)
     end
+
     CreateClientConVar("mcompass_enabled", "1", true, false)
     cvars.AddChangeCallback("mcompass_enabled", function(_, _, newValue)
         if newValue == "1" or newValue == "0" then cl_cvar_mcompass_enabled = tobool(newValue) end
         updateCompassSettings()
     end, "mcompass_enabled_cvar_callback")
+
     cl_cvar_mcompass_enabled = tobool(GetConVar("mcompass_enabled"):GetInt())
     CreateClientConVar("mcompass_style", "1", true, false)
     cvars.AddChangeCallback("mcompass_style", function(_, _, newValue)
         if newValue == "1" or newValue == "2" or newValue == "3" then cl_cvar_mcompass_style = tonumber(newValue) end
         updateCompassSettings()
     end, "mcompass_style_cvar_callback")
+
     cl_cvar_mcompass_style = GetConVar("mcompass_style"):GetInt()
     CreateClientConVar("mcompass_heading", "1", true, false)
     cvars.AddChangeCallback("mcompass_heading", function(_, _, newValue)
         if newValue == "1" or newValue == "0" then cl_cvar_mcompass_heading = tobool(newValue) end
         updateCompassSettings()
     end, "mcompass_heading_cvar_callback")
+
     cl_cvar_mcompass_heading = tobool(GetConVar("mcompass_heading"):GetInt())
     CreateClientConVar("mcompass_xposition", "0.5", true, false)
     cvars.AddChangeCallback("mcompass_xposition", function(_, _, newValue)
@@ -218,6 +235,7 @@ else
         if foo and foo >= 0 and foo <= 1 then cl_cvar_mcompass_xposition = foo end
         updateCompassSettings()
     end, "mcompass_xposition_cvar_callback")
+
     cl_cvar_mcompass_xposition = GetConVar("mcompass_xposition"):GetFloat()
     CreateClientConVar("mcompass_yposition", "0.05", true, false)
     cvars.AddChangeCallback("mcompass_yposition", function(_, _, newValue)
@@ -225,6 +243,7 @@ else
         if foo and foo >= 0 and foo <= 1 then cl_cvar_mcompass_yposition = foo end
         updateCompassSettings()
     end, "mcompass_yposition_cvar_callback")
+
     cl_cvar_mcompass_yposition = GetConVar("mcompass_yposition"):GetFloat()
     CreateClientConVar("mcompass_width", "0.25", true, false)
     cvars.AddChangeCallback("mcompass_width", function(_, _, newValue)
@@ -232,6 +251,7 @@ else
         if foo and foo >= 0 and foo <= 1 then cl_cvar_mcompass_width = foo end
         updateCompassSettings()
     end, "mcompass_width_cvar_callback")
+
     cl_cvar_mcompass_width = GetConVar("mcompass_width"):GetFloat()
     CreateClientConVar("mcompass_height", "0.03", true, false)
     cvars.AddChangeCallback("mcompass_height", function(_, _, newValue)
@@ -239,6 +259,7 @@ else
         if foo and foo >= 0 and foo <= 1 then cl_cvar_mcompass_height = foo end
         updateCompassSettings()
     end, "mcompass_height_cvar_callback")
+
     cl_cvar_mcompass_height = GetConVar("mcompass_height"):GetFloat()
     CreateClientConVar("mcompass_spacing", "2.5", true, false)
     cvars.AddChangeCallback("mcompass_spacing", function(_, _, newValue)
@@ -246,6 +267,7 @@ else
         if foo and foo > 1 and foo < 10 then cl_cvar_mcompass_spacing = foo end
         updateCompassSettings()
     end, "mcompass_spacing_cvar_callback")
+
     cl_cvar_mcompass_spacing = GetConVar("mcompass_spacing"):GetFloat()
     CreateClientConVar("mcompass_ratio", "1.8", true, false)
     cvars.AddChangeCallback("mcompass_ratio", function(_, _, newValue)
@@ -253,6 +275,7 @@ else
         if foo and foo > 0 and foo < 10 then cl_cvar_mcompass_ratio = foo end
         updateCompassSettings()
     end, "mcompass_ratio_cvar_callback")
+
     cl_cvar_mcompass_ratio = GetConVar("mcompass_ratio"):GetFloat()
     CreateClientConVar("mcompass_color", "255 255 255 255", true, false)
     cvars.AddChangeCallback("mcompass_color", function(_, _, newValue)
@@ -260,10 +283,12 @@ else
         cl_cvar_mcompass_color = string.ToColor(v(args[1]) .. " " .. v(args[2]) .. " " .. v(args[3]) .. " " .. v(args[4]))
         updateCompassSettings()
     end, "mcompass_color_cvar_callback")
+
     do
         local foo = string.Explode(" ", GetConVar("mcompass_color"):GetString())
         cl_cvar_mcompass_color = string.ToColor(v(foo[1]) .. " " .. v(foo[2]) .. " " .. v(foo[3]) .. " " .. v(foo[4]))
     end
+
     displayDistanceFontTable = displayDistanceFontTable or {}
     local function markerScaleFunc(markerSizeScale)
         local n = math.Round(markerSizeScale)
@@ -274,16 +299,19 @@ else
                 name = newFontName,
                 size = n
             }
+
             surface.CreateFont(newFontName, {
                 font = "Exo",
                 size = n,
                 antialias = true
             })
+
             oldMarkerSizeScale = n
             return newFontName
         end
         return displayDistanceFontTable[oldMarkerSizeScale].name
     end
+
     fontRatioChangeTable = fontRatioChangeTable or {}
     hook.Add("mCompass_loadFonts", "mCompass_loadFonts_addon", function()
         local h = compass_style.height
@@ -295,28 +323,34 @@ else
                     return v
                 end
             end
+
             surface.CreateFont("exo_compass_Numbers_" .. r, {
                 font = "Exo",
                 size = math.Round(ScrH() * h / r),
                 antialias = true
             })
+
             surface.CreateFont("exo_compass_Distance-Display-Numbers_" .. r, {
                 font = "Exo",
                 size = ScrH() * h / r * compass_style.maxMarkerSize,
                 antialias = true
             })
+
             surface.CreateFont("exo_compass_Letters", {
                 font = "Exo",
                 size = ScrH() * h,
                 antialias = true
             })
+
             table.insert(fontRatioChangeTable, {
                 ratio = r,
                 numberName = "exo_compass_Numbers_" .. r
             })
+
             mCompass_oldFontRatio = r
         end
     end)
+
     updateCompassSettings()
     local cl_mCompass_MarkerTable = cl_mCompass_MarkerTable or {}
     local mat = Material("compass/compass_marker_01")
@@ -333,21 +367,25 @@ else
         icon_name = icon_name or ""
         table.insert(cl_mCompass_MarkerTable, {isEntity, pos or ent or nil, time, color, id, icon_mat, icon_name})
     end)
+
     net.Receive("mCompass_RemoveMarker", function()
         local id = net.ReadInt(4)
         for k, v in pairs(cl_mCompass_MarkerTable) do
             if id == v[5] then table.remove(cl_mCompass_MarkerTable, k) end
         end
     end)
+
     local function getMetricValue(units)
         local meters = math.Round(units * 0.01905)
         local kilometers = math.Round(meters / 1000, 2)
         return kilometers > 1 and kilometers .. "km" or meters .. "m"
     end
+
     local function getTextSize(font, text)
         surface.SetFont(font)
         return surface.GetTextSize(text)
     end
+
     local function custom_compass_DrawLineFunc(mask1, mask2, line, color)
         render.ClearStencil()
         render.SetStencilEnable(true)
@@ -366,6 +404,7 @@ else
         surface.DrawLine(line[1], line[2], line[3], line[4])
         render.SetStencilEnable(false)
     end
+
     local adv_compass_tbl = {
         [0] = "N",
         [45] = "NE",
@@ -377,6 +416,7 @@ else
         [315] = "NW",
         [360] = "N"
     }
+
     hook.Add("HUDPaint", "HUDPaint_Compass", function()
         local ply = LocalPlayer()
         if not (mCompass_Settings.Compass_Enabled and cl_cvar_mcompass_enabled) then return end
@@ -405,6 +445,7 @@ else
             surface.SetTextPos(compassX - compassBearingTextW / 2, compassY)
             surface.DrawText(text)
         end
+
         for i = math.Round(-ang.y) % 360, math.Round(-ang.y) % 360 + numOfLines do
             local x = compassX - width / 2 + (i + ang.y) % 360 * spacing
             local value = math.abs(x - compassX)
@@ -446,6 +487,7 @@ else
                     surface.DrawText(text)
                 end
             end
+
             if compass_style.style == "squad" and i_offset % 5 == 0 and i_offset % 15 ~= 0 then
                 local compassBearingTextW = select(1, getTextSize("exo_compass_Numbers_" .. ratio, "000"))
                 local mask1 = {compassX - width / 2 - fadeDistance, compassY, width / 2 + fadeDistance - compassBearingTextW / 1.5, height}
@@ -455,6 +497,7 @@ else
                 custom_compass_DrawLineFunc(mask1, mask2, line, col)
             end
         end
+
         for k, v in pairs(cl_mCompass_MarkerTable) do
             if CurTime() > v[3] or v[1] and not IsValid(v[2]) then
                 table.remove(cl_mCompass_MarkerTable, k)
@@ -477,6 +520,7 @@ else
                 surface.DrawText(text)
             end
         end
+
         if compass_style.heading and compass_style.style ~= "squad" then
             local triangleSize = 8
             local triangleHeight = compassY
@@ -494,6 +538,7 @@ else
                     y = triangleHeight - triangleSize
                 }
             }
+
             surface.SetDrawColor(255, 255, 255)
             draw.NoTexture()
             surface.DrawPoly(triangle)
@@ -508,6 +553,7 @@ else
             end
         end
     end)
+
     hook.Add("PopulateToolMenu", "mCompass_PopulateToolMenu", function()
         spawnmenu.AddToolMenuOption("Options", "mCompass", "Settings", "Settings", "", "", function(panel)
             panel:ClearControls()
@@ -549,6 +595,7 @@ else
                 local c = mixer:GetColor()
                 RunConsoleCommand("mcompass_color", tostring(c.r) .. " " .. tostring(c.g) .. " " .. tostring(c.b) .. " " .. tostring(c.a))
             end
+
             panel:AddItem(but1)
             local but2 = vgui.Create("DButton", panel)
             but2:SetText("Reset Settings")

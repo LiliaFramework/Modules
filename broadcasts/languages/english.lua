@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     classBroadcastLabel = "[CLASS BROADCAST]",
     classBroadcastNoPermission = "You aren't allowed to send a class broadcast.",

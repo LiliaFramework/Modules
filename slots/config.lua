@@ -1,4 +1,4 @@
---   MODULE.GamblingPrice         = cost (in T) to play the slot machine
+﻿--   MODULE.GamblingPrice         = cost (in T) to play the slot machine
 --   MODULE.JackpotChance        = the upper bound for the random jackpot check
 --   MODULE.TripleBarClover      = payout for landing triple bar clover on jackpot
 --   MODULE.SingleBarDollarSign  = payout for landing single bar dollar sign on jackpot

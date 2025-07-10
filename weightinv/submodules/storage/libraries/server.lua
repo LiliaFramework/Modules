@@ -47,7 +47,6 @@ function MODULE:PlayerSpawnedProp(client, model, entity)
     SafeRemoveEntity(entity)
 end
 
-
 function MODULE:CanPlayerSpawnStorage(client, _, info)
     if not client then return true end
     if not client:hasPrivilege("Staff Permissions - Can Spawn Storage") then return false end

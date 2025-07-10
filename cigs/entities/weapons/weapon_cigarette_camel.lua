@@ -1,4 +1,4 @@
-function SWEP:SecondaryAttack()
+﻿function SWEP:SecondaryAttack()
 end
 
 SWEP.PrintName = "Camel"

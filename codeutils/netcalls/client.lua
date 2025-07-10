@@ -1,4 +1,4 @@
-net.Receive("OpenVGUI", function()
+﻿net.Receive("OpenVGUI", function()
     local panel = net.ReadString()
     LocalPlayer():openUI(panel)
 end)

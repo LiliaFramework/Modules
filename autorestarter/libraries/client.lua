@@ -1,4 +1,4 @@
-local restartTime = 0
+﻿local restartTime = 0
 net.Receive("RestartDisplay", function() restartTime = net.ReadInt(32) end)
 function MODULE:HUDPaint()
     local remaining = restartTime - os.time()

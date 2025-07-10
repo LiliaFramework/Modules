@@ -1,4 +1,4 @@
-lia.config.add("Vignette", "Enable Vignette Effect", true, nil, {
+﻿lia.config.add("Vignette", "Enable Vignette Effect", true, nil, {
     desc = "Enables the vignette effect",
     category = "Visuals",
     type = "Boolean"

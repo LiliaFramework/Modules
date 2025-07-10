@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     invalidWeight = "Invalid weight value.",
     inventoryAlreadyWeight = "This inventory already has a weight limit.",

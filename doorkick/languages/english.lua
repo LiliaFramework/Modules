@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     doorKickCannotKick = "You can't kick that door open.",
     doorKickDisabled = "This door can't be kicked down.",

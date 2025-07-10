@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     UnknownDescription = "Unknown",
     WarrantExpirationExpired = "%s's warrant has expired.",

@@ -1,4 +1,4 @@
-MODULE.fadeDelay = 2
+﻿MODULE.fadeDelay = 2
 MODULE.cutscenes = {
     ["Mistery Info"] = {
         {

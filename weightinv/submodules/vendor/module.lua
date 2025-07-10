@@ -4,7 +4,6 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.3"
 MODULE.desc = "Adds NPC vendors that can sell things."
 MODULE.CAMIPrivileges = {
-
     {
         Name = "Staff Permissions - Can Edit Vendors",
         MinAccess = "admin",
@@ -16,9 +15,7 @@ lia.config.add("vendorDefaultMoney", "Default Vendor Money", 500, nil, {
     category = "Vendors",
     type = "Int",
     min = 0,
-    max = 100000})
-MODULE.Features = {
-    "Adds NPC vendors that sell items",
-    "Adds editable inventory menus",
-    "Adds configurable default money",
-}
+    max = 100000
+})
+
+MODULE.Features = {"Adds NPC vendors that sell items", "Adds editable inventory menus", "Adds configurable default money",}

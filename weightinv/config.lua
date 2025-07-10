@@ -1,4 +1,4 @@
-lia.config.add("invWeightUnit", "Inventory Weight Unit", "KG", nil, {
+﻿lia.config.add("invWeightUnit", "Inventory Weight Unit", "KG", nil, {
     desc = "Selects the unit of measurement for item weights in the inventory (e.g., kilograms, pounds).",
     category = "Inventory",
     type = "Table",

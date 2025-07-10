@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 function MODULE:OnNPCKilled(ent)
     if not ent:IsNPC() then return end
     local weights = self.DropTable[ent:GetClass()]

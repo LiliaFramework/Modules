@@ -1,4 +1,4 @@
-lia.command.add("cards", {
+﻿lia.command.add("cards", {
     desc = L("cardsCommandDesc"),
     onRun = function(client)
         local inv = client:getChar():getInv()

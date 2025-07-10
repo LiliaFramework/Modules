@@ -1,4 +1,4 @@
-local playerMeta = FindMetaTable("Player")
+﻿local playerMeta = FindMetaTable("Player")
 --[[
 playerMeta:squaredDistanceFromEnt(entity)
 

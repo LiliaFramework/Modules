@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     invalidCommand = "Unknown command.",
     invalidURLReceived = "Invalid URL received.",

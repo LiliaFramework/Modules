@@ -1,5 +1,5 @@
 ﻿if SERVER then
---[[
+    --[[
     lia.caption.start(client, text, duration)
 
     Description:
@@ -26,7 +26,7 @@
         net.Send(client)
     end
 
---[[
+    --[[
     lia.caption.finish(client)
 
     Description:

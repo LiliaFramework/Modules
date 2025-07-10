@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     accept = "Accept",
     alreadyBeingSearched = "That player is already being searched.",

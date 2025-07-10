@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     advertCommandDesc = "Broadcasts a paid advertisement to all players, charging you money and applying a cooldown.",
     AdvertDeductedMessage = "You paid %s%s for your advertisement.",

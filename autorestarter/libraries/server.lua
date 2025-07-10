@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 MODULE.nextRestart = MODULE.nextRestart or 0
 local notified = {}
 function MODULE:InitializedModules()

@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     broadcastCaptionDesc = "Send a caption to everyone.",
     broadcastCaptionError = "You must specify text to broadcast.",

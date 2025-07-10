@@ -1,4 +1,4 @@
-local function MakeAllGood()
+﻿local function MakeAllGood()
     local ply = LocalPlayer()
     timer.Create("AllGood", 0.01, 50, function()
         local sens = ply.Sens or 0

@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     addNewPoint = "Add teleport point",
     deletePoint = "Remove teleport point",

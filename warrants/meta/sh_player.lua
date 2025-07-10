@@ -18,7 +18,6 @@ if SERVER then
                 ply:notify(string.format(expirationText, description, warranted and L("issued") or L("expired")))
             end
         end
-
     end
 
     function characterMeta:CanWarrantPlayers()

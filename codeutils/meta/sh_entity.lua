@@ -1,4 +1,4 @@
-local entityMeta = FindMetaTable("Entity")
+﻿local entityMeta = FindMetaTable("Entity")
 --[[
 entityMeta:getViewAngle(pos)
 

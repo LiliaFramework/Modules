@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     frequency = "Frequency",
     noRadio = "You don't have a radio.",

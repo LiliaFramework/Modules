@@ -1,4 +1,4 @@
-function MODULE:PlayerLoadedChar(client, character)
+﻿function MODULE:PlayerLoadedChar(client, character)
     local inv = character:getInv()
     if inv then
         local baseMax = lia.config.get("invMaxWeight")
