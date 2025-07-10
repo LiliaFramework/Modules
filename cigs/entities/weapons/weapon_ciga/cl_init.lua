@@ -46,10 +46,6 @@ function SWEP:DrawWorldModel()
 end
 
 function SWEP:GetViewModelPosition(pos, ang)
-	local vmpos1 = self.cigaVMPos1 or Vector(18.5, -3.4, -3.25)
-	local vmang1 = self.cigaVMAng1 or Vector(170, -180, 20)
-	local vmpos2 = self.cigaVMPos2 or Vector(24, -8, -11.2)
-	local vmang2 = self.cigaVMAng2 or Vector(120, -180, 150)
 	if not LocalPlayer().cigaArmTime then LocalPlayer().cigaArmTime = 0 end
 	local lerp = math.Clamp((os.clock() - LocalPlayer().cigaArmTime) * 3, 0, 1)
 	if LocalPlayer().cigaArm then lerp = 1 - lerp end
@@ -172,7 +168,7 @@ function MODULE.ciga_do_pulse(ply, amt, _, fx)
 	end
 
 	fwd = ply:GetAimVector():GetNormalized()
-	for i = 1, amt do
+	for _ = 1, amt do
 		if not IsValid(ply) then return end
 		local particle = cigaParticleEmitter:Add(string.format("particle/smokesprites_00%02d", math.random(7, 16)), pos)
 		if particle then
