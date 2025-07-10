@@ -126,40 +126,8 @@ jobs:
           name: modules-json
           path: modules.json
 
-  gh-pages:
-    needs: scrape-modules
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/download-artifact@v4
-        with:
-          name: module-zips
-          path: docs/Downloads
-      - uses: actions/download-artifact@v4
-        with:
-          name: modules-json
-          path: .
-      - run: |
-          for zip in docs/Downloads/*.zip; do
-            folder=$(basename "$zip" .zip)
-            unzip "$zip" -d "extracted_${folder}"
-          done
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: node docsparser.js
-      - run: cp modules.json docs/modules.json
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.LiliaGitSecret }}
-          publish_branch: gh-pages
-          publish_dir: docs
-          force_orphan: true
-
   release:
-    needs: gh-pages
+    needs: scrape-modules
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
