@@ -108,11 +108,12 @@ jobs:
           for folder in */; do
             [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
           done
+      - run: node scrap_modules.js
       - run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
           git checkout -B gh-pages
-          git add modules.json
+          git add modules.json hi.md
           if ! git diff --cached --quiet; then
             git commit -m "Update modules.json with source URLs"
             git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages
