@@ -33,3 +33,4 @@ lia.config.add("Damage", "Over‐Stun Damage", 5, nil, {
     min = 0,
     max = 100
 })
+MODULE.Features = {}

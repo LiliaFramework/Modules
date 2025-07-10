@@ -10,3 +10,4 @@ if SERVER then
         return string.format("%s permanently removed %s", client:Name(), tostring(entity))
     end, "Player")
 end
+MODULE.Features = {}

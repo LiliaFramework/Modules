@@ -10,3 +10,4 @@ if SERVER then
         return string.format("%s forced NPC spawn at %s", client:Name(), tostring(spawner))
     end, "Player")
 end
+MODULE.Features = {}

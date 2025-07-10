@@ -4,3 +4,4 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.3"
 MODULE.desc = "Realistic first person effects."
 MODULE.Public = true
+MODULE.Features = {}

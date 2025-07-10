@@ -17,3 +17,4 @@ lia.config.add("vendorDefaultMoney", "Default Vendor Money", 500, nil, {
     type = "Int",
     min = 0,
     max = 100000})
+MODULE.Features = {}

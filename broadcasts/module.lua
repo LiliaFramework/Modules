@@ -25,3 +25,4 @@ if SERVER then
     end, "Player")
 end
 lia.flag.add("B", "Access to Faction Broadcast")lia.flag.add("D", "Access to Class Broadcast")
+MODULE.Features = {}

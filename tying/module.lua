@@ -14,3 +14,4 @@ if SERVER then
         return string.format("%s untied %s", client:Name(), IsValid(target) and target:Name() or "unknown")
     end, "Player")
 end
+MODULE.Features = {}

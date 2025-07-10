@@ -10,3 +10,4 @@ lia.config.add("FPSHudFont", "FPS HUD Font", "PoppinsMedium", function() if not 
     category = "Fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
+MODULE.Features = {}

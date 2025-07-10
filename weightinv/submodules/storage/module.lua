@@ -9,3 +9,4 @@ MODULE.CAMIPrivileges = {
         Name = "Staff Permissions - Can Spawn Storage",
         MinAccess = "superadmin",
     }}
+MODULE.Features = {}

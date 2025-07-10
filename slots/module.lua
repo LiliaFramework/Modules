@@ -5,3 +5,4 @@ MODULE.version = "1.0.3"
 MODULE.desc = "Adds a Slots Machine."
 MODULE.WorkshopContent = "3482441716"
 MODULE.Public = true
+MODULE.Features = {}

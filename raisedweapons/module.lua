@@ -12,3 +12,4 @@ lia.config.add("WeaponRaiseSpeed", "Weapon Raise Speed", 1, nil, {
     min = 0.1,
     max = 5
 })
+MODULE.Features = {}

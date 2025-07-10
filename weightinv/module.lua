@@ -10,3 +10,4 @@ MODULE.Dependencies = {
         Realm = "shared"
     },}
 MODULE.Public = true
+MODULE.Features = {}

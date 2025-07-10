@@ -10,3 +10,4 @@ if SERVER then
         return string.format("%s kicked open %s", client:Name(), tostring(door))
     end, "Player")
 end
+MODULE.Features = {}
