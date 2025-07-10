@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Chat Messages"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.2"
+MODULE.version = "1.0.3"
 MODULE.desc = "Adds Simple Adverts."
 MODULE.Public = true
 

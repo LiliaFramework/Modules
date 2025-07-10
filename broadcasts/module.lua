@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Broadcasts"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.4"
+MODULE.version = "1.0.5"
 MODULE.desc = "Adds a Faction & Class Broadcast Command"
 MODULE.CAMIPrivileges = {
     {

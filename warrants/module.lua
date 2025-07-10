@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Warrant"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.8"
+MODULE.version = "1.0.9"
 MODULE.desc = "Adds Warrants"
 MODULE.CAMIPrivileges = {
     {
