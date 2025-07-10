@@ -56,31 +56,41 @@ jobs:
           echo "[]" > modules.json
           for module in */module.lua; do
             [ -f "$module" ] || continue
-            name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
-            author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
-            discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
-            desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
+            name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
+            author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
+            discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
+            desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
-            features_line=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|".*")' "$module" | sed -E 's/MODULE\.Features\s*=\s*//g' || echo "")
-            if [[ "$features_line" =~ ^\{.*\}$ ]]; then
-              features_line=$(echo "$features_line" | sed -E 's/^\{\s*(.*)\s*\}$/[\1]/' | sed -E 's/"\s*,\s*"/","/g')
-            elif [ -n "$features_line" ]; then
-              features_line="[$features_line]"
+
+            raw_features=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$module" | head -n1 | sed -E 's/MODULE\.Features\s*=\s*//')
+            if [ -n "$raw_features" ]; then
+              if [[ $raw_features == \{* ]]; then
+                raw_features=$(echo "$raw_features" | sed -E 's/,\s*}$/}/')
+                features_line=$(echo "$raw_features" | sed -E 's/^\{(.*)\}$/[\1]/')
+              else
+                features_line="[$raw_features]"
+              fi
             else
               features_line="[]"
             fi
-            workshop_line=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|".*")' "$module" | sed -E 's/MODULE\.WorkshopContent\s*=\s*//g' || echo "")
-            if [[ "$workshop_line" =~ ^\{.*\}$ ]]; then
-              workshop_line=$(echo "$workshop_line" | sed -E 's/^\{\s*(.*)\s*\}$/[\1]/' | sed -E 's/"\s*,\s*"/","/g')
-            elif [ -n "$workshop_line" ]; then
-              workshop_line="[$workshop_line]"
+
+            raw_workshop=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$module" | head -n1 | sed -E 's/MODULE\.WorkshopContent\s*=\s*//')
+            if [ -n "$raw_workshop" ]; then
+              if [[ $raw_workshop == \{* ]]; then
+                raw_workshop=$(echo "$raw_workshop" | sed -E 's/,\s*}$/}/')
+                workshop_line=$(echo "$raw_workshop" | sed -E 's/^\{(.*)\}$/[\1]/')
+              else
+                workshop_line="[$raw_workshop]"
+              fi
             else
               workshop_line="[]"
             fi
+
             folder=$(basename "$(dirname "$module")")
             public_uniqueID=$folder
             download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/${folder}.zip"
             source="https://liliaframework.github.io/Modules/${folder}.html"
+
             jq --arg name "$name" \
                --arg author "$author" \
                --arg discord "$discord" \
