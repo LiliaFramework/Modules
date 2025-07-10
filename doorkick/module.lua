@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Door Kick"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.4"
+MODULE.version = "1.0.5"
 MODULE.desc = "Allows you to kick doors open."
 MODULE.Public = true
 

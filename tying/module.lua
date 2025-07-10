@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Tying"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.8"
+MODULE.version = "1.0.9"
 MODULE.desc = "Adds Tying Items That Serve As Handcuffs. Enchance Roleplay Overall."
 MODULE.Public = true
 

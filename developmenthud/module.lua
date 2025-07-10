@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Development HUD"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.5"
+MODULE.version = "1.0.6"
 MODULE.desc = "Adds a Development HUD"
 MODULE.CAMIPrivileges = {
 
