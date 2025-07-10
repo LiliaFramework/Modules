@@ -1,7 +1,7 @@
 name: CI
 on:
-  - push
-  - pull_request
+  push:
+  pull_request:
 
 permissions:
   actions: write
@@ -57,31 +57,41 @@ jobs:
           for module in */module.lua; do
             [ -f "$module" ] || continue
             name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
-            author=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
+            author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
+            discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "")
             version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
-            workshop_line=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|".*")' "$module" || echo "")
-            workshop_line=$(echo "$workshop_line" | sed -E 's/MODULE\.WorkshopContent\s*=\s*//g')
+            features_line=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|".*")' "$module" | sed -E 's/MODULE\.Features\s*=\s*//g' || echo "")
+            if [[ "$features_line" =~ ^\{.*\}$ ]]; then
+              features_line=$(echo "$features_line" | sed -E 's/^\{\s*(.*)\s*\}$/[\1]/' | sed -E 's/"\s*,\s*"/","/g')
+            elif [ -n "$features_line" ]; then
+              features_line="[$features_line]"
+            else
+              features_line="[]"
+            fi
+            workshop_line=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|".*")' "$module" | sed -E 's/MODULE\.WorkshopContent\s*=\s*//g' || echo "")
             if [[ "$workshop_line" =~ ^\{.*\}$ ]]; then
               workshop_line=$(echo "$workshop_line" | sed -E 's/^\{\s*(.*)\s*\}$/[\1]/' | sed -E 's/"\s*,\s*"/","/g')
             elif [ -n "$workshop_line" ]; then
-              workshop_line="[${workshop_line}]"
+              workshop_line="[$workshop_line]"
             else
               workshop_line="[]"
             fi
             folder=$(basename "$(dirname "$module")")
-            uniqueID=$folder
+            public_uniqueID=$folder
             download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/${folder}.zip"
             source="https://liliaframework.github.io/Modules/${folder}.html"
             jq --arg name "$name" \
                --arg author "$author" \
+               --arg discord "$discord" \
                --arg desc "$desc" \
                --arg version "$version" \
                --arg download "$download" \
                --arg source "$source" \
-               --arg uniqueID "$uniqueID" \
+               --arg public_uniqueID "$public_uniqueID" \
+               --argjson features "$features_line" \
                --argjson workshop "$workshop_line" \
-               '. += [{name:$name,author:$author,description:$desc,version:$version,download:$download,source:$source,uniqueID:$uniqueID,workshop:$workshop}]' modules.json > tmp.json
+               '. += [{name:$name,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,public_uniqueID:$public_uniqueID,features:$features,workshop:$workshop}]' modules.json > tmp.json
             mv tmp.json modules.json
           done
       - run: |
