@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    branches-ignore:
+      - gh-pages
 
 permissions:
   actions: write
