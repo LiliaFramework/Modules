@@ -12,4 +12,8 @@ MODULE.DropTable = {
         ["beer"] = 15
     }}
 MODULE.Public = true
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds NPCs that drop items on death",
+    "Adds DropTable to define probabilities",
+    "Adds encouragement for looting",
+}

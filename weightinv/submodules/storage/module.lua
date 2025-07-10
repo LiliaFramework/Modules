@@ -9,4 +9,8 @@ MODULE.CAMIPrivileges = {
         Name = "Staff Permissions - Can Spawn Storage",
         MinAccess = "superadmin",
     }}
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds spawnable storage containers",
+    "Adds a required CAMI privilege",
+    "Adds compatibility with the weight inventory",
+}

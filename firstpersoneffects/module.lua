@@ -4,4 +4,8 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.3"
 MODULE.desc = "Realistic first person effects."
 MODULE.Public = true
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds head bob and view sway",
+    "Adds camera motion synced to actions",
+    "Adds a realistic first-person feel",
+}

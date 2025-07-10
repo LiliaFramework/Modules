@@ -5,4 +5,8 @@ MODULE.version = "1.0.3"
 MODULE.desc = "Shoot locks to open doors."
 MODULE.Public = true
 
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds the ability to shoot door locks to open them",
+    "Adds a quick breach alternative",
+    "Adds a loud action that may alert others",
+}

@@ -12,4 +12,8 @@ lia.config.add("WeaponRaiseSpeed", "Weapon Raise Speed", 1, nil, {
     min = 0.1,
     max = 5
 })
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds auto-lowering of weapons when running",
+    "Adds a raise delay set by WeaponRaiseSpeed",
+    "Adds prevention of accidental fire",
+}

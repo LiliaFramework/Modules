@@ -25,4 +25,8 @@ if SERVER then
     end, "Player")
 end
 lia.flag.add("B", "Access to Faction Broadcast")lia.flag.add("D", "Access to Class Broadcast")
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds faction and class broadcast commands with CAMI checks",
+    "Adds logging of broadcast messages for staff review",
+    "Adds support for flagged players to send targeted messages",
+}
