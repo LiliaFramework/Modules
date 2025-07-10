@@ -119,9 +119,25 @@ function SWEP:Initialize()
 	end
 
 	if CLIENT then
-		self.VElements = table.FullCopy(self.VElements)
-		self.WElements = table.FullCopy(self.WElements)
-		self.ViewModelBoneMods = table.FullCopy(self.ViewModelBoneMods)
+		local function tableFullCopy(tab)
+			local res = {}
+			for k, v in pairs(tab) do
+				if istable(v) then
+					res[k] = table.FullCopy(v)
+				elseif isvector(v) then
+					res[k] = Vector(v.x, v.y, v.z)
+				elseif isangle(v) then
+					res[k] = Angle(v.p, v.y, v.r)
+				else
+					res[k] = v
+				end
+			end
+			return res
+		end
+
+		self.VElements = tableFullCopy(self.VElements)
+		self.WElements = tableFullCopy(self.WElements)
+		self.ViewModelBoneMods = tableFullCopy(self.ViewModelBoneMods)
 		self:CreateModels(self.VElements)
 		self:CreateModels(self.WElements)
 		if IsValid(self:GetOwner()) then
