@@ -23,6 +23,4 @@ LANGUAGE = {
     tpPointAdded = "Teleport point %s added.",
     tpPointRemoved = "Teleport point %s removed.",
     tpPointsTitle = "Manage teleport points.",
-    moderationTools = "Moderation Tools",
-    teleport = "Teleport",
 }

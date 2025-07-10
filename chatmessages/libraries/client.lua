@@ -1,4 +1,4 @@
-﻿local nextMessageIndex = 1
+local nextMessageIndex = 1
 local CommunityName = "A Lilia Server"
 local ChatMessages = {"Thank you for playing!", "If you need staff, send them a message @ message!"}
 function MODULE:InitPostEntity()

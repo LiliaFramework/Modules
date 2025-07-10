@@ -16,5 +16,4 @@ LANGUAGE = {
     radioTurnOff = "Turn Off",
     radioTurnOn = "Turn On",
     sabotage = "Sabotage",
-    submit = "Submit",
 }

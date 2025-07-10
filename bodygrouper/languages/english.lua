@@ -7,12 +7,9 @@ LANGUAGE = {
     finish = "Finish",
     invalidBodygroup = "Invalid bodygroup selection.",
     invalidSkin = "Invalid skin selected.",
-    noAccess = "You can't use the bodygrouper.",
     noBodygroupsnSkins = "This model has no bodygroups or skins.",
     rotateInstruction = "Hold R to rotate the model.",
     skin = "Skin",
-    targetNotFound = "Target not found.",
     viewBodygroupsDesc = "View or edit a player's bodygroups.",
-    characterManagement = "Character Management",
     bodygrouper = "Bodygrouper",
 }

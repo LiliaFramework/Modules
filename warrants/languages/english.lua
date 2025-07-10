@@ -11,12 +11,9 @@ LANGUAGE = {
     expired = "expired",
     generalinfo = "General Information",
     issued = "issued",
-    noPerm = "You don't have permission.",
-    plyNoExist = "Player does not exist.",
     reputation = "Reputation",
     upstanding = "upstanding",
     wanted = "wanted",
     warrantCommandDesc = "Toggle a player's wanted status.",
-    moderationTools = "Moderation Tools",
     warrants = "Warrants",
 }
