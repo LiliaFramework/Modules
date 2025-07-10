@@ -5,6 +5,4 @@ LANGUAGE = {
     identifyCorpseDeclined = "Identification cancelled.",
     identifyCorpseQuestion = "Do you want to identify this corpse?",
     identifyingCorpse = "Identifying corpse...",
-    no = "No",
-    yes = "Yes"
 }

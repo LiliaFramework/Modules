@@ -16,12 +16,10 @@ LANGUAGE = {
     requestSearch = "Request search",
     requestSearchInventory = "Request to search inventory",
     requestSearchSent = "Search request sent.",
-    search = "Search",
     searchDenied = "Search request denied.",
     staffRestrained = "%s has been restrained.",
     tie = "Tie",
     unTie = "Untie",
     untying = "Untying...",
-    use = "Use",
     youAreTied = "You have been tied up.",
 }
