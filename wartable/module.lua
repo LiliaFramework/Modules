@@ -5,3 +5,4 @@ MODULE.version = "1.0.6"
 MODULE.desc = "Adds a interactive War Table"
 MODULE.WorkshopContent = "3431351432"
 MODULE.Public = true
+MODULE.Features = {}

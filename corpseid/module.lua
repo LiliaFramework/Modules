@@ -18,3 +18,4 @@ lia.config.add("CorpseMessageFont", "Corpse Message Font", "PoppinsMedium", func
     category = "Fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
+MODULE.Features = {}

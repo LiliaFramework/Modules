@@ -5,3 +5,4 @@ MODULE.version = "1.0.3"
 MODULE.desc = "Makes Flashlight a bit more serious"
 MODULE.Public = true
 
+MODULE.Features = {}

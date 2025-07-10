@@ -12,3 +12,4 @@ MODULE.DropTable = {
         ["beer"] = 15
     }}
 MODULE.Public = true
+MODULE.Features = {}

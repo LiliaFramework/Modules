@@ -5,3 +5,4 @@ MODULE.version = "1.0.2"
 MODULE.desc = "Adds the option for a Development Server, which can run specific functions."
 MODULE.Public = true
 
+MODULE.Features = {}

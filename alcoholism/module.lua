@@ -5,3 +5,4 @@ MODULE.version = "1.0.3"
 MODULE.desc = "Adds Alcohol and Effects to it."
 MODULE.Public = true
 
+MODULE.Features = {}

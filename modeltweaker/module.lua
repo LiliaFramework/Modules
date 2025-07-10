@@ -5,3 +5,4 @@ MODULE.version = "1.0.8"
 MODULE.desc = "Adds a Model Tweaker Entity."
 MODULE.Public = true
 
+MODULE.Features = {}

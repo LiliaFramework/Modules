@@ -5,3 +5,4 @@ MODULE.version = "1.0.3"
 MODULE.desc = "Adds a Map Cleaner with configurable timings"
 MODULE.Public = true
 
+MODULE.Features = {}

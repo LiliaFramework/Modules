@@ -28,3 +28,4 @@ if SERVER then
         return string.format("%s removed a warrant from %s", client:Name(), target:Name())
     end, "Player")
 end
+MODULE.Features = {}

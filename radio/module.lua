@@ -11,3 +11,4 @@ lia.config.add("RadioFont", "Radio Font", "PoppinsMedium", function() if not CLI
     category = "Fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
+MODULE.Features = {}

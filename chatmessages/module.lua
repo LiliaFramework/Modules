@@ -12,3 +12,4 @@ lia.config.add("ChatMessagesInterval", "Chat Messages Interval", 300, nil, {
     min = 10,
     max = 3600
 })
+MODULE.Features = {}

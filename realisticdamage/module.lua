@@ -4,3 +4,4 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.2"
 MODULE.desc = "Adds Damage Scalers for Realism"
 MODULE.Public = true
+MODULE.Features = {}

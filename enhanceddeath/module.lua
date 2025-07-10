@@ -5,3 +5,4 @@ MODULE.version = "1.0.3"
 MODULE.desc = "Adds Hospitals that Spawn you after dying"
 MODULE.Public = true
 
+MODULE.Features = {}

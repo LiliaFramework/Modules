@@ -5,3 +5,4 @@ MODULE.version = "1.0.2"
 MODULE.desc = "Allow GMs to teleport to predefined points on the map"
 MODULE.Public = true
 
+MODULE.Features = {}

@@ -24,3 +24,4 @@ end, {
     category = "Fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
+MODULE.Features = {}

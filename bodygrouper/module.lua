@@ -10,3 +10,4 @@ lia.config.add("BodyGrouperModel", "Body Grouper Model", "models/props_c17/Furni
     category = "Gameplay",
     type = "Generic"
 })
+MODULE.Features = {}

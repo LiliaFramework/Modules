@@ -5,3 +5,4 @@ MODULE.version = "1.0.3"
 MODULE.desc = "Adds a Rumour Command"
 MODULE.Public = true
 
+MODULE.Features = {}

@@ -5,3 +5,4 @@ MODULE.version = "1.0.3"
 MODULE.desc = "Relays Logs to Discord."
 MODULE.Public = true
 
+MODULE.Features = {}

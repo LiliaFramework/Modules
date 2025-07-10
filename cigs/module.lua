@@ -6,3 +6,4 @@ MODULE.desc = "Adds cigarette items players can smoke."
 MODULE.WorkshopContent = "3519851007"
 MODULE.Public = true
 
+MODULE.Features = {}

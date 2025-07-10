@@ -10,3 +10,4 @@ if SERVER then
         return string.format("%s lockpicked %s", client:Name(), tostring(target))
     end, "Player")
 end
+MODULE.Features = {}

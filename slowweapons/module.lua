@@ -7,3 +7,4 @@ MODULE.WeaponsSpeed = {
 
     ["fo3_fatman"] = 130,}
 MODULE.Public = true
+MODULE.Features = {}
