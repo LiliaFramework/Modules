@@ -1,4 +1,5 @@
-﻿SWEP.PrintName = "Marlboro"
+﻿local MODULE = MODULE
+SWEP.PrintName = "Marlboro"
 SWEP.IconLetter = ""
 SWEP.Author = "Samael"
 SWEP.Category = "Samael"

@@ -1,4 +1,5 @@
-﻿SWEP.PrintName = "Newport"
+﻿local MODULE = MODULE
+SWEP.PrintName = "Newport"
 SWEP.cigaAccentColor = nil
 SWEP.cigaID = 4
 SWEP.ViewModel = "models/ciga.mdl"

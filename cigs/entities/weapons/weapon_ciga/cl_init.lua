@@ -1,4 +1,5 @@
-﻿include('shared.lua')
+﻿local MODULE = MODULE
+include('shared.lua')
 if not cigaParticleEmitter then cigaParticleEmitter = ParticleEmitter(Vector(0, 0, 0)) end
 function SWEP:DrawWorldModel()
     local ply = self:GetOwner()
