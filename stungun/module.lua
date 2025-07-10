@@ -33,4 +33,8 @@ lia.config.add("Damage", "Over‐Stun Damage", 5, nil, {
     min = 0,
     max = 100
 })
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds a taser weapon that immobilizes targets",
+    "Adds StunTime and MaxDist as configurable settings",
+    "Adds optional damage and post-process effects",
+}

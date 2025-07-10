@@ -10,4 +10,8 @@ lia.config.add("FPSHudFont", "FPS HUD Font", "PoppinsMedium", function() if not 
     category = "Fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds extra HUD elements like an FPS counter",
+    "Adds fonts configurable with FPSHudFont",
+    "Adds hooks so other modules can extend",
+}

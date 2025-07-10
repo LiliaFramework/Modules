@@ -6,4 +6,8 @@ MODULE.desc = "Provides an on-screen compass with spotting functionality."
 MODULE.WorkshopContent = "3519849524"
 MODULE.Public = true
 
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds a rotating HUD compass display",
+    "Adds spot markers showing enemy bearings",
+    "Adds support that requires workshop icons",
+}

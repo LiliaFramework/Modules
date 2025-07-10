@@ -10,4 +10,8 @@ MODULE.Dependencies = {
         Realm = "shared"
     },}
 MODULE.Public = true
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds an inventory limited by item weight",
+    "Adds a shared weightinv library file",
+    "Adds a new inventory type",
+}

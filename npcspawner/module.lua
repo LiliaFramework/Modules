@@ -10,4 +10,8 @@ if SERVER then
         return string.format("%s forced NPC spawn at %s", client:Name(), tostring(spawner))
     end, "Player")
 end
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds automatic NPC spawns at points",
+    "Adds the ability for admins to force spawns",
+    "Adds logging of spawn actions",
+}

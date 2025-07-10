@@ -14,4 +14,8 @@ if SERVER then
         return string.format("%s untied %s", client:Name(), IsValid(target) and target:Name() or "unknown")
     end, "Player")
 end
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds handcuff items that restrain players",
+    "Adds logging for tie and untie events",
+    "Adds support for roleplay arrests",
+}

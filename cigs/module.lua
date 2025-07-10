@@ -6,4 +6,8 @@ MODULE.desc = "Adds cigarette items players can smoke."
 MODULE.WorkshopContent = "3519851007"
 MODULE.Public = true
 
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds smokable cigarette items with workshop models",
+    "Adds puff effects while smoking",
+    "Adds cigarettes that are consumed over time",
+}

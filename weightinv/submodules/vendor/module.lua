@@ -17,4 +17,8 @@ lia.config.add("vendorDefaultMoney", "Default Vendor Money", 500, nil, {
     type = "Int",
     min = 0,
     max = 100000})
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds NPC vendors that sell items",
+    "Adds editable inventory menus",
+    "Adds configurable default money",
+}

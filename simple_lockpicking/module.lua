@@ -10,4 +10,8 @@ if SERVER then
         return string.format("%s lockpicked %s", client:Name(), tostring(target))
     end, "Player")
 end
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds a simple lockpick tool for doors",
+    "Adds logging of successful picks",
+    "Adds brute-force style gameplay",
+}

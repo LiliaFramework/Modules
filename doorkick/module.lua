@@ -10,4 +10,8 @@ if SERVER then
         return string.format("%s kicked open %s", client:Name(), tostring(door))
     end, "Player")
 end
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds the ability to kick doors open with an animation",
+    "Adds logging of door kick events",
+    "Adds a fun breach mechanic",
+}

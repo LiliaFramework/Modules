@@ -11,4 +11,8 @@ lia.config.add("RadioFont", "Radio Font", "PoppinsMedium", function() if not CLI
     category = "Fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds a radio chat channel for players",
+    "Adds font configuration via RadioFont",
+    "Adds workshop models for radios",
+}

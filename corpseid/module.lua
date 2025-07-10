@@ -18,4 +18,8 @@ lia.config.add("CorpseMessageFont", "Corpse Message Font", "PoppinsMedium", func
     category = "Fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}})
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds the ability to identify corpses after IdentificationTime",
+    "Adds use of CorpseMessageFont for 3D2D text",
+    "Adds info display above bodies",
+}

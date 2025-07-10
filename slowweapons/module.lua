@@ -7,4 +7,8 @@ MODULE.WeaponsSpeed = {
 
     ["fo3_fatman"] = 130,}
 MODULE.Public = true
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds slower movement while holding heavy weapons",
+    "Adds speed penalties defined per weapon",
+    "Adds encouragement for strategic choices",
+}

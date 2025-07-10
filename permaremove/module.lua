@@ -10,4 +10,8 @@ if SERVER then
         return string.format("%s permanently removed %s", client:Name(), tostring(entity))
     end, "Player")
 end
-MODULE.Features = {}
+MODULE.Features = {
+    "Adds ability to permanently delete map entities",
+    "Adds logging for each removed entity",
+    "Adds an admin-only command",
+}
