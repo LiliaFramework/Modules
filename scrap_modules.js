@@ -22,7 +22,7 @@ if (fs.existsSync(definitionPath)) {
   console.warn(`${definitionPath} not found and no moduleDetails in JSON.`);
 }
 
-let output = '# Module Summary\n\n';
+let output = '# Optioal Modules\n\n';
 
 for (const module of modulesList) {
   const { name = '', description = '', features = [], download = '' } = module;
