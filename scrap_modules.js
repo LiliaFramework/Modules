@@ -34,16 +34,7 @@ for (const module of modulesList) {
     output += '\n';
   }
   if (download) {
-    const buttonStyle = [
-      'display:inline-block',
-      'background-color:#25746c',
-      'color:#fff',
-      'padding:10px 20px',
-      'border-radius:6px',
-      'text-decoration:none',
-      'font-weight:bold'
-    ].join(';');
-    output += `<p align="center"><a href="${download}" style="${buttonStyle}">Download Here</a></p>\n\n`;
+    output += `<p align="center">[Download Here](${download})</p>\n\n`;
   }
 }
 
