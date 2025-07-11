@@ -115,7 +115,7 @@ jobs:
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
           git checkout -B gh-pages
-          git add modules.json hi.md
+          git add -f modules.json hi.md
           if ! git diff --cached --quiet; then
             git commit -m "Update modules.json with source URLs"
             git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages
