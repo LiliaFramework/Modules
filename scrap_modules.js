@@ -1,47 +1,42 @@
 const fs = require('fs');
 const path = require('path');
+const modulesDataPath = path.join(__dirname, 'modules_data.json');
+const definitionPath = path.join(__dirname, 'docs', 'definitions', 'module.md');
+const outputPath = path.join(__dirname, 'modules.json');
 
-const jsonPath = path.join(__dirname, 'modules_data.json');
-const moduleFieldsPath = path.join(__dirname, 'docs', 'definitions', 'module.md');
-const outPath = path.join(__dirname, 'modules.json');
-
-if (!fs.existsSync(jsonPath)) {
+if (!fs.existsSync(modulesDataPath)) {
   console.error('modules_data.json not found, skipping modules.json generation.');
   process.exit(1);
 }
 
-const modulesDataRaw = fs.readFileSync(jsonPath, 'utf8');
-const modulesData = JSON.parse(modulesDataRaw);
-const modules = Array.isArray(modulesData) ? modulesData : modulesData.modules || [];
+const rawData = fs.readFileSync(modulesDataPath, 'utf8');
+const parsedData = JSON.parse(rawData);
+const modulesList = Array.isArray(parsedData) ? parsedData : parsedData.modules || [];
 
-let moduleDetails = '';
-if (fs.existsSync(moduleFieldsPath)) {
-  moduleDetails = fs.readFileSync(moduleFieldsPath, 'utf8');
-} else if (modulesData.moduleDetails) {
-  moduleDetails = modulesData.moduleDetails;
+let details = '';
+if (fs.existsSync(definitionPath)) {
+  details = fs.readFileSync(definitionPath, 'utf8');
+} else if (parsedData.moduleDetails) {
+  details = parsedData.moduleDetails;
 } else {
-  console.warn(`${moduleFieldsPath} not found and no moduleDetails in JSON.`);
+  console.warn(`${definitionPath} not found and no moduleDetails in JSON.`);
 }
 
 let output = '# Module Summary\n\n';
 
-for (const mod of modules) {
-  const name = mod.name || '';
-  const desc = mod.description || '';
-  const features = Array.isArray(mod.features) ? mod.features : [];
-  const link = mod.download || '';
-
+for (const module of modulesList) {
+  const { name = '', description = '', features = [], download = '' } = module;
   output += `## ${name}\n\n`;
-  if (desc) output += `**Description:** ${desc}\n\n`;
+  if (description) output += `**Description:** ${description}\n\n`;
   if (features.length) {
     output += '**Features:**\n';
-    for (const f of features) output += `- ${f}\n`;
+    for (const feature of features) output += `- ${feature}\n`;
     output += '\n';
   }
-  if (link) output += `**Download:** ${link}\n\n`;
+  if (download) {
+    output += `<p align="center"><strong>Download:</strong> <a href="${download}">${download}</a></p>\n\n`;
+  }
 }
 
-output += '\n---\n\n';
-output += moduleDetails;
-
-fs.writeFileSync(outPath, output);
+output += '---\n\n' + details;
+fs.writeFileSync(outputPath, output);
