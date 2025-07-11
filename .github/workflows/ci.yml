@@ -55,7 +55,7 @@ jobs:
           ref: main
       - run: sudo apt-get update && sudo apt-get install -y jq zip
       - run: |
-          echo "[]" > modules.json
+          echo "[]" > modules_data.json
           for module in */module.lua; do
             [ -f "$module" ] || continue
             name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
@@ -103,8 +103,8 @@ jobs:
                --arg public_uniqueID "$public_uniqueID" \
                --argjson features "$features_line" \
                --argjson workshop "$workshop_line" \
-               '. += [{name:$name,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,public_uniqueID:$public_uniqueID,features:$features,workshop:$workshop}]' modules.json > tmp.json
-            mv tmp.json modules.json
+               '. += [{name:$name,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,public_uniqueID:$public_uniqueID,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
+            mv tmp.json modules_data.json
           done
       - run: |
           for folder in */; do
@@ -114,8 +114,15 @@ jobs:
       - run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
+          git add modules.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update modules summary"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          fi
+      - run: mv modules_data.json modules.json
+      - run: |
           git checkout -B gh-pages
-          git add -f modules.json hi.md
+          git add -f modules.json
           if ! git diff --cached --quiet; then
             git commit -m "Update modules.json with source URLs"
             git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages
