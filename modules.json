@@ -1,0 +1,1050 @@
+# Module Summary
+
+## Advert
+
+**Description:** Adds a Advert Command
+
+**Features:**
+- Adds a paid /advert command players can use
+- Adds a cooldown via AdvertCooldown to limit spam
+- Adds colored broadcast messages across the server
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/advert.zip
+
+## Alcoholism
+
+**Description:** Adds Alcohol and Effects to it.
+
+**Features:**
+- Adds alcohol items that raise BAC and gradually wear off
+- Adds screen blur and movement effects that scale with intoxication
+- Adds player notification when reaching DrunkNotifyThreshold
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/alcoholism.zip
+
+## Auto Restarter
+
+**Description:** Automatically restarts the server every interval.
+
+**Features:**
+- Adds scheduling for automatic restarts using RestartInterval
+- Adds a countdown overlay configurable via RestartCountdownFont
+- Adds syncing of next restart time to clients
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/autorestarter.zip
+
+## Bodygrouper
+
+**Description:** Adds a bodygroup menu and bodygroup closet, akin to BodygroupR on GModStore
+
+**Features:**
+- Adds a spawnable closet entity for editing bodygroups
+- Adds the ability to customize its model via BodyGrouperModel
+- Adds menu access that requires proximity or privilege
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/bodygrouper.zip
+
+## Broadcasts
+
+**Description:** Adds a Faction & Class Broadcast Command
+
+**Features:**
+- Adds faction and class broadcast commands with CAMI checks
+- Adds logging of broadcast messages for staff review
+- Adds support for flagged players to send targeted messages
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/broadcasts.zip
+
+## Captions
+
+**Description:** Adds a easy way of adding in-game captions.
+
+**Features:**
+- Adds an API for timed on-screen captions
+- Adds support for both client and server use
+- Adds an easy way to deliver story prompts
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/captions.zip
+
+## Cards
+
+**Description:** Adds the ability to draw a random card from a card deck
+
+**Features:**
+- Adds a full playing card deck
+- Adds random draws that sync to all players
+- Adds support for simple minigames
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cards.zip
+
+## Chat Messages
+
+**Description:** Adds Simple Adverts.
+
+**Features:**
+- Adds periodic server adverts to chat
+- Adds interval control via ChatMessagesInterval
+- Adds localized message support
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/chatmessages.zip
+
+## Cigarettes
+
+**Description:** Adds cigarette items players can smoke.
+
+**Features:**
+- Adds smokable cigarette items with workshop models
+- Adds puff effects while smoking
+- Adds cigarettes that are consumed over time
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cigs.zip
+
+## Cinematic Text
+
+**Description:** Cinematic looking splash text for that extra flair
+
+**Features:**
+- Adds displays of cinematic splash text overlays
+- Adds screen darkening with letterbox bars
+- Adds support for scripted scenes
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cinematictext.zip
+
+## Climb
+
+**Description:** Adds the ability to climb up ledges.
+
+**Features:**
+- Adds the ability to climb ledges using movement keys
+- Adds custom climbing animations
+- Adds integration with movement restrictions
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/climb.zip
+
+## Code Utils
+
+**Description:** Adds a few extensions to the lia.util library.
+
+**Features:**
+- Adds extra helper functions in lia.util
+- Adds simplified utilities for common scripting tasks
+- Adds a central library used by other modules
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/codeutils.zip
+
+## Community Commands
+
+**Description:** Adds links to the various content
+
+**Features:**
+- Adds chat commands to open community links
+- Adds easy sharing of workshop and docs
+- Adds configurable commands via settings
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/communitycommands.zip
+
+## Compass
+
+**Description:** Provides an on-screen compass with spotting functionality.
+
+**Features:**
+- Adds a rotating HUD compass display
+- Adds spot markers showing enemy bearings
+- Adds support that requires workshop icons
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/compass.zip
+
+## Corpse ID
+
+**Description:** Adds a corpse identification mechanic.
+
+**Features:**
+- Adds the ability to identify corpses after IdentificationTime
+- Adds use of CorpseMessageFont for 3D2D text
+- Adds info display above bodies
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/corpseid.zip
+
+## Cursor
+
+**Description:** Adds a Cursor.
+
+**Features:**
+- Adds a toggleable custom cursor for the UI
+- Adds a purely client-side implementation
+- Adds improved menu navigation
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cursor.zip
+
+## Simple Cutscenes
+
+**Description:** A system for simple cutscenes
+
+**Features:**
+- Adds a framework for simple cutscene playback
+- Adds scenes defined through tables
+- Adds syncing of camera movement across clients
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/cutscenes.zip
+
+## Damage Numbers
+
+**Description:** Display damage numbers when you hit someone, or when you get hit.
+
+**Features:**
+- Adds floating combat text when hitting targets
+- Adds different colors for damage types
+- Adds display of damage dealt and received
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/damagenumbers.zip
+
+## Development HUD
+
+**Description:** Adds a Development HUD
+
+**Features:**
+- Adds a staff-only development HUD
+- Adds font customization via DevHudFont
+- Adds a requirement for the CAMI privilege
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/developmenthud.zip
+
+## Development Server
+
+**Description:** Adds the option for a Development Server, which can run specific functions.
+
+**Features:**
+- Adds a development server mode for testing
+- Adds the ability to run special development functions
+- Adds a toggle via configuration
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/developmentserver.zip
+
+## Discord Relay
+
+**Description:** Relays Logs to Discord.
+
+**Features:**
+- Adds relaying of server logs to Discord
+- Adds webhook integration for connectivity
+- Adds formatting of real-time updates
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/discordrelay.zip
+
+## Donator
+
+**Description:** Adds Several Donation Related Libraries.
+
+**Features:**
+- Adds libraries to manage donor perks
+- Adds tracking for donor ranks and perks
+- Adds integration with the scoreboard
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/donator.zip
+
+## Door Kick
+
+**Description:** Allows you to kick doors open.
+
+**Features:**
+- Adds the ability to kick doors open with an animation
+- Adds logging of door kick events
+- Adds a fun breach mechanic
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/doorkick.zip
+
+## Hospitals
+
+**Description:** Adds Hospitals that Spawn you after dying
+
+**Features:**
+- Adds respawning of players at hospitals
+- Adds a medical recovery system
+- Adds support for multiple hospital spawns
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/enhanceddeath.zip
+
+## Extended Descriptions
+
+**Description:** This Module focuses on adding Extended Descriptions.
+
+**Features:**
+- Adds support for long item descriptions
+- Adds localization for multiple languages
+- Adds better RP text display
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/extendeddescriptions.zip
+
+## First Person Effects
+
+**Description:** Realistic first person effects.
+
+**Features:**
+- Adds head bob and view sway
+- Adds camera motion synced to actions
+- Adds a realistic first-person feel
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/firstpersoneffects.zip
+
+## Flashlight
+
+**Description:** Makes Flashlight a bit more serious
+
+**Features:**
+- Adds a serious flashlight with dynamic light
+- Adds darkening of surroundings when turned off
+- Adds adjustable brightness
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/flashlight.zip
+
+## Free Look
+
+**Description:** Adds Free Look similar to EFT
+
+**Features:**
+- Adds the ability to look around without turning the body
+- Adds a toggle key similar to EFT
+- Adds movement direction preservation
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/freelook.zip
+
+## Gamemaster Teleport Points
+
+**Description:** Allow GMs to teleport to predefined points on the map
+
+**Features:**
+- Adds teleport points for game masters
+- Adds quick navigation across large maps
+- Adds saving of locations for reuse
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/gamemasterpoints.zip
+
+## Extra HUD Elements
+
+**Description:** Implements Extra HUD Elements.
+
+**Features:**
+- Adds extra HUD elements like an FPS counter
+- Adds fonts configurable with FPSHudFont
+- Adds hooks so other modules can extend
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/hud_extras.zip
+
+## Instant Killing
+
+**Description:** Enables instant kills on headshots
+
+**Features:**
+- Adds instant kill on headshots
+- Adds lethality configurable per weapon
+- Adds extra tension to combat
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/instakill.zip
+
+## Join Leave Messages
+
+**Description:** Adds Join and Leave Messages
+
+**Features:**
+- Adds announcements when players join
+- Adds notifications on disconnect
+- Adds improved community awareness
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/joinleavemessages.zip
+
+## Load Messages
+
+**Description:** Sends faction-based messages to players when they first load their character.
+
+**Features:**
+- Adds faction-based load messages
+- Adds execution when players first load a character
+- Adds customizable message text
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/loadmessages.zip
+
+## Loyalism
+
+**Description:** System for loyalist tiers.
+
+**Features:**
+- Adds a loyalty tier system for players
+- Adds the /partytier command access
+- Adds permission control through flags
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/loyalism.zip
+
+## Map Cleaner
+
+**Description:** Adds a Map Cleaner with configurable timings
+
+**Features:**
+- Adds periodic cleaning of map debris
+- Adds a configurable interval
+- Adds reduced server lag
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/mapcleaner.zip
+
+## Model Pay
+
+**Description:** Adds a system to pay per model
+
+**Features:**
+- Adds payment to characters based on model
+- Adds custom wage definitions
+- Adds integration into the economy
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/modelpay.zip
+
+## Model Tweaker
+
+**Description:** Adds a Model Tweaker Entity.
+
+**Features:**
+- Adds an entity to tweak prop models
+- Adds adjustments for scale and rotation
+- Adds easy UI controls
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/modeltweaker.zip
+
+## NPC Drops
+
+**Description:** Adds NPCs that drop items
+
+**Features:**
+- Adds NPCs that drop items on death
+- Adds DropTable to define probabilities
+- Adds encouragement for looting
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/npcdrop.zip
+
+## NPC Spawner
+
+**Description:** Adds automatic npc spawning
+
+**Features:**
+- Adds automatic NPC spawns at points
+- Adds the ability for admins to force spawns
+- Adds logging of spawn actions
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/npcspawner.zip
+
+## Perma Remove
+
+**Description:** Allows staff to permanently remove map entities
+
+**Features:**
+- Adds ability to permanently delete map entities
+- Adds logging for each removed entity
+- Adds an admin-only command
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/permaremove.zip
+
+## Radio
+
+**Description:** Radio
+
+**Features:**
+- Adds a radio chat channel for players
+- Adds font configuration via RadioFont
+- Adds workshop models for radios
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/radio.zip
+
+## Raised Weapons
+
+**Description:** Adds a safety system that holsters sweps.
+
+**Features:**
+- Adds auto-lowering of weapons when running
+- Adds a raise delay set by WeaponRaiseSpeed
+- Adds prevention of accidental fire
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/raisedweapons.zip
+
+## Realistic Damage
+
+**Description:** Adds Damage Scalers for Realism
+
+**Features:**
+- Adds damage scaling by body part
+- Adds custom multipliers for realism
+- Adds adjustments to player damage output
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/realisticdamage.zip
+
+## Realistic View
+
+**Description:** Adds an realistic 1st Person View that allows to see the entire body.
+
+**Features:**
+- Adds a first-person view that shows the full body
+- Adds immersive camera transitions
+- Adds compatibility with animations
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/realisticview.zip
+
+## Rumour
+
+**Description:** Adds a Rumour Command
+
+**Features:**
+- Adds an anonymous rumour chat command
+- Adds hiding of the sender's identity
+- Adds encouragement for roleplay intrigue
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/rumour.zip
+
+## Shoot Locks
+
+**Description:** Shoot locks to open doors.
+
+**Features:**
+- Adds the ability to shoot door locks to open them
+- Adds a quick breach alternative
+- Adds a loud action that may alert others
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/shootlock.zip
+
+## Lockpicking
+
+**Description:** Adds simple Lockpicking to bruteforce doors!
+
+**Features:**
+- Adds a simple lockpick tool for doors
+- Adds logging of successful picks
+- Adds brute-force style gameplay
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/simple_lockpicking.zip
+
+## Slots
+
+**Description:** Adds a Slots Machine.
+
+**Features:**
+- Adds a slot machine minigame
+- Adds a workshop model for the machine
+- Adds handling of payouts to winners
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/slots.zip
+
+## Heavy Weapons
+
+**Description:** A module that allows you to make certain weapons that slow you down
+
+**Features:**
+- Adds slower movement while holding heavy weapons
+- Adds speed penalties defined per weapon
+- Adds encouragement for strategic choices
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/slowweapons.zip
+
+## Stun Gun
+
+**Description:** An Stun Gun Reworked from CustomHQ
+
+**Features:**
+- Adds a taser weapon that immobilizes targets
+- Adds StunTime and MaxDist as configurable settings
+- Adds optional damage and post-process effects
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/stungun.zip
+
+## Tying
+
+**Description:** Adds Tying Items That Serve As Handcuffs. Enchance Roleplay Overall.
+
+**Features:**
+- Adds handcuff items that restrain players
+- Adds logging for tie and untie events
+- Adds support for roleplay arrests
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/tying.zip
+
+## View Bob
+
+**Description:** Adds an custom View Bob.
+
+**Features:**
+- Adds camera bobbing while moving
+- Adds adjustable intensity
+- Adds enhanced immersion
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/viewbob.zip
+
+## VManip
+
+**Description:** Adds VManip Compatibility to Lilia.
+
+**Features:**
+- Adds VManip animation support
+- Adds hand gestures for items
+- Adds functionality within Lilia
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/vmanip.zip
+
+## Warrant
+
+**Description:** Adds Warrants
+
+**Features:**
+- Adds ability to issue and remove player warrants
+- Adds notifications displayed to players
+- Adds logging of all warrant actions
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/warrants.zip
+
+## War Table
+
+**Description:** Adds a interactive War Table
+
+**Features:**
+- Adds an interactive 3D war table
+- Adds the ability to plan operations on a map
+- Adds a workshop model
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/wartable.zip
+
+## Whitelist
+
+**Description:** Adds a Server Whitelist
+
+**Features:**
+- Adds a server access whitelist
+- Adds toggleable player signups
+- Adds a public module for gating entry
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/whitelist.zip
+
+## Word Filter
+
+**Description:** Filters unwanted words out of the chat
+
+**Features:**
+- Adds chat word filtering
+- Adds blocking of banned phrases
+- Adds an easy-to-extend list
+
+**Download:** https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/wordfilter.zip
+
+
+---
+
+# Module Fields
+
+This document describes the default `MODULE` fields provided by the Lilia framework. Use these to configure module metadata, dependencies, loading behavior, and lifecycle hooks.
+
+Unspecified fields will use sensible defaults.
+
+---
+
+## Overview
+
+A `MODULE` table defines a self-contained add-on for the Lilia framework. Each field controls how the module is identified, loaded, and interacts with permissions and workshop content.
+
+---
+
+## Field Summary
+
+| Field | Type | Default | Description |
+|---|---|---|---|
+| `name` | `string` | `"Unknown"` | Identifies the module in logs and UI. |
+| `author` | `string` | `"Anonymous"` | Name or SteamID64 of the module’s author. |
+| `discord` | `string` | `""` | Discord tag or support channel. |
+| `version` | `string` | `""` | Version string for compatibility checks. |
+| `desc` | `string` | `"No Description"` | Short description of module functionality. |
+| `CAMIPrivileges` | `table` | `nil` | CAMI privileges defined or required by the module. |
+| `WorkshopContent` | `table` | `nil` | Steam Workshop add-on IDs required. |
+| `enabled` | `boolean` or `function` | `true` | Controls whether the module loads. |
+| `Dependencies` | `table` | `nil` | Files or directories included before the module loads. |
+| `folder` | `string` | `""` | Filesystem path where the module resides. |
+| `path` | `string` | `""` | Absolute path to the module’s root directory. |
+| `uniqueID` | `string` | `""` | Internal identifier for the module list. |
+| `loading` | `boolean` | `false` | True while the module is in the process of loading. |
+| `ModuleLoaded` | `function` | `nil` | Callback run after module finishes loading. |
+| `Public` | `boolean` | `false` | Participates in public version checks. |
+| `Private` | `boolean` | `false` | Uses private version checking. |
+
+---
+
+## Field Details
+
+### Identification & Metadata
+
+#### `name`
+
+**Type:**
+
+`string`
+
+**Description:**
+
+Identifies the module in logs and UI elements.
+
+**Example Usage:**
+
+```lua
+MODULE.name = "My Module"
+```
+
+---
+
+#### `author`
+
+**Type:**
+
+`string`
+
+**Description:**
+
+Name or SteamID64 of the module’s author.
+
+**Example Usage:**
+
+```lua
+MODULE.author = "Samael"
+```
+
+---
+
+#### `discord`
+
+**Type:**
+
+`string`
+
+**Description:**
+
+Discord tag or support channel for the module.
+
+**Example Usage:**
+
+```lua
+MODULE.discord = "@liliaplayer"
+```
+
+---
+
+#### `desc`
+
+**Type:**
+
+`string`
+
+**Description:**
+
+Short description of what the module provides.
+
+**Example Usage:**
+
+```lua
+MODULE.desc = "Adds a Chatbox"
+```
+
+---
+
+### Version & Compatibility
+
+#### `version`
+
+**Type:**
+
+`string`
+
+**Description:**
+
+Version string used for compatibility checks.
+
+**Example Usage:**
+
+```lua
+MODULE.version = "1.0"
+```
+
+---
+
+#### `Public`
+
+**Type:**
+
+`boolean`
+
+**Description:**
+
+When true, the module participates in public version checks.
+
+**Example Usage:**
+
+```lua
+MODULE.Public = true
+```
+
+---
+
+#### `Private`
+
+**Type:**
+
+`boolean`
+
+**Description:**
+
+When true, the module uses private version checking.
+
+**Example Usage:**
+
+```lua
+MODULE.Private = true
+```
+
+---
+
+### Dependencies & Content
+
+#### `CAMIPrivileges`
+
+**Type:**
+
+`table`
+
+**Description:**
+
+CAMI privileges required or provided by the module.
+
+**Example Usage:**
+
+```lua
+MODULE.CAMIPrivileges = {
+    { Name = "Staff Permissions - Admin Chat", MinAccess = "admin" }
+}
+```
+
+---
+
+#### `WorkshopContent`
+
+**Type:**
+
+`table`
+
+**Description:**
+
+Steam Workshop add-on IDs required by this module.
+
+**Example Usage:**
+
+```lua
+MODULE.WorkshopContent = {
+    "2959728255", -- shared assets
+    "1234567890"  -- map data
+}
+```
+
+---
+
+#### `Dependencies`
+
+**Type:**
+
+`table`
+
+**Description:**
+
+List of additional files or directories to include before the module itself
+
+loads. Paths are relative to the module's folder. Each entry may specify a
+
+`File` or `Folder` key along with an optional `Realm` value (`server`, `client`
+
+or `shared`) to control where the code is executed.
+
+**Example Usage:**
+
+```lua
+MODULE.Dependencies = {
+    { File = "logs.lua", Realm = "server" },
+    { Folder = "libs", Realm = "shared" },
+}
+```
+
+---
+
+### Loading & Lifecycle
+
+#### `enabled`
+
+**Type:**
+
+`boolean` or `function`
+
+**Description:**
+
+Controls whether the module loads. Can be a static boolean or a function returning a boolean.
+
+**Example Usage:**
+
+```lua
+-- Enabled by default
+MODULE.enabled = true
+
+-- Or evaluate a configuration value
+MODULE.enabled = function()
+    return lia.config.get("EnableMyModule", true)
+end
+```
+
+---
+
+#### `loading`
+
+**Type:**
+
+`boolean`
+
+**Description:**
+
+True while the module is in the process of loading.
+
+**Example Usage:**
+
+```lua
+if MODULE.loading then return end
+```
+
+---
+
+#### `ModuleLoaded`
+
+**Type:**
+
+`function`
+
+**Description:**
+
+Optional callback run after the module finishes loading.
+
+**Example Usage:**
+
+```lua
+function MODULE:ModuleLoaded()
+    print("Module fully initialized")
+end
+```
+
+---
+
+### Access & Visibility
+
+#### `folder`
+
+**Type:**
+
+`string`
+
+**Description:**
+
+Relative directory of the module within the gamemode or add-on. Useful when including other files from this module.
+
+**Example Usage:**
+
+```lua
+print(MODULE.folder)
+```
+
+---
+
+#### `path`
+
+**Type:**
+
+`string`
+
+**Description:**
+
+Full filesystem path to the module's directory. Usually set automatically by the loader.
+
+**Example Usage:**
+
+```lua
+print(MODULE.path)
+```
+
+---
+
+#### `uniqueID`
+
+**Type:**
+
+`string`
+
+**Description:**
+
+Identifier used internally for the module list.
+
+**Example Usage:**
+
+```lua
+print(MODULE.uniqueID)
+```
+
+---
+
+### Default Folder Load Order
+
+When loading a module from a directory, Lilia automatically scans for common sub-folders and includes them in a specific sequence. Files in these folders run on the appropriate realm, letting you simply drop code into place. The loader processes the following paths in order:
+
+1. `languages`
+2. `factions`
+3. `classes`
+4. `attributes`
+5. `pim.lua`, `client.lua`, `server.lua`, `config.lua` and `commands.lua`
+6. `config`
+7. `dependencies`
+8. `libs`
+9. `hooks`
+10. `libraries`
+11. `commands`
+12. `netcalls`
+13. `meta`
+14. `derma`
+15. `pim`
+16. `entities`
+17. `items`
+18. `submodules` (each loaded as its own module)
+---
+
+### Example `module.lua`
+
+A complete example showing common fields in use:
+
+```lua
+-- example/modules/myfeature/module.lua
+MODULE.name = "My Feature"
+MODULE.author = "76561198012345678"
+MODULE.discord = "@example"
+MODULE.version = "1.0"
+MODULE.desc = "Adds an example feature"
+
+MODULE.enabled = true
+MODULE.Public = true
+
+MODULE.WorkshopContent = {
+    "1234567890"
+}
+
+MODULE.CAMIPrivileges = {
+    { Name = "My Feature - Use", MinAccess = "admin" }
+}
+
+MODULE.Dependencies = {
+    { File = "hooks.lua", Realm = "server" },
+    { Folder = "libraries", Realm = "shared" }
+}
+
+function MODULE:ModuleLoaded()
+    print("My Feature loaded!")
+end
+```
+
+
+---
