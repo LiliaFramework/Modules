@@ -10,8 +10,18 @@ if (!fs.existsSync(jsonPath)) {
   process.exit(1);
 }
 
-const modules = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
-const moduleDetails = fs.readFileSync(moduleFieldsPath, 'utf8');
+const modulesDataRaw = fs.readFileSync(jsonPath, 'utf8');
+const modulesData = JSON.parse(modulesDataRaw);
+const modules = Array.isArray(modulesData) ? modulesData : modulesData.modules || [];
+
+let moduleDetails = '';
+if (fs.existsSync(moduleFieldsPath)) {
+  moduleDetails = fs.readFileSync(moduleFieldsPath, 'utf8');
+} else if (modulesData.moduleDetails) {
+  moduleDetails = modulesData.moduleDetails;
+} else {
+  console.warn(`${moduleFieldsPath} not found and no moduleDetails in JSON.`);
+}
 
 let output = '# Module Summary\n\n';
 
