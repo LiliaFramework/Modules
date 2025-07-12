@@ -1,4 +1,4 @@
-net.Receive("radioAdjust", function(len, client)
+net.Receive("radioAdjust", function(_, client)
     local freq = net.ReadString()
     local id = net.ReadUInt(32)
     if id == 0 then id = nil end
