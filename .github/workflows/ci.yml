@@ -140,6 +140,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: mkdir -p docs
+      - run: rm -f docs/modules.md
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
@@ -191,7 +192,7 @@ jobs:
           git config user.name "GitHub Actions"
           git add docs/docs
           if ! git diff --cached --quiet; then
-            git commit -m "Update documentation"
+            git commit -m "Update Module Documentation"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
           fi
 
