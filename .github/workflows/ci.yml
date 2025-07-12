@@ -161,7 +161,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: node docsparser.js
       - run: cp modules.json docs/modules.json
       - uses: peaceiris/actions-gh-pages@v3
         with:
