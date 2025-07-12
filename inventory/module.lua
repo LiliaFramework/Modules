@@ -5,8 +5,9 @@ MODULE.version = "1.0.3"
 MODULE.desc = "Implements a weight-based inventory that limits how much a character can carry."
 MODULE.Public = true
 MODULE.enabled = function()
-    local path = debug.getinfo(1, "S").source:sub(2)
-    if not path:find("/preload/") then return false, ("Module must be in a “preload” subfolder (current path: '%s')"):format(path) end
+    local path = debug.getinfo(1, "S").source:sub(2):gsub("\\", "/")
+    local required = ("gamemodes/%s/preload/"):format(engine.ActiveGamemode())
+    if not path:find(required, 1, true) then return false, ("Weight Inventory must be in '%s' (current path: '%s')"):format(required, path) end
     return true
 end
 
