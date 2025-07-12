@@ -189,7 +189,7 @@ jobs:
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add -A docs/docs
+          git add docs/docs
           if ! git diff --cached --quiet; then
             git commit -m "Update documentation"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
