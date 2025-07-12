@@ -2,6 +2,6 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.2"
-MODULE.desc = "Sends faction-based messages to players when they first load their character."
+MODULE.desc = "Displays a custom message to players based on their faction the first time they load a character."
 MODULE.Public = true
-MODULE.Features = {"Adds faction-based load messages", "Adds execution when players first load a character", "Adds customizable message text",}
+MODULE.Features = {"Adds faction-based load messages", "Adds execution when players first load a character", "Adds customizable message text", "Adds color-coded formatting options", "Adds per-faction enable toggles",}
