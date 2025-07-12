@@ -37,7 +37,7 @@ for (const module of modulesList) {
     features = [],
     download = '',
   } = module;
-  const versionLabel = version ? ` v${version}` : '';
+  const versionLabel = version ? ` ${version}` : '';
   output += `<h2 align="center">${name}${versionLabel}</h2>\n\n`;
   if (description) output += `**Description:** ${description}\n\n`;
   if (features.length) {
