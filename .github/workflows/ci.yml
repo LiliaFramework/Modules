@@ -117,11 +117,15 @@ jobs:
           fi
       - run: mv modules_data.json modules.json
       - run: |
-          git checkout -B gh-pages
-          git add -f modules.json
+          git clone https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/LiliaFramework.github.io.git website
+          cp modules.json website/modules.json
+          cd website
+          git config user.email "githubactions@github.com"
+          git config user.name "GitHub Actions"
+          git add modules.json
           if ! git diff --cached --quiet; then
             git commit -m "Update modules.json with source URLs"
-            git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages
+            git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/LiliaFramework.github.io.git HEAD:main
           fi
       - uses: actions/upload-artifact@v4
         with:
@@ -140,15 +144,10 @@ jobs:
         with:
           fetch-depth: 0
       - run: mkdir -p 'documentation'
-      - run: rm -f 'documentation/modules.md'
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
           path: 'documentation/Downloads'
-      - uses: actions/download-artifact@v4
-        with:
-          name: modules-json
-          path: .
       - run: |
           for zip in 'documentation/Downloads'/*.zip; do
             folder=$(basename "$zip" .zip)
@@ -157,7 +156,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: cp modules.json 'documentation/modules.json'
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
@@ -196,55 +194,3 @@ jobs:
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
           fi
 
-  release:
-    needs: upload-docs
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          path: modules
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            const tag = 'release'
-            try {
-              const release = await github.rest.repos.getReleaseByTag({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                tag
-              })
-              await github.rest.repos.deleteRelease({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                release_id: release.data.id
-              })
-              await github.rest.git.deleteRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: `tags/${tag}`
-              })
-            } catch (error) {
-              if (error.status !== 404) throw error
-            }
-      - run: |
-          mkdir packaged
-          cp -R modules packaged/modules
-          cd packaged
-          zip -r ../modules.zip modules
-      - uses: actions/create-release@v1
-        id: create_release
-        with:
-          tag_name: release
-          release_name: Modules
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
-      - uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: modules.zip
-          asset_name: modules.zip
-          asset_content_type: application/zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.LiliaGitSecret }}
