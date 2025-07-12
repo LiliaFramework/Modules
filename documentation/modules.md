@@ -341,6 +341,17 @@
 
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/instakill.zip">Download Here</a></p>
 
+<h2 align="center">Weight Inv</h2>
+
+**Description:** Adds a weight inventory type.
+
+**Features:**
+- Adds an inventory limited by item weight
+- Adds a shared weightinv library file
+- Adds a new inventory type
+
+<p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/inventory.zip">Download Here</a></p>
+
 <h2 align="center">Join Leave Messages</h2>
 
 **Description:** Adds Join and Leave Messages
