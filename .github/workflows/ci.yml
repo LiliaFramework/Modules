@@ -110,7 +110,7 @@ jobs:
       - run: |
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add '!documentation/modules.md'
+          git add 'documentation/modules.md'
           if ! git diff --cached --quiet; then
             git commit -m "Update modules summary"
             git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
@@ -139,35 +139,35 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: mkdir -p '!documentation'
-      - run: rm -f '!documentation/modules.md'
+      - run: mkdir -p 'documentation'
+      - run: rm -f 'documentation/modules.md'
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
-          path: '!documentation/Downloads'
+          path: 'documentation/Downloads'
       - uses: actions/download-artifact@v4
         with:
           name: modules-json
           path: .
       - run: |
-          for zip in '!documentation/Downloads'/*.zip; do
+          for zip in 'documentation/Downloads'/*.zip; do
             folder=$(basename "$zip" .zip)
             unzip "$zip" -d "extracted_${folder}"
           done
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: cp modules.json '!documentation/modules.json'
+      - run: cp modules.json 'documentation/modules.json'
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
           publish_branch: gh-pages
-          publish_dir: '!documentation'
+          publish_dir: 'documentation'
           force_orphan: true
       - uses: actions/upload-artifact@v4
         with:
           name: built-docs
-          path: '!documentation'
+          path: 'documentation'
 
   upload-docs:
     needs: gh-pages
