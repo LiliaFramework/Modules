@@ -34,7 +34,7 @@ for (const module of modulesList) {
     output += '\n';
   }
   if (download) {
-    output += `<p align="center">[Download Here](${download})</p>\n\n`;
+    output += `<p align="center"><a href="${download}">Download Here</a></p>\n\n`;
   }
 }
 
