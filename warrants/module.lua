@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Warrant"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.9"
+MODULE.version = "1.0.10"
 MODULE.desc = "Allows staff to issue and remove player warrants while notifying everyone involved."
 MODULE.CAMIPrivileges = {
     {
