@@ -1,4 +1,4 @@
-﻿local MODULE = MODULE
+local MODULE = MODULE
 function MODULE:runCutscene(id)
     local cs = self.cutscenes[id]
     if not cs then return end
@@ -143,4 +143,7 @@ function MODULE:runCutscene(id)
     end
 end
 
-netstream.Hook("lia_cutscene", function(id) MODULE:runCutscene(id) end)
+net.Receive("lia_cutscene", function()
+    local id = net.ReadString()
+    MODULE:runCutscene(id)
+end)

@@ -181,32 +181,48 @@ function MODULE:MoveToPoint(client, name)
     client:notifyLocalized("movedTo", properName)
 end
 
-netstream.Hook("GMTPMove", function(client, name)
+net.Receive("GMTPMove", function(_, client)
     if not client:IsAdmin() then return end
+    local name = net.ReadString()
     MODULE:MoveToPoint(client, name)
 end)
 
-netstream.Hook("GMTPNewPoint", function(client, name)
+net.Receive("GMTPNewPoint", function(_, client)
     if not client:IsAdmin() then return end
+    local name = net.ReadString()
     MODULE:AddPoint(client, name, client:GetPos())
 end)
 
-netstream.Hook("GMTPUpdateName", function(client, oldName, newName)
+net.Receive("GMTPUpdateName", function(_, client)
     if not client:IsAdmin() then return end
+    local oldName = net.ReadString()
+    local newName = net.ReadString()
     MODULE:RenamePoint(client, oldName, newName)
 end)
 
-netstream.Hook("GMTPUpdateSound", function(client, name, oldSound, newSound)
+net.Receive("GMTPUpdateSound", function(_, client)
     if not client:IsAdmin() then return end
+    local name = net.ReadString()
+    local oldSound = net.ReadString()
+    local newSound = net.ReadString()
     MODULE:UpdateSound(client, name, oldSound, newSound)
 end)
 
-netstream.Hook("GMTPUpdateEffect", function(client, name, oldEffect, newEffect)
+net.Receive("GMTPUpdateEffect", function(_, client)
     if not client:IsAdmin() then return end
+    local name = net.ReadString()
+    local oldEffect = net.ReadString()
+    local newEffect = net.ReadString()
     MODULE:UpdateEffect(client, name, oldEffect, newEffect)
 end)
 
-netstream.Hook("GMTPDelete", function(client, name)
+net.Receive("GMTPDelete", function(_, client)
     if not client:IsAdmin() then return end
+    local name = net.ReadString()
     MODULE:RemovePoint(client, name)
 end)
+
+local networkStrings = {"gmTPNewName", "gmTPMenu", "GMTPMove", "GMTPNewPoint", "GMTPUpdateName", "GMTPUpdateSound", "GMTPUpdateEffect", "GMTPDelete",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
+end

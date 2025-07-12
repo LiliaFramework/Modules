@@ -687,9 +687,6 @@ function PANEL:OnRemove()
     if IsValid(lia.gui.editorFaction) then lia.gui.editorFaction:Remove() end
 end
 
-function PANEL:updateVendor(key, value)
-    netstream.Start("vendorEdit", key, value)
-end
 
 function PANEL:OnFocusChanged(gained)
     if not gained then

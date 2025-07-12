@@ -27,7 +27,10 @@ function MODULE:searchPlayer(client, target)
     end
 
     self:SetupInventorySearch(client, target)
-    netstream.Start(client, "searchPly", target, target:getChar():getInv():getID())
+    net.Start("searchPly")
+    net.WriteEntity(target)
+    net.WriteUInt(target:getChar():getInv():getID(), 32)
+    net.Send(client)
     client.liaSearchTarget = target
     target:setNetVar("searcher", client)
     return true
@@ -43,11 +46,17 @@ function MODULE:stopSearching(client)
         MODULE:RemoveInventorySearchPermissions(client, target)
         target:setNetVar("searcher", nil)
         client.liaSearchTarget = nil
-        netstream.Start(client, "searchExit")
+        net.Start("searchExit")
+        net.Send(client)
     end
 end
 
 function MODULE:OnPlayerUnRestricted(client)
     local searcher = client:getNetVar("searcher")
     if IsValid(searcher) then self:stopSearching(searcher) end
+end
+
+local networkStrings = {"searchPly", "searchExit",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
 end

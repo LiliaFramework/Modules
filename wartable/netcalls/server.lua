@@ -1,4 +1,4 @@
-﻿local allowedImageTypes = {".PNG", ".JPG", ".JPEG"}
+local allowedImageTypes = {".PNG", ".JPG", ".JPEG"}
 local function getTableEnt(pos)
     for _, ent in pairs(ents.FindByClass("wartable")) do
         if ent:GetPos():DistToSqr(pos) < 25000 then return ent end
@@ -6,24 +6,31 @@ local function getTableEnt(pos)
     return nil
 end
 
-netstream.Hook("ClearWarTable", function(client)
+net.Receive("ClearWarTable", function(_, client)
     local tableEnt = getTableEnt(client:GetPos())
     if not tableEnt then return end
     tableEnt:Clear()
 end)
 
-netstream.Hook("SetWarTableMap", function(client, _, text)
+net.Receive("SetWarTableMap", function(_, client)
+    local _ = net.ReadEntity()
+    local text = net.ReadString()
     local tableEnt = getTableEnt(client:GetPos())
     if not tableEnt then return end
     for _, imageType in pairs(allowedImageTypes) do
         if string.find(text, string.lower(imageType)) then
-            netstream.Start(player.GetAll(), "SetWarTableMap", tableEnt, text)
+            net.Start("SetWarTableMap")
+            net.WriteEntity(tableEnt)
+            net.WriteString(text)
+            net.Broadcast()
             break
         end
     end
 end)
 
-netstream.Hook("PlaceWarTableMarker", function(client, pos, bodygroups)
+net.Receive("PlaceWarTableMarker", function(_, client)
+    local pos = net.ReadVector()
+    local bodygroups = net.ReadTable()
     local tableEnt = getTableEnt(client:GetPos())
     if not tableEnt then return end
     local tableEntFound = false
@@ -44,8 +51,14 @@ netstream.Hook("PlaceWarTableMarker", function(client, pos, bodygroups)
     marker:SetMoveType(MOVETYPE_NONE)
 end)
 
-netstream.Hook("RemoveWarTableMarker", function(client, ent)
+net.Receive("RemoveWarTableMarker", function(_, client)
+    local ent = net.ReadEntity()
     local tableEnt = getTableEnt(client:GetPos())
     if not tableEnt then return end
     ent:Remove()
 end)
+
+local networkStrings = {"ClearWarTable", "SetWarTableMap", "PlaceWarTableMarker", "RemoveWarTableMarker", "UseWarTable",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
+end

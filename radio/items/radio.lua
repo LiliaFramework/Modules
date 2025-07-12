@@ -66,7 +66,10 @@ ITEM.functions.changeFreq = {
     name = L("radioChangeFreq"),
     icon = "icon16/transmit_blue.png",
     onRun = function(item)
-        netstream.Start(item.player, "radioAdjust", item:getData("freq", "000.0"), item.id)
+        net.Start("radioAdjust")
+        net.WriteString(item:getData("freq", "000.0"))
+        net.WriteUInt(item.id or 0, 32)
+        net.Send(item.player)
         return false
     end,
     onCanRun = function(item)

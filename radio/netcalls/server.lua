@@ -1,4 +1,7 @@
-﻿netstream.Hook("radioAdjust", function(client, freq, id)
+net.Receive("radioAdjust", function(len, client)
+    local freq = net.ReadString()
+    local id = net.ReadUInt(32)
+    if id == 0 then id = nil end
     local inv = client:getChar() and client:getChar():getInv() or nil
     if inv then
         local item
@@ -17,3 +20,8 @@
         end
     end
 end)
+
+local networkStrings = {"radioAdjust",}
+for _, netString in ipairs(networkStrings) do
+    util.AddNetworkString(netString)
+end
