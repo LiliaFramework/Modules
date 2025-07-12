@@ -183,14 +183,13 @@ jobs:
           path: lilia
           fetch-depth: 0
       - run: |
-          rm -rf lilia/docs/docs
           mkdir -p lilia/docs/docs
           cp -R built-docs/. lilia/docs/docs
       - run: |
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add docs/docs
+          git add -A docs/docs
           if ! git diff --cached --quiet; then
             git commit -m "Update documentation"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
