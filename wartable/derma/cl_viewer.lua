@@ -21,7 +21,10 @@ function PANEL:Display(target, pos)
             table.insert(bodygroups, v.index, v.value)
         end
 
-        netstream.Start("PlaceWarTableMarker", pos, bodygroups)
+        net.Start("PlaceWarTableMarker")
+        net.WriteVector(pos)
+        net.WriteTable(bodygroups)
+        net.SendToServer()
         self:Remove()
     end
 

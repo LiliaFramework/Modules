@@ -1,8 +1,14 @@
-﻿local MODULE = MODULE
+local MODULE = MODULE
 MODULE.searchPanels = MODULE.searchPanels or {}
-netstream.Hook("searchPly", function(target, id)
+net.Receive("searchPly", function()
+    local target = net.ReadEntity()
+    local id = net.ReadUInt(32)
     local targetInv = lia.inventory.instances[id]
-    if not targetInv then return netstream.Start("searchExit") end
+    if not targetInv then
+        net.Start("searchExit")
+        net.SendToServer()
+        return
+    end
     local myInvPanel, targetInvPanel
     local exitLock = true
     local function onRemove(panel)
@@ -12,7 +18,8 @@ netstream.Hook("searchPly", function(target, id)
             other:Remove()
         end
 
-        netstream.Start("searchExit")
+        net.Start("searchExit")
+        net.SendToServer()
         panel:searchOnRemove()
     end
 
@@ -31,7 +38,7 @@ netstream.Hook("searchPly", function(target, id)
     MODULE.searchPanels[#MODULE.searchPanels + 1] = targetInvPanel
 end)
 
-netstream.Hook("searchExit", function()
+net.Receive("searchExit", function()
     for _, panel in pairs(MODULE.searchPanels) do
         if IsValid(panel) then panel:Remove() end
     end

@@ -1,4 +1,6 @@
-﻿netstream.Hook("UseWarTable", function(tableEnt, shouldAct)
+net.Receive("UseWarTable", function()
+    local tableEnt = net.ReadEntity()
+    local shouldAct = net.ReadBool()
     local client = LocalPlayer()
     if shouldAct then
         local panel = vgui.Create("DFrame")
@@ -15,7 +17,9 @@
         clearButton:SetTextColor(Color(255, 255, 255))
         clearButton.DoClick = function()
             panel:Remove()
-            netstream.Start("ClearWarTable", tableEnt)
+            net.Start("ClearWarTable")
+            net.WriteEntity(tableEnt)
+            net.SendToServer()
         end
 
         local setMapButton = vgui.Create("DButton", panel)
@@ -24,7 +28,12 @@
         setMapButton:SetTextColor(Color(255, 255, 255))
         setMapButton.DoClick = function()
             panel:Remove()
-            Derma_StringRequest(L("SetNewMapTitle"), L("SetNewMapPrompt"), "", function(text) netstream.Start("SetWarTableMap", tableEnt, text) end)
+            Derma_StringRequest(L("SetNewMapTitle"), L("SetNewMapPrompt"), "", function(text)
+                net.Start("SetWarTableMap")
+                net.WriteEntity(tableEnt)
+                net.WriteString(text)
+                net.SendToServer()
+            end)
         end
 
         local exitButton = vgui.Create("DButton", panel)
@@ -41,4 +50,8 @@
     end
 end)
 
-netstream.Hook("SetWarTableMap", function(tableEnt, text) tableEnt:SetMap(text) end)
+net.Receive("SetWarTableMap", function()
+    local tableEnt = net.ReadEntity()
+    local text = net.ReadString()
+    tableEnt:SetMap(text)
+end)

@@ -98,7 +98,10 @@ function PANEL:Init()
             end
         end
 
-        netstream.Start("radioAdjust", str, self.itemID)
+        net.Start("radioAdjust")
+        net.WriteString(str)
+        net.WriteUInt(self.itemID or 0, 32)
+        net.SendToServer()
         self:Close()
     end
 end
