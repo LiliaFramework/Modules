@@ -63,7 +63,6 @@ jobs:
             discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
-
             raw_features=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$module" | head -n1 | sed -E 's/MODULE\.Features\s*=\s*//')
             if [ -n "$raw_features" ]; then
               if [[ $raw_features == \{* ]]; then
@@ -75,7 +74,6 @@ jobs:
             else
               features_line="[]"
             fi
-
             raw_workshop=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$module" | head -n1 | sed -E 's/MODULE\.WorkshopContent\s*=\s*//')
             if [ -n "$raw_workshop" ]; then
               if [[ $raw_workshop == \{* ]]; then
@@ -87,12 +85,10 @@ jobs:
             else
               workshop_line="[]"
             fi
-
             folder=$(basename "$(dirname "$module")")
             public_uniqueID=$folder
             download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/${folder}.zip"
             source="https://liliaframework.github.io/Modules/${folder}.html"
-
             jq --arg name "$name" \
                --arg author "$author" \
                --arg discord "$discord" \
@@ -167,9 +163,41 @@ jobs:
           publish_branch: gh-pages
           publish_dir: docs
           force_orphan: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: built-docs
+          path: docs
+
+  upload-docs:
+    needs: gh-pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: built-docs
+          path: built-docs
+      - uses: actions/checkout@v3
+        with:
+          repository: LiliaFramework/Lilia
+          token: ${{ secrets.LiliaGitSecret }}
+          path: lilia
+          fetch-depth: 0
+      - run: |
+          rm -rf lilia/docs/docs
+          mkdir -p lilia/docs/docs
+          cp -R built-docs/. lilia/docs/docs
+      - run: |
+          cd lilia
+          git config user.email "githubactions@github.com"
+          git config user.name "GitHub Actions"
+          git add docs/docs
+          if ! git diff --cached --quiet; then
+            git commit -m "Update documentation"
+            git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
+          fi
 
   release:
-    needs: gh-pages
+    needs: upload-docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
