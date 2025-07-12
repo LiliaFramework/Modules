@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const modulesDataPath = path.join(__dirname, 'modules_data.json');
-const definitionPath = path.join(__dirname, '!documentation', 'definitions', 'module.md');
-const outputPath = path.join(__dirname, '!documentation', 'modules.md');
+const definitionPath = path.join(__dirname, 'documentation', 'definitions', 'module.md');
+const outputPath = path.join(__dirname, 'documentation', 'modules.md');
 
 const outputDir = path.dirname(outputPath);
 if (!fs.existsSync(outputDir)) {
