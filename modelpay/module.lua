@@ -2,6 +2,6 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.3"
-MODULE.desc = "Adds a system to pay per model"
+MODULE.desc = "Pays characters wages based on the model they use, allowing custom pay scales."
 MODULE.Public = true
-MODULE.Features = {"Adds payment to characters based on model", "Adds custom wage definitions", "Adds integration into the economy",}
+MODULE.Features = {"Adds payment to characters based on model", "Adds custom wage definitions", "Adds integration into the economy", "Adds config to exclude certain models", "Adds logs of wages issued",}

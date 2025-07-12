@@ -2,6 +2,6 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.3"
-MODULE.desc = "Shoot locks to open doors."
+MODULE.desc = "Allows players to shoot door locks to force them open as a loud breach option."
 MODULE.Public = true
-MODULE.Features = {"Adds the ability to shoot door locks to open them", "Adds a quick breach alternative", "Adds a loud action that may alert others",}
+MODULE.Features = {"Adds the ability to shoot door locks to open them", "Adds a quick breach alternative", "Adds a loud action that may alert others", "Adds chance-based lock destruction", "Adds configurable noise radius",}

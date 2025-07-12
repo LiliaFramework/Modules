@@ -2,7 +2,7 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = "1.0.3"
-MODULE.desc = "Adds a weight inventory type."
+MODULE.desc = "Implements a weight-based inventory that limits how much a character can carry."
 MODULE.Public = true
 MODULE.enabled = function()
     local path = MODULE.folder
@@ -17,4 +17,4 @@ MODULE.Dependencies = {
     },
 }
 
-MODULE.Features = {"Adds an inventory limited by item weight", "Adds a shared weightinv library file", "Adds a new inventory type",}
+MODULE.Features = {"Adds an inventory limited by item weight", "Adds a shared weightinv library file", "Adds a new inventory type", "Adds a drag-and-drop weight management UI", "Adds support for backpacks to increase capacity",}
