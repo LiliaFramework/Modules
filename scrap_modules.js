@@ -2,7 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const modulesDataPath = path.join(__dirname, 'modules_data.json');
 const definitionPath = path.join(__dirname, 'docs', 'definitions', 'module.md');
-const outputPath = path.join(__dirname, 'modules.md');
+const outputPath = path.join(__dirname, 'docs', 'modules.md');
+
+const outputDir = path.dirname(outputPath);
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true });
+}
 
 if (!fs.existsSync(modulesDataPath)) {
   console.error('modules_data.json not found, skipping modules.md generation.');
