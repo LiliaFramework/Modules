@@ -184,13 +184,13 @@ jobs:
           path: lilia
           fetch-depth: 0
       - run: |
-          mkdir -p lilia/docs/docs
-          cp -R built-docs/. lilia/docs/docs
+          mkdir -p lilia/documentation/documentation
+          cp -R built-docs/. lilia/documentation/documentation
       - run: |
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add docs/docs
+          git add documentation/documentation
           if ! git diff --cached --quiet; then
             git commit -m "Update Module Documentation"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
