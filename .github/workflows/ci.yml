@@ -108,12 +108,16 @@ jobs:
           done
       - run: node scrap_modules.js
       - run: |
+          git clone https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git lilia
+          mkdir -p lilia/documentation
+          cp documentation/modules.md lilia/documentation/modules.md
+          cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add 'documentation/modules.md'
+          git add documentation/modules.md
           if ! git diff --cached --quiet; then
             git commit -m "Update modules summary"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+            git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
           fi
       - run: mv modules_data.json modules.json
       - run: |
