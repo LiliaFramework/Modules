@@ -26,7 +26,7 @@ let output = '# Optional Modules\n\n';
 
 for (const module of modulesList) {
   const { name = '', description = '', features = [], download = '' } = module;
-  output += `## ${name}\n\n`;
+  output += `<h2 align="center">${name}</h2>\n\n`;
   if (description) output += `**Description:** ${description}\n\n`;
   if (features.length) {
     output += '**Features:**\n';
