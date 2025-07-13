@@ -1,7 +1,7 @@
 ﻿MODULE.name = "War Table"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.08
+MODULE.version = 1.09
 MODULE.desc = "Adds an interactive 3D war table for planning operations on a shared map."
 MODULE.WorkshopContent = "3431351432"
 MODULE.Public = true
