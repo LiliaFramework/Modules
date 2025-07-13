@@ -15,14 +15,4 @@ MODULE.CAMIPrivileges = {
 }
 
 MODULE.Public = true
-lia.config.add("DevHudFont", "Development HUD Font", "PoppinsMedium", function()
-    if not CLIENT then return end
-    hook.Run("RefreshFonts")
-end, {
-    desc = "Font used for all development/staff HUD text",
-    category = "Fonts",
-    type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
-})
-
 MODULE.Features = {"Adds a staff-only development HUD", "Adds font customization via DevHudFont", "Adds a requirement for the CAMI privilege", "Adds real-time server performance metrics", "Adds a toggle command to show or hide the HUD",}
