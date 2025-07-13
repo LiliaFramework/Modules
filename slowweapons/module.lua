@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Heavy Weapons"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.3"
+MODULE.version = 10003
 MODULE.desc = "Slows player movement when wielding specified heavy weapons to encourage tactical choices."
 MODULE.WeaponsSpeed = {
     ["fo3_fatman"] = 130,
