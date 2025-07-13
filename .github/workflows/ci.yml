@@ -34,11 +34,27 @@ jobs:
           for dir in $changed_dirs; do
             f="$dir/module.lua"
             [ -f "$f" ] || continue
-            v=$(grep -Eo 'MODULE\.version\s*=\s*[0-9]+' "$f" | awk -F= '{print $2}' | tr -d '[:space:]')
-            [ -z "$v" ] && v=0
-            n=$((v+1))
+            v=$(grep -Eo 'MODULE\.version\s*=\s*[0-9]+(\.[0-9]{2})?' "$f" | awk -F= '{print $2}' | tr -d '[:space:]')
+            [ -z "$v" ] && v="1.00"
+            if [[ $v == *.* ]]; then
+              major="${v%%.*}"
+              minor="${v##*.}"
+            else
+              major="$v"
+              minor="00"
+            fi
+            minor=$((10#$minor + 1))
+            if [ $minor -eq 100 ]; then
+              minor=0
+              major=$((major + 1))
+            fi
+            if [ $minor -eq 0 ]; then
+              n="$major"
+            else
+              n=$(printf "%d.%02d" "$major" "$minor")
+            fi
             if grep -q 'MODULE\.version' "$f"; then
-              sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+/\1$n/" "$f"
+              sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+(\.[0-9]{2})?/\1$n/" "$f"
             else
               printf '\nMODULE.version = %s\n' "$n" >> "$f"
             fi
@@ -93,7 +109,7 @@ jobs:
             author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            version=$(grep -Po 'MODULE\.version\s*=\s*([0-9]+)' "$m" | sed -E 's/.*=\s*([0-9]+)/\1/' || echo "10000")
+            version=$(grep -Po 'MODULE\.version\s*=\s*([0-9]+(\.[0-9]{2})?)' "$m" | sed -E 's/.*=\s*([0-9]+(\.[0-9]{2})?)/\1/' || echo "0.00")
             rawf=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/MODULE\.Features\s*=\s*//')
             if [ -n "$rawf" ]; then
               if [[ $rawf == \{* ]]; then
