@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Extra HUD Elements"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.7"
+MODULE.version = 10007
 MODULE.desc = "Adds optional HUD elements, such as an FPS counter, that other modules can extend."
 MODULE.Public = true
 lia.config.add("FPSHudFont", "FPS HUD Font", "PoppinsMedium", function()

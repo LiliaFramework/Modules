@@ -27,6 +27,16 @@ if (fs.existsSync(definitionPath)) {
   console.warn(`${definitionPath} not found and no moduleDetails in JSON.`);
 }
 
+function toVersionString(version) {
+  if (typeof version === 'number') {
+    const major = Math.floor(version / 10000);
+    const minor = Math.floor(version / 100) % 100;
+    const patch = version % 100;
+    return `${major}.${minor}.${patch}`;
+  }
+  return version;
+}
+
 let output = '# Optional Modules\n\n';
 
 for (const module of modulesList) {
@@ -37,7 +47,8 @@ for (const module of modulesList) {
     features = [],
     download = '',
   } = module;
-  const versionLabel = version ? ` ${version}` : '';
+  const versionStr = toVersionString(version);
+  const versionLabel = versionStr ? ` ${versionStr}` : '';
   output += `<h2 align="center">${name}${versionLabel}</h2>\n\n`;
   if (description) output += `**Description:** ${description}\n\n`;
   if (features.length) {
