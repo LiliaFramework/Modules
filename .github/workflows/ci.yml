@@ -83,7 +83,7 @@ jobs:
             fi
             folder=$(basename "$(dirname "$module")")
             public_uniqueID=$folder
-            download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/Downloads/${folder}.zip"
+            download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/${folder}.zip"
             source="https://liliaframework.github.io/Modules/${folder}.html"
             jq --arg name "$name" \
                --arg author "$author" \
@@ -146,13 +146,13 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
-          path: documentation/Downloads
+          path: documentation
       - uses: actions/download-artifact@v4
         with:
           name: modules-json
           path: documentation
       - run: |
-          for zip in documentation/Downloads/*.zip; do
+          for zip in documentation/*.zip; do
             folder=$(basename "$zip" .zip)
             unzip "$zip" -d "extracted_${folder}"
           done
