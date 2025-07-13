@@ -29,14 +29,13 @@ jobs:
         shell: bash
         run: |
           set -e
-          git fetch origin main
-          base=$(git merge-base HEAD origin/main)
-          mapfile -t dirs < <(git diff --name-only "$base" HEAD | awk -F/ '{print $1}' | sort -u)
-          for d in "${dirs[@]}"; do
-            f="$d/module.lua"
-            [[ -f "$f" ]] || continue
+          base="${{ github.event.before }}"
+          changed_dirs=$(git diff --name-only "$base" "$GITHUB_SHA" | awk -F/ '{print $1}' | sort -u)
+          for dir in $changed_dirs; do
+            f="$dir/module.lua"
+            [ -f "$f" ] || continue
             v=$(grep -Eo 'MODULE\.version\s*=\s*[0-9]+' "$f" | awk -F= '{print $2}' | tr -d '[:space:]')
-            [[ -z "$v" ]] && v=0
+            [ -z "$v" ] && v=0
             n=$((v+1))
             if grep -q 'MODULE\.version' "$f"; then
               sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+/\1$n/" "$f"
@@ -89,14 +88,14 @@ jobs:
       - run: |
           echo "[]" > modules_data.json
           for m in */module.lua; do
-            [[ -f "$m" ]] || continue
+            [ -f "$m" ] || continue
             name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             version=$(grep -Po 'MODULE\.version\s*=\s*([0-9]+)' "$m" | sed -E 's/.*=\s*([0-9]+)/\1/' || echo "10000")
             rawf=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/MODULE\.Features\s*=\s*//')
-            if [[ -n "$rawf" ]]; then
+            if [ -n "$rawf" ]; then
               if [[ $rawf == \{* ]]; then
                 rawf=$(echo "$rawf" | sed -E 's/,\s*}$/}/')
                 feat=$(echo "$rawf" | sed -E 's/^\{(.*)\}$/[\1]/')
@@ -107,7 +106,7 @@ jobs:
               feat="[]"
             fi
             raww=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/MODULE\.WorkshopContent\s*=\s*//')
-            if [[ -n "$raww" ]]; then
+            if [ -n "$raww" ]; then
               if [[ $raww == \{* ]]; then
                 raww=$(echo "$raww" | sed -E 's/,\s*}$/}/')
                 work=$(echo "$raww" | sed -E 's/^\{(.*)\}$/[\1]/')
@@ -135,7 +134,7 @@ jobs:
           done
       - run: |
           for d in */; do
-            [[ -d "$d" ]] && zip -r "${d%/}.zip" "$d"
+            [ -d "$d" ] && zip -r "${d%/}.zip" "$d"
           done
       - run: node scrap_modules.js
       - run: |
