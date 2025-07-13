@@ -25,28 +25,32 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: |
+      - name: bump
+        shell: bash
+        run: |
+          set -e
           git fetch origin main
           base=$(git merge-base HEAD origin/main)
-          changed_dirs=$(git diff --name-only "$base"...HEAD | awk -F/ '{print $1}' | sort -u)
-          for dir in $changed_dirs; do
-            file="$dir/module.lua"
-            [ -f "$file" ] || continue
-            current=$(grep -Po 'MODULE\.version\s*=\s*\K[0-9]+' "$file" | head -n1)
-            if [ -z "$current" ]; then
-              next=1
-              printf '\nMODULE.version = %s\n' "$next" >> "$file"
+          mapfile -t dirs < <(git diff --name-only "$base" HEAD | awk -F/ '{print $1}' | sort -u)
+          for d in "${dirs[@]}"; do
+            f="$d/module.lua"
+            [[ -f "$f" ]] || continue
+            v=$(grep -Eo 'MODULE\.version\s*=\s*[0-9]+' "$f" | awk -F= '{print $2}' | tr -d '[:space:]')
+            [[ -z "$v" ]] && v=0
+            n=$((v+1))
+            if grep -q 'MODULE\.version' "$f"; then
+              sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+/\1$n/" "$f"
             else
-              next=$((current+1))
-              sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+/\1$next/" "$file"
+              printf '\nMODULE.version = %s\n' "$n" >> "$f"
             fi
-            git add "$file"
+            git add "$f"
           done
           if ! git diff --cached --quiet; then
             git config user.email "githubactions@github.com"
             git config user.name "GitHub Actions"
             git commit -m "ci: auto bump module versions"
             git push origin HEAD:main
+          fi
 
   linter:
     needs: bump-version
@@ -84,37 +88,36 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y jq zip
       - run: |
           echo "[]" > modules_data.json
-          for module in */module.lua; do
-            [ -f "$module" ] || continue
-            name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            version=$(grep -Po 'MODULE\.version\s*=\s*([0-9]+)' "$module" | sed -E 's/.*=\s*([0-9]+)/\1/' || echo "10000")
-            raw_features=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$module" | head -n1 | sed -E 's/MODULE\.Features\s*=\s*//')
-            if [ -n "$raw_features" ]; then
-              if [[ $raw_features == \{* ]]; then
-                raw_features=$(echo "$raw_features" | sed -E 's/,\s*}$/}/')
-                features_line=$(echo "$raw_features" | sed -E 's/^\{(.*)\}$/[\1]/')
+          for m in */module.lua; do
+            [[ -f "$m" ]] || continue
+            name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
+            author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
+            discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
+            desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
+            version=$(grep -Po 'MODULE\.version\s*=\s*([0-9]+)' "$m" | sed -E 's/.*=\s*([0-9]+)/\1/' || echo "10000")
+            rawf=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/MODULE\.Features\s*=\s*//')
+            if [[ -n "$rawf" ]]; then
+              if [[ $rawf == \{* ]]; then
+                rawf=$(echo "$rawf" | sed -E 's/,\s*}$/}/')
+                feat=$(echo "$rawf" | sed -E 's/^\{(.*)\}$/[\1]/')
               else
-                features_line="[$raw_features]"
+                feat="[$rawf]"
               fi
             else
-              features_line="[]"
+              feat="[]"
             fi
-            raw_workshop=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$module" | head -n1 | sed -E 's/MODULE\.WorkshopContent\s*=\s*//')
-            if [ -n "$raw_workshop" ]; then
-              if [[ $raw_workshop == \{* ]]; then
-                raw_workshop=$(echo "$raw_workshop" | sed -E 's/,\s*}$/}/')
-                workshop_line=$(echo "$raw_workshop" | sed -E 's/^\{(.*)\}$/[\1]/')
+            raww=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/MODULE\.WorkshopContent\s*=\s*//')
+            if [[ -n "$raww" ]]; then
+              if [[ $raww == \{* ]]; then
+                raww=$(echo "$raww" | sed -E 's/,\s*}$/}/')
+                work=$(echo "$raww" | sed -E 's/^\{(.*)\}$/[\1]/')
               else
-                workshop_line="[$raw_workshop]"
+                work="[$raww]"
               fi
             else
-              workshop_line="[]"
+              work="[]"
             fi
-            folder=$(basename "$(dirname "$module")")
-            public_uniqueID=$folder
+            folder=$(basename "$(dirname "$m")")
             download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/${folder}.zip"
             source="https://liliaframework.github.io/Modules/${folder}.html"
             jq --arg name "$name" \
@@ -124,15 +127,15 @@ jobs:
                --arg version "$version" \
                --arg download "$download" \
                --arg source "$source" \
-               --arg public_uniqueID "$public_uniqueID" \
-               --argjson features "$features_line" \
-               --argjson workshop "$workshop_line" \
+               --arg public_uniqueID "$folder" \
+               --argjson features "$feat" \
+               --argjson workshop "$work" \
                '. += [{name:$name,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,public_uniqueID:$public_uniqueID,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
             mv tmp.json modules_data.json
           done
       - run: |
-          for folder in */; do
-            [ -d "$folder" ] && zip -r "${folder%/}.zip" "$folder"
+          for d in */; do
+            [[ -d "$d" ]] && zip -r "${d%/}.zip" "$d"
           done
       - run: node scrap_modules.js
       - run: |
@@ -185,9 +188,9 @@ jobs:
           name: modules-json
           path: documentation
       - run: |
-          for zip in documentation/*.zip; do
-            folder=$(basename "$zip" .zip)
-            unzip "$zip" -d "extracted_${folder}"
+          for z in documentation/*.zip; do
+            f=$(basename "$z" .zip)
+            unzip "$z" -d "extracted_${f}"
           done
       - uses: actions/setup-node@v3
         with:
