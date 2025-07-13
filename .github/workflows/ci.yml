@@ -58,7 +58,7 @@ jobs:
             author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            version=$(grep -Po 'MODULE\.version\s*=\s*"[^"]*"' "$module" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || echo "1.0")
+            version=$(grep -Po 'MODULE\.version\s*=\s*([0-9]+)' "$module" | sed -E 's/.*=\s*([0-9]+)/\1/' || echo "10000")
             raw_features=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$module" | head -n1 | sed -E 's/MODULE\.Features\s*=\s*//')
             if [ -n "$raw_features" ]; then
               if [[ $raw_features == \{* ]]; then

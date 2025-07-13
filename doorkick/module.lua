@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Door Kick"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.6"
+MODULE.version = 10006
 MODULE.desc = "Lets players breach doors by kicking them open, with events logged for staff."
 MODULE.Public = true
 if SERVER then lia.log.addType("doorkick", function(client, door) return string.format("%s kicked open %s", client:Name(), tostring(door)) end, "Player") end

@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Radio"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = "1.0.10"
+MODULE.version = 10010
 MODULE.desc = "Introduces a radio chat system with customizable fonts and models."
 MODULE.WorkshopContent = "3431349806"
 MODULE.Public = true
