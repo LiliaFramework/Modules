@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Slots"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.05
+MODULE.version = 1.06
 MODULE.desc = "Adds a playable slot machine using a workshop model that pays out winnings."
 MODULE.WorkshopContent = "3482441716"
 MODULE.Public = true
