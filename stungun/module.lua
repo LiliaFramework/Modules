@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Stun Gun"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 10108
+MODULE.version = 101.08
 MODULE.desc = "Adds a configurable taser weapon that stuns targets and can apply damage with post-process effects."
 MODULE.WorkshopContent = "3432649835"
 MODULE.Public = true

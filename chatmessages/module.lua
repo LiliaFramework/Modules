@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Chat Messages"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 10005
+MODULE.version = 1.05
 MODULE.desc = "Periodically sends automated advert messages to chat at a configurable interval."
 MODULE.Public = true
 lia.config.add("ChatMessagesInterval", "Chat Messages Interval", 300, nil, {

@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Vendors"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 10004
+MODULE.version = 1.04
 MODULE.desc = "Creates NPC vendors with customizable inventories and starting money."
 MODULE.CAMIPrivileges = {
     {

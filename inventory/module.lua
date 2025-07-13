@@ -1,7 +1,7 @@
 MODULE.name = "Weight Inv"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 10005
+MODULE.version = 1.05
 MODULE.desc = "Implements a weight-based inventory that limits how much a character can carry."
 MODULE.Public = true
 MODULE.enabled = function()
