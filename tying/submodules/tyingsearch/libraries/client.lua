@@ -1,10 +1,8 @@
 ﻿local MODULE = MODULE
-function MODULE:CanPlayerViewInventory(client)
-    if not IsValid(client) then return false end
-    local character = client:getChar()
-    if not character then return false end
+function MODULE:CanPlayerViewInventory()
+    local client = LocalPlayer()
+    if not (IsValid(client) and client.getChar and client:getChar()) then return end
     if client:IsBeingSearched() then return false end
-    return true
 end
 
 function MODULE:DrawCharInfo(client, _, info)
