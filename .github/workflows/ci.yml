@@ -19,7 +19,32 @@ permissions:
   statuses: write
 
 jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: modules
+      - uses: leafo/gh-actions-lua@v8.0.0
+        with:
+          luaVersion: 5.2
+      - uses: leafo/gh-actions-luarocks@v4.0.0
+      - uses: actions/checkout@v3
+        with:
+          repository: LiliaFramework/GluaCheck
+          path: luacheck
+      - run: luarocks make
+        working-directory: luacheck
+      - run: |
+          luacheck . \
+            --no-redefined \
+            --no-global --no-self \
+            --no-max-line-length --no-max-code-line-length \
+            --no-max-string-line-length --no-max-comment-line-length
+        working-directory: modules
+
   bump-version:
+    needs: linter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -66,31 +91,6 @@ jobs:
             git commit -m "Updated Modules Versions"
             git push origin HEAD:main
           fi
-
-  linter:
-    needs: bump-version
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          path: modules
-      - uses: leafo/gh-actions-lua@v8.0.0
-        with:
-          luaVersion: 5.2
-      - uses: leafo/gh-actions-luarocks@v4.0.0
-      - uses: actions/checkout@v3
-        with:
-          repository: LiliaFramework/GluaCheck
-          path: luacheck
-      - run: luarocks make
-        working-directory: luacheck
-      - run: |
-          luacheck . \
-            --no-redefined \
-            --no-global --no-self \
-            --no-max-line-length --no-max-code-line-length \
-            --no-max-string-line-length --no-max-comment-line-length
-        working-directory: modules
 
   scrape-modules:
     needs: linter
