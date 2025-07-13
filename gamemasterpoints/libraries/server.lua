@@ -222,7 +222,7 @@ net.Receive("GMTPDelete", function(_, client)
     MODULE:RemovePoint(client, name)
 end)
 
-local networkStrings = {"gmTPNewName", "gmTPMenu", "GMTPMove", "GMTPNewPoint", "GMTPUpdateName", "GMTPUpdateSound", "GMTPUpdateEffect", "GMTPDelete",}
+local networkStrings = {"gmTPNewName", "gmTPMenu", "GMTPMove", "GMTPNewPoint", "GMTPUpdateName", "GMTPUpdateSound", "GMTPUpdateEffect", "GMTPDelete"}
 for _, netString in ipairs(networkStrings) do
     util.AddNetworkString(netString)
 end

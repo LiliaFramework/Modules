@@ -58,7 +58,7 @@ net.Receive("RemoveWarTableMarker", function(_, client)
     ent:Remove()
 end)
 
-local networkStrings = {"ClearWarTable", "SetWarTableMap", "PlaceWarTableMarker", "RemoveWarTableMarker", "UseWarTable",}
+local networkStrings = {"ClearWarTable", "SetWarTableMap", "PlaceWarTableMarker", "RemoveWarTableMarker", "UseWarTable"}
 for _, netString in ipairs(networkStrings) do
     util.AddNetworkString(netString)
 end

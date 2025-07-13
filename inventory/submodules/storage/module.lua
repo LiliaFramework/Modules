@@ -10,4 +10,4 @@ MODULE.CAMIPrivileges = {
     }
 }
 
-MODULE.Features = {"Adds spawnable storage containers", "Adds a required CAMI privilege", "Adds compatibility with the weight inventory", "Adds customizable container sizes", "Adds persistence of container contents",}
+MODULE.Features = {"Adds spawnable storage containers", "Adds a required CAMI privilege", "Adds compatibility with the weight inventory", "Adds customizable container sizes", "Adds persistence of container contents"}

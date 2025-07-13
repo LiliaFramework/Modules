@@ -1,4 +1,4 @@
-﻿MODULE.HospitalLocations = {Vector(-6175.214355, 9022.834961, 112.811897),}
+﻿MODULE.HospitalLocations = {Vector(-6175.214355, 9022.834961, 112.811897)}
 lia.config.add("HospitalsEnabled", "Enable Hospitals", false, nil, {
     desc = "Enables or disables hospital respawn functionality.",
     category = "Death",

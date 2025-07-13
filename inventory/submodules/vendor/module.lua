@@ -18,4 +18,4 @@ lia.config.add("vendorDefaultMoney", "Default Vendor Money", 500, nil, {
     max = 100000
 })
 
-MODULE.Features = {"Adds NPC vendors that sell items", "Adds editable inventory menus", "Adds configurable default money", "Adds transaction logs for purchases", "Adds vendor restock timers",}
+MODULE.Features = {"Adds NPC vendors that sell items", "Adds editable inventory menus", "Adds configurable default money", "Adds transaction logs for purchases", "Adds vendor restock timers"}

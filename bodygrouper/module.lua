@@ -10,4 +10,4 @@ lia.config.add("BodyGrouperModel", "Body Grouper Model", "models/props_c17/Furni
     type = "Generic"
 })
 
-MODULE.Features = {"Adds a spawnable closet entity for editing bodygroups", "Adds the ability to customize its model via BodyGrouperModel", "Adds menu access that requires proximity or privilege", "Adds an admin command to view another player's bodygroups", "Adds a networked menu for editing bodygroups",}
+MODULE.Features = {"Adds a spawnable closet entity for editing bodygroups", "Adds the ability to customize its model via BodyGrouperModel", "Adds menu access that requires proximity or privilege", "Adds an admin command to view another player's bodygroups", "Adds a networked menu for editing bodygroups"}

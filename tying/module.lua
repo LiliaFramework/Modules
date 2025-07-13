@@ -9,4 +9,4 @@ if SERVER then
     lia.log.addType("untie", function(client, target) return string.format("%s untied %s", client:Name(), IsValid(target) and target:Name() or "unknown") end, "Player")
 end
 
-MODULE.Features = {"Adds handcuff items that restrain players", "Adds logging for tie and untie events", "Adds support for roleplay arrests", "Adds timed escape minigames for prisoners", "Adds compatibility with the search submodule",}
+MODULE.Features = {"Adds handcuff items that restrain players", "Adds logging for tie and untie events", "Adds support for roleplay arrests", "Adds timed escape minigames for prisoners", "Adds compatibility with the search submodule"}

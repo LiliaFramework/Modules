@@ -49,7 +49,7 @@
         net.Send(client)
     end
 
-    local networkStrings = {"StartCaption", "EndCaption",}
+    local networkStrings = {"StartCaption", "EndCaption"}
     for _, netString in ipairs(networkStrings) do
         util.AddNetworkString(netString)
     end

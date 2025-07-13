@@ -12,4 +12,4 @@ lia.config.add("ChatMessagesInterval", "Chat Messages Interval", 300, nil, {
     max = 3600
 })
 
-MODULE.Features = {"Adds periodic server adverts to chat", "Adds interval control via ChatMessagesInterval", "Adds localized message support", "Adds rotating tips for new players", "Adds toggle to disable adverts per user",}
+MODULE.Features = {"Adds periodic server adverts to chat", "Adds interval control via ChatMessagesInterval", "Adds localized message support", "Adds rotating tips for new players", "Adds toggle to disable adverts per user"}

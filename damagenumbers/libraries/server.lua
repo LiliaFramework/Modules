@@ -9,7 +9,7 @@
     net.Send({ent, atk})
 end
 
-local networkStrings = {"expDamageNumbers",}
+local networkStrings = {"expDamageNumbers"}
 for _, netString in ipairs(networkStrings) do
     util.AddNetworkString(netString)
 end

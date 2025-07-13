@@ -5,4 +5,4 @@ MODULE.version = 10007
 MODULE.desc = "Adds an interactive 3D war table for planning operations on a shared map."
 MODULE.WorkshopContent = "3431351432"
 MODULE.Public = true
-MODULE.Features = {"Adds an interactive 3D war table", "Adds the ability to plan operations on a map", "Adds a workshop model", "Adds marker placement for strategies", "Adds support for multiple map layouts",}
+MODULE.Features = {"Adds an interactive 3D war table", "Adds the ability to plan operations on a map", "Adds a workshop model", "Adds marker placement for strategies", "Adds support for multiple map layouts"}

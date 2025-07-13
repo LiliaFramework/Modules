@@ -22,4 +22,4 @@ end, {
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })
 
-MODULE.Features = {"Adds the ability to identify corpses after IdentificationTime", "Adds use of CorpseMessageFont for 3D2D text", "Adds info display above bodies", "Adds configurable identification delays", "Adds logs when corpses are identified",}
+MODULE.Features = {"Adds the ability to identify corpses after IdentificationTime", "Adds use of CorpseMessageFont for 3D2D text", "Adds info display above bodies", "Adds configurable identification delays", "Adds logs when corpses are identified"}

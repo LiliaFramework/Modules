@@ -15,4 +15,4 @@ end, {
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })
 
-MODULE.Features = {"Adds a radio chat channel for players", "Adds font configuration via RadioFont", "Adds workshop models for radios", "Adds frequency channels for groups", "Adds handheld radio items",}
+MODULE.Features = {"Adds a radio chat channel for players", "Adds font configuration via RadioFont", "Adds workshop models for radios", "Adds frequency channels for groups", "Adds handheld radio items"}

@@ -8,4 +8,4 @@ MODULE.WeaponsSpeed = {
 }
 
 MODULE.Public = true
-MODULE.Features = {"Adds slower movement while holding heavy weapons", "Adds speed penalties defined per weapon", "Adds encouragement for strategic choices", "Adds customizable weapon speed table", "Adds automatic speed restore when switching",}
+MODULE.Features = {"Adds slower movement while holding heavy weapons", "Adds speed penalties defined per weapon", "Adds encouragement for strategic choices", "Adds customizable weapon speed table", "Adds automatic speed restore when switching"}

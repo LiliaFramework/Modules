@@ -21,7 +21,7 @@ net.Receive("radioAdjust", function(_, client)
     end
 end)
 
-local networkStrings = {"radioAdjust",}
+local networkStrings = {"radioAdjust"}
 for _, netString in ipairs(networkStrings) do
     util.AddNetworkString(netString)
 end

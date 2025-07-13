@@ -7,7 +7,7 @@ function MODULE:runCutscene(target, id)
     end
 end
 
-local networkStrings = {"lia_cutscene",}
+local networkStrings = {"lia_cutscene"}
 for _, netString in ipairs(networkStrings) do
     util.AddNetworkString(netString)
 end

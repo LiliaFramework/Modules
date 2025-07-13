@@ -5,4 +5,4 @@ MODULE.version = 10007
 MODULE.desc = "Implements loyalty tiers that grant access to the /partytier command when flagged."
 MODULE.Public = true
 lia.flag.add("T", "Access to /partytier")
-MODULE.Features = {"Adds a loyalty tier system for players", "Adds the /partytier command access", "Adds permission control through flags", "Adds automatic tier progression", "Adds customizable rewards per tier",}
+MODULE.Features = {"Adds a loyalty tier system for players", "Adds the /partytier command access", "Adds permission control through flags", "Adds automatic tier progression", "Adds customizable rewards per tier"}

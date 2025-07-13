@@ -49,7 +49,7 @@ function MODULE:PlayerInitialSpawn(client)
     net.Send(client)
 end
 
-local networkStrings = {"RestartDisplay",}
+local networkStrings = {"RestartDisplay"}
 for _, netString in ipairs(networkStrings) do
     util.AddNetworkString(netString)
 end
