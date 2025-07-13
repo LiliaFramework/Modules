@@ -18,7 +18,38 @@ permissions:
   security-events: write
   statuses: write
 jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - run: |
+          git fetch origin main
+          base=$(git merge-base HEAD origin/main)
+          modified=$(git diff --name-only "$base" -- '*/module.lua')
+          if [ -z "$modified" ]; then
+            exit 0
+          fi
+          for file in $modified; do
+            current=$(grep -Po 'MODULE\.version\s*=\s*\K[0-9]+' "$file" | head -n1)
+            if [ -z "$current" ]; then
+              next=1
+              echo '' >> "$file"
+              echo "MODULE.version = $next" >> "$file"
+            else
+              next=$((current+1))
+              sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+/\1$next/" "$file"
+            fi
+            git add "$file"
+          done
+          if ! git diff --cached --quiet; then
+            git config user.email "githubactions@github.com"
+            git config user.name "GitHub Actions"
+            git commit -m "ci: auto bump module versions"
+            git push origin HEAD:main
   linter:
+    needs: bump-version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
