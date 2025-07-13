@@ -1,10 +1,8 @@
 name: CI
-
 on:
   push:
     branches:
       - main
-
 permissions:
   actions: write
   checks: write
@@ -19,7 +17,6 @@ permissions:
   repository-projects: write
   security-events: write
   statuses: write
-
 jobs:
   linter:
     runs-on: ubuntu-latest
@@ -44,7 +41,6 @@ jobs:
             --no-max-line-length --no-max-code-line-length \
             --no-max-string-line-length --no-max-comment-line-length
         working-directory: modules
-
   scrape-modules:
     needs: linter
     runs-on: ubuntu-latest
@@ -139,7 +135,6 @@ jobs:
         with:
           name: modules-json
           path: modules.json
-
   gh-pages:
     needs: scrape-modules
     runs-on: ubuntu-latest
@@ -147,13 +142,17 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: mkdir -p 'documentation'
+      - run: mkdir -p documentation
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
-          path: 'documentation/Downloads'
+          path: documentation/Downloads
+      - uses: actions/download-artifact@v4
+        with:
+          name: modules-json
+          path: documentation
       - run: |
-          for zip in 'documentation/Downloads'/*.zip; do
+          for zip in documentation/Downloads/*.zip; do
             folder=$(basename "$zip" .zip)
             unzip "$zip" -d "extracted_${folder}"
           done
@@ -164,13 +163,12 @@ jobs:
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
           publish_branch: gh-pages
-          publish_dir: 'documentation'
+          publish_dir: documentation
           force_orphan: true
       - uses: actions/upload-artifact@v4
         with:
           name: built-docs
-          path: 'documentation'
-
+          path: documentation
   upload-docs:
     needs: gh-pages
     runs-on: ubuntu-latest
