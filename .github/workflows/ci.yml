@@ -17,6 +17,7 @@ permissions:
   repository-projects: write
   security-events: write
   statuses: write
+
 jobs:
   bump-version:
     runs-on: ubuntu-latest
@@ -27,16 +28,14 @@ jobs:
       - run: |
           git fetch origin main
           base=$(git merge-base HEAD origin/main)
-          modified=$(git diff --name-only "$base" -- '*/module.lua')
-          if [ -z "$modified" ]; then
-            exit 0
-          fi
-          for file in $modified; do
+          changed_dirs=$(git diff --name-only "$base"...HEAD | awk -F/ '{print $1}' | sort -u)
+          for dir in $changed_dirs; do
+            file="$dir/module.lua"
+            [ -f "$file" ] || continue
             current=$(grep -Po 'MODULE\.version\s*=\s*\K[0-9]+' "$file" | head -n1)
             if [ -z "$current" ]; then
               next=1
-              echo '' >> "$file"
-              echo "MODULE.version = $next" >> "$file"
+              printf '\nMODULE.version = %s\n' "$next" >> "$file"
             else
               next=$((current+1))
               sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+/\1$next/" "$file"
@@ -48,6 +47,7 @@ jobs:
             git config user.name "GitHub Actions"
             git commit -m "ci: auto bump module versions"
             git push origin HEAD:main
+
   linter:
     needs: bump-version
     runs-on: ubuntu-latest
@@ -72,6 +72,7 @@ jobs:
             --no-max-line-length --no-max-code-line-length \
             --no-max-string-line-length --no-max-comment-line-length
         working-directory: modules
+
   scrape-modules:
     needs: linter
     runs-on: ubuntu-latest
@@ -166,6 +167,7 @@ jobs:
         with:
           name: modules-json
           path: modules.json
+
   gh-pages:
     needs: scrape-modules
     runs-on: ubuntu-latest
@@ -200,6 +202,7 @@ jobs:
         with:
           name: built-docs
           path: documentation
+
   upload-docs:
     needs: gh-pages
     runs-on: ubuntu-latest
