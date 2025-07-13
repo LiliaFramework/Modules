@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Corpse ID"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 10008
+MODULE.version = 10009
 MODULE.desc = "Allows players to identify corpses after a short delay, displaying details above the body."
 MODULE.Public = true
 lia.config.add("IdentificationTime", "Identification Time", 5, nil, {

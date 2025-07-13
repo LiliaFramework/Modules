@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Raised Weapons"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 10004
+MODULE.version = 10005
 MODULE.desc = "Automatically lowers weapons when sprinting and raises them again after a short delay."
 MODULE.Public = true
 lia.config.add("WeaponRaiseSpeed", "Weapon Raise Speed", 1, nil, {

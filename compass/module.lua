@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Compass"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 10003
+MODULE.version = 10004
 MODULE.desc = "Displays a rotating HUD compass that can mark spotted locations or enemies."
 MODULE.WorkshopContent = "3519849524"
 MODULE.Public = true

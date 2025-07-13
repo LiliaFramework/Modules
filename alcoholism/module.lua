@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Alcoholism"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 10004
+MODULE.version = 10005
 MODULE.desc = "Introduces drinkable alcohol items that raise intoxication levels and temporarily blur the player's vision and movement."
 MODULE.Public = true
 MODULE.Features = {"Adds alcohol items that raise BAC and gradually wear off", "Adds screen blur and movement effects that scale with intoxication", "Adds player notification when reaching DrunkNotifyThreshold", "Adds configurable BAC settings like AlcoholTickTime", "Adds multiple drink items with varying strength"}
