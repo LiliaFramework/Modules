@@ -244,6 +244,6 @@ jobs:
           git config user.name "GitHub Actions"
           git add documentation/docs
           if ! git diff --cached --quiet; then
-            git commit -m "Update Module Documentation"
+            git commit -m "Update Module Versions"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
           fi
