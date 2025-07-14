@@ -2,12 +2,18 @@
 function MODULE:PlayerLoadedChar(client, char)
     local usergroup = client:GetUserGroup()
     local group = self.DonatorGroups[usergroup]
-    if group then char:giveFlags(group) end
+    if group then
+        char:giveFlags(group)
+        hook.Run("DonatorFlagsGranted", client, group)
+    end
 end
 
 function MODULE:PlayerSpawn(client)
     local currentSlots = client:getLiliaData("overrideSlots", nil)
-    if currentSlots then MsgC(Color(0, 255, 0), L("donatedSlotsInfo", client:Nick(), currentSlots) .. "\n") end
+    if currentSlots then
+        MsgC(Color(0, 255, 0), L("donatedSlotsInfo", client:Nick(), currentSlots) .. "\n")
+        hook.Run("DonatorSpawn", client, currentSlots)
+    end
 end
 
 function AddOverrideCharSlots(client)
@@ -16,6 +22,7 @@ function AddOverrideCharSlots(client)
             local current = ply:getLiliaData("overrideSlots", lia.config.get("MaxCharacters"))
             current = current + 1
             ply:setLiliaData("overrideSlots", current)
+            hook.Run("DonatorSlotsAdded", ply, current)
         end
     end
 end
@@ -32,13 +39,17 @@ function SubtractOverrideCharSlots(client)
             local current = ply:getLiliaData("overrideSlots", lia.config.get("MaxCharacters"))
             current = current - 1
             ply:setLiliaData("overrideSlots", current)
+            hook.Run("DonatorSlotsSubtracted", ply, current)
         end
     end
 end
 
 function OverrideCharSlots(client, value)
     for _, ply in player.Iterator() do
-        if client and ply == client then ply:setLiliaData("overrideSlots", value) end
+        if client and ply == client then
+            ply:setLiliaData("overrideSlots", value)
+            hook.Run("DonatorSlotsSet", ply, value)
+        end
     end
 end
 

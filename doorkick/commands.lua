@@ -23,6 +23,7 @@ lia.command.add("doorkick", {
                     client.isKickingDoor = true
                     net.Start("DoorKickView")
                     net.Send(client)
+                    hook.Run("DoorKickStarted", client, ent)
                     timer.Simple(0.5, function()
                         timer.Simple(0.9, function()
                             if IsValid(client) then
@@ -35,6 +36,7 @@ lia.command.add("doorkick", {
                             ent:Fire("unlock")
                             ent:Fire("open")
                             lia.log.add(client, "doorkick", ent)
+                            hook.Run("DoorKickedOpen", client, ent)
                         end
                     end)
                 else
