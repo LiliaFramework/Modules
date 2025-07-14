@@ -12,6 +12,24 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### WarrantStatusChanged
+
+**Purpose**
+Called whenever a player's warrant state toggles on or off.
+
+**Parameters**
+
+- `character` (`Character`): Character whose status changed.
+- `warranter` (`Player`): Player issuing or removing the warrant.
+- `state` (`boolean`): `true` if warranted, `false` if cleared.
+
+**Returns**
+- None
+
+---
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

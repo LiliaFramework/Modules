@@ -4,6 +4,7 @@
         net.Start("PlayPickupAnimation")
         net.WriteString(item.uniqueID)
         net.Send(client)
+        hook.Run("VManipPickup", client, item)
     end
 end
 

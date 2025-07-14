@@ -12,6 +12,86 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### StunGunFired
+
+**Purpose**
+Triggered when the stungun successfully tases a target.
+
+**Parameters**
+
+- `attacker` (`Player`): Player using the stungun.
+- `target` (`Entity`): Target that was hit.
+
+---
+
+### PlayerStunned
+
+**Purpose**
+Called when a player enters the normal stun state.
+
+**Parameters**
+
+- `target` (`Player`): Player being stunned.
+- `weapon` (`Weapon`): Stungun weapon.
+
+**Returns**
+- None
+
+---
+
+### PlayerStunCleared
+
+**Purpose**
+Fires when a normal stun ends.
+
+**Parameters**
+
+- `target` (`Player`): Stunned player.
+- `weapon` (`Weapon`): Stungun weapon.
+
+---
+
+### PlayerOverStunned
+
+**Purpose**
+Called when a player is over stunned and takes damage.
+
+**Parameters**
+
+- `target` (`Player`): Affected player.
+- `weapon` (`Weapon`): Stungun weapon.
+
+---
+
+### PlayerOverStunCleared
+
+**Purpose**
+Fires when the over stun effect wears off.
+
+**Parameters**
+
+- `target` (`Player`): Player affected.
+- `weapon` (`Weapon`): Stungun weapon.
+
+---
+
+### StunGunTethered
+
+**Purpose**
+Runs when a rope tether is attached between the user and the target.
+
+**Parameters**
+
+- `attacker` (`Player`): Player using the stungun.
+- `target` (`Entity`): Tethered target.
+
+**Returns**
+- None
+
+---
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

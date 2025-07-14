@@ -111,9 +111,11 @@ function SWEP:FuckingStun(ply, tims)
     if not IsValid(ply) or not ply:IsPlayer() then return end
     ply:SetMoveType(MOVETYPE_FLYGRAVITY)
     ply:EmitSound(GetSound(ply:isFemale()))
+    hook.Run("PlayerStunned", ply, self)
     timer.Create("antistun" .. ply:SteamID(), 1, 1, function()
         if IsValid(ply) then ply:SetMoveType(MOVETYPE_WALK) end
         if IsValid(self) then self.Taser = false end
+        hook.Run("PlayerStunCleared", ply, self)
     end)
 
     net.Start("fucking_stun")
@@ -127,11 +129,13 @@ function SWEP:FuckingOverStun(ply)
     ply:TakeDamage(lia.config.get("Damage"), nil, nil)
     ply:Freeze(true)
     ply:EmitSound(GetSound(ply:isFemale()))
+    hook.Run("PlayerOverStunned", ply, self)
     timer.Create("antistun2" .. ply:SteamID(), lia.config.get("StunTime"), 1, function()
         if IsValid(ply) then
             ply:SetMoveType(MOVETYPE_WALK)
             ply:Freeze(false)
         end
+        hook.Run("PlayerOverStunCleared", ply, self)
     end)
 
     net.Start("fucking_stun2")
@@ -263,6 +267,7 @@ function SWEP:PrimaryAttack()
             if not self.Taser then
                 self.Taser = true
                 self:FuckingStun(self.Target, 0.9)
+                hook.Run("StunGunFired", owner, self.Target)
             end
         else
             self:EmitSound("weapons/clipempty_rifle.wav")
@@ -284,6 +289,7 @@ function SWEP:PrimaryAttack()
             local posLocal = target.HelpEnt:WorldToLocal(owner:GetEyeTrace().HitPos)
             constraint.Rope(self.ent, target.HelpEnt, 0, 0, Vector(0.1, 0.1, 0), posLocal, self.dist, 80, 0, 1, "cable/blue_elec", false)
             constraint.Rope(self.ent, target.HelpEnt, 0, 0, Vector(-0.1, -0.1, 0), posLocal, self.dist, 80, 0, 1, "cable/redlaser", false)
+            hook.Run("StunGunTethered", owner, target)
         elseif not self.Target then
             self:CreateFakeRope()
         end
