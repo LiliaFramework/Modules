@@ -12,6 +12,26 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+### PlayerStartSmoking
+
+**Purpose**
+Fired when a player begins using a cigarette weapon.
+
+**Parameters**
+
+- `client` (`Player`): The smoker.
+- `cigaID` (`number`): Cigarette identifier.
+
+### PlayerStopSmoking
+
+**Purpose**
+Triggered when a player releases the smoke and stops smoking.
+
+**Parameters**
+
+- `client` (`Player`): The smoker.
+- `cigaID` (`number`): Cigarette identifier.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.
