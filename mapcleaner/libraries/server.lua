@@ -15,6 +15,7 @@
     end)
 
     timer.Create("clearWorldItems", itemCleanupTime, 0, function()
+        hook.Run("PreItemCleanup")
         for _, client in player.Iterator() do
             client:ChatPrint(L("itemCleanupFinalWarning"))
         end
@@ -22,9 +23,11 @@
         for _, item in pairs(ents.FindByClass("lia_item")) do
             item:Remove()
         end
+        hook.Run("PostItemCleanup")
     end)
 
     timer.Create("AutomaticMapCleanup", mapCleanupTime, 0, function()
+        hook.Run("PreMapCleanup")
         for _, client in player.Iterator() do
             client:ChatPrint(L("mapCleanupFinalWarning"))
         end
@@ -32,5 +35,6 @@
         for _, ent in ents.Iterator() do
             if table.HasValue(self.MapCleanerEntitiesToRemove, ent:GetClass()) then ent:Remove() end
         end
+        hook.Run("PostMapCleanup")
     end)
 end

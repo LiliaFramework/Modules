@@ -17,8 +17,10 @@ net.Receive("WardrobeChangeModel", function(_, client)
         char:setModel(newModel)
         client:SetModel(newModel)
         client:notifyLocalized("wardrobeModelChanged")
+        hook.Run("WardrobeModelChanged", client, newModel)
     else
         client:notifyLocalized("wardrobeModelInvalid")
+        hook.Run("WardrobeModelInvalid", client, newModel)
     end
 end)
 

@@ -13,6 +13,7 @@ function MODULE:OnNPCKilled(ent)
     for itemName, weight in pairs(weights) do
         if choice <= weight then
             lia.item.spawn(itemName, ent:GetPos() + Vector(0, 0, 16), nil, ent:GetAngles())
+            hook.Run("NPCDroppedItem", ent, itemName)
             return
         end
 
