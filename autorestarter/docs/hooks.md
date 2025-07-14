@@ -80,3 +80,53 @@ end)
 
 ---
 
+### AutoRestart
+
+**Purpose**
+Called right before the server restarts automatically.
+
+**Parameters**
+
+- `timestamp` (`number`): UNIX time when the restart is executed.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+**Example**
+
+```lua
+function MODULE:AutoRestart(time)
+    print("Restarting at", os.date("%X", time))
+end
+```
+
+---
+
+### AutoRestartCountdown
+
+**Purpose**
+Fires repeatedly during the final quarter of the restart countdown.
+
+**Parameters**
+
+- `remaining` (`number`): Seconds remaining until restart.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+**Example**
+
+```lua
+function MODULE:AutoRestartCountdown(remaining)
+    print("Restart in", remaining, "seconds")
+end
+```
+
+---
+

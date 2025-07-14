@@ -15,6 +15,7 @@ ITEM.functions.use = {
     onRun = function(item)
         local client = item.player
         client:AddBAC(item.abv)
+        hook.Run("AlcoholConsumed", client, item)
         client:EmitSound("vo/npc/male01/drink01.wav", 75, 100)
         return true
     end,

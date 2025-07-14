@@ -80,3 +80,55 @@ end)
 
 ---
 
+### AlcoholConsumed
+
+**Purpose**
+Called when a player drinks an alcohol item.
+
+**Parameters**
+
+- `client` (`Player`): The drinking player.
+- `item` (`Item`): Item that was consumed.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+**Example**
+
+```lua
+function MODULE:AlcoholConsumed(client, item)
+    print(client:Name() .. " drank " .. item.name)
+end
+```
+
+---
+
+### BACChanged
+
+**Purpose**
+Fires whenever a player's blood alcohol level changes.
+
+**Parameters**
+
+- `client` (`Player`): Player whose BAC changed.
+- `bac` (`number`): New BAC value (0-100).
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+**Example**
+
+```lua
+function MODULE:BACChanged(client, bac)
+    print("BAC for", client:Name(), "is now", bac)
+end
+```
+
+---
+

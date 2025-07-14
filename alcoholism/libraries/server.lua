@@ -4,7 +4,11 @@ function MODULE:Think()
     if next_think <= CurTime() then
         for _, client in player.Iterator() do
             local bac = client:getNetVar("lia_alcoholism_bac", 0)
-            if bac > 0 then client:setNetVar("lia_alcoholism_bac", math.Clamp(bac - lia.config.get("AlcoholDegradeRate", 5), 0, 100)) end
+            if bac > 0 then
+                local newBac = math.Clamp(bac - lia.config.get("AlcoholDegradeRate", 5), 0, 100)
+                client:setNetVar("lia_alcoholism_bac", newBac)
+                hook.Run("BACChanged", client, newBac)
+            end
         end
 
         next_think = CurTime() + lia.config.get("AlcoholTickTime", 30)
