@@ -236,14 +236,15 @@ jobs:
           path: lilia
           fetch-depth: 0
       - run: |
-          mkdir -p lilia/documentation/docs
+          mkdir -p lilia/documentation/docs/modules
+          mv lilia/documentation/modules.md lilia/documentation/docs/modules/modules.md
           cp -R built-docs/. lilia/documentation/docs
       - run: |
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add documentation/docs
+          git add documentation/docs/modules/modules.md documentation/docs
           if ! git diff --cached --quiet; then
-            git commit -m "Update Module Versions"
+            git commit -m "Relocate modules.md to documentation/docs/modules"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
           fi
