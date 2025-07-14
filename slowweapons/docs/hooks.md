@@ -12,6 +12,40 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### OverrideSlowWeaponSpeed
+
+**Purpose**
+Allows overriding the base movement speed when a heavy weapon is equipped.
+
+**Parameters**
+
+- `client` (`Player`): Player carrying the weapon.
+- `weapon` (`Weapon`): Active weapon.
+- `baseSpeed` (`number`): The default base speed value.
+
+**Returns**
+- `number` (optional): New base speed to use.
+
+---
+
+### ApplyWeaponSlowdown
+
+**Purpose**
+Fires when slowdown is applied so other modules can react.
+
+**Parameters**
+
+- `client` (`Player`): Player being slowed.
+- `weapon` (`Weapon`): Active weapon.
+- `moveData` (`CMoveData`): Current move data.
+- `speed` (`number`): Calculated max speed.
+
+**Returns**
+- None
+
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

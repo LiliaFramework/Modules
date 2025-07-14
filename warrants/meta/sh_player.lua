@@ -3,6 +3,7 @@ if SERVER then
     function characterMeta:ToggleWanted(warranter)
         local warranted = not self:IsWanted()
         self:setData("wanted", warranted)
+        hook.Run("WarrantStatusChanged", self, warranter, warranted)
         local notificationMessage = warranted and L("WarrantIssued") or L("WarrantRemoved")
         self:notify(notificationMessage)
         if IsValid(warranter) then

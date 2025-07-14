@@ -12,6 +12,34 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### VManipPickup
+
+**Purpose**
+Called on the server when a player picks up an item and the pickup animation is triggered.
+
+**Parameters**
+
+- `player` (`Player`): Player picking up the item.
+- `item` (`Item`): Item being taken.
+
+---
+
+### VManipAnimationPlayed
+
+**Purpose**
+Fires on the client after the pickup animation plays.
+
+**Parameters**
+
+- `itemID` (`string`): Identifier of the item that triggered the animation.
+
+**Returns**
+- None
+
+---
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.
