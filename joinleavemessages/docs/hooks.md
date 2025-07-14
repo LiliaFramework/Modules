@@ -1,52 +1,51 @@
-### `<HookName>`
+### `PreJoinLeaveMessageSent`
 
 **Purpose**
-`%Purpose%`
+`Called before a join or leave message is broadcast.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `player` (`Player`): `Player that joined or left.`
+* `joined` (`boolean`): `True if joining, false if leaving.`
+* `message` (`string`): `The text that will be sent.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Nothing.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PreJoinLeaveMessageSent", "FilterMessages", function(ply, joined, msg)
+    if ply:IsBot() then return false end
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `JoinLeaveMessageSent`
 
 **Purpose**
-`%Purpose%`
+`Fires after the join or leave message has been sent.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `player` (`Player`): `The player in question.`
+* `joined` (`boolean`): `Whether they joined (true) or left (false).`
+* `message` (`string`): `Message that was sent.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Nothing.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("JoinLeaveMessageSent", "LogToConsole", function(ply, joined, msg)
+    print(msg)
 end)
 ```
