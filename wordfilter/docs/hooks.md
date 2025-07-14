@@ -1,52 +1,80 @@
-### `<HookName>`
+### `PreFilterCheck`
 
 **Purpose**
-`%Purpose%`
+Runs before a player's chat message is scanned for blocked words.
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `ply` (`Player`): Player sending the message.
+* `text` (`string`): Raw chat text.
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`None`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PreFilterCheck", "Example_PreFilterCheck", function(ply, text)
+    print(ply:Name() .. " said: " .. text)
 end)
 ```
-
 
 ---
 
-### `<HookName>`
+### `FilteredWordUsed`
 
 **Purpose**
-`%Purpose%`
+Called when a blocked word is detected in a chat message.
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `ply` (`Player`): Player who sent the message.
+* `word` (`string`): The banned word that was found.
+* `text` (`string`): Original chat text.
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`None`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("FilteredWordUsed", "Example_FilteredWordUsed", function(ply, word, text)
+    ply:notify("Inappropriate language detected")
 end)
 ```
+
+---
+
+### `PostFilterCheck`
+
+**Purpose**
+Fires after the filter check completes.
+
+**Parameters**
+
+* `ply` (`Player`): Player who sent the message.
+* `text` (`string`): Original chat text.
+* `passed` (`boolean`): Whether the message was allowed.
+
+**Realm**
+`Server`
+
+**Returns**
+`None`
+
+**Example**
+
+```lua
+hook.Add("PostFilterCheck", "Example_PostFilterCheck", function(ply, text, passed)
+    if passed then
+        print("Allowed message from", ply)
+    end
+end)
+```
+
