@@ -23,12 +23,26 @@ Fired after the view panel is created when a player opens an extended descriptio
 - `text` (`string`): Description text.
 - `url` (`string`): Reference image URL.
 
+### ExtendedDescriptionClosed
+Triggered when the view panel is closed.
+
+**Parameters**
+- `ply` (`Player`): The player whose description was viewed.
+- `text` (`string`): Description text.
+- `url` (`string`): Reference image URL.
+
 ### ExtendedDescriptionEditOpened
 Triggered when the edit menu is opened.
 
 **Parameters**
 - `frame` (`Panel`): The edit frame.
 - `steamName` (`string`): Steam name of the character being edited.
+
+### ExtendedDescriptionEditClosed
+Runs when the edit menu is closed without submitting.
+
+**Parameters**
+- `steamName` (`string`): Character steam name.
 
 ### ExtendedDescriptionEditSubmitted
 Runs when the edit form is submitted.
@@ -37,6 +51,14 @@ Runs when the edit form is submitted.
 - `steamName` (`string`): Character steam name.
 - `url` (`string`): Reference image URL.
 - `text` (`string`): Description text.
+
+### PreExtendedDescriptionUpdate
+Serverside hook fired before a player's description data updates.
+
+**Parameters**
+- `client` (`Player`): Player whose description is changing.
+- `url` (`string`): Reference image URL.
+- `text` (`string`): New description text.
 
 ### ExtendedDescriptionUpdated
 Serverside hook fired after a player's description data is updated.

@@ -20,6 +20,12 @@ Return `false` to disable freelook for the player.
 **Parameters**
 - `client` (`Player`): Local player.
 
+### PreFreelookToggle
+Called before freelook mode is toggled.
+
+**Parameters**
+- `state` (`boolean`): Desired enabled state.
+
 ### FreelookToggled
 Triggered when freelook mode is toggled via the console command.
 

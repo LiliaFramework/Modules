@@ -1,5 +1,6 @@
-﻿function MODULE:PlayerSwitchFlashlight(client, isEnabled)
+function MODULE:PlayerSwitchFlashlight(client, isEnabled)
     if not client:getChar() then return false end
+    if hook.Run("PrePlayerToggleFlashlight", client, isEnabled) == false then return false end
     if hook.Run("CanPlayerToggleFlashlight", client, isEnabled) == false then return false end
     local enabled, needsItem, cooldown = lia.config.get("FlashlightEnabled", true), lia.config.get("FlashlightNeedsItem", true), lia.config.get("FlashlightCooldown", 0.5)
     if not enabled or (client.FlashlightCooldown or 0) >= CurTime() then return false end
