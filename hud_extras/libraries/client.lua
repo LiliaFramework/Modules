@@ -17,6 +17,7 @@ local function DrawFPS()
     draw.RoundedBox(0, x - 20, centerY - MODULE.barH, 20, MODULE.barH, Color(255, 255, 255))
     draw.SimpleText("Max : " .. MODULE.maxFPS, fpsFont, x, centerY + 40, Color(150, 255, 150), TEXT_ALIGN_RIGHT, 1)
     draw.SimpleText("Min : " .. MODULE.minFPS, fpsFont, x, centerY + 55, Color(255, 150, 150), TEXT_ALIGN_RIGHT, 1)
+    hook.Run("HUDExtrasPostDrawFPS")
 end
 
 lia.config.add("FPSHudFont", "FPS HUD Font", "PoppinsMedium", function()
@@ -37,6 +38,7 @@ local function DrawVignette()
         surface.SetDrawColor(0, 0, 0, 175 + vignetteAlphaDelta)
         surface.SetMaterial(lia.util.getMaterial("lilia/gui/vignette.png"))
         surface.DrawTexturedRect(0, 0, w, h)
+        hook.Run("HUDExtrasPostDrawVignette")
     end
 end
 
@@ -45,6 +47,7 @@ local function DrawBlur()
     blurGoal = client:getLocalVar("blur", 0) + (hook.Run("AdjustBlurAmount", blurGoal) or 0)
     if blurValue ~= blurGoal then blurValue = mathApproach(blurValue, blurGoal, FrameTime() * 20) end
     if blurValue > 0 and not client:ShouldDrawLocalPlayer() then lia.util.drawBlurAt(0, 0, ScrW(), ScrH(), blurValue) end
+    if blurValue > 0 then hook.Run("HUDExtrasPostDrawBlur", blurValue) end
 end
 
 local function ShouldDrawBlur()
@@ -77,6 +80,7 @@ local function drawWatermark()
         surface.SetTextPos(15 + w, ScrH() - h / 2 - ty / 2)
         surface.DrawText(ver)
     end
+    hook.Run("HUDExtrasPostDrawWatermark")
 end
 
 function MODULE:HUDPaint()
