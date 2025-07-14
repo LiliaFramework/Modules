@@ -1,52 +1,76 @@
-### `<HookName>`
+### `ShouldUseRealisticView`
 
 **Purpose**
-`%Purpose%`
+`Called before the module alters the player's camera. Returning false prevents the realistic view from being used.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player whose view is being calculated.`
 
 **Realm**
-`%Client|Server%`
+`Client`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`boolean` — `Return false to cancel the realistic view.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("ShouldUseRealisticView", "BlockInVehicle", function(client)
+    if client:InVehicle() then
+        return false
+    end
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `RealisticViewUpdated`
 
 **Purpose**
-`%Purpose%`
+`Fired after the view table has been built. Allows modification of the values.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player whose view is being updated.`
+* `view` (`table`): `Table containing origin and angles that may be changed.`
 
 **Realm**
-`%Client|Server%`
+`Client`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Return value is ignored.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("RealisticViewUpdated", "LowerFOV", function(client, view)
+    view.fov = 80
+end)
+```
+
+---
+
+### `RealisticViewCalcView`
+
+**Purpose**
+`Final hook before the adjusted view is returned.`
+
+**Parameters**
+
+* `client` (`Player`): `The player whose view is being calculated.`
+* `view` (`table`): `Table that can be modified.`
+
+**Realm**
+`Client`
+
+**Returns**
+`nil` — `Return value is ignored.`
+
+**Example**
+
+```lua
+hook.Add("RealisticViewCalcView", "AddRoll", function(client, view)
+    view.angles.r = view.angles.r + 5
 end)
 ```

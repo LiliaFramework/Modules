@@ -1,52 +1,105 @@
-### `<HookName>`
+### `SlotMachineUse`
 
 **Purpose**
-`%Purpose%`
+`Runs when a player interacts with the slot machine before paying.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `machine` (`Entity`): `The slot machine entity.`
+* `client` (`Player`): `The player who used the machine.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Return value is ignored.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("SlotMachineUse", "CheckVIP", function(machine, client)
+    if not client:isVIP() then
+        return false
+    end
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `SlotMachineStart`
 
 **Purpose**
-`%Purpose%`
+`Fired once the player has paid and the wheels begin to spin.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `machine` (`Entity`): `The slot machine entity.`
+* `client` (`Player`): `Player who started the spin.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Return value is ignored.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("SlotMachineStart", "AnnounceSpin", function(machine, client)
+    client:EmitSound("slots_spin.wav")
+end)
+```
+
+---
+
+### `SlotMachinePayout`
+
+**Purpose**
+`Called when the player wins money from the machine.`
+
+**Parameters**
+
+* `machine` (`Entity`): `The slot machine entity.`
+* `client` (`Player`): `Player who won.`
+* `amount` (`number`): `Amount of money awarded.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — `Return value is ignored.`
+
+**Example**
+
+```lua
+hook.Add("SlotMachinePayout", "LogWin", function(machine, client, amount)
+    print(client:Name() .. " won " .. amount .. "T")
+end)
+```
+
+---
+
+### `SlotMachineEnd`
+
+**Purpose**
+`Runs after the spin is finished regardless of the result.`
+
+**Parameters**
+
+* `machine` (`Entity`): `The slot machine entity.`
+* `client` (`Player`): `Player who played.`
+* `amount` (`number`): `Money paid out (0 if nothing).`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — `Return value is ignored.`
+
+**Example**
+
+```lua
+hook.Add("SlotMachineEnd", "ReadyAgain", function(machine, client)
+    machine.IsPlaying = true
 end)
 ```

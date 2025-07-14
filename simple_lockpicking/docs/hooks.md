@@ -1,52 +1,132 @@
-### `<HookName>`
+### `CanPlayerLockpick`
 
 **Purpose**
-`%Purpose%`
+`Determines if a player is allowed to start picking a door or vehicle.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player using the lockpick.`
+* `target` (`Entity`): `Door or vehicle being lockpicked.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`boolean` — `Return false to disallow lockpicking.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("CanPlayerLockpick", "DisallowPolice", function(client, target)
+    if client:isCombine() then
+        return false
+    end
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `LockpickStart`
 
 **Purpose**
-`%Purpose%`
+`Fired when a player begins a lockpick attempt.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player using the lockpick.`
+* `target` (`Entity`): `Door or vehicle being lockpicked.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Return value is ignored.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("LockpickStart", "AnnounceStart", function(client, target)
+    print(client:Name() .. " started lockpicking " .. tostring(target))
+end)
+```
+
+---
+
+### `LockpickSuccess`
+
+**Purpose**
+`Runs when the lockpick completes successfully.`
+
+**Parameters**
+
+* `client` (`Player`): `The player who picked the lock.`
+* `target` (`Entity`): `Door or vehicle that was unlocked.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — `Return value is ignored.`
+
+**Example**
+
+```lua
+hook.Add("LockpickSuccess", "RewardPlayer", function(client, target)
+    client:notify("Unlocked!")
+end)
+```
+
+---
+
+### `LockpickFinished`
+
+**Purpose**
+`Called when lockpicking ends for any reason.`
+
+**Parameters**
+
+* `client` (`Player`): `The player who used the lockpick.`
+* `target` (`Entity`): `Door or vehicle that was targeted.`
+* `success` (`boolean`): `True if the lock was opened.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — `Return value is ignored.`
+
+**Example**
+
+```lua
+hook.Add("LockpickFinished", "LogFinish", function(client, target, success)
+    if success then
+        print(client:Name() .. " unlocked " .. tostring(target))
+    end
+end)
+```
+
+---
+
+### `LockpickInterrupted`
+
+**Purpose**
+`Triggered when a lockpick attempt is cancelled before completion.`
+
+**Parameters**
+
+* `client` (`Player`): `The player who was lockpicking.`
+* `target` (`Entity`): `Door or vehicle involved.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — `Return value is ignored.`
+
+**Example**
+
+```lua
+hook.Add("LockpickInterrupted", "HandleAbort", function(client, target)
+    client:notify("Lockpicking stopped")
 end)
 ```

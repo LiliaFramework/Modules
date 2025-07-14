@@ -1,52 +1,80 @@
-### `<HookName>`
+### `CanSendRumour`
 
 **Purpose**
-`%Purpose%`
+`Called before a rumour is sent to check if the player is allowed to spread it.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player attempting to spread a rumour.`
+* `text` (`string`): `The rumour text.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`boolean` — `Return false to block the rumour.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("CanSendRumour", "BlockShortRumours", function(client, text)
+    if #text < 10 then
+        return false
+    end
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `RumourAttempt`
 
 **Purpose**
-`%Purpose%`
+`Fired when a player begins to spread a rumour after passing checks.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player attempting to spread a rumour.`
+* `text` (`string`): `The rumour text.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Return value is ignored.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("RumourAttempt", "LogRumourAttempt", function(client, text)
+    print(client:Name() .. " attempted to rumour: " .. text)
+end)
+```
+
+---
+
+### `RumourSent`
+
+**Purpose**
+`Called after a rumour message has been broadcast to other players.`
+
+**Parameters**
+
+* `client` (`Player`): `The player who spread the rumour.`
+* `text` (`string`): `The rumour text.`
+* `revealed` (`boolean`): `Whether the player's identity was revealed.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — `Return value is ignored.`
+
+**Example**
+
+```lua
+hook.Add("RumourSent", "NotifyReveal", function(client, text, revealed)
+    if revealed then
+        client:notify("You were identified!")
+    end
 end)
 ```
