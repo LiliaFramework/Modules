@@ -12,6 +12,40 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### ExtendedDescriptionOpened
+Fired after the view panel is created when a player opens an extended description.
+
+**Parameters**
+- `ply` (`Player`): The player whose description is being viewed.
+- `frame` (`Panel`): The created frame.
+- `text` (`string`): Description text.
+- `url` (`string`): Reference image URL.
+
+### ExtendedDescriptionEditOpened
+Triggered when the edit menu is opened.
+
+**Parameters**
+- `frame` (`Panel`): The edit frame.
+- `steamName` (`string`): Steam name of the character being edited.
+
+### ExtendedDescriptionEditSubmitted
+Runs when the edit form is submitted.
+
+**Parameters**
+- `steamName` (`string`): Character steam name.
+- `url` (`string`): Reference image URL.
+- `text` (`string`): Description text.
+
+### ExtendedDescriptionUpdated
+Serverside hook fired after a player's description data is updated.
+
+**Parameters**
+- `client` (`Player`): Player whose description changed.
+- `url` (`string`): Reference image URL.
+- `text` (`string`): New description text.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

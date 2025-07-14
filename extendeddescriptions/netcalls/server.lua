@@ -6,6 +6,7 @@
         if client:SteamName() == callingClientSteamName then
             client:getChar():setData("textDetDescData", text)
             client:getChar():setData("textDetDescDataURL", textEntryURL)
+            hook.Run("ExtendedDescriptionUpdated", client, textEntryURL, text)
         end
     end
 end)
