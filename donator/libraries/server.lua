@@ -102,6 +102,7 @@ concommand.Add("lia_givemoney", function(ply, _, args)
     end
 
     char:giveMoney(amount)
+    hook.Run("DonatorMoneyGiven", target, amount)
     print(L("gaveMoney", amount, target:Nick()))
 end)
 
@@ -127,6 +128,7 @@ concommand.Add("lia_giveflags", function(ply, _, args)
     end
 
     char:giveFlags(flags)
+    hook.Run("DonatorFlagsGiven", target, flags)
     print(L("gaveFlags", flags, target:Nick()))
 end)
 
@@ -158,5 +160,6 @@ concommand.Add("lia_giveitem", function(ply, _, args)
     end
 
     inv:add(uniqueID)
+    hook.Run("DonatorItemGiven", target, uniqueID)
     print(L("gaveItem", uniqueID, target:Nick()))
 end)
