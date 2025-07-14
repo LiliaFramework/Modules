@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+
 permissions:
   actions: write
   checks: write
@@ -90,7 +91,6 @@ jobs:
             git config user.name "GitHub Actions"
             git commit -m "Updated Modules Versions"
             git push origin HEAD:main
-          fi
 
   scrape-modules:
     needs: linter
@@ -209,11 +209,13 @@ jobs:
           done
       - run: |
           mkdir -p documentation/docs/modules
-          for d in extracted_*/; do
+          for d in extracted_*; do
             mod=$(basename "$d" | sed 's/^extracted_//')
-            mkdir -p "documentation/docs/modules/${mod}"
-            [ -f "${d}hooks.md" ] && cp "${d}hooks.md" "documentation/docs/modules/${mod}/hooks.md"
-            [ -f "${d}libraries.md" ] && cp "${d}libraries.md" "documentation/docs/modules/${mod}/libraries.md"
+            docs_dir=$(find "$d" -type d -path "*/docs" -print -quit)
+            [ -z "$docs_dir" ] && continue
+            dest="documentation/docs/modules/${mod}/docs"
+            mkdir -p "$dest"
+            find "$docs_dir" -maxdepth 1 -type f -name '*.md' -exec cp {} "$dest/" \;
           done
       - uses: actions/setup-node@v3
         with:
