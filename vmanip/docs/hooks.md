@@ -24,6 +24,16 @@ Called on the server when a player picks up an item and the pickup animation is 
 - `player` (`Player`): Player picking up the item.
 - `item` (`Item`): Item being taken.
 
+### PreVManipPickup
+
+**Purpose**
+Runs on the server before the pickup animation network message is sent.
+
+**Parameters**
+
+- `player` (`Player`): Player picking up the item.
+- `item` (`Item`): Item being taken.
+
 ---
 
 ### VManipAnimationPlayed
@@ -37,6 +47,18 @@ Fires on the client after the pickup animation plays.
 
 **Returns**
 - None
+
+### VManipChooseAnim
+
+**Purpose**
+Allows selecting a custom animation to play for an item pickup.
+
+**Parameters**
+
+- `itemID` (`string`): Identifier of the item that triggered the animation.
+
+**Returns**
+- `string` (optional): Animation name to use.
 
 ---
 

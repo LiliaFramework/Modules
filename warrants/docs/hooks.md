@@ -28,6 +28,34 @@ Called whenever a player's warrant state toggles on or off.
 **Returns**
 - None
 
+### PreWarrantToggle
+
+**Purpose**
+Called right before a warrant state is changed.
+
+**Parameters**
+
+- `character` (`Character`): Character whose status will change.
+- `warranter` (`Player`): Player issuing or removing the warrant.
+- `state` (`boolean`): New status that will be set.
+
+**Returns**
+- None
+
+### PostWarrantToggle
+
+**Purpose**
+Fires after the warrant change has been processed.
+
+**Parameters**
+
+- `character` (`Character`): Character whose status changed.
+- `warranter` (`Player`): Player issuing or removing the warrant.
+- `state` (`boolean`): New status value.
+
+**Returns**
+- None
+
 ---
 
 ## Overview

@@ -10,4 +10,5 @@
     hook.Run("ApplyWeaponSlowdown", client, wep, moveData, speed)
     moveData:SetMaxSpeed(speed)
     moveData:SetMaxClientSpeed(speed)
+    hook.Run("PostApplyWeaponSlowdown", client, wep, moveData, speed)
 end

@@ -212,6 +212,7 @@ function SWEP:Reload()
         self.Reloading = false
         self.Power = 100
         self:SetNW2Int("power", self.Power)
+        hook.Run("StunGunReloaded", self:GetOwner(), self)
     end)
 end
 
@@ -231,6 +232,7 @@ function SWEP:SecondaryAttack()
             net.WriteEntity(self)
             net.WriteBit(self.Laser)
             net.Broadcast()
+            hook.Run("StunGunLaserToggled", owner, self.Laser, self)
         end)
     end
 end

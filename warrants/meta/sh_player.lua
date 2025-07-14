@@ -2,6 +2,7 @@
 if SERVER then
     function characterMeta:ToggleWanted(warranter)
         local warranted = not self:IsWanted()
+        hook.Run("PreWarrantToggle", self, warranter, warranted)
         self:setData("wanted", warranted)
         hook.Run("WarrantStatusChanged", self, warranter, warranted)
         local notificationMessage = warranted and L("WarrantIssued") or L("WarrantRemoved")
@@ -19,6 +20,7 @@ if SERVER then
                 ply:notify(string.format(expirationText, description, warranted and L("issued") or L("expired")))
             end
         end
+        hook.Run("PostWarrantToggle", self, warranter, warranted)
     end
 
     function characterMeta:CanWarrantPlayers()

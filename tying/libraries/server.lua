@@ -46,16 +46,19 @@ function MODULE:PlayerUse(client, entity)
     if client:IsHandcuffed() then return false end
     if entity:IsPlayer() and entity:IsHandcuffed() and not entity.liaBeingUnTied then
         entity.liaBeingUnTied = true
+        hook.Run("PlayerStartUnTying", client, entity)
         entity:setAction(L("beingUntied"), 5)
         client:setAction(L("untying"), 5)
         client:doStaredAction(entity, function()
             OnHandcuffRemove(entity)
             entity.liaBeingUnTied = false
+            hook.Run("PlayerFinishUnTying", client, entity)
             client:EmitSound("npc/roller/blade_in.wav")
         end, 5, function()
             entity.liaBeingUnTied = false
             entity:stopAction()
             client:stopAction()
+            hook.Run("PlayerUnTieAborted", client, entity)
         end)
     end
 end
@@ -74,6 +77,7 @@ end
 
 function HandcuffPlayer(target)
     if not IsValid(target) then return end
+    hook.Run("PlayerStartHandcuff", target)
     for _, v in pairs(target:getChar():getInv():getItems()) do
         if v.isWeapon and v:getData("equip") then v:setData("equip", nil) end
     end

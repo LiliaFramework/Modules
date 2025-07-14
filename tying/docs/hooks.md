@@ -25,6 +25,20 @@ Called after a player is fully restrained with handcuffs.
 
 ---
 
+### PlayerStartHandcuff
+
+**Purpose**
+Triggered just before a player is cuffed.
+
+**Parameters**
+
+- `target` (`Player`): The player being cuffed.
+
+**Returns**
+- None
+
+---
+
 ### PlayerUnhandcuffed
 
 **Purpose**
@@ -33,6 +47,46 @@ Fires once handcuffs are removed.
 **Parameters**
 
 - `target` (`Player`): The player released from cuffs.
+
+**Returns**
+- None
+---
+
+### PlayerStartUnTying
+
+**Purpose**
+Runs when an attempt to untie a player begins.
+
+**Parameters**
+
+- `actor` (`Player`): The player starting the action.
+- `target` (`Player`): The cuffed player.
+
+**Returns**
+- None
+
+### PlayerFinishUnTying
+
+**Purpose**
+Triggered after the untie sequence completes successfully.
+
+**Parameters**
+
+- `actor` (`Player`): The player who untied.
+- `target` (`Player`): The freed player.
+
+**Returns**
+- None
+
+### PlayerUnTieAborted
+
+**Purpose**
+Fires if the untie action is canceled for any reason.
+
+**Parameters**
+
+- `actor` (`Player`): The player canceling the action.
+- `target` (`Player`): The cuffed player.
 
 **Returns**
 - None
