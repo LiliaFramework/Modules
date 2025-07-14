@@ -8,6 +8,7 @@ function MODULE:InitPostEntity()
         local prefix = CommunityName .. " | "
         local text = messageData
         chat.AddText(Color(255, 0, 0), prefix, color_white, text)
+        hook.Run("ChatMessageSent", nextMessageIndex, text)
         nextMessageIndex = nextMessageIndex % #ChatMessages + 1
     end)
 end
