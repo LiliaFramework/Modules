@@ -16,6 +16,7 @@
                     effect:SetOrigin(position)
                     effect:SetScale(10)
                     util.Effect("GlassImpact", effect, true, true)
+                    hook.Run("LockShotBreach", client, entity)
                     return
                 end
             end
@@ -34,6 +35,7 @@
                 entity:Fire("unlock")
                 entity:Fire("openawayfrom", name)
                 entity:EmitSound("physics/wood/wood_plank_break" .. math.random(1, 4) .. ".wav", 100, 120)
+                hook.Run("LockShotBreach", client, entity)
                 entity.liaNextBreach = CurTime() + 1
                 timer.Simple(0.5, function() if IsValid(entity) then entity:Fire("setspeed", entity.liaOldSpeed) end end)
             end

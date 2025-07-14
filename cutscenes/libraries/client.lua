@@ -2,6 +2,7 @@ local MODULE = MODULE
 function MODULE:runCutscene(id)
     local cs = self.cutscenes[id]
     if not cs then return end
+    hook.Run("CutsceneStarted", id)
     local pl = LocalPlayer()
     local w, h = ScrW(), ScrH()
     local fade = vgui.Create("DPanel")
@@ -86,7 +87,10 @@ function MODULE:runCutscene(id)
             end)
         end
 
-        timer.Simple(self.fadeDelay, function() fade:Remove() end)
+        timer.Simple(self.fadeDelay, function()
+            fade:Remove()
+            hook.Run("CutsceneEnded", id)
+        end)
     end
 
     local t = self.fadeDelay

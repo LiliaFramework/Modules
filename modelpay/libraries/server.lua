@@ -6,11 +6,18 @@ function MODULE:GetSalaryAmount(client)
     if not IsValid(client) or not client:getChar() then return 0 end
     local playerModel = string.lower(client:GetModel())
     for model, pay in pairs(ModelPay) do
-        if model:lower() == playerModel then return pay end
+        if model:lower() == playerModel then
+            hook.Run("ModelPaySalaryDetermined", client, pay)
+            return pay
+        end
     end
+    hook.Run("ModelPaySalaryDetermined", client, 0)
     return 0
 end
 
 function MODULE:PlayerModelChanged(client, newModel)
-    if ModelPay[newModel] then hook.Run("CreateSalaryTimer", client) end
+    if ModelPay[newModel] then
+        hook.Run("CreateSalaryTimer", client)
+        hook.Run("ModelPayModelEligible", client, newModel)
+    end
 end

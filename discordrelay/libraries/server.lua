@@ -14,6 +14,7 @@ if util.IsBinaryModuleInstalled("chttp") then
                 username = "Lilia Logger"
             })
         })
+        hook.Run("DiscordRelayed", logString)
     end
 else
     print(L("relayCHTTPMissing"))

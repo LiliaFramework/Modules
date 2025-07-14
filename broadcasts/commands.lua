@@ -43,6 +43,7 @@
             end
 
             client:notifyLocalized("classBroadcastSent")
+            hook.Run("ClassBroadcastSent", client, message, classListSimple)
             lia.log.add(client, "classbroadcast", message)
         end)
     end,
@@ -93,6 +94,7 @@ lia.command.add("factionbroadcast", {
             end
 
             client:notifyLocalized("factionBroadcastSent")
+            hook.Run("FactionBroadcastSent", client, message, factionListSimple)
             lia.log.add(client, "factionbroadcast", message)
         end)
     end,

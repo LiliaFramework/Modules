@@ -34,4 +34,5 @@ net.Receive("expDamageNumbers", function()
         pos = pos,
         color = col
     })
+    hook.Run("DamageNumberAdded", ent, dmg)
 end)

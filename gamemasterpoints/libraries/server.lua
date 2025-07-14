@@ -19,6 +19,7 @@ function MODULE:AddPoint(client, name, pos)
 
     client:notifyLocalized("tpPointAdded", name)
     lia.data.set("TPPoints", self.tpPoints, false, false)
+    hook.Run("GamemasterAddPoint", client, name, pos)
 end
 
 function MODULE:RemovePoint(client, name)
@@ -52,6 +53,7 @@ function MODULE:RemovePoint(client, name)
     self.tpPoints[id] = nil
     lia.data.set("TPPoints", self.tpPoints, false, false)
     client:notifyLocalized("tpPointRemoved", properName)
+    hook.Run("GamemasterRemovePoint", client, properName)
 end
 
 function MODULE:RenamePoint(client, name, newName)
@@ -86,6 +88,7 @@ function MODULE:RenamePoint(client, name, newName)
 
     lia.data.set("TPPoints", self.tpPoints, false, false)
     client:notifyLocalized("pointRenamed", oldName, newName)
+    hook.Run("GamemasterRenamePoint", client, oldName, newName)
 end
 
 function MODULE:UpdateSound(client, name, _, newSound)
@@ -110,6 +113,7 @@ function MODULE:UpdateSound(client, name, _, newSound)
 
     lia.data.set("TPPoints", self.tpPoints, false, false)
     client:notifyLocalized("soundUpdated", name, newSound)
+    hook.Run("GamemasterUpdateSound", client, name, newSound)
 end
 
 function MODULE:UpdateEffect(client, name, _, newEffect)
@@ -134,6 +138,7 @@ function MODULE:UpdateEffect(client, name, _, newEffect)
 
     lia.data.set("TPPoints", self.tpPoints, false, false)
     client:notifyLocalized("effectUpdated", name, newEffect)
+    hook.Run("GamemasterUpdateEffect", client, name, newEffect)
 end
 
 function MODULE:MoveToPoint(client, name)
@@ -179,6 +184,7 @@ function MODULE:MoveToPoint(client, name)
     end
 
     client:notifyLocalized("movedTo", properName)
+    hook.Run("GamemasterMoveToPoint", client, properName, pos)
 end
 
 net.Receive("GMTPMove", function(_, client)

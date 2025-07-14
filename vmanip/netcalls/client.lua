@@ -3,5 +3,8 @@
     local itemID = net.ReadString()
     local item = lia.item.list[itemID]
     local isDisabled = item.VManipDisabled
-    if item and VManip.PlayAnim and not isDisabled then VManip:PlayAnim("interactslower") end
+    if item and VManip.PlayAnim and not isDisabled then
+        VManip:PlayAnim("interactslower")
+        hook.Run("VManipAnimationPlayed", itemID)
+    end
 end)

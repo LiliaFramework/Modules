@@ -85,6 +85,7 @@ if SERVER then
         end
 
         table.insert(mCompass_MarkerTable, {id, pos, time, color, icon, name})
+        hook.Run("CompassMarkerAdded", ply, pos, players, time, color, icon, name, id)
         return id
     end
 
@@ -119,6 +120,7 @@ if SERVER then
         end
 
         table.insert(mCompass_MarkerTable, {id, pos, time, color, icon, name})
+        hook.Run("CompassEntityMarkerAdded", ply, ent, players, time, color, icon, name, id)
         return id
     end
 
@@ -129,6 +131,7 @@ if SERVER then
                 net.WriteInt(markerID, 4)
                 net.Broadcast()
                 table.remove(mCompass_MarkerTable, k)
+                hook.Run("CompassMarkerRemoved", markerID)
             end
         end
     end

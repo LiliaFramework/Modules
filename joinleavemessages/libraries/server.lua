@@ -1,8 +1,9 @@
-﻿function MODULE:PlayerDisconnected(client)
+function MODULE:PlayerDisconnected(client)
     local message = L("playerLeft", client:Nick())
     for _, ply in player.Iterator() do
         ClientAddText(ply, Color(255, 0, 0), message)
     end
+    hook.Run("JoinLeaveMessageSent", client, false, message)
 end
 
 function MODULE:PlayerInitialSpawn(client)
@@ -10,4 +11,5 @@ function MODULE:PlayerInitialSpawn(client)
     for _, ply in player.Iterator() do
         ClientAddText(ply, Color(0, 255, 0), message)
     end
+    hook.Run("JoinLeaveMessageSent", client, true, message)
 end

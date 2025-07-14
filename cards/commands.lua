@@ -11,5 +11,6 @@
         local suits = {L("suitSpades"), L("suitDiamonds"), L("suitHearts"), L("suitClubs")}
         local card = table.Random(ranks) .. " " .. table.Random(suits)
         lia.chat.send(client, "me", L("cardDrawAction") .. " " .. card)
+        hook.Run("CardDrawn", client, card)
     end
 })

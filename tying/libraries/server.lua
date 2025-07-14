@@ -92,12 +92,14 @@ function HandcuffPlayer(target)
     end)
 
     target:StartHandcuffAnim()
+    hook.Run("PlayerHandcuffed", target)
 end
 
 function OnHandcuffRemove(target)
     target:setNetVar("restricted", false)
     hook.Run("ResetSubModuleCuffData", target)
     target:EndHandcuffAnim()
+    hook.Run("PlayerUnhandcuffed", target)
 end
 
 function MODULE:CanPlayerJoinClass(client)

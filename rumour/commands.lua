@@ -33,5 +33,7 @@
                 ClientAddText(target, L("rumourMessagePrefix", rumourMessage))
             end
         end
-    end
-})
+
+        hook.Run("RumourSent", client, rumourMessage, revealMath)
+      end
+  })

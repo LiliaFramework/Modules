@@ -12,6 +12,36 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+### CanPermaRemoveEntity
+
+**Purpose**
+Called when a player attempts to permanently remove a map entity. Returning `false` prevents removal.
+
+**Parameters**
+- `client` (`Player`): Player attempting to remove the entity.
+- `entity` (`Entity`): Map entity targeted for deletion.
+
+**Realm**
+`Server`
+
+**Returns**
+- `boolean`: Return `false` to disallow removal.
+
+### OnPermaRemoveEntity
+
+**Purpose**
+Fires after a map entity has been permanently removed by a player.
+
+**Parameters**
+- `client` (`Player`): Player who removed the entity.
+- `entity` (`Entity`): The removed entity.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

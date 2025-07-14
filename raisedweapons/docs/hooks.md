@@ -12,6 +12,51 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+### PlayerWeaponRaisedChanged
+
+**Purpose**
+Called when a player's raised state changes.
+
+**Parameters**
+- `client` (`Player`): Player whose weapon state changed.
+- `state` (`boolean`): `true` if raised, `false` if lowered.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### OnWeaponRaised
+
+**Purpose**
+Fires after a player's weapon has been raised.
+
+**Parameters**
+- `client` (`Player`): The player.
+- `weapon` (`Weapon`): Weapon that was raised.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### OnWeaponLowered
+
+**Purpose**
+Runs when a player's weapon is lowered.
+
+**Parameters**
+- `client` (`Player`): The player.
+- `weapon` (`Weapon`): Weapon that was lowered.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.
