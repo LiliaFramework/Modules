@@ -1,6 +1,7 @@
 ﻿lia.command.add("cards", {
     desc = L("cardsCommandDesc"),
     onRun = function(client)
+        hook.Run("CardsCommandUsed", client)
         local inv = client:getChar():getInv()
         if not inv:hasItem("carddeck") then
             client:notify(L("noCardDeck"))

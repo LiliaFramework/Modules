@@ -3,6 +3,7 @@ local CommunityName = "A Lilia Server"
 local ChatMessages = {"Thank you for playing!", "If you need staff, send them a message @ message!"}
 function MODULE:InitPostEntity()
     local interval = lia.config.get("ChatMessagesInterval", 300)
+    hook.Run("ChatMessagesTimerStarted", interval)
     timer.Create("MessageTimer", interval, 0, function()
         local messageData = ChatMessages[nextMessageIndex]
         local prefix = CommunityName .. " | "
