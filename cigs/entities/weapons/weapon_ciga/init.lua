@@ -11,6 +11,7 @@ function MODULE.cigaUpdate(ply, cigaID)
     if ply.cigaCount == 0 and ply.cantStartciga then return end
     ply.cigaID = cigaID
     ply.cigaCount = ply.cigaCount + 1
+    hook.Run("PlayerInhaleSmoke", ply, cigaID, ply.cigaCount)
     if ply.cigaCount == 1 then
         hook.Run("PlayerStartSmoking", ply, cigaID)
         ply.cigaArm = true
@@ -35,6 +36,9 @@ end)
 
 function MODULE.Releaseciga(ply)
     if not ply.cigaCount then ply.cigaCount = 0 end
+    if ply.cigaCount >= 5 then
+        hook.Run("PlayerPuffSmoke", ply, ply.cigaID, ply.cigaCount)
+    end
     hook.Run("PlayerStopSmoking", ply, ply.cigaID)
     if IsValid(ply:GetActiveWeapon()) and ply:GetActiveWeapon():GetClass():sub(1, 11) == "weapon_ciga" then
         if ply.cigaCount >= 5 then

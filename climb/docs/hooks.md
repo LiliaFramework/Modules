@@ -22,6 +22,34 @@ Fired when a player successfully climbs a ledge.
 - `client` (`Player`): The climber.
 - `height` (`number`): Height difference to the ledge.
 
+### PlayerClimbAttempt
+
+**Purpose**
+Fired when a player presses jump to try climbing.
+
+**Parameters**
+
+- `client` (`Player`): The climber.
+
+### PlayerBeginClimb
+
+**Purpose**
+Called right before the player is boosted upwards.
+
+**Parameters**
+
+- `client` (`Player`): The climber.
+- `height` (`number`): Detected ledge height.
+
+### PlayerFailedClimb
+
+**Purpose**
+Triggered if the climb check fails.
+
+**Parameters**
+
+- `client` (`Player`): The climber.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.
