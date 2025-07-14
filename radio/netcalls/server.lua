@@ -15,6 +15,7 @@ net.Receive("radioAdjust", function(_, client)
         if item and (IsValid(ent) or item:getOwner() == client) then
             (ent or client):EmitSound("buttons/combine_button1.wav", 50, 170)
             item:setData("freq", freq, player.GetAll(), false, true)
+            hook.Run("OnRadioFrequencyChanged", client, item, freq)
         else
             client:notifyLocalized("noRadio")
         end
