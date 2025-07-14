@@ -1,4 +1,5 @@
-﻿lia.command.add("gmtpremove", {
+﻿local MODULE = MODULE
+lia.command.add("gmtpremove", {
     adminOnly = true,
     privilege = "Manage Gamemaster Teleport Points",
     desc = L("deletePoint"),
