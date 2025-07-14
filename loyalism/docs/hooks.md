@@ -1,52 +1,119 @@
-### `<HookName>`
+### `PreUpdatePartyTiers`
 
 **Purpose**
-`%Purpose%`
+`Called before the module recalculates all player loyalty tiers.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* None
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`void` — `None`
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PreUpdatePartyTiers", "Announce", function()
+    print("Updating loyalty tiers")
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `PartyTierApplying`
 
 **Purpose**
-`%Purpose%`
+`Runs for each player before their loyalty tier value is stored.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `Player being updated.`
+* `tier` (`number`): `Tier value being applied.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`void` — `None`
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PartyTierApplying", "DebugTier", function(client, tier)
+    print(client:Name(), "set to tier", tier)
+end)
+```
+
+---
+
+### `PartyTierUpdated`
+
+**Purpose**
+`Fires after a player's tier data has been stored.`
+
+**Parameters**
+
+* `client` (`Player`): `Player whose tier was updated.`
+* `tier` (`number`): `Tier value stored.`
+
+**Realm**
+`Server`
+
+**Returns**
+`void` — `None`
+
+**Example**
+```lua
+hook.Add("PartyTierUpdated", "Notify", function(client, tier)
+    -- reward logic
+end)
+```
+
+---
+
+### `PartyTierNoCharacter`
+
+**Purpose**
+`Called during the update when a player lacks an active character.`
+
+**Parameters**
+
+* `client` (`Player`): `The player without a character.`
+
+**Realm**
+`Server`
+
+**Returns**
+`void` — `None`
+
+**Example**
+```lua
+hook.Add("PartyTierNoCharacter", "Skip", function(client)
+    print(client:SteamName(), "has no character")
+end)
+```
+
+---
+
+### `PostUpdatePartyTiers`
+
+**Purpose**
+`Runs once all players have been processed.`
+
+**Parameters**
+
+* None
+
+**Realm**
+`Server`
+
+**Returns**
+`void` — `None`
+
+**Example**
+```lua
+hook.Add("PostUpdatePartyTiers", "Done", function()
+    print("Tiers updated")
 end)
 ```

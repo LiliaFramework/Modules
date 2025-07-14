@@ -1,52 +1,96 @@
-### `<HookName>`
+### `PreLoadMessage`
 
 **Purpose**
-`%Purpose%`
+`Called before a player's faction load message is shown.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player that loaded a character.`
+* `data` (`table`): `Arguments passed to ClientAddText for this faction.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`void` — `None`
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PreLoadMessage", "LogPreMessage", function(client, data)
+    print(client:Name() .. " is about to see a load message")
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `LoadMessageSent`
 
 **Purpose**
-`%Purpose%`
+`Runs right after the load message text has been sent to the client.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `Recipient of the message.`
+* `data` (`table`): `Message arguments that were sent.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`void` — `None`
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("LoadMessageSent", "NotifySend", function(client, data)
+    -- additional processing
+end)
+```
+
+---
+
+### `PostLoadMessage`
+
+**Purpose**
+`Final hook after a faction load message is displayed.`
+
+**Parameters**
+
+* `client` (`Player`): `The player who saw the message.`
+* `data` (`table`): `Message arguments that were displayed.`
+
+**Realm**
+`Server`
+
+**Returns**
+`void` — `None`
+
+**Example**
+```lua
+hook.Add("PostLoadMessage", "ClearTempData", function(client, data)
+    -- cleanup work
+end)
+```
+
+---
+
+### `LoadMessageMissing`
+
+**Purpose**
+`Triggered when a faction has no configured load message.`
+
+**Parameters**
+
+* `client` (`Player`): `Player without a defined message.`
+
+**Realm**
+`Server`
+
+**Returns**
+`void` — `None`
+
+**Example**
+```lua
+hook.Add("LoadMessageMissing", "FallbackMessage", function(client)
+    client:ChatPrint("Welcome back!")
 end)
 ```
