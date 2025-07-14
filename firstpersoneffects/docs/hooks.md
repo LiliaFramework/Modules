@@ -12,6 +12,22 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### ShouldUseFirstPersonEffects
+Return `false` to disable the effect for the given player.
+
+**Parameters**
+- `player` (`Player`): Player being processed.
+
+### FirstPersonEffectsUpdated
+Called clientside after the view offsets are calculated.
+
+**Parameters**
+- `player` (`Player`): The local player.
+- `posOffset` (`Vector`): Calculated position offset.
+- `angOffset` (`Angle`): Calculated angle offset.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.
