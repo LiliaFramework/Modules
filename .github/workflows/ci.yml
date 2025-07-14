@@ -207,6 +207,14 @@ jobs:
             f=$(basename "$z" .zip)
             unzip "$z" -d "extracted_${f}"
           done
+      - run: |
+          mkdir -p documentation/docs/modules
+          for d in extracted_*/; do
+            mod=$(basename "$d" | sed 's/^extracted_//')
+            mkdir -p "documentation/docs/modules/${mod}"
+            [ -f "${d}hooks.md" ] && cp "${d}hooks.md" "documentation/docs/modules/${mod}/hooks.md"
+            [ -f "${d}libraries.md" ] && cp "${d}libraries.md" "documentation/docs/modules/${mod}/libraries.md"
+          done
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -236,15 +244,13 @@ jobs:
           path: lilia
           fetch-depth: 0
       - run: |
-          mkdir -p lilia/documentation/docs/modules
-          mv lilia/documentation/modules.md lilia/documentation/docs/modules/modules.md
+          mkdir -p lilia/documentation/docs
           cp -R built-docs/. lilia/documentation/docs
       - run: |
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add documentation/docs/modules/modules.md documentation/docs
+          git add documentation/docs
           if ! git diff --cached --quiet; then
-            git commit -m "Relocate modules.md to documentation/docs/modules"
+            git commit -m "Update Module Versions"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
-          fi
