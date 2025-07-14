@@ -1,4 +1,4 @@
-﻿lia.utilities = lia.utilities or {}
+lia.utilities = lia.utilities or {}
 local function normalize(minVal, maxVal, val)
     return (val - minVal) / (maxVal - minVal)
 end
@@ -61,7 +61,7 @@ function lia.utilities.Blend(a, b, r)
 end
 
 function lia.utilities.rgb(r, g, b)
-    return Color(r / 255, g / 255, b / 255)
+    return Color(r, g, b)
 end
 
 function lia.utilities.Rainbow(freq)
