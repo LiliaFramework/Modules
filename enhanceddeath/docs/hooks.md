@@ -1,52 +1,75 @@
-### `<HookName>`
+### `HospitalRespawned`
 
 **Purpose**
-`%Purpose%`
+`Runs after a player is respawned at a hospital location.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player being respawned.`
+* `position` (`Vector`): `The location they were moved to.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`void` — `Nothing.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("HospitalRespawned", "NotifyRespawn", function(client, pos)
+    print(client:Nick() .. " respawned at hospital: " .. tostring(pos))
 end)
 ```
-
 
 ---
 
-### `<HookName>`
+### `HospitalMoneyLost`
 
 **Purpose**
-`%Purpose%`
+`Called when a hospital respawn removes money from a player.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player that lost money.`
+* `amount` (`number`): `Amount of currency taken.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`void` — `Nothing.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("HospitalMoneyLost", "LogLoss", function(client, amount)
+    print(client:Nick() .. " lost " .. amount .. " credits at the hospital")
 end)
 ```
+
+---
+
+### `HospitalDeathFlagged`
+
+**Purpose**
+`Fires when a player's death sets them to respawn at a hospital.`
+
+**Parameters**
+
+* `client` (`Player`): `The player that died.`
+
+**Realm**
+`Server`
+
+**Returns**
+`void` — `Nothing.`
+
+**Example**
+
+```lua
+hook.Add("HospitalDeathFlagged", "AnnounceFlag", function(client)
+    print(client:Nick() .. " will respawn at the hospital")
+end)
+```
+

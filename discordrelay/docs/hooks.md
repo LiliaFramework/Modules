@@ -1,52 +1,73 @@
-### `<HookName>`
+### `DiscordRelaySend`
 
 **Purpose**
-`%Purpose%`
+`Called just before a log line is posted to the configured Discord webhook.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `logString` (`string`): `The text that will be sent to Discord.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`void` — `Nothing.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("DiscordRelaySend", "ModifyLog", function(logString)
+    return "[Relay] " .. logString
 end)
 ```
-
 
 ---
 
-### `<HookName>`
+### `DiscordRelayed`
 
 **Purpose**
-`%Purpose%`
+`Runs after a log line has been successfully sent through the webhook.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `logString` (`string`): `The text that was sent to Discord.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`void` — `Nothing.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("DiscordRelayed", "PrintRelayed", function(logString)
+    print("Relayed to Discord:", logString)
 end)
 ```
+
+---
+
+### `DiscordRelayUnavailable`
+
+**Purpose**
+`Fires when the CHTTP binary module is missing and relaying cannot be performed.`
+
+**Parameters**
+
+*(None)*
+
+**Realm**
+`Server`
+
+**Returns**
+`void` — `Nothing.`
+
+**Example**
+
+```lua
+hook.Add("DiscordRelayUnavailable", "NotifyMissing", function()
+    print("Discord relay module unavailable.")
+end)
+```
+
