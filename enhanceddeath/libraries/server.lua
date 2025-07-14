@@ -12,6 +12,7 @@
                 local moneyLoss = math.ceil(currentMoney * moneyLossPercentage)
                 if moneyLoss > 0 then
                     client:getChar():takeMoney(moneyLoss)
+                    hook.Run("HospitalMoneyLost", client, moneyLoss)
                     client:notifyLocalized("moneyLossMessage", lia.currency.get(moneyLoss))
                 end
             end
