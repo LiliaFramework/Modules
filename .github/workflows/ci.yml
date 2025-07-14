@@ -54,13 +54,13 @@ jobs:
       - name: bump-version
         shell: bash
         run: |
-          set -e
+          set -euo pipefail
           base="${{ github.event.before }}"
           changed_dirs=$(git diff --name-only "$base" "$GITHUB_SHA" | awk -F/ '{print $1}' | sort -u)
           for dir in $changed_dirs; do
-            f="$dir/module.lua"
-            [ -f "$f" ] || continue
-            v=$(grep -Eo 'MODULE\.version\s*=\s*[0-9]+(\.[0-9]{2})?' "$f" | awk -F= '{print $2}' | tr -d '[:space:]')
+            file="$dir/module.lua"
+            [ -f "$file" ] || continue
+            v=$(grep -Eo 'MODULE\.version\s*=\s*[0-9]+(\.[0-9]{2})?' "$file" | awk -F= '{print $2}' | tr -d '[:space:]')
             [ -z "$v" ] && v="1.00"
             if [[ $v == *.* ]]; then
               major="${v%%.*}"
@@ -75,16 +75,16 @@ jobs:
               major=$((major + 1))
             fi
             if [ $minor -eq 0 ]; then
-              n="$major"
+              new_ver="$major"
             else
-              n=$(printf "%d.%02d" "$major" "$minor")
+              new_ver=$(printf "%d.%02d" "$major" "$minor")
             fi
-            if grep -q 'MODULE\.version' "$f"; then
-              sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+(\.[0-9]{2})?/\1$n/" "$f"
+            if grep -q 'MODULE\.version' "$file"; then
+              sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+(\.[0-9]{2})?/\1$new_ver/" "$file"
             else
-              printf '\nMODULE.version = %s\n' "$n" >> "$f"
+              printf '\nMODULE.version = %s\n' "$new_ver" >> "$file"
             fi
-            git add "$f"
+            git add "$file"
           done
           if ! git diff --cached --quiet; then
             git config user.email "githubactions@github.com"
@@ -105,47 +105,48 @@ jobs:
       - name: extract-module-metadata
         shell: bash
         run: |
-          echo "[]" > modules_data.json
+          set -euo pipefail
+          parse_list() {
+            local s="$1"
+            [ -z "$s" ] && { printf '[]'; return; }
+            if [[ $s == \{* ]]; then
+              s=${s#\{}
+              s=${s%\}}
+              IFS=',' read -ra arr <<< "$(echo "$s" | tr -d '\n')"
+              printf '['
+              for idx in "${!arr[@]}"; do
+                entry=$(echo "${arr[$idx]}" | sed -E 's/^"|"$//g' | xargs)
+                printf '"%s"' "$entry"
+                [ $idx -lt $(( ${#arr[@]} - 1 )) ] && printf ','
+              done
+              printf ']'
+            else
+              s=$(echo "$s" | sed -E 's/^"|"$//g' | xargs)
+              [ -z "$s" ] && { printf '[]'; return; }
+              printf '["%s"]' "$s"
+            fi
+          }
+          echo '[]' > modules_data.json
           for m in */module.lua; do
             [ -f "$m" ] || continue
+            dir=${m%%/*}
             name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
             desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            version=$(grep -Po 'MODULE\.version\s*=\s*([0-9]+(\.[0-9]{2})?)' "$m" | sed -E 's/.*=\s*([0-9]+(\.[0-9]{2})?)/\1/' || echo "0.00")
-            rawf=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/MODULE\.Features\s*=\s*//')
-            if [ -n "$rawf" ]; then
-              if [[ $rawf == \{* ]]; then
-                rawf=$(echo "$rawf" | sed -E 's/,\s*}$/}/')
-                feat=$(echo "$rawf" | sed -E 's/^\{(.*)\}$/[\1]/')
-              else
-                feat="[$rawf]"
-              fi
-            else
-              feat="[]"
-            fi
-            raww=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/MODULE\.WorkshopContent\s*=\s*//')
-            if [ -n "$raww" ]; then
-              if [[ $raww == \{* ]]; then
-                raww=$(echo "$raww" | sed -E 's/,\s*}$/}/')
-                work=$(echo "$raww" | sed -E 's/^\{(.*)\}$/[\1]/')
-              else
-                work="[$raww]"
-              fi
-            else
-              work="[]"
-            fi
-            folder=$(basename "$(dirname "$m")")
-            download="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/${folder}.zip"
-            source="https://liliaframework.github.io/Modules/${folder}.html"
+            version=$(grep -Po 'MODULE\.version\s*=\s*[0-9]+(\.[0-9]{2})?' "$m" | sed -E 's/.*=\s*//' || echo '0.00')
+            rawf=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/^[^=]+=\s*//')
+            raww=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/^[^=]+=\s*//')
+            feat=$(parse_list "$rawf")
+            work=$(parse_list "$raww")
             jq --arg name "$name" \
                --arg author "$author" \
                --arg discord "$discord" \
                --arg desc "$desc" \
                --arg version "$version" \
-               --arg download "$download" \
-               --arg source "$source" \
-               --arg public_uniqueID "$folder" \
+               --arg download "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/${dir}.zip" \
+               --arg source "https://liliaframework.github.io/Modules/${dir}.html" \
+               --arg public_uniqueID "$dir" \
                --argjson features "$feat" \
                --argjson workshop "$work" \
                '. += [{name:$name,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,public_uniqueID:$public_uniqueID,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
@@ -226,8 +227,8 @@ jobs:
         run: |
           mkdir -p documentation/docs/modules
           for d in extracted_*; do
-            mod=$(basename "$d" | sed 's/^extracted_//')
-            docs_dir=$(find "$d" -type d -path "*/docs" -print -quit)
+            mod=${d#extracted_}
+            docs_dir=$(find "$d" -type d -path "*/docs" -print -quit || true)
             [ -z "$docs_dir" ] && continue
             dest="documentation/docs/modules/${mod}/docs"
             mkdir -p "$dest"
