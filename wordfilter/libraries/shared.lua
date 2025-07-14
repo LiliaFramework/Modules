@@ -3,6 +3,7 @@ function MODULE:PlayerSay(ply, text)
     local lowerText = text:lower()
     for _, bad in pairs(blacklist) do
         if lowerText:find(bad, 1, true) then
+            hook.Run("FilteredWordUsed", ply, bad, text)
             ply:notifyLocalized("usedFilteredWord")
             return ""
         end

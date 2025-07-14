@@ -12,6 +12,91 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+### WarTableUsed
+
+**Purpose**
+Called when a player interacts with a war table entity.
+
+**Parameters**
+
+- `client` (`Player`): The player who used the table.
+- `ent` (`Entity`): The war table entity.
+- `holdingSpeed` (`boolean`): Whether the player was holding the sprint key.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### WarTableCleared
+
+**Purpose**
+Fired after the markers on a war table are cleared.
+
+**Parameters**
+
+- `client` (`Player`): The player who cleared the table.
+- `ent` (`Entity`): The war table entity.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### WarTableMapChanged
+
+**Purpose**
+Triggered when the map image is changed on a war table.
+
+**Parameters**
+
+- `client` (`Player`): The player who set the map.
+- `ent` (`Entity`): The war table entity.
+- `url` (`string`): URL of the new map image.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### WarTableMarkerPlaced
+
+**Purpose**
+Runs after a marker is placed on the table.
+
+**Parameters**
+
+- `client` (`Player`): The player placing the marker.
+- `marker` (`Entity`): The created marker entity.
+- `ent` (`Entity`): The war table entity.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### WarTableMarkerRemoved
+
+**Purpose**
+Runs after a marker is removed from the table.
+
+**Parameters**
+
+- `client` (`Player`): The player removing the marker.
+- `marker` (`Entity`): The marker entity removed.
+- `ent` (`Entity`): The war table entity.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.
