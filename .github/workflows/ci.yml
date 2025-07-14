@@ -51,7 +51,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: bump
+      - name: bump-version
         shell: bash
         run: |
           set -e
@@ -91,6 +91,7 @@ jobs:
             git config user.name "GitHub Actions"
             git commit -m "Updated Modules Versions"
             git push origin HEAD:main
+          fi
 
   scrape-modules:
     needs: bump-version
@@ -101,7 +102,9 @@ jobs:
           fetch-depth: 0
           ref: main
       - run: sudo apt-get update && sudo apt-get install -y jq zip
-      - run: |
+      - name: extract-module-metadata
+        shell: bash
+        run: |
           echo "[]" > modules_data.json
           for m in */module.lua; do
             [ -f "$m" ] || continue
@@ -148,12 +151,17 @@ jobs:
                '. += [{name:$name,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,public_uniqueID:$public_uniqueID,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
             mv tmp.json modules_data.json
           done
-      - run: |
+      - name: zip-modules
+        shell: bash
+        run: |
           for d in */; do
             [ -d "$d" ] && zip -r "${d%/}.zip" "$d"
           done
-      - run: node scrap_modules.js
-      - run: |
+      - name: run-scrap-script
+        run: node scrap_modules.js
+      - name: update-lilia-docs
+        shell: bash
+        run: |
           git clone https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git lilia
           mkdir -p lilia/documentation
           cp documentation/modules.md lilia/documentation/modules.md
@@ -165,8 +173,11 @@ jobs:
             git commit -m "Update modules summary"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
           fi
-      - run: mv modules_data.json modules.json
-      - run: |
+      - name: move-json
+        run: mv modules_data.json modules.json
+      - name: update-website-json
+        shell: bash
+        run: |
           git clone https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/LiliaFramework.github.io.git website
           cp modules.json website/modules.json
           cd website
@@ -193,7 +204,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: mkdir -p documentation
+      - name: create-docs-dir
+        run: mkdir -p documentation
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
@@ -202,12 +214,16 @@ jobs:
         with:
           name: modules-json
           path: documentation
-      - run: |
+      - name: unzip-modules
+        shell: bash
+        run: |
           for z in documentation/*.zip; do
             f=$(basename "$z" .zip)
             unzip "$z" -d "extracted_${f}"
           done
-      - run: |
+      - name: gather-module-docs
+        shell: bash
+        run: |
           mkdir -p documentation/docs/modules
           for d in extracted_*; do
             mod=$(basename "$d" | sed 's/^extracted_//')
@@ -245,10 +261,13 @@ jobs:
           token: ${{ secrets.LiliaGitSecret }}
           path: lilia
           fetch-depth: 0
-      - run: |
+      - name: copy-built-docs
+        run: |
           mkdir -p lilia/documentation/docs
           cp -R built-docs/. lilia/documentation/docs
-      - run: |
+      - name: commit-push-docs
+        shell: bash
+        run: |
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
