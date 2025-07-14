@@ -130,13 +130,14 @@ jobs:
           for m in */module.lua; do
             [ -f "$m" ] || continue
             dir=${m%%/*}
-            name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/')
-            version=$(grep -Po 'MODULE\.version\s*=\s*[0-9]+(\.[0-9]{2})?' "$m" | sed -E 's/.*=\s*//' || echo '0.00')
-            rawf=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/^[^=]+=\s*//')
-            raww=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/^[^=]+=\s*//')
+            name=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || true)
+            author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || true)
+            discord=$(grep -Po 'MODULE\.discord\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || true)
+            desc=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || true)
+            version=$(grep -Po 'MODULE\.version\s*=\s*[0-9]+(\.[0-9]{2})?' "$m" | sed -E 's/.*=\s*//' || true)
+            [ -z "$version" ] && version="0.00"
+            rawf=$(grep -Po 'MODULE\.Features\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/^[^=]+=\s*//' || true)
+            raww=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/^[^=]+=\s*//' || true)
             feat=$(parse_list "$rawf")
             work=$(parse_list "$raww")
             jq --arg name "$name" \
