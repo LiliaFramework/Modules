@@ -1,52 +1,95 @@
-### `<HookName>`
+### `PlayerInhaleSmoke`
 
 **Purpose**
-`%Purpose%`
+Fires each time a player inhales from a cigarette weapon.
 
 **Parameters**
-
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `player` (`Player`): The smoking player.
+* `cigID` (`number`): Identifier of the cigarette item.
+* `puffs` (`number`): Total puffs taken so far.
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — This hook does not return anything.
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PlayerInhaleSmoke", "TrackInhale", function(player, cigID, puffs)
+    print(player:Name() .. " inhaled", puffs, "times")
 end)
 ```
 
+---
+
+### `PlayerStartSmoking`
+
+**Purpose**
+Called the first time a player inhales from a cigarette.
+
+**Parameters**
+* `player` (`Player`): The player who started smoking.
+* `cigID` (`number`): Identifier of the cigarette item.
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — This hook does not return anything.
+
+**Example**
+```lua
+hook.Add("PlayerStartSmoking", "SmokingBegin", function(player, cigID)
+    print(player:Name() .. " started smoking")
+end)
+```
 
 ---
 
-### `<HookName>`
+### `PlayerPuffSmoke`
 
 **Purpose**
-`%Purpose%`
+Occurs when a player releases smoke after holding a cigarette.
 
 **Parameters**
-
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `player` (`Player`): The smoker.
+* `cigID` (`number`): Identifier of the cigarette item.
+* `puffs` (`number`): How many puffs were taken.
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — This hook does not return anything.
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PlayerPuffSmoke", "OnPuff", function(player, cigID, puffs)
+    print(player:Name() .. " puffed after", puffs, "puffs")
+end)
+```
+
+---
+
+### `PlayerStopSmoking`
+
+**Purpose**
+Fires when the player stops smoking, either by releasing the attack key or after finishing a cigarette.
+
+**Parameters**
+* `player` (`Player`): The player who stopped smoking.
+* `cigID` (`number`): Identifier of the cigarette item.
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — This hook does not return anything.
+
+**Example**
+```lua
+hook.Add("PlayerStopSmoking", "SmokingEnd", function(player, cigID)
+    print(player:Name() .. " stopped smoking")
 end)
 ```
