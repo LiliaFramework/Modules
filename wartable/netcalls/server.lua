@@ -10,6 +10,7 @@ net.Receive("ClearWarTable", function(_, client)
     local tableEnt = getTableEnt(client:GetPos())
     if not tableEnt then return end
     tableEnt:Clear()
+    hook.Run("WarTableCleared", client, tableEnt)
 end)
 
 net.Receive("SetWarTableMap", function(_, client)
@@ -23,6 +24,7 @@ net.Receive("SetWarTableMap", function(_, client)
             net.WriteEntity(tableEnt)
             net.WriteString(text)
             net.Broadcast()
+            hook.Run("WarTableMapChanged", client, tableEnt, text)
             break
         end
     end
@@ -49,6 +51,7 @@ net.Receive("PlaceWarTableMarker", function(_, client)
 
     marker:SetParent(tableEnt)
     marker:SetMoveType(MOVETYPE_NONE)
+    hook.Run("WarTableMarkerPlaced", client, marker, tableEnt)
 end)
 
 net.Receive("RemoveWarTableMarker", function(_, client)
@@ -56,6 +59,7 @@ net.Receive("RemoveWarTableMarker", function(_, client)
     local tableEnt = getTableEnt(client:GetPos())
     if not tableEnt then return end
     ent:Remove()
+    hook.Run("WarTableMarkerRemoved", client, ent, tableEnt)
 end)
 
 local networkStrings = {"ClearWarTable", "SetWarTableMap", "PlaceWarTableMarker", "RemoveWarTableMarker", "UseWarTable"}

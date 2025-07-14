@@ -6,4 +6,5 @@ function ENT:Use(activator)
     net.WriteEntity(self)
     net.WriteBool(activator:KeyDown(IN_SPEED))
     net.Send(activator)
+    hook.Run("WarTableUsed", activator, self, activator:KeyDown(IN_SPEED))
 end
