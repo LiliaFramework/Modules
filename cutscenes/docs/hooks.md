@@ -1,52 +1,126 @@
-### `<HookName>`
+### `CutsceneStarted`
 
 **Purpose**
-`%Purpose%`
+Fired when a cutscene begins running. On the server it is called for every player that will view the cutscene.
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `player` (`Player`|nil): Player who started viewing the cutscene (server only).
+* `id` (`string`): Identifier of the cutscene.
 
 **Realm**
-`%Client|Server%`
+`Client & Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — nothing.
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("CutsceneStarted", "AnnounceCutscene", function(ply, id)
+    print("Cutscene " .. id .. " started")
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `CutsceneEnded`
 
 **Purpose**
-`%Purpose%`
+Called on the client once the cutscene has fully finished.
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `id` (`string`): Identifier of the cutscene.
 
 **Realm**
-`%Client|Server%`
+`Client`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — nothing.
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("CutsceneEnded", "FadeOut", function(id)
+    print("Cutscene " .. id .. " ended")
+end)
+```
+
+---
+
+### `CutsceneSceneStarted`
+
+**Purpose**
+Runs when a scene within the current cutscene begins.
+
+**Parameters**
+
+* `id` (`string`): Identifier of the cutscene.
+* `scene` (`table`): Table describing the scene.
+
+**Realm**
+`Client`
+
+**Returns**
+`nil` — nothing.
+
+**Example**
+
+```lua
+hook.Add("CutsceneSceneStarted", "Music", function(id, scene)
+    if scene.sound then print("Playing " .. scene.sound) end
+end)
+```
+
+---
+
+### `CutsceneSceneEnded`
+
+**Purpose**
+Called after a scene finishes playing.
+
+**Parameters**
+
+* `id` (`string`): Identifier of the cutscene.
+* `scene` (`table`): Table describing the scene.
+
+**Realm**
+`Client`
+
+**Returns**
+`nil` — nothing.
+
+**Example**
+
+```lua
+hook.Add("CutsceneSceneEnded", "SceneDone", function(id, scene)
+    print("Scene finished")
+end)
+```
+
+---
+
+### `CutsceneSubtitleStarted`
+
+**Purpose**
+Triggered whenever a subtitle line is displayed.
+
+**Parameters**
+
+* `id` (`string`): Identifier of the cutscene.
+* `subtitle` (`table`): Subtitle information table.
+
+**Realm**
+`Client`
+
+**Returns**
+`nil` — nothing.
+
+**Example**
+
+```lua
+hook.Add("CutsceneSubtitleStarted", "Subtitle", function(id, sub)
+    print(sub.text)
 end)
 ```

@@ -1,52 +1,101 @@
-### `<HookName>`
+### `RefreshFonts`
 
 **Purpose**
-`%Purpose%`
+Rebuilds fonts when the damage number font configuration changes.
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* *(None)*
 
 **Realm**
-`%Client|Server%`
+`Client`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — nothing.
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("RefreshFonts", "DamageNumberFonts", function()
+    surface.CreateFont("DamageFont", {font = lia.config.get("DamageFont"), size = 24})
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `DamageNumbersSent`
 
 **Purpose**
-`%Purpose%`
+Server-side notification that damage numbers were sent to the attacker and victim.
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `attacker` (`Player`): The player who dealt damage.
+* `target` (`Player`): Player that was hit.
+* `damage` (`number`): Amount of damage dealt.
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — nothing.
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("DamageNumbersSent", "PrintDamage", function(attacker, target, dmg)
+    print(attacker:Name() .. " hit " .. target:Name() .. " for " .. dmg)
+end)
+```
+
+---
+
+### `DamageNumberAdded`
+
+**Purpose**
+Called on the client when a floating damage number is created.
+
+**Parameters**
+
+* `target` (`Entity`): Entity the number belongs to.
+* `damage` (`number`): Damage amount shown.
+
+**Realm**
+`Client`
+
+**Returns**
+`nil` — nothing.
+
+**Example**
+
+```lua
+hook.Add("DamageNumberAdded", "ColorNumbers", function(ent, dmg)
+    if ent == LocalPlayer() then return end
+end)
+```
+
+---
+
+### `DamageNumberExpired`
+
+**Purpose**
+Fires when a floating damage number fades out and is removed.
+
+**Parameters**
+
+* `target` (`Entity`): Entity the number belonged to.
+* `damage` (`number`): Damage value that was shown.
+
+**Realm**
+`Client`
+
+**Returns**
+`nil` — nothing.
+
+**Example**
+
+```lua
+hook.Add("DamageNumberExpired", "OnExpire", function(ent, dmg)
+    print("Damage number " .. dmg .. " expired")
 end)
 ```
