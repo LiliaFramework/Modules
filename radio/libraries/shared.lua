@@ -2,6 +2,7 @@
 local function EndChatter(listener)
     timer.Simple(1, function()
         if not listener:IsValid() or not listener:Alive() or hook.Run("ShouldRadioBeep", listener) == false then return false end
+        hook.Run("PlayerFinishRadio", listener, CURFREQ, CURCHANNEL)
         listener:EmitSound("npc/metropolice/vo/off" .. math.random(1, 3) .. ".wav", math.random(60, 70), math.random(80, 120))
     end)
 end
@@ -14,6 +15,7 @@ lia.chat.register("radio", {
         return Color(colorConfig.r, colorConfig.g, colorConfig.b)
     end,
     onCanHear = function(speaker, listener)
+        if hook.Run("CanHearRadio", listener, speaker, CURFREQ, CURCHANNEL) == false then return false end
         local dist = speaker:GetPos():Distance(listener:GetPos())
         local speakRange = lia.config.get("ChatRange", 280)
         local listenerEnts = ents.FindInSphere(listener:GetPos(), speakRange)
@@ -64,9 +66,11 @@ lia.chat.register("radio", {
         end
 
         if freq then
+            if hook.Run("CanUseRadio", speaker, freq, channel) == false then return false end
             CURFREQ = freq
             if channel then CURCHANNEL = channel end
             speaker:EmitSound("npc/metropolice/vo/on" .. math.random(1, 2) .. ".wav", math.random(50, 60), math.random(80, 120))
+            hook.Run("PlayerStartRadio", speaker, freq, channel)
         else
             speaker:notifyLocalized("radioNoRadioComm")
             return false
