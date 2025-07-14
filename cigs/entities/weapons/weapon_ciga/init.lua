@@ -12,6 +12,7 @@ function MODULE.cigaUpdate(ply, cigaID)
     ply.cigaID = cigaID
     ply.cigaCount = ply.cigaCount + 1
     if ply.cigaCount == 1 then
+        hook.Run("PlayerStartSmoking", ply, cigaID)
         ply.cigaArm = true
         net.Start("cigaArm")
         net.WriteEntity(ply)
@@ -34,6 +35,7 @@ end)
 
 function MODULE.Releaseciga(ply)
     if not ply.cigaCount then ply.cigaCount = 0 end
+    hook.Run("PlayerStopSmoking", ply, ply.cigaID)
     if IsValid(ply:GetActiveWeapon()) and ply:GetActiveWeapon():GetClass():sub(1, 11) == "weapon_ciga" then
         if ply.cigaCount >= 5 then
             net.Start("ciga")

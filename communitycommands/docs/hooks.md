@@ -12,6 +12,16 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+### CommunityURLRequest
+
+**Purpose**
+Fired whenever a community link command is executed.
+
+**Parameters**
+
+- `client` (`Player`): The player running the command.
+- `command` (`string`): The command name.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

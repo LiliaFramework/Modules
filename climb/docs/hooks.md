@@ -12,6 +12,16 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+### PlayerClimbed
+
+**Purpose**
+Fired when a player successfully climbs a ledge.
+
+**Parameters**
+
+- `client` (`Player`): The climber.
+- `height` (`number`): Height difference to the ledge.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

@@ -12,6 +12,21 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+### CinematicTriggered
+
+**Purpose**
+Called on the server when a cinematic text message is sent.
+
+**Parameters**
+
+- `client` (`Player`): The initiator.
+- `text` (`string`): Small text line.
+- `bigText` (`string`): Large text line.
+- `duration` (`number`): Display time.
+- `blackBars` (`boolean`): Whether letterbox bars are shown.
+- `music` (`boolean`): Whether audio plays.
+- `color` (`Color`): Text colour.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.
