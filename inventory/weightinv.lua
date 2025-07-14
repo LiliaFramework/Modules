@@ -110,6 +110,7 @@ if SERVER then
         local canAccess, reason = self:canAccess("add", context)
         if not canAccess then return d:reject(reason or "noAccess") end
         if justAddDirectly then
+            hook.Run("PreWeightInvItemAdded", self, item)
             self:addItem(item)
             hook.Run("WeightInvItemAdded", self, item)
             return d:resolve(item)
@@ -119,6 +120,7 @@ if SERVER then
         local itemType = item.uniqueID
         for _ = 1, quantity do
             lia.item.instance(self:getID(), itemType, nil, 0, 0, function(newItem)
+                hook.Run("PreWeightInvItemAdded", self, newItem)
                 self:addItem(newItem)
                 items[#items + 1] = newItem
                 hook.Run("WeightInvItemAdded", self, newItem)
@@ -135,11 +137,13 @@ if SERVER then
         if quantity <= 0 then return d:reject("quantity must be positive") end
         if isnumber(itemTypeOrID) then
             local item = self.items[itemTypeOrID]
+            if item then hook.Run("PreWeightInvItemRemoved", self, item) end
             self:removeItem(itemTypeOrID)
             if item then hook.Run("WeightInvItemRemoved", self, item) end
         else
             local items = self:getItemsOfType(itemTypeOrID)
             for i = 1, math.min(quantity, #items) do
+                hook.Run("PreWeightInvItemRemoved", self, items[i])
                 self:removeItem(items[i]:getID())
                 hook.Run("WeightInvItemRemoved", self, items[i])
             end
@@ -157,6 +161,7 @@ if SERVER then
 
         for _, id in pairs(ids) do
             local item = self.items[id]
+            if item then hook.Run("PreWeightInvItemRemoved", self, item) end
             self:removeItem(id)
             if item then hook.Run("WeightInvItemRemoved", self, item) end
         end

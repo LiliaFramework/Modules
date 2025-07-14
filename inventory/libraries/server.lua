@@ -1,4 +1,5 @@
 ﻿function MODULE:PlayerLoadedChar(client, character)
+    hook.Run("InventoryPrePlayerLoadedChar", client, character)
     local inv = character:getInv()
     if inv then
         local baseMax = lia.config.get("invMaxWeight")
@@ -10,6 +11,7 @@
             inv:sync(client)
         end
     end
+    hook.Run("InventoryPostPlayerLoadedChar", client, character, inv)
 end
 
 local networkStrings = {"liaStorageOpen", "liaStorageUnlock", "liaStorageExit", "liaStorageTransfer", "trunkInitStorage", "VendorTrade", "VendorExit", "VendorMoney", "VendorStock", "VendorMaxStock", "VendorAllowFaction", "VendorAllowClass", "VendorEdit", "VendorMode", "VendorPrice", "VendorSync", "VendorOpen"}

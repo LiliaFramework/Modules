@@ -5,6 +5,7 @@ function MODULE:LoadData()
 end
 
 function MODULE:AddPoint(client, name, pos)
+    hook.Run("GamemasterPreAddPoint", client, name, pos)
     if not name or not pos then
         client:notifyLocalized("invalidInfo")
         return
@@ -23,6 +24,7 @@ function MODULE:AddPoint(client, name, pos)
 end
 
 function MODULE:RemovePoint(client, name)
+    hook.Run("GamemasterPreRemovePoint", client, name)
     if not name then
         client:notifyLocalized("invalidInfo")
         return
@@ -57,6 +59,7 @@ function MODULE:RemovePoint(client, name)
 end
 
 function MODULE:RenamePoint(client, name, newName)
+    hook.Run("GamemasterPreRenamePoint", client, name, newName)
     if not name or not newName then
         client:notifyLocalized("invalidInfo")
         return
@@ -92,6 +95,7 @@ function MODULE:RenamePoint(client, name, newName)
 end
 
 function MODULE:UpdateSound(client, name, _, newSound)
+    hook.Run("GamemasterPreUpdateSound", client, name, newSound)
     if not name or not newSound then
         client:notifyLocalized("invalidInfo")
         return
@@ -117,6 +121,7 @@ function MODULE:UpdateSound(client, name, _, newSound)
 end
 
 function MODULE:UpdateEffect(client, name, _, newEffect)
+    hook.Run("GamemasterPreUpdateEffect", client, name, newEffect)
     if not name or not newEffect then
         client:notifyLocalized("invalidInfo")
         return
@@ -142,6 +147,7 @@ function MODULE:UpdateEffect(client, name, _, newEffect)
 end
 
 function MODULE:MoveToPoint(client, name)
+    hook.Run("GamemasterPreMoveToPoint", client, name)
     if not name then
         client:notifyLocalized("invalidInfo")
         return

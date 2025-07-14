@@ -3,6 +3,7 @@ local vignetteAlphaGoal, vignetteAlphaDelta = 0, 0
 local hasVignetteMaterial = lia.util.getMaterial("lilia/gui/vignette.png") ~= "___error"
 local mathApproach = math.Approach
 local function DrawFPS()
+    hook.Run("HUDExtrasPreDrawFPS")
     local fpsFont = lia.config.get("FPSHudFont")
     local f = math.Round(1 / FrameTime())
     local minF = MODULE.minFPS or 60
@@ -32,6 +33,7 @@ end, {
 
 local function DrawVignette()
     if hasVignetteMaterial then
+        hook.Run("HUDExtrasPreDrawVignette")
         local ft = FrameTime()
         local w, h = ScrW(), ScrH()
         vignetteAlphaDelta = mathApproach(vignetteAlphaDelta, vignetteAlphaGoal, ft * 30)
@@ -44,6 +46,7 @@ end
 
 local function DrawBlur()
     local client = LocalPlayer()
+    hook.Run("HUDExtrasPreDrawBlur")
     blurGoal = client:getLocalVar("blur", 0) + (hook.Run("AdjustBlurAmount", blurGoal) or 0)
     if blurValue ~= blurGoal then blurValue = mathApproach(blurValue, blurGoal, FrameTime() * 20) end
     if blurValue > 0 and not client:ShouldDrawLocalPlayer() then lia.util.drawBlurAt(0, 0, ScrW(), ScrH(), blurValue) end
@@ -63,6 +66,7 @@ local function canDrawWatermark()
 end
 
 local function drawWatermark()
+    hook.Run("HUDExtrasPreDrawWatermark")
     local w, h = 64, 64
     local logoPath = lia.config.get("WatermarkLogo", "")
     local ver = tostring(lia.config.get("GamemodeVersion", ""))
