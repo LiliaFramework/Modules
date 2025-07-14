@@ -45,6 +45,21 @@ Fires when slowdown is applied so other modules can react.
 **Returns**
 - None
 
+### PostApplyWeaponSlowdown
+
+**Purpose**
+Runs after the max speed has been set.
+
+**Parameters**
+
+- `client` (`Player`): Player being slowed.
+- `weapon` (`Weapon`): Active weapon.
+- `moveData` (`CMoveData`): Current move data.
+- `speed` (`number`): Calculated max speed.
+
+**Returns**
+- None
+
 
 ## Overview
 

@@ -29,6 +29,19 @@ Triggered before view punch angles are applied so you can modify them.
 **Returns**
 - None
 
+### ViewBobStep
+
+**Purpose**
+Allows modifying the step direction used for view bobbing.
+
+**Parameters**
+
+- `player` (`Player`): Local player stepping.
+- `step` (`number`): Value of `1` or `-1` for the current step.
+
+**Returns**
+- `number` (optional): New step value.
+
 ---
 
 ## Overview

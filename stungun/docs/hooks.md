@@ -90,6 +90,33 @@ Runs when a rope tether is attached between the user and the target.
 **Returns**
 - None
 
+### StunGunReloaded
+
+**Purpose**
+Triggered when a reload finishes and power is restored.
+
+**Parameters**
+
+- `player` (`Player`): Player reloading the weapon.
+- `weapon` (`Weapon`): Stungun weapon.
+
+**Returns**
+- None
+
+### StunGunLaserToggled
+
+**Purpose**
+Runs when the laser sight is toggled on or off.
+
+**Parameters**
+
+- `player` (`Player`): Owner of the weapon.
+- `state` (`boolean`): New laser state.
+- `weapon` (`Weapon`): Stungun weapon.
+
+**Returns**
+- None
+
 ---
 
 ## Overview

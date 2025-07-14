@@ -11,6 +11,8 @@ function MODULE:PlayerFootstep(client)
     local multiplier_crouch = lia.option.get("viewbobMultiplierCrouch") or 0.1
     local multiplier_sprint = lia.option.get("viewbobMultiplierSprint") or 0.4
     stepvalue = stepvalue == 0 and 1 or -1
+    local override = hook.Run("ViewBobStep", client, stepvalue)
+    if isnumber(override) then stepvalue = override end
     if client:KeyDown(IN_DUCK) then
         if client:KeyDown(IN_FORWARD) then
             applyViewPunch(client, 1.5 * multiplier_crouch, stepvalue * 0.75 * multiplier_crouch, stepvalue * 0.75 * multiplier_crouch)
