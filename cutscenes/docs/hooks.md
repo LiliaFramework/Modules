@@ -80,3 +80,12 @@ end)
 
 ---
 
+
+### Additional Hooks
+
+- `CutsceneSceneStarted` (`Client`)
+  Fired when a new cutscene scene begins.
+- `CutsceneSceneEnded` (`Client`)
+  Fired after a scene finishes.
+- `CutsceneSubtitleStarted` (`Client`)
+  Fired when a subtitle line appears.

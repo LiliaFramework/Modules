@@ -55,6 +55,7 @@ if SERVER then
     util.AddNetworkString("mCompass_RemoveMarker")
     local mCompass_MarkerTable = mCompass_MarkerTable or {}
     function MODULE.AddMarker(ply, pos, players, time, color, icon, name)
+        hook.Run("PreCompassMarkerAdded", ply, pos, players, time, color, icon, name)
         name = name or ""
         icon = icon or ""
         color = color or mCompass_Settings.Spotted_Enemy_Color
@@ -90,6 +91,7 @@ if SERVER then
     end
 
     function MODULE.AddEntityMarker(ply, ent, players, time, color, icon, name)
+        hook.Run("PreCompassEntityMarkerAdded", ply, ent, players, time, color, icon, name)
         name = name or ""
         icon = icon or ""
         color = color or mCompass_Settings.Spotted_Enemy_Color
@@ -155,6 +157,8 @@ if SERVER then
             endpos = ply:EyePos() + ply:EyeAngles():Forward() * mCompass_Settings.Max_Spot_Distance,
             filter = ply
         })
+
+        hook.Run("CompassSpotCommand", ply, tr)
 
         local t = CurTime() + mCompass_Settings.Spot_Duration
         if tr.Entity and not tr.HitWorld then

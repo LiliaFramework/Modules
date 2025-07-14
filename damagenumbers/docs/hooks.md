@@ -80,3 +80,8 @@ end)
 
 ---
 
+
+### Additional Hooks
+
+- `DamageNumberExpired` (`Client`)
+  Called when a floating damage number disappears.

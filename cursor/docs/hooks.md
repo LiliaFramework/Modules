@@ -80,3 +80,10 @@ end)
 
 ---
 
+
+### Additional Hooks
+
+- `PreRenderCursor` (`Client`)
+  Called just before the custom cursor is drawn.
+- `PreCursorThink` (`Client`)
+  Called before the hovered panel cursor is changed.

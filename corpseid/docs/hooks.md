@@ -80,3 +80,12 @@ end)
 
 ---
 
+
+### Additional Hooks
+
+- `CorpseIdentifyBegin` (`Server`)
+  Player accepted the identification prompt.
+- `CorpseIdentifyDeclined` (`Server`)
+  Player declined the identification prompt.
+- `CorpseIdentifyStarted` (`Server`)
+  Called when the identification action begins.
