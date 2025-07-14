@@ -9,6 +9,7 @@ function MODULE:UpdatePartyTiers()
         if char then
             local tier = char:getData("party_tier", 0)
             char:setData("party_tier", tier, false, player.GetAll())
+            hook.Run("PartyTierUpdated", ply, tier)
         end
     end
 end
