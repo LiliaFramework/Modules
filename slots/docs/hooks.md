@@ -12,6 +12,40 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### SlotMachineUse
+Runs when a player presses use on the machine before paying.
+
+**Parameters**
+- `machine` (`Entity`): The slot machine.
+- `player` (`Player`): Player using the machine.
+
+### SlotMachineStart
+Called right after payment is taken and the wheels begin spinning.
+
+**Parameters**
+- `machine` (`Entity`): The slot machine.
+- `player` (`Player`): Player using the machine.
+
+### SlotMachinePayout
+Triggered when the player wins money from the machine.
+
+**Parameters**
+- `machine` (`Entity`): The slot machine.
+- `player` (`Player`): Winner.
+- `amount` (`number`): Winnings.
+
+### SlotMachineEnd
+Runs after the wheels stop regardless of payout.
+
+**Parameters**
+- `machine` (`Entity`): The slot machine.
+- `player` (`Player`): Player who used it.
+- `amount` (`number`): Final payout.
+
+---
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

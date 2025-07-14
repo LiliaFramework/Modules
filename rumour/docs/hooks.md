@@ -12,6 +12,32 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### CanSendRumour
+Return `false` to block the player from sending the rumour.
+
+**Parameters**
+- `player` (`Player`): Player attempting to send a rumour.
+- `text` (`string`): Rumour contents.
+
+### RumourAttempt
+Called when a rumour passes basic checks and is about to be broadcast.
+
+**Parameters**
+- `player` (`Player`): Player sending the rumour.
+- `text` (`string`): Rumour contents.
+
+### RumourSent
+Triggered after the rumour has been sent to recipients.
+
+**Parameters**
+- `player` (`Player`): Sender of the rumour.
+- `text` (`string`): Rumour contents.
+- `revealed` (`boolean`): Whether the sender was revealed.
+
+---
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

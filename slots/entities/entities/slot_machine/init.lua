@@ -63,6 +63,8 @@ function ENT:Use(client)
         return
     end
 
+    hook.Run("SlotMachineUse", self, client)
+
     timer.Create("SpinWheels" .. self:EntIndex(), 0, 1, function()
         self.IsPlaying = false
         character:takeMoney(MODULE.GamblingPrice)
@@ -134,6 +136,7 @@ function ENT:Use(client)
 
             self.IsPlaying = true
             self.Jackpot = false
+            hook.Run("SlotMachineEnd", self, client, payout)
         end)
     end)
 end

@@ -12,6 +12,46 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### CanPlayerLockpick
+Return `false` to prevent a player from starting to lockpick.
+
+**Parameters**
+- `player` (`Player`): Player attempting the action.
+- `target` (`Entity`): Door or vehicle being lockpicked.
+
+### LockpickStart
+Triggered when a lockpick attempt begins.
+
+**Parameters**
+- `player` (`Player`): Player lockpicking.
+- `target` (`Entity`): Door or vehicle.
+
+### LockpickSuccess
+Called when the lockpick finishes successfully.
+
+**Parameters**
+- `player` (`Player`): Player lockpicking.
+- `target` (`Entity`): Unlocked entity.
+
+### LockpickInterrupted
+Fired when the attempt is cancelled before completion.
+
+**Parameters**
+- `player` (`Player`): Player lockpicking.
+- `target` (`Entity`): Target entity.
+
+### LockpickFinished
+Runs after an attempt ends for any reason.
+
+**Parameters**
+- `player` (`Player`): Player lockpicking.
+- `target` (`Entity`): Target entity.
+- `success` (`boolean`): Whether the pick succeeded.
+
+---
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

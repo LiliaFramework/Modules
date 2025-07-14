@@ -1,5 +1,6 @@
 ﻿function MODULE:CalcView(client, origin, angles)
     if not client:InVehicle() and lia.option.get("realisticViewEnabled") then
+        if hook.Run("ShouldUseRealisticView", client) == false then return end
         local view = {
             origin = origin,
             angles = angles,
@@ -32,6 +33,7 @@
             view.angles = Angle(head.Ang.p, head.Ang.y, angles.r)
         end
 
+        hook.Run("RealisticViewUpdated", client, view)
         hook.Run("RealisticViewCalcView", client, view)
         return view
       end
