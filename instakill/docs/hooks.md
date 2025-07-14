@@ -1,52 +1,49 @@
-### `<HookName>`
+### `PlayerPreInstantKill`
 
 **Purpose**
-`%Purpose%`
+`Invoked before a headshot damage override is applied.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `player` (`Player`): `Victim receiving the hit.`
+* `damageInfo` (`CTakeDamageInfo`): `Damage information object.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Nothing.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PlayerPreInstantKill", "PrepareKill", function(ply, dmginfo)
+    -- modify damageInfo here
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `PlayerInstantKilled`
 
 **Purpose**
-`%Purpose%`
+`Fires once the instant-kill damage has been set.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `player` (`Player`): `Victim that will die.`
+* `damageInfo` (`CTakeDamageInfo`): `Modified damage information.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Nothing.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PlayerInstantKilled", "OnKill", function(ply, dmginfo)
+    print(ply:Nick() .. " was instantly killed")
 end)
 ```
