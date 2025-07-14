@@ -34,6 +34,8 @@
                 return
             end
 
+            hook.Run("PreClassBroadcastSend", client, message, classListSimple)
+
             for _, ply in player.Iterator() do
                 if ply == client or ply:getChar() and classList[ply:getChar():getClass()] and SERVER then
                     local displayName = ply:getChar() and ply:getChar():getDisplayedName(client)
@@ -84,6 +86,8 @@ lia.command.add("factionbroadcast", {
                 client:notifyLocalized("factionBroadcastNoValidFactions")
                 return
             end
+
+            hook.Run("PreFactionBroadcastSend", client, message, factionListSimple)
 
             for _, ply in player.Iterator() do
                 if ply == client or ply:getChar() and factionList[ply:getChar():getFaction()] and SERVER then
