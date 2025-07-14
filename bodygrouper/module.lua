@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Bodygrouper"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.14
+MODULE.version = 1.15
 MODULE.desc = "Adds a customizable bodygroup closet entity that lets players adjust their model bodygroups through a menu."
 MODULE.Public = true
 lia.config.add("BodyGrouperModel", "Body Grouper Model", "models/props_c17/FurnitureDresser001a.mdl", nil, {
