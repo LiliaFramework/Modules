@@ -19,6 +19,7 @@ end
 
 local function spawnNPC(zone, npcType, group)
     if hook.Run("CanNPCSpawn", zone, npcType, group) == false then return false end
+    hook.Run("PreNPCSpawn", zone, npcType, group)
 
     local randomOffset = Vector(math.Rand(-zone.radius, zone.radius), math.Rand(-zone.radius, zone.radius), 0)
     local spawnPos = zone.pos + randomOffset
@@ -32,6 +33,7 @@ local function spawnNPC(zone, npcType, group)
 
     table.insert(zone.spawnedNPCs, npc)
     hook.Run("OnNPCSpawned", npc, zone, group)
+    hook.Run("PostNPCSpawn", npc, zone, group)
 
     return true
 end
@@ -46,6 +48,7 @@ end
 
 local function processZone(zone, group)
     zone.spawnedNPCs = zone.spawnedNPCs or {}
+    hook.Run("PreProcessNPCZone", zone, group)
     local startCount = #zone.spawnedNPCs
     local groupAlive = false
     for _, npc in ipairs(zone.spawnedNPCs) do
@@ -82,15 +85,18 @@ local function processZone(zone, group)
 
     local spawned = #zone.spawnedNPCs - startCount
     if spawned > 0 then hook.Run("OnNPCGroupSpawned", zone, group, spawned) end
+    hook.Run("PostProcessNPCZone", zone, group, spawned)
     return true
 end
 
 local function spawnCycle()
     local zones = MODULE.SpawnPositions[game.GetMap()]
     if not zones then return end
+    hook.Run("PreNPCSpawnCycle", zones)
     for group, zone in pairs(zones) do
         processZone(zone, group)
     end
+    hook.Run("PostNPCSpawnCycle", zones)
 end
 
 function MODULE:InitializedModules()

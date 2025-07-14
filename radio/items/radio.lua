@@ -14,6 +14,7 @@ ITEM.functions.sabotage = {
                 item:remove()
                 lia.chat.send(client, "actions", L("radioBreakAction"), false)
                 lia.item.spawn("broken_radio", client:getItemDropPos())
+                hook.Run("OnRadioSabotaged", client, item)
             end
         end)
         return false
@@ -37,6 +38,7 @@ ITEM.functions.enable = {
 
         item:setData("enabled", true)
         client:EmitSound("buttons/combine_button1.wav", 50, 170)
+        hook.Run("OnRadioEnabled", client, item)
         return false
     end,
     onCanRun = function(item)
@@ -53,6 +55,7 @@ ITEM.functions.disable = {
         local client = item.player
         item:setData("enabled", false)
         client:EmitSound("buttons/combine_button1.wav", 50, 170)
+        hook.Run("OnRadioDisabled", client, item)
         return false
     end,
     onCanRun = function(item)
