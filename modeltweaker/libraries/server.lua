@@ -1,6 +1,7 @@
-﻿local MODULE = MODULE
+local MODULE = MODULE
 net.Receive("WardrobeChangeModel", function(_, client)
     local newModel = net.ReadString()
+    hook.Run("WardrobeModelChangeRequested", client, newModel)
     local char = client:getChar()
     if not char then return end
     local faction = char:getFaction()
@@ -14,10 +15,12 @@ net.Receive("WardrobeChangeModel", function(_, client)
     end
 
     if isValid then
+        hook.Run("PreWardrobeModelChange", client, newModel)
         char:setModel(newModel)
         client:SetModel(newModel)
         client:notifyLocalized("wardrobeModelChanged")
         hook.Run("WardrobeModelChanged", client, newModel)
+        hook.Run("PostWardrobeModelChange", client, newModel)
     else
         client:notifyLocalized("wardrobeModelInvalid")
         hook.Run("WardrobeModelInvalid", client, newModel)
