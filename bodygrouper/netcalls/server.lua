@@ -3,6 +3,7 @@ net.Receive("BodygrouperMenuClose", function(_, client)
     for _, v in pairs(ents.FindByClass("lia_bodygrouper")) do
         if v:HasUser(client) then v:RemoveUser(client) end
     end
+    hook.Run("BodygrouperMenuClosedServer", client)
 end)
 
 net.Receive("BodygrouperMenu", function(_, client)
@@ -38,6 +39,7 @@ net.Receive("BodygrouperMenu", function(_, client)
             end
         end
     end
+    hook.Run("PreBodygroupApply", client, target, skn, groups)
 
     local character = target:getChar()
     if not character then return end
@@ -48,6 +50,7 @@ net.Receive("BodygrouperMenu", function(_, client)
     end
 
     character:setData("groups", groups)
+    hook.Run("PostBodygroupApply", client, target, skn, groups)
     if target == client then
         target:notifyLocalized("bodygroupChanged", "your")
     else
