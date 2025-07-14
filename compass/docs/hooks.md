@@ -54,6 +54,15 @@ end)
 
 ---
 
+### Additional Hooks
+
+- `PreCompassMarkerAdded` (`Server`)
+  Called before a new position marker is inserted.
+- `PreCompassEntityMarkerAdded` (`Server`)
+  Called before a new entity marker is inserted.
+- `CompassSpotCommand` (`Server`)
+  Fired when a player runs the `mcompass_spot` console command.
+
 ### WebImageDownloaded
 
 **Purpose**
@@ -80,3 +89,12 @@ end)
 
 ---
 
+
+### Additional Hooks
+
+- `PreCompassMarkerAdded` (`Server`)
+  Called before a new position marker is inserted.
+- `PreCompassEntityMarkerAdded` (`Server`)
+  Called before a new entity marker is inserted.
+- `CompassSpotCommand` (`Server`)
+  Fired when a player runs the `mcompass_spot` console command.

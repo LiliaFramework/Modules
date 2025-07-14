@@ -3,6 +3,7 @@
     local targetPlayer = corpse:getNetVar("player")
     if not IsValid(targetPlayer) then return end
     local IDTime = lia.config.get("IdentificationTime", 5)
+    hook.Run("CorpseIdentifyStarted", client, targetPlayer, corpse)
     client:setAction(L("identifyingCorpse"), IDTime, function()
         client:ChatPrint(L("identifiedCorpseMessage", targetPlayer:Nick()))
         hook.Run("CorpseIdentified", client, targetPlayer, corpse)
@@ -13,9 +14,11 @@ function MODULE:PlayerUse(client, entity)
     if IsValid(entity) and entity:GetClass() == "prop_ragdoll" and IsValid(entity:getNetVar("player")) and not client:getNetVar("IdCooldown", false) then
         client:binaryQuestion(L("identifyCorpseQuestion"), L("yes"), L("no"), false, function(choice)
             if choice == 0 then
+                hook.Run("CorpseIdentifyBegin", client, entity)
                 IdentifyCorpse(client, entity)
             else
                 client:notifyLocalized("identifyCorpseDeclined")
+                hook.Run("CorpseIdentifyDeclined", client, entity)
             end
         end)
 

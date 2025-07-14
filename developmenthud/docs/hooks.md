@@ -80,3 +80,8 @@ end)
 
 ---
 
+
+### Additional Hooks
+
+- `DevelopmentHUDPrePaint` (`Client`)
+  Called at the start of the development HUD paint function.

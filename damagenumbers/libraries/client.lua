@@ -6,6 +6,7 @@ function MODULE:HUDPaint()
         local dn = damageNumbers[i]
         local timeLeft = dn.time - CurTime()
         if timeLeft <= 0 then
+            hook.Run("DamageNumberExpired", dn.ent, dn.dmg)
             table.remove(damageNumbers, i)
         else
             local alpha = baseAlpha
@@ -32,7 +33,9 @@ net.Receive("expDamageNumbers", function()
         time = CurTime() + lia.option.get("damageNumberTime", 2),
         text = tostring(dmg),
         pos = pos,
-        color = col
+        color = col,
+        ent = ent,
+        dmg = dmg
     })
     hook.Run("DamageNumberAdded", ent, dmg)
 end)

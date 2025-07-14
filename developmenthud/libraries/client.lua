@@ -1,6 +1,7 @@
 ﻿function MODULE:HUDPaint()
     local client = LocalPlayer()
     if not IsValid(client:getChar()) then return end
+    hook.Run("DevelopmentHUDPrePaint", client)
     local devFont = lia.config.get("DevHudFont")
     local x = ScrW() / 5.25
     local baseY = ScrH() / 1.12
