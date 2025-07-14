@@ -1,4 +1,5 @@
-﻿lia.command.add("storagelock", {
+﻿local MODULE = MODULE
+lia.command.add("storagelock", {
     privilege = "Lock Storage",
     adminOnly = true,
     desc = L("storagelockDesc"),
