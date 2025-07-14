@@ -22,6 +22,28 @@ Fired when a player begins using a cigarette weapon.
 - `client` (`Player`): The smoker.
 - `cigaID` (`number`): Cigarette identifier.
 
+### PlayerInhaleSmoke
+
+**Purpose**
+Called each tick while the player holds the attack key to inhale.
+
+**Parameters**
+
+- `client` (`Player`): The smoker.
+- `cigaID` (`number`): Cigarette identifier.
+- `amount` (`number`): Current inhale count.
+
+### PlayerPuffSmoke
+
+**Purpose**
+Fired when the player exhales a puff of smoke.
+
+**Parameters**
+
+- `client` (`Player`): The smoker.
+- `cigaID` (`number`): Cigarette identifier.
+- `amount` (`number`): Amount inhaled.
+
 ### PlayerStopSmoking
 
 **Purpose**

@@ -27,6 +27,38 @@ Called on the server when a cinematic text message is sent.
 - `music` (`boolean`): Whether audio plays.
 - `color` (`Color`): Text colour.
 
+### CinematicDisplayStart
+
+**Purpose**
+Triggered on the client when cinematic text begins showing.
+
+**Parameters**
+
+- `text` (`string`): Small text line.
+- `bigText` (`string`): Large text line.
+- `duration` (`number`): Display time.
+- `blackBars` (`boolean`): Whether letterbox bars are shown.
+- `music` (`boolean`): Whether audio plays.
+- `color` (`Color`): Text colour.
+
+### CinematicDisplayEnd
+
+**Purpose**
+Called on the client after the cinematic text fades out.
+
+**Parameters**
+
+- None
+
+### CinematicMenuOpened
+
+**Purpose**
+Fired when an admin opens the cinematic text menu.
+
+**Parameters**
+
+- `client` (`Player`): The opener.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

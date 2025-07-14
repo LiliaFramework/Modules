@@ -3,6 +3,7 @@
     local url = net.ReadString()
     local openIngame = net.ReadBool()
     if url and url ~= "" then
+        hook.Run("CommunityURLOpened", commandName, url, openIngame)
         if openIngame then
             local URLPanel = vgui.Create("DFrame")
             URLPanel:SetTitle(commandName)

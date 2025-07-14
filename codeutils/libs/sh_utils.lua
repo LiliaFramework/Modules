@@ -384,6 +384,7 @@ if SERVER then
         local e = ents.Create("prop_physics")
         e:SetModel(model)
         e:Spawn()
+        hook.Run("UtilityPropSpawned", e, model, pos)
         e:SetCollisionGroup(col or COLLISION_GROUP_WEAPON)
         e:SetAngles(ang or angle_zero)
         if type(pos) == "Player" then pos = pos:GetItemDropPos(e) end
@@ -404,6 +405,7 @@ if SERVER then
                 if IsValid(e) then
                     e:SetPos(p)
                     e:Spawn()
+                    hook.Run("UtilityEntitySpawned", e, class, p)
                 end
             else
                 lia.information(L("invalidEntityPosition"), class)

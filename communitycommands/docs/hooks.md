@@ -22,6 +22,17 @@ Fired whenever a community link command is executed.
 - `client` (`Player`): The player running the command.
 - `command` (`string`): The command name.
 
+### CommunityURLOpened
+
+**Purpose**
+Called clientside when a community URL is opened.
+
+**Parameters**
+
+- `command` (`string`): The command name.
+- `url` (`string`): The URL opened.
+- `ingame` (`boolean`): Whether it shows in a panel.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.
