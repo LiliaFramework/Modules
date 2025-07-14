@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Loyalism"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.09
+MODULE.version = 1.10
 MODULE.desc = "Implements loyalty tiers that grant access to the /partytier command when flagged."
 MODULE.Public = true
 lia.flag.add("T", "Access to /partytier")
