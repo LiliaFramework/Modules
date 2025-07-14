@@ -111,6 +111,7 @@ if SERVER then
         if not canAccess then return d:reject(reason or "noAccess") end
         if justAddDirectly then
             self:addItem(item)
+            hook.Run("WeightInvItemAdded", self, item)
             return d:resolve(item)
         end
 
@@ -120,6 +121,7 @@ if SERVER then
             lia.item.instance(self:getID(), itemType, nil, 0, 0, function(newItem)
                 self:addItem(newItem)
                 items[#items + 1] = newItem
+                hook.Run("WeightInvItemAdded", self, newItem)
                 if #items == quantity then d:resolve(quantity == 1 and items[1] or items) end
             end)
         end
@@ -132,11 +134,14 @@ if SERVER then
         local d = deferred.new()
         if quantity <= 0 then return d:reject("quantity must be positive") end
         if isnumber(itemTypeOrID) then
+            local item = self.items[itemTypeOrID]
             self:removeItem(itemTypeOrID)
+            if item then hook.Run("WeightInvItemRemoved", self, item) end
         else
             local items = self:getItemsOfType(itemTypeOrID)
             for i = 1, math.min(quantity, #items) do
                 self:removeItem(items[i]:getID())
+                hook.Run("WeightInvItemRemoved", self, items[i])
             end
         end
 
@@ -151,7 +156,9 @@ if SERVER then
         end
 
         for _, id in pairs(ids) do
+            local item = self.items[id]
             self:removeItem(id)
+            if item then hook.Run("WeightInvItemRemoved", self, item) end
         end
     end
 end
