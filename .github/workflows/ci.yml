@@ -256,3 +256,4 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Update Module Versions"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
+          fi
