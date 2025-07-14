@@ -1,52 +1,51 @@
-### `<HookName>`
+### `PreVManipPickup`
 
 **Purpose**
-`%Purpose%`
+`Runs before the pickup animation message is sent to the client.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `Player picking up the item.`
+* `item` (`Item`): `Item that is being picked up.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Return value is ignored.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PreVManipPickup", "BlockCertainItems", function(client, item)
+    if item.uniqueID == "restricted" then
+        return false
+    end
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `VManipPickup`
 
 **Purpose**
-`%Purpose%`
+`Called after the pickup animation network message is sent.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `Player that picked up the item.`
+* `item` (`Item`): `Item that was picked up.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Return value is ignored.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("VManipPickup", "PlaySound", function(client, item)
+    client:EmitSound("items/ammo_pickup.wav")
 end)
 ```

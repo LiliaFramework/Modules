@@ -1,52 +1,82 @@
-### `<HookName>`
+### `PreWarrantToggle`
 
 **Purpose**
-`%Purpose%`
+`Called just before a character's warrant status is changed.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `character` (`Character`): `Character whose warrant state is toggling.`
+* `warranter` (`Player`): `Player issuing or removing the warrant.`
+* `warranted` (`boolean`): `Whether the character is becoming warranted.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Return value is ignored.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PreWarrantToggle", "LogAttempt", function(char, actor, warranted)
+    print("Warrant change for " .. char:getName())
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `WarrantStatusChanged`
 
 **Purpose**
-`%Purpose%`
+`Fires immediately after the warrant flag is updated.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `character` (`Character`): `Character that had their warrant status updated.`
+* `warranter` (`Player`): `Player responsible for the change.`
+* `warranted` (`boolean`): `Current warrant status.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `Return value is ignored.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("WarrantStatusChanged", "NotifyAdmins", function(char, actor, warranted)
+    if warranted then
+        PrintMessage(HUD_PRINTTALK, char:getName() .. " is now warranted")
+    end
+end)
+```
+
+---
+
+### `PostWarrantToggle`
+
+**Purpose**
+`Runs after notifications about a warrant have been sent.`
+
+**Parameters**
+
+* `character` (`Character`): `Character that was affected.`
+* `warranter` (`Player`): `Player who issued or cleared the warrant.`
+* `warranted` (`boolean`): `Whether the warrant is active after the change.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — `Return value is ignored.`
+
+**Example**
+
+```lua
+hook.Add("PostWarrantToggle", "Cleanup", function(char, actor, warranted)
+    if not warranted then
+        -- custom cleanup here
+    end
 end)
 ```
