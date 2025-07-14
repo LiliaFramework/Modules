@@ -21,6 +21,13 @@ Return `false` to block a flashlight toggle.
 - `client` (`Player`): Player using the flashlight.
 - `state` (`boolean`): Desired enabled state.
 
+### PrePlayerToggleFlashlight
+Called before the flashlight state changes.
+
+**Parameters**
+- `client` (`Player`): Player toggling.
+- `state` (`boolean`): Desired enabled state.
+
 ### PlayerToggleFlashlight
 Fired after the flashlight state successfully changes.
 

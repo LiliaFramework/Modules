@@ -14,6 +14,7 @@ function MODULE:CalcView(pl, pos, ang, fov)
     if pl:CanOverrideView() or pl:GetViewEntity() ~= pl then return end
     if not lia.option.get("FirstPersonEffects", true) then return end
     if hook.Run("ShouldUseFirstPersonEffects", pl) == false then return end
+    hook.Run("PreFirstPersonEffects", pl)
     local realTime = RealTime()
     local frameTime = FrameTime()
     local vel = math.floor(twoD(velo(pl)))
@@ -46,6 +47,7 @@ function MODULE:CalcView(pl, pos, ang, fov)
     self.resultAng = LerpAngle(math_Clamp(math_Clamp(frameTime, 1 / 120, 1) * 10, 0, 5), self.resultAng, ang)
     self.currAng = LerpAngle(frameTime * 10, self.currAng, self.targetAng)
     self.currPos = LerpVector(frameTime * 10, self.currPos, self.targetPos)
+    hook.Run("PostFirstPersonEffects", pl, self.currPos, self.currAng)
     hook.Run("FirstPersonEffectsUpdated", pl, self.currPos, self.currAng)
     return {
         origin = pos + self.currPos,

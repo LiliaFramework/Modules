@@ -71,10 +71,12 @@ function MODULE:SetupQuickMenu(menu)
 end
 
 concommand.Add("+freelook", function()
+    if hook.Run("PreFreelookToggle", true) == false then return end
     freelooking = true
     hook.Run("FreelookToggled", true)
 end)
 concommand.Add("-freelook", function()
+    if hook.Run("PreFreelookToggle", false) == false then return end
     freelooking = false
     hook.Run("FreelookToggled", false)
 end)

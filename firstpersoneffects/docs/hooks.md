@@ -20,6 +20,20 @@ Return `false` to disable the effect for the given player.
 **Parameters**
 - `player` (`Player`): Player being processed.
 
+### PreFirstPersonEffects
+Called clientside before view offsets are calculated.
+
+**Parameters**
+- `player` (`Player`): The local player.
+
+### PostFirstPersonEffects
+Called clientside after view offsets are calculated.
+
+**Parameters**
+- `player` (`Player`): The local player.
+- `posOffset` (`Vector`): Calculated position offset.
+- `angOffset` (`Angle`): Calculated angle offset.
+
 ### FirstPersonEffectsUpdated
 Called clientside after the view offsets are calculated.
 
