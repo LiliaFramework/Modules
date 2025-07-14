@@ -1,52 +1,74 @@
-### `<HookName>`
+### `CanPermaRemoveEntity`
 
 **Purpose**
-`%Purpose%`
+`Determines if an entity can be permanently removed by an admin.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `Admin requesting the removal.`
+* `entity` (`Entity`): `Map entity targeted for deletion.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`boolean` — `Return false to block the removal.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("CanPermaRemoveEntity", "BlockDoors", function(client, entity)
+    if entity:GetClass() == "prop_door_rotating" then return false end
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `OnPermaRemoveEntity`
 
 **Purpose**
-`%Purpose%`
+`Called after an entity is permanently removed with the command.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `Admin that removed the entity.`
+* `entity` (`Entity`): `Entity that was deleted.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `No return value.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("OnPermaRemoveEntity", "LogRemoval", function(client, entity)
+    print(client:Name(), "removed", entity)
+end)
+```
+
+---
+
+### `OnPermaRemoveLoaded`
+
+**Purpose**
+`Runs during map loading for each stored entity that is removed.`
+
+**Parameters**
+
+* `entity` (`Entity`): `Map entity being removed automatically.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — `No return value.`
+
+**Example**
+
+```lua
+hook.Add("OnPermaRemoveLoaded", "HandleLoadedRemoval", function(entity)
+    print("Removed on load", entity)
 end)
 ```
