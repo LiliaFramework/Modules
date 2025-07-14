@@ -31,6 +31,8 @@
         else
             view.angles = Angle(head.Ang.p, head.Ang.y, angles.r)
         end
+
+        hook.Run("RealisticViewCalcView", client, view)
         return view
-    end
-end
+      end
+  end

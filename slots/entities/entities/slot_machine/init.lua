@@ -66,6 +66,7 @@ function ENT:Use(client)
     timer.Create("SpinWheels" .. self:EntIndex(), 0, 1, function()
         self.IsPlaying = false
         character:takeMoney(MODULE.GamblingPrice)
+        hook.Run("SlotMachineStart", self, client)
         self:EmitSound("ambient/levels/labs/coinslot1.wav", 60, 100)
         self:EmitSound("spin.wav", 100, 100)
         for i = 1, 3 do
@@ -123,12 +124,13 @@ function ENT:Use(client)
                 end
             end
 
-            if payout > MODULE.SingleBarDollarSign - 1 then self:EmitSound("jackpot.wav", 100, 100) end
-            if payout > 9 then
-                self:EmitSound("payout.wav", 100, 100)
-                character:giveMoney(payout)
-                client:notifyLocalized("slotPayout", payout)
-            end
+                if payout > MODULE.SingleBarDollarSign - 1 then self:EmitSound("jackpot.wav", 100, 100) end
+                if payout > 9 then
+                    self:EmitSound("payout.wav", 100, 100)
+                    character:giveMoney(payout)
+                    client:notifyLocalized("slotPayout", payout)
+                    hook.Run("SlotMachinePayout", self, client, payout)
+                end
 
             self.IsPlaying = true
             self.Jackpot = false
