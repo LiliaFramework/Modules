@@ -3,7 +3,10 @@
     local targetPlayer = corpse:getNetVar("player")
     if not IsValid(targetPlayer) then return end
     local IDTime = lia.config.get("IdentificationTime", 5)
-    client:setAction(L("identifyingCorpse"), IDTime, function() client:ChatPrint(L("identifiedCorpseMessage", targetPlayer:Nick())) end)
+    client:setAction(L("identifyingCorpse"), IDTime, function()
+        client:ChatPrint(L("identifiedCorpseMessage", targetPlayer:Nick()))
+        hook.Run("CorpseIdentified", client, targetPlayer, corpse)
+    end)
 end
 
 function MODULE:PlayerUse(client, entity)
@@ -26,6 +29,7 @@ function MODULE:DoPlayerDeath(client)
     if IsValid(corpse) then
         corpse:setNetVar("ShowCorpseMessage", true)
         corpse:setNetVar("player", client)
+        hook.Run("CorpseCreated", client, corpse)
     end
 end
 
