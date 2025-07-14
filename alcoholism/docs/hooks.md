@@ -1,52 +1,101 @@
-### `<HookName>`
+### `BACChanged`
 
 **Purpose**
-`%Purpose%`
+`Called whenever a player's Blood Alcohol Content (BAC) value is updated.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player whose BAC changed.`
+* `newBac` (`number`): `The player's new BAC value.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `This hook does not return anything.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("BACChanged", "PrintBac", function(client, newBac)
+    print(client:Name() .. " BAC is now " .. newBac .. "%")
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `BACReset`
 
 **Purpose**
-`%Purpose%`
+`Runs when a player's BAC is reset to 0.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `The player whose BAC was reset.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("BACReset", "HandleBacReset", function(client)
+    -- Additional logic when the player sobers up
+end)
+```
+
+---
+
+### `BACIncreased`
+
+**Purpose**
+`Fires when a player's BAC is increased through consuming alcohol.`
+
+**Parameters**
+
+* `client` (`Player`): `The affected player.`
+* `amount` (`number`): `Amount added to the BAC.`
+* `newBac` (`number`): `The resulting BAC value.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil`
+
+**Example**
+
+```lua
+hook.Add("BACIncreased", "NotifyBACIncrease", function(client, amount, newBac)
+    client:ChatPrint("BAC increased by " .. amount .. " to " .. newBac .. "%")
+end)
+```
+
+---
+
+### `AlcoholConsumed`
+
+**Purpose**
+`Triggered when an alcohol item is used by a player.`
+
+**Parameters**
+
+* `client` (`Player`): `Player that consumed the item.`
+* `item` (`Item`): `The alcohol item that was consumed.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil`
+
+**Example**
+
+```lua
+hook.Add("AlcoholConsumed", "LogDrink", function(client, item)
+    print(client:Name() .. " drank " .. item.name)
 end)
 ```

@@ -1,52 +1,97 @@
-### `<HookName>`
+### `AutoRestartScheduled`
 
 **Purpose**
-`%Purpose%`
+`Called when the next automatic restart time is calculated.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `timestamp` (`number`): `Unix time of the upcoming restart.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("AutoRestartScheduled", "NotifyRestart", function(timestamp)
+    print("Next restart at " .. os.date("%X", timestamp))
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `AutoRestart`
 
 **Purpose**
-`%Purpose%`
+`Fires right before the map is reloaded for the automatic restart.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `timestamp` (`number`): `Time when the restart triggered.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("AutoRestart", "SaveBeforeRestart", function(timestamp)
+    -- save data here
+end)
+```
+
+---
+
+### `AutoRestartStarted`
+
+**Purpose**
+`Runs when the restart command is issued.`
+
+**Parameters**
+
+* `map` (`string`): `Map that will be loaded.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil`
+
+**Example**
+
+```lua
+hook.Add("AutoRestartStarted", "AnnounceRestart", function(map)
+    print("Changing level to " .. map)
+end)
+```
+
+---
+
+### `AutoRestartCountdown`
+
+**Purpose**
+`Called periodically during the final quarter of the restart interval.`
+
+**Parameters**
+
+* `remaining` (`number`): `Seconds remaining until restart.`
+
+**Realm**
+`Server`
+
+**Returns**
+`nil`
+
+**Example**
+
+```lua
+hook.Add("AutoRestartCountdown", "DisplayTimer", function(remaining)
+    print(remaining .. " seconds until restart")
 end)
 ```

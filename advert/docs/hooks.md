@@ -1,52 +1,23 @@
-### `<HookName>`
+### `AdvertSent`
 
 **Purpose**
-`%Purpose%`
+`Fires after a player successfully sends an advertisement message.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `Player who posted the advert.`
+* `message` (`string`): `Text that was advertised.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — `This hook does not return anything.`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
-end)
-```
-
-
----
-
-### `<HookName>`
-
-**Purpose**
-`%Purpose%`
-
-**Parameters**
-
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
-
-**Realm**
-`%Client|Server%`
-
-**Returns**
-`%ReturnType%` — `%Description of return value%`
-
-**Example**
-
-```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("AdvertSent", "LogAdvert", function(client, message)
+    print(client:Nick() .. " advertised: " .. message)
 end)
 ```

@@ -1,52 +1,48 @@
-### `<HookName>`
+### `CardsCommandUsed`
 
 **Purpose**
-`%Purpose%`
+`Fires when a player uses the /cards command.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `Player who executed the command.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("CardsCommandUsed", "TrackCardCommand", function(client)
+    print(client:Name() .. " opened a card deck")
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `CardDrawn`
 
 **Purpose**
-`%Purpose%`
+`Called after a random card is drawn from the player's deck.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): `Player that drew the card.`
+* `card` (`string`): `Name of the card that was drawn.`
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("CardDrawn", "AnnounceCard", function(client, card)
+    lia.chat.send(client, "me", "drew " .. card)
 end)
 ```

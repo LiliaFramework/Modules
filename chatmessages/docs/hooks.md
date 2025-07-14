@@ -1,52 +1,48 @@
-### `<HookName>`
+### `ChatMessagesTimerStarted`
 
 **Purpose**
-`%Purpose%`
+`Runs when the repeating chat message timer is created.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `interval` (`number`): `Number of seconds between messages.`
 
 **Realm**
-`%Client|Server%`
+`Client`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("ChatMessagesTimerStarted", "DisplayInterval", function(interval)
+    print("Chat messages will appear every " .. interval .. " seconds")
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `ChatMessageSent`
 
 **Purpose**
-`%Purpose%`
+`Called each time an automated chat message is displayed.`
 
 **Parameters**
 
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `index` (`number`): `Index of the message in the rotation.`
+* `text` (`string`): `The text that was sent.`
 
 **Realm**
-`%Client|Server%`
+`Client`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil`
 
 **Example**
 
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("ChatMessageSent", "ReactToMessage", function(index, text)
+    chat.AddText(Color(0,255,0), "[Log]", color_white, " Message " .. index .. ": " .. text)
 end)
 ```
