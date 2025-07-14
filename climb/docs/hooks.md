@@ -1,52 +1,91 @@
-### `<HookName>`
+### `PlayerClimbAttempt`
 
 **Purpose**
-`%Purpose%`
+Called when a player presses jump to attempt climbing a ledge.
 
 **Parameters**
-
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `player` (`Player`): Player who is trying to climb.
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — This hook does not return anything.
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PlayerClimbAttempt", "MyAddonClimbAttempt", function(player)
+    print(player:Name() .. " tried to climb")
 end)
 ```
 
+---
+
+### `PlayerBeginClimb`
+
+**Purpose**
+Runs when the climb is successful and velocity is about to be applied.
+
+**Parameters**
+* `player` (`Player`): Player beginning to climb.
+* `distance` (`number`): Height difference of the ledge.
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — This hook does not return anything.
+
+**Example**
+```lua
+hook.Add("PlayerBeginClimb", "StartClimbEffects", function(player, distance)
+    player:EmitSound("jump.wav")
+end)
+```
 
 ---
 
-### `<HookName>`
+### `PlayerClimbed`
 
 **Purpose**
-`%Purpose%`
+Called right after the player has been launched upward to climb.
 
 **Parameters**
-
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `player` (`Player`): Player who climbed.
+* `distance` (`number`): The height of the climb.
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — This hook does not return anything.
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("PlayerClimbed", "FinishClimb", function(player, distance)
+    print(player:Name() .. " climbed " .. distance .. " units")
+end)
+```
+
+---
+
+### `PlayerFailedClimb`
+
+**Purpose**
+Executed when a climb attempt fails.
+
+**Parameters**
+* `player` (`Player`): Player whose attempt failed.
+
+**Realm**
+`Server`
+
+**Returns**
+`nil` — This hook does not return anything.
+
+**Example**
+```lua
+hook.Add("PlayerFailedClimb", "ClimbFail", function(player)
+    player:ChatPrint("You can't climb here.")
 end)
 ```

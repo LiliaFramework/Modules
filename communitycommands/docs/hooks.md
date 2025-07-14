@@ -1,52 +1,46 @@
-### `<HookName>`
+### `CommunityURLOpened`
 
 **Purpose**
-`%Purpose%`
+Triggered client-side when a community URL is about to be opened.
 
 **Parameters**
-
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `commandName` (`string`): The chat command used.
+* `url` (`string`): The URL that will be opened.
+* `openIngame` (`boolean`): True if the page is opened in an in-game panel.
 
 **Realm**
-`%Client|Server%`
+`Client`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — This hook does not return anything.
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("CommunityURLOpened", "NotifyURLOpen", function(commandName, url, openIngame)
+    print("Opening", url)
 end)
 ```
 
-
 ---
 
-### `<HookName>`
+### `CommunityURLRequest`
 
 **Purpose**
-`%Purpose%`
+Runs server-side when a player issues a community command.
 
 **Parameters**
-
-* `%param1%` (`%type1%`): `%Description of param1%`
-* `%param2%` (`%type2%`): `%Description of param2%`
-* *…add more as needed…*
+* `client` (`Player`): The player requesting the URL.
+* `command` (`string`): The command name used.
 
 **Realm**
-`%Client|Server%`
+`Server`
 
 **Returns**
-`%ReturnType%` — `%Description of return value%`
+`nil` — This hook does not return anything.
 
 **Example**
-
 ```lua
-hook.Add("%HookName%", "%Identifier%", function(%param1%, %param2%)
-    %BodyImplementation%
+hook.Add("CommunityURLRequest", "LogRequest", function(client, command)
+    print(client:Name() .. " requested URL for " .. command)
 end)
 ```
