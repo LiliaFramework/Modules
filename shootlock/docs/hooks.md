@@ -12,6 +12,40 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+## Module Hooks
+
+### LockShotAttempt
+Runs when a player fires at a door lock.
+
+**Parameters**
+- `player` (`Player`): Shooter.
+- `door` (`Entity`): Door being targeted.
+- `dmg` (`CTakeDamageInfo`): Damage info object.
+
+### LockShotSuccess
+Called when the shot successfully breaches the lock.
+
+**Parameters**
+- `player` (`Player`): Shooter.
+- `door` (`Entity`): Door opened.
+
+### LockShotFailed
+Triggered when a shot hits the lock but fails to breach it.
+
+**Parameters**
+- `player` (`Player`): Shooter.
+- `door` (`Entity`): Target door.
+- `dmg` (`CTakeDamageInfo`): Damage info object.
+
+### LockShotBreach
+Fired after the door forcibly opens from a shot.
+
+**Parameters**
+- `player` (`Player`): Shooter.
+- `door` (`Entity`): Door opened.
+
+---
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

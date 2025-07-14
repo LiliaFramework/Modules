@@ -4,6 +4,7 @@
         if handle and dmgInfo:IsBulletDamage() then
             local client = dmgInfo:GetAttacker()
             local position = dmgInfo:GetDamagePosition()
+            hook.Run("LockShotAttempt", client, entity, dmgInfo)
             if client:GetEyeTrace().Entity ~= entity or client:GetPos():Distance(position) > 100 then return end
             if IsValid(client) then
                 if hook.Run("CanPlayerBustLock", client, entity) == false then return end
@@ -17,6 +18,7 @@
                     effect:SetScale(10)
                     util.Effect("GlassImpact", effect, true, true)
                     hook.Run("LockShotBreach", client, entity)
+                    hook.Run("LockShotSuccess", client, entity)
                     return
                 end
             end
@@ -36,9 +38,11 @@
                 entity:Fire("openawayfrom", name)
                 entity:EmitSound("physics/wood/wood_plank_break" .. math.random(1, 4) .. ".wav", 100, 120)
                 hook.Run("LockShotBreach", client, entity)
+                hook.Run("LockShotSuccess", client, entity)
                 entity.liaNextBreach = CurTime() + 1
                 timer.Simple(0.5, function() if IsValid(entity) then entity:Fire("setspeed", entity.liaOldSpeed) end end)
             end
+            hook.Run("LockShotFailed", client, entity, dmgInfo)
         end
     end
 end
