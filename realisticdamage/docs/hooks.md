@@ -12,6 +12,68 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+### GetDamageScale
+
+**Purpose**
+Allows overriding the damage scale applied for a hitgroup.
+
+**Parameters**
+- `hitgroup` (`number`): Hitgroup being damaged.
+- `dmgInfo` (`CTakeDamageInfo`): Original damage info.
+- `current` (`number`): Damage scale calculated by the module.
+
+**Realm**
+`Server`
+
+**Returns**
+- `number`: New damage scale, or `nil` to keep default.
+
+### PostScaleDamage
+
+**Purpose**
+Runs after damage scaling has been applied.
+
+**Parameters**
+- `hitgroup` (`number`): Hitgroup that was hit.
+- `dmgInfo` (`CTakeDamageInfo`): Damage info.
+- `scale` (`number`): Final scale applied.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### OnPainSoundPlayed
+
+**Purpose**
+Called when a pain sound is emitted.
+
+**Parameters**
+- `client` (`Player`): Player taking damage.
+- `sound` (`string`): Sound played.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### OnDeathSoundPlayed
+
+**Purpose**
+Fires when a death sound plays for a player.
+
+**Parameters**
+- `client` (`Player`): The dead player.
+- `sound` (`string`): Sound played.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.

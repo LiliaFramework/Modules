@@ -12,6 +12,71 @@ If multiple definitions of the same hook exist on `GM`, `MODULE`, or `SCHEMA`, t
 
 ---
 
+### CanUseRadio
+
+**Purpose**
+Checks if a player is allowed to transmit on their current radio frequency.
+
+**Parameters**
+- `client` (`Player`): Player attempting to speak.
+- `freq` (`string`): Frequency being used.
+- `channel` (`number`|`nil`): Channel number or `nil` if none.
+
+**Realm**
+`Server`
+
+**Returns**
+- `boolean`: Return `false` to block transmission.
+
+### PlayerStartRadio
+
+**Purpose**
+Runs when a player begins transmitting over the radio.
+
+**Parameters**
+- `client` (`Player`): Player that started talking.
+- `freq` (`string`): Frequency used.
+- `channel` (`number`|`nil`): Channel number or `nil`.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### PlayerFinishRadio
+
+**Purpose**
+Called after the radio beeps at the end of a transmission.
+
+**Parameters**
+- `client` (`Player`): Player that just finished talking.
+- `freq` (`string`): Frequency used.
+- `channel` (`number`|`nil`): Channel number or `nil`.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+### CanHearRadio
+
+**Purpose**
+Determines if a listener should receive a radio message.
+
+**Parameters**
+- `listener` (`Player`): Player attempting to hear.
+- `speaker` (`Player`): The original speaker.
+- `freq` (`string`): Frequency being used.
+- `channel` (`number`|`nil`): Channel number or `nil`.
+
+**Realm**
+`Server`
+
+**Returns**
+- `boolean`: Return `false` to block hearing.
+
 ## Overview
 
 Gamemode hooks fire at various stages during play and let you modify global behavior. They can be called from your schema with `SCHEMA:HookName`, from modules using `MODULE:HookName`, or via `hook.Add`. When the same hook is defined in more than one place, whichever version loads last takes effect. All hooks are optional; if no handler is present, the default logic runs.
