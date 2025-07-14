@@ -2,11 +2,14 @@
 if SERVER then
     function playerMeta:ResetBAC()
         self:setNetVar("lia_alcoholism_bac", 0)
+        hook.Run("BACChanged", self, 0)
     end
 
     function playerMeta:AddBAC(amt)
         if not amt or not isnumber(amt) then return end
-        self:setNetVar("lia_alcoholism_bac", math.Clamp(self:getNetVar("lia_alcoholism_bac", 0) + amt, 0, 100))
+        local newBac = math.Clamp(self:getNetVar("lia_alcoholism_bac", 0) + amt, 0, 100)
+        self:setNetVar("lia_alcoholism_bac", newBac)
+        hook.Run("BACChanged", self, newBac)
     end
 end
 

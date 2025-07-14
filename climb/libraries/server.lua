@@ -13,6 +13,7 @@
         if trLo and trHi and trLo.Hit and not trHi.Hit then
             local dist = math.abs(trHi.HitPos.z - ply:GetPos().z)
             ply:SetVelocity(Vector(0, 0, 50 + dist * 3))
+            hook.Run("PlayerClimbed", ply, dist)
         end
     end
 end

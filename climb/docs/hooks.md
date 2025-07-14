@@ -80,3 +80,29 @@ end)
 
 ---
 
+### PlayerClimbed
+
+**Purpose**
+Triggered after a player successfully climbs a ledge.
+
+**Parameters**
+
+- `client` (`Player`): The climbing player.
+- `height` (`number`): Distance climbed in units.
+
+**Realm**
+`Server`
+
+**Returns**
+- None
+
+**Example**
+
+```lua
+function MODULE:PlayerClimbed(client, height)
+    print(client:Name(), "climbed", height)
+end
+```
+
+---
+

@@ -14,12 +14,13 @@ function MODULE:InitializedModules()
                 net.Send(ply)
                 notified[ply:SteamID()] = false
             end
-
+            hook.Run("AutoRestart", now)
             game.ConsoleCommand("changelevel " .. game.GetMap() .. "\n")
         else
             local interval = lia.config.get("RestartInterval")
             local remaining = self.nextRestart - now
             if remaining <= interval * 0.25 then
+                hook.Run("AutoRestartCountdown", remaining)
                 for _, ply in player.Iterator() do
                     local id = ply:SteamID()
                     if not notified[id] then
