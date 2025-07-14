@@ -16,4 +16,5 @@
         draw.SimpleText("| Trace Pos: " .. math.Round(hitPos.x, 2) .. "," .. math.Round(hitPos.y, 2) .. "," .. math.Round(hitPos.z, 2) .. " | Cur Health: " .. math.Round(client:Health(), 2) .. " | FrameTime: " .. FrameTime() .. " | PING: " .. client:Ping() .. " | ", devFont, x, y2, Color(210, 210, 210, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
         if IsValid(ent) then draw.SimpleText("| Cur Trace: " .. ent:GetClass() .. " | Trace Model: " .. (ent.GetModel and ent:GetModel() or "N/A") .. " | ", devFont, x, y3, Color(210, 210, 210, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER) end
     end
+    hook.Run("DevelopmentHUDPaint", client)
 end

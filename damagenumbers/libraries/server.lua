@@ -7,6 +7,7 @@
     net.WriteEntity(ent)
     net.WriteUInt(dmg, 32)
     net.Send({ent, atk})
+    hook.Run("DamageNumbersSent", atk, ent, dmg)
 end
 
 local networkStrings = {"expDamageNumbers"}
