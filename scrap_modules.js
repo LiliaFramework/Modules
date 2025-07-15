@@ -46,6 +46,7 @@ for (const module of modulesList) {
     description = '',
     features = [],
     download = '',
+    public_uniqueID = '',
   } = module;
   const versionStr = toVersionString(version);
   const versionLabel = versionStr ? ` ${versionStr}` : '';
@@ -58,6 +59,12 @@ for (const module of modulesList) {
   }
   if (download) {
     output += `<p align="center"><a href="${download}">Download Here</a></p>\n\n`;
+  }
+  if (public_uniqueID) {
+    const base = 'https://liliaframework.github.io/Modules/docs';
+    const libs = `${base}/libraries/modules/${public_uniqueID}.html`;
+    const hooks = `${base}/hooks/modules/${public_uniqueID}.html`;
+    output += `<p align="center"><a href="${libs}">Libraries</a> | <a href="${hooks}">Hooks</a></p>\n\n`;
   }
 }
 
