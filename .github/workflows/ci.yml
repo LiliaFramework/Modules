@@ -47,6 +47,8 @@ jobs:
   bump-version:
     needs: linter
     runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.sha.outputs.sha }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -92,6 +94,9 @@ jobs:
             git commit -m "Updated Modules Versions"
             git push origin HEAD:main
           fi
+      - name: record-sha
+        id: sha
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
   scrape-modules:
     needs: bump-version
@@ -100,7 +105,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: main
+          ref: ${{ needs.bump-version.outputs.sha }}
       - run: sudo apt-get update && sudo apt-get install -y jq zip
       - name: extract-module-metadata
         shell: bash
@@ -209,6 +214,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: ${{ needs.bump-version.outputs.sha }}
       - name: create-docs-dir
         run: mkdir -p documentation
       - uses: actions/download-artifact@v4
