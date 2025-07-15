@@ -230,22 +230,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p documentation/docs/{hooks/modules,libraries/modules}
+          mkdir -p documentation/docs/hooks/modules
+          mkdir -p documentation/docs/libraries/modules
           for d in extracted_*; do
             mod=${d#extracted_}
-            docs_dir=$(find "$d" -type d -path "*/docs" -print -quit || true)
-            [ -z "$docs_dir" ] && continue
-            for f in "$docs_dir"/*.md; do
-              [ -e "$f" ] || continue
-              case "$(basename "$f")" in
-                hooks.md)
-                  cp "$f" "documentation/docs/hooks/modules/${mod}.md"
-                  ;;
-                libraries.md)
-                  cp "$f" "documentation/docs/libraries/modules/${mod}.md"
-                  ;;
-              esac
-            done
+            doc_root=$(find "$d" -type d \( -iname docs -o -iname documentation \) -print -quit || true)
+            [ -z "$doc_root" ] && continue
+            [ -f "$doc_root/hooks.md" ] && cp "$doc_root/hooks.md" "documentation/docs/hooks/modules/${mod}.md"
+            [ -f "$doc_root/libraries.md" ] && cp "$doc_root/libraries.md" "documentation/docs/libraries/modules/${mod}.md"
           done
       - name: remove-module-docs
         run: rm -rf documentation/docs/modules
@@ -283,9 +275,9 @@ jobs:
           set -euo pipefail
           mkdir -p lilia/documentation
           if [ -d built-docs/documentation ]; then
-            cp -R built-docs/documentation/. lilia/documentation/
+            rsync -a --delete built-docs/documentation/ lilia/documentation/
           else
-            cp -R built-docs/. lilia/documentation/
+            rsync -a --delete built-docs/ lilia/documentation/
           fi
           rm -f lilia/documentation/modules.json
       - name: commit-push-docs
@@ -295,8 +287,10 @@ jobs:
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add -A documentation
-          if ! git diff --cached --quiet; then
+          git add -A .
+          if git diff --cached --quiet; then
+            echo "No documentation changes to commit"
+          else
             git commit -m "Update generated module documentation"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
           fi
