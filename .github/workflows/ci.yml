@@ -284,9 +284,9 @@ jobs:
           set -euo pipefail
           mkdir -p lilia/documentation
           if [ -d built-docs/documentation ]; then
-            rsync -a --delete built-docs/documentation/ lilia/documentation/
+            rsync -a built-docs/documentation/ lilia/documentation/
           else
-            rsync -a --delete built-docs/ lilia/documentation/
+            rsync -a built-docs/ lilia/documentation/
           fi
           rm -f lilia/documentation/modules.json
       - name: commit-push-docs
