@@ -165,6 +165,13 @@ jobs:
           done
       - name: run-scrap-script
         run: node scrap_modules.js
+      - name: move-modules-md
+        shell: bash
+        run: |
+          if [ -f documentation/modules.md ]; then
+            mkdir -p documentation/docs
+            mv documentation/modules.md documentation/docs/modules.md
+          fi
       - name: update-lilia-docs
         shell: bash
         run: |
