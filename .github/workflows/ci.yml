@@ -91,7 +91,6 @@ jobs:
             git config user.name "GitHub Actions"
             git commit -m "Updated Modules Versions"
             git push origin HEAD:main
-          fi
 
   scrape-modules:
     needs: bump-version
@@ -226,14 +225,28 @@ jobs:
       - name: gather-module-docs
         shell: bash
         run: |
-          mkdir -p documentation/docs/modules
+          set -euo pipefail
+          mkdir -p documentation/docs/{modules,hooks/modules,libraries/modules}
           for d in extracted_*; do
             mod=${d#extracted_}
             docs_dir=$(find "$d" -type d -path "*/docs" -print -quit || true)
             [ -z "$docs_dir" ] && continue
-            dest="documentation/docs/modules/${mod}"
-            mkdir -p "$dest"
-            find "$docs_dir" -maxdepth 1 -type f -name '*.md' -exec cp {} "$dest/" \;
+            base_dest="documentation/docs/modules/${mod}"
+            mkdir -p "$base_dest"
+            for f in "$docs_dir"/*.md; do
+              [ -e "$f" ] || continue
+              case "$(basename "$f")" in
+                hooks.md)
+                  cp "$f" "documentation/docs/hooks/modules/${mod}.md"
+                  ;;
+                libraries.md)
+                  cp "$f" "documentation/docs/libraries/modules/${mod}.md"
+                  ;;
+                *)
+                  cp "$f" "$base_dest/"
+                  ;;
+              esac
+            done
           done
       - uses: actions/setup-node@v3
         with:
