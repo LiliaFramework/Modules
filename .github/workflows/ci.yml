@@ -110,18 +110,17 @@ jobs:
             local s="$1"
             [ -z "$s" ] && { printf '[]'; return; }
             if [[ $s == \{* ]]; then
-              s=${s#\{}
-              s=${s%\}}
-              IFS=',' read -ra arr <<< "$(echo "$s" | tr -d '\n')"
+              s=$(echo "$s" | tr -d '\n' | sed -E 's/^\{//;s/\}$//')
+              IFS=',' read -ra arr <<< "$s"
               printf '['
               for idx in "${!arr[@]}"; do
-                entry=$(echo "${arr[$idx]}" | sed -E 's/^"|"$//g' | xargs)
+                entry=$(echo "${arr[$idx]}" | sed -E 's/^\s*"|"\s*$//g')
                 printf '"%s"' "$entry"
                 [ "$idx" -lt $(( ${#arr[@]} - 1 )) ] && printf ','
               done
               printf ']'
             else
-              s=$(echo "$s" | sed -E 's/^"|"$//g' | xargs)
+              s=$(echo "$s" | sed -E 's/^\s*"|"\s*$//g')
               [ -z "$s" ] && { printf '[]'; return; }
               printf '["%s"]' "$s"
             fi
