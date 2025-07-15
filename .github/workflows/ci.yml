@@ -91,6 +91,7 @@ jobs:
             git config user.name "GitHub Actions"
             git commit -m "Updated Modules Versions"
             git push origin HEAD:main
+          fi
 
   scrape-modules:
     needs: bump-version
@@ -158,9 +159,11 @@ jobs:
           for d in */; do
             [ -d "$d" ] && zip -r "${d%/}.zip" "$d"
           done
-      - run: node scrap_modules.js
-      - run: |
-          set -euo pipefail
+      - name: run-scrap-script
+        run: node scrap_modules.js
+      - name: update-lilia-docs
+        shell: bash
+        run: |
           git clone https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git lilia
           if [ -f documentation/docs/modules.md ]; then
             mkdir -p lilia/documentation/docs
@@ -176,9 +179,11 @@ jobs:
               git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
             fi
           fi
-      - run: mv modules_data.json modules.json
-      - run: |
-          set -euo pipefail
+      - name: move-json
+        run: mv modules_data.json modules.json
+      - name: update-website-json
+        shell: bash
+        run: |
           git clone https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/LiliaFramework.github.io.git website
           cp modules.json website/modules.json
           cd website
@@ -205,7 +210,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - run: mkdir -p documentation
+      - name: create-docs-dir
+        run: mkdir -p documentation
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
@@ -217,7 +223,6 @@ jobs:
       - name: unzip-modules
         shell: bash
         run: |
-          set -euo pipefail
           for z in documentation/*.zip; do
             f=$(basename "$z" .zip)
             unzip "$z" -d "extracted_${f}"
@@ -243,7 +248,8 @@ jobs:
               esac
             done
           done
-      - run: rm -rf documentation/docs/modules
+      - name: remove-module-docs
+        run: rm -rf documentation/docs/modules
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -286,7 +292,6 @@ jobs:
       - name: commit-push-docs
         shell: bash
         run: |
-          set -euo pipefail
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
