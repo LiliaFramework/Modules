@@ -226,13 +226,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p documentation/docs/{modules,hooks/modules,libraries/modules}
+          mkdir -p documentation/docs/{hooks/modules,libraries/modules}
           for d in extracted_*; do
             mod=${d#extracted_}
             docs_dir=$(find "$d" -type d -path "*/docs" -print -quit || true)
             [ -z "$docs_dir" ] && continue
-            base_dest="documentation/docs/modules/${mod}"
-            mkdir -p "$base_dest"
             for f in "$docs_dir"/*.md; do
               [ -e "$f" ] || continue
               case "$(basename "$f")" in
@@ -242,12 +240,11 @@ jobs:
                 libraries.md)
                   cp "$f" "documentation/docs/libraries/modules/${mod}.md"
                   ;;
-                *)
-                  cp "$f" "$base_dest/"
-                  ;;
               esac
             done
           done
+      - name: remove-module-docs
+        run: rm -rf documentation/docs/modules
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -286,6 +283,7 @@ jobs:
           else
             cp -R built-docs/. lilia/documentation/
           fi
+          rm -f lilia/documentation/modules.json
       - name: commit-push-docs
         shell: bash
         run: |
