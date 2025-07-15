@@ -3,6 +3,7 @@ net.Receive("BodygrouperMenuClose", function(_, client)
     for _, v in pairs(ents.FindByClass("lia_bodygrouper")) do
         if v:HasUser(client) then v:RemoveUser(client) end
     end
+
     hook.Run("BodygrouperMenuClosedServer", client)
 end)
 
@@ -39,8 +40,8 @@ net.Receive("BodygrouperMenu", function(_, client)
             end
         end
     end
-    hook.Run("PreBodygroupApply", client, target, skn, groups)
 
+    hook.Run("PreBodygroupApply", client, target, skn, groups)
     local character = target:getChar()
     if not character then return end
     target:SetSkin(skn)

@@ -20,21 +20,17 @@ end
 local function spawnNPC(zone, npcType, group)
     if hook.Run("CanNPCSpawn", zone, npcType, group) == false then return false end
     hook.Run("PreNPCSpawn", zone, npcType, group)
-
     local randomOffset = Vector(math.Rand(-zone.radius, zone.radius), math.Rand(-zone.radius, zone.radius), 0)
     local spawnPos = zone.pos + randomOffset
     if not isSafeSpawnPos(spawnPos) then return false end
-
     local npc = ents.Create(npcType)
     if not IsValid(npc) then return false end
     npc:SetPos(spawnPos)
     npc:setNetVar("setNetVar", group)
     npc:Spawn()
-
     table.insert(zone.spawnedNPCs, npc)
     hook.Run("OnNPCSpawned", npc, zone, group)
     hook.Run("PostNPCSpawn", npc, zone, group)
-
     return true
 end
 
@@ -96,6 +92,7 @@ local function spawnCycle()
     for group, zone in pairs(zones) do
         processZone(zone, group)
     end
+
     hook.Run("PostNPCSpawnCycle", zones)
 end
 

@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 MODULE.searchPanels = MODULE.searchPanels or {}
 net.Receive("searchPly", function()
     local target = net.ReadEntity()
@@ -9,6 +9,7 @@ net.Receive("searchPly", function()
         net.SendToServer()
         return
     end
+
     local myInvPanel, targetInvPanel
     local exitLock = true
     local function onRemove(panel)

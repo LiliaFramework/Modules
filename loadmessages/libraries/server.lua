@@ -1,4 +1,4 @@
-function MODULE:PlayerLoadedChar(client)
+﻿function MODULE:PlayerLoadedChar(client)
     local data = self.FactionMessages[client:Team()]
     if data then
         hook.Run("PreLoadMessage", client, data)

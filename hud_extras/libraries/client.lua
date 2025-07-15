@@ -84,6 +84,7 @@ local function drawWatermark()
         surface.SetTextPos(15 + w, ScrH() - h / 2 - ty / 2)
         surface.DrawText(ver)
     end
+
     hook.Run("HUDExtrasPostDrawWatermark")
 end
 

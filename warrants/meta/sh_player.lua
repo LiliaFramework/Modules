@@ -20,6 +20,7 @@ if SERVER then
                 ply:notify(string.format(expirationText, description, warranted and L("issued") or L("expired")))
             end
         end
+
         hook.Run("PostWarrantToggle", self, warranter, warranted)
     end
 

@@ -1,4 +1,4 @@
-MODULE.name = "Weight Inv"
+﻿MODULE.name = "Weight Inv"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.08

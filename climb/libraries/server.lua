@@ -1,4 +1,4 @@
-function MODULE:KeyPress(ply)
+﻿function MODULE:KeyPress(ply)
     if ply:KeyPressed(IN_JUMP) then
         hook.Run("PlayerClimbAttempt", ply)
         local trace = {}

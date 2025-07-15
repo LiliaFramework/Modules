@@ -16,7 +16,6 @@
         end
 
         if hook.Run("CanSendRumour", client, rumourMessage) == false then return end
-
         if not client.rumourdelay then client.rumourdelay = 0 end
         if CurTime() < client.rumourdelay then
             local seconds = math.ceil(client.rumourdelay - CurTime())
@@ -25,7 +24,6 @@
         end
 
         hook.Run("RumourAttempt", client, rumourMessage)
-
         client.rumourdelay = CurTime() + lia.config.get("RumourCooldown", 60)
         local revealChance = lia.config.get("RumourRevealChance", 0.02)
         local revealMath = math.random() < revealChance
@@ -39,5 +37,5 @@
         end
 
         hook.Run("RumourSent", client, rumourMessage, revealMath)
-      end
-  })
+    end
+})

@@ -10,5 +10,6 @@ function MODULE:PlayerSay(ply, text)
             return ""
         end
     end
+
     hook.Run("PostFilterCheck", ply, text, true)
 end

@@ -37,5 +37,6 @@ net.Receive("expDamageNumbers", function()
         ent = ent,
         dmg = dmg
     })
+
     hook.Run("DamageNumberAdded", ent, dmg)
 end)

@@ -11,6 +11,7 @@
             inv:sync(client)
         end
     end
+
     hook.Run("InventoryPostPlayerLoadedChar", client, character, inv)
 end
 

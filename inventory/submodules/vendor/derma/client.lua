@@ -687,7 +687,6 @@ function PANEL:OnRemove()
     if IsValid(lia.gui.editorFaction) then lia.gui.editorFaction:Remove() end
 end
 
-
 function PANEL:OnFocusChanged(gained)
     if not gained then
         timer.Simple(0, function()

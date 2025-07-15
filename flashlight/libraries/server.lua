@@ -1,4 +1,4 @@
-function MODULE:PlayerSwitchFlashlight(client, isEnabled)
+﻿function MODULE:PlayerSwitchFlashlight(client, isEnabled)
     if not client:getChar() then return false end
     if hook.Run("PrePlayerToggleFlashlight", client, isEnabled) == false then return false end
     if hook.Run("CanPlayerToggleFlashlight", client, isEnabled) == false then return false end
@@ -10,7 +10,7 @@ function MODULE:PlayerSwitchFlashlight(client, isEnabled)
                 client:EmitSound(isEnabled and "buttons/button24.wav" or "buttons/button10.wav", 60, isEnabled and 100 or 70)
                 client.FlashlightCooldown = CurTime() + cooldown
                 client:ConCommand("r_shadows " .. (isEnabled and "1" or "0"))
-    hook.Run("PlayerToggleFlashlight", client, isEnabled)
+                hook.Run("PlayerToggleFlashlight", client, isEnabled)
                 return true
             end
         end

@@ -1,4 +1,4 @@
-local allowedImageTypes = {".PNG", ".JPG", ".JPEG"}
+﻿local allowedImageTypes = {".PNG", ".JPG", ".JPEG"}
 local function getTableEnt(pos)
     for _, ent in pairs(ents.FindByClass("wartable")) do
         if ent:GetPos():DistToSqr(pos) < 25000 then return ent end

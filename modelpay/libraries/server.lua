@@ -1,4 +1,4 @@
-local ModelPay = {
+﻿local ModelPay = {
     ["models/player/barney.mdl"] = 25,
 }
 
@@ -13,6 +13,7 @@ function MODULE:GetSalaryAmount(client)
             return pay
         end
     end
+
     hook.Run("ModelPayModelNotMatched", client, playerModel)
     hook.Run("ModelPaySalaryDetermined", client, 0)
     return 0

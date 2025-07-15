@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 function MODULE:PlayerLoadedChar()
     self:UpdatePartyTiers()
 end
@@ -16,5 +16,6 @@ function MODULE:UpdatePartyTiers()
             hook.Run("PartyTierNoCharacter", ply)
         end
     end
+
     hook.Run("PostUpdatePartyTiers")
 end

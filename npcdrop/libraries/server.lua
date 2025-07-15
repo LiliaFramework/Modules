@@ -1,11 +1,13 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 function MODULE:OnNPCKilled(ent)
     if not ent:IsNPC() then return end
     hook.Run("NPCDropCheck", ent)
     local weights = self.DropTable[ent:GetClass()]
     if not weights then
         hook.Run("NPCDropNoTable", ent)
-        return end
+        return
+    end
+
     local totalWeight = 0
     for _, w in pairs(weights) do
         if isnumber(w) and w > 0 then totalWeight = totalWeight + w end
@@ -13,7 +15,9 @@ function MODULE:OnNPCKilled(ent)
 
     if totalWeight <= 0 then
         hook.Run("NPCDropNoItems", ent)
-        return end
+        return
+    end
+
     local choice = math.random(totalWeight)
     hook.Run("NPCDropRoll", ent, choice, totalWeight)
     for itemName, weight in pairs(weights) do
@@ -25,5 +29,6 @@ function MODULE:OnNPCKilled(ent)
 
         choice = choice - weight
     end
+
     hook.Run("NPCDropFailed", ent)
 end

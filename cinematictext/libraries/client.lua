@@ -116,6 +116,7 @@ function PANEL:TriggerCountdown()
         hook.Run("CinematicDisplayEnded")
         self:Remove()
     end)
+
     timer.Simple(contents.duration, function() if music then music:FadeOut(4) end end)
 end
 

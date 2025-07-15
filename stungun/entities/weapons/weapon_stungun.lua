@@ -135,6 +135,7 @@ function SWEP:FuckingOverStun(ply)
             ply:SetMoveType(MOVETYPE_WALK)
             ply:Freeze(false)
         end
+
         hook.Run("PlayerOverStunCleared", ply, self)
     end)
 

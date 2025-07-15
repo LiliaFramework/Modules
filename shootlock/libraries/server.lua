@@ -42,6 +42,7 @@
                 entity.liaNextBreach = CurTime() + 1
                 timer.Simple(0.5, function() if IsValid(entity) then entity:Fire("setspeed", entity.liaOldSpeed) end end)
             end
+
             hook.Run("LockShotFailed", client, entity, dmgInfo)
         end
     end

@@ -1,4 +1,4 @@
-if SERVER then
+﻿if SERVER then
     function lia.caption.start(client, text, duration)
         net.Start("StartCaption")
         net.WriteString(text)

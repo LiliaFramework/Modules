@@ -159,7 +159,6 @@ if SERVER then
         })
 
         hook.Run("CompassSpotCommand", ply, tr)
-
         local t = CurTime() + mCompass_Settings.Spot_Duration
         if tr.Entity and not tr.HitWorld then
             MODULE.AddEntityMarker(ply, tr.Entity, nil, t, color)

@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 net.Receive("WardrobeChangeModel", function(_, client)
     local newModel = net.ReadString()
     hook.Run("WardrobeModelChangeRequested", client, newModel)

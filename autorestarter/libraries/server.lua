@@ -16,6 +16,7 @@ function MODULE:InitializedModules()
                 net.Send(ply)
                 notified[ply:SteamID()] = false
             end
+
             hook.Run("AutoRestart", now)
             hook.Run("AutoRestartStarted", game.GetMap())
             game.ConsoleCommand("changelevel " .. game.GetMap() .. "\n")

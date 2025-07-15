@@ -1,4 +1,4 @@
-lia.utilities = lia.utilities or {}
+﻿lia.utilities = lia.utilities or {}
 local function normalize(minVal, maxVal, val)
     return (val - minVal) / (maxVal - minVal)
 end

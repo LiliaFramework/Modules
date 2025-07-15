@@ -112,6 +112,7 @@ function PANEL:LoadPoints()
                     net.WriteString(v.name)
                     net.SendToServer()
                 end):SetImage("icon16/door_in.png")
+
                 menu:AddOption(L("deletePoint"), function()
                     net.Start("GMTPDelete")
                     net.WriteString(v.name)

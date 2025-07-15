@@ -75,6 +75,7 @@ concommand.Add("+freelook", function()
     freelooking = true
     hook.Run("FreelookToggled", true)
 end)
+
 concommand.Add("-freelook", function()
     if hook.Run("PreFreelookToggle", false) == false then return end
     freelooking = false

@@ -31,9 +31,7 @@ if SERVER then
     function playerMeta:setWepRaised(state)
         local old = self:getNetVar("raised", false)
         self:setNetVar("raised", state)
-        if old ~= state then
-            hook.Run("PlayerWeaponRaisedChanged", self, state)
-        end
+        if old ~= state then hook.Run("PlayerWeaponRaisedChanged", self, state) end
         if IsValid(self:GetActiveWeapon()) then
             local weapon = self:GetActiveWeapon()
             weapon:SetNextPrimaryFire(CurTime() + 1)

@@ -36,5 +36,5 @@
         hook.Run("RealisticViewUpdated", client, view)
         hook.Run("RealisticViewCalcView", client, view)
         return view
-      end
-  end
+    end
+end

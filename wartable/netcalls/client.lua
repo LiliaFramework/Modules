@@ -1,4 +1,4 @@
-net.Receive("UseWarTable", function()
+﻿net.Receive("UseWarTable", function()
     local tableEnt = net.ReadEntity()
     local shouldAct = net.ReadBool()
     local client = LocalPlayer()
