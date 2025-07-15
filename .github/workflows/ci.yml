@@ -265,15 +265,15 @@ jobs:
           fetch-depth: 0
       - name: copy-built-docs
         run: |
-          mkdir -p lilia/documentation/docs
-          cp -R built-docs/. lilia/documentation/docs
+          mkdir -p lilia/documentation
+          cp -R built-docs/documentation/. lilia/documentation/
       - name: commit-push-docs
         shell: bash
         run: |
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add documentation/docs
+          git add documentation
           if ! git diff --cached --quiet; then
             git commit -m "Update Module Versions"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
