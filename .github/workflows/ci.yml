@@ -70,11 +70,11 @@ jobs:
               minor="00"
             fi
             minor=$((10#$minor + 1))
-            if [ $minor -eq 100 ]; then
+            if [ "$minor" -eq 100 ]; then
               minor=0
               major=$((major + 1))
             fi
-            if [ $minor -eq 0 ]; then
+            if [ "$minor" -eq 0 ]; then
               new_ver="$major"
             else
               new_ver=$(printf "%d.%02d" "$major" "$minor")
@@ -117,7 +117,7 @@ jobs:
               for idx in "${!arr[@]}"; do
                 entry=$(echo "${arr[$idx]}" | sed -E 's/^"|"$//g' | xargs)
                 printf '"%s"' "$entry"
-                [ $idx -lt $(( ${#arr[@]} - 1 )) ] && printf ','
+                [ "$idx" -lt $(( ${#arr[@]} - 1 )) ] && printf ','
               done
               printf ']'
             else
@@ -283,3 +283,4 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Update Module Versions"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
+          fi
