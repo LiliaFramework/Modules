@@ -264,9 +264,15 @@ jobs:
           path: lilia
           fetch-depth: 0
       - name: copy-built-docs
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p lilia/documentation
-          cp -R built-docs/documentation/. lilia/documentation/
+          if [ -d built-docs/documentation ]; then
+            cp -R built-docs/documentation/. lilia/documentation/
+          else
+            cp -R built-docs/. lilia/documentation/
+          fi
       - name: commit-push-docs
         shell: bash
         run: |
@@ -277,4 +283,3 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Update Module Versions"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
-          fi
