@@ -91,7 +91,7 @@ jobs:
             git config user.name "GitHub Actions"
             git commit -m "Updated Modules Versions"
             git push origin HEAD:main
-
+          fi
   scrape-modules:
     needs: bump-version
     runs-on: ubuntu-latest
