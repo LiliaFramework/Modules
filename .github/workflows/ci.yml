@@ -236,15 +236,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          shopt -s nullglob
           mkdir -p documentation/docs/hooks/modules
           mkdir -p documentation/docs/libraries/modules
           for d in extracted_*; do
+            [ -d "$d" ] || continue
             mod=${d#extracted_}
             doc_root=$(find "$d" -type d \( -iname docs -o -iname documentation \) -print -quit || true)
             [ -z "$doc_root" ] && continue
             [ -f "$doc_root/hooks.md" ] && cp "$doc_root/hooks.md" "documentation/docs/hooks/modules/${mod}.md"
             [ -f "$doc_root/libraries.md" ] && cp "$doc_root/libraries.md" "documentation/docs/libraries/modules/${mod}.md"
           done
+          shopt -u nullglob
       - name: remove-module-docs
         run: rm -rf documentation/docs/modules
       - uses: actions/setup-node@v3
