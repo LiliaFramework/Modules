@@ -229,11 +229,11 @@ jobs:
           mkdir -p documentation/docs/modules
           for d in extracted_*; do
             mod=${d#extracted_}
-            docs_dir="$d/docs"
-            [ -d "$docs_dir" ] || continue
+            docs_dir=$(find "$d" -type d -path "*/docs" -print -quit || true)
+            [ -z "$docs_dir" ] && continue
             dest="documentation/docs/modules/${mod}"
             mkdir -p "$dest"
-            cp "$docs_dir"/*.md "$dest/"
+            find "$docs_dir" -maxdepth 1 -type f -name '*.md' -exec cp {} "$dest/" \;
           done
       - uses: actions/setup-node@v3
         with:
@@ -266,6 +266,7 @@ jobs:
       - name: copy-built-docs
         shell: bash
         run: |
+          set -euo pipefail
           mkdir -p lilia/documentation
           if [ -d built-docs/documentation ]; then
             cp -R built-docs/documentation/. lilia/documentation/
