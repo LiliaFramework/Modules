@@ -92,6 +92,7 @@ jobs:
             git commit -m "Updated Modules Versions"
             git push origin HEAD:main
           fi
+
   scrape-modules:
     needs: bump-version
     runs-on: ubuntu-latest
@@ -291,11 +292,12 @@ jobs:
       - name: commit-push-docs
         shell: bash
         run: |
+          set -euo pipefail
           cd lilia
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git add documentation
+          git add -A documentation
           if ! git diff --cached --quiet; then
-            git commit -m "Update Module Versions"
+            git commit -m "Update generated module documentation"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
           fi
