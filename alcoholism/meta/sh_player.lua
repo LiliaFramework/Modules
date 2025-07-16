@@ -17,9 +17,7 @@ if SERVER then
         hook.Run("BACChanged", self, newBac)
         hook.Run("BACIncreased", self, amt, newBac)
         local threshold = lia.config.get("DrunkNotifyThreshold", 50)
-        if oldBac < threshold and newBac >= threshold then
-            hook.Run("BACThresholdReached", self, newBac)
-        end
+        if oldBac < threshold and newBac >= threshold then hook.Run("BACThresholdReached", self, newBac) end
     end
 end
 

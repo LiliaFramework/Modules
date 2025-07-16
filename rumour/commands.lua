@@ -22,6 +22,7 @@
             hook.Run("RumourValidationFailed", client, rumourMessage)
             return
         end
+
         if not client.rumourdelay then client.rumourdelay = 0 end
         if CurTime() < client.rumourdelay then
             local seconds = math.ceil(client.rumourdelay - CurTime())
@@ -43,9 +44,7 @@
             end
         end
 
-        if revealMath then
-            hook.Run("RumourRevealed", client)
-        end
+        if revealMath then hook.Run("RumourRevealed", client) end
         hook.Run("RumourSent", client, rumourMessage, revealMath)
     end
 })

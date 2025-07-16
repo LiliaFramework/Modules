@@ -45,7 +45,6 @@ net.Receive("BodygrouperMenu", function(_, client)
     end
 
     hook.Run("BodygrouperValidated", client, target, skn, groups)
-
     hook.Run("PreBodygroupApply", client, target, skn, groups)
     local character = target:getChar()
     if not character then return end

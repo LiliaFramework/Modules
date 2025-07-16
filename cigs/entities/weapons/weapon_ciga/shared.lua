@@ -117,6 +117,7 @@ function SWEP:Initialize()
                 angle = Angle(0, 0, 0)
             }
         }
+
         -- ensure WElements exists so later code can safely copy it
         self.WElements = self.WElements or {}
     end
@@ -124,9 +125,7 @@ function SWEP:Initialize()
     if CLIENT then
         local function tableFullCopy(tab)
             local res = {}
-            if not istable(tab) then
-                return res
-            end
+            if not istable(tab) then return res end
             for k, v in pairs(tab) do
                 if istable(v) then
                     res[k] = tableFullCopy(v)
