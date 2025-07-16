@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Modeltweaker module.
 
+---
 ### `WardrobeModelChangeRequested`
 
 **Purpose**
@@ -122,3 +124,4 @@ hook.Add("WardrobeModelInvalid", "Warn", function(client, newModel)
     print(newModel, "is not permitted")
 end)
 ```
+---

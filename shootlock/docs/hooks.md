@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Shootlock module.
 
+---
 ### `LockShotAttempt`
 
 **Purpose**
@@ -132,3 +134,4 @@ hook.Add("LockShotFailed", "BreachFailed", function(client, door)
     client:notify("The lock held strong.")
 end)
 ```
+---

@@ -1,5 +1,8 @@
-# Meta
+# Player Meta
 
+Convenience helpers for playing handcuff animations.
+
+---
 ### Player:StartHandcuffAnim (Server)
 
 **Purpose**
@@ -49,3 +52,4 @@ Server
 ```lua
 client:EndHandcuffAnim()
 ```
+---

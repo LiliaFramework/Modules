@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Inventory module.
 
+---
 ### `InventoryPrePlayerLoadedChar`
 
 **Purpose**
@@ -281,3 +283,4 @@ hook.Add("WeightInvItemRemoved", "OnRemove", function(inv, item)
     print(item.name .. " removed")
 end)
 ```
+---

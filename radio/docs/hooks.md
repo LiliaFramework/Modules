@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Radio module.
 
+---
 ### `AddSection`
 
 **Purpose**
@@ -316,3 +318,4 @@ hook.Add("RefreshFonts", "ReloadRadioFonts", function()
     print("Updating radio fonts")
 end)
 ```
+---

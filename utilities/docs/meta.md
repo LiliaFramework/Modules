@@ -1,5 +1,8 @@
-# Meta
+# Utility Meta
 
+A collection of player and entity utility helpers.
+
+---
 ### Player:squaredDistanceFromEnt (Shared)
 
 **Purpose**
@@ -227,3 +230,4 @@ Shared
 **Returns**
 
 *boolean*
+---

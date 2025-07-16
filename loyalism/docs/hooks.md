@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Loyalism module.
 
+---
 ### `PreUpdatePartyTiers`
 
 **Purpose**
@@ -119,3 +121,4 @@ hook.Add("PostUpdatePartyTiers", "Done", function()
     print("Tiers updated")
 end)
 ```
+---

@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Modelpay module.
 
+---
 ### `ModelPayModelChecked`
 
 **Purpose**
@@ -172,3 +174,4 @@ hook.Add("ModelPayModelIneligible", "StopSalary", function(client, model)
     -- cleanup
 end)
 ```
+---

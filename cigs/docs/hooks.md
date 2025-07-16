@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Cigs module.
 
+---
 ### `PlayerInhaleSmoke`
 
 **Purpose**
@@ -95,3 +97,4 @@ hook.Add("PlayerStopSmoking", "SmokingEnd", function(player, cigID)
     print(player:Name() .. " stopped smoking")
 end)
 ```
+---

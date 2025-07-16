@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the SimpleLockpicking module.
 
+---
 ### `CanPlayerLockpick`
 
 **Purpose**
@@ -132,3 +134,4 @@ hook.Add("LockpickInterrupted", "HandleAbort", function(client, target)
     client:notify("Lockpicking stopped")
 end)
 ```
+---

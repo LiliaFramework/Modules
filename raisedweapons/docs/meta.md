@@ -1,5 +1,8 @@
-# Meta
+# Player Meta
 
+Utility methods for managing the raised state of a player's weapon.
+
+---
 ### Player:isWepRaised (Shared)
 
 **Purpose**
@@ -69,3 +72,4 @@ Server
 ```lua
 client:toggleWepRaised()
 ```
+---

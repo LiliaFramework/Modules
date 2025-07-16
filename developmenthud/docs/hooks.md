@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Developmenthud module.
 
+---
 ### `RefreshFonts`
 
 **Purpose**
@@ -72,3 +74,4 @@ hook.Add("DevelopmentHUDPaint", "PostHUD", function(ply)
     -- draw additional overlays here
 end)
 ```
+---

@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Developmentserver module.
 
+---
 ### `DevServerUnauthorized`
 
 **Purpose**
@@ -98,3 +100,4 @@ hook.Add("DevServerModeDeactivated", "AnnounceDevModeOff", function()
 end)
 ```
 
+---

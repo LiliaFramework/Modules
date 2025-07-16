@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Captions module.
 
+---
 ### `SendCaptionCommand`
 
 **Purpose**
@@ -104,3 +106,4 @@ hook.Add("CaptionFinished", "HandleCaptionEnd", function(client)
     -- cleanup logic here
 end)
 ```
+---

@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Cinematictext module.
 
+---
 ### `CinematicDisplayStart`
 
 **Purpose**
@@ -123,3 +125,4 @@ hook.Add("CinematicTriggered", "OnCinematicTrigger", function(client, text, bigT
     print(client:Name() .. " started a cinematic.")
 end)
 ```
+---

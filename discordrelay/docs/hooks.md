@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Discordrelay module.
 
+---
 ### `DiscordRelaySend`
 
 **Purpose**
@@ -73,3 +75,4 @@ hook.Add("DiscordRelayUnavailable", "NotifyMissing", function()
 end)
 ```
 
+---

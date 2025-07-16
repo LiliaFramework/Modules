@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Communitycommands module.
 
+---
 ### `CommunityURLOpened`
 
 **Purpose**
@@ -46,3 +48,4 @@ hook.Add("CommunityURLRequest", "LogRequest", function(client, command)
     print(client:Name() .. " requested URL for " .. command)
 end)
 ```
+---

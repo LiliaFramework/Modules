@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Whitelist module.
 
+---
 ### `PreWhitelistCheck`
 
 **Purpose**
@@ -128,3 +130,4 @@ hook.Add("PostWhitelistCheck", "Example_PostWhitelistCheck", function(steamID64,
 end)
 ```
 
+---

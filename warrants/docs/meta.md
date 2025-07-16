@@ -1,5 +1,8 @@
-# Meta
+# Character Meta
 
+Extensions for managing a character's warrant status.
+
+---
 ### Character:ToggleWanted (Server)
 
 **Purpose**
@@ -97,3 +100,4 @@ Server
 **Returns**
 
 *boolean*
+---

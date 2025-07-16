@@ -1,5 +1,8 @@
-# Meta
+# Player Meta
 
+Helper functions for tracking a player's blood alcohol content.
+
+---
 ### Player:ResetBAC (Server)
 
 **Purpose**
@@ -95,3 +98,4 @@ Shared
 ```lua
 local level = client:GetBAC()
 ```
+---

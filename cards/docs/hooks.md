@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Cards module.
 
+---
 ### `CardsCommandUsed`
 
 **Purpose**
@@ -48,3 +50,4 @@ hook.Add("CardDrawn", "AnnounceCard", function(client, card)
     lia.chat.send(client, "me", "drew " .. card)
 end)
 ```
+---

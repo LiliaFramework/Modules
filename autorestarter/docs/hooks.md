@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Autorestarter module.
 
+---
 ### `AutoRestartScheduled`
 
 **Purpose**
@@ -97,3 +99,4 @@ hook.Add("AutoRestartCountdown", "DisplayTimer", function(remaining)
     print(remaining .. " seconds until restart")
 end)
 ```
+---
