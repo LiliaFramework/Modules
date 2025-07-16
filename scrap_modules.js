@@ -63,10 +63,12 @@ for (const moduleInfo of modulesList) {
 
   if (public_uniqueID) {
     const base = 'https://liliaframework.github.io/Modules/docs'
-    output += `<p><strong>Libraries:</strong> \n`
+
+    output += `<p><strong>Libraries:</strong>\n`
     output += `  <a href="${base}/libraries/modules/${public_uniqueID}.html">Access Here</a>\n`
     output += `</p>\n\n`
-    output += `<p><strong>Hooks:</strong> \n`
+    output += `<br />\n\n`
+    output += `<p><strong>Hooks:</strong>\n`
     output += `  <a href="${base}/hooks/modules/${public_uniqueID}.html">Access Here</a>\n`
     output += `</p>\n\n`
   }
