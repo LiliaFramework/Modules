@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Doorkick module.
 
+---
 ### `DoorKickFailed`
 
 **Purpose**
@@ -77,3 +79,4 @@ hook.Add("DoorKickedOpen", "LogDoorKick", function(client, door)
 end)
 ```
 
+---

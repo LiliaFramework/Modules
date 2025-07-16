@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Broadcasts module.
 
+---
 ### `PreClassBroadcastSend`
 
 **Purpose**
@@ -264,3 +266,4 @@ hook.Add("FactionBroadcastLogged", "NotifyLog", function(client, msg)
 end)
 ```
 
+---

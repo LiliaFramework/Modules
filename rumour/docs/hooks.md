@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Rumour module.
 
+---
 ### `CanSendRumour`
 
 **Purpose**
@@ -236,3 +238,4 @@ hook.Add("RumourRevealed", "Embarrass", function(client)
 end)
 ```
 
+---

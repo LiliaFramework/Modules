@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Stungun module.
 
+---
 ### `PlayerStunned`
 
 **Purpose**
@@ -206,3 +208,4 @@ hook.Add("StunGunTethered", "TetherMsg", function(owner, target)
     owner:ChatPrint("Tethered to " .. target:Name())
 end)
 ```
+---

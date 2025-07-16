@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Freelook module.
 
+---
 ### `ShouldUseFreelook`
 
 **Purpose**
@@ -72,3 +74,4 @@ hook.Add("FreelookToggled", "Notify", function(state)
     print("Freelook state:", state)
 end)
 ```
+---

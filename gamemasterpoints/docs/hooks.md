@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Gamemasterpoints module.
 
+---
 ### `GamemasterPreAddPoint`
 
 **Purpose**
@@ -318,3 +320,4 @@ hook.Add("GamemasterMoveToPoint", "NotifyMove", function(client, name, pos)
     print(client, "arrived at", name)
 end)
 ```
+---

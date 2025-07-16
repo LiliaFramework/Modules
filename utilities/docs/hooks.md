@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Utilities module.
 
+---
 ### `CodeUtilsLoaded`
 
 **Purpose**
@@ -70,3 +72,4 @@ hook.Add("UtilityEntitySpawned", "TrackEntity", function(entity, class, position
     print("Spawned entity", class)
 end)
 ```
+---

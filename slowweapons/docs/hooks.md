@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Slowweapons module.
 
+---
 ### `OverrideSlowWeaponSpeed`
 
 **Purpose**
@@ -86,3 +88,4 @@ hook.Add("PostApplyWeaponSlowdown", "NotifySlowdown", function(client, weapon, m
     end
 end)
 ```
+---

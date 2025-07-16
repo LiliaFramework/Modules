@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Corpseid module.
 
+---
 ### `RefreshFonts`
 
 **Purpose**
@@ -154,3 +156,4 @@ hook.Add("CorpseCreated", "StoreCorpse", function(client, corpse)
     print("Corpse created for " .. client:Name())
 end)
 ```
+---

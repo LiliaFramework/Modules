@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Permaremove module.
 
+---
 ### `CanPermaRemoveEntity`
 
 **Purpose**
@@ -74,3 +76,4 @@ hook.Add("OnPermaRemoveLoaded", "HandleLoadedRemoval", function(entity)
     print("Removed on load", entity)
 end)
 ```
+---

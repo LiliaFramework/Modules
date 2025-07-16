@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Vmanip module.
 
+---
 ### `PreVManipPickup`
 
 **Purpose**
@@ -51,3 +53,4 @@ hook.Add("VManipPickup", "PlaySound", function(client, item)
     client:EmitSound("items/ammo_pickup.wav")
 end)
 ```
+---

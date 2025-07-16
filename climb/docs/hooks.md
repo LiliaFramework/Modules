@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Climb module.
 
+---
 ### `PlayerClimbAttempt`
 
 **Purpose**
@@ -91,3 +93,4 @@ hook.Add("PlayerFailedClimb", "ClimbFail", function(player)
     player:ChatPrint("You can't climb here.")
 end)
 ```
+---

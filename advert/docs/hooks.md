@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Advert module.
 
+---
 ### `AdvertSent`
 
 **Purpose**
@@ -23,3 +25,4 @@ hook.Add("AdvertSent", "LogAdvert", function(client, message)
     print(client:Nick() .. " advertised: " .. message)
 end)
 ```
+---

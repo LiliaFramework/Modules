@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Realisticdamage module.
 
+---
 ### `PreScaleDamage`
 
 **Purpose**
@@ -208,3 +210,4 @@ hook.Add("OnPainSoundPlayed", "LogPain", function(ply, path)
     print("Played pain sound", path)
 end)
 ```
+---

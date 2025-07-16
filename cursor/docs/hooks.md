@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Cursor module.
 
+---
 ### `PreRenderCursor`
 
 **Purpose**
@@ -97,3 +99,4 @@ hook.Add("CursorThink", "Example", function(panel)
     -- custom panel hover logic here
 end)
 ```
+---

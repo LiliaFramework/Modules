@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Wartable module.
 
+---
 ### `PreWarTableClear`
 
 **Purpose**
@@ -401,3 +403,4 @@ hook.Add("PostWarTableUsed", "Example_PostWarTableUsed", function(activator, tab
 end)
 ```
 
+---

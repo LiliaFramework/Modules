@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Viewbob module.
 
+---
 ### `ViewBobPunch`
 
 **Purpose**
@@ -112,3 +114,4 @@ hook.Add("PostViewPunch", "PostEffects", function(client)
 end)
 ```
 
+---
