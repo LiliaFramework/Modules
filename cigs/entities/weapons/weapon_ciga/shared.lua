@@ -118,7 +118,6 @@ function SWEP:Initialize()
             }
         }
 
-        -- ensure WElements exists so later code can safely copy it
         self.WElements = self.WElements or {}
     end
 
