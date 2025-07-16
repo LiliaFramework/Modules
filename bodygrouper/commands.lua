@@ -15,6 +15,7 @@
             return
         end
 
+        hook.Run("PreBodygrouperMenuOpen", client, target)
         net.Start("BodygrouperMenu")
         net.WriteEntity(target)
         net.Send(client)
