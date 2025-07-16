@@ -1,72 +1,58 @@
-const fs = require('fs');
-const path = require('path');
-const modulesDataPath = path.join(__dirname, 'modules_data.json');
-const definitionPath = path.join(__dirname, 'documentation', 'definitions', 'module.md');
-const outputPath = path.join(__dirname, 'documentation', 'modules.md');
+const { existsSync, mkdirSync, readFileSync, writeFileSync } = require('fs');
+const { join, dirname } = require('path');
 
-const outputDir = path.dirname(outputPath);
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
-}
+const dataPath = join(__dirname, 'modules_data.json');
+const defPath  = join(__dirname, 'documentation', 'definitions', 'module.md');
+const outPath  = join(__dirname, 'documentation', 'modules.md');
 
-if (!fs.existsSync(modulesDataPath)) {
+if (!existsSync(dataPath)) {
   console.error('modules_data.json not found, skipping modules.md generation.');
   process.exit(1);
 }
 
-const rawData = fs.readFileSync(modulesDataPath, 'utf8');
-const parsedData = JSON.parse(rawData);
-const modulesList = Array.isArray(parsedData) ? parsedData : parsedData.modules || [];
+const raw      = readFileSync(dataPath, 'utf8');
+const parsed   = JSON.parse(raw);
+const list     = Array.isArray(parsed) ? parsed : parsed.modules || [];
+const details  = existsSync(defPath) ? readFileSync(defPath, 'utf8') : parsed.moduleDetails || '';
 
-let details = '';
-if (fs.existsSync(definitionPath)) {
-  details = fs.readFileSync(definitionPath, 'utf8');
-} else if (parsedData.moduleDetails) {
-  details = parsedData.moduleDetails;
-} else {
-  console.warn(`${definitionPath} not found and no moduleDetails in JSON.`);
-}
+const outDir = dirname(outPath);
+if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
-function toVersionString(version) {
-  if (typeof version === 'number') {
-    const major = Math.floor(version / 10000);
-    const minor = Math.floor(version / 100) % 100;
-    const patch = version % 100;
+const toVersion = v => {
+  if (typeof v === 'number') {
+    const major = Math.floor(v / 10000);
+    const minor = Math.floor(v / 100) % 100;
+    const patch = v % 100;
     return `${major}.${minor}.${patch}`;
   }
-  return version;
-}
+  return v;
+};
 
-let output = '# Optional Modules\n\n';
+let md = '# Optional Modules\n\n';
 
-for (const module of modulesList) {
-  const {
-    name = '',
-    version = '',
-    description = '',
-    features = [],
-    download = '',
-    public_uniqueID = '',
-  } = module;
-  const versionStr = toVersionString(version);
-  const versionLabel = versionStr ? ` ${versionStr}` : '';
-  output += `<h2 align="center">${name}${versionLabel}</h2>\n\n`;
-  if (description) output += `**Description:** ${description}\n\n`;
+for (const {
+  name = '',
+  version = '',
+  description = '',
+  features = [],
+  download = '',
+  public_uniqueID = ''
+} of list) {
+  const ver = toVersion(version);
+  md += `<h2 align="center">${name}${ver ? ` ${ver}` : ''}</h2>\n\n`;
+  if (description) md += `**Description:** ${description}\n\n`;
   if (features.length) {
-    output += '**Features:**\n\n';
-    for (const feature of features) output += `- ${feature}\n`;
-    output += '\n';
+    md += '**Features:**\n\n';
+    for (const f of features) md += `- ${f}\n`;
+    md += '\n';
   }
   if (public_uniqueID) {
     const base = 'https://liliaframework.github.io/Modules/docs';
-    const libs = `${base}/libraries/modules/${public_uniqueID}.html`;
-    const hooks = `${base}/hooks/modules/${public_uniqueID}.html`;
-    output += `<p align="center"><a href="${libs}">Libraries</a> | <a href="${hooks}">Hooks</a></p>\n\n`;
+    md += `<p align="center"><a href="${base}/libraries/modules/${public_uniqueID}.html">Libraries</a> | <a href="${base}/hooks/modules/${public_uniqueID}.html">Hooks</a></p>\n\n`;
   }
-  if (download) {
-    output += `<h1 align="center"><a href="${download}">DOWNLOAD HERE</a></h1>\n\n`;
-  }
+  if (download) md += `<h1 align="center"><a href="${download}">DOWNLOAD HERE</a></h1>\n\n`;
 }
 
-output += '---\n\n' + details;
-fs.writeFileSync(outputPath, output);
+md += '---\n\n' + details;
+
+writeFileSync(outPath, md);
