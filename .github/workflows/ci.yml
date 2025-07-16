@@ -302,7 +302,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf lilia/modules
+          rm -rf lilia/documentation/docs/modules
       - name: copy-built-docs
         shell: bash
         run: |
