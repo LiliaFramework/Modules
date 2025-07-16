@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Warrants module.
 
+---
 ### `PreWarrantToggle`
 
 **Purpose**
@@ -82,3 +84,4 @@ hook.Add("PostWarrantToggle", "Cleanup", function(char, actor, warranted)
     end
 end)
 ```
+---

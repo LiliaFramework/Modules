@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Mapcleaner module.
 
+---
 ### `PreItemCleanupWarning`
 
 **Purpose**
@@ -237,3 +239,4 @@ hook.Add("PostMapCleanup", "CleanupDone", function()
     print("Map cleanup completed")
 end)
 ```
+---

@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Enhanceddeath module.
 
+---
 ### `HospitalRespawned`
 
 **Purpose**
@@ -75,3 +77,4 @@ hook.Add("HospitalDeathFlagged", "AnnounceFlag", function(client)
 end)
 ```
 
+---

@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Wordfilter module.
 
+---
 ### `PreFilterCheck`
 
 **Purpose**
@@ -184,3 +186,4 @@ hook.Add("WordRemovedFromFilter", "AnnounceRemove", function(word)
 end)
 ```
 
+---

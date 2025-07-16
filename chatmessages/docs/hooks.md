@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Chatmessages module.
 
+---
 ### `ChatMessagesTimerStarted`
 
 **Purpose**
@@ -48,3 +50,4 @@ hook.Add("ChatMessageSent", "ReactToMessage", function(index, text)
     chat.AddText(Color(0,255,0), "[Log]", color_white, " Message " .. index .. ": " .. text)
 end)
 ```
+---

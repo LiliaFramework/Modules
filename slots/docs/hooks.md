@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Slots module.
 
+---
 ### `SlotMachineUse`
 
 **Purpose**
@@ -105,3 +107,4 @@ hook.Add("SlotMachineEnd", "ReadyAgain", function(machine, client)
     machine.IsPlaying = true
 end)
 ```
+---

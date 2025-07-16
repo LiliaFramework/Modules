@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Npcdrop module.
 
+---
 ### `NPCDropCheck`
 
 **Purpose**
@@ -144,3 +146,4 @@ hook.Add("NPCDropFailed", "Failure", function(ent)
     print("No item chosen for", ent:GetClass())
 end)
 ```
+---

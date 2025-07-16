@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Bodygrouper module.
 
+---
 ### `BodygrouperClosetAddUser`
 
 **Purpose**
@@ -369,3 +371,4 @@ hook.Add("BodygrouperValidated", "Notify", function(c, t)
 end)
 ```
 
+---

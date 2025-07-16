@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Realisticview module.
 
+---
 ### `ShouldUseRealisticView`
 
 **Purpose**
@@ -76,3 +78,4 @@ hook.Add("RealisticViewCalcView", "AddRoll", function(client, view)
     view.angles.r = view.angles.r + 5
 end)
 ```
+---

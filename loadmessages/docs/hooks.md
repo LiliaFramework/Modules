@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Loadmessages module.
 
+---
 ### `PreLoadMessage`
 
 **Purpose**
@@ -96,3 +98,4 @@ hook.Add("LoadMessageMissing", "FallbackMessage", function(client)
     client:ChatPrint("Welcome back!")
 end)
 ```
+---

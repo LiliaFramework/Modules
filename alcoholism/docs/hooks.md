@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Alcoholism module.
 
+---
 ### `BACChanged`
 
 **Purpose**
@@ -256,3 +258,4 @@ hook.Add("PostBACDecrease", "NotifyDrop", function(client, newBac)
 end)
 ```
 
+---

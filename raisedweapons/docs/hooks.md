@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Raisedweapons module.
 
+---
 ### `OverrideWeaponRaiseSpeed`
 
 **Purpose**
@@ -205,3 +207,4 @@ hook.Add("OnWeaponLowered", "AlertLowered", function(player, weapon)
     print(player:Name(), "lowered", weapon:GetClass())
 end)
 ```
+---

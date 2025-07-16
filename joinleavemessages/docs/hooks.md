@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Joinleavemessages module.
 
+---
 ### `PreJoinLeaveMessageSent`
 
 **Purpose**
@@ -51,3 +53,4 @@ hook.Add("JoinLeaveMessageSent", "LogToConsole", function(ply, joined, msg)
     print(msg)
 end)
 ```
+---

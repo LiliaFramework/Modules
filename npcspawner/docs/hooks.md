@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Npcspawner module.
 
+---
 ### `CanNPCSpawn`
 
 **Purpose**
@@ -261,3 +263,4 @@ hook.Add("OnNPCForceSpawn", "LogForce", function(client, spawnerName)
     print(client:Name(), "forced spawn", spawnerName)
 end)
 ```
+---

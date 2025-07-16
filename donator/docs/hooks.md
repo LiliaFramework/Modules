@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Donator module.
 
+---
 ### `DonatorFlagsGranted`
 
 **Purpose**
@@ -258,3 +260,4 @@ hook.Add("DonatorAdditionalSlotsGiven", "TrackAddSlots", function(player, amount
 end)
 ```
 
+---

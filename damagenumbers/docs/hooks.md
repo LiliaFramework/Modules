@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Damagenumbers module.
 
+---
 ### `RefreshFonts`
 
 **Purpose**
@@ -101,3 +103,4 @@ hook.Add("DamageNumberExpired", "OnExpire", function(ent, dmg)
     print("Damage number " .. dmg .. " expired")
 end)
 ```
+---

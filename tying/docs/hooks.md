@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Tying module.
 
+---
 ### `PlayerStartUnTying`
 
 **Purpose**
@@ -175,3 +177,4 @@ hook.Add("PlayerUnhandcuffed", "FreedomMsg", function(target)
     target:ChatPrint("You are free to go.")
 end)
 ```
+---

@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Firstpersoneffects module.
 
+---
 ### `ShouldUseFirstPersonEffects`
 
 **Purpose**
@@ -101,3 +103,4 @@ hook.Add("FirstPersonEffectsUpdated", "StoreOffsets", function(pl, pos, ang)
     MyAddon.LastOffset = pos
 end)
 ```
+---

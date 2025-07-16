@@ -1,5 +1,7 @@
 # Hooks
+Module-specific events raised by the Cutscenes module.
 
+---
 ### `CutsceneStarted`
 
 **Purpose**
@@ -126,3 +128,4 @@ hook.Add("CutsceneSubtitleStarted", "Subtitle", function(id, sub)
     print(sub.text)
 end)
 ```
+---

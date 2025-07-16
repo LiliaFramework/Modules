@@ -1,5 +1,8 @@
-# Meta
+# Player Meta
 
+Functions managing a player's extra character slots for donors.
+
+---
 ### Player:GetAdditionalCharSlots (Shared)
 
 **Purpose**
@@ -69,3 +72,4 @@ Server
 ```lua
 client:GiveAdditionalCharSlots(2)
 ```
+---
