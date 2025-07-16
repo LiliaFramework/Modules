@@ -46,43 +46,35 @@ for (const moduleInfo of modulesList) {
   const versionStr = toVersionString(version)
   const versionLabel = versionStr ? ` ${versionStr}` : ''
 
-  output += `<h2 align="center">${name}${versionLabel}</h2>\n\n`
+  output += `${name}${versionLabel}\n\n`
 
   if (description) {
-    output += `<p><strong>Description:</strong></p>\n`
-    output += `<p>${description}</p>\n\n`
+    output += `Description:\n\n${description}\n\n`
   }
 
   if (features.length) {
-    output += `<p><strong>Features:</strong></p>\n<ul>\n`
+    output += `Features:\n\n`
     for (const feature of features) {
-      output += `  <li>${feature}</li>\n`
+      output += `${feature}\n`
     }
-    output += `</ul>\n\n`
+    output += `\n`
   }
 
   if (public_uniqueID) {
     const base = 'https://liliaframework.github.io/Modules/docs'
-
-    output += `<p><strong>Libraries:</strong>\n`
-    output += `  <a href="${base}/libraries/modules/${public_uniqueID}.html">Access Here</a>\n`
-    output += `</p>\n\n`
-    output += `<p>&nbsp;</p>\n\n`
-    output += `<p><strong>Hooks:</strong>\n`
-    output += `  <a href="${base}/hooks/modules/${public_uniqueID}.html">Access Here</a>\n`
-    output += `</p>\n\n`
+    output += `Libraries:\n\n[Access Here](${base}/libraries/modules/${public_uniqueID}.html)\n\n`
+    output += `Hooks:\n\n[Access Here](${base}/hooks/modules/${public_uniqueID}.html)\n\n`
   }
 
   if (download) {
-    output += `<p align="center">\n`
-    output += `  <a href="${download}">\n`
-    output += `    <strong>Download Here</strong>\n`
-    output += `  </a>\n`
-    output += `</p>\n\n`
+    output += `Download:\n\n[Download Here](${download})\n\n`
   }
 }
 
-output += details
+if (details) {
+  if (!output.endsWith('\n')) output += '\n'
+  output += `${details.startsWith('\n') ? '' : '\n'}${details}`
+}
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true })
 fs.writeFileSync(outputPath, output)
