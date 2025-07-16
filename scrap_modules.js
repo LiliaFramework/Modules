@@ -67,7 +67,7 @@ for (const moduleInfo of modulesList) {
     output += `<p><strong>Libraries:</strong>\n`
     output += `  <a href="${base}/libraries/modules/${public_uniqueID}.html">Access Here</a>\n`
     output += `</p>\n\n`
-    output += `<br><br>\n\n`
+    output += `<p>&nbsp;</p>\n\n`
     output += `<p><strong>Hooks:</strong>\n`
     output += `  <a href="${base}/hooks/modules/${public_uniqueID}.html">Access Here</a>\n`
     output += `</p>\n\n`
