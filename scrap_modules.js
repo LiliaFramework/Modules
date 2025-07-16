@@ -53,7 +53,7 @@ for (const module of modulesList) {
   output += `<h2 align="center">${name}${versionLabel}</h2>\n\n`;
   if (description) output += `**Description:** ${description}\n\n`;
   if (features.length) {
-    output += '**Features:**\n';
+    output += '**Features:**\n\n';
     for (const feature of features) output += `- ${feature}\n`;
     output += '\n';
   }
