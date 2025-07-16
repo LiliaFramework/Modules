@@ -5,9 +5,11 @@ function MODULE:Think()
         for _, client in player.Iterator() do
             local bac = client:getNetVar("lia_alcoholism_bac", 0)
             if bac > 0 then
+                hook.Run("PreBACDecrease", client, bac)
                 local newBac = math.Clamp(bac - lia.config.get("AlcoholDegradeRate", 5), 0, 100)
                 client:setNetVar("lia_alcoholism_bac", newBac)
                 hook.Run("BACChanged", client, newBac)
+                hook.Run("PostBACDecrease", client, newBac)
             end
         end
 
