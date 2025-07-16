@@ -25,7 +25,7 @@ if (!Array.isArray(modules)) {
 for (const mod of modules) {
   const id = mod.public_uniqueID || '';
   if (!id) continue;
-  const dest = path.join(__dirname, 'documentation', 'docs', 'optional_modules', id);
+  const dest = path.join(__dirname, 'documentation', 'docs', 'modules', id);
   fs.mkdirSync(dest, { recursive: true });
 
   const lines = [];
