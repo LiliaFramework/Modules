@@ -1,58 +1,86 @@
-const { existsSync, mkdirSync, readFileSync, writeFileSync } = require('fs');
-const { join, dirname } = require('path');
+const fs = require('fs')
+const path = require('path')
 
-const dataPath = join(__dirname, 'modules_data.json');
-const defPath  = join(__dirname, 'documentation', 'definitions', 'module.md');
-const outPath  = join(__dirname, 'documentation', 'modules.md');
+const modulesDataPath = path.join(__dirname, 'modules_data.json')
+const definitionPath = path.join(__dirname, 'documentation', 'definitions', 'module.md')
+const outputPath = path.join(__dirname, 'documentation', 'modules.md')
 
-if (!existsSync(dataPath)) {
-  console.error('modules_data.json not found, skipping modules.md generation.');
-  process.exit(1);
+if (!fs.existsSync(modulesDataPath)) {
+  console.error('modules_data.json not found, skipping modules.md generation.')
+  process.exit(1)
 }
 
-const raw      = readFileSync(dataPath, 'utf8');
-const parsed   = JSON.parse(raw);
-const list     = Array.isArray(parsed) ? parsed : parsed.modules || [];
-const details  = existsSync(defPath) ? readFileSync(defPath, 'utf8') : parsed.moduleDetails || '';
+const rawData = fs.readFileSync(modulesDataPath, 'utf8')
+const parsedData = JSON.parse(rawData)
+const modulesList = Array.isArray(parsedData) ? parsedData : parsedData.modules || []
 
-const outDir = dirname(outPath);
-if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
+let details = ''
+if (fs.existsSync(definitionPath)) {
+  details = fs.readFileSync(definitionPath, 'utf8')
+} else if (parsedData.moduleDetails) {
+  details = parsedData.moduleDetails
+}
 
-const toVersion = v => {
-  if (typeof v === 'number') {
-    const major = Math.floor(v / 10000);
-    const minor = Math.floor(v / 100) % 100;
-    const patch = v % 100;
-    return `${major}.${minor}.${patch}`;
+function toVersionString(version) {
+  if (typeof version === 'number') {
+    const major = Math.floor(version / 10000)
+    const minor = Math.floor(version / 100) % 100
+    const patch = version % 100
+    return `${major}.${minor}.${patch}`
   }
-  return v;
-};
+  return version
+}
 
-let md = '# Optional Modules\n\n';
+let output = ''
 
-for (const {
-  name = '',
-  version = '',
-  description = '',
-  features = [],
-  download = '',
-  public_uniqueID = ''
-} of list) {
-  const ver = toVersion(version);
-  md += `<h2 align="center">${name}${ver ? ` ${ver}` : ''}</h2>\n\n`;
-  if (description) md += `**Description:** ${description}\n\n`;
+for (const moduleInfo of modulesList) {
+  const {
+    name = '',
+    version = '',
+    description = '',
+    features = [],
+    download = '',
+    public_uniqueID = '',
+  } = moduleInfo
+
+  const versionStr = toVersionString(version)
+  const versionLabel = versionStr ? ` ${versionStr}` : ''
+
+  output += `<h2 align="center">${name}${versionLabel}</h2>\n\n`
+
+  if (description) {
+    output += `<p><strong>Description:</strong></p>\n`
+    output += `<p>${description}</p>\n\n`
+  }
+
   if (features.length) {
-    md += '**Features:**\n\n';
-    for (const f of features) md += `- ${f}\n`;
-    md += '\n';
+    output += `<p><strong>Features:</strong></p>\n<ul>\n`
+    for (const feature of features) {
+      output += `  <li>${feature}</li>\n`
+    }
+    output += `</ul>\n\n`
   }
+
   if (public_uniqueID) {
-    const base = 'https://liliaframework.github.io/Modules/docs';
-    md += `<p align="center"><a href="${base}/libraries/modules/${public_uniqueID}.html">Libraries</a> | <a href="${base}/hooks/modules/${public_uniqueID}.html">Hooks</a></p>\n\n`;
+    const base = 'https://liliaframework.github.io/Modules/docs'
+    output += `<p><strong>Libraries:</strong> \n`
+    output += `  <a href="${base}/libraries/modules/${public_uniqueID}.html">Access Here</a>\n`
+    output += `</p>\n\n`
+    output += `<p><strong>Hooks:</strong> \n`
+    output += `  <a href="${base}/hooks/modules/${public_uniqueID}.html">Access Here</a>\n`
+    output += `</p>\n\n`
   }
-  if (download) md += `<h1 align="center"><a href="${download}">DOWNLOAD HERE</a></h1>\n\n`;
+
+  if (download) {
+    output += `<p align="center">\n`
+    output += `  <a href="${download}">\n`
+    output += `    <strong>Download Here</strong>\n`
+    output += `  </a>\n`
+    output += `</p>\n\n`
+  }
 }
 
-md += '---\n\n' + details;
+output += details
 
-writeFileSync(outPath, md);
+fs.mkdirSync(path.dirname(outputPath), { recursive: true })
+fs.writeFileSync(outputPath, output)
