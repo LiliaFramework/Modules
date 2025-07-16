@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Broadcasts"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.13
+MODULE.version = 1.14
 MODULE.Public = true
 MODULE.desc = "Enables faction and class broadcast commands so staff can send messages to specific groups."
 MODULE.CAMIPrivileges = {
