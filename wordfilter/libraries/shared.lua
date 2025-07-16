@@ -1,5 +1,4 @@
-﻿MODULE.WordBlackList = {"nigger", "faggot", "chink", "kike", "spic", "gook", "wetback", "dyke", "tranny", "retard", "coon", "raghead", "nip", "honky", "gyp", "beaner", "paki", "slant", "slope", "jap"}
-function MODULE:LoadData()
+﻿function MODULE:LoadData()
     local stored = self:getData({})
     if istable(stored) then
         for _, word in ipairs(stored) do
