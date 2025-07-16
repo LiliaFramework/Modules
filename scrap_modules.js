@@ -64,7 +64,7 @@ for (const module of modulesList) {
     output += `<p align="center"><a href="${libs}">Libraries</a> | <a href="${hooks}">Hooks</a></p>\n\n`;
   }
   if (download) {
-    output += `<p align="center"><a href="${download}">Download Here</a></p>\n\n`;
+    output += `<p align="center"><a href="${download}"><strong>Download Here</strong></a></p>\n\n`;
   }
 }
 
