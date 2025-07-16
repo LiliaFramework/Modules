@@ -57,14 +57,14 @@ for (const module of modulesList) {
     for (const feature of features) output += `- ${feature}\n`;
     output += '\n';
   }
-  if (download) {
-    output += `<p align="center"><a href="${download}">Download Here</a></p>\n\n`;
-  }
   if (public_uniqueID) {
     const base = 'https://liliaframework.github.io/Modules/docs';
     const libs = `${base}/libraries/modules/${public_uniqueID}.html`;
     const hooks = `${base}/hooks/modules/${public_uniqueID}.html`;
     output += `<p align="center"><a href="${libs}">Libraries</a> | <a href="${hooks}">Hooks</a></p>\n\n`;
+  }
+  if (download) {
+    output += `<p align="center"><a href="${download}">Download Here</a></p>\n\n`;
   }
 }
 
