@@ -117,14 +117,19 @@ function SWEP:Initialize()
                 angle = Angle(0, 0, 0)
             }
         }
+        -- ensure WElements exists so later code can safely copy it
+        self.WElements = self.WElements or {}
     end
 
     if CLIENT then
         local function tableFullCopy(tab)
             local res = {}
+            if not istable(tab) then
+                return res
+            end
             for k, v in pairs(tab) do
                 if istable(v) then
-                    res[k] = table.FullCopy(v)
+                    res[k] = tableFullCopy(v)
                 elseif isvector(v) then
                     res[k] = Vector(v.x, v.y, v.z)
                 elseif isangle(v) then
