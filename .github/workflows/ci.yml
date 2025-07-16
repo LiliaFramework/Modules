@@ -244,19 +244,20 @@ jobs:
         run: |
           set -euo pipefail
           shopt -s nullglob
-          mkdir -p documentation/docs/hooks/modules
-          mkdir -p documentation/docs/libraries/modules
           for d in extracted_*; do
             [ -d "$d" ] || continue
             mod=${d#extracted_}
-            doc_root=$(find "$d" -type d \( -iname docs -o -iname documentation \) -print -quit || true)
-            [ -z "$doc_root" ] && continue
-            [ -f "$doc_root/hooks.md" ] && cp "$doc_root/hooks.md" "documentation/docs/hooks/modules/${mod}.md"
-            [ -f "$doc_root/libraries.md" ] && cp "$doc_root/libraries.md" "documentation/docs/libraries/modules/${mod}.md"
+            doc_dir=$(find "$d" -type d -iname docs -maxdepth 2 -print -quit || true)
+            [ -z "$doc_dir" ] && continue
+            dest="documentation/docs/modules/${mod}"
+            mkdir -p "$dest"
+            find "$doc_dir" -maxdepth 1 -type f -name '*.md' -exec cp {} "$dest/" \;
           done
           shopt -u nullglob
-      - name: remove-module-docs
-        run: rm -rf documentation/docs/modules
+      - name: clean-obsolete-docs
+        run: |
+          rm -rf documentation/docs/hooks/modules
+          rm -rf documentation/docs/libraries/modules
       - uses: actions/setup-node@v3
         with:
           node-version: 16

@@ -21,16 +21,6 @@ local function DrawFPS()
     hook.Run("HUDExtrasPostDrawFPS")
 end
 
-lia.config.add("FPSHudFont", "FPS HUD Font", "PoppinsMedium", function()
-    if not CLIENT then return end
-    hook.Run("RefreshFonts")
-end, {
-    desc = "Font used for the FPS display",
-    category = "Fonts",
-    type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
-})
-
 local function DrawVignette()
     if hasVignetteMaterial then
         hook.Run("HUDExtrasPreDrawVignette")

@@ -1,5 +1,4 @@
-﻿lia.caption = lia.caption or {}
-MODULE.name = "Captions"
+﻿MODULE.name = "Captions"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.13
