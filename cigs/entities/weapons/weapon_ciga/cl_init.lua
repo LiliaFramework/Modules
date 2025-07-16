@@ -257,8 +257,7 @@ if CLIENT then
         self:UpdateBonePositions(vm)
         if not self.vRenderOrder then
             self.vRenderOrder = {}
-            for _, key in pairs(self.VElements) do
-                local v = self.VElements[key]
+            for key, v in pairs(self.VElements) do
                 if v.type == "Model" then
                     table.insert(self.vRenderOrder, 1, key)
                 elseif v.type == "Sprite" or v.type == "Quad" then
