@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          path: modules
+          path: optional_modules
       - uses: leafo/gh-actions-lua@v8.0.0
         with:
           luaVersion: 5.2
@@ -42,7 +42,7 @@ jobs:
             --no-global --no-self \
             --no-max-line-length --no-max-code-line-length \
             --no-max-string-line-length --no-max-comment-line-length
-        working-directory: modules
+        working-directory: optional_modules
 
   bump-version:
     needs: linter
@@ -165,31 +165,6 @@ jobs:
           done
       - name: run-scrap-script
         run: node scrap_modules.js
-      - name: move-modules-md
-        shell: bash
-        run: |
-          if [ -f documentation/modules.md ]; then
-            mkdir -p documentation/docs
-            mv documentation/modules.md documentation/docs/modules.md
-          fi
-      - name: update-lilia-docs
-        shell: bash
-        run: |
-          git clone https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git lilia
-          if [ -f documentation/docs/modules.md ]; then
-            mkdir -p lilia/documentation/docs
-            cp documentation/docs/modules.md lilia/documentation/docs/modules.md
-          fi
-          cd lilia
-          git config user.email "githubactions@github.com"
-          git config user.name "GitHub Actions"
-          if [ -f documentation/docs/modules.md ]; then
-            git add documentation/docs/modules.md
-            if ! git diff --cached --quiet; then
-              git commit -m "Update modules summary"
-              git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
-            fi
-          fi
       - name: move-json
         run: mv modules_data.json modules.json
       - name: update-website-json
@@ -249,7 +224,7 @@ jobs:
             mod=${d#extracted_}
             doc_dir=$(find "$d" -type d -iname docs -maxdepth 2 -print -quit || true)
             [ -z "$doc_dir" ] && continue
-            dest="documentation/docs/modules/${mod}"
+            dest="documentation/docs/optional_modules/${mod}"
             mkdir -p "$dest"
             find "$doc_dir" -maxdepth 1 -type f -name '*.md' -exec cp {} "$dest/" \;
           done
@@ -263,7 +238,7 @@ jobs:
           if [ -f documentation/modules.json ]; then
             jq -c '.[]' documentation/modules.json | while read -r mod; do
               id=$(echo "$mod" | jq -r '.public_uniqueID')
-              dest="documentation/docs/modules/${id}"
+              dest="documentation/docs/optional_modules/${id}"
               mkdir -p "$dest"
               {
                 echo "# $(echo "$mod" | jq -r '.name')"
@@ -293,8 +268,8 @@ jobs:
           fi
       - name: clean-obsolete-docs
         run: |
-          rm -rf documentation/docs/hooks/modules
-          rm -rf documentation/docs/libraries/modules
+          rm -rf documentation/docs/hooks/optional_modules
+          rm -rf documentation/docs/libraries/optional_modules
       - uses: actions/setup-node@v3
         with:
           node-version: 16
