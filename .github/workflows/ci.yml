@@ -298,6 +298,11 @@ jobs:
           token: ${{ secrets.LiliaGitSecret }}
           path: lilia
           fetch-depth: 0
+      - name: delete-old-modules
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf lilia/modules
       - name: copy-built-docs
         shell: bash
         run: |
