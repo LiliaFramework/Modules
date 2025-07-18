@@ -1,8 +1,15 @@
 const fs = require('fs')
 const path = require('path')
 
-const modulesPath = path.join(__dirname, 'modules.json')
-if (!fs.existsSync(modulesPath)) process.exit(1)
+let modulesPath = path.join(__dirname, 'modules.json')
+if (!fs.existsSync(modulesPath)) {
+  const altPath = path.join(__dirname, 'documentation', 'modules.json')
+  if (fs.existsSync(altPath)) {
+    modulesPath = altPath
+  } else {
+    process.exit(1)
+  }
+}
 
 let modules
 try {
