@@ -1,4 +1,4 @@
-# Caption Library
+# Libraries
 
 This page documents the functions for working with on-screen captions.
 
