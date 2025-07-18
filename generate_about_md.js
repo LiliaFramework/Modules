@@ -26,6 +26,8 @@ for (const mod of modules) {
   fs.mkdirSync(dest, { recursive: true })
 
   const lines = []
+  lines.push('# About')
+  lines.push('')
   lines.push(`# ${mod.name || ''}${mod.version ? ` (${mod.version})` : ''}`)
   lines.push('')
   lines.push(`Description:`)
