@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Tying"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.22
+MODULE.version = 1.23
 MODULE.desc = "Introduces handcuff-style tying items for arrests and logs all tie or untie actions."
 MODULE.Public = true
 if SERVER then
