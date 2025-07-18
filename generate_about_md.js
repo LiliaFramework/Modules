@@ -28,7 +28,7 @@ for (const mod of modules) {
   const lines = []
   lines.push('# About')
   lines.push('')
-  lines.push(`# ${mod.name || ''}${mod.version ? ` (${mod.version})` : ''}`)
+  lines.push(`# ${mod.name || ''}${mod.version ? ` ${mod.version}` : ''}`)
   lines.push('')
   lines.push(`Description:`)
   lines.push('')
