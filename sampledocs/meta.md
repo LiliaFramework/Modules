@@ -1,4 +1,4 @@
-# Entity Meta
+# Meta
 
 Entities in Garry's Mod may represent props, items, and interactive objects.
 
