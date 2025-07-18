@@ -1,7 +1,7 @@
 ﻿MODULE.name = "NPC Drops"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.12
+MODULE.version = 1.13
 MODULE.desc = "Makes certain NPCs drop specified items on death, encouraging looting."
 MODULE.DropTable = {
     ["npc_zombie"] = {
