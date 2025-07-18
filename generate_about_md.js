@@ -54,3 +54,28 @@ for (const mod of modules) {
 }
 
 console.log('about.md files generated.')
+
+
+
+Name (Version)
+
+Description:
+
+(Description)
+
+Features:
+
+(Feature)
+
+(Feature)
+
+(Feature)
+
+(Feature)
+
+(Feature)
+
+(Feature)
+
+
+(Centered button) DOWNLOAD HERE
