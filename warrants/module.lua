@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Warrant"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.21
+MODULE.version = 1.22
 MODULE.Public = true
 MODULE.desc = "Allows staff to issue and remove player warrants while notifying everyone involved."
 MODULE.Features = {"Adds ability to issue and remove player warrants", "Adds notifications displayed to players", "Adds logging of all warrant actions", "Adds CAMI privileges for warrant management", "Adds timed expiration for warrants"}

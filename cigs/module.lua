@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Cigarettes"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.15
+MODULE.version = 1.16
 MODULE.desc = "Adds consumable cigarette items that produce smoke puffs while gradually burning down."
 MODULE.WorkshopContent = "3519851007"
 MODULE.Public = true

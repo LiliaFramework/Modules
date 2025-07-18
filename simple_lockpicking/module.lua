@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Lockpicking"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.13
+MODULE.version = 1.14
 MODULE.desc = "Provides a basic lockpick tool for brute forcing doors with logged attempts."
 MODULE.Public = true
 if SERVER then lia.log.addType("lockpick", function(client, target) return string.format("%s lockpicked %s", client:Name(), tostring(target)) end, "Player") end
