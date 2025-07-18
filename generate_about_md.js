@@ -28,15 +28,21 @@ for (const mod of modules) {
   const lines = []
   lines.push('# About')
   lines.push('')
-  lines.push(`# ${mod.name || ''}${mod.version ? ` ${mod.version}` : ''}`)
+  lines.push('Name:')
   lines.push('')
-  lines.push(`Description:`)
+  lines.push(mod.name || '')
+  lines.push('')
+  lines.push('Version:')
+  lines.push('')
+  lines.push(mod.version || '')
+  lines.push('')
+  lines.push('Description:')
   lines.push('')
   lines.push(mod.description || '')
   lines.push('')
 
   if (Array.isArray(mod.features) && mod.features.length) {
-    lines.push(`Features:`)
+    lines.push('Features:')
     lines.push('')
     for (const feat of mod.features) {
       lines.push(feat)
@@ -45,7 +51,7 @@ for (const mod of modules) {
   }
 
   if (Array.isArray(mod.workshop) && mod.workshop.length) {
-    lines.push(`Workshop Content`)
+    lines.push('Workshop Content')
     lines.push('')
     for (const item of mod.workshop) {
       lines.push(item)
@@ -58,7 +64,7 @@ for (const mod of modules) {
       `<p align="center"><a href="${mod.download}" ` +
       `style="display:inline-block;padding:12px 24px;` +
       `font-size:1.5rem;font-weight:bold;text-decoration:none;` +
-      `color:#fff;background-color:#007acc;border-radius:4px;">` +
+      `color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">` +
       `DOWNLOAD HERE</a></p>`
     )
   }
