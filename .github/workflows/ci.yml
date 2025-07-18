@@ -230,42 +230,7 @@ jobs:
           done
           shopt -u nullglob
       - name: create-about-md
-        shell: bash
-        run: |
-          set -euo pipefail
-          sudo apt-get update -y
-          sudo apt-get install -y jq
-          if [ -f documentation/modules.json ]; then
-            jq -c '.[]' documentation/modules.json | while read -r mod; do
-              id=$(echo "$mod" | jq -r '.public_uniqueID')
-              dest="documentation/docs/modules/${id}"
-              mkdir -p "$dest"
-              {
-                echo "# $(echo "$mod" | jq -r '.name')"
-                echo ""
-                echo "**Version:** $(echo "$mod" | jq -r '.version')  "
-                author=$(echo "$mod" | jq -r '.author')
-                [ -n "$author" ] && echo "**Author:** $author  "
-                discord=$(echo "$mod" | jq -r '.discord')
-                [ -n "$discord" ] && echo "**Discord:** $discord  "
-                desc=$(echo "$mod" | jq -r '.description')
-                [ -n "$desc" ] && { echo ""; echo "$desc"; echo ""; }
-                if [ "$(echo "$mod" | jq -r '.features | length')" -gt 0 ]; then
-                  echo "## Features"
-                  echo ""
-                  echo "$mod" | jq -r '.features[] | "- " + .'
-                  echo ""
-                fi
-                if [ "$(echo "$mod" | jq -r '.workshop | length')" -gt 0 ]; then
-                  echo "## Workshop Content"
-                  echo ""
-                  echo "$mod" | jq -r '.workshop[] | "- " + .'
-                  echo ""
-                fi
-                echo "[Download]($(echo "$mod" | jq -r '.download'))"
-              } > "$dest/about.md"
-            done
-          fi
+        run: node generate_about_md.js
       - name: clean-obsolete-docs
         run: |
           rm -rf documentation/docs/hooks/modules
