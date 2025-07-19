@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Cursor module.
+Module-specific events raised by the Custom Cursor module.
 
 ---
 

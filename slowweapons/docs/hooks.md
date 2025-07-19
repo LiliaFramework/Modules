@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Slowweapons module.
+Module-specific events raised by the Heavy Weapon Slowdown module.
 
 ---
 

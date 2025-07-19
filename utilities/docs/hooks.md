@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Utilities module.
+Module-specific events raised by the Code Utilities module.
 
 ---
 

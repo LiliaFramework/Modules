@@ -1,4 +1,4 @@
-﻿MODULE.name = "Gamemaster Teleport Points"
+﻿MODULE.name = "Gamemaster Points"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.13

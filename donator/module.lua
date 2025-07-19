@@ -1,4 +1,4 @@
-﻿MODULE.name = "Donator"
+﻿MODULE.name = "Donator Perks"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.23

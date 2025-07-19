@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Viewbob module.
+Module-specific events raised by the View Bobbing module.
 
 ---
 

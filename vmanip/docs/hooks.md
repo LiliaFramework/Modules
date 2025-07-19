@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Vmanip module.
+Module-specific events raised by the Viewmodel Animations module.
 
 ---
 

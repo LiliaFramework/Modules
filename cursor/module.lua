@@ -1,4 +1,4 @@
-﻿MODULE.name = "Cursor"
+﻿MODULE.name = "Custom Cursor"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.13

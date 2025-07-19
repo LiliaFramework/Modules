@@ -1,4 +1,4 @@
-﻿MODULE.name = "Rumour"
+﻿MODULE.name = "Anonymous Rumors"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.14

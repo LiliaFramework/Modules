@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Slots module.
+Module-specific events raised by the Slot Machine module.
 
 ---
 

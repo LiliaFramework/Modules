@@ -1,4 +1,4 @@
-﻿MODULE.name = "View Bob"
+﻿MODULE.name = "View Bobbing"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.15

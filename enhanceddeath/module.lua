@@ -1,4 +1,4 @@
-﻿MODULE.name = "Hospitals"
+﻿MODULE.name = "Hospital Respawn"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.12

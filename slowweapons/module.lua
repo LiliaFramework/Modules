@@ -1,4 +1,4 @@
-﻿MODULE.name = "Heavy Weapons"
+﻿MODULE.name = "Heavy Weapon Slowdown"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.14

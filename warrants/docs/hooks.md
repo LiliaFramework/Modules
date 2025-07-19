@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Warrants module.
+Module-specific events raised by the Warrant System module.
 
 ---
 

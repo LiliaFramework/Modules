@@ -1,4 +1,4 @@
-﻿MODULE.name = "Warrant"
+﻿MODULE.name = "Warrant System"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.24

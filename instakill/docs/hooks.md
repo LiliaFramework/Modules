@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Instakill module.
+Module-specific events raised by the Instant Kill module.
 
 ---
 
