@@ -2,6 +2,6 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.16
-MODULE.desc = "Makes headshots instantly lethal with configurable multipliers per weapon."
+MODULE.desc = "Applies high damage multipliers for headshots, making them instantly lethal. Each weapon can have its own settings."
 MODULE.Public = true
 MODULE.Features = {"Adds instant kill on headshots", "Adds lethality configurable per weapon", "Adds extra tension to combat", "Adds friendly fire protection options", "Adds integration with damage numbers"}

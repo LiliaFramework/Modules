@@ -2,7 +2,7 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.24
-MODULE.desc = "Introduces handcuff-style tying items for arrests and logs all tie or untie actions."
+MODULE.desc = "Adds handcuff items to restrain players, recording every tie and untie action. Prisoners can attempt timed escapes for added drama."
 MODULE.Public = true
 if SERVER then
     lia.log.addType("tie", function(client, target) return string.format("%s tied %s", client:Name(), IsValid(target) and target:Name() or "unknown") end, "Player")
