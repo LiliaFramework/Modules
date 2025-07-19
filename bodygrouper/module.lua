@@ -1,4 +1,4 @@
-﻿MODULE.name = "Bodygrouper"
+﻿MODULE.name = "Bodygroup Editor"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.22

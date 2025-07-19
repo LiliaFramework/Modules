@@ -1,4 +1,4 @@
-﻿MODULE.name = "Code Utils"
+﻿MODULE.name = "Code Utilities"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.20

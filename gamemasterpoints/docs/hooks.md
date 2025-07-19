@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Gamemasterpoints module.
+Module-specific events raised by the Gamemaster Points module.
 
 ---
 

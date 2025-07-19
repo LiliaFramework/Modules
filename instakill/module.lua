@@ -1,4 +1,4 @@
-﻿MODULE.name = "Instant Killing"
+﻿MODULE.name = "Instant Kill"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.15

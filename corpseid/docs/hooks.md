@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Corpseid module.
+Module-specific events raised by the Corpse Identification module.
 
 ---
 

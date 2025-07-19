@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Bodygrouper module.
+Module-specific events raised by the Bodygroup Editor module.
 
 ---
 

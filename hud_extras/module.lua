@@ -1,4 +1,4 @@
-﻿MODULE.name = "Extra HUD Elements"
+﻿MODULE.name = "HUD Extras"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18

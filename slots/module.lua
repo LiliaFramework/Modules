@@ -1,4 +1,4 @@
-﻿MODULE.name = "Slots"
+﻿MODULE.name = "Slot Machine"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.15

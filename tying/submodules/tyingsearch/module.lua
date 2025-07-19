@@ -1,4 +1,4 @@
-﻿MODULE.name = "Search Tying Sub-Module"
+﻿MODULE.name = "Search Tied Players"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.03

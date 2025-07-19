@@ -1,4 +1,4 @@
-﻿MODULE.name = "VManip"
+﻿MODULE.name = "Viewmodel Animations"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.16

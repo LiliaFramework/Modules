@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Inventory module.
+Module-specific events raised by the Weighted Inventory module.
 
 ---
 

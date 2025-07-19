@@ -1,4 +1,4 @@
-﻿MODULE.name = "Vendors"
+﻿MODULE.name = "Item Vendors"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.04

@@ -11,5 +11,5 @@ LANGUAGE = {
     rotateInstruction = "Hold R to rotate the model.",
     skin = "Skin",
     viewBodygroupsDesc = "View or edit a player's bodygroups.",
-    bodygrouper = "Bodygrouper",
+    bodygrouper = "Bodygroup Editor",
 }

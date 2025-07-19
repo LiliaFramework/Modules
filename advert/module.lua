@@ -1,4 +1,4 @@
-﻿MODULE.name = "Advert"
+﻿MODULE.name = "Advertisements"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.16

@@ -1,4 +1,4 @@
-﻿MODULE.name = "Storage"
+﻿MODULE.name = "Storage Containers"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.06

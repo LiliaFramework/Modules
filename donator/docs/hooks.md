@@ -1,6 +1,6 @@
 # Hooks
 
-Module-specific events raised by the Donator module.
+Module-specific events raised by the Donator Perks module.
 
 ---
 
