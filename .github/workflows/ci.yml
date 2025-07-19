@@ -222,9 +222,15 @@ jobs:
           for d in extracted_*; do
             [ -d "$d" ] || continue
             mod=${d#extracted_}
+            name=$(jq -r --arg id "$mod" '.[] | select(.public_uniqueID==$id) | .name' documentation/modules.json || echo '')
+            if [ -n "$name" ]; then
+              folder=$(echo "$name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g' | sed -E 's/^_+|_+$//g')
+            else
+              folder="$mod"
+            fi
             doc_dir=$(find "$d" -type d -iname docs -maxdepth 2 -print -quit || true)
             [ -z "$doc_dir" ] && continue
-            dest="documentation/docs/modules/${mod}"
+            dest="documentation/docs/modules/${folder}"
             mkdir -p "$dest"
             find "$doc_dir" -maxdepth 1 -type f -name '*.md' -exec cp {} "$dest/" \;
           done

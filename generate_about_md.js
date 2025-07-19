@@ -19,11 +19,20 @@ try {
 }
 if (!Array.isArray(modules)) process.exit(1)
 
+function toFolderName(name) {
+  return String(name)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '')
+}
+
 for (const mod of modules) {
   const id = mod.public_uniqueID || ''
   if (!id) continue
 
-  const outputDir = path.join(__dirname, 'documentation', 'docs', 'modules', id)
+  const folder = toFolderName(mod.name || id)
+
+  const outputDir = path.join(__dirname, 'documentation', 'docs', 'modules', folder)
   fs.mkdirSync(outputDir, { recursive: true })
 
   const lines = []
