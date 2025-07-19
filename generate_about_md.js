@@ -46,6 +46,7 @@ for (const mod of modules) {
   lines.push(mod.version || '')
   lines.push('')
   lines.push('**Description:**')
+  lines.push('')
   lines.push(mod.description || '')
   lines.push('')
 
