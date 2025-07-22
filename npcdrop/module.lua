@@ -2,7 +2,7 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.13
-MODULE.desc = "Makes certain NPCs drop specified items on death, encouraging looting."
+MODULE.desc = "Sets up loot tables so specific NPCs drop items when killed. Weighted chances encourage players to search bodies after combat."
 MODULE.DropTable = {
     ["npc_zombie"] = {
         ["soda"] = 25,

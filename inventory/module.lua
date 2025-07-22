@@ -2,7 +2,7 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.16
-MODULE.desc = "Implements a weight-based inventory that limits how much a character can carry."
+MODULE.desc = "Adds a weight-based inventory system that limits what a character can haul. Drag-and-drop management encourages careful packing."
 MODULE.Public = true
 MODULE.enabled = function()
     local path = debug.getinfo(1, "S").source:sub(2):gsub("\\", "/")

@@ -2,7 +2,7 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.06
-MODULE.desc = "Provides spawnable storage containers for the weight-based inventory system."
+MODULE.desc = "Adds spawnable containers that integrate with the weight-based inventory. Contents persist and creation requires a staff privilege."
 MODULE.CAMIPrivileges = {
     {
         Name = "Staff Permissions - Can Spawn Storage",

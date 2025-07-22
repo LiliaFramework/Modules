@@ -2,7 +2,7 @@
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18
-MODULE.desc = "Provides a staff-only HUD overlay with additional development information."
+MODULE.desc = "Shows a staff-only HUD with live performance metrics and other development data. Access requires a CAMI privilege and can be toggled as needed."
 MODULE.CAMIPrivileges = {
     {
         Name = "Staff Permissions - Staff HUD",
