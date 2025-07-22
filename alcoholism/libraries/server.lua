@@ -50,3 +50,9 @@ end
 function MODULE:PostPlayerLoadout(client)
     client:ResetBAC()
 end
+lia.log.addType("bacIncrease", function(client, amt, newBac)
+    return string.format("%s BAC increased by %s to %s%%", client:Name(), amt, newBac)
+end, "Gameplay")
+lia.log.addType("bacReset", function(client)
+    return string.format("%s became sober", client:Name())
+end, "Gameplay")

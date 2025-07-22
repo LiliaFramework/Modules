@@ -1,0 +1,6 @@
+lia.log.addType("smokeStart", function(client)
+    return string.format("%s started smoking", client:Name())
+end, "Gameplay")
+lia.log.addType("smokeStop", function(client)
+    return string.format("%s stopped smoking", client:Name())
+end, "Gameplay")
