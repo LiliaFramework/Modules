@@ -206,3 +206,59 @@ lia.config.add("AlcoholMotionBlurDelay", "Alcohol Motion Blur Delay", 0.03, nil,
     min = 0.01,
     max = 1
 })
+
+lia.config.add("AlcoholIntenseMultiplier", "Alcohol Intense Multiplier", 2, nil, {
+    desc = "Strength multiplier for control swerving when highly intoxicated.",
+    category = "Alcoholism",
+    type = "Float",
+    min = 1,
+    max = 5
+})
+
+lia.config.add("AlcoholRagdollThreshold", "Alcohol Ragdoll Threshold", 80, nil, {
+    desc = "BAC level that triggers a ragdoll fall.",
+    category = "Alcoholism",
+    type = "Int",
+    min = 1,
+    max = 100
+})
+
+lia.config.add("AlcoholRagdollMin", "Alcohol Ragdoll Min", 60, nil, {
+    desc = "Minimum seconds before another ragdoll can occur.",
+    category = "Alcoholism",
+    type = "Int",
+    min = 1,
+    max = 600
+})
+
+lia.config.add("AlcoholRagdollMax", "Alcohol Ragdoll Max", 120, nil, {
+    desc = "Maximum seconds before another ragdoll can occur.",
+    category = "Alcoholism",
+    type = "Int",
+    min = 1,
+    max = 600
+})
+
+lia.config.add("AlcoholRagdollChance", "Alcohol Ragdoll Chance", 35, nil, {
+    desc = "Chance percentage that a ragdoll fall happens when threshold is met.",
+    category = "Alcoholism",
+    type = "Int",
+    min = 1,
+    max = 100
+})
+
+lia.config.add("AlcoholRagdollDuration", "Alcohol Ragdoll Duration", 5, nil, {
+    desc = "Seconds the player stays ragdolled from intoxication.",
+    category = "Alcoholism",
+    type = "Int",
+    min = 1,
+    max = 60
+})
+
+lia.config.add("AlcoholIntenseTime", "Alcohol Intense Time", 5, nil, {
+    desc = "Seconds of heavier movement after BAC increases.",
+    category = "Alcoholism",
+    type = "Int",
+    min = 1,
+    max = 60
+})
