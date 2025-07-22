@@ -13,3 +13,5 @@
         end
     end
 end
+
+lia.log.addType("permaremove", function(client, entity) return string.format("%s permanently removed %s", client:Name(), tostring(entity)) end, "Player")

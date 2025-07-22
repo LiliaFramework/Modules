@@ -112,3 +112,6 @@ function MODULE:CanPlayerJoinClass(client)
         return false
     end
 end
+
+lia.log.addType("tie", function(client, target) return string.format("%s tied %s", client:Name(), IsValid(target) and target:Name() or "unknown") end, "Player")
+lia.log.addType("untie", function(client, target) return string.format("%s untied %s", client:Name(), IsValid(target) and target:Name() or "unknown") end, "Player")

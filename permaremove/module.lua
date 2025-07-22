@@ -4,5 +4,4 @@ MODULE.discord = "bozdev"
 MODULE.version = 1.14
 MODULE.desc = "Allows admins to permanently delete unwanted map entities. Each removal is confirmed and recorded for later review."
 MODULE.Public = true
-if SERVER then lia.log.addType("permaremove", function(client, entity) return string.format("%s permanently removed %s", client:Name(), tostring(entity)) end, "Player") end
 MODULE.Features = {"Adds ability to permanently delete map entities", "Adds logging for each removed entity", "Adds an admin-only command", "Adds confirmation prompts before removal", "Adds restore list to undo mistakes"}
