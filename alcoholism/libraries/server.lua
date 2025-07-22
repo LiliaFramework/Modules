@@ -20,27 +20,42 @@ end
 function MODULE:StartCommand(client, cmd)
     if (client.nextDrunkCheck or 0) < CurTime() then
         client.nextDrunkCheck = CurTime() + lia.config.get("AlcoholEffectDelay", 0.03)
-        if client:getNetVar("lia_alcoholism_bac", 0) > 30 then
+        local bac = client:getNetVar("lia_alcoholism_bac", 0)
+        if bac > 30 then
             cmd:ClearButtons()
             if (client.nextDrunkSide or 0) < CurTime() then
-                client.nextDrunkSide = CurTime() + math.Rand(0.1, 0.3) + client:getNetVar("lia_alcoholism_bac", 0) * 0.01
+                client.nextDrunkSide = CurTime() + math.Rand(0.1, 0.3) + bac * 0.01
                 client.sideRoll = math.random(-1, 1)
                 client.frontRoll = math.random(-1, 1)
             end
 
+            local mult = 1
+            if (client.intenseSwerveUntil or 0) > CurTime() then mult = lia.config.get("AlcoholIntenseMultiplier", 2) end
             if client.frontRoll == 1 then
-                cmd:SetForwardMove(100000)
+                cmd:SetForwardMove(100000 * mult)
             elseif client.frontRoll == -1 then
-                cmd:SetForwardMove(-100000)
+                cmd:SetForwardMove(-100000 * mult)
             end
 
             if client.sideRoll == 1 then
-                cmd:SetSideMove(100000)
+                cmd:SetSideMove(100000 * mult)
             elseif client.sideRoll == -1 then
-                cmd:SetSideMove(-100000)
+                cmd:SetSideMove(-100000 * mult)
             end
         end
     end
+
+    local bac = client:getNetVar("lia_alcoholism_bac", 0)
+    if bac >= lia.config.get("AlcoholRagdollThreshold", 80) and (client.nextRagdollCheck or 0) < CurTime() then
+        client.nextRagdollCheck = CurTime() + math.Rand(lia.config.get("AlcoholRagdollMin", 60), lia.config.get("AlcoholRagdollMax", 120))
+        if client:Alive() and not client.liaRagdolled and client:GetVelocity():Length2D() > 10 and math.Rand(0, 100) <= lia.config.get("AlcoholRagdollChance", 35) then client:setRagdolled(true, lia.config.get("AlcoholRagdollDuration", 5)) end
+    end
+end
+
+function MODULE:BACChanged(client, newBac)
+    local last = client.lastBAC or 0
+    if newBac > last then client.intenseSwerveUntil = CurTime() + lia.config.get("AlcoholIntenseTime", 5) end
+    client.lastBAC = newBac
 end
 
 function MODULE:PlayerLoadedChar(client)
@@ -50,9 +65,6 @@ end
 function MODULE:PostPlayerLoadout(client)
     client:ResetBAC()
 end
-lia.log.addType("bacIncrease", function(client, amt, newBac)
-    return string.format("%s BAC increased by %s to %s%%", client:Name(), amt, newBac)
-end, "Gameplay")
-lia.log.addType("bacReset", function(client)
-    return string.format("%s became sober", client:Name())
-end, "Gameplay")
+
+lia.log.addType("bacIncrease", function(client, amt, newBac) return string.format("%s BAC increased by %s to %s%%", client:Name(), amt, newBac) end, "Gameplay")
+lia.log.addType("bacReset", function(client) return string.format("%s became sober", client:Name()) end, "Gameplay")
