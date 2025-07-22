@@ -6,6 +6,7 @@
     hook.Run("CorpseIdentifyStarted", client, targetPlayer, corpse)
     client:setAction(L("identifyingCorpse"), IDTime, function()
         client:ChatPrint(L("identifiedCorpseMessage", targetPlayer:Nick()))
+        lia.log.add(client, "corpseIdentified", targetPlayer)
         hook.Run("CorpseIdentified", client, targetPlayer, corpse)
     end)
 end
@@ -39,3 +40,7 @@ end
 function MODULE:ShouldSpawnClientRagdoll()
     return false
 end
+
+lia.log.addType("corpseIdentified", function(client, target)
+    return string.format("%s identified corpse of %s", client:Name(), target:Name())
+end, "Gameplay")

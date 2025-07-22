@@ -25,6 +25,8 @@
                 ClientAddText(ply, Color(216, 190, 18), L("AdvertFormat", displayedName), Color(255, 255, 255), message)
             end
 
+            lia.log.add(client, "advert", message)
+
             hook.Run("AdvertSent", client, message)
         else
             client:notifyLocalized("AdvertInsufficientFunds")
