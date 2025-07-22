@@ -6,6 +6,7 @@ if SERVER then
         hook.Run("BACChanged", self, 0)
         hook.Run("BACReset", self)
         hook.Run("PostBACReset", self)
+        lia.log.add(self, "bacReset")
     end
 
     function playerMeta:AddBAC(amt)
@@ -15,6 +16,7 @@ if SERVER then
         local newBac = math.Clamp(oldBac + amt, 0, 100)
         self:setNetVar("lia_alcoholism_bac", newBac)
         hook.Run("BACChanged", self, newBac)
+        lia.log.add(self, "bacIncrease", amt, newBac)
         hook.Run("BACIncreased", self, amt, newBac)
         local threshold = lia.config.get("DrunkNotifyThreshold", 50)
         if oldBac < threshold and newBac >= threshold then hook.Run("BACThresholdReached", self, newBac) end
