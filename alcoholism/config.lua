@@ -223,7 +223,7 @@ lia.config.add("AlcoholRagdollThreshold", "Alcohol Ragdoll Threshold", 80, nil, 
     max = 100
 })
 
-lia.config.add("AlcoholRagdollMin", "Alcohol Ragdoll Min", 60, nil, {
+lia.config.add("AlcoholRagdollMin", "Alcohol Ragdoll Min", 10, nil, {
     desc = "Minimum seconds before another ragdoll can occur.",
     category = "Alcoholism",
     type = "Int",
@@ -231,7 +231,7 @@ lia.config.add("AlcoholRagdollMin", "Alcohol Ragdoll Min", 60, nil, {
     max = 600
 })
 
-lia.config.add("AlcoholRagdollMax", "Alcohol Ragdoll Max", 120, nil, {
+lia.config.add("AlcoholRagdollMax", "Alcohol Ragdoll Max", 15, nil, {
     desc = "Maximum seconds before another ragdoll can occur.",
     category = "Alcoholism",
     type = "Int",
@@ -239,7 +239,7 @@ lia.config.add("AlcoholRagdollMax", "Alcohol Ragdoll Max", 120, nil, {
     max = 600
 })
 
-lia.config.add("AlcoholRagdollChance", "Alcohol Ragdoll Chance", 35, nil, {
+lia.config.add("AlcoholRagdollChance", "Alcohol Ragdoll Chance", 5, nil, {
     desc = "Chance percentage that a ragdoll fall happens when threshold is met.",
     category = "Alcoholism",
     type = "Int",
