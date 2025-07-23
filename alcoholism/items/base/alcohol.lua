@@ -4,10 +4,7 @@ ITEM.width = 1
 ITEM.height = 1
 ITEM.abv = 0
 ITEM.category = "Alcohol"
-function ITEM:getDesc()
-    return L("alcoholDesc", self.abv)
-end
-
+ITEM.desc = L("alcoholDesc", ITEM.abv or 0)
 ITEM.functions.use = {
     name = L("drinkAction"),
     tip = L("drinkTip"),
