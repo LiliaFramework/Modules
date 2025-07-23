@@ -6,8 +6,10 @@ local function DrawFPS()
     hook.Run("HUDExtrasPreDrawFPS")
     local fpsFont = lia.config.get("FPSHudFont")
     local f = math.Round(1 / FrameTime())
-    local minF = MODULE.minFPS or 60
-    local maxF = MODULE.maxFPS or 100
+    MODULE.minFPS = MODULE.minFPS or 60
+    local minF = MODULE.minFPS
+    MODULE.maxFPS = MODULE.maxFPS or 100
+    local maxF = MODULE.maxFPS
     MODULE.barH = MODULE.barH or 1
     MODULE.barH = mathApproach(MODULE.barH, f / maxF * 100, 0.5)
     if f > maxF then MODULE.maxFPS = f end
