@@ -11,4 +11,5 @@ LANGUAGE = {
     post = "Post",
     splashTextLabel = "Splash Text",
     splashTextSent = "Splash text sent.",
+    cancel = "Cancel",
 }
