@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Development HUD"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.18
+MODULE.version = 1.19
 MODULE.desc = "Shows a staff-only HUD with live performance metrics and other development data. Access requires a CAMI privilege and can be toggled as needed."
 MODULE.Privileges = {
     {
