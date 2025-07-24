@@ -167,19 +167,6 @@ jobs:
         run: node scrap_modules.js
       - name: move-json
         run: mv modules_data.json modules.json
-      - name: update-website-json
-        shell: bash
-        run: |
-          git clone https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/LiliaFramework.github.io.git website
-          cp modules.json website/modules.json
-          cd website
-          git config user.email "githubactions@github.com"
-          git config user.name "GitHub Actions"
-          git add modules.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Update modules.json with source URLs"
-            git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/LiliaFramework.github.io.git HEAD:main
-          fi
       - uses: actions/upload-artifact@v4
         with:
           name: module-zips
@@ -284,7 +271,10 @@ jobs:
           else
             rsync -a built-docs/ lilia/documentation/
           fi
-          rm -f lilia/documentation/modules.json
+          mkdir -p lilia/documentation/docs
+          if [ -f lilia/documentation/modules.json ]; then
+            mv lilia/documentation/modules.json lilia/documentation/docs/modules.json
+          fi
       - name: commit-push-docs
         shell: bash
         run: |
