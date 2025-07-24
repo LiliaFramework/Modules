@@ -11,11 +11,6 @@ function lia.utilities.SpeedTest(func, n)
     return (SysTime() - start) / n
 end
 
-function lia.utilities.ParseTime(str)
-    local _, _, _, d, mo, y = str:match("(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)")
-    if not y then return end
-    return tonumber(y), tonumber(mo), tonumber(d)
-end
 
 function lia.utilities.DaysBetween(t1, t2)
     local y1, mo1, d1 = lia.utilities.ParseTime(t1)
