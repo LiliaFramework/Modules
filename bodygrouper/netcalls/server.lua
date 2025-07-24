@@ -49,12 +49,12 @@ net.Receive("BodygrouperMenu", function(_, client)
     local character = target:getChar()
     if not character then return end
     target:SetSkin(skn)
-    character:setData("skin", skn)
+    character:setSkin(skn)
     for k, v in pairs(groups) do
         target:SetBodygroup(k, v)
     end
 
-    character:setData("groups", groups)
+    character:setBodygroups(groups)
     hook.Run("PostBodygroupApply", client, target, skn, groups)
     if target == client then
         target:notifyLocalized("bodygroupChanged", "your")
