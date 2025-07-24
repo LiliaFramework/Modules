@@ -12,4 +12,5 @@ LANGUAGE = {
     vendorInvalidAmount = "Invalid amount.",
     weight = "Weight",
     inventory = "Inventory",
+    inv = "Inventory",
 }
