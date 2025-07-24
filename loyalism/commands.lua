@@ -33,7 +33,7 @@ lia.command.add("partytier", {
         if tier > #MODULE.Tiers then tier = 10 end
         local tChar = target:getChar()
         if tChar then
-            tChar:setData("party_tier", tier, false, player.GetAll())
+            tChar:setPartyTier(tier)
             client:notifyLocalized("partyTierUpdated", target:Name(), tier)
             if tier == 0 then
                 target:notifyLocalized("partyTierRemoved", client:Name())
