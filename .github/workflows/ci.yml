@@ -228,19 +228,18 @@ jobs:
         run: |
           rm -rf documentation/docs/hooks/modules
           rm -rf documentation/docs/libraries/modules
-      - uses: actions/setup-node@v3
+      - uses: actions/upload-artifact@v4
         with:
-          node-version: 16
+          name: built-docs
+          path: documentation
+      - name: remove-docs-before-publish
+        run: rm -rf documentation/docs
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
           publish_branch: gh-pages
           publish_dir: documentation
           force_orphan: true
-      - uses: actions/upload-artifact@v4
-        with:
-          name: built-docs
-          path: documentation
 
   upload-docs:
     needs: gh-pages
