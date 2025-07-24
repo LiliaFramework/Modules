@@ -4,8 +4,9 @@
     onRun = function(client)
         net.Start("OpenDetailedDescriptions")
         net.WriteEntity(client)
-        net.WriteString(client:getChar():getData("textDetDescData", nil) or L("openDetDescFallback"))
-        net.WriteString(client:getChar():getData("textDetDescDataURL", nil) or L("openDetDescFallback"))
+        local char = client:getChar()
+        net.WriteString(char:getTextDetDescData() or L("openDetDescFallback"))
+        net.WriteString(char:getTextDetDescDataURL() or L("openDetDescFallback"))
         net.Send(client)
     end
 })

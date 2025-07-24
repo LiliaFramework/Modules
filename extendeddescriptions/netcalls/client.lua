@@ -33,12 +33,12 @@ net.Receive("SetDetailedDescriptions", function()
     textEntry:Dock(FILL)
     textEntry:SetMultiline(true)
     textEntry:SetVerticalScrollbarEnabled(true)
-    local prevDesc = LocalPlayer():getChar():getData("textDetDescData")
+    local prevDesc = LocalPlayer():getChar():getTextDetDescData()
     if prevDesc then textEntry:SetText(prevDesc) end
     local urlEntry = vgui.Create("DTextEntry", frame)
     urlEntry:Dock(BOTTOM)
     urlEntry:SetTall(30)
-    local prevURL = LocalPlayer():getChar():getData("textDetDescDataURL")
+    local prevURL = LocalPlayer():getChar():getTextDetDescDataURL()
     if prevURL then
         urlEntry:SetText(prevURL)
     else
