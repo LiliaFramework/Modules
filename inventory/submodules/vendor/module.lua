@@ -6,7 +6,7 @@ MODULE.desc = "Creates NPC vendors with editable inventories and starting funds.
 MODULE.Features = {"Adds NPC vendors that sell items", "Adds editable inventory menus", "Adds configurable default money", "Adds transaction logs for purchases", "Adds vendor restock timers"}
 MODULE.Privileges = {
     {
-        Name = "Staff Permissions - Can Edit Vendors",
+        Name = "Can Edit Vendors",
         MinAccess = "admin",
     },
 }

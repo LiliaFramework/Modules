@@ -6,7 +6,7 @@
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)
         if not message then return L("invalidArg") end
-        if not client:getChar():hasFlags("D") and not client:hasPrivilege("Staff Permissions - Can Use Class Broadcast") then
+        if not client:getChar():hasFlags("D") and not client:hasPrivilege("Can Use Class Broadcast") then
             client:notifyLocalized("classBroadcastNoPermission")
             return false
         end
@@ -61,7 +61,7 @@ lia.command.add("factionbroadcast", {
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)
         if not message then return L("invalidArg") end
-        if not client:getChar():hasFlags("B") and not client:hasPrivilege("Staff Permissions - Can Use Faction Broadcast") then
+        if not client:getChar():hasFlags("B") and not client:hasPrivilege("Can Use Faction Broadcast") then
             client:notifyLocalized("factionBroadcastNoPermission")
             return false
         end

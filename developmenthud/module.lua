@@ -5,11 +5,11 @@ MODULE.version = 1.18
 MODULE.desc = "Shows a staff-only HUD with live performance metrics and other development data. Access requires a CAMI privilege and can be toggled as needed."
 MODULE.Privileges = {
     {
-        Name = "Staff Permissions - Staff HUD",
+        Name = "Staff HUD",
         MinAccess = "superadmin",
     },
     {
-        Name = "Staff Permissions - Development HUD",
+        Name = "Development HUD",
         MinAccess = "superadmin",
     }
 }

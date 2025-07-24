@@ -7,15 +7,15 @@ MODULE.desc = "Implements a warrant system so staff can issue, view, and revoke 
 MODULE.Features = {"Adds ability to issue and remove player warrants", "Adds notifications displayed to players", "Adds logging of all warrant actions", "Adds CAMI privileges for warrant management", "Adds timed expiration for warrants"}
 MODULE.Privileges = {
     {
-        Name = "Staff Permissions - Can Warrant People",
+        Name = "Can Warrant People",
         MinAccess = "superadmin",
     },
     {
-        Name = "Staff Permissions - Can See Warrants",
+        Name = "Can See Warrants",
         MinAccess = "superadmin",
     },
     {
-        Name = "Staff Permissions - Can See Warrant Notifications",
+        Name = "Can See Warrant Notifications",
         MinAccess = "superadmin",
     },
 }

@@ -5,7 +5,7 @@ MODULE.version = 1.06
 MODULE.desc = "Adds spawnable containers that integrate with the weight-based inventory. Contents persist and creation requires a staff privilege."
 MODULE.Privileges = {
     {
-        Name = "Staff Permissions - Can Spawn Storage",
+        Name = "Can Spawn Storage",
         MinAccess = "superadmin",
     }
 }
