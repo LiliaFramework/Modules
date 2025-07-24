@@ -9,4 +9,8 @@ MODULE.Privileges = {
         Name = "Can Edit Vendors",
         MinAccess = "admin",
     },
+    {
+        Name = "Manage Vendors",
+        MinAccess = "superadmin",
+    },
 }
