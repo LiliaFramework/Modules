@@ -42,5 +42,5 @@ function MODULE:ShouldSpawnClientRagdoll()
 end
 
 lia.log.addType("corpseIdentified", function(client, target)
-    return string.format("%s identified corpse of %s", client:Name(), target:Name())
+    return L("corpseIdentifiedLog", client:Name(), target:Name())
 end, "Gameplay")

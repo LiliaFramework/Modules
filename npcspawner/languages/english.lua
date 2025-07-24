@@ -8,5 +8,6 @@ LANGUAGE = {
     npcSpawnOldAlive = "The previous NPC group is still alive.",
     selectSpawnerPrompt = "Select a spawner:",
     selectSpawnerTitle = "Choose Spawner",
-    spawnerNotFound = "Spawner not found."
+    spawnerNotFound = "Spawner not found.",
+    npcspawnLog = "%s forced NPC spawn at %s"
 }

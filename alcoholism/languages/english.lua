@@ -5,5 +5,7 @@ LANGUAGE = {
     drinkTip = "Consume this beverage.",
     drunkness = "BAC",
     generalinfo = "General Information",
-    intoxicatedStatus = "Intoxicated"
+    intoxicatedStatus = "Intoxicated",
+    bacIncreaseLog = "%s BAC increased by %s to %s%%",
+    bacResetLog = "%s became sober"
 }

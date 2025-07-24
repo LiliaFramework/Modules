@@ -4,5 +4,6 @@ LANGUAGE = {
     AdvertDeductedMessage = "You paid %s%s for your advertisement.",
     AdvertFormat = "[ADVERT] %s:",
     AdvertInsufficientFunds = "You don't have enough money to advertise.",
-    commandCooldownTimed = "Please wait %s seconds before advertising again."
+    commandCooldownTimed = "Please wait %s seconds before advertising again.",
+    advertLog = "%s advertised: %s"
 }

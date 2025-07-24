@@ -7,4 +7,5 @@ LANGUAGE = {
     doorKickTooFar = "You're too far away to kick the door.",
     doorKickTooWeak = "You aren't strong enough to kick this door.",
     doorkickCommandDesc = "Attempt to kick open a door.",
+    doorkickLog = "%s kicked open %s",
 }

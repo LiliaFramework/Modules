@@ -14,4 +14,6 @@ LANGUAGE = {
     factionBroadcastTitle = "Send a broadcast to selected factions.",
     selectClassesPrompt = "Choose classes to send to:",
     selectFactionsPrompt = "Choose factions to send to:",
+    classbroadcastLog = "%s sent class broadcast: %s",
+    factionbroadcastLog = "%s sent faction broadcast: %s",
 }
