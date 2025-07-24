@@ -18,8 +18,8 @@ local function DrawFPS()
     local centerY = ScrH() / 2
     draw.SimpleText(f .. " FPS", fpsFont, x, centerY + 20, Color(255, 255, 255), TEXT_ALIGN_RIGHT, 1)
     draw.RoundedBox(0, x - 20, centerY - MODULE.barH, 20, MODULE.barH, Color(255, 255, 255))
-    draw.SimpleText("Max : " .. MODULE.maxFPS, fpsFont, x, centerY + 40, Color(150, 255, 150), TEXT_ALIGN_RIGHT, 1)
-    draw.SimpleText("Min : " .. MODULE.minFPS, fpsFont, x, centerY + 55, Color(255, 150, 150), TEXT_ALIGN_RIGHT, 1)
+    draw.SimpleText(L("hudExtrasMaxPrefix") .. " " .. MODULE.maxFPS, fpsFont, x, centerY + 40, Color(150, 255, 150), TEXT_ALIGN_RIGHT, 1)
+    draw.SimpleText(L("hudExtrasMinPrefix") .. " " .. MODULE.minFPS, fpsFont, x, centerY + 55, Color(255, 150, 150), TEXT_ALIGN_RIGHT, 1)
     hook.Run("HUDExtrasPostDrawFPS")
 end
 

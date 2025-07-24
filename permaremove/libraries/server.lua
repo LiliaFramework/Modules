@@ -14,4 +14,6 @@
     end
 end
 
-lia.log.addType("permaremove", function(client, entity) return string.format("%s permanently removed %s", client:Name(), tostring(entity)) end, "Player")
+lia.log.addType("permaremove", function(client, entity)
+    return L("permRemoveLog", client:Name(), tostring(entity))
+end, "Player")

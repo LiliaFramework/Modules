@@ -22,4 +22,6 @@ LANGUAGE = {
     unTie = "Untie",
     untying = "Untying...",
     youAreTied = "You have been tied up.",
+    tieLog = "%s tied %s",
+    untieLog = "%s untied %s",
 }

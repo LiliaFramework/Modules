@@ -4,7 +4,7 @@
     syntax = "[string Message]",
     desc = L("advertCommandDesc"),
     onRun = function(client, arguments)
-        if not arguments[1] then return "Invalid argument (#1)" end
+        if not arguments[1] then return L("invalidArg") end
         local message = table.concat(arguments, " ", 1)
         if not client.advertdelay then client.advertdelay = 0 end
         if CurTime() < client.advertdelay then

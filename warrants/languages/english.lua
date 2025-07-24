@@ -16,4 +16,6 @@ LANGUAGE = {
     wanted = "wanted",
     warrantCommandDesc = "Toggle a player's wanted status.",
     warrants = "Warrants",
+    warrantIssueLog = "%s issued a warrant on %s",
+    warrantRemoveLog = "%s removed a warrant from %s",
 }

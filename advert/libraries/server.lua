@@ -1,3 +1,4 @@
 lia.log.addType("advert", function(client, msg)
-    return string.format("%s advertised: %s", IsValid(client) and client:Name() or "Console", msg)
+    local name = IsValid(client) and client:Name() or "Console"
+    return L("advertLog", name, msg)
 end, "Gameplay")
