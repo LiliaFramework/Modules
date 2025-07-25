@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Flashlight"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.14
+MODULE.version = 1.15
 MODULE.desc = "Replaces the default flashlight with dynamic lighting and adjustable brightness."
 MODULE.Public = true
 MODULE.Features = {

@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Shoot Locks"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.15
+MODULE.version = 1.16
 MODULE.desc = "Lets players blast door locks open with gunfire. Success chances are configurable, making it a risky breach option."
 MODULE.Public = true
 MODULE.Features = {

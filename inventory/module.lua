@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Weighted Inventory"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.19
+MODULE.version = 1.20
 MODULE.desc = "Adds a weight-based inventory system that limits what a character can haul. Drag-and-drop management encourages careful packing."
 MODULE.Public = true
 MODULE.enabled = function()
