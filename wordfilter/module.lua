@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Word Filter"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.18
+MODULE.version = 1.19
 MODULE.desc = "Monitors chat for banned words using a customizable blacklist. Admin commands make managing filters easy."
 MODULE.Public = true
 MODULE.Features = {

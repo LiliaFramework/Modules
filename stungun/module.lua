@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Stun Gun"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 101.19
+MODULE.version = 101.20
 MODULE.Public = true
 MODULE.desc = "Introduces a taser weapon that temporarily incapacitates targets. Stun time, range, and optional damage effects are fully configurable."
 MODULE.WorkshopContent = "3432649835"

@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Radio"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.21
+MODULE.version = 1.22
 MODULE.desc = "Adds a radio communication system with configurable fonts and models. Players can tune to different frequencies or carry handheld radios."
 MODULE.WorkshopContent = "3527548881"
 MODULE.Public = true
