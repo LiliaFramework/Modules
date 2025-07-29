@@ -1,6 +1,6 @@
 ﻿local blurGoal, blurValue = 0, 0
 local vignetteAlphaGoal, vignetteAlphaDelta = 0, 0
-local hasVignetteMaterial = lia.util.getMaterial("lilia/gui/vignette.png") ~= "___error"
+local hasVignetteMaterial = lia.util.getMaterial("vignette.png") ~= "___error"
 local mathApproach = math.Approach
 local function DrawFPS()
     hook.Run("HUDExtrasPreDrawFPS")
@@ -30,7 +30,7 @@ local function DrawVignette()
         local w, h = ScrW(), ScrH()
         vignetteAlphaDelta = mathApproach(vignetteAlphaDelta, vignetteAlphaGoal, ft * 30)
         surface.SetDrawColor(0, 0, 0, 175 + vignetteAlphaDelta)
-        surface.SetMaterial(lia.util.getMaterial("lilia/gui/vignette.png"))
+        surface.SetMaterial(lia.util.getMaterial("vignette.png"))
         surface.DrawTexturedRect(0, 0, w, h)
         hook.Run("HUDExtrasPostDrawVignette")
     end
