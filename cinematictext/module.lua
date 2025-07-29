@@ -11,7 +11,7 @@ MODULE.Privileges = {
         MinAccess = "admin",
     },
     {
-        Name = "Commands - Use Cinematic Menu",
+        Name = "Use Cinematic Menu",
         MinAccess = "admin",
     }
 }

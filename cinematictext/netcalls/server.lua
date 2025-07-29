@@ -1,5 +1,5 @@
 ﻿net.Receive("TriggerCinematic", function(_, client)
-    if not client:hasPrivilege("Commands - Use Cinematic Menu") then return end
+    if not client:hasPrivilege("Use Cinematic Menu") then return end
     local text = net.ReadString()
     local bigText = net.ReadString()
     local duration = net.ReadUInt(6)

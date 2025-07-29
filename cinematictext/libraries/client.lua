@@ -123,7 +123,7 @@ end
 vgui.Register("CinematicSplashText", PANEL, "DPanel")
 PANEL = {}
 function PANEL:Init()
-    if not LocalPlayer():hasPrivilege("Commands - Use Cinematic Menu") then return end
+    if not LocalPlayer():hasPrivilege("Use Cinematic Menu") then return end
     if IsValid(lia.gui.cinematicSplashTextMenu) then lia.gui.cinematicSplashTextMenu:Remove() end
     lia.gui.cinematicSplashTextMenu = self
     self.contents = {

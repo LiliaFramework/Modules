@@ -11,7 +11,7 @@ MODULE.Privileges = {
         MinAccess = "admin",
     },
     {
-        Name = "Commands - Change Bodygroups",
+        Name = "Change Bodygroups",
         MinAccess = "admin",
     }
 }

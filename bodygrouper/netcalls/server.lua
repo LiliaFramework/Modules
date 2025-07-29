@@ -15,7 +15,7 @@ net.Receive("BodygrouperMenu", function(_, client)
     hook.Run("BodygrouperApplyAttempt", client, target, skn, groups)
     if not IsValid(target) then return end
     if target ~= client then
-        if not client:hasPrivilege("Commands - Change Bodygroups") then
+        if not client:hasPrivilege("Change Bodygroups") then
             client:notifyLocalized("noAccess")
             return
         end
