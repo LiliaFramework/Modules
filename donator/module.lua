@@ -14,13 +14,16 @@ MODULE.Privileges = {
     {
         Name = "Subtract CharSlots",
         MinAccess = "superadmin",
+        Category = "Character Slots",
     },
     {
         Name = "Add CharSlots",
         MinAccess = "superadmin",
+        Category = "Character Slots",
     },
     {
         Name = "Set CharSlots",
         MinAccess = "superadmin",
+        Category = "Character Slots",
     }
 }

@@ -14,10 +14,12 @@ MODULE.Privileges = {
     {
         Name = "Can Use Faction Broadcast",
         MinAccess = "superadmin",
+        Category = "Broadcasts",
     },
     {
         Name = "Can Use Class Broadcast",
         MinAccess = "superadmin",
+        Category = "Broadcasts",
     }
 }
 

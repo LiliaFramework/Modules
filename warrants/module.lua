@@ -9,13 +9,16 @@ MODULE.Privileges = {
     {
         Name = "Can Warrant People",
         MinAccess = "superadmin",
+        Category = "Warrants",
     },
     {
         Name = "Can See Warrants",
         MinAccess = "superadmin",
+        Category = "Warrants",
     },
     {
         Name = "Can See Warrant Notifications",
         MinAccess = "superadmin",
+        Category = "Warrants",
     },
 }

@@ -9,5 +9,6 @@ MODULE.Privileges = {
     {
         Name = "Manage Gamemaster Teleport Points",
         MinAccess = "admin",
+        Category = "Gamemaster Points",
     }
 }

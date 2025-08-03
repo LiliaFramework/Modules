@@ -9,5 +9,6 @@ MODULE.Privileges = {
     {
         Name = "Change Description",
         MinAccess = "admin",
+        Category = "Descriptions",
     }
 }

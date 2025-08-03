@@ -9,9 +9,11 @@ MODULE.Privileges = {
     {
         Name = "Manage Bodygroups",
         MinAccess = "admin",
+        Category = "Bodygroups",
     },
     {
         Name = "Change Bodygroups",
         MinAccess = "admin",
+        Category = "Bodygroups",
     }
 }
