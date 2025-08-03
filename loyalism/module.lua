@@ -10,5 +10,6 @@ MODULE.Privileges = {
     {
         Name = "Management - Assign Party Tiers",
         MinAccess = "admin",
+        Category = "Loyalism",
     }
 }

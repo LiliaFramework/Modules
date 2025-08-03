@@ -10,5 +10,6 @@ MODULE.Privileges = {
     {
         Name = "Use Cutscenes",
         MinAccess = "admin",
+        Category = "Cutscenes",
     },
 }

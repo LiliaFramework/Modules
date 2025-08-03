@@ -28,5 +28,6 @@ MODULE.Privileges = {
     {
         Name = "Set Inventory Weight",
         MinAccess = "admin",
+        Category = "Inventory",
     }
 }
