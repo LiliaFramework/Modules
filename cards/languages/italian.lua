@@ -1,0 +1,26 @@
+﻿NAME = "Italian"
+LANGUAGE = {
+    moduleName = "Cards",
+    moduleDesc = "Adds a full deck of playing cards that can be shuffled and drawn. Card draws sync to all players for simple in-game minigames.",
+    cardDrawAction = "draws",
+    cardsCommandDesc = "Draw a random card from your deck.",
+    noCardDeck = "You don't have a deck of cards.",
+    rankAce = "Ace",
+    rankEight = "Eight",
+    rankFive = "Five",
+    rankFour = "Four",
+    rankJack = "Jack",
+    rankKing = "King",
+    rankNine = "Nine",
+    rankQueen = "Queen",
+    rankSeven = "Seven",
+    rankSix = "Six",
+    rankTen = "Ten",
+    rankThree = "Three",
+    rankTwo = "Two",
+    suitClubs = "of Clubs",
+    suitDiamonds = "of Diamonds",
+    suitHearts = "of Hearts",
+    suitSpades = "of Spades",
+}
+

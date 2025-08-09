@@ -1,8 +1,8 @@
-﻿MODULE.name = "Storage Containers"
+﻿MODULE.name = "moduleStorageContainersName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.06
-MODULE.desc = "Adds spawnable containers that integrate with the weight-based inventory. Contents persist and creation requires a staff privilege."
+MODULE.desc = "moduleStorageContainersDesc"
 MODULE.Privileges = {
     {
         Name = "Can Spawn Storage",

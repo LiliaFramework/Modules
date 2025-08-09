@@ -1,8 +1,8 @@
-﻿MODULE.name = "View Bobbing"
+﻿MODULE.name = "moduleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.17
-MODULE.desc = "Applies subtle camera bobbing while you move to enhance immersion. Intensity and frequency are adjustable through options."
+MODULE.desc = "moduleDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds camera bobbing while moving",

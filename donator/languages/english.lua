@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     addCharSlotsDesc = "Add a character slot to a player.",
     donatorEnjoyWeapons = "Enjoy your new weapons!",
@@ -18,5 +18,5 @@ LANGUAGE = {
     gaveFlags = "Gave flags %s to %s",
     usageGiveItem = "Usage: lia_giveitem [steamid] [item_uniqueID]",
     targetNoInventory = "Target has no inventory.",
-    gaveItem = "Gave item %s to %s",
+    gaveItem = "Gave item %s to %s"
 }

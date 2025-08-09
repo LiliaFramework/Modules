@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     detailedDescTitle = "%s's Detailed Description",
     editDescTitle = "Edit Detailed Description",
@@ -6,6 +6,5 @@ LANGUAGE = {
     openDetDescLabel = "Detailed Description",
     refImagePlaceholder = "Image URL",
     setExtDescCommand = "Edit a player's description.",
-    viewExtDescCommand = "View your detailed description.",
-    edit = "Edit",
+    viewExtDescCommand = "View your detailed description."
 }

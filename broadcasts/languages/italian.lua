@@ -1,0 +1,21 @@
+NAME = "Italian"
+LANGUAGE = {
+    moduleName = "Trasmissioni",
+    moduleDesc = "Permette allo staff di trasmettere messaggi a fazioni o classi scelte. Ogni trasmissione è registrata e controllata tramite privilegi CAMI.",
+    classBroadcastLabel = "[TRASMISSIONE CLASSE]",
+    classBroadcastNoPermission = "Non sei autorizzato a inviare una trasmissione di classe.",
+    classBroadcastNoValidClasses = "Nessuna classe valida è stata scelta.",
+    classBroadcastSent = "Trasmissione di classe inviata.",
+    classBroadcastSentTo = "Inviato a: %s",
+    classBroadcastTitle = "Invia una trasmissione alle classi selezionate.",
+    factionBroadcastLabel = "[TRASMISSIONE FAZIONE]",
+    factionBroadcastNoPermission = "Non sei autorizzato a inviare una trasmissione di fazione.",
+    factionBroadcastNoValidFactions = "Nessuna fazione valida è stata scelta.",
+    factionBroadcastSent = "Trasmissione di fazione inviata.",
+    factionBroadcastSentTo = "Inviato a: %s",
+    factionBroadcastTitle = "Invia una trasmissione alle fazioni selezionate.",
+    selectClassesPrompt = "Scegli le classi a cui inviare:",
+    selectFactionsPrompt = "Scegli le fazioni a cui inviare:",
+    classbroadcastLog = "%s ha inviato trasmissione di classe: %s",
+    factionbroadcastLog = "%s ha inviato trasmissione di fazione: %s",
+}

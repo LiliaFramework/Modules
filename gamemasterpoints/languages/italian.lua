@@ -1,0 +1,28 @@
+﻿NAME = "Italian"
+LANGUAGE = {
+    addNewPoint = "Add teleport point",
+    deletePoint = "Remove teleport point",
+    editParticleEffect = "Edit particle effect",
+    editSoundEffect = "Edit sound effect",
+    effectUpdated = "%s effect updated to %s.",
+    enterNewTPName = "Enter new point name:",
+    invalidEffectPath = "Invalid particle effect path.",
+    invalidInfo = "Invalid information provided.",
+    invalidSoundPath = "Invalid sound path.",
+    invalidTPName = "Teleport point not found.",
+    moveToPoint = "Teleport to point",
+    movedTo = "Moved to %s.",
+    newPointTitle = "Name New Point",
+    particleEffectPrompt = "Particle effect:",
+    pointRenamed = "%s renamed to %s.",
+    renamePoint = "Rename teleport point",
+    renameTPPoint = "Rename Point",
+    soundEffectPrompt = "Sound path:",
+    soundUpdated = "%s sound updated to %s.",
+    tpNotice = "You have been teleported.",
+    tpPointAdded = "Teleport point %s added.",
+    tpPointRemoved = "Teleport point %s removed.",
+    tpPointsTitle = "Manage teleport points.",
+    teleport = "Teleport",
+}
+

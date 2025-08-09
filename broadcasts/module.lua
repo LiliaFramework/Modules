@@ -1,9 +1,9 @@
-﻿MODULE.name = "Broadcasts"
+﻿MODULE.name = "moduleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.24
 MODULE.Public = true
-MODULE.desc = "Allows staff to broadcast messages to chosen factions or classes. Every broadcast is logged and controlled through CAMI privileges."
+MODULE.desc = "moduleDesc"
 MODULE.Features = {
     "Adds faction and class broadcast commands with CAMI checks",
     "Adds logging of broadcast messages for staff review",

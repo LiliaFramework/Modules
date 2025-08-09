@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     doorKickCannotKick = "You can't kick that door open.",
     doorKickDisabled = "This door can't be kicked down.",
@@ -7,5 +7,5 @@ LANGUAGE = {
     doorKickTooFar = "You're too far away to kick the door.",
     doorKickTooWeak = "You aren't strong enough to kick this door.",
     doorkickCommandDesc = "Attempt to kick open a door.",
-    doorkickLog = "%s kicked open %s",
+    doorkickLog = "%s kicked open %s"
 }

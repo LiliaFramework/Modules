@@ -1,8 +1,8 @@
-﻿MODULE.name = "Climb"
+﻿MODULE.name = "moduleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.15
-MODULE.desc = "Enables simple ledge climbing with smooth animations triggered by the movement keys."
+MODULE.desc = "moduleDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds the ability to climb ledges using movement keys",

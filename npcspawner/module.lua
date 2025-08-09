@@ -1,8 +1,8 @@
-﻿MODULE.name = "NPC Spawner"
+﻿MODULE.name = "moduleNpcSpawnerName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.20
-MODULE.desc = "Spawns NPCs at preset points on a schedule. Staff can force spawns manually and all actions are logged."
+MODULE.desc = "moduleNpcSpawnerDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds automatic NPC spawns at points",

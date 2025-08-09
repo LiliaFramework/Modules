@@ -1,0 +1,21 @@
+NAME = "German"
+LANGUAGE = {
+    moduleName = "Broadcasts",
+    moduleDesc = "Ermöglicht es Mitarbeitern, Nachrichten an ausgewählte Fraktionen oder Klassen zu senden. Jeder Broadcast wird protokolliert und über CAMI-Berechtigungen kontrolliert.",
+    classBroadcastLabel = "[KLASSEN BROADCAST]",
+    classBroadcastNoPermission = "Du darfst keinen Klassen-Broadcast senden.",
+    classBroadcastNoValidClasses = "Keine gültigen Klassen wurden ausgewählt.",
+    classBroadcastSent = "Klassen-Broadcast gesendet.",
+    classBroadcastSentTo = "Gesendet an: %s",
+    classBroadcastTitle = "Sende einen Broadcast an ausgewählte Klassen.",
+    factionBroadcastLabel = "[FRAKTIONS BROADCAST]",
+    factionBroadcastNoPermission = "Du darfst keinen Fraktions-Broadcast senden.",
+    factionBroadcastNoValidFactions = "Keine gültigen Fraktionen wurden ausgewählt.",
+    factionBroadcastSent = "Fraktions-Broadcast gesendet.",
+    factionBroadcastSentTo = "Gesendet an: %s",
+    factionBroadcastTitle = "Sende einen Broadcast an ausgewählte Fraktionen.",
+    selectClassesPrompt = "Wähle Klassen zum Senden:",
+    selectFactionsPrompt = "Wähle Fraktionen zum Senden:",
+    classbroadcastLog = "%s hat Klassen-Broadcast gesendet: %s",
+    factionbroadcastLog = "%s hat Fraktions-Broadcast gesendet: %s",
+}

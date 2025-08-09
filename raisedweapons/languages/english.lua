@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
-    toggleRaiseDesc = "Toggle raising or lowering your weapon.",
+    toggleRaiseDesc = "Toggle raising or lowering your weapon."
 }

@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     invalidWeight = "Invalid weight value.",
     inventoryAlreadyWeight = "This inventory already has a weight limit.",
@@ -10,7 +10,5 @@ LANGUAGE = {
     updatedInventoryWeight = "Inventory weight updated.",
     vendorFactionWhitelist = "Faction Whitelist",
     vendorInvalidAmount = "Invalid amount.",
-    weight = "Weight",
-    inventory = "Inventory",
-    inv = "Inventory",
+    weight = "Weight"
 }

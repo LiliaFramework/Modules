@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     frequency = "Frequency",
     noRadio = "You don't have a radio.",
@@ -15,5 +15,5 @@ LANGUAGE = {
     radioNotOwned = "This radio isn't yours.",
     radioTurnOff = "Turn Off",
     radioTurnOn = "Turn On",
-    sabotage = "Sabotage",
+    sabotage = "Sabotage"
 }

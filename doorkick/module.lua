@@ -1,8 +1,8 @@
-﻿MODULE.name = "Door Kick"
+﻿MODULE.name = "moduleDoorKickName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.17
-MODULE.desc = "Allows players to breach doors by kicking them open. The action flings the door aside and is fully logged for staff review."
+MODULE.desc = "moduleDoorKickDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds the ability to kick doors open with an animation",

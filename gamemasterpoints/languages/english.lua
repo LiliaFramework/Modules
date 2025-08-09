@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     addNewPoint = "Add teleport point",
     deletePoint = "Remove teleport point",
@@ -22,6 +22,5 @@ LANGUAGE = {
     tpNotice = "You have been teleported.",
     tpPointAdded = "Teleport point %s added.",
     tpPointRemoved = "Teleport point %s removed.",
-    tpPointsTitle = "Manage teleport points.",
-    teleport = "Teleport",
+    tpPointsTitle = "Manage teleport points."
 }

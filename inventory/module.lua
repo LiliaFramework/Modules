@@ -1,8 +1,8 @@
-﻿MODULE.name = "Weighted Inventory"
+﻿MODULE.name = "moduleWeightedInventoryName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.21
-MODULE.desc = "Adds a weight-based inventory system that limits what a character can haul. Drag-and-drop management encourages careful packing."
+MODULE.desc = "moduleWeightedInventoryDesc"
 MODULE.Public = true
 MODULE.enabled = function()
     local path = debug.getinfo(1, "S").source:sub(2):gsub("\\", "/")

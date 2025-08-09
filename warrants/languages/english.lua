@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     UnknownDescription = "Unknown",
     WarrantExpirationExpired = "%s's warrant has expired.",
@@ -9,7 +9,6 @@ LANGUAGE = {
     WarrantRemovedNotify = "Warrant removed.",
     WarrantedText = "Warranted",
     expired = "expired",
-    generalinfo = "General Information",
     issued = "issued",
     reputation = "Reputation",
     upstanding = "upstanding",
@@ -17,5 +16,5 @@ LANGUAGE = {
     warrantCommandDesc = "Toggle a player's wanted status.",
     warrants = "Warrants",
     warrantIssueLog = "%s issued a warrant on %s",
-    warrantRemoveLog = "%s removed a warrant from %s",
+    warrantRemoveLog = "%s removed a warrant from %s"
 }

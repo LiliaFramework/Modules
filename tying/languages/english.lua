@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     accept = "Accept",
     alreadyBeingSearched = "That player is already being searched.",
@@ -17,13 +17,11 @@ LANGUAGE = {
     requestSearchInventory = "Request to search inventory",
     requestSearchSent = "Search request sent.",
     searchDenied = "Search request denied.",
-    search = "Search",
-    use = "Use",
     staffRestrained = "%s has been restrained.",
     tie = "Tie",
     unTie = "Untie",
     untying = "Untying...",
     youAreTied = "You have been tied up.",
     tieLog = "%s tied %s",
-    untieLog = "%s untied %s",
+    untieLog = "%s untied %s"
 }

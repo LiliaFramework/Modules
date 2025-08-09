@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
-    moneyLossMessage = "Medical fees cost you %s.",
+    moneyLossMessage = "Medical fees cost you %s."
 }

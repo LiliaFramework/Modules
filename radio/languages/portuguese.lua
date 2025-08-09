@@ -1,0 +1,20 @@
+﻿NAME = "Portuguese"
+LANGUAGE = {
+    frequency = "Frequency",
+    noRadio = "You don't have a radio.",
+    off = "off",
+    on = "on",
+    radio = "Radio",
+    radioAlreadyEquipped = "You already have a radio equipped.",
+    radioBreakAction = "breaks the radio",
+    radioChangeFreq = "Set Frequency",
+    radioDescEntityFormat = "This radio is %s at %s MHz.",
+    radioDescFormat = "A handheld radio that is %s at %s MHz.",
+    radioFrequencyTitle = "Select Frequency",
+    radioNoRadioComm = "You need a radio to use this channel.",
+    radioNotOwned = "This radio isn't yours.",
+    radioTurnOff = "Turn Off",
+    radioTurnOn = "Turn On",
+    sabotage = "Sabotage",
+}
+

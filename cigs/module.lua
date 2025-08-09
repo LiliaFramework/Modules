@@ -1,8 +1,8 @@
-﻿MODULE.name = "Cigarettes"
+﻿MODULE.name = "moduleCigarettesName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.19
-MODULE.desc = "Adds cigarette items that burn down over time, producing smoke and ash effects for added ambience."
+MODULE.desc = "moduleCigarettesDesc"
 MODULE.WorkshopContent = "3527540050"
 MODULE.Public = true
 MODULE.Features = {

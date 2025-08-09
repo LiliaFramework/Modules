@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     bigSplashTextLabel = "Large Splash Text",
     cinematicMenuDesc = "Open the cinematic text menu.",
@@ -10,6 +10,5 @@ LANGUAGE = {
     playAudio = "Play audio",
     post = "Post",
     splashTextLabel = "Splash Text",
-    splashTextSent = "Splash text sent.",
-    cancel = "Cancel",
+    splashTextSent = "Splash text sent."
 }

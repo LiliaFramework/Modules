@@ -1,8 +1,8 @@
-﻿MODULE.name = "Donator Perks"
+﻿MODULE.name = "moduleDonatorName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.27
-MODULE.desc = "Provides libraries to manage donor ranks and perks. Perks can be configured per tier and players may receive extra character slots."
+MODULE.desc = "moduleDonatorDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds libraries to manage donor perks",

@@ -1,8 +1,8 @@
-﻿MODULE.name = "Free Look"
+﻿MODULE.name = "moduleFreeLookName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.17
-MODULE.desc = "Enables freelook so players can glance around without turning their body. A toggle key and sensitivity options offer tactical awareness."
+MODULE.desc = "moduleFreeLookDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds the ability to look around without turning the body",
