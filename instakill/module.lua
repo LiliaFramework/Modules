@@ -1,8 +1,8 @@
-﻿MODULE.name = "moduleName"
+﻿MODULE.name = "instakillModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18
-MODULE.desc = "moduleDesc"
+MODULE.desc = "instakillModuleDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds instant kill on headshots",

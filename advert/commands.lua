@@ -9,7 +9,7 @@
         if not client.advertdelay then client.advertdelay = 0 end
         if CurTime() < client.advertdelay then
             local seconds = math.ceil(client.advertdelay - CurTime())
-            client:notifyLocalized("commandCooldownTimed", seconds)
+            client:notifyLocalized("advertCommandCooldownTimed", seconds)
             return
         end
 

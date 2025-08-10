@@ -1,8 +1,8 @@
-﻿MODULE.name = "moduleName"
+﻿MODULE.name = "shootlockModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18
-MODULE.desc = "moduleDesc"
+MODULE.desc = "shootlockModuleDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds the ability to shoot door locks to open them",

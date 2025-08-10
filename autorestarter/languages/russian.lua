@@ -1,7 +1,7 @@
 NAME = "Russian"
 LANGUAGE = {
-    moduleName = "Auto Restarter",
-    moduleDesc = "Automatically restarts the server at specific intervals with player warnings. Features schedule configuration and remaining time warnings.",
+    autorestarterModuleName = "Auto Restarter",
+    autorestarterModuleDesc = "Automatically restarts the server at specific intervals with player warnings. Features schedule configuration and remaining time warnings.",
     restartKick = "The server is restarting.",
     restartWarning15 = "The server will restart in 15 minutes.",
     restartWarning10 = "The server will restart in 10 minutes.",

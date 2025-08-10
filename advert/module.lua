@@ -1,7 +1,7 @@
-﻿MODULE.name = "moduleName"
+﻿MODULE.name = "advertModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.19
-MODULE.desc = "moduleDesc"
+MODULE.desc = "advertModuleDesc"
 MODULE.Public = true
 MODULE.Features = {"Adds a paid /advert command players can use", "Adds a cooldown via AdvertCooldown to limit spam", "Adds colored broadcast messages across the server", "Adds price control via AdvertPrice configuration", "Adds notifications when players lack funds"}

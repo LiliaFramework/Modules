@@ -1,6 +1,6 @@
 ﻿NAME = "Russian"
 LANGUAGE = {
-    moduleName = "Instant Kill",
-    moduleDesc = "Applies high damage multipliers for headshots, making them instantly lethal. Each weapon can have its own settings.",
+    instakillModuleName = "Instant Kill",
+    instakillModuleDesc = "Applies high damage multipliers for headshots, making them instantly lethal. Each weapon can have its own settings.",
 }
 

@@ -1,7 +1,7 @@
 ﻿NAME = "French"
 LANGUAGE = {
-    moduleName = "Broadcasts",
-    moduleDesc = "Allows staff to broadcast messages to chosen factions or classes. Every broadcast is logged and controlled through CAMI privileges.",
+    broadcastsModuleName = "Broadcasts",
+    broadcastsModuleDesc = "Allows staff to broadcast messages to chosen factions or classes. Every broadcast is logged and controlled through CAMI privileges.",
     classBroadcastLabel = "[CLASS BROADCAST]",
     classBroadcastNoPermission = "You aren't allowed to send a class broadcast.",
     classBroadcastNoValidClasses = "No valid classes were chosen.",
