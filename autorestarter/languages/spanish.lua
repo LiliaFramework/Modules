@@ -1,7 +1,7 @@
 NAME = "Spanish"
 LANGUAGE = {
-    moduleName = "Reiniciador Automático",
-    moduleDesc = "Reinicia automáticamente el servidor a intervalos específicos con avisos a los jugadores. Cuenta con configuración de horarios y avisos de tiempo restante.",
+    autorestarterModuleName = "Reiniciador Automático",
+    autorestarterModuleDesc = "Reinicia automáticamente el servidor a intervalos específicos con avisos a los jugadores. Cuenta con configuración de horarios y avisos de tiempo restante.",
     restartKick = "El servidor se está reiniciando.",
     restartWarning15 = "El servidor se reiniciará en 15 minutos.",
     restartWarning10 = "El servidor se reiniciará en 10 minutos.",

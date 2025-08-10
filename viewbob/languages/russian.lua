@@ -1,6 +1,6 @@
 ﻿NAME = "Russian"
 LANGUAGE = {
-    moduleName = "View Bobbing",
-    moduleDesc = "Applies subtle camera bobbing while you move to enhance immersion. Intensity and frequency are adjustable through options.",
+    viewbobModuleName = "View Bobbing",
+    viewbobModuleDesc = "Applies subtle camera bobbing while you move to enhance immersion. Intensity and frequency are adjustable through options.",
 }
 

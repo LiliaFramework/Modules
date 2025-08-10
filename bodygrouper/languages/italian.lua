@@ -1,7 +1,7 @@
 NAME = "Italian"
 LANGUAGE = {
-    moduleName = "Editor Bodygroup",
-    moduleDesc = "Spawna un armadio bodygroup dove i giocatori possono modificare i bodygroup del loro modello. Gli admin possono ispezionare altri e configurare il modello dell'armadio.",
+    bodygrouperModuleName = "Editor Bodygroup",
+    bodygrouperModuleDesc = "Spawna un armadio bodygroup dove i giocatori possono modificare i bodygroup del loro modello. Gli admin possono ispezionare altri e configurare il modello dell'armadio.",
     bodygroupChanged = "Hai cambiato %s bodygroup.",
     bodygroupChangedBy = "I tuoi bodygroup sono stati cambiati da %s.",
     bodygroupMenuTitle = "Menu Bodygroup",

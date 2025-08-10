@@ -1,7 +1,7 @@
 NAME = "Italian"
 LANGUAGE = {
-    moduleName = "Trasmissioni",
-    moduleDesc = "Permette allo staff di trasmettere messaggi a fazioni o classi scelte. Ogni trasmissione è registrata e controllata tramite privilegi CAMI.",
+    broadcastsModuleName = "Trasmissioni",
+    broadcastsModuleDesc = "Permette allo staff di trasmettere messaggi a fazioni o classi scelte. Ogni trasmissione è registrata e controllata tramite privilegi CAMI.",
     classBroadcastLabel = "[TRASMISSIONE CLASSE]",
     classBroadcastNoPermission = "Non sei autorizzato a inviare una trasmissione di classe.",
     classBroadcastNoValidClasses = "Nessuna classe valida è stata scelta.",

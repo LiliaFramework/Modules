@@ -1,7 +1,7 @@
 NAME = "German"
 LANGUAGE = {
-    moduleName = "Alkoholismus",
-    moduleDesc = "Fügt trinkbaren Alkohol hinzu, der den Vergiftungsgrad eines Spielers erhöht. Hoher Blutalkoholgehalt verschwimmt die Sicht und verlangsamt die Bewegung bis der Effekt nachlässt.",
+    alcoholismModuleName = "Alkoholismus",
+    alcoholismModuleDesc = "Fügt trinkbaren Alkohol hinzu, der den Vergiftungsgrad eines Spielers erhöht. Hoher Blutalkoholgehalt verschwimmt die Sicht und verlangsamt die Bewegung bis der Effekt nachlässt.",
     alcoholDesc = "Ein alkoholisches Getränk mit %s%% Alkoholgehalt.",
     drinkAction = "Trinken",
     drinkTip = "Dieses Getränk konsumieren.",

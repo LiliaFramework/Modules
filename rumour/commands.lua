@@ -26,7 +26,7 @@
         if not client.rumourdelay then client.rumourdelay = 0 end
         if CurTime() < client.rumourdelay then
             local seconds = math.ceil(client.rumourdelay - CurTime())
-            client:notifyLocalized("commandCooldownTimed", seconds)
+            client:notifyLocalized("rumourCommandCooldownTimed", seconds)
             return
         end
 

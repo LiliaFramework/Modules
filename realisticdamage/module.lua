@@ -1,8 +1,8 @@
-﻿MODULE.name = "moduleName"
+﻿MODULE.name = "realisticdamageModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.15
-MODULE.desc = "moduleDesc"
+MODULE.desc = "realisticdamageModuleDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds damage scaling by body part",

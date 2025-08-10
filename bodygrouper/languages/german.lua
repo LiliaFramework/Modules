@@ -1,7 +1,7 @@
 NAME = "German"
 LANGUAGE = {
-    moduleName = "Bodygroup Editor",
-    moduleDesc = "Spawnt einen Bodygroup-Schrank, wo Spieler die Bodygroups ihres Modells bearbeiten können. Admins können andere inspizieren und das Modell des Schranks konfigurieren.",
+    bodygrouperModuleName = "Bodygroup Editor",
+    bodygrouperModuleDesc = "Spawnt einen Bodygroup-Schrank, wo Spieler die Bodygroups ihres Modells bearbeiten können. Admins können andere inspizieren und das Modell des Schranks konfigurieren.",
     bodygroupChanged = "Du hast %s Bodygroups geändert.",
     bodygroupChangedBy = "Deine Bodygroups wurden von %s geändert.",
     bodygroupMenuTitle = "Bodygroup Menü",

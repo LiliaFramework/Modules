@@ -1,8 +1,8 @@
-﻿MODULE.name = "moduleName"
+﻿MODULE.name = "stungunModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 101.21
 MODULE.Public = true
-MODULE.desc = "moduleDesc"
+MODULE.desc = "stungunModuleDesc"
 MODULE.WorkshopContent = "3432649835"
 MODULE.Features = {"Adds a taser weapon that immobilizes targets", "Adds StunTime and MaxDist as configurable settings", "Adds optional damage and post-process effects", "Adds networked stun animations", "Adds logs when players are tased"}

@@ -1,8 +1,8 @@
-﻿MODULE.name = "moduleName"
+﻿MODULE.name = "firstpersoneffectsModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.16
-MODULE.desc = "moduleDesc"
+MODULE.desc = "firstpersoneffectsModuleDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds head bob and view sway",

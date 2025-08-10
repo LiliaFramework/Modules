@@ -1,6 +1,6 @@
 ﻿NAME = "Russian"
 LANGUAGE = {
-    commandCooldownTimed = "Please wait %s seconds before spreading another rumour.",
+    rumourCommandCooldownTimed = "Please wait %s seconds before spreading another rumour.",
     rumourCommandDesc = "Spread a rumour to other criminals.",
     rumourMessagePrefix = "[RUMOUR] %s",
     rumourNoMessage = "You didn't provide a rumour.",

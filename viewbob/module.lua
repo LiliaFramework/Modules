@@ -1,8 +1,8 @@
-﻿MODULE.name = "moduleName"
+﻿MODULE.name = "viewbobModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18
-MODULE.desc = "moduleDesc"
+MODULE.desc = "viewbobModuleDesc"
 MODULE.Public = true
 MODULE.Features = {
     "Adds camera bobbing while moving",

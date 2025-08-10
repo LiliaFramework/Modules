@@ -1,7 +1,7 @@
-﻿MODULE.name = "moduleName"
+﻿MODULE.name = "chatmessagesModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.17
-MODULE.desc = "moduleDesc"
+MODULE.desc = "chatmessagesModuleDesc"
 MODULE.Public = true
 MODULE.Features = {"Adds periodic server adverts to chat", "Adds interval control via ChatMessagesInterval", "Adds localized message support", "Adds rotating tips for new players", "Adds toggle to disable adverts per user"}
