@@ -1,7 +1,7 @@
 ﻿MODULE.name = "flashlightModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.16
+MODULE.version = 1.17
 MODULE.desc = "flashlightModuleDesc"
 MODULE.Public = true
 MODULE.Features = {

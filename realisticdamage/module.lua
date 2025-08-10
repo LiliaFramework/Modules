@@ -1,7 +1,7 @@
 ﻿MODULE.name = "realisticdamageModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.15
+MODULE.version = 1.16
 MODULE.desc = "realisticdamageModuleDesc"
 MODULE.Public = true
 MODULE.Features = {

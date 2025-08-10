@@ -1,7 +1,7 @@
 ﻿MODULE.name = "viewbobModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.18
+MODULE.version = 1.19
 MODULE.desc = "viewbobModuleDesc"
 MODULE.Public = true
 MODULE.Features = {

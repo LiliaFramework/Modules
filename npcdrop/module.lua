@@ -1,7 +1,7 @@
 ﻿MODULE.name = "npcdropModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.15
+MODULE.version = 1.16
 MODULE.desc = "npcdropModuleDesc"
 MODULE.DropTable = {
     ["npc_zombie"] = {

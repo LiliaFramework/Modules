@@ -1,7 +1,7 @@
 ﻿MODULE.name = "firstpersoneffectsModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.16
+MODULE.version = 1.17
 MODULE.desc = "firstpersoneffectsModuleDesc"
 MODULE.Public = true
 MODULE.Features = {

@@ -1,7 +1,7 @@
 ﻿MODULE.name = "climbModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.16
+MODULE.version = 1.17
 MODULE.desc = "climbModuleDesc"
 MODULE.Public = true
 MODULE.Features = {

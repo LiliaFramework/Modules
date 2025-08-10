@@ -1,7 +1,7 @@
 ﻿MODULE.name = "stungunModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 101.21
+MODULE.version = 101.22
 MODULE.Public = true
 MODULE.desc = "stungunModuleDesc"
 MODULE.WorkshopContent = "3432649835"
