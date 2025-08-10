@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleWeightedInventoryName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.21
+MODULE.version = 1.22
 MODULE.desc = "moduleWeightedInventoryDesc"
 MODULE.Public = true
 MODULE.enabled = function()

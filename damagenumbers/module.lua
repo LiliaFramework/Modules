@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.16
+MODULE.version = 1.17
 MODULE.desc = "moduleDesc"
 MODULE.Public = true
 MODULE.Features = {"Adds floating combat text when hitting targets", "Adds different colors for damage types", "Adds display of damage dealt and received", "Adds scaling text based on damage amount", "Adds client option to disable numbers"}

@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleWarTableName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.20
+MODULE.version = 1.21
 MODULE.desc = "moduleWarTableDesc"
 MODULE.WorkshopContent = "3527544696"
 MODULE.Public = true

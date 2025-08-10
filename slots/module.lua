@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleSlotMachineName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.16
+MODULE.version = 1.17
 MODULE.desc = "moduleSlotMachineDesc"
 MODULE.WorkshopContent = "3527541056"
 MODULE.Public = true

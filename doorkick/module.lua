@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleDoorKickName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.17
+MODULE.version = 1.18
 MODULE.desc = "moduleDoorKickDesc"
 MODULE.Public = true
 MODULE.Features = {

@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleCigarettesName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.19
+MODULE.version = 1.20
 MODULE.desc = "moduleCigarettesDesc"
 MODULE.WorkshopContent = "3527540050"
 MODULE.Public = true

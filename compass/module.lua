@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleCompassName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.15
+MODULE.version = 1.16
 MODULE.desc = "moduleCompassDesc"
 MODULE.WorkshopContent = "3527540414"
 MODULE.Public = true

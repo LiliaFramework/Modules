@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleNpcSpawnerName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.20
+MODULE.version = 1.21
 MODULE.desc = "moduleNpcSpawnerDesc"
 MODULE.Public = true
 MODULE.Features = {

@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.15
+MODULE.version = 1.16
 MODULE.desc = "moduleDesc"
 MODULE.Public = true
 MODULE.Features = {"Adds payment to characters based on model", "Adds custom wage definitions", "Adds integration into the economy", "Adds config to exclude certain models", "Adds logs of wages issued"}

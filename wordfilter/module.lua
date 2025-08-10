@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleWordFilterName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.19
+MODULE.version = 1.20
 MODULE.desc = "moduleWordFilterDesc"
 MODULE.Public = true
 MODULE.Features = {
