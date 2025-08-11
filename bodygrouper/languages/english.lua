@@ -1,5 +1,7 @@
 NAME = "English"
 LANGUAGE = {
+    manageBodygroups = "Manage Bodygroups",
+    changeBodygroups = "Change Bodygroups",
     bodygrouperModuleName = "Bodygroup Editor",
     bodygrouperModuleDesc = "Spawns a bodygroup closet where players can edit their model's bodygroups. Admins may inspect others and configure the closet's model.",
     bodygroupChanged = "You changed %s bodygroups.",

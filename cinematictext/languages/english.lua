@@ -1,5 +1,6 @@
 NAME = "English"
 LANGUAGE = {
+    useCinematicMenu = "Use Cinematic Menu",
     bigSplashTextLabel = "Large Splash Text",
     cinematicMenuDesc = "Open the cinematic text menu.",
     cinematicMenuTitle = "Cinematic Text",

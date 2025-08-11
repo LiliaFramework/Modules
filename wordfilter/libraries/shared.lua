@@ -1,4 +1,5 @@
 ﻿function MODULE:LoadData()
+    if not SERVER then return end
     local stored = self:getData({})
     if istable(stored) then
         for _, word in ipairs(stored) do
@@ -8,6 +9,7 @@
 end
 
 function MODULE:SaveData()
+    if not SERVER then return end
     self:setData(self.WordBlackList)
 end
 

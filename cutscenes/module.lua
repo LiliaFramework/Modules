@@ -8,7 +8,8 @@ MODULE.Public = true
 MODULE.Features = {"Adds a framework for simple cutscene playback", "Adds scenes defined through tables", "Adds syncing of camera movement across clients", "Adds commands to trigger cutscenes", "Adds the ability for players to skip"}
 MODULE.Privileges = {
     {
-        Name = "Use Cutscenes",
+        Name = "useCutscenes",
+        ID = "useCutscenes",
         MinAccess = "admin",
         Category = "Cutscenes",
     },

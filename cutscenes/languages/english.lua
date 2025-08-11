@@ -1,5 +1,6 @@
 NAME = "English"
 LANGUAGE = {
+    useCutscenes = "Use Cutscenes",
     cutsceneCommandDesc = "Play a cutscene for a target player.",
     globalCutsceneCommandDesc = "Play a cutscene for everyone.",
     globalCutscenePrompt = "Select a cutscene to play globally:",

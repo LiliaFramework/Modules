@@ -1,5 +1,6 @@
 ﻿NAME = "English"
 LANGUAGE = {
+    forceNPCSpawn = "Force NPC Spawn",
     forceNPCSpawnDesc = "Force spawn NPCs from a specific spawner.",
     forcedSpawnBlocked = "NPCs are already alive for that spawner.",
     forcedSpawnFailed = "Failed to force spawn NPCs.",

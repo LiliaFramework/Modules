@@ -1,5 +1,8 @@
 NAME = "English"
 LANGUAGE = {
+    subtractCharSlots = "Subtract CharSlots",
+    addCharSlots = "Add CharSlots",
+    setCharSlots = "Set CharSlots",
     addCharSlotsDesc = "Add a character slot to a player.",
     donatorEnjoyWeapons = "Enjoy your new weapons!",
     invalidSlotCount = "Invalid slot count provided.",

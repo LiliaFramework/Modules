@@ -7,7 +7,8 @@ MODULE.Public = true
 MODULE.Features = {"Adds support for long item descriptions", "Adds localization for multiple languages", "Adds better RP text display", "Adds automatic line wrapping", "Adds fallback to short descriptions"}
 MODULE.Privileges = {
     {
-        Name = "Change Description",
+        Name = "changeDescription",
+        ID = "changeDescription",
         MinAccess = "admin",
         Category = "Descriptions",
     }

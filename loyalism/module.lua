@@ -8,7 +8,8 @@ MODULE.Features = {"Adds a loyalty tier system for players", "Adds the /partytie
 lia.flag.add("T", "Access to /partytier")
 MODULE.Privileges = {
     {
-        Name = "Management - Assign Party Tiers",
+        Name = "managementAssignPartyTiers",
+        ID = "managementAssignPartyTiers",
         MinAccess = "admin",
         Category = "Loyalism",
     }

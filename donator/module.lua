@@ -12,17 +12,20 @@ MODULE.Features = {
 }
 MODULE.Privileges = {
     {
-        Name = "Subtract CharSlots",
+        Name = "subtractCharSlots",
+        ID = "Subtract CharSlots",
         MinAccess = "superadmin",
         Category = "Character Slots",
     },
     {
-        Name = "Add CharSlots",
+        Name = "addCharSlots",
+        ID = "Add CharSlots",
         MinAccess = "superadmin",
         Category = "Character Slots",
     },
     {
-        Name = "Set CharSlots",
+        Name = "setCharSlots",
+        ID = "Set CharSlots",
         MinAccess = "superadmin",
         Category = "Character Slots",
     }

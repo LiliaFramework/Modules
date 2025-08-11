@@ -1,5 +1,8 @@
 NAME = "English"
 LANGUAGE = {
+    canWarrantPeople = "Can Warrant People",
+    canSeeWarrants = "Can See Warrants",
+    canSeeWarrantNotifications = "Can See Warrant Notifications",
     UnknownDescription = "Unknown",
     WarrantExpirationExpired = "%s's warrant has expired.",
     WarrantExpirationIssued = "%s's warrant has been issued.",

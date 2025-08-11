@@ -12,7 +12,8 @@ MODULE.Features = {
 }
 MODULE.Privileges = {
     {
-        Name = "Force NPC Spawn",
+        Name = "forceNPCSpawn",
+        ID = "forceNPCSpawn",
         MinAccess = "superadmin",
         Category = "Spawn Permissions",
     }

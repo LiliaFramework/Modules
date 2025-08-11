@@ -1,5 +1,6 @@
 NAME = "English"
 LANGUAGE = {
+    managementAssignPartyTiers = "Management - Assign Party Tiers",
     invalidPartyTier = "Invalid party tier.",
     mustBeOnCharacter = "You must be on your character to do that.",
     partyTier = "Loyalty Tier",

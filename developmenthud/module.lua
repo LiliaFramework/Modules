@@ -5,12 +5,14 @@ MODULE.version = 1.23
 MODULE.desc = "developmenthudModuleDesc"
 MODULE.Privileges = {
     {
-        Name = "Staff HUD",
+        Name = "staffHUD",
+        ID = "staffHUD",
         MinAccess = "superadmin",
         Category = "Development HUD",
     },
     {
-        Name = "Development HUD",
+        Name = "developmentHUD",
+        ID = "developmentHUD",
         MinAccess = "superadmin",
         Category = "Development HUD",
     }
