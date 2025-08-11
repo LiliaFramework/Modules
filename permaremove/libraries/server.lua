@@ -1,4 +1,5 @@
 ﻿function MODULE:LoadData()
+    if not SERVER then return end
     local data = self:getData({})
     local mapID = game.GetMap()
     if not data then return end
@@ -14,6 +15,4 @@
     end
 end
 
-lia.log.addType("permaremove", function(client, entity)
-    return L("permRemoveLog", client:Name(), tostring(entity))
-end, "Player")
+lia.log.addType("permaremove", function(client, entity) return L("permRemoveLog", client:Name(), tostring(entity)) end, "Player")

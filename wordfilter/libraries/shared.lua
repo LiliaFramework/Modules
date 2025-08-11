@@ -1,7 +1,6 @@
 ﻿function MODULE:LoadData()
     if not SERVER then return end
-    local stored = self:getData({})
-    if istable(stored) then
+    if istable(self:getData({})) then
         for _, word in ipairs(stored) do
             if not table.HasValue(self.WordBlackList, word) then table.insert(self.WordBlackList, word) end
         end
