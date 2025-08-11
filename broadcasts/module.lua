@@ -1,7 +1,7 @@
 ﻿MODULE.name = "broadcastsModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.26
+MODULE.version = 1.27
 MODULE.Public = true
 MODULE.desc = "broadcastsModuleDesc"
 MODULE.Features = {

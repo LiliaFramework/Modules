@@ -1,7 +1,7 @@
 ﻿MODULE.name = "moduleDonatorName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.28
+MODULE.version = 1.29
 MODULE.desc = "moduleDonatorDesc"
 MODULE.Public = true
 MODULE.Features = {

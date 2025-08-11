@@ -1,7 +1,7 @@
 ﻿MODULE.name = "developmenthudModuleName"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.23
+MODULE.version = 1.24
 MODULE.desc = "developmenthudModuleDesc"
 MODULE.Privileges = {
     {
