@@ -1,4 +1,5 @@
 ﻿MODULE.name = "War Table"
+MODULE.uniqueID = "public_wartable"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.23

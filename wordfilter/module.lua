@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Word Filter"
+MODULE.uniqueID = "public_wordfilter"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.24

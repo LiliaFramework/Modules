@@ -1,4 +1,5 @@
 ﻿MODULE.name = "View Manipulation"
+MODULE.uniqueID = "public_vmanip"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.22

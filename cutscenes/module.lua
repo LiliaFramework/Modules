@@ -1,5 +1,6 @@
 ﻿local MODULE = MODULE
 MODULE.name = "Cutscenes"
+MODULE.uniqueID = "public_cutscenes"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.22

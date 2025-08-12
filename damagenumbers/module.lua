@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Damage Numbers"
+MODULE.uniqueID = "public_damagenumbers"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.20

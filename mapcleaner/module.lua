@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Map Cleaner"
+MODULE.uniqueID = "public_mapcleaner"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18

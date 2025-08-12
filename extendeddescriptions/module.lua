@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Extended Descriptions"
+MODULE.uniqueID = "public_extendeddescriptions"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.28

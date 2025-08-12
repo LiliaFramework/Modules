@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Warrant System"
+MODULE.uniqueID = "public_warrants"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.33

@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Development Server"
+MODULE.uniqueID = "public_developmentserver"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.16

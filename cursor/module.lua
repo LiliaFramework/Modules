@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Cursor"
+MODULE.uniqueID = "public_cursor"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18

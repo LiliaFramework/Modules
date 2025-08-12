@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Door Kick"
+MODULE.uniqueID = "public_doorkick"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.20

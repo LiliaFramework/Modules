@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Donator"
+MODULE.uniqueID = "public_donator"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.31

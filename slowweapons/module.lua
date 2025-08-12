@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Slow Weapons"
+MODULE.uniqueID = "public_slowweapons"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.19

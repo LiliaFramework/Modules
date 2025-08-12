@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Instakill"
+MODULE.uniqueID = "public_instakill"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.21

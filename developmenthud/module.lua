@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Development HUD"
+MODULE.uniqueID = "public_developmenthud"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.26
