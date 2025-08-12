@@ -7,4 +7,3 @@ LANGUAGE = {
     timeIsPast = "The specified time is in the past.",
     invalidEntityPosition = "Invalid position for entity"
 }
-

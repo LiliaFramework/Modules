@@ -1,11 +1,16 @@
 ﻿lia.command.add("warrant", {
     adminOnly = false,
-    syntax = "[player Target Player]",
-    desc = L("warrantCommandDesc"),
+    arguments = {
+        {
+            name = "target",
+            type = "player"
+        }
+    },
+    desc = "warrantCommandDesc",
     AdminStick = {
-        Name = L("warrantCommandDesc"),
-        Category = L("moderationTools"),
-        SubCategory = L("warrants")
+        Name = "warrantCommandDesc",
+        Category = "moderationTools",
+        SubCategory = "warrants"
     },
     onRun = function(client, arguments)
         local character = client:getChar()

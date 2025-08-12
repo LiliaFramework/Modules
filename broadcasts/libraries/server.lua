@@ -1,6 +1,2 @@
-lia.log.addType("classbroadcast", function(client, message)
-    return L("classbroadcastLog", client:Name(), message)
-end, "Player")
-lia.log.addType("factionbroadcast", function(client, message)
-    return L("factionbroadcastLog", client:Name(), message)
-end, "Player")
+lia.log.addType("classbroadcast", function(client, message) return L("classbroadcastLog", client:Name(), message) end, "Player")
+lia.log.addType("factionbroadcast", function(client, message) return L("factionbroadcastLog", client:Name(), message) end, "Player")

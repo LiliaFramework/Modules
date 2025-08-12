@@ -9,4 +9,3 @@ LANGUAGE = {
     exit = "Exit",
     submit = "Submit",
 }
-

@@ -41,6 +41,4 @@ function MODULE:ShouldSpawnClientRagdoll()
     return false
 end
 
-lia.log.addType("corpseIdentified", function(client, target)
-    return L("corpseIdentifiedLog", client:Name(), target:Name())
-end, "Gameplay")
+lia.log.addType("corpseIdentified", function(client, target) return L("corpseIdentifiedLog", client:Name(), target:Name()) end, "Gameplay")

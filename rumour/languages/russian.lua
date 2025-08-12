@@ -6,4 +6,3 @@ LANGUAGE = {
     rumourNoMessage = "You didn't provide a rumour.",
     rumourNotAllowed = "Your faction can't spread rumours.",
 }
-

@@ -1,7 +1,6 @@
 ﻿lia.command.add("cinematicmenu", {
-    privilege = "Use Cinematic Menu",
     adminOnly = true,
-    desc = L("cinematicMenuDesc"),
+    desc = "cinematicMenuDesc",
     onRun = function(client)
         net.Start("OpenCinematicMenu")
         net.Send(client)

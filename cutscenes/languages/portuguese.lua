@@ -9,4 +9,3 @@ LANGUAGE = {
     selectCutsceneTitle = "Choose Cutscene",
     cutscenes = "Cutscenes"
 }
-

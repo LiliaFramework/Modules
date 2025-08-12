@@ -2,7 +2,7 @@
     for _, v in pairs(ents.FindByClass("lia_bodygrouper")) do
         if v:GetPos():Distance(client:GetPos()) <= 128 then return true end
     end
-    return client:hasPrivilege("Change Bodygroups")
+    return client:hasPrivilege("manageBodygroups")
 end
 
 function MODULE:CanProperty(_, property, entity)

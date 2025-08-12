@@ -1,18 +1,16 @@
-﻿local MODULE = MODULE
-lia.command.add("permaremove", {
+﻿lia.command.add("permaremove", {
     adminOnly = true,
-    privilege = "Remove Map Entities",
-    desc = L("permRemoveDesc"),
+    desc = "permRemoveDesc",
     onRun = function(client)
         local entity = client:GetEyeTraceNoCursor().Entity
-        local data = MODULE:getData({})
+        local data = lia.data.get("permaremove", {})
         local mapID = game.GetMap()
         if IsValid(entity) and entity:CreatedByMap() then
             if hook.Run("CanPermaRemoveEntity", client, entity) == false then return end
             data[#data + 1] = {mapID, entity:MapCreationID()}
             entity:Remove()
             lia.log.add(client, "permaremove", entity)
-            MODULE:setData(data)
+            lia.data.set("permaremove", data)
             hook.Run("OnPermaRemoveEntity", client, entity)
             client:notifyLocalized("permRemoveSuccess")
         else

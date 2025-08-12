@@ -11,7 +11,6 @@ function lia.utilities.SpeedTest(func, n)
     return (SysTime() - start) / n
 end
 
-
 function lia.utilities.DaysBetween(t1, t2)
     local y1, mo1, d1 = lia.utilities.ParseTime(t1)
     local y2, mo2, d2 = lia.utilities.ParseTime(t2)

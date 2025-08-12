@@ -15,4 +15,3 @@ LANGUAGE = {
     viewBodygroupsDesc = "View or edit a player's bodygroups.",
     bodygrouper = "Bodygroup Editor",
 }
-

@@ -20,4 +20,3 @@ LANGUAGE = {
     targetNoInventory = "Target has no inventory.",
     gaveItem = "Gave item %s to %s",
 }
-

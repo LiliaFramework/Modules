@@ -1,12 +1,16 @@
 ﻿lia.command.add("viewBodygroups", {
     adminOnly = true,
-    privilege = "Manage Bodygroups",
-    syntax = "[player Target Player]",
-    desc = L("viewBodygroupsDesc"),
+    arguments = {
+        {
+            name = "target",
+            type = "player"
+        }
+    },
+    desc = "viewBodygroupsDesc",
     AdminStick = {
-        Name = L("viewBodygroupsDesc"),
-        Category = L("characterManagement"),
-        SubCategory = L("bodygrouper")
+        Name = "viewBodygroupsDesc",
+        Category = "characterManagement",
+        SubCategory = "bodygrouper"
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1] or "")

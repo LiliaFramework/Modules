@@ -1,17 +1,25 @@
 ﻿local MODULE = MODULE
 lia.command.add("gmtpremove", {
     adminOnly = true,
-    privilege = "Manage Gamemaster Teleport Points",
-    desc = L("deletePoint"),
-    syntax = "[string Name]",
+    desc = "deletePoint",
+    arguments = {
+        {
+            name = "name",
+            type = "string"
+        }
+    },
     onRun = function(client, arguments) MODULE:RemovePoint(client, table.concat(arguments, " ")) end
 })
 
 lia.command.add("gmtpnewname", {
     adminOnly = true,
-    privilege = "Manage Gamemaster Teleport Points",
-    desc = L("renamePoint"),
-    syntax = "[string Name]",
+    desc = "renamePoint",
+    arguments = {
+        {
+            name = "name",
+            type = "string"
+        }
+    },
     onRun = function(_, arguments)
         net.Start("gmTPNewName")
         net.WriteString(table.concat(arguments, " "))
@@ -21,8 +29,7 @@ lia.command.add("gmtpnewname", {
 
 lia.command.add("gmtpmenu", {
     adminOnly = true,
-    privilege = "Manage Gamemaster Teleport Points",
-    desc = L("tpPointsTitle"),
+    desc = "tpPointsTitle",
     onRun = function(client)
         local tbl = {}
         for _, v in pairs(MODULE.tpPoints) do
@@ -41,14 +48,23 @@ lia.command.add("gmtpmenu", {
 
 lia.command.add("gmtpmoveto", {
     adminOnly = true,
-    privilege = "Manage Gamemaster Teleport Points",
-    desc = L("moveToPoint"),
+    desc = "moveToPoint",
     AdminStick = {
-        Name = L("moveToPoint"),
-        Category = L("moderationTools"),
-        SubCategory = L("teleport")
+        Name = "moveToPoint",
+        Category = "moderationTools",
+        SubCategory = "teleport"
     },
-    syntax = "[player Target] [string Name]",
+    arguments = {
+        {
+            name = "target",
+            type = "player",
+            optional = true
+        },
+        {
+            name = "name",
+            type = "string"
+        }
+    },
     onRun = function(client, arguments)
         local target, name
         if lia.util.findPlayer(client, arguments[1]) then

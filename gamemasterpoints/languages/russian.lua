@@ -25,4 +25,3 @@ LANGUAGE = {
     tpPointsTitle = "Manage teleport points.",
     teleport = "Teleport",
 }
-

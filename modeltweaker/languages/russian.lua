@@ -8,4 +8,3 @@ LANGUAGE = {
     wardrobeSelectTitle = "Model Wardrobe",
     wardrobeNoModels = "There are no models available for your faction & class.",
 }
-

@@ -4,4 +4,3 @@ LANGUAGE = {
     freelookOffMessage = "Freelook disabled.",
     freelookOnMessage = "Freelook enabled."
 }
-

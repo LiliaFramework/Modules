@@ -1,13 +1,21 @@
 ﻿local MODULE = MODULE
 lia.command.add("partytier", {
     adminOnly = true,
-    privilege = "Management - Assign Party Tiers",
-    syntax = "[player Target Player] [number Tier]",
-    desc = L("partytierCommandDesc"),
+    arguments = {
+        {
+            name = "target",
+            type = "player"
+        },
+        {
+            name = "tier",
+            type = "number"
+        }
+    },
+    desc = "partytierCommandDesc",
     AdminStick = {
-        Name = L("partytierCommandDesc"),
-        Category = L("moderationTools"),
-        SubCategory = L("partyTiers")
+        Name = "partytierCommandDesc",
+        Category = "moderationTools",
+        SubCategory = "partyTiers"
     },
     onRun = function(client, arguments)
         local char = client:getChar()

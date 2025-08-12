@@ -9,4 +9,3 @@ LANGUAGE = {
     viewExtDescCommand = "View your detailed description.",
     edit = "Edit",
 }
-

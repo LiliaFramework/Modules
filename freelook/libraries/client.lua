@@ -14,6 +14,7 @@ end
 
 function MODULE:CalcView(client, _, angles)
     if not client:getChar() or not lia.option.get("freelookEnabled") then return end
+    if lia.gui.character and IsValid(lia.gui.character) then return end
     local smoothness = math.Clamp(lia.option.get("freelookSmoothness"), 0.1, 2)
     CoolAng = LerpAngle(0.15 * smoothness, CoolAng, Angle(LookY, -LookX, 0))
     if not HoldingBind(client) and math.abs(CoolAng.p) < 0.05 or IsInSights(client) and math.abs(CoolAng.p) < 0.05 or not system.HasFocus() or client:ShouldDrawLocalPlayer() then

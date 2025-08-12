@@ -1,12 +1,17 @@
 ﻿lia.command.add("classbroadcast", {
     adminOnly = false,
     alias = "classbc",
-    syntax = "[string Message]",
-    desc = L("classBroadcastTitle"),
+    arguments = {
+        {
+            name = "message",
+            type = "string"
+        }
+    },
+    desc = "classBroadcastTitle",
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)
         if not message then return L("invalidArg") end
-        if not client:getChar():hasFlags("D") and not client:hasPrivilege("Can Use Class Broadcast") then
+        if not client:getChar():hasFlags("D") and not client:hasPrivilege("canUseClassBroadcast") then
             client:notifyLocalized("classBroadcastNoPermission")
             return false
         end
@@ -56,12 +61,17 @@
 lia.command.add("factionbroadcast", {
     adminOnly = false,
     alias = "factionbc",
-    syntax = "[string Message]",
-    desc = L("factionBroadcastTitle"),
+    arguments = {
+        {
+            name = "message",
+            type = "string"
+        }
+    },
+    desc = "factionBroadcastTitle",
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)
         if not message then return L("invalidArg") end
-        if not client:getChar():hasFlags("B") and not client:hasPrivilege("Can Use Faction Broadcast") then
+        if not client:getChar():hasFlags("B") and not client:hasPrivilege("canUseFactionBroadcast") then
             client:notifyLocalized("factionBroadcastNoPermission")
             return false
         end

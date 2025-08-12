@@ -5,4 +5,3 @@ LANGUAGE = {
     permRemoveSuccess = "Entity permanently removed.",
     permRemoveLog = "%s permanently removed %s"
 }
-

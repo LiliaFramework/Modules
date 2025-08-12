@@ -1,7 +1,12 @@
 ﻿lia.command.add("rumour", {
     adminOnly = false,
-    syntax = "[string Message]",
-    desc = L("rumourCommandDesc"),
+    arguments = {
+        {
+            name = "message",
+            type = "string"
+        }
+    },
+    desc = "rumourCommandDesc",
     onRun = function(client, arguments)
         hook.Run("PreRumourCommand", client, arguments)
         local faction = lia.faction.indices[client:Team()]

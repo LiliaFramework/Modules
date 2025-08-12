@@ -25,12 +25,12 @@ if SERVER then
     end
 
     function characterMeta:CanWarrantPlayers()
-        return self:hasFlags("P") or self:hasPrivilege("Can Warrant People")
+        return self:hasFlags("P") or self:hasPrivilege("canWarrantPeople")
     end
 
     function characterMeta:CanSeeWarrantsIssued()
         local faction = lia.faction.indices[self:Team()]
-        return self:hasPrivilege("Can See Warrant Notifications") or faction.CanSeeWarrantsNotifications
+        return self:hasPrivilege("canSeeWarrantNotifications") or faction.CanSeeWarrantsNotifications
     end
 
     function characterMeta:IsWanted()
@@ -39,6 +39,6 @@ if SERVER then
 
     function characterMeta:CanSeeWarrants()
         local faction = lia.faction.indices[self:Team()]
-        return self:hasPrivilege("Can See Warrants") or faction.CanSeeWarrants
+        return self:hasPrivilege("canSeeWarrants") or faction.CanSeeWarrants
     end
 end

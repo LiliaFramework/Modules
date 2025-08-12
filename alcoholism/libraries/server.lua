@@ -66,9 +66,5 @@ function MODULE:PostPlayerLoadout(client)
     client:ResetBAC()
 end
 
-lia.log.addType("bacIncrease", function(client, amt, newBac)
-    return L("bacIncreaseLog", client:Name(), amt, newBac)
-end, "Gameplay")
-lia.log.addType("bacReset", function(client)
-    return L("bacResetLog", client:Name())
-end, "Gameplay")
+lia.log.addType("bacIncrease", function(client, amt, newBac) return L("bacIncreaseLog", client:Name(), amt, newBac) end, "Gameplay")
+lia.log.addType("bacReset", function(client) return L("bacResetLog", client:Name()) end, "Gameplay")

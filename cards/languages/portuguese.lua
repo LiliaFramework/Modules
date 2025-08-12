@@ -23,4 +23,3 @@ LANGUAGE = {
     suitHearts = "of Hearts",
     suitSpades = "of Spades",
 }
-

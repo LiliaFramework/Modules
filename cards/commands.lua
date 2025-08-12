@@ -1,5 +1,5 @@
 ﻿lia.command.add("cards", {
-    desc = L("cardsCommandDesc"),
+    desc = "cardsCommandDesc",
     onRun = function(client)
         hook.Run("CardsCommandUsed", client)
         local inv = client:getChar():getInv()

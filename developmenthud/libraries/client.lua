@@ -5,8 +5,8 @@
     local devFont = lia.config.get("DevHudFont")
     local x = ScrW() / 5.25
     local baseY = ScrH() / 1.12
-    if client:hasPrivilege("Development HUD") then draw.SimpleText("| " .. client:SteamID64() .. " | " .. client:SteamID() .. " | " .. os.date("%m/%d/%Y | %X", os.time()) .. " | ", devFont, x, baseY, Color(210, 210, 210, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER) end
-    if client:hasPrivilege("Staff HUD") then
+    if client:hasPrivilege("developmentHUD") then draw.SimpleText("| " .. client:SteamID64() .. " | " .. client:SteamID() .. " | " .. os.date("%m/%d/%Y | %X", os.time()) .. " | ", devFont, x, baseY, Color(210, 210, 210, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER) end
+    if client:hasPrivilege("staffHUD") then
         local trace = client:GetEyeTraceNoCursor()
         local hitPos = trace.HitPos
         local ent = trace.Entity

@@ -11,4 +11,3 @@ LANGUAGE = {
     partytierCommandDesc = "Set a player's loyalty tier.",
     partyTiers = "Party Tiers"
 }
-

@@ -9,4 +9,3 @@ LANGUAGE = {
     doorkickCommandDesc = "Attempt to kick open a door.",
     doorkickLog = "%s kicked open %s",
 }
-

@@ -9,4 +9,3 @@ LANGUAGE = {
     no = "No",
     corpseIdentifiedLog = "%s identified corpse of %s",
 }
-

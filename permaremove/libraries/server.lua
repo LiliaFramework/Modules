@@ -1,6 +1,6 @@
 ﻿function MODULE:LoadData()
     if not SERVER then return end
-    local data = self:getData({})
+    local data = lia.data.get("permaremove", {})
     local mapID = game.GetMap()
     if not data then return end
     for _, info in ipairs(data) do

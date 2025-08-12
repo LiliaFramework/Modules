@@ -5,4 +5,3 @@ LANGUAGE = {
     mapCleanupFinalWarning = "Map cleanup complete.",
     mapCleanupWarning = "Map will be cleaned up in 60 seconds!",
 }
-

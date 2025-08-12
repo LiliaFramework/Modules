@@ -27,4 +27,3 @@ LANGUAGE = {
     tieLog = "%s tied %s",
     untieLog = "%s untied %s",
 }
-

@@ -15,4 +15,3 @@ LANGUAGE = {
     compassMaxPrefix = "Max :",
     compassMinPrefix = "Min :"
 }
-

@@ -1,13 +1,18 @@
 ﻿local MODULE = MODULE
 lia.command.add("cutscene", {
     adminOnly = true,
-    privilege = "Use Cutscenes",
-    syntax = "[player Target?]",
-    desc = L("cutsceneCommandDesc"),
+    arguments = {
+        {
+            name = "target",
+            type = "player",
+            optional = true
+        }
+    },
+    desc = "cutsceneCommandDesc",
     AdminStick = {
-        Name = L("cutsceneCommandDesc"),
-        Category = L("moderationTools"),
-        SubCategory = L("cutscenes")
+        Name = "cutsceneCommandDesc",
+        Category = "moderationTools",
+        SubCategory = "cutscenes"
     },
     onRun = function(ply, args)
         local target
@@ -37,8 +42,7 @@ lia.command.add("cutscene", {
 
 lia.command.add("globalcutscene", {
     adminOnly = true,
-    privilege = "Use Cutscenes",
-    desc = L("globalCutsceneCommandDesc"),
+    desc = "globalCutsceneCommandDesc",
     onRun = function()
         local options = {}
         for id in pairs(MODULE.cutscenes) do

@@ -19,4 +19,3 @@ LANGUAGE = {
     classbroadcastLog = "%s sent class broadcast: %s",
     factionbroadcastLog = "%s sent faction broadcast: %s",
 }
-

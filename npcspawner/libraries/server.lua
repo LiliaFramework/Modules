@@ -100,6 +100,4 @@ function MODULE:InitializedModules()
     if not timer.Exists("NPCSpawnTimer") then timer.Create("NPCSpawnTimer", lia.config.get("SpawnCooldown"), 0, spawnCycle) end
 end
 
-lia.log.addType("npcspawn", function(client, spawner)
-    return L("npcspawnLog", client:Name(), tostring(spawner))
-end, "Player")
+lia.log.addType("npcspawn", function(client, spawner) return L("npcspawnLog", client:Name(), tostring(spawner)) end, "Player")

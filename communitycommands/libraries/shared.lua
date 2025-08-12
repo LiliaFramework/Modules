@@ -3,7 +3,7 @@
         local url = data.URL
         lia.command.add(commandName, {
             adminOnly = false,
-            desc = L("urlCommandDesc", commandName),
+            desc = "urlCommandDesc",
             onRun = function(client)
                 if SERVER then
                     if url and url ~= "" then

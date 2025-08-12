@@ -1,6 +1,6 @@
 ﻿lia.command.add("viewextdescription", {
     adminOnly = false,
-    desc = L("viewExtDescCommand"),
+    desc = "viewExtDescCommand",
     onRun = function(client)
         net.Start("OpenDetailedDescriptions")
         net.WriteEntity(client)
@@ -13,8 +13,7 @@
 
 lia.command.add("charsetextdescription", {
     adminOnly = true,
-    privilege = "Change Description",
-    desc = L("setExtDescCommand"),
+    desc = "setExtDescCommand",
     onRun = function(client)
         net.Start("SetDetailedDescriptions")
         net.WriteString(client:steamName())

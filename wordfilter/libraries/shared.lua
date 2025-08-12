@@ -1,6 +1,7 @@
 ﻿function MODULE:LoadData()
     if not SERVER then return end
-    if istable(self:getData({})) then
+    local stored = lia.data.get("wordfilter_words", {})
+    if istable(stored) then
         for _, word in ipairs(stored) do
             if not table.HasValue(self.WordBlackList, word) then table.insert(self.WordBlackList, word) end
         end
@@ -9,7 +10,7 @@ end
 
 function MODULE:SaveData()
     if not SERVER then return end
-    self:setData(self.WordBlackList)
+    lia.data.set("wordfilter_words", self.WordBlackList)
 end
 
 function MODULE:AddBlacklistedWord(word)

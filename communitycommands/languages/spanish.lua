@@ -5,4 +5,3 @@ LANGUAGE = {
     urlCommandDesc = "Opens the %s link.",
     urlNotConfig = "This URL has not been configured."
 }
-

@@ -8,4 +8,3 @@ LANGUAGE = {
     sendCaptionError = "You must specify caption text.",
     captions = "Captions",
 }
-

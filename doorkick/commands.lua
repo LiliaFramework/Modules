@@ -1,7 +1,7 @@
 ﻿local MODULE = MODULE
 lia.command.add("doorkick", {
     adminOnly = false,
-    desc = L("doorkickCommandDesc"),
+    desc = "doorkickCommandDesc",
     onRun = function(client)
         local ent = client:GetEyeTraceNoCursor().Entity
         if IsValid(ent) and ent:isDoor() and ent:getNetVar("disabled", false) then

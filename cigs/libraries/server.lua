@@ -1,6 +1,2 @@
-lia.log.addType("smokeStart", function(client)
-    return L("smokeStartLog", client:Name())
-end, "Gameplay")
-lia.log.addType("smokeStop", function(client)
-    return L("smokeStopLog", client:Name())
-end, "Gameplay")
+lia.log.addType("smokeStart", function(client) return L("smokeStartLog", client:Name()) end, "Gameplay")
+lia.log.addType("smokeStop", function(client) return L("smokeStopLog", client:Name()) end, "Gameplay")

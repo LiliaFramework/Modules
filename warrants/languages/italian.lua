@@ -19,4 +19,3 @@ LANGUAGE = {
     warrantIssueLog = "%s issued a warrant on %s",
     warrantRemoveLog = "%s removed a warrant from %s",
 }
-

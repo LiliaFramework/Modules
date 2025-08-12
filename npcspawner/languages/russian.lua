@@ -11,4 +11,3 @@ LANGUAGE = {
     spawnerNotFound = "Spawner not found.",
     npcspawnLog = "%s forced NPC spawn at %s"
 }
-

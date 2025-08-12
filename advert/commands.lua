@@ -1,8 +1,13 @@
 ﻿lia.command.add("advertisement", {
     alias = "advert",
     adminOnly = false,
-    syntax = "[string Message]",
-    desc = L("advertCommandDesc"),
+    arguments = {
+        {
+            name = "message",
+            type = "string"
+        }
+    },
+    desc = "advertCommandDesc",
     onRun = function(client, arguments)
         if not arguments[1] then return L("invalidArg") end
         local message = table.concat(arguments, " ", 1)
@@ -26,7 +31,6 @@
             end
 
             lia.log.add(client, "advert", message)
-
             hook.Run("AdvertSent", client, message)
         else
             client:notifyLocalized("AdvertInsufficientFunds")

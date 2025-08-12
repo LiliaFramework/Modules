@@ -3,4 +3,3 @@ LANGUAGE = {
     hudExtrasMaxPrefix = "Max :",
     hudExtrasMinPrefix = "Min :"
 }
-

@@ -1,12 +1,16 @@
 ﻿lia.command.add("subtractcharslots", {
-    privilege = "Subtract CharSlots",
     superAdminOnly = true,
-    syntax = "[player Target Player]",
-    desc = L("subtractCharSlotsDesc"),
+    arguments = {
+        {
+            name = "target",
+            type = "player"
+        }
+    },
+    desc = "subtractCharSlotsDesc",
     AdminStick = {
-        Name = L("subtractCharSlotsDesc"),
-        Category = L("characterManagement"),
-        SubCategory = L("charSlots")
+        Name = "subtractCharSlotsDesc",
+        Category = "characterManagement",
+        SubCategory = "charSlots"
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
@@ -20,14 +24,18 @@
 })
 
 lia.command.add("addcharslots", {
-    privilege = "Add CharSlots",
     superAdminOnly = true,
-    syntax = "[player Target Player]",
-    desc = L("addCharSlotsDesc"),
+    arguments = {
+        {
+            name = "target",
+            type = "player"
+        }
+    },
+    desc = "addCharSlotsDesc",
     AdminStick = {
-        Name = L("addCharSlotsDesc"),
-        Category = L("characterManagement"),
-        SubCategory = L("charSlots")
+        Name = "addCharSlotsDesc",
+        Category = "characterManagement",
+        SubCategory = "charSlots"
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
@@ -41,14 +49,22 @@ lia.command.add("addcharslots", {
 })
 
 lia.command.add("setcharslots", {
-    privilege = "Set CharSlots",
     superAdminOnly = true,
-    syntax = "[player Target Player] [number Slot Count]",
-    desc = L("setCharSlotsDesc"),
+    arguments = {
+        {
+            name = "target",
+            type = "player"
+        },
+        {
+            name = "count",
+            type = "number"
+        }
+    },
+    desc = "setCharSlotsDesc",
     AdminStick = {
-        Name = L("setCharSlotsDesc"),
-        Category = L("characterManagement"),
-        SubCategory = L("charSlots")
+        Name = "setCharSlotsDesc",
+        Category = "characterManagement",
+        SubCategory = "charSlots"
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])

@@ -117,6 +117,7 @@ lia.log.addType("tie", function(client, target)
     local name = IsValid(target) and target:Name() or "unknown"
     return L("tieLog", client:Name(), name)
 end, "Player")
+
 lia.log.addType("untie", function(client, target)
     local name = IsValid(target) and target:Name() or "unknown"
     return L("untieLog", client:Name(), name)

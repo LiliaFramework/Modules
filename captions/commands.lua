@@ -1,11 +1,25 @@
 ﻿lia.command.add("sendCaption", {
     adminOnly = true,
-    syntax = "[player Target Player] [string Caption] [number Duration]",
-    desc = L("sendCaptionDesc"),
+    arguments = {
+        {
+            name = "target",
+            type = "player"
+        },
+        {
+            name = "caption",
+            type = "string"
+        },
+        {
+            name = "duration",
+            type = "number",
+            optional = true
+        }
+    },
+    desc = "sendCaptionDesc",
     AdminStick = {
-        Name = L("sendCaptionDesc"),
-        Category = L("moderationTools"),
-        SubCategory = L("captions")
+        Name = "sendCaptionDesc",
+        Category = "moderationTools",
+        SubCategory = "captions"
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
@@ -27,8 +41,18 @@
 
 lia.command.add("broadcastCaption", {
     adminOnly = true,
-    syntax = "[string Caption] [number Duration]",
-    desc = L("broadcastCaptionDesc"),
+    arguments = {
+        {
+            name = "caption",
+            type = "string"
+        },
+        {
+            name = "duration",
+            type = "number",
+            optional = true
+        }
+    },
+    desc = "broadcastCaptionDesc",
     onRun = function(client, arguments)
         local text = arguments[1]
         local duration = tonumber(arguments[2]) or 5

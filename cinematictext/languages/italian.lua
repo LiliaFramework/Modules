@@ -13,4 +13,3 @@ LANGUAGE = {
     splashTextSent = "Splash text sent.",
     cancel = "Cancel",
 }
-
