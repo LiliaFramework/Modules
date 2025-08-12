@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Loyalism"
+MODULE.uniqueID = "public_loyalism"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.24

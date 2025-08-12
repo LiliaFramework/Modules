@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Realistic View"
+MODULE.uniqueID = "public_realisticview"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.21

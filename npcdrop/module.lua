@@ -1,4 +1,5 @@
 ﻿MODULE.name = "NPC Drop"
+MODULE.uniqueID = "public_npcdrop"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18

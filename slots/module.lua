@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Slot Machine"
+MODULE.uniqueID = "public_slots"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.19

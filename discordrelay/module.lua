@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Discord Relay"
+MODULE.uniqueID = "public_discordrelay"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.17

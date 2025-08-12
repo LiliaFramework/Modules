@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Advertisements"
-MODULE.uniqueID = "advert"
+MODULE.uniqueID = "public_advert"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.22

@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Tying"
+MODULE.uniqueID = "public_tying"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.29

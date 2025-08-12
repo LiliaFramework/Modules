@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Cards"
+MODULE.uniqueID = "public_cards"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18

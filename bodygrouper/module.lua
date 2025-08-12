@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Body Group Editor"
-MODULE.uniqueID = "bodygrouper"
+MODULE.uniqueID = "public_bodygrouper"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.32

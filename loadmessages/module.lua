@@ -1,4 +1,5 @@
 ﻿MODULE.name = "Load Messages"
+MODULE.uniqueID = "public_loadmessages"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.18
