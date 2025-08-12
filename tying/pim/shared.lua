@@ -1,4 +1,4 @@
-﻿AddInteraction(L("putInVehicle"), {
+﻿AddInteraction("putInVehicle", {
     runServer = true,
     shouldShow = function(client, target)
         if not simfphys then return false end
@@ -38,7 +38,7 @@
     end
 })
 
-AddInteraction(L("removeCuffedPassengers"), {
+AddInteraction("removeCuffedPassengers", {
     runServer = true,
     shouldShow = function(client)
         for _, v in pairs(ents.FindInSphere(client:GetPos(), 150)) do
@@ -54,7 +54,7 @@ AddInteraction(L("removeCuffedPassengers"), {
     end
 })
 
-AddInteraction(L("tie"), {
+AddInteraction("tie", {
     runServer = true,
     shouldShow = function(client, target) return client:getChar():getInv():hasItem("tie") and IsValid(target) and not target:IsHandcuffed() end,
     onRun = function(client, target)
@@ -79,7 +79,7 @@ AddInteraction(L("tie"), {
     end
 })
 
-AddInteraction(L("unTie"), {
+AddInteraction("unTie", {
     runServer = true,
     shouldShow = function(_, target) return target:IsHandcuffed() end,
     onRun = function(client, target)

@@ -1,5 +1,5 @@
 ﻿local MODULE = MODULE
-AddInteraction(L("requestSearch"), {
+AddInteraction("requestSearch", {
     runServer = true,
     shouldShow = function(client, target) return not target.SearchRequested and not client.SearchRequested and not target:IsBeingSearched() end,
     onRun = function(client, target)
@@ -20,7 +20,7 @@ AddInteraction(L("requestSearch"), {
     end
 })
 
-AddInteraction(L("search"), {
+AddInteraction("search", {
     runServer = true,
     shouldShow = function(_, target) return target:IsHandcuffed() and not target:IsBeingSearched() end,
     onRun = function(client, target)

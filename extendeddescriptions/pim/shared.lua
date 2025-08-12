@@ -1,4 +1,4 @@
-AddInteraction(L("openDetDescLabel"), {
+AddInteraction("openDetDescLabel", {
     runServer = true,
     shouldShow = function(_, target) return IsValid(target) end,
     onRun = function(client, target)
