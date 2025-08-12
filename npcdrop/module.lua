@@ -1,7 +1,8 @@
 ﻿MODULE.name = "NPC Drop"
+MODULE.uniqueID = "public_npcdrop"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.17
+MODULE.version = 1.19
 MODULE.desc = "Adds NPCs that drop items on death, DropTable to define probabilities, encouragement for looting, editable drop tables per NPC type, and weighted chances for rare items."
 MODULE.DropTable = {
     ["npc_zombie"] = {
