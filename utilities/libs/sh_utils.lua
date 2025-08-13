@@ -142,7 +142,7 @@ function lia.utilities.TimeUntil(str)
     local hdiff = math.floor(diff / 3600)
     diff = diff % 3600
     local mindiff = math.floor(diff / 60)
-    return string.format("%d years, %d months, %d days, %d hours, %d minutes, %d seconds", ydiff, mdiff, ddiff, hdiff, mindiff, diff % 60)
+    return L("timeDifferenceFormat", ydiff, mdiff, ddiff, hdiff, mindiff, diff % 60)
 end
 
 function lia.utilities.CurrentLocalTime()
