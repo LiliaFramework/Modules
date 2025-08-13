@@ -9,5 +9,5 @@ LANGUAGE = {
     rumorCooldownDesc = "Sets the cooldown time for rumors (in seconds).",
     gameplay = "Gameplay",
     rumourRevealChance = "Rumour Reveal Chance",
-    rumourRevealChanceDesc = "The chance for a rumour to reveal the criminal's identity (default 2%).",
+    rumourRevealChanceDesc = "The chance for a rumour to reveal the criminal's identity (default 2%%).",
 }
