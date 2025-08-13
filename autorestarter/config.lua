@@ -1,20 +1,20 @@
-﻿lia.config.add("RestartInterval", "Server restart interval (seconds)", 3600, function(_, newInterval)
+﻿lia.config.add("RestartInterval", "serverRestartIntervalSeconds", 3600, function(_, newInterval)
     if CLIENT then return end
     MODULE.nextRestart = os.time() + newInterval
     net.Start("RestartDisplay")
     net.WriteInt(MODULE.nextRestart, 32)
     net.Broadcast()
 end, {
-    desc = "How often (in seconds) the server should auto-restart",
-    category = "General",
+    desc = "serverRestartIntervalSecondsDesc",
+    category = "general",
     type = "Int",
     min = 60,
     max = 604800
 })
 
-lia.config.add("RestartCountdownFont", "Restart Countdown Font", "PoppinsMedium", nil, {
-    desc = "Font used for the server restart countdown",
-    category = "Fonts",
+lia.config.add("RestartCountdownFont", "restartCountdownFont", "PoppinsMedium", nil, {
+    desc = "restartCountdownFontDesc",
+    category = "fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })

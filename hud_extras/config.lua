@@ -1,33 +1,33 @@
-﻿lia.config.add("WatermarkEnabled", "Enable Watermark", false, nil, {
-    desc = "Enables the watermark display",
-    category = "Visuals",
+﻿lia.config.add("WatermarkEnabled", "enableWatermark", false, nil, {
+    desc = "enableWatermarkDesc",
+    category = "visuals",
     type = "Boolean"
 })
 
-lia.config.add("WatermarkLogo", "Watermark Logo Path", "", nil, {
-    desc = "The path to the watermark image (PNG)",
-    category = "Visuals",
+lia.config.add("WatermarkLogo", "watermarkLogoPath", "", nil, {
+    desc = "watermarkLogoPathDesc",
+    category = "visuals",
     type = "Generic"
 })
 
-lia.config.add("GamemodeVersion", "Gamemode Version", "", nil, {
-    desc = "The version of the gamemode",
-    category = "Visuals",
+lia.config.add("GamemodeVersion", "gamemodeVersion", "", nil, {
+    desc = "gamemodeVersionDesc",
+    category = "visuals",
     type = "Generic"
 })
 
-lia.config.add("Vignette", "Enable Vignette Effect", true, nil, {
-    desc = "Enables the vignette effect",
-    category = "Visuals",
+lia.config.add("Vignette", "enableVignetteEffect", true, nil, {
+    desc = "enableVignetteEffectDesc",
+    category = "visuals",
     type = "Boolean"
 })
 
-lia.config.add("FPSHudFont", "FPS HUD Font", "PoppinsMedium", function()
+lia.config.add("FPSHudFont", "fpsHudFont", "PoppinsMedium", function()
     if not CLIENT then return end
     hook.Run("RefreshFonts")
 end, {
-    desc = "Font used for the FPS display",
-    category = "Fonts",
+    desc = "fpsHudFontDesc",
+    category = "fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })

@@ -14,4 +14,7 @@ LANGUAGE = {
     skin = "Skin",
     viewBodygroupsDesc = "Visualizza o modifica i bodygroup di un giocatore.",
     bodygrouper = "Editor Bodygroup",
+    bodyGrouperModel = "Body Grouper Model",
+    bodyGrouperModelDesc = "Sets the model for the body grouper.",
+    gameplay = "Gameplay",
 }

@@ -1,9 +1,9 @@
-﻿lia.config.add("DevHudFont", "Development HUD Font", "PoppinsMedium", function()
+﻿lia.config.add("DevHudFont", "developmentHudFont", "PoppinsMedium", function()
     if not CLIENT then return end
     hook.Run("RefreshFonts")
 end, {
-    desc = "Font used for all development/staff HUD text",
-    category = "Fonts",
+    desc = "developmentHudFontDesc",
+    category = "fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })

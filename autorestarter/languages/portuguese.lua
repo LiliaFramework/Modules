@@ -8,5 +8,11 @@ LANGUAGE = {
     restartWarning5 = "O servidor irá reiniciar em 5 minutos.",
     restartWarning1 = "O servidor irá reiniciar em 1 minuto.",
     restartWarning30 = "O servidor irá reiniciar em 30 segundos.",
-    restartWarning10s = "O servidor irá reiniciar em 10 segundos."
+    restartWarning10s = "O servidor irá reiniciar em 10 segundos.",
+    serverRestartIntervalSeconds = "Server restart interval (seconds)",
+    serverRestartIntervalSecondsDesc = "How often (in seconds) the server should auto-restart",
+    general = "General",
+    restartCountdownFont = "Restart Countdown Font",
+    restartCountdownFontDesc = "Font used for the server restart countdown",
+    fonts = "Fonts",
 }

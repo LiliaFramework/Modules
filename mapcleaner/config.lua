@@ -1,21 +1,21 @@
 ﻿MODULE.MapCleanerEntitiesToRemove = {"lia_item", "prop_physics"}
-lia.config.add("MapCleanerEnabled", "Enable Map Cleaner", true, nil, {
-    desc = "Enables or disables the automatic map cleaner.",
-    category = "Cleanup",
+lia.config.add("MapCleanerEnabled", "enableMapCleaner", true, nil, {
+    desc = "enableMapCleanerDesc",
+    category = "cleanup",
     type = "Boolean"
 })
 
-lia.config.add("ItemCleanupTime", "Item Cleanup Time", 7200, nil, {
-    desc = "Time interval (in seconds) for item cleanup.",
-    category = "Cleanup",
+lia.config.add("ItemCleanupTime", "itemCleanupTime", 7200, nil, {
+    desc = "itemCleanupTimeDesc",
+    category = "cleanup",
     type = "Int",
     min = 60,
     max = 86400
 })
 
-lia.config.add("MapCleanupTime", "Map Cleanup Time", 21600, nil, {
-    desc = "Time interval (in seconds) for map cleanup.",
-    category = "Cleanup",
+lia.config.add("MapCleanupTime", "mapCleanupTime", 21600, nil, {
+    desc = "mapCleanupTimeDesc",
+    category = "cleanup",
     type = "Int",
     min = 3600,
     max = 86400

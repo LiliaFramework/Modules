@@ -1,22 +1,22 @@
-﻿lia.config.add("RadioChatColor", "Radio Chat Color", {
+﻿lia.config.add("RadioChatColor", "radioChatColor", {
     r = 100,
     g = 255,
     b = 50
 }, nil, {
-    desc = "Sets the color used for radio chat messages.",
-    category = "Visuals",
+    desc = "radioChatColorDesc",
+    category = "visuals",
     noNetworking = false,
     schemaOnly = false,
     isGlobal = true,
     type = "Color"
 })
 
-lia.config.add("RadioFont", "Radio Font", "PoppinsMedium", function()
+lia.config.add("RadioFont", "radioFont", "PoppinsMedium", function()
     if not CLIENT then return end
     hook.Run("RefreshFonts")
 end, {
-    desc = "Specifies the font used for radio-related text and displays.",
-    category = "Fonts",
+    desc = "radioFontDesc",
+    category = "fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })

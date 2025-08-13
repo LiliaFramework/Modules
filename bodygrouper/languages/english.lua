@@ -12,5 +12,8 @@ LANGUAGE = {
     noBodygroupsnSkins = "This model has no bodygroups or skins.",
     rotateInstruction = "Hold R to rotate the model.",
     viewBodygroupsDesc = "View or edit a player's bodygroups.",
-    bodygrouper = "Bodygroup Editor"
+    bodygrouper = "Bodygroup Editor",
+    bodyGrouperModel = "Body Grouper Model",
+    bodyGrouperModelDesc = "Sets the model for the body grouper.",
+    gameplay = "Gameplay",
 }

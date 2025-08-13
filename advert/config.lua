@@ -1,14 +1,14 @@
-﻿lia.config.add("AdvertPrice", "Advert Price", 10, nil, {
-    desc = "The cost of sending an advertisement.",
-    category = "Advertisements",
+﻿lia.config.add("AdvertPrice", "advertPrice", 10, nil, {
+    desc = "advertPriceDesc",
+    category = "advertisements",
     type = "Int",
     min = 1,
     max = 1000
 })
 
-lia.config.add("AdvertCooldown", "Advert Cooldown", 20, nil, {
-    desc = "The cooldown time (in seconds) between advertisements.",
-    category = "Advertisements",
+lia.config.add("AdvertCooldown", "advertCooldown", 20, nil, {
+    desc = "advertCooldownDesc",
+    category = "advertisements",
     type = "Int",
     min = 1,
     max = 3600
