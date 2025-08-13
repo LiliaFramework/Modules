@@ -15,6 +15,7 @@ LANGUAGE = {
     cinematicTextFont = "Cinematic Text Font",
     cinematicTextFontDesc = "The font used for cinematic text.",
     cinematic = "Cinematic",
+    cinematics = "Cinematics",
     cinematicTextSize = "Cinematic Text Size",
     cinematicTextSizeDesc = "The size of the standard cinematic text.",
     cinematicBigTextSize = "Cinematic Big Text Size",

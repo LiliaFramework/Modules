@@ -10,6 +10,6 @@ MODULE.Privileges = {
         Name = "forceNPCSpawn",
         ID = "forceNPCSpawn",
         MinAccess = "superadmin",
-        Category = "Spawn Permissions",
+        Category = "spawnPermissions",
     }
 }

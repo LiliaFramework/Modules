@@ -2,6 +2,7 @@ NAME = "English"
 LANGUAGE = {
     canUseFactionBroadcast = "Can Use Faction Broadcast",
     canUseClassBroadcast = "Can Use Class Broadcast",
+    broadcasts = "Broadcasts",
     broadcastsModuleName = "Broadcasts",
     broadcastsModuleDesc = "Allows staff to broadcast messages to chosen factions or classes. Every broadcast is logged and controlled through CAMI privileges.",
     classBroadcastLabel = "[CLASS BROADCAST]",

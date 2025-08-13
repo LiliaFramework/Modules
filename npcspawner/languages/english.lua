@@ -14,4 +14,5 @@ LANGUAGE = {
     spawnCooldown = "Spawn Cooldown",
     spawnCooldownDesc = "Sets the cooldown time (in seconds) between spawns.",
     spawning = "Spawning",
+    spawnPermissions = "Spawn Permissions",
 }

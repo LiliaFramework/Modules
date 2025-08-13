@@ -8,20 +8,20 @@ MODULE.Features = {"Adds libraries to manage donor perks", "Adds tracking for do
 MODULE.Privileges = {
     {
         Name = "subtractCharSlots",
-        ID = "Subtract CharSlots",
+        ID = "subtractCharSlots",
         MinAccess = "superadmin",
-        Category = "Character Slots",
+        Category = "charSlots",
     },
     {
         Name = "addCharSlots",
-        ID = "Add CharSlots",
+        ID = "addCharSlots",
         MinAccess = "superadmin",
-        Category = "Character Slots",
+        Category = "charSlots",
     },
     {
         Name = "setCharSlots",
-        ID = "Set CharSlots",
+        ID = "setCharSlots",
         MinAccess = "superadmin",
-        Category = "Character Slots",
+        Category = "charSlots",
     }
 }

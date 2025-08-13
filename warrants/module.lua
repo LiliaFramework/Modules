@@ -10,18 +10,18 @@ MODULE.Privileges = {
         Name = "canWarrantPeople",
         ID = "canWarrantPeople",
         MinAccess = "superadmin",
-        Category = "Warrants",
+        Category = "warrants",
     },
     {
         Name = "canSeeWarrants",
         ID = "canSeeWarrants",
         MinAccess = "superadmin",
-        Category = "Warrants",
+        Category = "warrants",
     },
     {
         Name = "canSeeWarrantNotifications",
         ID = "canSeeWarrantNotifications",
         MinAccess = "superadmin",
-        Category = "Warrants",
+        Category = "warrants",
     },
 }

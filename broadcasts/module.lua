@@ -11,13 +11,13 @@ MODULE.Privileges = {
         Name = "canUseFactionBroadcast",
         ID = "canUseFactionBroadcast",
         MinAccess = "superadmin",
-        Category = "Broadcasts",
+        Category = "broadcasts",
     },
     {
         Name = "canUseClassBroadcast",
         ID = "canUseClassBroadcast",
         MinAccess = "superadmin",
-        Category = "Broadcasts",
+        Category = "broadcasts",
     }
 }
 

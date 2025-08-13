@@ -10,6 +10,6 @@ MODULE.Privileges = {
         Name = "useCinematicMenu",
         ID = "useCinematicMenu",
         MinAccess = "admin",
-        Category = "Cinematics",
+        Category = "cinematics",
     },
 }
