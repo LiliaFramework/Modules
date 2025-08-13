@@ -10,12 +10,12 @@ MODULE.Privileges = {
         Name = "manageBodygroups",
         ID = "manageBodygroups",
         MinAccess = "admin",
-        Category = "Bodygroups",
+        Category = "bodygroups",
     },
     {
         Name = "changeBodygroups",
         ID = "changeBodygroups",
         MinAccess = "admin",
-        Category = "Bodygroups",
+        Category = "bodygroups",
     }
 }

@@ -9,13 +9,13 @@ MODULE.Privileges = {
         Name = "staffHUD",
         ID = "staffHUD",
         MinAccess = "superadmin",
-        Category = "Development HUD",
+        Category = "developmentHUD",
     },
     {
         Name = "developmentHUD",
         ID = "developmentHUD",
         MinAccess = "superadmin",
-        Category = "Development HUD",
+        Category = "developmentHUD",
     }
 }
 

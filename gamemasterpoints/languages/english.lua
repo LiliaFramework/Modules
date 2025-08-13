@@ -1,6 +1,7 @@
 NAME = "English"
 LANGUAGE = {
     manageGamemasterTeleportPoints = "Manage Gamemaster Teleport Points",
+    gamemasterPoints = "Gamemaster Points",
     addNewPoint = "Add teleport point",
     deletePoint = "Remove teleport point",
     editParticleEffect = "Edit particle effect",

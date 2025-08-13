@@ -10,6 +10,6 @@ MODULE.Privileges = {
         Name = "removeMapEntities",
         ID = "removeMapEntities",
         MinAccess = "admin",
-        Category = "Map Cleanup",
+        Category = "mapCleanup",
     }
 }

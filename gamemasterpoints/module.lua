@@ -10,6 +10,6 @@ MODULE.Privileges = {
         Name = "manageGamemasterTeleportPoints",
         ID = "manageGamemasterTeleportPoints",
         MinAccess = "admin",
-        Category = "Gamemaster Points",
+        Category = "gamemasterPoints",
     }
 }

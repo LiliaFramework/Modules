@@ -1,6 +1,7 @@
 NAME = "English"
 LANGUAGE = {
     changeDescription = "Change Description",
+    descriptions = "Descriptions",
     detailedDescTitle = "%s's Detailed Description",
     editDescTitle = "Edit Detailed Description",
     openDetDescFallback = "No description available.",

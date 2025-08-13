@@ -10,6 +10,6 @@ MODULE.Privileges = {
         Name = "changeDescription",
         ID = "changeDescription",
         MinAccess = "admin",
-        Category = "Descriptions",
+        Category = "descriptions",
     }
 }
