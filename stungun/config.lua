@@ -1,29 +1,29 @@
-lia.config.add("StunTime", "Stun Time", 4, nil, {
-    desc = "Duration of the stun effect in seconds",
-    category = "Weapon",
+lia.config.add("StunTime", "stunTime", 4, nil, {
+    desc = "stunTimeDesc",
+    category = "weapon",
     type = "Float",
     min = 0,
     max = 30,
     decimals = 2
 })
 
-lia.config.add("MaxDist", "Taser Max Distance", 400, nil, {
-    desc = "Maximum range of the taser in units",
-    category = "Weapon",
+lia.config.add("MaxDist", "taserMaxDistance", 400, nil, {
+    desc = "taserMaxDistanceDesc",
+    category = "weapon",
     type = "Int",
     min = 0,
     max = 2000
 })
 
-lia.config.add("DrawPostProcess", "Enable Stun Post‐Processing", true, nil, {
-    desc = "Toggle screen effects when stunned",
-    category = "Visuals",
+lia.config.add("DrawPostProcess", "enableStunPostProcessing", true, nil, {
+    desc = "enableStunPostProcessingDesc",
+    category = "visuals",
     type = "Boolean"
 })
 
-lia.config.add("Damage", "Over‐Stun Damage", 5, nil, {
-    desc = "Damage dealt on over‐stun",
-    category = "Weapon",
+lia.config.add("Damage", "overStunDamage", 5, nil, {
+    desc = "overStunDamageDesc",
+    category = "weapon",
     type = "Int",
     min = 0,
     max = 100

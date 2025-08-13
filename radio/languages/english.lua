@@ -15,5 +15,11 @@ LANGUAGE = {
     radioNotOwned = "This radio isn't yours.",
     radioTurnOff = "Turn Off",
     radioTurnOn = "Turn On",
-    sabotage = "Sabotage"
+    sabotage = "Sabotage",
+    radioChatColor = "Radio Chat Color",
+    radioChatColorDesc = "Sets the color used for radio chat messages.",
+    visuals = "Visuals",
+    radioFont = "Radio Font",
+    radioFontDesc = "Specifies the font used for radio-related text and displays.",
+    fonts = "Fonts",
 }

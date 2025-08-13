@@ -7,5 +7,10 @@ LANGUAGE = {
     AdvertFormat = "[ADVERT] %s:",
     AdvertInsufficientFunds = "You don't have enough money to advertise.",
     advertCommandCooldownTimed = "Please wait %s seconds before advertising again.",
-    advertLog = "%s advertised: %s"
+    advertLog = "%s advertised: %s",
+    advertPrice = "Advert Price",
+    advertPriceDesc = "The cost of sending an advertisement.",
+    advertisements = "Advertisements",
+    advertCooldown = "Advert Cooldown",
+    advertCooldownDesc = "The cooldown time (in seconds) between advertisements.",
 }

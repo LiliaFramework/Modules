@@ -9,5 +9,8 @@ LANGUAGE = {
     selectSpawnerPrompt = "Select a spawner:",
     selectSpawnerTitle = "Choose Spawner",
     spawnerNotFound = "Spawner not found.",
-    npcspawnLog = "%s forced NPC spawn at %s"
+    npcspawnLog = "%s forced NPC spawn at %s",
+    spawnCooldown = "Spawn Cooldown",
+    spawnCooldownDesc = "Sets the cooldown time (in seconds) between spawns.",
+    spawning = "Spawning",
 }

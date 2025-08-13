@@ -23,12 +23,12 @@
     }
 }
 
-lia.config.add("SpawnCooldown", "Spawn Cooldown", 240, function(newValue)
+lia.config.add("SpawnCooldown", "spawnCooldown", 240, function(newValue)
     if timer.Exists("NPCSpawnTimer") then timer.Remove("NPCSpawnTimer") end
     timer.Create("NPCSpawnTimer", newValue, 0, spawnCycle)
 end, {
-    desc = "Sets the cooldown time (in seconds) between spawns.",
-    category = "Spawning",
+    desc = "spawnCooldownDesc",
+    category = "spawning",
     type = "Int",
     min = 1,
     max = 3600

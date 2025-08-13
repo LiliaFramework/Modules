@@ -1,9 +1,9 @@
-﻿lia.config.add("DamageFont", "Damage Number Font", "PoppinsMedium", function()
+﻿lia.config.add("DamageFont", "damageNumberFont", "PoppinsMedium", function()
     if not CLIENT then return end
     hook.Run("RefreshFonts")
 end, {
-    desc = "Specifies the font family used for floating damage numbers.",
-    category = "Fonts",
+    desc = "damageNumberFontDesc",
+    category = "fonts",
     type = "Table",
     options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
 })

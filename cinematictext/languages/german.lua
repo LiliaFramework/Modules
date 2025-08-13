@@ -12,4 +12,13 @@ LANGUAGE = {
     splashTextLabel = "Splash-Text",
     splashTextSent = "Splash-Text gesendet.",
     cancel = "Abbrechen",
+    cinematicTextFont = "Cinematic Text Font",
+    cinematicTextFontDesc = "The font used for cinematic text.",
+    cinematic = "Cinematic",
+    cinematicTextSize = "Cinematic Text Size",
+    cinematicTextSizeDesc = "The size of the standard cinematic text.",
+    cinematicBigTextSize = "Cinematic Big Text Size",
+    cinematicBigTextSizeDesc = "The size of the big cinematic text.",
+    cinematicTextMusic = "Cinematic Text Music",
+    cinematicTextMusicDesc = "The music file played during cinematic text display.",
 }

@@ -1,28 +1,28 @@
-﻿lia.config.add("DeathSoundEnabled", "Enable Death Sound", true, nil, {
-    desc = "Enable or disable death sounds globally.",
-    category = "Audio",
+﻿lia.config.add("DeathSoundEnabled", "enableDeathSound", true, nil, {
+    desc = "enableDeathSoundDesc",
+    category = "audio",
     type = "Boolean"
 })
 
-lia.config.add("LimbDamage", "Limb Damage Multiplier", 0.5, nil, {
-    desc = "Sets the damage multiplier for limb hits.",
-    category = "Combat",
+lia.config.add("LimbDamage", "limbDamageMultiplier", 0.5, nil, {
+    desc = "limbDamageMultiplierDesc",
+    category = "combat",
     type = "Float",
     min = 0.1,
     max = 1
 })
 
-lia.config.add("DamageScale", "Global Damage Scale", 1, nil, {
-    desc = "Scales all damage dealt by this multiplier.",
-    category = "Combat",
+lia.config.add("DamageScale", "globalDamageScale", 1, nil, {
+    desc = "globalDamageScaleDesc",
+    category = "combat",
     type = "Float",
     min = 0.1,
     max = 5
 })
 
-lia.config.add("HeadShotDamage", "Headshot Damage Multiplier", 2, nil, {
-    desc = "Sets the damage multiplier for headshots.",
-    category = "Combat",
+lia.config.add("HeadShotDamage", "headshotDamageMultiplier", 2, nil, {
+    desc = "headshotDamageMultiplierDesc",
+    category = "combat",
     type = "Float",
     min = 1,
     max = 10

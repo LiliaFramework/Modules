@@ -151,113 +151,113 @@
     }
 }
 
-lia.config.add("AlcoholTickTime", "Alcohol Tick Time", 30, nil, {
-    desc = "Time interval (in seconds) for alcohol degradation.",
-    category = "Alcoholism",
+lia.config.add("AlcoholTickTime", "alcoholTickTime", 30, nil, {
+    desc = "alcoholTickTimeDesc",
+    category = "alcoholism",
     type = "Int",
     min = 1,
     max = 300
 })
 
-lia.config.add("AlcoholDegradeRate", "Alcohol Degrade Rate", 5, nil, {
-    desc = "Rate at which alcohol BAC decreases per tick.",
-    category = "Alcoholism",
+lia.config.add("AlcoholDegradeRate", "alcoholDegradeRate", 5, nil, {
+    desc = "alcoholDegradeRateDesc",
+    category = "alcoholism",
     type = "Int",
     min = 1,
     max = 100
 })
 
-lia.config.add("AlcoholAddAlpha", "Alcohol Alpha Effect", 0.03, nil, {
-    desc = "Alpha value added for visual effects when drunk.",
-    category = "Alcoholism",
+lia.config.add("AlcoholAddAlpha", "alcoholAlphaEffect", 0.03, nil, {
+    desc = "alcoholAlphaEffectDesc",
+    category = "alcoholism",
     type = "Float",
     min = 0.01,
     max = 1
 })
 
-lia.config.add("AlcoholEffectDelay", "Alcohol Effect Delay", 0.03, nil, {
-    desc = "Delay between applying drunk effects (in seconds).",
-    category = "Alcoholism",
+lia.config.add("AlcoholEffectDelay", "alcoholEffectDelay", 0.03, nil, {
+    desc = "alcoholEffectDelayDesc",
+    category = "alcoholism",
     type = "Float",
     min = 0.01,
     max = 1
 })
 
-lia.config.add("DrunkNotifyThreshold", "Drunk Notification Threshold", 50, nil, {
-    desc = "BAC level at which the player receives drunk notifications.",
-    category = "Alcoholism",
+lia.config.add("DrunkNotifyThreshold", "drunkNotificationThreshold", 50, nil, {
+    desc = "drunkNotificationThresholdDesc",
+    category = "alcoholism",
     type = "Int",
     min = 1,
     max = 100
 })
 
-lia.config.add("AlcoholMotionBlurAlpha", "Alcohol Motion Blur Alpha", 0.03, nil, {
-    desc = "Alpha value for motion blur when intoxicated.",
-    category = "Alcoholism",
+lia.config.add("AlcoholMotionBlurAlpha", "alcoholMotionBlurAlpha", 0.03, nil, {
+    desc = "alcoholMotionBlurAlphaDesc",
+    category = "alcoholism",
     type = "Float",
     min = 0.01,
     max = 1
 })
 
-lia.config.add("AlcoholMotionBlurDelay", "Alcohol Motion Blur Delay", 0.03, nil, {
-    desc = "Delay for motion blur effects when intoxicated.",
-    category = "Alcoholism",
+lia.config.add("AlcoholMotionBlurDelay", "alcoholMotionBlurDelay", 0.03, nil, {
+    desc = "alcoholMotionBlurDelayDesc",
+    category = "alcoholism",
     type = "Float",
     min = 0.01,
     max = 1
 })
 
-lia.config.add("AlcoholIntenseMultiplier", "Alcohol Intense Multiplier", 2, nil, {
-    desc = "Strength multiplier for control swerving when highly intoxicated.",
-    category = "Alcoholism",
+lia.config.add("AlcoholIntenseMultiplier", "alcoholIntenseMultiplier", 2, nil, {
+    desc = "alcoholIntenseMultiplierDesc",
+    category = "alcoholism",
     type = "Float",
     min = 1,
     max = 5
 })
 
-lia.config.add("AlcoholRagdollThreshold", "Alcohol Ragdoll Threshold", 80, nil, {
-    desc = "BAC level that triggers a ragdoll fall.",
-    category = "Alcoholism",
+lia.config.add("AlcoholRagdollThreshold", "alcoholRagdollThreshold", 80, nil, {
+    desc = "alcoholRagdollThresholdDesc",
+    category = "alcoholism",
     type = "Int",
     min = 1,
     max = 100
 })
 
-lia.config.add("AlcoholRagdollMin", "Alcohol Ragdoll Min", 10, nil, {
-    desc = "Minimum seconds before another ragdoll can occur.",
-    category = "Alcoholism",
+lia.config.add("AlcoholRagdollMin", "alcoholRagdollMin", 10, nil, {
+    desc = "alcoholRagdollMinDesc",
+    category = "alcoholism",
     type = "Int",
     min = 1,
     max = 600
 })
 
-lia.config.add("AlcoholRagdollMax", "Alcohol Ragdoll Max", 15, nil, {
-    desc = "Maximum seconds before another ragdoll can occur.",
-    category = "Alcoholism",
+lia.config.add("AlcoholRagdollMax", "alcoholRagdollMax", 15, nil, {
+    desc = "alcoholRagdollMaxDesc",
+    category = "alcoholism",
     type = "Int",
     min = 1,
     max = 600
 })
 
-lia.config.add("AlcoholRagdollChance", "Alcohol Ragdoll Chance", 5, nil, {
-    desc = "Chance percentage that a ragdoll fall happens when threshold is met.",
-    category = "Alcoholism",
+lia.config.add("AlcoholRagdollChance", "alcoholRagdollChance", 5, nil, {
+    desc = "alcoholRagdollChanceDesc",
+    category = "alcoholism",
     type = "Int",
     min = 1,
     max = 100
 })
 
-lia.config.add("AlcoholRagdollDuration", "Alcohol Ragdoll Duration", 5, nil, {
-    desc = "Seconds the player stays ragdolled from intoxication.",
-    category = "Alcoholism",
+lia.config.add("AlcoholRagdollDuration", "alcoholRagdollDuration", 5, nil, {
+    desc = "alcoholRagdollDurationDesc",
+    category = "alcoholism",
     type = "Int",
     min = 1,
     max = 60
 })
 
-lia.config.add("AlcoholIntenseTime", "Alcohol Intense Time", 5, nil, {
-    desc = "Seconds of heavier movement after BAC increases.",
-    category = "Alcoholism",
+lia.config.add("AlcoholIntenseTime", "alcoholIntenseTime", 5, nil, {
+    desc = "alcoholIntenseTimeDesc",
+    category = "alcoholism",
     type = "Int",
     min = 1,
     max = 60

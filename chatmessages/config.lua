@@ -1,6 +1,6 @@
-lia.config.add("ChatMessagesInterval", "Chat Messages Interval", 300, nil, {
-    desc = "Time interval (in seconds) between each automatic chat message.",
-    category = "Chat",
+lia.config.add("ChatMessagesInterval", "chatMessagesInterval", 300, nil, {
+    desc = "chatMessagesIntervalDesc",
+    category = "chat",
     type = "Int",
     min = 10,
     max = 3600

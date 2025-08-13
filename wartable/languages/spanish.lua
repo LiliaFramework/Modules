@@ -8,4 +8,7 @@ LANGUAGE = {
     next = "Next",
     exit = "Exit",
     submit = "Submit",
+    mapUrl = "Map URL",
+    mapUrlDesc = "Specifies the map URL used in the game.",
+    map = "Map",
 }

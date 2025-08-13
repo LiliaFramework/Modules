@@ -18,4 +18,7 @@ LANGUAGE = {
     warrants = "Warrants",
     warrantIssueLog = "%s issued a warrant on %s",
     warrantRemoveLog = "%s removed a warrant from %s",
+    removeWarrantOnDeath = "Remove Warrant On Death",
+    removeWarrantOnDeathDesc = "Determines whether a warrant is removed from a player upon their death.",
+    character = "Character",
 }

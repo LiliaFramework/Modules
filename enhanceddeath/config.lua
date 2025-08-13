@@ -1,19 +1,19 @@
 ﻿MODULE.HospitalLocations = {Vector(-6175.214355, 9022.834961, 112.811897)}
-lia.config.add("HospitalsEnabled", "Enable Hospitals", false, nil, {
-    desc = "Enables or disables hospital respawn functionality.",
-    category = "Death",
+lia.config.add("HospitalsEnabled", "enableHospitals", false, nil, {
+    desc = "enableHospitalsDesc",
+    category = "death",
     type = "Boolean"
 })
 
-lia.config.add("LoseMoneyOnDeath", "Lose Money On Death", false, nil, {
-    desc = "Determines if players lose money upon death.",
-    category = "Death",
+lia.config.add("LoseMoneyOnDeath", "loseMoneyOnDeath", false, nil, {
+    desc = "loseMoneyOnDeathDesc",
+    category = "death",
     type = "Boolean"
 })
 
-lia.config.add("DeathMoneyLoss", "Death Money Loss Percentage", 0.05, nil, {
-    desc = "Percentage of money lost upon death.",
-    category = "Death",
+lia.config.add("DeathMoneyLoss", "deathMoneyLossPercentage", 0.05, nil, {
+    desc = "deathMoneyLossPercentageDesc",
+    category = "death",
     type = "Float",
     min = 0,
     max = 1
