@@ -160,10 +160,10 @@ jobs:
                --arg version "$version" \
                --arg download "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/${dir}.zip" \
                --arg source "https://liliaframework.github.io/Modules/${dir}.html" \
-               --arg public_uniqueID "$dir" \
+               --arg uniqueID "$dir" \
                --argjson features "$feat" \
                --argjson workshop "$work" \
-               '. += [{name:$name,uniqueID:$uniqueID,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,public_uniqueID:$public_uniqueID,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
+               '. += [{name:$name,uniqueID:$uniqueID,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,uniqueID:$uniqueID,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
             mv tmp.json modules_data.json
           done
       - name: zip-modules
@@ -218,7 +218,7 @@ jobs:
           for d in extracted_*; do
             [ -d "$d" ] || continue
             mod=${d#extracted_}
-            name=$(jq -r --arg id "$mod" '.[] | select(.public_uniqueID==$id) | .name' documentation/modules.json || echo '')
+            name=$(jq -r --arg id "$mod" '.[] | select(.uniqueID==$id) | .name' documentation/modules.json || echo '')
             if [ -n "$name" ]; then
               folder=$(echo "$name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g' | sed -E 's/^_+|_+$//g')
             else
