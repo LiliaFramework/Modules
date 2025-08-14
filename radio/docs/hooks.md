@@ -36,6 +36,40 @@ end)
 
 ---
 
+### `AddTextField`
+
+**Purpose**
+
+`Appends a read-only text field to a section of the radio information window.`
+
+**Parameters**
+
+* `section` (`string`): `Section title to attach the field under.`
+
+* `identifier` (`string`): `Unique ID for the field.`
+
+* `label` (`string`): `Displayed label for the field.`
+
+* `getter` (`function`): `Function returning the text to display.`
+
+**Realm**
+
+`Client`
+
+**Returns**
+
+`nil` — `No return value.`
+
+**Example**
+
+```lua
+hook.Add("AddTextField", "ShowRadioPower", function(section, id, label, getter)
+    print("Displaying", label, "in", section)
+end)
+```
+
+---
+
 
 ### `ShouldRadioBeep`
 
