@@ -281,9 +281,9 @@ jobs:
           else
             rsync -a built-docs/ lilia/documentation/
           fi
-          mkdir -p lilia/documentation/docs
+          mkdir -p lilia/documentation/docs/versioning
           if [ -f lilia/documentation/modules.json ]; then
-            mv lilia/documentation/modules.json lilia/documentation/docs/modules.json
+            mv lilia/documentation/modules.json lilia/documentation/docs/versioning/modules.json
           fi
       - name: commit-push-docs
         shell: bash
