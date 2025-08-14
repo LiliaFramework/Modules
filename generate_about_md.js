@@ -1,11 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 
-let modulesPath = path.join(__dirname, 'modules.json')
-if (!fs.existsSync(modulesPath)) {
-  const alternativePath = path.join(__dirname, 'documentation', 'modules.json')
+let versionPath = path.join(__dirname, 'version.json')
+if (!fs.existsSync(versionPath)) {
+  const alternativePath = path.join(__dirname, 'documentation', 'version.json')
   if (fs.existsSync(alternativePath)) {
-    modulesPath = alternativePath
+    versionPath = alternativePath
   } else {
     process.exit(1)
   }
@@ -13,7 +13,7 @@ if (!fs.existsSync(modulesPath)) {
 
 let modules
 try {
-  modules = JSON.parse(fs.readFileSync(modulesPath, 'utf8'))
+  modules = JSON.parse(fs.readFileSync(versionPath, 'utf8'))
 } catch {
   process.exit(1)
 }
@@ -27,7 +27,7 @@ function toFolderName(name) {
 }
 
 for (const mod of modules) {
-  const id = mod.public_uniqueID || ''
+  const id = mod.uniqueID || ''
   if (!id) continue
 
   const folder = toFolderName(mod.name || id)
