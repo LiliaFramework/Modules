@@ -1,11 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 
-let versionPath = path.join(__dirname, 'version.json')
-if (!fs.existsSync(versionPath)) {
-  const alternativePath = path.join(__dirname, 'documentation', 'version.json')
+let modulesPath = path.join(__dirname, 'modules.json')
+if (!fs.existsSync(modulesPath)) {
+  const alternativePath = path.join(__dirname, 'documentation', 'modules.json')
   if (fs.existsSync(alternativePath)) {
-    versionPath = alternativePath
+    modulesPath = alternativePath
   } else {
     process.exit(1)
   }
@@ -13,7 +13,7 @@ if (!fs.existsSync(versionPath)) {
 
 let modules
 try {
-  modules = JSON.parse(fs.readFileSync(versionPath, 'utf8'))
+  modules = JSON.parse(fs.readFileSync(modulesPath, 'utf8'))
 } catch {
   process.exit(1)
 }
