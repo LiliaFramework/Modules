@@ -140,8 +140,8 @@ jobs:
               desc_key=$(grep -Po 'MODULE\.desc\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || true)
               lang_file="$dir/languages/english.lua"
               if [ -f "$lang_file" ]; then
-                name=$(grep -Po "\\b${name_key}\\s*=\\s*\"\K[^\"]*" "$lang_file" | head -n1 || true)
-                desc=$(grep -Po "\\b${desc_key}\\s*=\\s*\"\K[^\"]*" "$lang_file" | head -n1 || true)
+                name=$(grep -Po "\\b${name_key}\\s*=\\s*\"\\K[^\"]*" "$lang_file" | head -n1 || true)
+                desc=$(grep -Po "\\b${desc_key}\\s*=\\s*\"\\K[^\"]*" "$lang_file" | head -n1 || true)
               fi
               [ -z "$name" ] && name="$name_key"
               [ -z "$desc" ] && desc="$desc_key"
@@ -241,6 +241,8 @@ jobs:
           path: documentation
       - name: remove-docs-before-publish
         run: rm -rf documentation/docs
+      - name: remove-modules-json-before-publish
+        run: rm -f documentation/modules.json
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.LiliaGitSecret }}
