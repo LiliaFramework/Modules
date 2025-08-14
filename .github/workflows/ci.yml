@@ -292,6 +292,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No documentation changes to commit"
           else
-            git commit -m "Update generated module documentation"
+            git commit -m "Updated Some Public Modules"
             git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
           fi
