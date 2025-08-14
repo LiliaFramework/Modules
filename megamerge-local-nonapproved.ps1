@@ -1,6 +1,6 @@
 # save as E:\GMOD\Server\garrysmod\gamemodes\Lilia\megamerge-local-nonapproved.ps1
-$Owner = "bleonheart"
-$Repo = "Lilia"
+$Owner = "LiliaFramework"
+$Repo = "Modules"
 $TargetBranch = "main"
 
 $ErrorActionPreference = "Stop"
