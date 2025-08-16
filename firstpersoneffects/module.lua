@@ -2,5 +2,5 @@
 MODULE.uniqueID = "public_firstpersoneffects"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.20
+MODULE.version = 1.21
 MODULE.desc = "Adds head bob and view sway, camera motion synced to actions, a realistic first-person feel, and adjustable intensity via config."
