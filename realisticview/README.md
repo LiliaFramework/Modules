@@ -15,3 +15,7 @@ Adds a first-person view that shows the full body, immersive camera transitions,
 - Adds smooth leaning animations
 - Adds optional third-person override
 
+
+
+
+<p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/realisticview.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
