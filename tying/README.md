@@ -15,3 +15,22 @@ Adds handcuff items that restrain players, logging for tie and untie events, sup
 - Adds timed escape minigames for prisoners
 - Adds compatibility with the search submodule
 
+<h2 style="text-align:center; font-size:1.5rem; font-weight:bold;">Submodules</h2>
+
+<h3 style="text-align:center; font-size:1.25rem; font-weight:bold;">Search Tied Players</h3>
+
+**Name:**
+Search Tied Players
+
+**Description:**
+
+Adds searching of tied players' inventories, ability to confiscate contraband, seamless integration with the tying module, a configurable list of illegal items, and logging of confiscated belongings.
+
+<h4 style="text-align:center; font-size:1.25rem; font-weight:bold;">Features</h4>
+
+- Adds searching of tied players' inventories
+- Adds ability to confiscate contraband
+- Adds seamless integration with the tying module
+- Adds a configurable list of illegal items
+- Adds logging of confiscated belongings
+
