@@ -2,7 +2,7 @@
 MODULE.uniqueID = "public_extendeddescriptions"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.32
+MODULE.version = 1.33
 MODULE.desc = "Adds support for long item descriptions, localization for multiple languages, better RP text display, automatic line wrapping, and fallback to short descriptions."
 MODULE.Privileges = {
     {

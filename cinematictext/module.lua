@@ -2,7 +2,7 @@
 MODULE.uniqueID = "public_cinematictext"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.34
+MODULE.version = 1.35
 MODULE.desc = "Adds displays of cinematic splash text overlays, screen darkening with letterbox bars, support for scripted scenes, timed fades for dramatic effect, and customizable text fonts."
 MODULE.Privileges = {
     {
