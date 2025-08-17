@@ -18,7 +18,7 @@ LANGUAGE = {
     requestSearchSent = "Search request sent.",
     searchDenied = "Search request denied.",
     search = "Search",
-    use = "Use",
+
     staffRestrained = "%s has been restrained.",
     tie = "Tie",
     unTie = "Untie",
