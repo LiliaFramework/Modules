@@ -1,7 +1,5 @@
 NAME = "Spanish"
 LANGUAGE = {
-    alcoholismModuleName = "Alcoholismo",
-    alcoholismModuleDesc = "Añade alcohol bebible que aumenta el nivel de intoxicación del jugador. Un BAC alto desenfoca la visión y ralentiza el movimiento hasta que el efecto desaparece.",
     alcoholDesc = "Una bebida alcohólica con %s%% de alcohol.",
     drinkAction = "Beber",
     drinkTip = "Consumir esta bebida.",

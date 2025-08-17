@@ -1,7 +1,5 @@
 NAME = "English"
 LANGUAGE = {
-    alcoholismModuleName = "Alcoholism",
-    alcoholismModuleDesc = "Adds drinkable alcohol that increases a player's intoxication level. High BAC blurs vision and slows movement until the effect wears off.",
     alcoholDesc = "An alcoholic drink with %s%% ABV.",
     drinkAction = "Drink",
     drinkTip = "Consume this beverage.",

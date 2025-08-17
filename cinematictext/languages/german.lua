@@ -11,7 +11,6 @@ LANGUAGE = {
     post = "Senden",
     splashTextLabel = "Splash-Text",
     splashTextSent = "Splash-Text gesendet.",
-    cancel = "Abbrechen",
     cinematicTextFont = "Cinematic Text Font",
     cinematicTextFontDesc = "The font used for cinematic text.",
     cinematic = "Cinematic",

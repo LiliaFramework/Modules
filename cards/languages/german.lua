@@ -1,7 +1,5 @@
 NAME = "German"
 LANGUAGE = {
-    cardsModuleName = "Karten",
-    cardsModuleDesc = "Fügt ein komplettes Kartenspiel hinzu, das gemischt und gezogen werden kann. Kartenzüge synchronisieren sich mit allen Spielern für einfache Minispiele im Spiel.",
     cardDrawAction = "zieht",
     cardsCommandDesc = "Ziehe eine zufällige Karte aus deinem Deck.",
     noCardDeck = "Du hast kein Kartendeck.",

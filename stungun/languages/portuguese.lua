@@ -1,7 +1,5 @@
 ﻿NAME = "Portuguese"
 LANGUAGE = {
-    stungunModuleName = "Stun Gun",
-    stungunModuleDesc = "Introduces a taser weapon that temporarily incapacitates targets. Stun time, range, and optional damage effects are fully configurable.",
     stunTime = "Stun Time",
     stunTimeDesc = "Duration of the stun effect in seconds",
     weapon = "Weapon",

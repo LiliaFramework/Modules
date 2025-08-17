@@ -1,7 +1,5 @@
 NAME = "German"
 LANGUAGE = {
-    broadcastsModuleName = "Broadcasts",
-    broadcastsModuleDesc = "Ermöglicht es Mitarbeitern, Nachrichten an ausgewählte Fraktionen oder Klassen zu senden. Jeder Broadcast wird protokolliert und über CAMI-Berechtigungen kontrolliert.",
     classBroadcastLabel = "[KLASSEN BROADCAST]",
     classBroadcastNoPermission = "Du darfst keinen Klassen-Broadcast senden.",
     classBroadcastNoValidClasses = "Keine gültigen Klassen wurden ausgewählt.",

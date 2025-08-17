@@ -2,32 +2,32 @@
 local LogConfig = {
     warnings = {
         enabled = true,
-        color = 16776960, -- Yellow
+        color = 16776960,
         title = "Warning System"
     },
     tickets = {
         enabled = true,
-        color = 3447003, -- Blue
+        color = 3447003,
         title = "Ticket System"
     },
     cheats = {
         enabled = true,
-        color = 15158332, -- Red
+        color = 15158332,
         title = "Anti-Cheat System"
     },
     chat = {
         enabled = true,
-        color = 3066993, -- Green
+        color = 3066993,
         title = "Chat System"
     },
     flags = {
         enabled = true,
-        color = 10181046, -- Purple
+        color = 10181046,
         title = "Flag System"
     },
     vendors = {
         enabled = true,
-        color = 15844367, -- Orange
+        color = 15844367,
         title = "Vendor System"
     }
 }

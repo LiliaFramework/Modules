@@ -1,7 +1,5 @@
 NAME = "French"
 LANGUAGE = {
-    alcoholismModuleName = "Alcoolisme",
-    alcoholismModuleDesc = "Ajoute de l'alcool buvable qui augmente le niveau d'intoxication du joueur. Un taux d'alcoolémie élevé brouille la vision et ralentit les mouvements jusqu'à ce que l'effet disparaisse.",
     alcoholDesc = "Une boisson alcoolisée avec %s%% d'alcool.",
     drinkAction = "Boire",
     drinkTip = "Consommer cette boisson.",

@@ -1,7 +1,5 @@
 ﻿NAME = "French"
 LANGUAGE = {
-    cardsModuleName = "Cards",
-    cardsModuleDesc = "Adds a full deck of playing cards that can be shuffled and drawn. Card draws sync to all players for simple in-game minigames.",
     cardDrawAction = "draws",
     cardsCommandDesc = "Draw a random card from your deck.",
     noCardDeck = "You don't have a deck of cards.",

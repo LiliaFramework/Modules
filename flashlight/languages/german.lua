@@ -1,7 +1,5 @@
 ﻿NAME = "German"
 LANGUAGE = {
-    flashlightModuleName = "Flashlight",
-    flashlightModuleDesc = "Replaces the default flashlight with dynamic lighting and adjustable brightness.",
     enableFlashlight = "Enable Flashlight",
     enableFlashlightDesc = "Enables or disables the flashlight functionality.",
     flashlight = "Flashlight",

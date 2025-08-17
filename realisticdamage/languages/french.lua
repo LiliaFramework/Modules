@@ -1,7 +1,5 @@
 ﻿NAME = "French"
 LANGUAGE = {
-    realisticdamageModuleName = "Realistic Damage",
-    realisticdamageModuleDesc = "Scales damage based on hit body parts and applies other tweaks for realistic combat.",
     enableDeathSound = "Enable Death Sound",
     enableDeathSoundDesc = "Enable or disable death sounds globally.",
     audio = "Audio",

@@ -12,6 +12,4 @@ LANGUAGE = {
     compassRatio = "Ratio (font size)",
     compassSetColor = "Set Color",
     compassResetSettings = "Reset Settings",
-    compassMaxPrefix = "Max :",
-    compassMinPrefix = "Min :"
 }
