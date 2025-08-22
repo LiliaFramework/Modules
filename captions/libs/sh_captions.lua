@@ -13,8 +13,6 @@ if SERVER then
         net.Send(client)
         hook.Run("CaptionFinished", client)
     end
-
-    
 else
     function lia.caption.start(text, duration)
         RunConsoleCommand("closecaption", "1")
