@@ -56,7 +56,3 @@ function MODULE:OnPlayerUnRestricted(client)
     if IsValid(searcher) then self:stopSearching(searcher) end
 end
 
-local networkStrings = {"searchPly", "searchExit"}
-for _, netString in ipairs(networkStrings) do
-    util.AddNetworkString(netString)
-end

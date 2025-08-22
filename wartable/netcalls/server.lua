@@ -70,7 +70,3 @@ net.Receive("RemoveWarTableMarker", function(_, client)
     hook.Run("PostWarTableMarkerRemove", client, ent, tableEnt)
 end)
 
-local networkStrings = {"ClearWarTable", "SetWarTableMap", "PlaceWarTableMarker", "RemoveWarTableMarker", "UseWarTable"}
-for _, netString in ipairs(networkStrings) do
-    util.AddNetworkString(netString)
-end
