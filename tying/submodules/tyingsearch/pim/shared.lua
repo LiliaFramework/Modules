@@ -1,6 +1,6 @@
 ﻿local MODULE = MODULE
-AddInteraction("requestSearch", {
-    runServer = true,
+lia.playerinteract.addInteraction("requestSearch", {
+    serverOnly = true,
     shouldShow = function(client, target) return not target.SearchRequested and not client.SearchRequested and not target:IsBeingSearched() end,
     onRun = function(client, target)
         if not SERVER then return end
@@ -20,8 +20,8 @@ AddInteraction("requestSearch", {
     end
 })
 
-AddInteraction("search", {
-    runServer = true,
+lia.playerinteract.addInteraction("search", {
+    serverOnly = true,
     shouldShow = function(_, target) return target:IsHandcuffed() and not target:IsBeingSearched() end,
     onRun = function(client, target)
         if not SERVER then return end

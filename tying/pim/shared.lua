@@ -1,5 +1,5 @@
-﻿AddInteraction("putInVehicle", {
-    runServer = true,
+﻿lia.playerinteract.addInteraction("putInVehicle", {
+    serverOnly = true,
     shouldShow = function(client, target)
         if not simfphys then return false end
         local es = ents.FindInSphere(client:GetPos(), 150)
@@ -38,8 +38,8 @@
     end
 })
 
-AddInteraction("removeCuffedPassengers", {
-    runServer = true,
+lia.playerinteract.addInteraction("removeCuffedPassengers", {
+    serverOnly = true,
     shouldShow = function(client)
         for _, v in pairs(ents.FindInSphere(client:GetPos(), 150)) do
             if v:IsPlayer() and v:InVehicle() and v:IsHandcuffed() then return true end
@@ -54,8 +54,8 @@ AddInteraction("removeCuffedPassengers", {
     end
 })
 
-AddInteraction("tie", {
-    runServer = true,
+lia.playerinteract.addInteraction("tie", {
+    serverOnly = true,
     shouldShow = function(client, target) return client:getChar():getInv():hasItem("tie") and IsValid(target) and not target:IsHandcuffed() end,
     onRun = function(client, target)
         if not SERVER then return end
@@ -79,8 +79,8 @@ AddInteraction("tie", {
     end
 })
 
-AddInteraction("unTie", {
-    runServer = true,
+lia.playerinteract.addInteraction("unTie", {
+    serverOnly = true,
     shouldShow = function(_, target) return target:IsHandcuffed() end,
     onRun = function(client, target)
         if not SERVER then return end
