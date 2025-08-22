@@ -11,8 +11,3 @@ function MODULE:BodygrouperClosetRemoveUser(closet)
     if closesound then closet:EmitSound(closesound) end
     hook.Run("BodygrouperClosetClosed", closet)
 end
-
-local networkStrings = {"BodygrouperMenu", "BodygrouperMenuClose", "BodygrouperMenuCloseClientside"}
-for _, netString in ipairs(networkStrings) do
-    util.AddNetworkString(netString)
-end
