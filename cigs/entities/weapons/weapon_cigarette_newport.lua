@@ -20,9 +20,6 @@ if SERVER then
         self.juiceID = 0
         timer.Simple(0.1, function() MODULE.SendcigaJuice(self, JuicycigaJuices[self.juiceID + 1]) end)
     end
-
-    util.AddNetworkString("cigaTankColor")
-    util.AddNetworkString("cigaMessage")
 end
 
 function SWEP:SecondaryAttack()

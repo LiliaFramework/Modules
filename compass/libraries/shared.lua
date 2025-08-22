@@ -51,8 +51,6 @@ mCompass_Settings.Styles = {
 }
 
 if SERVER then
-    util.AddNetworkString("mCompass_AddMarker")
-    util.AddNetworkString("mCompass_RemoveMarker")
     local mCompass_MarkerTable = mCompass_MarkerTable or {}
     function MODULE.AddMarker(ply, pos, players, time, color, icon, name)
         hook.Run("PreCompassMarkerAdded", ply, pos, players, time, color, icon, name)

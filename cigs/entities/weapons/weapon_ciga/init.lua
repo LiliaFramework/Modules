@@ -2,9 +2,6 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
-util.AddNetworkString("ciga")
-util.AddNetworkString("cigaArm")
-util.AddNetworkString("cigaTalking")
 function MODULE.cigaUpdate(ply, cigaID)
     if not ply.cigaCount then ply.cigaCount = 0 end
     if not ply.cantStartciga then ply.cantStartciga = false end
