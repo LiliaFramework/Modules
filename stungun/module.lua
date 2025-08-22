@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Stun Gun"
-MODULE.uniqueID = "public_stungun"
+MODULE.versionID = "public_stungun"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 101.27

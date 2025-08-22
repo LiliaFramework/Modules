@@ -1,5 +1,5 @@
 ﻿MODULE.name = "NPC Spawner"
-MODULE.uniqueID = "public_npcspawner"
+MODULE.versionID = "public_npcspawner"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.29

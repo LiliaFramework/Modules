@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Chat Messages"
-MODULE.uniqueID = "public_chatmessages"
+MODULE.versionID = "public_chatmessages"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.24

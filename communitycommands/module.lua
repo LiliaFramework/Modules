@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Community Commands"
-MODULE.uniqueID = "public_communitycommands"
+MODULE.versionID = "public_communitycommands"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.25

@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Cigarettes"
-MODULE.uniqueID = "public_cigs"
+MODULE.versionID = "public_cigs"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.24

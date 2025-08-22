@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Cinematic Text"
-MODULE.uniqueID = "public_cinematictext"
+MODULE.versionID = "public_cinematictext"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.35

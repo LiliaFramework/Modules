@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Radio"
-MODULE.uniqueID = "public_radio"
+MODULE.versionID = "public_radio"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.29

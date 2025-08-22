@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Flashlight"
-MODULE.uniqueID = "public_flashlight"
+MODULE.versionID = "public_flashlight"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.23

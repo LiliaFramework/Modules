@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Join Leave Messages"
-MODULE.uniqueID = "public_joinleavemessages"
+MODULE.versionID = "public_joinleavemessages"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.21

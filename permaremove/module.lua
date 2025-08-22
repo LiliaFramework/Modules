@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Perma Remove"
-MODULE.uniqueID = "public_permaremove"
+MODULE.versionID = "public_permaremove"
 MODULE.author = "Boz [Base Code] & Samael [Rewrite]"
 MODULE.discord = "bozdev"
 MODULE.version = 1.26

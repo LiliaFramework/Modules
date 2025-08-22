@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Anonymous Rumors"
-MODULE.uniqueID = "public_rumour"
+MODULE.versionID = "public_rumour"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.24

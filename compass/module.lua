@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Compass"
-MODULE.uniqueID = "public_compass"
+MODULE.versionID = "public_compass"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.20

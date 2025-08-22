@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Free Look"
-MODULE.uniqueID = "public_freelook"
+MODULE.versionID = "public_freelook"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.22

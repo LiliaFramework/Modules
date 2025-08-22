@@ -1,5 +1,5 @@
 ﻿MODULE.name = "View Bob"
-MODULE.uniqueID = "public_viewbob"
+MODULE.versionID = "public_viewbob"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.23

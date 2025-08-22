@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Realistic Damage"
-MODULE.uniqueID = "public_realisticdamage"
+MODULE.versionID = "public_realisticdamage"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.22

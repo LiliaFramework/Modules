@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Corpse ID"
-MODULE.uniqueID = "public_corpseid"
+MODULE.versionID = "public_corpseid"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.30

@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Model Pay"
-MODULE.uniqueID = "public_modelpay"
+MODULE.versionID = "public_modelpay"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.21

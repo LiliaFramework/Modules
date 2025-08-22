@@ -1,5 +1,5 @@
 ﻿MODULE.name = "HUD Extras"
-MODULE.uniqueID = "public_hud_extras"
+MODULE.versionID = "public_hud_extras"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.29

@@ -1,5 +1,5 @@
 ﻿MODULE.name = "First Person Effects"
-MODULE.uniqueID = "public_firstpersoneffects"
+MODULE.versionID = "public_firstpersoneffects"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.21

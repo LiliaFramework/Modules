@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Enhanced Death"
-MODULE.uniqueID = "public_enhanceddeath"
+MODULE.versionID = "public_enhanceddeath"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.20

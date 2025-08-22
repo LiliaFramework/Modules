@@ -1,5 +1,5 @@
 ﻿MODULE.name = "Gamemaster Points"
-MODULE.uniqueID = "public_gamemasterpoints"
+MODULE.versionID = "public_gamemasterpoints"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.24
