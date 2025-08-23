@@ -27,7 +27,7 @@ function toFolderName(name) {
 }
 
 for (const mod of modules) {
-  const id = mod.uniqueID || ''
+  const id = mod.versionID || ''
   if (!id) continue
 
   const folder = toFolderName(mod.name || id)

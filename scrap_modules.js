@@ -40,7 +40,7 @@ for (const moduleInfo of modulesList) {
     description = '',
     features = [],
     download = '',
-    uniqueID = '',
+    versionID = '',
   } = moduleInfo
 
   const versionStr = toVersionString(version)
@@ -61,13 +61,13 @@ for (const moduleInfo of modulesList) {
     output += `</ul>\n\n`
   }
 
-  if (uniqueID) {
+  if (versionID) {
     const base = 'https://liliaframework.github.io/Modules/docs'
 
     output += `<p><strong>Libraries:</strong></p>\n`
-    output += `<p><a href="${base}/libraries/modules/${uniqueID}.html">Access Here</a></p>\n\n`
+    output += `<p><a href="${base}/libraries/modules/${versionID}.html">Access Here</a></p>\n\n`
     output += `<p><strong>Hooks:</strong></p>\n`
-    output += `<p><a href="${base}/hooks/modules/${uniqueID}.html">Access Here</a></p>\n\n`
+    output += `<p><a href="${base}/hooks/modules/${versionID}.html">Access Here</a></p>\n\n`
   }
 
   if (download) {
