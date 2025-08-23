@@ -320,8 +320,6 @@ jobs:
             fi
           done
           shopt -u nullglob
-      - name: create-about-md
-        run: cp README.md documentation/about.md
       - name: clean-obsolete-docs
         run: |
           rm -rf documentation/docs/hooks/modules
