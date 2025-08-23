@@ -288,15 +288,24 @@ jobs:
             else
               folder="$mod"
             fi
-            doc_dir=$(find "$d" -type d -iname docs -maxdepth 2 -print -quit || true)
-            [ -z "$doc_dir" ] && continue
             dest="documentation/docs/modules/${folder}"
             mkdir -p "$dest"
-            find "$doc_dir" -maxdepth 1 -type f -name '*.md' -exec cp {} "$dest/" \;
+
+            # Copy module's README.md as about.md
+            readme_file="$d/README.md"
+            if [ -f "$readme_file" ]; then
+              cp "$readme_file" "$dest/about.md"
+            fi
+
+            # Copy existing docs if they exist
+            doc_dir=$(find "$d" -type d -iname docs -maxdepth 2 -print -quit || true)
+            if [ -n "$doc_dir" ]; then
+              find "$doc_dir" -maxdepth 1 -type f -name '*.md' -exec cp {} "$dest/" \;
+            fi
           done
           shopt -u nullglob
       - name: create-about-md
-        run: node generate_about_md.js
+        run: cp README.md documentation/about.md
       - name: clean-obsolete-docs
         run: |
           rm -rf documentation/docs/hooks/modules
