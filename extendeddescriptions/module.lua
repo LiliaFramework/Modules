@@ -2,7 +2,7 @@
 MODULE.versionID = "public_extendeddescriptions"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.35
+MODULE.version = 1.34
 MODULE.desc = "Adds support for long item descriptions, localization for multiple languages, better RP text display, automatic line wrapping, and fallback to short descriptions."
 MODULE.Privileges = {
     {
@@ -12,8 +12,5 @@ MODULE.Privileges = {
         Category = "descriptions",
     }
 }
-MODULE.NetworkStrings ={
-        "EditDetailedDescriptions",
-        "OpenDetailedDescriptions",
-        "SetDetailedDescriptions"
-}
+
+MODULE.NetworkStrings = {"EditDetailedDescriptions", "OpenDetailedDescriptions", "SetDetailedDescriptions"}

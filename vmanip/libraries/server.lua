@@ -8,4 +8,3 @@
         hook.Run("VManipPickup", client, item)
     end
 end
-

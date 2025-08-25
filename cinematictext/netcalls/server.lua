@@ -16,4 +16,3 @@
     net.WriteColor(color)
     net.Broadcast()
 end)
-

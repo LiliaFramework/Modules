@@ -55,4 +55,3 @@ function MODULE:OnPlayerUnRestricted(client)
     local searcher = client:getNetVar("searcher")
     if IsValid(searcher) then self:stopSearching(searcher) end
 end
-

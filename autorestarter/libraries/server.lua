@@ -53,4 +53,3 @@ function MODULE:PlayerInitialSpawn(client)
     net.WriteInt(self.nextRestart, 32)
     net.Send(client)
 end
-

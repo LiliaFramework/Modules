@@ -233,4 +233,3 @@ net.Receive("GMTPDelete", function(_, client)
     local name = net.ReadString()
     MODULE:RemovePoint(client, name)
 end)
-

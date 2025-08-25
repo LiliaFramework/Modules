@@ -7,4 +7,3 @@
         net.Send(ply)
     end
 end
-

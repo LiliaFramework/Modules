@@ -9,4 +9,3 @@
     net.Send({ent, atk})
     hook.Run("DamageNumbersSent", atk, ent, dmg)
 end
-

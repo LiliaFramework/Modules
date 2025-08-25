@@ -12,4 +12,3 @@
     net.WriteBool(commandTable.shouldOpenIngame)
     net.Send(client)
 end
-

@@ -26,4 +26,3 @@ net.Receive("WardrobeChangeModel", function(_, client)
         hook.Run("WardrobeModelInvalid", client, newModel)
     end
 end)
-

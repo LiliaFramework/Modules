@@ -5,7 +5,6 @@ LANGUAGE = {
     identifyCorpseDeclined = "Identification cancelled.",
     identifyCorpseQuestion = "Do you want to identify this corpse?",
     identifyingCorpse = "Identifying corpse...",
-
     corpseIdentifiedLog = "%s identified corpse of %s",
     identificationTime = "Identification Time",
     identificationTimeDesc = "The time (in seconds) required to identify a corpse.",

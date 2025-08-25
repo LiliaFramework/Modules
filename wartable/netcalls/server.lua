@@ -69,4 +69,3 @@ net.Receive("RemoveWarTableMarker", function(_, client)
     hook.Run("WarTableMarkerRemoved", client, ent, tableEnt)
     hook.Run("PostWarTableMarkerRemove", client, ent, tableEnt)
 end)
-

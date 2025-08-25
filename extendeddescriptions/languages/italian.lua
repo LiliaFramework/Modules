@@ -7,5 +7,4 @@ LANGUAGE = {
     refImagePlaceholder = "Image URL",
     setExtDescCommand = "Edit a player's description.",
     viewExtDescCommand = "View your detailed description.",
-
 }

@@ -2,7 +2,7 @@
 MODULE.versionID = "public_bodygrouper"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.39
+MODULE.version = 1.38
 MODULE.desc = "Spawns a bodygroup closet where players can edit their model's bodygroups. Admins may inspect others and configure the closet's model."
 MODULE.Privileges = {
     {
@@ -18,8 +18,5 @@ MODULE.Privileges = {
         Category = "bodygroups",
     }
 }
-MODULE.NetworkStrings ={
-        "BodygrouperMenu",
-        "BodygrouperMenuClose",
-        "BodygrouperMenuCloseClientside"
-}
+
+MODULE.NetworkStrings = {"BodygrouperMenu", "BodygrouperMenuClose", "BodygrouperMenuCloseClientside"}
