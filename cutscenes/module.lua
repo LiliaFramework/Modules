@@ -13,3 +13,6 @@ MODULE.Privileges = {
         Category = "cutscenes",
     },
 }
+MODULE.NetworkStrings ={
+        "lia_cutscene"
+}

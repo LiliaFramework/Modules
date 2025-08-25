@@ -12,3 +12,8 @@ MODULE.Privileges = {
         Category = "descriptions",
     }
 }
+MODULE.NetworkStrings ={
+        "EditDetailedDescriptions",
+        "OpenDetailedDescriptions",
+        "SetDetailedDescriptions"
+}

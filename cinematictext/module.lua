@@ -12,3 +12,7 @@ MODULE.Privileges = {
         Category = "cinematics",
     },
 }
+MODULE.NetworkStrings ={
+        "OpenCinematicMenu",
+        "TriggerCinematic"
+}

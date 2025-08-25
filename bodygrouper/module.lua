@@ -18,3 +18,8 @@ MODULE.Privileges = {
         Category = "bodygroups",
     }
 }
+MODULE.NetworkStrings ={
+        "BodygrouperMenu",
+        "BodygrouperMenuClose",
+        "BodygrouperMenuCloseClientside"
+}

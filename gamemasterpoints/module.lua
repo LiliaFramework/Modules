@@ -12,3 +12,13 @@ MODULE.Privileges = {
         Category = "gamemasterPoints",
     }
 }
+MODULE.NetworkStrings ={
+        "GMTPDelete",
+        "GMTPMove",
+        "GMTPNewPoint",
+        "GMTPUpdateEffect",
+        "GMTPUpdateName",
+        "GMTPUpdateSound",
+        "gmTPMenu",
+        "gmTPNewName"
+}
