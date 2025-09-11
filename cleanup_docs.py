@@ -64,3 +64,4 @@ def cleanup_docs_directories():
 
 if __name__ == "__main__":
     cleanup_docs_directories()
+
