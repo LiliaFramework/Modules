@@ -1,78 +1,68 @@
-local MODULE = MODULE
-local lastActivityTime = CurTime()
-local isAFK = false
-local function recordActivity()
-	lastActivityTime = CurTime()
-	if isAFK then
-		isAFK = false
-		net.Start("liaAFKStatus")
-		net.WriteBool(false)
+local lastMousePos = {
+	x = 0,
+	y = 0
+}
+
+local lastActivityCheck = 0
+local function checkClientActivity()
+	if not lia.config.get("AFKProtectionEnabled", true) then return end
+	local client = LocalPlayer()
+	if not IsValid(client) then return end
+	local mouseX, mouseY = gui.MouseX(), gui.MouseY()
+	if mouseX ~= lastMousePos.x or mouseY ~= lastMousePos.y then
+		lastMousePos.x, lastMousePos.y = mouseX, mouseY
+		net.Start("liaAFKActivity")
+		net.SendToServer()
+	end
+
+	local viewAngles = client:EyeAngles()
+	if viewAngles ~= client.lastViewAngles then
+		client.lastViewAngles = viewAngles
+		net.Start("liaAFKActivity")
 		net.SendToServer()
 	end
 end
 
-local function checkAFK()
-	local timeout = lia.config.get("AFKTimeMinutes", 5) * 60
-	local inactive = CurTime() - lastActivityTime
-	if inactive >= timeout and not isAFK then
-		isAFK = true
-		net.Start("liaAFKStatus")
-		net.WriteBool(true)
-		net.SendToServer()
-	elseif inactive < timeout and isAFK then
-		isAFK = false
-		net.Start("liaAFKStatus")
-		net.WriteBool(false)
+function MODULE:Think()
+	if CurTime() - lastActivityCheck > 0.5 then
+		checkClientActivity()
+		lastActivityCheck = CurTime()
+	end
+end
+
+function MODULE:OnPlayerChat(client, chatType, message)
+	if client == LocalPlayer() then
+		net.Start("liaAFKActivity")
 		net.SendToServer()
 	end
 end
 
-function MODULE:RestartAFKTimer()
-	timer.Remove("lia_client_afk_check")
-	timer.Create("lia_client_afk_check", 1, 0, checkAFK)
-end
-
-function MODULE:KeyPress()
-	recordActivity()
-end
-
-function MODULE:PlayerSay()
-	recordActivity()
-end
-
-function MODULE:StartCommand(_, cmd)
-	if cmd:GetButtons() ~= 0 then
-		recordActivity()
-		return
+function MODULE:PlayerBindPress(client, bind, pressed)
+	if client == LocalPlayer() and pressed then
+		net.Start("liaAFKActivity")
+		net.SendToServer()
 	end
-
-	if cmd:GetForwardMove() ~= 0 or cmd:GetSideMove() ~= 0 or cmd:GetUpMove() ~= 0 then
-		recordActivity()
-		return
-	end
-
-	local angles = cmd:GetViewAngles()
-	if not MODULE.lastAngles then
-		MODULE.lastAngles = angles
-		return
-	end
-
-	if math.abs(angles.yaw - MODULE.lastAngles.yaw) > 0.5 or math.abs(angles.pitch - MODULE.lastAngles.pitch) > 0.5 then recordActivity() end
-	MODULE.lastAngles = angles
 end
 
 function MODULE:DrawCharInfo(client, _, info)
-	if not IsValid(client) then return end
-	local clientIsAFK = client:getNetVar("AFK", false)
-	if not clientIsAFK then return end
-	local since = client:getNetVar("AFKStart", nil)
-	local minutes = 0
-	if since then minutes = math.max(0, math.floor((os.time() - tonumber(since)) / 60)) end
-	info[#info + 1] = {"AFK for " .. tostring(minutes) .. " minute" .. (minutes == 1 and "" or "s"), Color(200, 200, 200)}
+	if not lia.config.get("AFKProtectionEnabled", true) then return end
+	if not client:getNetVar("isAFK") then return end
+	local afkTime = client:getNetVar("afkTime", 0)
+	local timeAFK = CurTime() - afkTime
+	info[#info + 1] = {"⚠️ AFK for " .. string.NiceTime(timeAFK), Color(255, 165, 0)}
 end
 
-function MODULE:InitPostEntity()
-	recordActivity()
+function MODULE:HUDPaintBackground()
+	if not lia.config.get("AFKProtectionEnabled", true) then return end
+	if not LocalPlayer():getNetVar("isAFK") then return end
+	local afkTime = LocalPlayer():getNetVar("afkTime", 0)
+	local timeAFK = CurTime() - afkTime
+	local width = ScrW() * 0.4
+	local height = 60
+	local x = (ScrW() - width) * 0.5
+	local y = ScrH() * 0.1
+	draw.RoundedBox(8, x, y, width, height, Color(0, 0, 0, 150))
+	draw.RoundedBox(8, x + 2, y + 2, width - 4, height - 4, Color(255, 165, 0, 50))
+	draw.SimpleText("⚠️ YOU ARE AFK", "liaBigFont", x + width * 0.5, y + 15, Color(255, 165, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+	draw.SimpleText("Time: " .. string.NiceTime(timeAFK), "liaMediumFont", x + width * 0.5, y + 35, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
-
-timer.Create("lia_client_afk_check", 1, 0, checkAFK)
