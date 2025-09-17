@@ -88,7 +88,7 @@ end
 
 function MODULE:CanPlayerBeTiedUp(_, target)
 	if not lia.config.get("AFKProtectionEnabled", true) then return end
-		if target:getNetVar("isAFK") then return false, L("cannotBeRestrained") end
+	if target:getNetVar("isAFK") then return false, L("cannotBeRestrained") end
 end
 
 function MODULE:CanPlayerBeUntied(_, target)
@@ -115,26 +115,3 @@ function MODULE:CanPlayerBeKnockedOut(_, target)
 	if not lia.config.get("AFKProtectionEnabled", true) then return end
 	if target:getNetVar("isAFK") then return false, L("cannotBeKnockedOut") end
 end
-
-concommand.Add("lia_afk_status", function(client)
-	if not IsValid(client) then return end
-	print("[AFK] Player AFK Status:")
-	for _, ply in ipairs(player.GetAll()) do
-		if IsValid(ply) then
-			local isAFK = ply:getNetVar("isAFK", false)
-			local lastActivity = ply:getNetVar("lastActivity", 0)
-			local afkTime = ply:getNetVar("afkTime", 0)
-			local timeSinceActivity = CurTime() - lastActivity
-			local timeAFK = isAFK and (CurTime() - afkTime) or 0
-			print(string.format("  %s: %s (Last Activity: %.1fs ago, AFK Time: %.1fs)", ply:Name(), isAFK and "AFK" or "Active", timeSinceActivity, timeAFK))
-		end
-	end
-end)
-
-concommand.Add("lia_afk_toggle", function(client)
-	if not IsValid(client) or not client:IsAdmin() then return end
-	local currentValue = lia.config.get("AFKProtectionEnabled", true)
-	lia.config.set("AFKProtectionEnabled", not currentValue)
-	local status = not currentValue and "enabled" or "disabled"
-	print("[AFK] AFK Protection " .. status)
-end)
