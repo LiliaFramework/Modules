@@ -162,7 +162,7 @@ jobs:
             feat=$(parse_list "$rawf")
             work=$(parse_list "$raww")
             jq --arg name "$name" \
-               --arg uniqueID "$uniqueid" \
+               --arg versionID "$uniqueid" \
                --arg author "$author" \
                --arg discord "$discord" \
                --arg desc "$desc" \
@@ -171,7 +171,7 @@ jobs:
                --arg source "https://liliaframework.github.io/Modules/${dir}.html" \
                --argjson features "$feat" \
                --argjson workshop "$work" \
-               '. += [{name:$name,uniqueID:$uniqueID,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
+               '. += [{name:$name,versionID:$versionID,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
             mv tmp.json modules_data.json
           done
       - name: zip-modules
@@ -228,7 +228,7 @@ jobs:
             echo "Processing module: $mod (directory: $d)"
             echo "Contents of $d:"
             ls -la "$d/" | head -10
-            name=$(jq -r --arg id "$mod" '.[] | select(.uniqueID==$id) | .name' documentation/modules.json || echo '')
+            name=$(jq -r --arg id "$mod" '.[] | select(.versionID==$id) | .name' documentation/modules.json || echo '')
             if [ -n "$name" ]; then
               folder=$(echo "$name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g' | sed -E 's/^_+|_+$//g')
             else
