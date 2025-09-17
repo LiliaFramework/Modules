@@ -30,14 +30,14 @@ function MODULE:Think()
 	end
 end
 
-function MODULE:OnPlayerChat(client, chatType, message)
+function MODULE:OnPlayerChat(client, _chatType, _message)
 	if client == LocalPlayer() then
 		net.Start("liaAFKActivity")
 		net.SendToServer()
 	end
 end
 
-function MODULE:PlayerBindPress(client, bind, pressed)
+function MODULE:PlayerBindPress(client, _bind, pressed)
 	if client == LocalPlayer() and pressed then
 		net.Start("liaAFKActivity")
 		net.SendToServer()
