@@ -2,6 +2,6 @@
 MODULE.versionID = "public_afk"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.0
-MODULE.desc = "Protects AFK players from exploitation, automatically detects AFK status, and integrates seamlessly with restraint systems for enhanced player safety."
+MODULE.version = 1.1
+MODULE.desc = "Comprehensive AFK protection system that automatically detects inactive players, prevents exploitation of AFK players, and integrates with restraint systems. Features configurable AFK detection, admin commands, multi-language support, and protection against various player actions."
 MODULE.NetworkStrings = {"liaAFKActivity"}

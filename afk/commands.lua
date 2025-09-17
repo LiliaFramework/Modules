@@ -6,22 +6,22 @@ lia.command.add("afktoggle", {
             type = "player"
         }
     },
-    desc = "Toggle AFK status on a player",
+    desc = L("afkCommandDesc"),
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
         if not IsValid(target) then return "@invalidTarget" end
-        if not lia.config.get("AFKProtectionEnabled", true) then return "AFK protection is disabled." end
+        if not lia.config.get("AFKProtectionEnabled", true) then return L("afkProtectionDisabled") end
         local isAFK = target:getNetVar("isAFK", false)
         if isAFK then
             target:setNetVar("isAFK", false)
             target:setNetVar("lastActivity", CurTime())
-            client:notify("Removed AFK status from " .. target:Name())
-            target:notify("Your AFK status has been removed by an admin.")
+            client:notify(L("afkStatusRemoved", target:Name()))
+            target:notify(L("afkStatusRemovedByAdmin"))
         else
             target:setNetVar("isAFK", true)
             target:setNetVar("afkTime", CurTime())
-            client:notify("Set AFK status on " .. target:Name())
-            target:notify("You have been marked as AFK by an admin.")
+            client:notify(L("afkStatusSet", target:Name()))
+            target:notify(L("afkStatusSetByAdmin"))
         end
     end
 })
@@ -35,9 +35,9 @@ lia.command.add("afkstatus", {
             optional = true
         }
     },
-    desc = "Check AFK status of a player or all players",
+    desc = L("afkStatusCommandDesc"),
     onRun = function(client, arguments)
-        if not lia.config.get("AFKProtectionEnabled", true) then return "AFK protection is disabled." end
+        if not lia.config.get("AFKProtectionEnabled", true) then return L("afkProtectionDisabled") end
         local target = arguments[1] and lia.util.findPlayer(client, arguments[1])
         if target then
             local isAFK = target:getNetVar("isAFK", false)
@@ -45,8 +45,8 @@ lia.command.add("afkstatus", {
             local afkTime = target:getNetVar("afkTime", 0)
             local timeSinceActivity = CurTime() - lastActivity
             local timeAFK = isAFK and (CurTime() - afkTime) or 0
-            local status = isAFK and "AFK" or "Active"
-            client:notify(string.format("%s: %s (Last Activity: %.1fs ago, AFK Time: %.1fs)", target:Name(), status, timeSinceActivity, timeAFK))
+            local status = isAFK and L("afkStatus") or L("activePlayers")
+            client:notify(string.format("%s: %s (" .. L("lastActivity") .. ": %.1fs ago, " .. L("afkTimeLabel") .. ": %.1fs)", target:Name(), status, timeSinceActivity, timeAFK))
         else
             local afkPlayers = {}
             local activePlayers = {}
@@ -65,14 +65,14 @@ lia.command.add("afkstatus", {
                 end
             end
 
-            client:notify("=== AFK Status ===")
+            client:notify("=== " .. L("afkStatus") .. " ===")
             if #afkPlayers > 0 then
-                client:notify("AFK Players: " .. table.concat(afkPlayers, ", "))
+                client:notify(L("afkPlayers") .. ": " .. table.concat(afkPlayers, ", "))
             else
-                client:notify("No players are currently AFK")
+                client:notify(L("noPlayersAFK"))
             end
 
-            if #activePlayers > 0 then client:notify("Active Players: " .. table.concat(activePlayers, ", ")) end
+            if #activePlayers > 0 then client:notify(L("activePlayers") .. ": " .. table.concat(activePlayers, ", ")) end
         end
     end
 })
