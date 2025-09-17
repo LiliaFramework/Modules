@@ -108,90 +108,13 @@ jobs:
             --no-max-string-line-length --no-max-comment-line-length
         working-directory: modules
 
-  bump-version:
+  scrape-modules:
     needs: linter
     runs-on: ubuntu-latest
-    outputs:
-      sha: ${{ steps.sha.outputs.sha }}
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: bump-version
-        shell: bash
-        run: |
-          set -euo pipefail
-          base="${{ github.event.before }}"
-          changed_dirs=$(git diff --name-only "$base" "$GITHUB_SHA" | awk -F/ '{print $1}' | sort -u)
-          for dir in $changed_dirs; do
-            file="$dir/module.lua"
-            [ -f "$file" ] || continue
-
-            # Check if changes are only in docs folders
-            dir_changes=$(git diff --name-only "$base" "$GITHUB_SHA" | grep "^$dir/" || true)
-            only_docs=true
-            for change in $dir_changes; do
-              # Check if this change is NOT a documentation-only change
-              if [[ "$change" != "$dir/README.md" ]] && \
-                 [[ "$change" != "$dir/readme.md" ]] && \
-                 [[ "$change" != "$dir/module.lua" ]] && \
-                 [[ ! "$change" =~ ^$dir/docs/ ]] && \
-                 [[ ! "$change" =~ ^$dir/[^/]*\.md$ ]]; then
-                only_docs=false
-                break
-              fi
-            done
-
-            # Skip version bump if only docs changes
-            if [ "$only_docs" = true ]; then
-              echo "Skipping version bump for $dir - only docs changes detected"
-              continue
-            fi
-
-            v=$(grep -Eo 'MODULE\.version\s*=\s*[0-9]+(\.[0-9]{2})?' "$file" | awk -F= '{print $2}' | tr -d '[:space:]')
-            [ -z "$v" ] && v="1.00"
-            if [[ $v == *.* ]]; then
-              major="${v%%.*}"
-              minor="${v##*.}"
-            else
-              major="$v"
-              minor="00"
-            fi
-            minor=$((10#$minor + 1))
-            if [ "$minor" -eq 100 ]; then
-              minor=0
-              major=$((major + 1))
-            fi
-            if [ "$minor" -eq 0 ]; then
-              new_ver="$major"
-            else
-              new_ver=$(printf "%d.%02d" "$major" "$minor")
-            fi
-            if grep -q 'MODULE\.version' "$file"; then
-              sed -i -E "s/(MODULE\.version\s*=\s*)[0-9]+(\.[0-9]{2})?/\1$new_ver/" "$file"
-            else
-              printf '\nMODULE.version = %s\n' "$new_ver" >> "$file"
-            fi
-            git add "$file"
-          done
-          if ! git diff --cached --quiet; then
-            git config user.email "githubactions@github.com"
-            git config user.name "GitHub Actions"
-            git commit -m "Updated Modules Versions"
-            git push origin HEAD:main
-          fi
-      - name: record-sha
-        id: sha
-        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-
-  scrape-modules:
-    needs: bump-version
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          ref: ${{ needs.bump-version.outputs.sha }}
       - run: sudo apt-get update && sudo apt-get install -y jq zip
       - name: extract-module-metadata
         shell: bash
@@ -277,7 +200,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          ref: ${{ needs.bump-version.outputs.sha }}
       - name: create-docs-dir
         run: mkdir -p documentation
       - uses: actions/download-artifact@v4
