@@ -1,6 +1,6 @@
 NAME = "French"
 LANGUAGE = {
-    alcoholDesc = "Une boisson alcoolisée avec %s%% d'alcool.",
+    alcoholDesc = "Une boisson alcoolisée avec %s% d'alcool.",
     drinkAction = "Boire",
     drinkTip = "Consommer cette boisson.",
     drunkness = "Taux d'alcoolémie",
