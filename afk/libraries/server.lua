@@ -6,15 +6,15 @@ local function updatePlayerActivity(client)
 	client:setNetVar("lastActivity", CurTime())
 end
 
-function MODULE:KeyPress(client, _key)
+function MODULE:KeyPress(client)
 	updatePlayerActivity(client)
 end
 
-function MODULE:PlayerButtonDown(client, _button)
+function MODULE:PlayerButtonDown(client)
 	updatePlayerActivity(client)
 end
 
-function MODULE:PlayerSay(client, _text, _teamChat)
+function MODULE:PlayerSay(client)
 	updatePlayerActivity(client)
 end
 
@@ -26,25 +26,25 @@ function MODULE:PlayerTick(client)
 	if speed > 10 then updatePlayerActivity(client) end
 end
 
-function MODULE:PlayerUse(client, _entity)
+function MODULE:PlayerUse(client)
 	updatePlayerActivity(client)
 end
 
-function MODULE:PlayerEnteredVehicle(client, _vehicle, _role)
+function MODULE:PlayerEnteredVehicle(client)
 	updatePlayerActivity(client)
 end
 
-function MODULE:PlayerLeaveVehicle(client, _vehicle)
+function MODULE:PlayerLeaveVehicle(client)
 	updatePlayerActivity(client)
 end
 
-function MODULE:EntityTakeDamage(target, _dmgInfo)
+function MODULE:EntityTakeDamage(target)
 	if not lia.config.get("AFKProtectionEnabled", true) then return end
 	if not IsValid(target) or not target:IsPlayer() then return end
 	updatePlayerActivity(target)
 end
 
-function MODULE:PlayerCommand(client, _command, _arguments)
+function MODULE:PlayerCommand(client)
 	updatePlayerActivity(client)
 end
 
@@ -58,7 +58,7 @@ function MODULE:PlayerReceiveNet(client, netString)
 	end
 end
 
-net.Receive("liaAFKActivity", function(_len, client)
+net.Receive("liaAFKActivity", function(_, client)
 	if not IsValid(client) then return end
 	updatePlayerActivity(client)
 end)
@@ -86,37 +86,37 @@ function MODULE:InitializedModules()
 	end)
 end
 
-function MODULE:CanPlayerBeTiedUp(_client, target)
+function MODULE:CanPlayerBeTiedUp(_, target)
 	if not lia.config.get("AFKProtectionEnabled", true) then return end
 	if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be restrained." end
 end
 
-function MODULE:CanPlayerBeUntied(_client, target)
+function MODULE:CanPlayerBeUntied(_, target)
 	if not lia.config.get("AFKProtectionEnabled", true) then return end
 	if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be unrestrained." end
 end
 
-function MODULE:CanPlayerBeArrested(_client, target)
+function MODULE:CanPlayerBeArrested(_, target)
 	if not lia.config.get("AFKProtectionEnabled", true) then return end
 	if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be arrested." end
 end
 
-function MODULE:CanPlayerBeUnarrested(_client, target)
+function MODULE:CanPlayerBeUnarrested(_, target)
 	if not lia.config.get("AFKProtectionEnabled", true) then return end
 	if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be unarrested." end
 end
 
-function MODULE:CanPlayerBeStunned(_client, target)
+function MODULE:CanPlayerBeStunned(_, target)
 	if not lia.config.get("AFKProtectionEnabled", true) then return end
 	if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be stunned." end
 end
 
-function MODULE:CanPlayerBeKnockedOut(_client, target)
+function MODULE:CanPlayerBeKnockedOut(_, target)
 	if not lia.config.get("AFKProtectionEnabled", true) then return end
 	if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be knocked out." end
 end
 
-concommand.Add("lia_afk_status", function(client, _cmd, _args)
+concommand.Add("lia_afk_status", function(client)
 	if not IsValid(client) then return end
 	print("[AFK] Player AFK Status:")
 	for _, ply in ipairs(player.GetAll()) do
@@ -131,7 +131,7 @@ concommand.Add("lia_afk_status", function(client, _cmd, _args)
 	end
 end)
 
-concommand.Add("lia_afk_toggle", function(client, _cmd, _args)
+concommand.Add("lia_afk_toggle", function(client)
 	if not IsValid(client) or not client:IsAdmin() then return end
 	local currentValue = lia.config.get("AFKProtectionEnabled", true)
 	lia.config.set("AFKProtectionEnabled", not currentValue)
