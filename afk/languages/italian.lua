@@ -1,4 +1,4 @@
-NAME = "Italian"
+﻿NAME = "Italian"
 LANGUAGE = {
     afkCommandDesc = "Attiva/disattiva lo stato AFK di un giocatore",
     afkStatusCommandDesc = "Controlla lo stato AFK di un giocatore o tutti i giocatori",

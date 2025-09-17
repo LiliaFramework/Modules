@@ -1,4 +1,4 @@
-NAME = "German"
+﻿NAME = "German"
 LANGUAGE = {
     afkCommandDesc = "AFK-Status eines Spielers umschalten",
     afkStatusCommandDesc = "AFK-Status eines Spielers oder aller Spieler überprüfen",

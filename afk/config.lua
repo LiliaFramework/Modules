@@ -1,4 +1,4 @@
-lia.config.add("AFKTime", L("afkTime"), 180, nil, {
+﻿lia.config.add("AFKTime", L("afkTime"), 180, nil, {
     desc = L("afkTimeDesc"),
     category = L("afkProtection"),
     type = "Int",

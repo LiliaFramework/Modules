@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     afkCommandDesc = "Toggle AFK status on a player",
     afkStatusCommandDesc = "Check AFK status of a player or all players",

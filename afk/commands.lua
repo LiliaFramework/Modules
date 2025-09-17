@@ -1,4 +1,4 @@
-lia.command.add("afktoggle", {
+﻿lia.command.add("afktoggle", {
     adminOnly = true,
     arguments = {
         {
@@ -65,7 +65,7 @@ lia.command.add("afkstatus", {
                 end
             end
 
-            client:notify("=== " .. L("afkStatus") .. " ===")
+            client:notify(L("afkStatus"))
             if #afkPlayers > 0 then
                 client:notify(L("afkPlayers") .. ": " .. table.concat(afkPlayers, ", "))
             else

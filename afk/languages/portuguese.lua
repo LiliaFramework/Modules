@@ -1,4 +1,4 @@
-NAME = "Portuguese"
+﻿NAME = "Portuguese"
 LANGUAGE = {
     afkCommandDesc = "Alternar status AFK de um jogador",
     afkStatusCommandDesc = "Verificar status AFK de um jogador ou todos os jogadores",
