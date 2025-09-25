@@ -1,4 +1,4 @@
-NAME = "Italian"
+﻿NAME = "Italian"
 LANGUAGE = {
     advertModuleName = "Pubblicità",
     advertModuleDesc = "Implementa un comando /advert a pagamento per annunci server-wide. I messaggi sono colorati, registrati e limitati da un cooldown per prevenire lo spam.",

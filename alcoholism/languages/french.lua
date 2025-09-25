@@ -1,4 +1,4 @@
-NAME = "French"
+﻿NAME = "French"
 LANGUAGE = {
     alcoholDesc = "Une boisson alcoolisée avec %s% d'alcool.",
     drinkAction = "Boire",

@@ -1,4 +1,4 @@
-lia.char.registerVar("textDetDescData", {
+﻿lia.char.registerVar("textDetDescData", {
     field = "text_det_desc_data",
     fieldType = "text",
     default = "",

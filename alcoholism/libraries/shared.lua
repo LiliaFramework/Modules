@@ -1,4 +1,4 @@
-function MODULE:InitializedModules()
+﻿function MODULE:InitializedModules()
     for id, d in pairs(self.AlcoholItems) do
         local ITEM = lia.item.register(id, "base_alcohol", nil, nil, true)
         ITEM.uniqueID = id

@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     invalidDates = "Invalid dates",
     invalidTimeFormat = "Invalid time format. Expected 'HH:MM:SS - DD/MM/YYYY'.",

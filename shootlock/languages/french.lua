@@ -1,2 +1,0 @@
-﻿NAME = "French"
-LANGUAGE = {}

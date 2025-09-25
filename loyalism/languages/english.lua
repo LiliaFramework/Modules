@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     managementAssignPartyTiers = "Management - Assign Party Tiers",
     loyalism = "Loyalism",

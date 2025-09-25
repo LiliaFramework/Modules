@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     wardrobeConfirmButton = "Confirm",
     wardrobeModelChanged = "Your model has been updated.",

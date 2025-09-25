@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     enableFlashlight = "Enable Flashlight",
     enableFlashlightDesc = "Enables or disables the flashlight functionality.",

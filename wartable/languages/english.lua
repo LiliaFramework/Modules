@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     ClearWarTable = "Clear War Table",
     CustomizeMarker = "Customize Marker",

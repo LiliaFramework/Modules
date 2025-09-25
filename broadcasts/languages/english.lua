@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     canUseFactionBroadcast = "Can Use Faction Broadcast",
     canUseClassBroadcast = "Can Use Class Broadcast",

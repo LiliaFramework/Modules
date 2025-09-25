@@ -1,4 +1,4 @@
-NAME = "Portuguese"
+﻿NAME = "Portuguese"
 LANGUAGE = {
     serverRestartIntervalSeconds = "Server restart interval (seconds)",
     serverRestartIntervalSecondsDesc = "How often (in seconds) the server should auto-restart",

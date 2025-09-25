@@ -1,4 +1,4 @@
-NAME = "Italian"
+﻿NAME = "Italian"
 LANGUAGE = {
     broadcastsModuleName = "Trasmissioni",
     broadcastsModuleDesc = "Permette allo staff di trasmettere messaggi a fazioni o classi scelte. Ogni trasmissione è registrata e controllata tramite privilegi CAMI.",

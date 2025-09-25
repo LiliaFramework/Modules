@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     staffHUD = "Staff HUD",
     developmentHUD = "Development HUD",

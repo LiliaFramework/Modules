@@ -1,4 +1,4 @@
-NAME = "German"
+﻿NAME = "German"
 LANGUAGE = {
     broadcastCaptionDesc = "Sende einen Untertitel an alle.",
     broadcastCaptionError = "Du musst Text zum Senden angeben.",

@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     useCutscenes = "Use Cutscenes",
     cutsceneCommandDesc = "Play a cutscene for a target player.",

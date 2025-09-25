@@ -1,4 +1,4 @@
-lia.config.add("ChatMessagesInterval", "chatMessagesInterval", 300, nil, {
+﻿lia.config.add("ChatMessagesInterval", "chatMessagesInterval", 300, nil, {
     desc = "chatMessagesIntervalDesc",
     category = "chat",
     type = "Int",

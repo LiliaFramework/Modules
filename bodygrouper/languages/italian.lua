@@ -1,4 +1,4 @@
-NAME = "Italian"
+﻿NAME = "Italian"
 LANGUAGE = {
     bodygrouperModuleName = "Editor Bodygroup",
     bodygrouperModuleDesc = "Spawna un armadio bodygroup dove i giocatori possono modificare i bodygroup del loro modello. Gli admin possono ispezionare altri e configurare il modello dell'armadio.",

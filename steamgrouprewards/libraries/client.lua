@@ -1,5 +1,4 @@
-local MODULE = MODULE
-
+﻿local MODULE = MODULE
 lia.command.add("group", {
     desc = "Opens the Steam group page for joining",
     onRun = function() end

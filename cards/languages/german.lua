@@ -1,4 +1,4 @@
-NAME = "German"
+﻿NAME = "German"
 LANGUAGE = {
     cardDrawAction = "zieht",
     cardsCommandDesc = "Ziehe eine zufällige Karte aus deinem Deck.",

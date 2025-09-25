@@ -1,4 +1,4 @@
-MODULE.NetworkStrings = {"sgrMenuCheck"}
+﻿MODULE.NetworkStrings = {"sgrMenuCheck"}
 MODULE.name = "Steam Group Rewards"
 MODULE.versionID = "public_steamgrouprewards"
 MODULE.author = "Samael"

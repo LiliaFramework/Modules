@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     changeDescription = "Change Description",
     descriptions = "Descriptions",

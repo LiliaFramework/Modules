@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     identifiedCorpseMessage = "This corpse belonged to %s.",
     identifyCorpse = "Identify corpse",

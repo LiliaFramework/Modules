@@ -1,4 +1,4 @@
-NAME = "German"
+﻿NAME = "German"
 LANGUAGE = {
     chatMessagesInterval = "Chat Messages Interval",
     chatMessagesIntervalDesc = "Time interval (in seconds) between each automatic chat message.",

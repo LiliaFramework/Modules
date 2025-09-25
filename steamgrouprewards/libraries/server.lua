@@ -1,4 +1,4 @@
-local SteamGroupRewardList = SteamGroupRewardList or {}
+﻿local SteamGroupRewardList = SteamGroupRewardList or {}
 local MODULE = MODULE
 local function SteamGroup_SendClaim(ply)
     local char = ply:getChar()

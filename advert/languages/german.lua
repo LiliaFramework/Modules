@@ -1,4 +1,4 @@
-NAME = "German"
+﻿NAME = "German"
 LANGUAGE = {
     advertCommandDesc = "Sendet eine kostenpflichtige Werbung an alle Spieler, kostet Geld und aktiviert eine Abklingzeit.",
     AdvertDeductedMessage = "Du hast %s%s für deine Werbung bezahlt.",

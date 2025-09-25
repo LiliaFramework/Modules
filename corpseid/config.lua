@@ -1,4 +1,4 @@
-lia.config.add("IdentificationTime", "identificationTime", 5, nil, {
+﻿lia.config.add("IdentificationTime", "identificationTime", 5, nil, {
     desc = "identificationTimeDesc",
     category = "identification",
     type = "Int",

@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     subtractCharSlots = "Subtract CharSlots",
     addCharSlots = "Add CharSlots",

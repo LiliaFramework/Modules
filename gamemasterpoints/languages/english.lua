@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     manageGamemasterTeleportPoints = "Manage Gamemaster Teleport Points",
     gamemasterPoints = "Gamemaster Points",

@@ -1,4 +1,4 @@
-NAME = "Italian"
+﻿NAME = "Italian"
 LANGUAGE = {
     alcoholismModuleName = "Alcolismo",
     alcoholismModuleDesc = "Aggiunge alcol bevibile che aumenta il livello di intossicazione del giocatore. Un alto tasso alcolemico offusca la vista e rallenta il movimento fino a quando l'effetto svanisce.",

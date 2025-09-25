@@ -1,4 +1,4 @@
-lia.playerinteract.addInteraction("openDetDescLabel", {
+﻿lia.playerinteract.addInteraction("openDetDescLabel", {
     serverOnly = true,
     shouldShow = function(_, target) return IsValid(target) end,
     onRun = function(client, target)

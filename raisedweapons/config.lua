@@ -1,4 +1,4 @@
-lia.config.add("WeaponRaiseSpeed", "weaponRaiseSpeed", 1, nil, {
+﻿lia.config.add("WeaponRaiseSpeed", "weaponRaiseSpeed", 1, nil, {
     desc = "weaponRaiseSpeedDesc",
     category = "weapons",
     type = "Float",

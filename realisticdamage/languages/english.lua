@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     enableDeathSound = "Enable Death Sound",
     enableDeathSoundDesc = "Enable or disable death sounds globally.",

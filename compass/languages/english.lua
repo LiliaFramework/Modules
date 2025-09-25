@@ -1,4 +1,4 @@
-NAME = "English"
+﻿NAME = "English"
 LANGUAGE = {
     compassClientSettings = "Client Settings",
     compassEnabled = "Enabled",
