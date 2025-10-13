@@ -3,7 +3,7 @@ local function normalize(minVal, maxVal, val)
     return (val - minVal) / (maxVal - minVal)
 end
 
-function lia.utilities.SpeedTest(func, n)
+function lia.utilities.speedTest(func, n)
     local start = SysTime()
     for _ = 1, n do
         func()
@@ -11,7 +11,7 @@ function lia.utilities.SpeedTest(func, n)
     return (SysTime() - start) / n
 end
 
-function lia.utilities.DaysBetween(t1, t2)
+function lia.utilities.daysBetween(t1, t2)
     local y1, mo1, d1 = lia.utilities.ParseTime(t1)
     local y2, mo2, d2 = lia.utilities.ParseTime(t2)
     if not y1 or not y2 then return L("invalidDates") end
@@ -29,7 +29,7 @@ function lia.utilities.DaysBetween(t1, t2)
     return math.floor(os.difftime(ts2, ts1) / 86400)
 end
 
-function lia.utilities.LerpHSV(c1, c2, maxVal, curVal, minVal)
+function lia.utilities.lerpHSV(c1, c2, maxVal, curVal, minVal)
     c1 = c1 or Color(0, 255, 0)
     c2 = c2 or Color(255, 0, 0)
     minVal = minVal or 0
@@ -39,17 +39,17 @@ function lia.utilities.LerpHSV(c1, c2, maxVal, curVal, minVal)
     return HSVToColor(Lerp(t, h1, h2), Lerp(t, s1, s2), Lerp(t, v1, v2))
 end
 
-function lia.utilities.Darken(col, amt)
+function lia.utilities.darken(col, amt)
     local h, s, l = ColorToHSL(col)
     l = math.Clamp(l / 255 - amt, 0, 1)
     return HSLToColor(h, s, l)
 end
 
-function lia.utilities.LerpColor(f, from, to)
+function lia.utilities.lerpColor(f, from, to)
     return Color(Lerp(f, from.r, to.r), Lerp(f, from.g, to.g), Lerp(f, from.b, to.b), Lerp(f, from.a, to.a))
 end
 
-function lia.utilities.Blend(a, b, r)
+function lia.utilities.blend(a, b, r)
     r = math.Clamp(r, 0, 1)
     return Color(Lerp(r, a.r, b.r), Lerp(r, a.g, b.g), Lerp(r, a.b, b.b))
 end
@@ -58,22 +58,22 @@ function lia.utilities.rgb(r, g, b)
     return Color(r, g, b)
 end
 
-function lia.utilities.Rainbow(freq)
+function lia.utilities.rainbow(freq)
     return HSVToColor((CurTime() * freq) % 360, 1, 1)
 end
 
-function lia.utilities.ColorCycle(a, b, f)
+function lia.utilities.colorCycle(a, b, f)
     f = f or 1
     local d = Color(a.r - b.r, a.g - b.g, a.b - b.b)
     local t = CurTime()
     return Color(math.min(a.r, b.r) + math.abs(math.sin(t * f) * d.r), math.min(a.g, b.g) + math.abs(math.sin(t * f + 2) * d.g), math.min(a.b, b.b) + math.abs(math.sin(t * f + 4) * d.b))
 end
 
-function lia.utilities.ColorToHex(c)
+function lia.utilities.colorToHex(c)
     return "0x" .. bit.tohex(c.r, 2) .. bit.tohex(c.g, 2) .. bit.tohex(c.b, 2)
 end
 
-function lia.utilities.Lighten(col, amt)
+function lia.utilities.lighten(col, amt)
     local h, s, l = ColorToHSL(col)
     l = math.Clamp(l / 255 + amt, 0, 1)
     return HSLToColor(h, s, l)
@@ -84,7 +84,7 @@ function lia.utilities.toText(c)
     return (c.r or 255) .. "," .. (c.g or 255) .. "," .. (c.b or 255) .. "," .. (c.a or 255)
 end
 
-function lia.utilities.SecondsToDHMS(sec)
+function lia.utilities.secondsToDHMS(sec)
     local d = math.floor(sec / 86400)
     sec = sec % 86400
     local h = math.floor(sec / 3600)
@@ -93,16 +93,16 @@ function lia.utilities.SecondsToDHMS(sec)
     return d, h, m, sec % 60
 end
 
-function lia.utilities.HMSToSeconds(h, m, s)
+function lia.utilities.hMSToSeconds(h, m, s)
     return h * 3600 + m * 60 + s
 end
 
-function lia.utilities.FormatTimestamp(ts)
+function lia.utilities.formatTimestamp(ts)
     local t = os.date("*t", ts)
     return string.format("%02d:%02d:%02d - %02d/%02d/%04d", t.hour, t.min, t.sec, t.day, t.month, t.year)
 end
 
-function lia.utilities.WeekdayName(str)
+function lia.utilities.weekdayName(str)
     local h, m, s, d, mo, y = str:match("(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)")
     if not h then return L("invalidDate") end
     local ts = os.time({
@@ -116,7 +116,7 @@ function lia.utilities.WeekdayName(str)
     return os.date("%A", ts)
 end
 
-function lia.utilities.TimeUntil(str)
+function lia.utilities.timeUntil(str)
     local h, m, s, d, mo, y = str:match("(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)")
     if not h then return L("invalidTimeFormat") end
     h, m, s, d, mo, y = tonumber(h), tonumber(m), tonumber(s), tonumber(d), tonumber(mo), tonumber(y)
@@ -145,12 +145,12 @@ function lia.utilities.TimeUntil(str)
     return L("timeDifferenceFormat", ydiff, mdiff, ddiff, hdiff, mindiff, diff % 60)
 end
 
-function lia.utilities.CurrentLocalTime()
+function lia.utilities.currentLocalTime()
     local t = os.date("*t")
     return string.format("%02d:%02d:%02d - %02d/%02d/%04d", t.hour, t.min, t.sec, t.day, t.month, t.year)
 end
 
-function lia.utilities.TimeDifference(str)
+function lia.utilities.timeDifference(str)
     local h, m, s, d, mo, y = str:match("(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)")
     if not h then return end
     local target = os.time({
@@ -164,19 +164,19 @@ function lia.utilities.TimeDifference(str)
     return math.floor(os.difftime(target, os.time()) / 86400)
 end
 
-function lia.utilities.SerializeVector(v)
+function lia.utilities.serializeVector(v)
     return util.TableToJSON{v.x, v.y, v.z}
 end
 
-function lia.utilities.DeserializeVector(data)
+function lia.utilities.deserializeVector(data)
     return Vector(unpack(util.JSONToTable(data)))
 end
 
-function lia.utilities.SerializeAngle(a)
+function lia.utilities.serializeAngle(a)
     return util.TableToJSON{a.p, a.y, a.r}
 end
 
-function lia.utilities.DeserializeAngle(data)
+function lia.utilities.deserializeAngle(data)
     return Angle(unpack(util.JSONToTable(data)))
 end
 
