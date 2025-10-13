@@ -1,4 +1,4 @@
 ﻿local playerMeta = FindMetaTable("Player")
-function playerMeta:IsBeingSearched()
+function playerMeta:isBeingSearched()
     return self:getNetVar("searcher")
 end

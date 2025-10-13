@@ -1,5 +1,5 @@
 ﻿local playerMeta = FindMetaTable("Player")
-function playerMeta:StartHandcuffAnim()
+function playerMeta:startHandcuffAnim()
     if not self:LookupBone("ValveBiped.Bip01_L_UpperArm") then return end
     local bones = {
         ["ValveBiped.Bip01_L_UpperArm"] = Angle(20, 8.8, 0),
@@ -13,13 +13,13 @@ function playerMeta:StartHandcuffAnim()
     self:NetworkAnimation(true, bones)
 end
 
-function playerMeta:EndHandcuffAnim()
+function playerMeta:endHandcuffAnim()
     if not self:LookupBone("ValveBiped.Bip01_L_UpperArm") then return end
     self:NetworkAnimation(false, {})
 end
 
 function MODULE:KeyPress(client, key)
-    if client:IsHandcuffed() and key == IN_DUCK then
+    if client:isHandcuffed() and key == IN_DUCK then
         local bones = {
             ["ValveBiped.Bip01_L_UpperArm"] = Angle(29.4, 43, 0),
             ["ValveBiped.Bip01_L_Forearm"] = Angle(0.9, 85.7, 0),
@@ -34,7 +34,7 @@ function MODULE:KeyPress(client, key)
 end
 
 function MODULE:KeyRelease(client, key)
-    if client:IsHandcuffed() and key == IN_DUCK then
+    if client:isHandcuffed() and key == IN_DUCK then
         local bones = {
             ["ValveBiped.Bip01_L_UpperArm"] = Angle(20, 8.8, 0),
             ["ValveBiped.Bip01_L_Forearm"] = Angle(15, 0, 0),
