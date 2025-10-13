@@ -39,7 +39,7 @@ end
 local function DrawBlur()
     local client = LocalPlayer()
     hook.Run("HUDExtrasPreDrawBlur")
-    blurGoal = client:getLocalVar("blur", 0) + (hook.Run("AdjustBlurAmount", blurGoal) or 0)
+    blurGoal = client:getNetVar("blur", 0) + (hook.Run("AdjustBlurAmount", blurGoal) or 0)
     if blurValue ~= blurGoal then blurValue = mathApproach(blurValue, blurGoal, FrameTime() * 20) end
     if blurValue > 0 and not client:ShouldDrawLocalPlayer() then lia.util.drawBlurAt(0, 0, ScrW(), ScrH(), blurValue) end
     if blurValue > 0 then hook.Run("HUDExtrasPostDrawBlur", blurValue) end
