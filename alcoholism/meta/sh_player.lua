@@ -1,6 +1,6 @@
 ﻿local playerMeta = FindMetaTable("Player")
 if SERVER then
-    function playerMeta:ResetBAC()
+    function playerMeta:resetBAC()
         hook.Run("PreBACReset", self)
         self:setNetVar("lia_alcoholism_bac", 0)
         hook.Run("BACChanged", self, 0)
@@ -9,7 +9,7 @@ if SERVER then
         lia.log.add(self, "bacReset")
     end
 
-    function playerMeta:AddBAC(amt)
+    function playerMeta:addBAC(amt)
         if not amt or not isnumber(amt) then return end
         hook.Run("PreBACIncrease", self, amt)
         local oldBac = self:getNetVar("lia_alcoholism_bac", 0)
@@ -23,10 +23,10 @@ if SERVER then
     end
 end
 
-function playerMeta:IsDrunk()
-    return self:GetBAC() > lia.config.get("DrunkNotifyThreshold", 50)
+function playerMeta:isDrunk()
+    return self:getBAC() > lia.config.get("DrunkNotifyThreshold", 50)
 end
 
-function playerMeta:GetBAC()
+function playerMeta:getBAC()
     return self:getNetVar("lia_alcoholism_bac", 0)
 end
