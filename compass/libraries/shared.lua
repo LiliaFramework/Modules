@@ -507,7 +507,7 @@ else
                 table.remove(cl_mCompass_MarkerTable, k)
             else
                 local spotPos = v[1] and v[2]:GetPos() or v[2]
-                local d = ply:GetPos():Distance(spotPos)
+                local d = ply:GetPos():distance(spotPos)
                 local currentVar = 1 - d / (300 / 0.01905)
                 local markerScale = Lerp(currentVar, minMarkerSize, maxMarkerSize)
                 local font = markerScaleFunc(markerScale)

@@ -2,13 +2,13 @@
     local models = net.ReadTable()
     if not models or #models == 0 then return end
     local frame = vgui.Create("DFrame")
-    frame:SetScaledSize(700, 800)
+    frame:setScaledSize(700, 800)
     frame:Center()
     frame:SetTitle(L("wardrobeSelectTitle"))
     frame:MakePopup()
     local dropdown = vgui.Create("DComboBox", frame)
     dropdown:SetPos(100, 50)
-    dropdown:SetScaledSize(500, 50)
+    dropdown:setScaledSize(500, 50)
     dropdown:SetValue(L("wardrobeSelectPrompt"))
     for _, model in ipairs(models) do
         dropdown:AddChoice(model)
@@ -16,7 +16,7 @@
 
     local modelPanel = vgui.Create("DModelPanel", frame)
     modelPanel:SetPos(100, 120)
-    modelPanel:SetScaledSize(500, 500)
+    modelPanel:setScaledSize(500, 500)
     modelPanel.yawSpeed = 0
     modelPanel.LayoutEntity = function(self, ent)
         ent:SetAngles(ent:GetAngles() + Angle(0, self.yawSpeed * FrameTime(), 0))
@@ -58,7 +58,7 @@
     local confirmButton = vgui.Create("DButton", frame)
     confirmButton:SetText(L("wardrobeConfirmButton"))
     confirmButton:SetPos(100, 650)
-    confirmButton:SetScaledSize(500, 60)
+    confirmButton:setScaledSize(500, 60)
     confirmButton:SetColor(Color(255, 255, 255))
     confirmButton:SetFont("DermaDefaultBold")
     confirmButton:SetContentAlignment(5)

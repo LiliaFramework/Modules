@@ -10,12 +10,12 @@ function playerMeta:startHandcuffAnim()
         ["ValveBiped.Bip01_R_UpperArm"] = Angle(-20, 16.6, 0),
     }
 
-    self:NetworkAnimation(true, bones)
+    self:networkAnimation(true, bones)
 end
 
 function playerMeta:endHandcuffAnim()
     if not self:LookupBone("ValveBiped.Bip01_L_UpperArm") then return end
-    self:NetworkAnimation(false, {})
+    self:networkAnimation(false, {})
 end
 
 function MODULE:KeyPress(client, key)
@@ -29,7 +29,7 @@ function MODULE:KeyPress(client, key)
             ["ValveBiped.Bip01_R_UpperArm"] = Angle(-39.3, 85.4, -30.4),
         }
 
-        client:NetworkAnimation(true, bones)
+        client:networkAnimation(true, bones)
     end
 end
 
@@ -44,6 +44,6 @@ function MODULE:KeyRelease(client, key)
             ["ValveBiped.Bip01_R_UpperArm"] = Angle(-20, 16.6, 0),
         }
 
-        client:NetworkAnimation(true, bones)
+        client:networkAnimation(true, bones)
     end
 end

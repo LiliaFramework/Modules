@@ -5,7 +5,7 @@
             local client = dmgInfo:GetAttacker()
             local position = dmgInfo:GetDamagePosition()
             hook.Run("LockShotAttempt", client, entity, dmgInfo)
-            if client:GetEyeTrace().Entity ~= entity or client:GetPos():Distance(position) > 100 then return end
+            if client:GetEyeTrace().Entity ~= entity or client:GetPos():distance(position) > 100 then return end
             if IsValid(client) then
                 if hook.Run("CanPlayerBustLock", client, entity) == false then return end
                 local weapon = client:GetActiveWeapon()

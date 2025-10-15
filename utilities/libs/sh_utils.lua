@@ -381,7 +381,7 @@ if SERVER then
         hook.Run("UtilityPropSpawned", e, model, pos)
         e:SetCollisionGroup(col or COLLISION_GROUP_WEAPON)
         e:SetAngles(ang or angle_zero)
-        if type(pos) == "Player" then pos = pos:GetItemDropPos(e) end
+        if type(pos) == "Player" then pos = pos:getItemDropPos(e) end
         e:SetPos(pos)
         if force then
             local phys = e:GetPhysicsObject()

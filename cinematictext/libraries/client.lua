@@ -67,7 +67,7 @@ function PANEL:TriggerText()
     local textPanel = self:Add("DPanel")
     textPanel.Paint = function() end
     local panelWide, panelTall = 300, 300
-    textPanel:SetScaledSize(panelWide, panelTall)
+    textPanel:setScaledSize(panelWide, panelTall)
     if contents.text then
         textPanel.text = textPanel:Add("DLabel")
         textPanel.text:SetFont("CinematicSplashFont")
@@ -81,7 +81,7 @@ function PANEL:TriggerText()
         textPanel.text.textWide, textPanel.text.textTall = surface.GetTextSize(contents.text)
         panelWide = math.max(panelWide, textPanel.text.textWide)
         panelTall = panelTall + textPanel.text.textTall
-        textPanel:SetScaledSize(panelWide, panelTall)
+        textPanel:setScaledSize(panelWide, panelTall)
     end
 
     if contents.bigText then
@@ -97,7 +97,7 @@ function PANEL:TriggerText()
         textPanel.bigText.textWide, textPanel.bigText.textTall = surface.GetTextSize(contents.bigText)
         panelWide = math.max(panelWide, textPanel.bigText.textWide)
         panelTall = panelTall + textPanel.bigText.textTall
-        textPanel:SetScaledSize(panelWide, panelTall)
+        textPanel:setScaledSize(panelWide, panelTall)
     end
 
     if textPanel.text then textPanel.text:DockMargin(panelWide / 2 - textPanel.text.textWide / 2, 0, 0, 20) end

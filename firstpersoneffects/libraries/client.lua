@@ -13,7 +13,7 @@ function MODULE:CalcView(pl, pos, ang, fov)
     if not IsValid(LocalPlayer()) or IsValid(lia.gui.char) then return end
     if not LocalPlayer():getChar() then return end
     if lia.gui.character and IsValid(lia.gui.character) then return end
-    if pl:CanOverrideView() or pl:GetViewEntity() ~= pl then return end
+    if pl:canOverrideView() or pl:GetViewEntity() ~= pl then return end
     if not lia.option.get("FirstPersonEffects", true) then return end
     if hook.Run("ShouldUseFirstPersonEffects", pl) == false then return end
     hook.Run("PreFirstPersonEffects", pl)

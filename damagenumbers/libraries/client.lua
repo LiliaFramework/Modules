@@ -27,7 +27,7 @@ net.Receive("expDamageNumbers", function()
     local ply = LocalPlayer()
     if not IsValid(ent) or not IsValid(ply) then return end
     local col = Color(83, 167, 125)
-    local pos = ply:GetShootPos() + ply:GetAimVector() * (ent == ply and 10 or ply:GetShootPos():Distance(ent:GetPos())) + VectorRand(ent == ply and 0 or 5)
+    local pos = ply:GetShootPos() + ply:GetAimVector() * (ent == ply and 10 or ply:GetShootPos():distance(ent:GetPos())) + VectorRand(ent == ply and 0 or 5)
     if ent == ply then col = Color(255, 0, 0) end
     table.insert(damageNumbers, {
         time = CurTime() + lia.option.get("damageNumberTime", 2),

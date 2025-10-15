@@ -3,9 +3,9 @@
     if self:GetPos():DistToSqr(LocalPlayer():GetPos()) < 250000 then
         local pos = self:GetPos() + self:GetUp() * self.DisplayVector.z + self:GetRight() * self.DisplayVector.x + self:GetForward() * self.DisplayVector.y
         local ang = self:GetAngles()
-        ang:RotateAroundAxis(self:GetRight(), self.DisplayAngle.pitch)
-        ang:RotateAroundAxis(self:GetUp(), self.DisplayAngle.yaw)
-        ang:RotateAroundAxis(self:GetForward(), self.DisplayAngle.roll)
+        ang:rotateAroundAxis(self:GetRight(), self.DisplayAngle.pitch)
+        ang:rotateAroundAxis(self:GetUp(), self.DisplayAngle.yaw)
+        ang:rotateAroundAxis(self:GetForward(), self.DisplayAngle.roll)
         cam.Start3D2D(pos, ang, self.DisplayScale)
         self.Panel:PaintManual()
         self.MapHTML:PaintManual()

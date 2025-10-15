@@ -28,7 +28,7 @@
             if IsValid(matrix) then matrix:SetScale(vector_origin) end
         end
 
-        view.origin = head.Pos + head.Ang:Up()
+        view.origin = head.Pos + head.Ang:up()
         if lia.option.get("realisticViewUseFullBody") then
             view.angles = head.Ang
         else

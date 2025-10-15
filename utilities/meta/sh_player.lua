@@ -4,7 +4,7 @@ function playerMeta:squaredDistanceFromEnt(entity)
 end
 
 function playerMeta:distanceFromEnt(entity)
-    return self:GetPos():Distance(entity:GetPos())
+    return self:GetPos():distance(entity:GetPos())
 end
 
 function playerMeta:isMoving()

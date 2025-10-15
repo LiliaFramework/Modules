@@ -26,7 +26,7 @@ function ENT:Initialize()
         self:SetUseType(SIMPLE_USE)
     else
         self.Panel = vgui.Create("DPanel")
-        self.Panel:SetScaledSize(1920, 1080)
+        self.Panel:setScaledSize(1920, 1080)
         self.Panel:SetPaintedManually(true)
         function self.Panel:Paint()
         end
