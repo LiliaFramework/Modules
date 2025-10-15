@@ -76,7 +76,7 @@ concommand.Add("lia_givecharacters", function(ply, _, args)
         return
     end
 
-    target:GiveAdditionalCharSlots(count)
+    target:giveAdditionalCharSlots(count)
     print(L("gaveCharSlots", count, target:Nick()))
 end)
 

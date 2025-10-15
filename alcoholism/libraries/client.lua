@@ -3,7 +3,7 @@
 end
 
 function MODULE:DrawCharInfo(client, _, info)
-    if client:IsDrunk() then info[#info + 1] = {L("intoxicatedStatus"), Color(245, 215, 110)} end
+    if client:isDrunk() then info[#info + 1] = {L("intoxicatedStatus"), Color(245, 215, 110)} end
 end
 
 function MODULE:LoadCharInformation()

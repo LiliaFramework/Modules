@@ -18,7 +18,7 @@ ITEM.functions.use = {
             return false
         end
 
-        if target:IsHandcuffed() then
+        if target:isHandcuffed() then
             client:notifyLocalized("alreadyCuffed")
             return false
         end
@@ -27,7 +27,7 @@ ITEM.functions.use = {
         client:setAction("@tying", 3, function()
             local ete = client:getTracedEntity()
             if IsValid(ete) and ete == target then
-                HandcuffPlayer(target)
+                handcuffPlayer(target)
                 lia.log.add(client, "tie", target)
                 item:remove()
             end

@@ -11,7 +11,7 @@ ITEM.functions.use = {
     icon = "icon16/add.png",
     onRun = function(item)
         local client = item.player
-        client:AddBAC(item.abv)
+        client:addBAC(item.abv)
         hook.Run("AlcoholConsumed", client, item)
         client:EmitSound("vo/npc/male01/drink01.wav", 75, 100)
         return true

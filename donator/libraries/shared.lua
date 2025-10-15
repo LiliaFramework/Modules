@@ -13,6 +13,6 @@ function MODULE:GetMaxPlayerChar(client)
     local maxChars = lia.config.get("MaxCharacters") or 0
     local overrideChars = getOverrideChars(client) or maxChars
     local rankChars = getRankChars(client) or maxChars
-    local additional = client:GetAdditionalCharSlots() or 0
+    local additional = client:getAdditionalCharSlots() or 0
     return math.max(maxChars, overrideChars, rankChars) + additional
 end

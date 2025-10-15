@@ -59,11 +59,11 @@ function MODULE:BACChanged(client, newBac)
 end
 
 function MODULE:PlayerLoadedChar(client)
-    client:ResetBAC()
+    client:resetBAC()
 end
 
 function MODULE:PostPlayerLoadout(client)
-    client:ResetBAC()
+    client:resetBAC()
 end
 
 lia.log.addType("bacIncrease", function(client, amt, newBac) return L("bacIncreaseLog", client:Name(), amt, newBac) end, "Gameplay")
