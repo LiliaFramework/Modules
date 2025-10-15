@@ -2,7 +2,7 @@
 MODULE.versionID = "public_broadcasts"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.0
+MODULE.version = 1.1
 MODULE.desc = "Allows staff to broadcast messages to chosen factions or classes. Every broadcast is logged and controlled through CAMI privileges."
 MODULE.Privileges = {
     {
