@@ -3,7 +3,7 @@
 end
 
 function MODULE:CanDeleteChar(client)
-    if client:isHandcuffed() then return true end
+    if client:isHandcuffed() then return false end
 end
 
 function MODULE:PlayerSwitchWeapon(client)
