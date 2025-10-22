@@ -335,6 +335,10 @@ jobs:
         run: |
           echo "Download completed. Checking if built-docs exists:"
           ls -la built-docs/ || echo "built-docs directory does not exist after download"
+          echo "Checking docs directory contents:"
+          ls -la built-docs/docs/ || echo "built-docs/docs directory does not exist"
+          echo "Checking if documentation directory exists:"
+          ls -la built-docs/documentation/ || echo "built-docs/documentation directory does not exist"
       - name: debug-artifact-contents
         run: |
           echo "Contents of built-docs directory:"
