@@ -382,9 +382,13 @@ jobs:
           
           # Check what's actually in the artifact
           echo "Built-docs contents:"
-          find built-docs -type f -name "*.md" -o -name "*.json" | head -10
+          find built-docs -type f \( -name "*.md" -o -name "*.json" \) | sed -n '1,10p' || true
           
           # Copy documentation if it exists
+          echo "Checking directory structure..."
+          echo "built-docs/documentation exists: $([ -d "built-docs/documentation" ] && echo "YES" || echo "NO")"
+          echo "built-docs/docs exists: $([ -d "built-docs/docs" ] && echo "YES" || echo "NO")"
+          
           if [ -d "built-docs/documentation" ]; then
             echo "Copying from built-docs/documentation/"
             rsync -a built-docs/documentation/ documentation/
@@ -395,6 +399,9 @@ jobs:
             echo "Copying from built-docs/"
             rsync -a built-docs/ documentation/
           fi
+          
+          echo "Copy completed. Documentation directory contents:"
+          ls -la documentation/ || echo "Documentation directory does not exist"
           
           # Also copy modules.json if it exists
           if [ -f "built-docs/modules.json" ]; then
