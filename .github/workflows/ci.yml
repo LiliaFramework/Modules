@@ -224,10 +224,30 @@ jobs:
             fi
           done
           shopt -u nullglob
+      - name: prepare-artifact-for-upload
+        run: |
+          echo "Current directory contents:"
+          ls -la
+          echo "Documentation directory contents:"
+          ls -la documentation/ || echo "Documentation directory does not exist"
+          echo "Creating artifact copy..."
+          cp -r documentation built-docs-artifact
+          echo "Artifact copy created:"
+          ls -la built-docs-artifact/
+      - name: verify-artifact-before-upload
+        run: |
+          echo "Verifying artifact before upload:"
+          ls -la built-docs-artifact/
+          echo "File count in artifact:"
+          find built-docs-artifact -type f | wc -l
       - uses: actions/upload-artifact@v4
         with:
           name: built-docs
-          path: documentation
+          path: built-docs-artifact
+      - name: verify-artifact-upload
+        run: |
+          echo "Artifact upload completed successfully"
+          echo "Artifact path was: built-docs-artifact"
       - name: clean-obsolete-docs
         run: |
           rm -rf documentation/docs/hooks/modules
@@ -247,10 +267,19 @@ jobs:
     needs: gh-pages
     runs-on: ubuntu-latest
     steps:
+      - name: debug-before-download
+        run: |
+          echo "About to download built-docs artifact"
+          echo "Current directory contents:"
+          ls -la
       - uses: actions/download-artifact@v4
         with:
           name: built-docs
           path: built-docs
+      - name: debug-after-download
+        run: |
+          echo "Download completed. Checking if built-docs exists:"
+          ls -la built-docs/ || echo "built-docs directory does not exist after download"
       - name: debug-artifact-contents
         run: |
           echo "Contents of built-docs directory:"
