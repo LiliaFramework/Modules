@@ -253,40 +253,36 @@ jobs:
           path: built-docs
       - uses: actions/checkout@v3
         with:
-          repository: LiliaFramework/Lilia
-          token: ${{ secrets.LiliaGitSecret }}
-          path: lilia
           fetch-depth: 0
-      - name: delete-old-modules
+      - name: create-module-markdown-branch
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf lilia/documentation/docs/modules
+          git config user.email "githubactions@github.com"
+          git config user.name "GitHub Actions"
+          git checkout -b "Module Markdown" || git checkout "Module Markdown"
       - name: copy-built-docs
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p lilia/documentation
+          mkdir -p documentation
           if [ -d built-docs/documentation ]; then
-            rsync -a built-docs/documentation/ lilia/documentation/
+            rsync -a built-docs/documentation/ documentation/
           else
-            rsync -a built-docs/ lilia/documentation/
+            rsync -a built-docs/ documentation/
           fi
-          mkdir -p lilia/documentation/docs/versioning
-          if [ -f lilia/documentation/modules.json ]; then
-            mv lilia/documentation/modules.json lilia/documentation/docs/versioning/modules.json
+          mkdir -p documentation/docs/versioning
+          if [ -f documentation/modules.json ]; then
+            mv documentation/modules.json documentation/docs/versioning/modules.json
           fi
       - name: commit-push-docs
         shell: bash
         run: |
           set -euo pipefail
-          cd lilia
-          git config user.email "githubactions@github.com"
-          git config user.name "GitHub Actions"
           git add -A .
           if git diff --cached --quiet; then
             echo "No documentation changes to commit"
           else
             git commit -m "Updated Some Public Modules"
-            git push https://x-access-token:${{ secrets.LiliaGitSecret }}@github.com/LiliaFramework/Lilia.git HEAD:main
+            git push origin "Module Markdown"
           fi
