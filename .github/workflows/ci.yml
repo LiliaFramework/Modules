@@ -251,6 +251,12 @@ jobs:
         with:
           name: built-docs
           path: built-docs
+      - name: debug-artifact-contents
+        run: |
+          echo "Contents of built-docs directory:"
+          ls -la built-docs/ || echo "built-docs directory does not exist"
+          echo "Contents of built-docs/documentation directory:"
+          ls -la built-docs/documentation/ || echo "built-docs/documentation directory does not exist"
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -273,11 +279,29 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p documentation
-          if [ -d built-docs/documentation ]; then
+          
+          # Check if built-docs exists and has content
+          if [ ! -d "built-docs" ]; then
+            echo "Error: built-docs directory does not exist"
+            exit 1
+          fi
+          
+          # Check what's actually in the artifact
+          echo "Built-docs contents:"
+          find built-docs -type f -name "*.md" -o -name "*.json" | head -10
+          
+          # Copy documentation if it exists
+          if [ -d "built-docs/documentation" ]; then
+            echo "Copying from built-docs/documentation/"
             rsync -a built-docs/documentation/ documentation/
+          elif [ -d "built-docs/docs" ]; then
+            echo "Copying from built-docs/docs/"
+            rsync -a built-docs/docs/ documentation/
           else
+            echo "Copying from built-docs/"
             rsync -a built-docs/ documentation/
           fi
+          
           mkdir -p documentation/docs/versioning
           if [ -f documentation/modules.json ]; then
             mv documentation/modules.json documentation/docs/versioning/modules.json
