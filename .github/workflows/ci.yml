@@ -224,14 +224,14 @@ jobs:
             fi
           done
           shopt -u nullglob
-      - name: clean-obsolete-docs
-        run: |
-          rm -rf documentation/docs/hooks/modules
-          rm -rf documentation/docs/libraries/modules
       - uses: actions/upload-artifact@v4
         with:
           name: built-docs
           path: documentation
+      - name: clean-obsolete-docs
+        run: |
+          rm -rf documentation/docs/hooks/modules
+          rm -rf documentation/docs/libraries/modules
       - name: remove-docs-before-publish
         run: rm -rf documentation/docs
       - name: remove-modules-json-before-publish
