@@ -260,7 +260,14 @@ jobs:
           set -euo pipefail
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          git checkout -b "Module Markdown" || git checkout "Module Markdown"
+          # Check if branch exists locally
+          if git show-ref --verify --quiet refs/heads/module-markdown; then
+            echo "Branch module-markdown exists locally, checking it out"
+            git checkout module-markdown
+          else
+            echo "Branch module-markdown does not exist locally, creating it"
+            git checkout -b module-markdown
+          fi
       - name: copy-built-docs
         shell: bash
         run: |
@@ -284,5 +291,5 @@ jobs:
             echo "No documentation changes to commit"
           else
             git commit -m "Updated Some Public Modules"
-            git push origin "Module Markdown"
+            git push origin "module-markdown"
           fi
