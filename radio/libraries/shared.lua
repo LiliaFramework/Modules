@@ -9,10 +9,8 @@ end
 
 lia.chat.register("radio", {
     format = "%s says in radio: \"%s\"",
-    font = lia.config.get("RadioFont", "Lucida Console"),
     onGetColor = function()
-        local colorConfig = lia.config.get("RadioChatColor")
-        return Color(colorConfig.r, colorConfig.g, colorConfig.b)
+        return Color(100, 255, 50)
     end,
     onCanHear = function(speaker, listener)
         if hook.Run("CanHearRadio", listener, speaker, CURFREQ, CURCHANNEL) == false then return false end
