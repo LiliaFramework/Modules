@@ -390,6 +390,12 @@ jobs:
             rsync -a built-docs/ documentation/
           fi
           
+          # Also copy modules.json if it exists
+          if [ -f "built-docs/modules.json" ]; then
+            echo "Copying modules.json"
+            cp built-docs/modules.json documentation/
+          fi
+          
           mkdir -p documentation/docs/versioning
           if [ -f documentation/modules.json ]; then
             mv documentation/modules.json documentation/docs/versioning/modules.json
