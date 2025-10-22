@@ -322,6 +322,15 @@ jobs:
           echo "Current working directory: $(pwd)"
           echo "Directory contents:"
           ls -la
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: debug-after-checkout
+        run: |
+          echo "=== AFTER CHECKOUT ==="
+          echo "Current working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
       - name: debug-before-download
         run: |
           echo "About to download built-docs artifact"
@@ -345,9 +354,6 @@ jobs:
           ls -la built-docs/ || echo "built-docs directory does not exist"
           echo "Contents of built-docs/documentation directory:"
           ls -la built-docs/documentation/ || echo "built-docs/documentation directory does not exist"
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: create-module-markdown-branch
         shell: bash
         run: |
