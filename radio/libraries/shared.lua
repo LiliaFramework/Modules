@@ -8,7 +8,7 @@ local function EndChatter(listener)
 end
 
 lia.chat.register("radio", {
-    format = "%s says on radio: \"%s\"",
+    format = "radioFormat",
     onCanHear = function(speaker, listener)
         if hook.Run("CanHearRadio", listener, speaker, CURFREQ, CURCHANNEL) == false then return false end
         local dist = speaker:GetPos():distance(listener:GetPos())

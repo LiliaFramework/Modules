@@ -12,6 +12,7 @@ LANGUAGE = {
     radioDescFormat = "A handheld radio that is %s at %s MHz.",
     radioFrequencyTitle = "Select Frequency",
     radioNoRadioComm = "You need a radio to use this channel.",
+    radioFormat = "%s says in radio: \"%s\"",
     radioNotOwned = "This radio isn't yours.",
     radioTurnOff = "Turn Off",
     radioTurnOn = "Turn On",
