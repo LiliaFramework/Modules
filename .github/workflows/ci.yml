@@ -128,24 +128,58 @@ jobs:
         with:
           name: modules-json
           path: modules.json
+      - name: debug-scrape-modules-complete
+        run: |
+          echo "=== SCRAPE-MODULES JOB COMPLETED ==="
+          echo "Artifacts uploaded:"
+          echo "- module-zips: $(ls -la *.zip | wc -l) zip files"
+          echo "- modules-json: modules.json"
+          echo "Job completed successfully"
 
   gh-pages:
     needs: scrape-modules
     runs-on: ubuntu-latest
     steps:
+      - name: debug-gh-pages-start
+        run: |
+          echo "=== GH-PAGES JOB STARTED ==="
+          echo "Current working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: debug-after-checkout
+        run: |
+          echo "=== AFTER CHECKOUT ==="
+          echo "Current working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
       - name: create-docs-dir
         run: mkdir -p documentation
+      - name: debug-after-create-docs
+        run: |
+          echo "=== AFTER CREATE DOCS DIR ==="
+          echo "Documentation directory created:"
+          ls -la documentation/
       - uses: actions/download-artifact@v4
         with:
           name: module-zips
           path: documentation
+      - name: debug-after-download-zips
+        run: |
+          echo "=== AFTER DOWNLOAD ZIPS ==="
+          echo "Documentation directory contents:"
+          ls -la documentation/
       - uses: actions/download-artifact@v4
         with:
           name: modules-json
           path: documentation
+      - name: debug-after-download-json
+        run: |
+          echo "=== AFTER DOWNLOAD JSON ==="
+          echo "Documentation directory contents:"
+          ls -la documentation/
       - name: unzip-modules
         shell: bash
         run: |
@@ -153,6 +187,13 @@ jobs:
             f=$(basename "$z" .zip)
             unzip "$z" -d "extracted_${f}"
           done
+      - name: debug-after-unzip
+        run: |
+          echo "=== AFTER UNZIP ==="
+          echo "Current directory contents:"
+          ls -la
+          echo "Extracted directories:"
+          ls -la extracted_* || echo "No extracted directories found"
       - name: gather-module-docs
         shell: bash
         run: |
@@ -224,6 +265,13 @@ jobs:
             fi
           done
           shopt -u nullglob
+      - name: debug-after-gather-docs
+        run: |
+          echo "=== AFTER GATHER MODULE DOCS ==="
+          echo "Documentation directory structure:"
+          find documentation -type f -name "*.md" | head -10
+          echo "Documentation directory contents:"
+          ls -la documentation/
       - name: prepare-artifact-for-upload
         run: |
           echo "Current directory contents:"
@@ -267,6 +315,13 @@ jobs:
     needs: gh-pages
     runs-on: ubuntu-latest
     steps:
+      - name: debug-upload-docs-start
+        run: |
+          echo "=== UPLOAD-DOCS JOB STARTED ==="
+          echo "This job depends on gh-pages job"
+          echo "Current working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
       - name: debug-before-download
         run: |
           echo "About to download built-docs artifact"
