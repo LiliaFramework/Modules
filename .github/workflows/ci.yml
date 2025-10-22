@@ -435,5 +435,6 @@ jobs:
           else
             echo "Committing documentation changes..."
             git commit -m "Updated Some Public Modules"
-            git push origin "module-markdown"
+            echo "Force pushing to module-markdown branch..."
+            git push --force origin "module-markdown"
           fi
