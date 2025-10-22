@@ -360,13 +360,19 @@ jobs:
           set -euo pipefail
           git config user.email "githubactions@github.com"
           git config user.name "GitHub Actions"
-          # Check if branch exists locally
+          
+          # Create or switch to module-markdown branch
           if git show-ref --verify --quiet refs/heads/module-markdown; then
             echo "Branch module-markdown exists locally, checking it out"
             git checkout module-markdown
+            # Remove all existing files to start clean
+            git rm -rf . || true
+            git clean -fd || true
           else
             echo "Branch module-markdown does not exist locally, creating it"
-            git checkout -b module-markdown
+            git checkout --orphan module-markdown
+            # Remove all files from the orphan branch
+            git rm -rf . || true
           fi
       - name: copy-built-docs
         shell: bash
@@ -417,10 +423,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add -A .
+          echo "Current directory contents before commit:"
+          ls -la
+          echo "Documentation directory contents:"
+          ls -la documentation/ || echo "Documentation directory does not exist"
+          
+          # Only add the documentation directory
+          git add documentation/
           if git diff --cached --quiet; then
             echo "No documentation changes to commit"
           else
+            echo "Committing documentation changes..."
             git commit -m "Updated Some Public Modules"
             git push origin "module-markdown"
           fi
