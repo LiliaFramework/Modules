@@ -97,6 +97,12 @@ jobs:
             raww=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/^[^=]+=\s*//' || true)
             feat=$(parse_list "$rawf")
             work=$(parse_list "$raww")
+            # Calculate folder name from module name (same logic as in gather-module-docs)
+            if [ -n "$name" ]; then
+              folder=$(echo "$name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g' | sed -E 's/^_+|_+$//g')
+            else
+              folder="$dir"
+            fi
             jq --arg name "$name" \
                --arg versionID "$uniqueid" \
                --arg author "$author" \
@@ -104,7 +110,7 @@ jobs:
                --arg desc "$desc" \
                --arg version "$version" \
                --arg download "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/${dir}.zip" \
-               --arg source "https://liliaframework.github.io/Modules/${dir}.html" \
+               --arg source "https://liliaframework.github.io/modules/${folder}/about/" \
                --argjson features "$feat" \
                --argjson workshop "$work" \
                '. += [{name:$name,versionID:$versionID,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
