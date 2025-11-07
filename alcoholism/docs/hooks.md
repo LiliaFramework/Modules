@@ -1,4 +1,4 @@
-# Alcoholism Module Hooks
+# Hooks
 
 Hooks provided by the Alcoholism module for managing blood alcohol content (BAC) and alcohol consumption effects.
 

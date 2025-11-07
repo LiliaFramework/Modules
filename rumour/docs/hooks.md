@@ -1,4 +1,4 @@
-# Rumour Module Hooks
+# Hooks
 
 Hooks provided by the Rumour module for managing rumour spreading mechanics.
 

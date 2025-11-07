@@ -1,4 +1,4 @@
-# Simple Lockpicking Module Hooks
+# Hooks
 
 Hooks provided by the Simple Lockpicking module for managing lockpicking mechanics.
 

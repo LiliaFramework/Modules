@@ -1,4 +1,4 @@
-# Chat Messages Module Hooks
+# Hooks
 
 Hooks provided by the Chat Messages module for automated chat message display.
 

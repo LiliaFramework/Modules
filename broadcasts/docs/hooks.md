@@ -1,4 +1,4 @@
-# Broadcasts Module Hooks
+# Hooks
 
 Hooks provided by the Broadcasts module for managing class and faction broadcast messages.
 

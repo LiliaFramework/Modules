@@ -1,4 +1,4 @@
-# Model Pay Module Hooks
+# Hooks
 
 Hooks provided by the Model Pay module for managing salary payments based on player models.
 

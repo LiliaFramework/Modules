@@ -1,4 +1,4 @@
-# NPC Spawner Module Hooks
+# Hooks
 
 Hooks provided by the NPC Spawner module for managing NPC spawning and zones.
 

@@ -1,4 +1,4 @@
-# Raised Weapons Module Hooks
+# Hooks
 
 Hooks provided by the Raised Weapons module for managing weapon raising and lowering mechanics.
 

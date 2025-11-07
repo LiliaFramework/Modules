@@ -1,4 +1,4 @@
-# Cards Module Hooks
+# Hooks
 
 Hooks provided by the Cards module for card drawing functionality.
 

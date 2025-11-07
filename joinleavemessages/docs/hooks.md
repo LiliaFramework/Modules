@@ -1,4 +1,4 @@
-# Join Leave Messages Module Hooks
+# Hooks
 
 Hooks provided by the Join Leave Messages module for managing player join/leave notifications.
 

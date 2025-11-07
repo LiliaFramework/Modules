@@ -1,4 +1,4 @@
-# VManip Module Hooks
+# Hooks
 
 Hooks provided by the VManip module for managing viewmodel manipulation animations.
 

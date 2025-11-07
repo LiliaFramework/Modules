@@ -1,4 +1,4 @@
-# Climb Module Hooks
+# Hooks
 
 Hooks provided by the Climb module for player climbing mechanics.
 

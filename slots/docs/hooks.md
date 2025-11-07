@@ -1,4 +1,4 @@
-# Slots Module Hooks
+# Hooks
 
 Hooks provided by the Slots module for managing slot machine gameplay.
 

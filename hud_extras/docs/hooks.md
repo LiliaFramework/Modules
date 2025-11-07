@@ -1,4 +1,4 @@
-# HUD Extras Module Hooks
+# Hooks
 
 Hooks provided by the HUD Extras module for managing additional HUD elements.
 

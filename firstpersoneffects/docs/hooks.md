@@ -1,4 +1,4 @@
-# First Person Effects Module Hooks
+# Hooks
 
 Hooks provided by the First Person Effects module for managing camera view effects.
 

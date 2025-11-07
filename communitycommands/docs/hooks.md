@@ -1,4 +1,4 @@
-# Community Commands Module Hooks
+# Hooks
 
 Hooks provided by the Community Commands module for managing community URL commands.
 

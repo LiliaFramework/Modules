@@ -1,4 +1,4 @@
-# Flashlight Module Hooks
+# Hooks
 
 Hooks provided by the Flashlight module for managing flashlight functionality.
 

@@ -1,4 +1,4 @@
-# Slow Weapons Module Hooks
+# Hooks
 
 Hooks provided by the Slow Weapons module for managing weapon movement speed reduction.
 

@@ -1,4 +1,4 @@
-# Loyalism Module Hooks
+# Hooks
 
 Hooks provided by the Loyalism module for managing party tier system.
 

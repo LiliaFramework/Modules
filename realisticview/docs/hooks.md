@@ -1,4 +1,4 @@
-# Realistic View Module Hooks
+# Hooks
 
 Hooks provided by the Realistic View module for managing realistic first-person view.
 

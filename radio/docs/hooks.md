@@ -1,4 +1,4 @@
-# Radio Module Hooks
+# Hooks
 
 Hooks provided by the Radio module for managing radio communication.
 

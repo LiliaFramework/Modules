@@ -1,4 +1,4 @@
-# Cutscenes Module Hooks
+# Hooks
 
 Hooks provided by the Cutscenes module for managing cutscene playback and display.
 

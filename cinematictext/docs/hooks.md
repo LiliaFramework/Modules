@@ -1,4 +1,4 @@
-# Cinematic Text Module Hooks
+# Hooks
 
 Hooks provided by the Cinematic Text module for displaying cinematic splash text and effects.
 

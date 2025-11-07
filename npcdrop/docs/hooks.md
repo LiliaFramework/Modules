@@ -1,4 +1,4 @@
-# NPC Drop Module Hooks
+# Hooks
 
 Hooks provided by the NPC Drop module for managing item drops from NPCs.
 

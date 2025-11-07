@@ -1,4 +1,4 @@
-# Load Messages Module Hooks
+# Hooks
 
 Hooks provided by the Load Messages module for managing character load messages.
 

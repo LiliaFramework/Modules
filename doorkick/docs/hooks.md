@@ -1,4 +1,4 @@
-# Door Kick Module Hooks
+# Hooks
 
 Hooks provided by the Door Kick module for managing door kicking mechanics.
 

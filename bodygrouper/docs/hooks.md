@@ -1,4 +1,4 @@
-# Bodygrouper Module Hooks
+# Hooks
 
 Hooks provided by the Bodygrouper module for managing player bodygroups and skins.
 

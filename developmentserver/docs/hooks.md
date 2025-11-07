@@ -1,4 +1,4 @@
-# Development Server Module Hooks
+# Hooks
 
 Hooks provided by the Development Server module for managing development server access.
 

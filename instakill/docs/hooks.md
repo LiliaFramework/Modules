@@ -1,4 +1,4 @@
-# Instakill Module Hooks
+# Hooks
 
 Hooks provided by the Instakill module for managing instant kill mechanics on headshots.
 

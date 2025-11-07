@@ -1,4 +1,4 @@
-# View Bob Module Hooks
+# Hooks
 
 Hooks provided by the View Bob module for managing view bobbing effects.
 

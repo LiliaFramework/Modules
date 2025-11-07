@@ -1,4 +1,4 @@
-# Word Filter Module Hooks
+# Hooks
 
 Hooks provided by the Word Filter module for managing word filtering in chat.
 

@@ -1,4 +1,4 @@
-# Map Cleaner Module Hooks
+# Hooks
 
 Hooks provided by the Map Cleaner module for managing automatic map and item cleanup.
 

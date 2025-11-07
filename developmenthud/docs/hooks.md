@@ -1,4 +1,4 @@
-# Development HUD Module Hooks
+# Hooks
 
 Hooks provided by the Development HUD module for customizing development information display.
 

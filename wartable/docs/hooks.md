@@ -1,4 +1,4 @@
-# War Table Module Hooks
+# Hooks
 
 Hooks provided by the War Table module for managing strategic war table functionality.
 

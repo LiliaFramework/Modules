@@ -1,4 +1,4 @@
-# Donator Module Hooks
+# Hooks
 
 Hooks provided by the Donator module for managing donator benefits and rewards.
 

@@ -1,4 +1,4 @@
-# Perma Remove Module Hooks
+# Hooks
 
 Hooks provided by the Perma Remove module for managing permanent entity removal.
 

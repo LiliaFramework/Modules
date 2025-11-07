@@ -1,4 +1,4 @@
-# Extended Descriptions Module Hooks
+# Hooks
 
 Hooks provided by the Extended Descriptions module for managing detailed character descriptions.
 

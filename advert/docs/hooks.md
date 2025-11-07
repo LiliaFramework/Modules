@@ -1,4 +1,4 @@
-# Advertisements Module Hooks
+# Hooks
 
 Hooks provided by the Advertisements module for server-wide announcements.
 

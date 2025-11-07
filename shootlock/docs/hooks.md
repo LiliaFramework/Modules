@@ -1,4 +1,4 @@
-# Shoot Lock Module Hooks
+# Hooks
 
 Hooks provided by the Shoot Lock module for managing lock breaking via shooting.
 

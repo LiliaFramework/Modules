@@ -1,4 +1,4 @@
-# Gamemaster Points Module Hooks
+# Hooks
 
 Hooks provided by the Gamemaster Points module for managing teleport points.
 

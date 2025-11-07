@@ -1,4 +1,4 @@
-# Damage Numbers Module Hooks
+# Hooks
 
 Hooks provided by the Damage Numbers module for managing floating damage number displays.
 

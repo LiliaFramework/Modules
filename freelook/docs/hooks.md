@@ -1,4 +1,4 @@
-# Freelook Module Hooks
+# Hooks
 
 Hooks provided by the Freelook module for managing free camera movement.
 

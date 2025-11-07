@@ -1,4 +1,4 @@
-# Cursor Module Hooks
+# Hooks
 
 Hooks provided by the Cursor module for custom cursor rendering and interaction.
 

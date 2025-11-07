@@ -1,4 +1,4 @@
-# Enhanced Death Module Hooks
+# Hooks
 
 Hooks provided by the Enhanced Death module for managing hospital respawns and death penalties.
 

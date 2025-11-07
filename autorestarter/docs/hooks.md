@@ -1,4 +1,4 @@
-# Auto Restarter Module Hooks
+# Hooks
 
 Hooks provided by the Auto Restarter module for managing automatic server restarts.
 
