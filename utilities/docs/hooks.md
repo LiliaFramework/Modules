@@ -1,4 +1,4 @@
-# Utilities Module Hooks
+# Hooks
 
 Hooks provided by the Utilities module for managing utility functions and entity spawning.
 
