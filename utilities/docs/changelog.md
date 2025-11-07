@@ -1,5 +1,10 @@
 # Changelog
 
+### Version 1.4
+
+- Added comprehensive hooks documentation
+- Added libraries documentation
+
 ### Version 1.2
 
 - **Changed**: Updated function naming convention from PascalCase to camelCase for consistency:

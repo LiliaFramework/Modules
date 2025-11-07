@@ -1,4 +1,8 @@
 # Changelog
+### Version 1.3
+
+- Added comprehensive hooks documentation
+
 
 ### Version 1.2
 

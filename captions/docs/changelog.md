@@ -1,4 +1,9 @@
-﻿# Changelog
+# Changelog
+
+### Version 1.3
+
+- Added comprehensive hooks documentation
+- Added libraries documentation
 
 ### Version 1.1
 

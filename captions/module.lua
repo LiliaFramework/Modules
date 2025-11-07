@@ -1,7 +1,7 @@
-﻿MODULE.name = "Captions"
+MODULE.name = "Captions"
 MODULE.versionID = "public_captions"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.1
+MODULE.version = 1.3
 MODULE.desc = "Offers an API for timed on-screen captions suited for tutorials or story events. Captions can be triggered from the server or client and last for a chosen duration."
 MODULE.NetworkStrings = {"EndCaption", "StartCaption"}

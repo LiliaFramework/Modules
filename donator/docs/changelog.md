@@ -1,11 +1,15 @@
-﻿# Changelog
+# Changelog
+### Version 1.3
+
+- Added comprehensive hooks documentation
+
 
 ### Version 1.2
 
 - **Changed**: Updated function naming convention from PascalCase to camelCase for consistency:
-  - `GetAdditionalCharSlots()` → `getAdditionalCharSlots()`
-  - `SetAdditionalCharSlots()` → `setAdditionalCharSlots()`
-  - `GiveAdditionalCharSlots()` → `giveAdditionalCharSlots()`
+  - `GetAdditionalCharSlots()` ? `getAdditionalCharSlots()`
+  - `SetAdditionalCharSlots()` ? `setAdditionalCharSlots()`
+  - `GiveAdditionalCharSlots()` ? `giveAdditionalCharSlots()`
 
 ### Version 1.1
 
