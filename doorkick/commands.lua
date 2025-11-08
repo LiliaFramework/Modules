@@ -18,7 +18,7 @@ lia.command.add("doorkick", {
 
         if client.isKickingDoor then return end
         if IsValid(ent) and ent:isDoor() then
-            local dist = ent:GetPos():distance(client:GetPos())
+            local dist = ent:GetPos():Distance(client:GetPos())
             if dist > 60 and dist < 80 then
                 if not ent:getNetVar("faction") or ent:getNetVar("faction") ~= FACTION_STAFF then
                     client:Freeze(true)

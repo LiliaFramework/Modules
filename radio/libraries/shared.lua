@@ -11,7 +11,7 @@ lia.chat.register("radio", {
     format = "radioFormat",
     onCanHear = function(speaker, listener)
         if hook.Run("CanHearRadio", listener, speaker, CURFREQ, CURCHANNEL) == false then return false end
-        local dist = speaker:GetPos():distance(listener:GetPos())
+        local dist = speaker:GetPos():Distance(listener:GetPos())
         local speakRange = lia.config.get("ChatRange", 280)
         local listenerEnts = ents.FindInSphere(listener:GetPos(), speakRange)
         local listenerInv = listener:getChar():getInv()
