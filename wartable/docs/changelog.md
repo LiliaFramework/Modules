@@ -1,4 +1,5 @@
 # Changelog
+
 ### Version 1.4
 
 - Added comprehensive configuration documentation
