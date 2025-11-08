@@ -2,5 +2,5 @@ MODULE.name = "Instakill"
 MODULE.versionID = "public_instakill"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.2
+MODULE.version = 1.3
 MODULE.desc = "Adds instant kill on headshots, lethality configurable per weapon, extra tension to combat, and integration with damage numbers."

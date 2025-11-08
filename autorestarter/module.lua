@@ -2,6 +2,6 @@ MODULE.name = "Auto Restarter"
 MODULE.versionID = "public_autorestarter"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.2
+MODULE.version = 1.3
 MODULE.desc = "Schedules automatic server restarts at set intervals. Players see a countdown so they can prepare before the map changes."
 MODULE.NetworkStrings = {"RestartDisplay"}
