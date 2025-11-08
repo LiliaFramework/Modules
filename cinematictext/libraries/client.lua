@@ -257,21 +257,21 @@ end
 
 vgui.Register("CinematicTextMenu", PANEL, "DFrame")
 lia.font.register("CinematicSplashFontBig", {
-    font = lia.config.get("CinematicTextFont", "PoppinsMedium"),
+    font = lia.config.get("CinematicTextFont", "Montserrat Medium"),
     size = ScreenScale(lia.config.get("CinematicTextSizeBig", 30)),
     extended = true,
     weight = 1000
 })
 
 lia.font.register("CinematicSplashFont", {
-    font = lia.config.get("CinematicTextFont", "PoppinsMedium"),
+    font = lia.config.get("CinematicTextFont", "Montserrat Medium"),
     size = ScreenScale(lia.config.get("CinematicTextSize", 18)),
     extended = true,
     weight = 800
 })
 
 lia.font.register("CinematicSplashFontSmall", {
-    font = lia.config.get("CinematicTextFont", "PoppinsMedium"),
+    font = lia.config.get("CinematicTextFont", "Montserrat Medium"),
     size = ScreenScale(10),
     extended = true,
     weight = 800

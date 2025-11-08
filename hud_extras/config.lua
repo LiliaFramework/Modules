@@ -22,14 +22,14 @@ lia.config.add("Vignette", "enableVignetteEffect", true, nil, {
     type = "Boolean"
 })
 
-lia.config.add("FPSHudFont", "fpsHudFont", "PoppinsMedium", function()
+lia.config.add("FPSHudFont", "fpsHudFont", "Montserrat Medium", function()
     if not CLIENT then return end
     hook.Run("RefreshFonts")
 end, {
     desc = "fpsHudFontDesc",
     category = "fonts",
     type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
+    options = CLIENT and lia.font.getAvailableFonts() or {"Montserrat Medium"}
 })
 
 lia.option.add("FPSDraw", "FPS Draw", "Enable FPS display on the HUD", false, nil, {

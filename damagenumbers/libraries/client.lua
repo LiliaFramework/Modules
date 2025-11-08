@@ -13,7 +13,7 @@ function MODULE:HUDPaint()
             if timeLeft < duration then alpha = baseAlpha * timeLeft / duration end
             local scr = dn.pos:ToScreen()
             if scr.visible then
-                draw.SimpleTextOutlined(dn.text, lia.config.get("DamageFont", "PoppinsMedium"), scr.x, scr.y - (255 - alpha) / 2, ColorAlpha(dn.color, alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, alpha))
+                draw.SimpleTextOutlined(dn.text, lia.config.get("DamageFont", "Montserrat Medium"), scr.x, scr.y - (255 - alpha) / 2, ColorAlpha(dn.color, alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, alpha))
             else
                 table.remove(damageNumbers, i)
             end

@@ -1,11 +1,11 @@
-﻿lia.config.add("DamageFont", "damageNumberFont", "PoppinsMedium", function()
+﻿lia.config.add("DamageFont", "damageNumberFont", "Montserrat Medium", function()
     if not CLIENT then return end
     hook.Run("RefreshFonts")
 end, {
     desc = "damageNumberFontDesc",
     category = "fonts",
     type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
+    options = CLIENT and lia.font.getAvailableFonts() or {"Montserrat Medium"}
 })
 
 lia.option.add("damageNumberTime", "Damage Number Duration", "How long (in seconds) floating damage numbers stay on screen", 2, nil, {

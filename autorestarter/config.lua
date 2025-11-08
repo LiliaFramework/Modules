@@ -12,9 +12,9 @@ end, {
     max = 604800
 })
 
-lia.config.add("RestartCountdownFont", "restartCountdownFont", "PoppinsMedium", nil, {
+lia.config.add("RestartCountdownFont", "restartCountdownFont", "Montserrat Medium", nil, {
     desc = "restartCountdownFontDesc",
     category = "fonts",
     type = "Table",
-    options = CLIENT and lia.font.getAvailableFonts() or {"PoppinsMedium"}
+    options = CLIENT and lia.font.getAvailableFonts() or {"Montserrat Medium"}
 })

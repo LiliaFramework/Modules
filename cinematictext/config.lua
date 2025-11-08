@@ -1,4 +1,4 @@
-﻿lia.config.add("CinematicTextFont", "cinematicTextFont", "PoppinsMedium", nil, {
+﻿lia.config.add("CinematicTextFont", "cinematicTextFont", "Montserrat Medium", nil, {
     desc = "cinematicTextFontDesc",
     category = "cinematic",
     type = "Generic"
