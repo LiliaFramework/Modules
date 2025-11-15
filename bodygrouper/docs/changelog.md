@@ -1,5 +1,11 @@
 # Changelog
 
+### Version 1.7
+
+- UI components to use Lilia framework components (liaSlideBox, liaMediumButton, liaScrollPanel, liaCategory, liaFrame)
+- BodygrouperModelPaint and BodygrouperPostDrawModel hooks for custom rendering
+- Changed from DNumSlider to liaSlideBox with improved SetRange API
+
 ### Version 1.6
 
 - Updated Vector method calls to use proper PascalCase naming (`distance` → `Distance`)
@@ -15,7 +21,7 @@
 
 ### Version 1.3
 
-- **Updated**: Language files for all supported languages (English, French, German, Italian, Portuguese, Spanish)
+- Language files for all supported languages (English, French, German, Italian, Portuguese, Spanish)
 
 ### Version 1.2
 
