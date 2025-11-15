@@ -12,21 +12,22 @@ function PANEL:Init()
     self.model = self:Add("liaModelPanel")
     self.model:Dock(LEFT)
     self.model:SetWide(w / 2)
-    self.model.PaintOver = function(_, w, h)
+    self.model.PaintOver = function(panel, w, h)
         local str = L("rotateInstruction", leftrotate:upper(), rightrotate:upper())
         lia.util.drawText(str, w / 2, h - 16, Color(255, 255, 255), 1, 1)
+        hook.Run("BodygrouperModelPaint", panel, panel.Entity, self:GetTarget(), w, h)
     end
 
+    self.model.PostDrawModel = function(panel, ent) hook.Run("BodygrouperPostDrawModel", panel, ent, self:GetTarget()) end
     self.side = self:Add("Panel")
     self.side:Dock(RIGHT)
     self.side:DockPadding(5, 5, 5, 5)
     self.side:SetWide(w / 2)
-    self.skinSelector = self.side:Add("DNumSlider")
+    self.skinSelector = self.side:Add("liaSlideBox")
     self.skinSelector:Dock(TOP)
     self.skinSelector:DockMargin(0, 0, 0, 5)
     self.skinSelector:SetText(L("skin"))
-    self.skinSelector:SetMin(0)
-    self.skinSelector:SetDecimals(0)
+    self.skinSelector:SetRange(0, 0, 0)
     self.skinSelector:SetVisible(false)
     self.skinSelector.OnValueChanged = function(_, value)
         local model = self.model.Entity
@@ -37,20 +38,11 @@ function PANEL:Init()
     local h, s, v = ColorToHSV(color)
     s = s * 0.25
     local finaloutlinecolor = HSVToColor(h, s, v)
-    self.finish = self.side:Add("DButton")
+    self.finish = self.side:Add("liaMediumButton")
     self.finish:Dock(BOTTOM)
     self.finish:DockMargin(0, 5, 0, 0)
     self.finish:SetTall(24)
     self.finish:SetText(L("finish"))
-    self.finish:SetFont("liaMediumFont")
-    self.finish:SetTextColor(Color(255, 255, 255))
-    self.finish.Paint = function(_, w, h)
-        surface.SetDrawColor(color)
-        surface.DrawRect(0, 0, w, h)
-        surface.SetDrawColor(finaloutlinecolor)
-        surface.DrawOutlinedRect(0, 0, w, h, 1)
-    end
-
     self.finish.DoClick = function()
         local model = self.model.Entity
         if IsValid(model) then
@@ -81,7 +73,7 @@ function PANEL:Init()
         end
     end
 
-    self.scroll = self.side:Add("DScrollPanel")
+    self.scroll = self.side:Add("liaScrollPanel")
     self.scroll:Dock(FILL)
 end
 
@@ -95,7 +87,7 @@ function PANEL:PopulateOptions()
     if not IsValid(target) then return end
     self.scroll:Clear()
     if target:SkinCount() > 1 then
-        self.skinSelector:SetMax(target:SkinCount() - 1)
+        self.skinSelector:SetRange(0, target:SkinCount() - 1, 0)
         self.skinSelector:SetValue(target:GetSkin())
         self.skinSelector:SetVisible(true)
     else
@@ -103,23 +95,21 @@ function PANEL:PopulateOptions()
     end
 
     if target:GetNumBodyGroups() > 1 then
-        self.category = self.scroll:Add("DCollapsibleCategory")
+        self.category = self.scroll:Add("liaCategory")
         self.category:Dock(TOP)
         self.category:SetLabel(L("bodygroups"))
         for i = 0, target:GetNumBodyGroups() - 1 do
             if target:GetBodygroupCount(i) <= 1 then continue end
             local group = target:GetBodygroup(i)
             local model = self.model.Entity
-            local panel = vgui.Create("DNumSlider", self.category)
+            local panel = vgui.Create("liaSlideBox", self.category)
             panel:Dock(TOP)
             panel:DockMargin(5, 0, 5, 5)
             panel:SetText(target:GetBodygroupName(i):sub(1, 1):upper() .. target:GetBodygroupName(i):sub(2))
-            panel:SetMin(0)
-            panel:SetMax(target:GetBodygroupCount(i) - 1)
-            panel:SetDecimals(0)
+            panel:SetRange(0, target:GetBodygroupCount(i) - 1, 0)
             panel:SetValue(group)
-            panel.Label:SetTextColor(color_white)
             panel.OnValueChanged = function(_, value) model:SetBodygroup(i, math.Round(value)) end
+            self.category:AddItem(panel)
         end
     else
         if not self.skinSelector:IsVisible() then
@@ -169,4 +159,4 @@ function PANEL:Think()
     end
 end
 
-vgui.Register("BodygrouperMenu", PANEL, "DFrame")
+vgui.Register("BodygrouperMenu", PANEL, "liaFrame")
