@@ -45,7 +45,7 @@ net.Receive("SetDetailedDescriptions", function()
         urlEntry:SetText(L("refImagePlaceholder"))
     end
 
-    local button = vgui.Create("liaSmallButton", frame)
+    local button = vgui.Create("liaButton", frame)
     button:Dock(BOTTOM)
     button:SetText(L("edit"))
     button.DoClick = function()
