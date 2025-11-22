@@ -70,14 +70,14 @@ function PANEL:TriggerText()
     textPanel:setScaledSize(panelWide, panelTall)
     if contents.text then
         textPanel.text = textPanel:Add("DLabel")
-        textPanel.text:SetFont("CinematicSplashFont")
+        textPanel.text:SetFont("LiliaFont.18")
         textPanel.text:SetTextColor(contents.color)
         textPanel.text:SetText(contents.text)
         textPanel.text:SetAutoStretchVertical(true)
         textPanel.text:Dock(TOP)
         textPanel.text:SetAlpha(0)
         textPanel.text:AlphaTo(255, 2, 0, function() if not contents.bigText then self:TriggerCountdown() end end)
-        surface.SetFont("CinematicSplashFont")
+        surface.SetFont("LiliaFont.18")
         textPanel.text.textWide, textPanel.text.textTall = surface.GetTextSize(contents.text)
         panelWide = math.max(panelWide, textPanel.text.textWide)
         panelTall = panelTall + textPanel.text.textTall
@@ -86,14 +86,14 @@ function PANEL:TriggerText()
 
     if contents.bigText then
         textPanel.bigText = textPanel:Add("DLabel")
-        textPanel.bigText:SetFont("CinematicSplashFontBig")
+        textPanel.bigText:SetFont("LiliaFont.30")
         textPanel.bigText:SetTextColor(contents.color)
         textPanel.bigText:SetText(contents.bigText)
         textPanel.bigText:SetAutoStretchVertical(true)
         textPanel.bigText:Dock(TOP)
         textPanel.bigText:SetAlpha(0)
         textPanel.bigText:AlphaTo(255, 2, 1, function() self:TriggerCountdown() end)
-        surface.SetFont("CinematicSplashFontBig")
+        surface.SetFont("LiliaFont.30")
         textPanel.bigText.textWide, textPanel.bigText.textTall = surface.GetTextSize(contents.bigText)
         panelWide = math.max(panelWide, textPanel.bigText.textWide)
         panelTall = panelTall + textPanel.bigText.textTall
@@ -142,13 +142,13 @@ function PANEL:Init()
     self:SetTitle(L("cinematicMenuTitle"))
     local textLabel = self:Add("DLabel")
     textLabel:SetText(L("splashTextLabel"))
-    textLabel:SetFont("CinematicSplashFontSmall")
+    textLabel:SetFont("LiliaFont.14")
     textLabel:SetTextColor(lia.config.get("Color", Color(75, 119, 190)))
     textLabel:Dock(TOP)
     textLabel:DockMargin(20, 5, 20, 0)
     textLabel:SizeToContents()
     local textEntry = self:Add("DTextEntry")
-    textEntry:SetFont("CinematicSplashFontSmall")
+    textEntry:SetFont("LiliaFont.14")
     textEntry:Dock(TOP)
     textEntry:DockMargin(20, 5, 20, 0)
     textEntry:SetUpdateOnType(true)
@@ -156,13 +156,13 @@ function PANEL:Init()
     textEntry:SetTall(textEntryTall)
     local bigTextLabel = self:Add("DLabel")
     bigTextLabel:SetText(L("bigSplashTextLabel"))
-    bigTextLabel:SetFont("CinematicSplashFontSmall")
+    bigTextLabel:SetFont("LiliaFont.14")
     bigTextLabel:SetTextColor(lia.config.get("Color", Color(75, 119, 190)))
     bigTextLabel:Dock(TOP)
     bigTextLabel:DockMargin(20, 5, 20, 0)
     bigTextLabel:SizeToContents()
     local bigTextEntry = self:Add("DTextEntry")
-    bigTextEntry:SetFont("CinematicSplashFontSmall")
+    bigTextEntry:SetFont("LiliaFont.14")
     bigTextEntry:Dock(TOP)
     bigTextEntry:DockMargin(20, 5, 20, 0)
     bigTextEntry:SetUpdateOnType(true)
@@ -170,7 +170,7 @@ function PANEL:Init()
     bigTextEntry:SetTall(textEntryTall)
     local durationLabel = self:Add("DLabel")
     durationLabel:SetText(L("durationLabel"))
-    durationLabel:SetFont("CinematicSplashFontSmall")
+    durationLabel:SetFont("LiliaFont.14")
     durationLabel:SetTextColor(lia.config.get("Color", Color(75, 119, 190)))
     durationLabel:Dock(TOP)
     durationLabel:DockMargin(20, 5, 20, 0)
@@ -185,7 +185,7 @@ function PANEL:Init()
     durationSlider.OnValueChanged = function(_, val) self.contents.duration = math.Round(val) end
     local blackBarBool = self:Add("DCheckBoxLabel")
     blackBarBool:SetText(L("drawBlackBars"))
-    blackBarBool:SetFont("CinematicSplashFontSmall")
+    blackBarBool:SetFont("LiliaFont.14")
     blackBarBool:SetValue(self.contents.blackBars)
     blackBarBool.OnChange = function(_, value) self.contents.blackBars = value end
     blackBarBool:Dock(TOP)
@@ -193,7 +193,7 @@ function PANEL:Init()
     blackBarBool:SizeToContents()
     local musicBool = self:Add("DCheckBoxLabel")
     musicBool:SetText(L("playAudio"))
-    musicBool:SetFont("CinematicSplashFontSmall")
+    musicBool:SetFont("LiliaFont.14")
     musicBool:SetValue(self.contents.music)
     musicBool.OnChange = function(_, value) self.contents.music = value end
     musicBool:Dock(TOP)
@@ -212,7 +212,7 @@ function PANEL:Init()
     quitButton:DockMargin(20, 5, 20, 0)
     quitButton:SetText(string.upper(L("cancel")))
     quitButton:SetTextColor(Color(255, 0, 0))
-    quitButton:SetFont("CinematicSplashFontSmall")
+    quitButton:SetFont("LiliaFont.14")
     quitButton:SetTall(ScrH() * 0.05)
     quitButton.DoClick = function() self:Remove() end
     local postButton = self:Add("DButton")
@@ -220,7 +220,7 @@ function PANEL:Init()
     postButton:DockMargin(20, 5, 20, 0)
     postButton:SetText(string.upper(L("post")))
     postButton:SetTextColor(color_white)
-    postButton:SetFont("CinematicSplashFontSmall")
+    postButton:SetFont("LiliaFont.14")
     postButton:SetTall(ScrH() * 0.05)
     postButton.DoClick = function()
         if not (self.contents.text or self.contents.bigText) then
@@ -256,23 +256,4 @@ function PANEL:Init()
 end
 
 vgui.Register("CinematicTextMenu", PANEL, "DFrame")
-lia.font.register("CinematicSplashFontBig", {
-    font = lia.config.get("CinematicTextFont", "Montserrat Medium"),
-    size = ScreenScale(lia.config.get("CinematicTextSizeBig", 30)),
-    extended = true,
-    weight = 1000
-})
-
-lia.font.register("CinematicSplashFont", {
-    font = lia.config.get("CinematicTextFont", "Montserrat Medium"),
-    size = ScreenScale(lia.config.get("CinematicTextSize", 18)),
-    extended = true,
-    weight = 800
-})
-
-lia.font.register("CinematicSplashFontSmall", {
-    font = lia.config.get("CinematicTextFont", "Montserrat Medium"),
-    size = ScreenScale(10),
-    extended = true,
-    weight = 800
-})
+-- Font registrations removed - using LiliaFont instead

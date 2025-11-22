@@ -1,9 +1,4 @@
-﻿lia.config.add("CinematicTextFont", "cinematicTextFont", "Montserrat Medium", nil, {
-    desc = "cinematicTextFontDesc",
-    category = "cinematic",
-    type = "Generic"
-})
-
+﻿
 lia.config.add("CinematicTextSize", "cinematicTextSize", 18, nil, {
     desc = "cinematicTextSizeDesc",
     category = "cinematic",
