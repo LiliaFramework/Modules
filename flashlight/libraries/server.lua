@@ -7,7 +7,7 @@
     if needsItem then
         for _, item in pairs(client:getChar():getInv():getItems()) do
             if item.isFlashlight then
-                client:EmitSound(isEnabled and "buttons/button24.wav" or "buttons/button10.wav", 60, isEnabled and 100 or 70)
+                client:EmitSound("buttons/button24.wav", 60, 100)
                 client.FlashlightCooldown = CurTime() + cooldown
                 client:ConCommand("r_shadows " .. (isEnabled and "1" or "0"))
                 hook.Run("PlayerToggleFlashlight", client, isEnabled)
@@ -17,7 +17,7 @@
         return false
     end
 
-    client:EmitSound(isEnabled and "buttons/button24.wav" or "buttons/button10.wav", 60, isEnabled and 100 or 70)
+    client:EmitSound("buttons/button24.wav", 60, 100)
     client.FlashlightCooldown = CurTime() + cooldown
     client:ConCommand("r_shadows " .. (isEnabled and "1" or "0"))
     hook.Run("PlayerToggleFlashlight", client, isEnabled)

@@ -256,4 +256,3 @@ function PANEL:Init()
 end
 
 vgui.Register("CinematicTextMenu", PANEL, "DFrame")
--- Font registrations removed - using LiliaFont instead
