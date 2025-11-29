@@ -12,10 +12,10 @@ function PANEL:Init()
     self.model = self:Add("liaModelPanel")
     self.model:Dock(LEFT)
     self.model:SetWide(w / 2)
-    self.model.PaintOver = function(panel, w, h)
+    self.model.PaintOver = function(panel, panelWidth, h)
         local str = L("rotateInstruction", leftrotate:upper(), rightrotate:upper())
-        lia.util.drawText(str, w / 2, h - 16, Color(255, 255, 255), 1, 1)
-        hook.Run("BodygrouperModelPaint", panel, panel.Entity, self:GetTarget(), w, h)
+        lia.util.drawText(str, panelWidth / 2, h - 16, Color(255, 255, 255), 1, 1)
+        hook.Run("BodygrouperModelPaint", panel, panel.Entity, self:GetTarget(), panelWidth, h)
     end
 
     self.model.PostDrawModel = function(panel, ent) hook.Run("BodygrouperPostDrawModel", panel, ent, self:GetTarget()) end
@@ -34,10 +34,6 @@ function PANEL:Init()
         if IsValid(model) then model:SetSkin(math.Round(value)) end
     end
 
-    local color = lia.config.get("Color")
-    local h, s, v = ColorToHSV(color)
-    s = s * 0.25
-    local finaloutlinecolor = HSVToColor(h, s, v)
     self.submit = self.side:Add("liaButton")
     self.submit:Dock(BOTTOM)
     self.submit:DockMargin(0, 5, 0, 0)
