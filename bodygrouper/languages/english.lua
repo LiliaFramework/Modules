@@ -1,4 +1,4 @@
-﻿NAME = "English"
+NAME = "English"
 LANGUAGE = {
     manageBodygroups = "Manage Bodygroups",
     bodygroupChanged = "You changed %s bodygroups.",

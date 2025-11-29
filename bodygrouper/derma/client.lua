@@ -1,4 +1,4 @@
-﻿local PANEL = {}
+local PANEL = {}
 AccessorFunc(PANEL, "m_eTarget", "Target")
 local leftrotate, rightrotate = input.LookupBinding("+moveleft"), input.LookupBinding("+moveright")
 local leftinput, rightinput = input.GetKeyCode(leftrotate), input.GetKeyCode(rightrotate)
@@ -38,12 +38,12 @@ function PANEL:Init()
     local h, s, v = ColorToHSV(color)
     s = s * 0.25
     local finaloutlinecolor = HSVToColor(h, s, v)
-    self.finish = self.side:Add("liaMediumButton")
-    self.finish:Dock(BOTTOM)
-    self.finish:DockMargin(0, 5, 0, 0)
-    self.finish:SetTall(24)
-    self.finish:SetText(L("finish"))
-    self.finish.DoClick = function()
+    self.submit = self.side:Add("liaButton")
+    self.submit:Dock(BOTTOM)
+    self.submit:DockMargin(0, 5, 0, 0)
+    self.submit:SetTall(24)
+    self.submit:SetText(L("submit"))
+    self.submit.DoClick = function()
         local model = self.model.Entity
         if IsValid(model) then
             local skn = model:GetSkin()
@@ -113,9 +113,9 @@ function PANEL:PopulateOptions()
         end
     else
         if not self.skinSelector:IsVisible() then
-            self.finish:Remove()
-            local info = self.side:Add("DLabel")
+            local info = self.scroll:Add("DLabel")
             info:Dock(TOP)
+            info:DockMargin(0, 10, 0, 0)
             info:SetText(L("noBodygroupsnSkins"))
             info:SetFont("liaMediumFont")
             info:SetTextColor(color_white)
