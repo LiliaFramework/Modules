@@ -91,21 +91,17 @@ function PANEL:PopulateOptions()
     end
 
     if target:GetNumBodyGroups() > 1 then
-        self.category = self.scroll:Add("liaCategory")
-        self.category:Dock(TOP)
-        self.category:SetLabel(L("bodygroups"))
         for i = 0, target:GetNumBodyGroups() - 1 do
             if target:GetBodygroupCount(i) <= 1 then continue end
             local group = target:GetBodygroup(i)
             local model = self.model.Entity
-            local panel = vgui.Create("liaSlideBox", self.category)
+            local panel = vgui.Create("liaSlideBox", self.scroll)
             panel:Dock(TOP)
-            panel:DockMargin(5, 0, 5, 5)
+            panel:DockMargin(0, 0, 0, 5)
             panel:SetText(target:GetBodygroupName(i):sub(1, 1):upper() .. target:GetBodygroupName(i):sub(2))
             panel:SetRange(0, target:GetBodygroupCount(i) - 1, 0)
             panel:SetValue(group)
             panel.OnValueChanged = function(_, value) model:SetBodygroup(i, math.Round(value)) end
-            self.category:AddItem(panel)
         end
     else
         if not self.skinSelector:IsVisible() then

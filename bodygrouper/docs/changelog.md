@@ -1,5 +1,22 @@
 # Changelog
 
+### Version 2.1
+
+- Removed category wrapper from bodygroup UI to provide more space for controls
+- Bodygroup sliders now display directly in the scroll panel without category container
+
+### Version 2.0
+
+- Simplified bodygroup UI by returning to liaCategory with AddItem approach
+- Category now expands by default to immediately show all bodygroup options
+- Removed complex contents panel management for cleaner, more reliable layout
+
+### Version 1.9
+
+- Fixed bodygroup slider visibility and spacing issues by improving liaCategory AddItem method
+- Added automatic contents panel creation for proper layout management
+- Category now expands by default to show bodygroups immediately
+
 ### Version 1.8
 
 - Changed "Finish" button to "Submit" button with proper localization

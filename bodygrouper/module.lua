@@ -2,7 +2,7 @@ MODULE.name = "Body Group Editor"
 MODULE.versionID = "public_bodygrouper"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.8
+MODULE.version = 2.1
 MODULE.desc = "Spawns a bodygroup closet where players can edit their model's bodygroups. Admins may inspect others and configure the closet's model."
 MODULE.Privileges = {
     {
