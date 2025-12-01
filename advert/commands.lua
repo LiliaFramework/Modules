@@ -1,4 +1,5 @@
-﻿lia.command.add("advertisement", {
+﻿local realName = false
+lia.command.add("advertisement", {
     alias = "advert",
     adminOnly = false,
     arguments = {
@@ -26,7 +27,7 @@
             client:notifyLocalized("AdvertDeductedMessage", advertPrice, lia.currency.plural)
             if not SERVER then return end
             for _, ply in player.Iterator() do
-                local displayedName = client:getChar():getDisplayedName(ply)
+                local displayedName = realName and client:Name() or client:getChar():getDisplayedName(ply)
                 ClientAddText(ply, Color(216, 190, 18), L("AdvertFormat", displayedName), Color(255, 255, 255), message)
             end
 

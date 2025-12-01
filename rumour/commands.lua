@@ -1,4 +1,4 @@
-﻿lia.command.add("rumour", {
+lia.command.add("rumour", {
     adminOnly = false,
     arguments = {
         {
@@ -40,12 +40,14 @@
         local revealChance = lia.config.get("RumourRevealChance", 0.02)
         local revealMath = math.random() < revealChance
         hook.Run("RumourRevealRoll", client, revealChance, revealMath)
+        local prefixColor = Color(255, 0, 0) -- Orange color for [RUMOUR] prefix
+        local messageColor = Color(255, 255, 255) -- White color for rumor message text
         for _, target in player.Iterator() do
             local targetFaction = lia.faction.indices[target:Team()]
             if targetFaction and targetFaction.criminal then
-                ClientAddText(target, L("rumourMessagePrefix", rumourMessage))
+                ClientAddText(target, prefixColor, "[RUMOUR] ", messageColor, rumourMessage)
             elseif revealMath and targetFaction and targetFaction.police then
-                ClientAddText(target, L("rumourMessagePrefix", rumourMessage))
+                ClientAddText(target, prefixColor, "[RUMOUR] ", messageColor, rumourMessage)
             end
         end
 
