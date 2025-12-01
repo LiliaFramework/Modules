@@ -1,4 +1,4 @@
-MODULE.name = "Simple Lockpicking"
+﻿MODULE.name = "Simple Lockpicking"
 MODULE.versionID = "public_simple_lockpicking"
 MODULE.author = "76561198312513285"
 MODULE.discord = "@liliaplayer"

@@ -1,4 +1,4 @@
-MODULE.name = "Word Filter"
+﻿MODULE.name = "Word Filter"
 MODULE.versionID = "public_wordfilter"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

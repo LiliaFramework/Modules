@@ -1,4 +1,4 @@
-NAME = "German"
+﻿NAME = "German"
 LANGUAGE = {
     bodygroupChanged = "Du hast %s Bodygroups geändert.",
     bodygroupChangedBy = "Deine Bodygroups wurden von %s geändert.",

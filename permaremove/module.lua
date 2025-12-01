@@ -1,4 +1,4 @@
-MODULE.name = "Perma Remove"
+﻿MODULE.name = "Perma Remove"
 MODULE.versionID = "public_permaremove"
 MODULE.author = "Boz [Base Code] & Samael [Rewrite]"
 MODULE.discord = "bozdev"

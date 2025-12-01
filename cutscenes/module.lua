@@ -1,4 +1,4 @@
-local MODULE = MODULE
+﻿local MODULE = MODULE
 MODULE.name = "Cutscenes"
 MODULE.versionID = "public_cutscenes"
 MODULE.author = "Samael"

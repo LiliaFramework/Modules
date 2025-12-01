@@ -1,4 +1,4 @@
-MODULE.name = "Cinematic Text"
+﻿MODULE.name = "Cinematic Text"
 MODULE.versionID = "public_cinematictext"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

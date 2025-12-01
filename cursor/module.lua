@@ -1,4 +1,4 @@
-MODULE.name = "Cursor"
+﻿MODULE.name = "Cursor"
 MODULE.versionID = "public_cursor"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

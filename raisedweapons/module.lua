@@ -1,4 +1,4 @@
-MODULE.name = "Raised Weapons"
+﻿MODULE.name = "Raised Weapons"
 MODULE.versionID = "public_raisedweapons"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

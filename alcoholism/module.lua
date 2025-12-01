@@ -1,4 +1,4 @@
-MODULE.name = "Alcoholism"
+﻿MODULE.name = "Alcoholism"
 MODULE.versionID = "public_alcoholism"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

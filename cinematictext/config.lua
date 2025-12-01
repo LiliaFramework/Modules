@@ -1,5 +1,4 @@
-﻿
-lia.config.add("CinematicTextSize", "cinematicTextSize", 18, nil, {
+﻿lia.config.add("CinematicTextSize", "cinematicTextSize", 18, nil, {
     desc = "cinematicTextSizeDesc",
     category = "cinematic",
     type = "Int",

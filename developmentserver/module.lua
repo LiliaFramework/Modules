@@ -1,4 +1,4 @@
-MODULE.name = "Development Server"
+﻿MODULE.name = "Development Server"
 MODULE.versionID = "public_developmentserver"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

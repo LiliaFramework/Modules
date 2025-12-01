@@ -1,5 +1,4 @@
-﻿
-lia.config.add("RadioFont", "radioFont", "Montserrat Medium", function()
+﻿lia.config.add("RadioFont", "radioFont", "Montserrat Medium", function()
     if not CLIENT then return end
     hook.Run("RefreshFonts")
 end, {

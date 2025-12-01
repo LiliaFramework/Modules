@@ -1,4 +1,4 @@
-MODULE.name = "War Table"
+﻿MODULE.name = "War Table"
 MODULE.versionID = "public_wartable"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

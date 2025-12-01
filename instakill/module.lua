@@ -1,4 +1,4 @@
-MODULE.name = "Instakill"
+﻿MODULE.name = "Instakill"
 MODULE.versionID = "public_instakill"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

@@ -1,4 +1,4 @@
-MODULE.name = "Cards"
+﻿MODULE.name = "Cards"
 MODULE.versionID = "public_cards"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

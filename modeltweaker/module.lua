@@ -1,4 +1,4 @@
-MODULE.name = "Model Tweaker"
+﻿MODULE.name = "Model Tweaker"
 MODULE.versionID = "public_modeltweaker"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

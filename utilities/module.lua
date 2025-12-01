@@ -1,4 +1,4 @@
-MODULE.name = "Code Utilities"
+﻿MODULE.name = "Code Utilities"
 MODULE.versionID = "public_utilities"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

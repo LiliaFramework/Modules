@@ -1,4 +1,4 @@
-MODULE.name = "View Manipulation"
+﻿MODULE.name = "View Manipulation"
 MODULE.versionID = "public_vmanip"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

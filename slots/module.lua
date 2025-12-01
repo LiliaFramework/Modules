@@ -1,4 +1,4 @@
-MODULE.name = "Slot Machine"
+﻿MODULE.name = "Slot Machine"
 MODULE.versionID = "public_slots"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

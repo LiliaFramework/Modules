@@ -1,4 +1,4 @@
-MODULE.name = "Door Kick"
+﻿MODULE.name = "Door Kick"
 MODULE.versionID = "public_doorkick"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

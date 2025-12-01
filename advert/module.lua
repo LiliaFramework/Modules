@@ -1,4 +1,4 @@
-MODULE.name = "Advertisements"
+﻿MODULE.name = "Advertisements"
 MODULE.versionID = "public_advert"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

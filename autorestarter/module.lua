@@ -1,4 +1,4 @@
-MODULE.name = "Auto Restarter"
+﻿MODULE.name = "Auto Restarter"
 MODULE.versionID = "public_autorestarter"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

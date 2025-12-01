@@ -1,4 +1,4 @@
-MODULE.name = "First Person Effects"
+﻿MODULE.name = "First Person Effects"
 MODULE.versionID = "public_firstpersoneffects"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

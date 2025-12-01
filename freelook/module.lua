@@ -1,4 +1,4 @@
-MODULE.name = "Free Look"
+﻿MODULE.name = "Free Look"
 MODULE.versionID = "public_freelook"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

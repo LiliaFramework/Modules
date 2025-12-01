@@ -1,4 +1,4 @@
-MODULE.name = "Shoot Lock"
+﻿MODULE.name = "Shoot Lock"
 MODULE.versionID = "public_shootlock"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

@@ -1,4 +1,4 @@
-MODULE.name = "Community Commands"
+﻿MODULE.name = "Community Commands"
 MODULE.versionID = "public_communitycommands"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

@@ -1,4 +1,4 @@
-MODULE.name = "Realistic View"
+﻿MODULE.name = "Realistic View"
 MODULE.versionID = "public_realisticview"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

@@ -1,4 +1,4 @@
-local PANEL = {}
+﻿local PANEL = {}
 AccessorFunc(PANEL, "m_eTarget", "Target")
 local leftrotate, rightrotate = input.LookupBinding("+moveleft"), input.LookupBinding("+moveright")
 local leftinput, rightinput = input.GetKeyCode(leftrotate), input.GetKeyCode(rightrotate)

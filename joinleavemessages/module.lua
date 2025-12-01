@@ -1,4 +1,4 @@
-MODULE.name = "Join Leave Messages"
+﻿MODULE.name = "Join Leave Messages"
 MODULE.versionID = "public_joinleavemessages"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

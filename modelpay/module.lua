@@ -1,4 +1,4 @@
-MODULE.name = "Model Pay"
+﻿MODULE.name = "Model Pay"
 MODULE.versionID = "public_modelpay"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
