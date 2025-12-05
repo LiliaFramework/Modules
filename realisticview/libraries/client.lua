@@ -2,7 +2,6 @@
     if client.IsInAdminEntityView then return end
     if client:getChar() and not client:InVehicle() and lia.option.get("realisticViewEnabled") then
         if lia.gui.character and IsValid(lia.gui.character) then return end
-        if hook.Run("ShouldUseRealisticView", client) == false then return end
         local view = {
             origin = origin,
             angles = angles,
@@ -34,9 +33,6 @@
         else
             view.angles = Angle(head.Ang.p, head.Ang.y, angles.r)
         end
-
-        hook.Run("RealisticViewUpdated", client, view)
-        hook.Run("RealisticViewCalcView", client, view)
         return view
     end
 end

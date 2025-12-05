@@ -2,7 +2,6 @@
 function MODULE:runCutscene(id)
     local cs = self.cutscenes[id]
     if not cs then return end
-    hook.Run("CutsceneStarted", id)
     local pl = LocalPlayer()
     local w, h = ScrW(), ScrH()
     local fade = vgui.Create("DPanel")
@@ -65,8 +64,6 @@ function MODULE:runCutscene(id)
             color = s.color,
             font = s.font
         }
-
-        hook.Run("CutsceneSubtitleStarted", id, s)
     end
 
     local function endScene(last)
@@ -91,7 +88,6 @@ function MODULE:runCutscene(id)
 
         timer.Simple(self.fadeDelay, function()
             fade:Remove()
-            hook.Run("CutsceneEnded", id)
         end)
     end
 
@@ -109,10 +105,9 @@ function MODULE:runCutscene(id)
 
     fadeIn()
     for idx, scene in SortedPairs(cs) do
-        timer.Simple(scene.startTime, function()
+            timer.Simple(scene.startTime, function()
             fadeOut()
             cutStarted = true
-            hook.Run("CutsceneSceneStarted", id, scene)
             setImage(scene.image)
             if scene.sound then
                 if lia.cutsceneMusic then
@@ -142,7 +137,6 @@ function MODULE:runCutscene(id)
                     timer.Simple(self.fadeDelay, function()
                         setImage()
                         pl.scene = nil
-                        hook.Run("CutsceneSceneEnded", id, scene)
                         if idx == #cs then endScene(scene) end
                     end)
                 end

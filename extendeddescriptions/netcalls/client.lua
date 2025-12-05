@@ -18,8 +18,6 @@
     local htmlPanel = vgui.Create("DHTML", frame)
     htmlPanel:Dock(FILL)
     if descURL ~= L("openDetDescFallback") then htmlPanel:OpenURL(descURL) end
-    frame.OnRemove = function() hook.Run("ExtendedDescriptionClosed", ply, descText, descURL) end
-    hook.Run("ExtendedDescriptionOpened", ply, frame, descText, descURL)
 end)
 
 net.Receive("SetDetailedDescriptions", function()
@@ -54,10 +52,7 @@ net.Receive("SetDetailedDescriptions", function()
         net.WriteString(textEntry:GetValue())
         net.WriteString(steamName)
         net.SendToServer()
-        hook.Run("ExtendedDescriptionEditSubmitted", steamName, urlEntry:GetValue(), textEntry:GetValue())
         frame:Close()
     end
 
-    frame.OnRemove = function() hook.Run("ExtendedDescriptionEditClosed", steamName) end
-    hook.Run("ExtendedDescriptionEditOpened", frame, steamName)
 end)

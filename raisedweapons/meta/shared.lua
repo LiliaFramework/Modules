@@ -13,8 +13,6 @@ local PermaRaisedBases = {
 local playerMeta = FindMetaTable("Player")
 function playerMeta:isWepRaised()
     local weapon = self:GetActiveWeapon()
-    local override = hook.Run("ShouldWeaponBeRaised", self, weapon)
-    if override ~= nil then return override end
     if IsValid(weapon) then
         local weaponClass = weapon:GetClass()
         local weaponBase = weapon.Base
@@ -29,9 +27,7 @@ end
 
 if SERVER then
     function playerMeta:setWepRaised(state)
-        local old = self:getNetVar("raised", false)
         self:setNetVar("raised", state)
-        if old ~= state then hook.Run("PlayerWeaponRaisedChanged", self, state) end
         if IsValid(self:GetActiveWeapon()) then
             local weapon = self:GetActiveWeapon()
             weapon:SetNextPrimaryFire(CurTime() + 1)
@@ -45,10 +41,8 @@ if SERVER then
         if IsValid(weapon) then
             if self:isWepRaised() and weapon.OnRaised then
                 weapon:OnRaised()
-                hook.Run("OnWeaponRaised", self, weapon)
             elseif not self:isWepRaised() and weapon.OnLowered then
                 weapon:OnLowered()
-                hook.Run("OnWeaponLowered", self, weapon)
             end
         end
     end

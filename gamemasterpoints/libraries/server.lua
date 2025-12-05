@@ -5,7 +5,6 @@ function MODULE:LoadData()
 end
 
 function MODULE:AddPoint(client, name, pos)
-    hook.Run("GamemasterPreAddPoint", client, name, pos)
     if not name or not pos then
         client:notifyLocalized("invalidInfo")
         return
@@ -20,11 +19,9 @@ function MODULE:AddPoint(client, name, pos)
 
     client:notifyLocalized("tpPointAdded", name)
     lia.data.set("TPPoints", self.tpPoints, false, false)
-    hook.Run("GamemasterAddPoint", client, name, pos)
 end
 
 function MODULE:RemovePoint(client, name)
-    hook.Run("GamemasterPreRemovePoint", client, name)
     if not name then
         client:notifyLocalized("invalidInfo")
         return
@@ -55,11 +52,9 @@ function MODULE:RemovePoint(client, name)
     self.tpPoints[id] = nil
     lia.data.set("TPPoints", self.tpPoints, false, false)
     client:notifyLocalized("tpPointRemoved", properName)
-    hook.Run("GamemasterRemovePoint", client, properName)
 end
 
 function MODULE:RenamePoint(client, name, newName)
-    hook.Run("GamemasterPreRenamePoint", client, name, newName)
     if not name or not newName then
         client:notifyLocalized("invalidInfo")
         return
@@ -91,11 +86,9 @@ function MODULE:RenamePoint(client, name, newName)
 
     lia.data.set("TPPoints", self.tpPoints, false, false)
     client:notifyLocalized("pointRenamed", oldName, newName)
-    hook.Run("GamemasterRenamePoint", client, oldName, newName)
 end
 
 function MODULE:UpdateSound(client, name, _, newSound)
-    hook.Run("GamemasterPreUpdateSound", client, name, newSound)
     if not name or not newSound then
         client:notifyLocalized("invalidInfo")
         return
@@ -117,11 +110,9 @@ function MODULE:UpdateSound(client, name, _, newSound)
 
     lia.data.set("TPPoints", self.tpPoints, false, false)
     client:notifyLocalized("soundUpdated", name, newSound)
-    hook.Run("GamemasterUpdateSound", client, name, newSound)
 end
 
 function MODULE:UpdateEffect(client, name, _, newEffect)
-    hook.Run("GamemasterPreUpdateEffect", client, name, newEffect)
     if not name or not newEffect then
         client:notifyLocalized("invalidInfo")
         return
@@ -143,11 +134,9 @@ function MODULE:UpdateEffect(client, name, _, newEffect)
 
     lia.data.set("TPPoints", self.tpPoints, false, false)
     client:notifyLocalized("effectUpdated", name, newEffect)
-    hook.Run("GamemasterUpdateEffect", client, name, newEffect)
 end
 
 function MODULE:MoveToPoint(client, name)
-    hook.Run("GamemasterPreMoveToPoint", client, name)
     if not name then
         client:notifyLocalized("invalidInfo")
         return
@@ -190,7 +179,6 @@ function MODULE:MoveToPoint(client, name)
     end
 
     client:notifyLocalized("movedTo", properName)
-    hook.Run("GamemasterMoveToPoint", client, properName, pos)
 end
 
 net.Receive("GMTPMove", function(_, client)

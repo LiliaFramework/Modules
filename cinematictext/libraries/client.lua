@@ -17,9 +17,7 @@ net.Receive("TriggerCinematic", function()
     contents.color = net.ReadColor()
     if contents.text == "" then contents.text = nil end
     if contents.bigText == "" then contents.bigText = nil end
-    hook.Run("CinematicDisplayStart", contents.text, contents.bigText, contents.duration, blackbars, contents.music, contents.color)
     local splashText = vgui.Create("CinematicSplashText")
-    hook.Run("CinematicPanelCreated", splashText)
     if blackbars then
         splashText:DrawBlackBars()
         splashText:TriggerBlackBars()
@@ -113,7 +111,6 @@ end
 
 function PANEL:TriggerCountdown()
     self:AlphaTo(0, 4, contents.duration, function()
-        hook.Run("CinematicDisplayEnded")
         self:Remove()
     end)
 

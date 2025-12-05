@@ -27,8 +27,6 @@
                 local spawned, err = processZone(zone, selectedSpawner)
                 if spawned then
                     client:notifyLocalized("forcedSpawnSuccess", selectedSpawner)
-                    lia.log.add(client, "npcspawn", selectedSpawner)
-                    hook.Run("OnNPCForceSpawn", client, selectedSpawner)
                 else
                     if err then
                         client:notifyLocalized("forcedSpawnBlocked", selectedSpawner)

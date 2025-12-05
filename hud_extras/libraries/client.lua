@@ -3,7 +3,6 @@ local vignetteAlphaGoal, vignetteAlphaDelta = 0, 0
 local hasVignetteMaterial = lia.util.getMaterial("vignette.png") ~= "___error"
 local mathApproach = math.Approach
 local function DrawFPS()
-    hook.Run("HUDExtrasPreDrawFPS")
     local fpsFont = lia.config.get("FPSHudFont")
     local f = math.Round(1 / FrameTime())
     MODULE.minFPS = MODULE.minFPS or 60
@@ -20,45 +19,26 @@ local function DrawFPS()
     draw.RoundedBox(0, x - 20, centerY - MODULE.barH, 20, MODULE.barH, Color(255, 255, 255))
     draw.SimpleText(L("hudExtrasMaxPrefix") .. " " .. MODULE.maxFPS, fpsFont, x, centerY + 40, Color(150, 255, 150), TEXT_ALIGN_RIGHT, 1)
     draw.SimpleText(L("hudExtrasMinPrefix") .. " " .. MODULE.minFPS, fpsFont, x, centerY + 55, Color(255, 150, 150), TEXT_ALIGN_RIGHT, 1)
-    hook.Run("HUDExtrasPostDrawFPS")
 end
 
 local function DrawVignette()
     if hasVignetteMaterial then
-        hook.Run("HUDExtrasPreDrawVignette")
         local ft = FrameTime()
         local w, h = ScrW(), ScrH()
         vignetteAlphaDelta = mathApproach(vignetteAlphaDelta, vignetteAlphaGoal, ft * 30)
         surface.SetDrawColor(0, 0, 0, 175 + vignetteAlphaDelta)
         surface.SetMaterial(lia.util.getMaterial("vignette.png"))
         surface.DrawTexturedRect(0, 0, w, h)
-        hook.Run("HUDExtrasPostDrawVignette")
     end
 end
 
-local function DrawBlur()
-    local client = LocalPlayer()
-    hook.Run("HUDExtrasPreDrawBlur")
-    blurGoal = client:getNetVar("blur", 0) + (hook.Run("AdjustBlurAmount", blurGoal) or 0)
-    if blurValue ~= blurGoal then blurValue = mathApproach(blurValue, blurGoal, FrameTime() * 20) end
-    if blurValue > 0 and not client:ShouldDrawLocalPlayer() then lia.util.drawBlurAt(0, 0, ScrW(), ScrH(), blurValue) end
-    if blurValue > 0 then hook.Run("HUDExtrasPostDrawBlur", blurValue) end
-end
 
-local function ShouldDrawBlur()
-    local hookResult = hook.Run("ShouldDrawBlur")
-    if hookResult ~= nil then return hookResult end
-    return LocalPlayer():Alive()
-end
 
 local function canDrawWatermark()
-    local hookResult = hook.Run("ShouldDrawWatermark")
-    if hookResult ~= nil then return hookResult end
     return lia.config.get("WatermarkEnabled", false) and isstring(lia.config.get("GamemodeVersion", "")) and lia.config.get("GamemodeVersion", "") ~= "" and isstring(lia.config.get("WatermarkLogo", "")) and lia.config.get("WatermarkLogo", "") ~= ""
 end
 
 local function drawWatermark()
-    hook.Run("HUDExtrasPreDrawWatermark")
     local w, h = 64, 64
     local logoPath = lia.config.get("WatermarkLogo", "")
     local ver = tostring(lia.config.get("GamemodeVersion", ""))
@@ -76,8 +56,6 @@ local function drawWatermark()
         surface.SetTextPos(15 + w, ScrH() - h / 2 - ty / 2)
         surface.DrawText(ver)
     end
-
-    hook.Run("HUDExtrasPostDrawWatermark")
 end
 
 function MODULE:HUDPaint()
@@ -89,9 +67,8 @@ function MODULE:HUDPaint()
     end
 end
 
-function MODULE:HUDPaintBackground()
-    if ShouldDrawBlur() then DrawBlur() end
-end
+
+
 
 timer.Create("liaVignetteChecker", 1, 0, function()
     local client = LocalPlayer()

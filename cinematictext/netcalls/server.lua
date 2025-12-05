@@ -6,7 +6,6 @@
     local blackBars = net.ReadBool()
     local music = net.ReadBool()
     local color = net.ReadColor()
-    hook.Run("CinematicTriggered", client, text, bigText, duration, blackBars, music, color)
     net.Start("TriggerCinematic")
     net.WriteString(text)
     net.WriteString(bigText)

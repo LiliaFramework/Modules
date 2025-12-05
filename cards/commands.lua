@@ -1,7 +1,6 @@
 ﻿lia.command.add("cards", {
     desc = "cardsCommandDesc",
     onRun = function(client)
-        hook.Run("CardsCommandUsed", client)
         local inv = client:getChar():getInv()
         if not inv:hasItem("carddeck") then
             client:notify(L("noCardDeck"))
@@ -12,6 +11,5 @@
         local suits = {L("suitSpades"), L("suitDiamonds"), L("suitHearts"), L("suitClubs")}
         local card = table.Random(ranks) .. " " .. table.Random(suits)
         lia.chat.send(client, "me", L("cardDrawAction") .. " " .. card)
-        hook.Run("CardDrawn", client, card)
     end
 })

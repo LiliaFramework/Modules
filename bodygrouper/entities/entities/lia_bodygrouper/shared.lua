@@ -14,11 +14,9 @@ end
 function ENT:AddUser(user)
     self.users = self.users or {}
     self.users[user] = true
-    hook.Run("BodygrouperClosetAddUser", self, user)
 end
 
 function ENT:RemoveUser(user)
     self.users = self.users or {}
     self.users[user] = nil
-    hook.Run("BodygrouperClosetRemoveUser", self, user)
 end

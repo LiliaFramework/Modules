@@ -21,9 +21,7 @@
             table.insert(options, class.name .. " (" .. class.uniqueID .. ")")
         end
 
-        hook.Run("ClassBroadcastMenuOpened", client, options)
         client:requestOptions(L("classBroadcastTitle"), L("selectClassesPrompt"), options, #options, function(selectedOptions)
-            hook.Run("ClassBroadcastMenuClosed", client, selectedOptions)
             local classList = {}
             local classListSimple = {}
             for _, v in ipairs(selectedOptions) do
@@ -41,7 +39,6 @@
                 return
             end
 
-            hook.Run("PreClassBroadcastSend", client, message, classListSimple)
             for _, ply in player.Iterator() do
                 if ply == client or ply:getChar() and classList[ply:getChar():getClass()] and SERVER then
                     local displayName = ply:getChar() and ply:getChar():getDisplayedName(client)
@@ -51,9 +48,6 @@
             end
 
             client:notifyLocalized("classBroadcastSent")
-            hook.Run("ClassBroadcastSent", client, message, classListSimple)
-            lia.log.add(client, "classbroadcast", message)
-            hook.Run("ClassBroadcastLogged", client, message, classListSimple)
         end)
     end,
 })
@@ -81,9 +75,7 @@ lia.command.add("factionbroadcast", {
             table.insert(options, faction.name .. " (" .. faction.uniqueID .. ")")
         end
 
-        hook.Run("FactionBroadcastMenuOpened", client, options)
         client:requestOptions(L("factionBroadcastTitle"), L("selectFactionsPrompt"), options, #options, function(selectedOptions)
-            hook.Run("FactionBroadcastMenuClosed", client, selectedOptions)
             local factionList = {}
             local factionListSimple = {}
             for _, v in ipairs(selectedOptions) do
@@ -101,7 +93,6 @@ lia.command.add("factionbroadcast", {
                 return
             end
 
-            hook.Run("PreFactionBroadcastSend", client, message, factionListSimple)
             for _, ply in player.Iterator() do
                 if ply == client or ply:getChar() and factionList[ply:getChar():getFaction()] and SERVER then
                     local displayName = ply:getChar() and ply:getChar():getDisplayedName(client)
@@ -111,9 +102,6 @@ lia.command.add("factionbroadcast", {
             end
 
             client:notifyLocalized("factionBroadcastSent")
-            hook.Run("FactionBroadcastSent", client, message, factionListSimple)
-            lia.log.add(client, "factionbroadcast", message)
-            hook.Run("FactionBroadcastLogged", client, message, factionListSimple)
         end)
     end,
 })

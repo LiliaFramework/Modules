@@ -5,7 +5,6 @@
         return
     end
 
-    hook.Run("CommunityURLRequest", client, command)
     net.Start("OpenCommunityURL")
     net.WriteString(command)
     net.WriteString(commandTable.URL)

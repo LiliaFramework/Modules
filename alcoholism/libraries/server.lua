@@ -1,26 +1,54 @@
-﻿local next_think
-function MODULE:Think()
-    if not next_think then next_think = CurTime() end
-    if next_think <= CurTime() then
-        for _, client in player.Iterator() do
-            local bac = client:getNetVar("lia_alcoholism_bac", 0)
-            if bac > 0 then
-                hook.Run("PreBACDecrease", client, bac)
-                local newBac = math.Clamp(bac - lia.config.get("AlcoholDegradeRate", 5), 0, 100)
-                client:setNetVar("lia_alcoholism_bac", newBac)
-                hook.Run("BACChanged", client, newBac)
-                hook.Run("PostBACDecrease", client, newBac)
-            end
+﻿-- Alcohol config locals
+local AlcoholDegradeRate = 5
+local AlcoholTickTime = 30
+local AlcoholEffectDelay = 0.03
+local AlcoholIntenseMultiplier = 2
+local AlcoholRagdollThreshold = 80
+local AlcoholRagdollMin = 10
+local AlcoholRagdollMax = 15
+local AlcoholRagdollChance = 5
+local AlcoholRagdollDuration = 5
+local AlcoholIntenseTime = 5
+local function StartBACDegradation(client)
+    if timer.Exists("BAC_Degradation_" .. client:SteamID()) then return end
+    timer.Create("BAC_Degradation_" .. client:SteamID(), AlcoholTickTime, 0, function()
+        if not IsValid(client) then
+            timer.Remove("BAC_Degradation_" .. client:SteamID())
+            return
         end
 
-        next_think = CurTime() + lia.config.get("AlcoholTickTime", 30)
+        local bac = client:getLocalVar("bac", 0)
+        if bac > 0 then
+            local newBac = math.Clamp(bac - AlcoholDegradeRate, 0, 100)
+            client:setLocalVar("bac", newBac)
+            if newBac <= 0 then timer.Remove("BAC_Degradation_" .. client:SteamID()) end
+        else
+            timer.Remove("BAC_Degradation_" .. client:SteamID())
+        end
+    end)
+end
+
+local function StopBACDegradation(client)
+    timer.Remove("BAC_Degradation_" .. client:SteamID())
+end
+
+function MODULE:NetVarChanged(client, cmd)
+    -- Only care about player entities and BAC changes
+    if IsValid(entity) and entity:IsPlayer() and key == "bac" then
+        -- BAC value changed
+        if newValue and newValue > 0 and (oldValue == nil or oldValue <= 0) then
+            -- BAC became positive, start degradation timer
+            StartBACDegradation(entity)
+        elseif newValue and newValue <= 0 and oldValue and oldValue > 0 then
+            StopBACDegradation(entity)
+        end
     end
 end
 
 function MODULE:StartCommand(client, cmd)
     if (client.nextDrunkCheck or 0) < CurTime() then
-        client.nextDrunkCheck = CurTime() + lia.config.get("AlcoholEffectDelay", 0.03)
-        local bac = client:getNetVar("lia_alcoholism_bac", 0)
+        client.nextDrunkCheck = CurTime() + AlcoholEffectDelay
+        local bac = client:getLocalVar("bac", 0)
         if bac > 30 then
             cmd:ClearButtons()
             if (client.nextDrunkSide or 0) < CurTime() then
@@ -30,7 +58,7 @@ function MODULE:StartCommand(client, cmd)
             end
 
             local mult = 1
-            if (client.intenseSwerveUntil or 0) > CurTime() then mult = lia.config.get("AlcoholIntenseMultiplier", 2) end
+            if (client.intenseSwerveUntil or 0) > CurTime() then mult = AlcoholIntenseMultiplier end
             if client.frontRoll == 1 then
                 cmd:SetForwardMove(100000 * mult)
             elseif client.frontRoll == -1 then
@@ -45,26 +73,23 @@ function MODULE:StartCommand(client, cmd)
         end
     end
 
-    local bac = client:getNetVar("lia_alcoholism_bac", 0)
-    if bac >= lia.config.get("AlcoholRagdollThreshold", 80) and (client.nextRagdollCheck or 0) < CurTime() then
-        client.nextRagdollCheck = CurTime() + math.Rand(lia.config.get("AlcoholRagdollMin", 60), lia.config.get("AlcoholRagdollMax", 120))
-        if client:Alive() and not client.liaRagdolled and client:GetVelocity():Length2D() > 10 and math.Rand(0, 100) <= lia.config.get("AlcoholRagdollChance", 35) then client:setRagdolled(true, lia.config.get("AlcoholRagdollDuration", 5)) end
+    local bac = client:getLocalVar("bac", 0)
+    if bac >= AlcoholRagdollThreshold and (client.nextRagdollCheck or 0) < CurTime() then
+        client.nextRagdollCheck = CurTime() + math.Rand(AlcoholRagdollMin, AlcoholRagdollMax)
+        if client:Alive() and not client.liaRagdolled and client:GetVelocity():Length2D() > 10 and math.Rand(0, 100) <= AlcoholRagdollChance then client:setRagdolled(true, AlcoholRagdollDuration) end
     end
 end
 
 function MODULE:BACChanged(client, newBac)
     local last = client.lastBAC or 0
-    if newBac > last then client.intenseSwerveUntil = CurTime() + lia.config.get("AlcoholIntenseTime", 5) end
+    if newBac > last then client.intenseSwerveUntil = CurTime() + AlcoholIntenseTime end
     client.lastBAC = newBac
 end
 
 function MODULE:PlayerLoadedChar(client)
-    client:resetBAC()
+    client:setLocalVar("bac", 0)
 end
 
 function MODULE:PostPlayerLoadout(client)
-    client:resetBAC()
+    client:setLocalVar("bac", 0)
 end
-
-lia.log.addType("bacIncrease", function(client, amt, newBac) return L("bacIncreaseLog", client:Name(), amt, newBac) end, "Gameplay")
-lia.log.addType("bacReset", function(client) return L("bacResetLog", client:Name()) end, "Gameplay")

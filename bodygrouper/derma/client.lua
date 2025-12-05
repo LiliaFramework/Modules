@@ -15,10 +15,8 @@ function PANEL:Init()
     self.model.PaintOver = function(panel, panelWidth, h)
         local str = L("rotateInstruction", leftrotate:upper(), rightrotate:upper())
         lia.util.drawText(str, panelWidth / 2, h - 16, Color(255, 255, 255), 1, 1)
-        hook.Run("BodygrouperModelPaint", panel, panel.Entity, self:GetTarget(), panelWidth, h)
     end
 
-    self.model.PostDrawModel = function(panel, ent) hook.Run("BodygrouperPostDrawModel", panel, ent, self:GetTarget()) end
     self.side = self:Add("Panel")
     self.side:Dock(RIGHT)
     self.side:DockPadding(5, 5, 5, 5)

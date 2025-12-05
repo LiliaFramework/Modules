@@ -73,14 +73,13 @@ end
 function MODULE:InitializedModules()
     if not lia.config.get("AFKProtectionEnabled", true) then return end
     timer.Create("liaAFKtimer", 1, 0, function()
-        for _, client in ipairs(player.GetAll()) do
+        for _, client in player.Iterator() do
             if not IsValid(client) then continue end
             local lastActivity = client:getNetVar("lastActivity", 0)
             local currentTime = CurTime()
             if currentTime - lastActivity >= lia.config.get("AFKTime", 180) and not client:getNetVar("isAFK") then
                 client:setNetVar("isAFK", true)
                 client:setNetVar("afkTime", currentTime)
-                print("[AFK] " .. client:Name() .. " is now AFK")
             end
         end
     end)

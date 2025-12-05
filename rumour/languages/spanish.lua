@@ -1,4 +1,4 @@
-NAME = "Spanish"
+﻿NAME = "Spanish"
 LANGUAGE = {
     rumourCommandCooldownTimed = "Please wait %s seconds before spreading another rumour.",
     rumourCommandDesc = "Spread a rumour to other criminals.",

@@ -24,7 +24,6 @@ lia.config.add("Vignette", "enableVignetteEffect", true, nil, {
 
 lia.config.add("FPSHudFont", "fpsHudFont", "Montserrat Medium", function()
     if not CLIENT then return end
-    hook.Run("RefreshFonts")
 end, {
     desc = "fpsHudFontDesc",
     category = "fonts",

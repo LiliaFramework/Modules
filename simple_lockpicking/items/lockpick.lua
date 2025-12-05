@@ -9,9 +9,7 @@ ITEM.functions.Use = {
         local ply = item.player
         local target = ply:GetEyeTrace().Entity
         if not ply:getNetVar("restricted") and IsValid(target) or target:IsVehicle() and target:isLocked() then
-            if hook.Run("CanPlayerLockpick", ply, target) == false then return false end
             item.beingUsed = true
-            hook.Run("LockpickStart", ply, target)
             local timerID = "Lockpicksnd" .. ply:SteamID()
             timer.Create(timerID, 1, 15, function()
                 if not ply or not ply:getNetVar("isPicking") then
@@ -28,19 +26,14 @@ ITEM.functions.Use = {
                 item:remove()
                 ply:EmitSound("doors/door_latch3.wav")
                 target:Fire("unlock")
-                lia.log.add(ply, "lockpick", target)
                 if target:IsVehicle() and target.IsSimfphyscar then target.IsLocked = false end
                 ply:setNetVar("isPicking")
                 timer.Remove(timerID)
-                hook.Run("LockpickSuccess", ply, target)
-                hook.Run("LockpickFinished", ply, target, true)
             end, 15, function()
                 ply:setNetVar("isPicking")
                 ply:setAction()
                 item.beingUsed = false
                 timer.Remove(timerID)
-                hook.Run("LockpickInterrupted", ply, target)
-                hook.Run("LockpickFinished", ply, target, false)
             end)
         else
             item.player:notifyLocalized("targetUnlocked")

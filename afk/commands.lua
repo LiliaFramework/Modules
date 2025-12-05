@@ -50,7 +50,7 @@ lia.command.add("afkstatus", {
         else
             local afkPlayers = {}
             local activePlayers = {}
-            for _, ply in ipairs(player.GetAll()) do
+            for _, ply in player.Iterator() do
                 if IsValid(ply) then
                     local isAFK = ply:getNetVar("isAFK", false)
                     local lastActivity = ply:getNetVar("lastActivity", 0)

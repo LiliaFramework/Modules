@@ -11,8 +11,12 @@ ITEM.functions.use = {
     icon = "icon16/add.png",
     onRun = function(item)
         local client = item.player
-        client:addBAC(item.abv)
-        hook.Run("AlcoholConsumed", client, item)
+        if item.abv and isnumber(item.abv) then
+            local oldBac = client:getLocalVar("bac", 0)
+            local newBac = math.Clamp(oldBac + item.abv, 0, 100)
+            client:setLocalVar("bac", newBac)
+        end
+
         client:EmitSound("vo/npc/male01/drink01.wav", 75, 100)
         return true
     end,

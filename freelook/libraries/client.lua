@@ -39,7 +39,6 @@ end
 function MODULE:InputMouseApply(cmd, x, y)
     local lp = LocalPlayer()
     if not lp:getChar() or not lia.option.get("freelookEnabled") then return end
-    if hook.Run("ShouldUseFreelook", lp) == false then return end
     if not HoldingBind(lp) or IsInSights(lp) or lp:ShouldDrawLocalPlayer() then
         LookX, LookY = 0, 0
         return
@@ -72,13 +71,9 @@ function MODULE:SetupQuickMenu(menu)
 end
 
 concommand.Add("+freelook", function()
-    if hook.Run("PreFreelookToggle", true) == false then return end
     freelooking = true
-    hook.Run("FreelookToggled", true)
 end)
 
 concommand.Add("-freelook", function()
-    if hook.Run("PreFreelookToggle", false) == false then return end
     freelooking = false
-    hook.Run("FreelookToggled", false)
 end)

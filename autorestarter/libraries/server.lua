@@ -3,13 +3,11 @@ MODULE.nextRestart = MODULE.nextRestart or 0
 local notified = {}
 function MODULE:InitializedModules()
     self.nextRestart = os.time() + lia.config.get("RestartInterval")
-    hook.Run("AutoRestartScheduled", self.nextRestart)
     timer.Remove("AutoRestarter_Timer")
     timer.Create("AutoRestarter_Timer", 1, 0, function()
         local now = os.time()
         if now >= self.nextRestart then
             self.nextRestart = now + lia.config.get("RestartInterval")
-            hook.Run("AutoRestartScheduled", self.nextRestart)
             for _, ply in player.Iterator() do
                 net.Start("RestartDisplay")
                 net.WriteInt(self.nextRestart, 32)
@@ -17,14 +15,11 @@ function MODULE:InitializedModules()
                 notified[ply:SteamID()] = false
             end
 
-            hook.Run("AutoRestart", now)
-            hook.Run("AutoRestartStarted", game.GetMap())
             game.ConsoleCommand("changelevel " .. game.GetMap() .. "\n")
         else
             local interval = lia.config.get("RestartInterval")
             local remaining = self.nextRestart - now
             if remaining <= interval * 0.25 then
-                hook.Run("AutoRestartCountdown", remaining)
                 for _, ply in player.Iterator() do
                     local id = ply:SteamID()
                     if not notified[id] then

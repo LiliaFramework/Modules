@@ -31,7 +31,6 @@
         end
 
         if text then
-            hook.Run("SendCaptionCommand", client, target, text, duration)
             lia.caption.start(target, text, duration)
         else
             client:notifyLocalized("sendCaptionError")
@@ -57,7 +56,6 @@ lia.command.add("broadcastCaption", {
         local text = arguments[1]
         local duration = tonumber(arguments[2]) or 5
         if text then
-            hook.Run("BroadcastCaptionCommand", client, text, duration)
             for _, target in player.Iterator() do
                 lia.caption.start(target, text, duration)
             end

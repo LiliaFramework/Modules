@@ -1,6 +1,5 @@
 ﻿function MODULE:LoadCharInformation()
     local client = LocalPlayer()
-    hook.Run("AddSection", L("radio"), Color(0, 0, 0), 8)
     local status, frequency = self:GetPlayerRadioFrequency(client)
     hook.Run("AddTextField", L("radio"), "radiostatus", L("radio"), function() return status end)
     hook.Run("AddTextField", L("radio"), "radiofrequency", L("frequency"), function() return frequency end)

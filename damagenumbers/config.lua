@@ -1,6 +1,5 @@
 ﻿lia.config.add("DamageFont", "damageNumberFont", "Montserrat Medium", function()
     if not CLIENT then return end
-    hook.Run("RefreshFonts")
 end, {
     desc = "damageNumberFontDesc",
     category = "fonts",

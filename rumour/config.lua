@@ -1,4 +1,4 @@
-lia.config.add("RumourCooldown", "rumorCooldown", 60, nil, {
+﻿lia.config.add("RumourCooldown", "rumorCooldown", 60, nil, {
     desc = "rumorCooldownDesc",
     category = "gameplay",
     type = "Int",
