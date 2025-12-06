@@ -1,6 +1,4 @@
-﻿lia.config.add("DamageFont", "damageNumberFont", "Montserrat Medium", function()
-    if not CLIENT then return end
-end, {
+﻿lia.config.add("DamageFont", "damageNumberFont", "Montserrat Medium", function() if not CLIENT then return end end, {
     desc = "damageNumberFontDesc",
     category = "fonts",
     type = "Table",

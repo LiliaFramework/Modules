@@ -1,5 +1,4 @@
-﻿-- Alcohol config locals
-local AlcoholDegradeRate = 5
+﻿local AlcoholDegradeRate = 5
 local AlcoholTickTime = 30
 local AlcoholEffectDelay = 0.03
 local AlcoholIntenseMultiplier = 2
@@ -34,7 +33,6 @@ end
 
 function MODULE:NetVarChanged(entity, key, oldValue, newValue)
     if IsValid(entity) and entity:IsPlayer() and key == "bac" then
-        -- BAC value changed
         if newValue and newValue > 0 and (oldValue == nil or oldValue <= 0) then
             StartBACDegradation(entity)
         elseif newValue and newValue <= 0 and oldValue and oldValue > 0 then

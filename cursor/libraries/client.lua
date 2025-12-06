@@ -1,8 +1,6 @@
 ﻿local CursorMaterial = ""
 function MODULE:PostRenderVGUI()
-    if CursorMaterial ~= "" then
-        draw.CustCursor(CursorMaterial)
-    end
+    if CursorMaterial ~= "" then draw.CustCursor(CursorMaterial) end
 end
 
 function MODULE:Think()

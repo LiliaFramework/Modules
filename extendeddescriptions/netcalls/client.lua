@@ -54,5 +54,4 @@ net.Receive("SetDetailedDescriptions", function()
         net.SendToServer()
         frame:Close()
     end
-
 end)

@@ -70,10 +70,5 @@ function MODULE:SetupQuickMenu(menu)
     end, lia.option.get("freelookEnabled"))
 end
 
-concommand.Add("+freelook", function()
-    freelooking = true
-end)
-
-concommand.Add("-freelook", function()
-    freelooking = false
-end)
+concommand.Add("+freelook", function() freelooking = true end)
+concommand.Add("-freelook", function() freelooking = false end)

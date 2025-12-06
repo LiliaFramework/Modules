@@ -86,9 +86,7 @@ function MODULE:runCutscene(id)
             end)
         end
 
-        timer.Simple(self.fadeDelay, function()
-            fade:Remove()
-        end)
+        timer.Simple(self.fadeDelay, function() fade:Remove() end)
     end
 
     local t = self.fadeDelay
@@ -105,7 +103,7 @@ function MODULE:runCutscene(id)
 
     fadeIn()
     for idx, scene in SortedPairs(cs) do
-            timer.Simple(scene.startTime, function()
+        timer.Simple(scene.startTime, function()
             fadeOut()
             cutStarted = true
             setImage(scene.image)

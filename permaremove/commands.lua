@@ -4,7 +4,7 @@
     onRun = function(client)
         local entity = client:GetEyeTraceNoCursor().Entity
         local data = lia.data.get("permaremove", {})
-        local mapID = game.GetMap()
+        local mapID = lia.data.getEquivalencyMap(game.GetMap())
         if IsValid(entity) and entity:CreatedByMap() then
             data[#data + 1] = {mapID, entity:MapCreationID()}
             entity:Remove()

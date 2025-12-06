@@ -31,8 +31,6 @@ local function DrawVignette()
     end
 end
 
-
-
 local function canDrawWatermark()
     return lia.config.get("WatermarkEnabled", false) and isstring(lia.config.get("GamemodeVersion", "")) and lia.config.get("GamemodeVersion", "") ~= "" and isstring(lia.config.get("WatermarkLogo", "")) and lia.config.get("WatermarkLogo", "") ~= ""
 end
@@ -65,9 +63,6 @@ function MODULE:HUDPaint()
         if canDrawWatermark() then drawWatermark() end
     end
 end
-
-
-
 
 timer.Create("liaVignetteChecker", 1, 0, function()
     local client = LocalPlayer()

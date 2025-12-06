@@ -22,9 +22,7 @@ lia.config.add("Vignette", "enableVignetteEffect", true, nil, {
     type = "Boolean"
 })
 
-lia.config.add("FPSHudFont", "fpsHudFont", "Montserrat Medium", function()
-    if not CLIENT then return end
-end, {
+lia.config.add("FPSHudFont", "fpsHudFont", "Montserrat Medium", function() if not CLIENT then return end end, {
     desc = "fpsHudFontDesc",
     category = "fonts",
     type = "Table",

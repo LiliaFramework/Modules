@@ -399,7 +399,6 @@
         width = 1,
         height = 1
     },
-    -- WINES --
     cabernet_sauvignon = {
         name = "Cabernet Sauvignon",
         model = "models/props_junk/garbage_glassbottle002a.mdl",
@@ -710,7 +709,6 @@
         width = 1,
         height = 2
     },
-    -- SPIRITS --
     bourbon_bottle = {
         name = "Bourbon",
         model = "models/props_junk/garbage_glassbottle003a.mdl",
@@ -931,7 +929,6 @@
         width = 1,
         height = 2
     },
-    -- LIQUEURS --
     triple_sec_bottle = {
         name = "Triple Sec",
         model = "models/props_junk/garbage_glassbottle003a.mdl",
@@ -1182,7 +1179,6 @@
         width = 1,
         height = 2
     },
-    -- COCKTAILS (PRE-MIXED) --
     margarita_mix = {
         name = "Margarita (Pre-mixed)",
         model = "models/props_junk/garbage_glassbottle001a.mdl",
@@ -1283,7 +1279,6 @@
         width = 1,
         height = 1
     },
-    -- INTERNATIONAL DRINKS --
     sangria_bottle = {
         name = "Sangria",
         model = "models/props_junk/garbage_glassbottle002a.mdl",
@@ -1374,7 +1369,6 @@
         width = 1,
         height = 2
     },
-    -- SPECIALTY & ARTISANAL --
     craft_ipa_bottle = {
         name = "Craft IPA",
         model = "models/props_junk/garbage_glassbottle003a.mdl",
@@ -1485,7 +1479,6 @@
         width = 1,
         height = 1
     },
-    -- LOW ALCOHOL OPTIONS --
     near_beer_can = {
         name = "Near Beer",
         model = "models/props_junk/popcan01a.mdl",
@@ -1526,7 +1519,6 @@
         width = 1,
         height = 2
     },
-    -- ADDITIONAL BEERS --
     heineken_bottle = {
         name = "Heineken",
         model = "models/props_junk/garbage_glassbottle003a.mdl",
@@ -1627,7 +1619,6 @@
         width = 1,
         height = 1
     },
-    -- ADDITIONAL WINES --
     yellow_tail_shiraz = {
         name = "Yellow Tail Shiraz",
         model = "models/props_junk/garbage_glassbottle002a.mdl",
@@ -1708,7 +1699,6 @@
         width = 1,
         height = 2
     },
-    -- ADDITIONAL SPIRITS --
     jack_daniels_bottle = {
         name = "Jack Daniel's",
         model = "models/props_junk/garbage_glassbottle003a.mdl",
@@ -1869,7 +1859,6 @@
         width = 1,
         height = 2
     },
-    -- ADDITIONAL LIQUEURS --
     disaronno_bottle = {
         name = "Disaronno",
         model = "models/props_junk/garbage_glassbottle003a.mdl",
@@ -1970,7 +1959,6 @@
         width = 1,
         height = 1
     },
-    -- ADDITIONAL INTERNATIONAL DRINKS --
     aguardiente_bottle = {
         name = "Aguardiente",
         model = "models/props_junk/glassjug01.mdl",
@@ -2051,7 +2039,6 @@
         width = 1,
         height = 2
     },
-    -- FINAL SPECIALTY DRINKS --
     zombie_mix = {
         name = "Zombie (Pre-mixed)",
         model = "models/props_junk/garbage_glassbottle001a.mdl",

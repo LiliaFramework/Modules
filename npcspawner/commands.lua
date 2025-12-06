@@ -8,7 +8,7 @@
     },
     desc = "forceNPCSpawnDesc",
     onRun = function(client)
-        local map = game.GetMap()
+        local map = lia.data.getEquivalencyMap(game.GetMap())
         local zones = MODULE.SpawnPositions[map]
         if not zones then
             client:notifyLocalized("noNPCSpawns")

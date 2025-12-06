@@ -1,4 +1,4 @@
-function MODULE:HUDPaint()
+﻿function MODULE:HUDPaint()
     local client = LocalPlayer()
     if not IsValid(client:getChar()) then return end
     local devFont = lia.config.get("DevHudFont")

@@ -1,6 +1,4 @@
-﻿lia.config.add("DevHudFont", "developmentHudFont", "Montserrat Medium", function()
-    if not CLIENT then return end
-end, {
+﻿lia.config.add("DevHudFont", "developmentHudFont", "Montserrat Medium", function() if not CLIENT then return end end, {
     desc = "developmentHudFontDesc",
     category = "fonts",
     type = "Table",

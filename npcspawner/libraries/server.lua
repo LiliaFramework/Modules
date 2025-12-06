@@ -72,12 +72,11 @@ local function processZone(zone, group)
             end
         end
     end
-
     return true
 end
 
 local function spawnCycle()
-    local zones = MODULE.SpawnPositions[game.GetMap()]
+    local zones = MODULE.SpawnPositions[lia.data.getEquivalencyMap(game.GetMap())]
     if not zones then return end
     for group, zone in pairs(zones) do
         processZone(zone, group)

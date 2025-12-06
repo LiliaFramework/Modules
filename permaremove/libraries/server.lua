@@ -1,7 +1,7 @@
 ﻿function MODULE:LoadData()
     if not SERVER then return end
     local data = lia.data.get("permaremove", {})
-    local mapID = game.GetMap()
+    local mapID = lia.data.getEquivalencyMap(game.GetMap())
     if not data then return end
     for _, info in ipairs(data) do
         local map, entID = unpack(info)

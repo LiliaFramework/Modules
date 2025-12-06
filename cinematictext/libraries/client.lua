@@ -110,10 +110,7 @@ function PANEL:TriggerText()
 end
 
 function PANEL:TriggerCountdown()
-    self:AlphaTo(0, 4, contents.duration, function()
-        self:Remove()
-    end)
-
+    self:AlphaTo(0, 4, contents.duration, function() self:Remove() end)
     timer.Simple(contents.duration, function() if music then music:FadeOut(4) end end)
 end
 

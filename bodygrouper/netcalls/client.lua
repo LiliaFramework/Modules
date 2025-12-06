@@ -8,8 +8,4 @@ net.Receive("BodygrouperMenu", function()
     MODULE.Menu:SetTarget(target)
 end)
 
-net.Receive("BodygrouperMenuCloseClientside", function()
-    if IsValid(MODULE.Menu) then
-        MODULE.Menu:Remove()
-    end
-end)
+net.Receive("BodygrouperMenuCloseClientside", function() if IsValid(MODULE.Menu) then MODULE.Menu:Remove() end end)
