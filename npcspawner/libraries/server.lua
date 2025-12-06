@@ -40,7 +40,6 @@ end
 
 local function processZone(zone, group)
     zone.spawnedNPCs = zone.spawnedNPCs or {}
-    local startCount = #zone.spawnedNPCs
     local groupAlive = false
     for _, npc in ipairs(zone.spawnedNPCs) do
         if IsValid(npc) and npc:getNetVar("setNetVar") == group then
