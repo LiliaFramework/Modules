@@ -44,7 +44,7 @@ end
 
 local function consoleFindPlayer(name)
     local dummy = {}
-    function dummy:notifyLocalized(msg)
+    function dummy:notifyLocalized()
     end
     return lia.util.findPlayer(dummy, name)
 end

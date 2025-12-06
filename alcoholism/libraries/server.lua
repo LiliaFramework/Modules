@@ -32,12 +32,10 @@ local function StopBACDegradation(client)
     timer.Remove("BAC_Degradation_" .. client:SteamID())
 end
 
-function MODULE:NetVarChanged(client, cmd)
-    -- Only care about player entities and BAC changes
+function MODULE:NetVarChanged(entity, key, oldValue, newValue)
     if IsValid(entity) and entity:IsPlayer() and key == "bac" then
         -- BAC value changed
         if newValue and newValue > 0 and (oldValue == nil or oldValue <= 0) then
-            -- BAC became positive, start degradation timer
             StartBACDegradation(entity)
         elseif newValue and newValue <= 0 and oldValue and oldValue > 0 then
             StopBACDegradation(entity)

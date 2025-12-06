@@ -12,7 +12,7 @@ function PANEL:Init()
     self.model = self:Add("liaModelPanel")
     self.model:Dock(LEFT)
     self.model:SetWide(w / 2)
-    self.model.PaintOver = function(panel, panelWidth, h)
+    self.model.PaintOver = function(_, panelWidth, h)
         local str = L("rotateInstruction", leftrotate:upper(), rightrotate:upper())
         lia.util.drawText(str, panelWidth / 2, h - 16, Color(255, 255, 255), 1, 1)
     end

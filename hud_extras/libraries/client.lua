@@ -1,5 +1,4 @@
-﻿local blurGoal, blurValue = 0, 0
-local vignetteAlphaGoal, vignetteAlphaDelta = 0, 0
+﻿local vignetteAlphaGoal, vignetteAlphaDelta = 0, 0
 local hasVignetteMaterial = lia.util.getMaterial("vignette.png") ~= "___error"
 local mathApproach = math.Approach
 local function DrawFPS()

@@ -10,7 +10,3 @@ function MODULE:GetSalaryAmount(client)
     end
     return 0
 end
-
-function MODULE:PlayerModelChanged(client, newModel)
-    if ModelPay[newModel] then end
-end

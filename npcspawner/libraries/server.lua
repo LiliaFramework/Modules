@@ -74,7 +74,6 @@ local function processZone(zone, group)
         end
     end
 
-    local spawned = #zone.spawnedNPCs - startCount
     return true
 end
 

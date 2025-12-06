@@ -20,7 +20,6 @@
             return
         end
 
-        if false then return end
         if not client.rumourdelay then client.rumourdelay = 0 end
         if CurTime() < client.rumourdelay then
             local seconds = math.ceil(client.rumourdelay - CurTime())
