@@ -1,0 +1,24 @@
+﻿MODULE.name = "NPC Money"
+MODULE.versionID = "public_npcmoney"
+MODULE.author = "Samael"
+MODULE.discord = "@liliaplayer"
+MODULE.version = 1.0
+MODULE.desc = "Adds NPCs that give money to players on death, MoneyTable to define rewards, editable money amounts per NPC type, and configurable default values."
+MODULE.MoneyTable = {
+    ["default"] = 100,
+    ["npc_zombie"] = 25,
+    ["npc_zombie_fast"] = 30,
+    ["npc_zombie_poison"] = 35,
+    ["npc_headcrab"] = 15,
+    ["npc_headcrab_fast"] = 20,
+    ["npc_headcrab_black"] = 40,
+    ["npc_antlion"] = 50,
+    ["npc_antlion_worker"] = 60,
+    ["npc_antlion_guard"] = 80,
+    ["npc_manhack"] = 10,
+    ["npc_rollermine"] = 45,
+    ["npc_turret_floor"] = 75,
+    ["npc_combine_s"] = 120,
+    ["npc_hunter"] = 200,
+    ["npc_strider"] = 500
+}

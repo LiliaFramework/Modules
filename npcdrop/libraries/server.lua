@@ -1,6 +1,7 @@
 ﻿local MODULE = MODULE
 function MODULE:OnNPCKilled(ent)
     if not ent:IsNPC() then return end
+    -- Handle item drops
     local weights = self.DropTable[ent:GetClass()]
     if not weights then return end
     local totalWeight = 0
