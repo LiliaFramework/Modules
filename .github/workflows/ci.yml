@@ -79,6 +79,20 @@ jobs:
           for m in */module.lua; do
             [ -f "$m" ] || continue
             dir=${m%%/*}
+            # Initialize variables to prevent leakage between iterations
+            name_key=""
+            uniqueid=""
+            author=""
+            discord=""
+            desc_key=""
+            name=""
+            desc=""
+            version=""
+            rawf=""
+            raww=""
+            feat=""
+            work=""
+            folder=""
               name_key=$(grep -Po 'MODULE\.name\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || true)
               uniqueid=$(grep -Po 'MODULE\.versionID\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || true)
               author=$(grep -Po 'MODULE\.author\s*=\s*"[^"]*"' "$m" | sed -E 's/.*=\s*"([^"]+)".*/\1/' || true)
