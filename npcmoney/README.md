@@ -10,8 +10,8 @@ Adds NPCs that give money to players on death, MoneyTable to define rewards, edi
 
 ---
 
-<details class="realm-shared">
-<summary>NPC Money</summary>
+<div class="realm-shared">
+<div class="realm-header">NPC Money</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds NPCs that give money to players on death, MoneyTable to define rewards, editable money amounts per NPC type, and configurable default values.</p>
@@ -25,6 +25,7 @@ Adds NPCs that give money to players on death, MoneyTable to define rewards, edi
 <li>Adds configurable default values for unlisted NPCs</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/npcmoney.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

@@ -10,8 +10,8 @@ Spawns a bodygroup closet where players can edit their model's bodygroups. Admin
 
 ---
 
-<details class="realm-shared">
-<summary>Body Group Editor</summary>
+<div class="realm-shared">
+<div class="realm-header">Body Group Editor</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Spawns a bodygroup closet where players can edit their model's bodygroups. Admins may inspect others and configure the closet's model.</p>
@@ -25,6 +25,7 @@ Spawns a bodygroup closet where players can edit their model's bodygroups. Admin
 <li>Adds a networked menu for editing bodygroups</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/bodygrouper.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

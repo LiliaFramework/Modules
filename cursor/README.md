@@ -10,8 +10,8 @@ Adds a toggleable custom cursor for the UI, a purely client-side implementation,
 
 ---
 
-<details class="realm-shared">
-<summary>Cursor</summary>
+<div class="realm-shared">
+<div class="realm-header">Cursor</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds a toggleable custom cursor for the UI, a purely client-side implementation, improved menu navigation, a hotkey to quickly show or hide the cursor, and compatibility with other menu modules.</p>
@@ -25,6 +25,7 @@ Adds a toggleable custom cursor for the UI, a purely client-side implementation,
 <li>Adds compatibility with other menu modules</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/cursor.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

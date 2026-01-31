@@ -10,8 +10,8 @@ Adds the ability to kick doors open with an animation, logging of door kick even
 
 ---
 
-<details class="realm-shared">
-<summary>Door Kick</summary>
+<div class="realm-shared">
+<div class="realm-header">Door Kick</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds the ability to kick doors open with an animation, logging of door kick events, and a fun breach mechanic with physics force to fling doors open.</p>
@@ -24,6 +24,7 @@ Adds the ability to kick doors open with an animation, logging of door kick even
 <li>Adds physics force to fling doors open</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/doorkick.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

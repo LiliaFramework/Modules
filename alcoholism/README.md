@@ -10,8 +10,8 @@ Adds drinkable alcohol that increases a player's intoxication level. High BAC bl
 
 ---
 
-<details class="realm-shared">
-<summary>Alcoholism</summary>
+<div class="realm-shared">
+<div class="realm-header">Alcoholism</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds drinkable alcohol that increases a player's intoxication level. High BAC blurs vision and slows movement until the effect wears off.</p>
@@ -25,6 +25,7 @@ Adds drinkable alcohol that increases a player's intoxication level. High BAC bl
 <li>Adds multiple drink items with varying strength (vodka, whiskey, wine, beer, etc.)</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/alcoholism.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

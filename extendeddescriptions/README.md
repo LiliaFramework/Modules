@@ -10,8 +10,8 @@ Adds support for long item descriptions, localization for multiple languages, be
 
 ---
 
-<details class="realm-shared">
-<summary>Extended Descriptions</summary>
+<div class="realm-shared">
+<div class="realm-header">Extended Descriptions</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds support for long item descriptions, localization for multiple languages, better RP text display, automatic line wrapping, and fallback to short descriptions.</p>
@@ -25,6 +25,7 @@ Adds support for long item descriptions, localization for multiple languages, be
 <li>Adds fallback to short descriptions</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/extendeddescriptions.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

@@ -10,8 +10,8 @@ Adds a full deck of playing cards that can be shuffled and drawn. Card draws syn
 
 ---
 
-<details class="realm-shared">
-<summary>Cards</summary>
+<div class="realm-shared">
+<div class="realm-header">Cards</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds a full deck of playing cards that can be shuffled and drawn. Card draws sync to all players for simple in-game minigames.</p>
@@ -25,6 +25,7 @@ Adds a full deck of playing cards that can be shuffled and drawn. Card draws syn
 <li>Adds hooks so other modules can use cards</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/cards.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

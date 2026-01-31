@@ -10,8 +10,8 @@ Adds ability to permanently delete map entities, logging for each removed entity
 
 ---
 
-<details class="realm-shared">
-<summary>Perma Remove</summary>
+<div class="realm-shared">
+<div class="realm-header">Perma Remove</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds ability to permanently delete map entities, logging for each removed entity, an admin-only command, confirmation prompts before removal, and restore list to undo mistakes.</p>
@@ -25,6 +25,7 @@ Adds ability to permanently delete map entities, logging for each removed entity
 <li>Adds restore list to undo mistakes</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/permaremove.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

@@ -10,8 +10,8 @@ Adds a serious flashlight with dynamic light, darkening of surroundings when tur
 
 ---
 
-<details class="realm-shared">
-<summary>Flashlight</summary>
+<div class="realm-shared">
+<div class="realm-header">Flashlight</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds a serious flashlight with dynamic light, darkening of surroundings when turned off, adjustable brightness, and keybind toggle support.</p>
@@ -24,6 +24,7 @@ Adds a serious flashlight with dynamic light, darkening of surroundings when tur
 <li>Adds keybind toggle support</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/flashlight.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

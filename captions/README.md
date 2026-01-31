@@ -10,8 +10,8 @@ Offers an API for timed on-screen captions suited for tutorials or story events.
 
 ---
 
-<details class="realm-shared">
-<summary>Captions</summary>
+<div class="realm-shared">
+<div class="realm-header">Captions</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Offers an API for timed on-screen captions suited for tutorials or story events. Captions can be triggered from the server or client and last for a chosen duration.</p>
@@ -26,6 +26,7 @@ Offers an API for timed on-screen captions suited for tutorials or story events.
 <li>Adds network synchronization for caption display</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/captions.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

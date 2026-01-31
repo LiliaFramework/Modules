@@ -10,8 +10,8 @@ Adds an anonymous rumour chat command, hiding of the sender's identity, encourag
 
 ---
 
-<details class="realm-shared">
-<summary>Anonymous Rumors</summary>
+<div class="realm-shared">
+<div class="realm-header">Anonymous Rumors</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds an anonymous rumour chat command, hiding of the sender's identity, encouragement for roleplay intrigue, a cooldown to prevent spam, and admin logging of rumour messages.</p>
@@ -25,6 +25,7 @@ Adds an anonymous rumour chat command, hiding of the sender's identity, encourag
 <li>Adds admin logging of rumour messages</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/rumour.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

@@ -10,8 +10,8 @@ Adds a radio chat channel for players, font configuration via RadioFont, worksho
 
 ---
 
-<details class="realm-shared">
-<summary>Radio</summary>
+<div class="realm-shared">
+<div class="realm-header">Radio</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds a radio chat channel for players, font configuration via RadioFont, workshop models for radios, frequency channels for groups, and handheld radio items.</p>
@@ -25,6 +25,7 @@ Adds a radio chat channel for players, font configuration via RadioFont, worksho
 <li>Adds handheld radio items</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/radio.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

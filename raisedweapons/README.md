@@ -10,8 +10,8 @@ Adds auto-lowering of weapons when running, a raise delay set by WeaponRaiseSpee
 
 ---
 
-<details class="realm-shared">
-<summary>Raised Weapons</summary>
+<div class="realm-shared">
+<div class="realm-header">Raised Weapons</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds auto-lowering of weapons when running, a raise delay set by WeaponRaiseSpeed, prevention of accidental fire, a toggle to keep weapons lowered, and compatibility with melee weapons.</p>
@@ -25,6 +25,7 @@ Adds auto-lowering of weapons when running, a raise delay set by WeaponRaiseSpee
 <li>Adds compatibility with melee weapons</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/raisedweapons.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

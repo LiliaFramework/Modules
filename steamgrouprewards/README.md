@@ -10,8 +10,8 @@ Provides Steam group membership rewards system that automatically checks group m
 
 ---
 
-<details class="realm-shared">
-<summary>Steam Group Rewards</summary>
+<div class="realm-shared">
+<div class="realm-header">Steam Group Rewards</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Provides Steam group membership rewards system that automatically checks group membership and gives money rewards to players who join your Steam group.</p>
@@ -30,6 +30,7 @@ Provides Steam group membership rewards system that automatically checks group m
 <li>`/claim`: Claims the group membership reward (if eligible)</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/steamgrouprewards.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

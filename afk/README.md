@@ -10,8 +10,8 @@ Comprehensive AFK protection system that automatically detects inactive players,
 
 ---
 
-<details class="realm-shared">
-<summary>AFK Protection</summary>
+<div class="realm-shared">
+<div class="realm-header">AFK Protection</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Comprehensive AFK protection system that automatically detects inactive players, prevents exploitation of AFK players, and integrates with restraint systems. Features configurable AFK detection, admin commands, multi-language support, and protection against various player actions.</p>
@@ -27,6 +27,7 @@ Comprehensive AFK protection system that automatically detects inactive players,
 <li>Adds integration with restraint systems</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/afk.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

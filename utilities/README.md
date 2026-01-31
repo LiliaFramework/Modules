@@ -10,8 +10,8 @@ Adds extra helper functions in lia.util, simplified utilities for common scripti
 
 ---
 
-<details class="realm-shared">
-<summary>Code Utilities</summary>
+<div class="realm-shared">
+<div class="realm-header">Code Utilities</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds extra helper functions in lia.util, simplified utilities for common scripting tasks, a central library used by other modules, utilities for networking data, and shared constants for modules.</p>
@@ -25,6 +25,7 @@ Adds extra helper functions in lia.util, simplified utilities for common scripti
 <li>Adds shared constants for modules</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/utilities.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

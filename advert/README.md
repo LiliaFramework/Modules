@@ -10,8 +10,8 @@ Implements a paid /advert command for server-wide announcements. Messages are co
 
 ---
 
-<details class="realm-shared">
-<summary>Advertisements</summary>
+<div class="realm-shared">
+<div class="realm-header">Advertisements</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Implements a paid /advert command for server-wide announcements. Messages are colored, logged, and throttled by a cooldown to curb spam.</p>
@@ -26,6 +26,7 @@ Implements a paid /advert command for server-wide announcements. Messages are co
 <li>Adds notifications when players lack funds or are on cooldown</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/advert.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>

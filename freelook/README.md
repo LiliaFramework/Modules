@@ -10,8 +10,8 @@ Adds the ability to look around without turning the body, a toggle key similar t
 
 ---
 
-<details class="realm-shared">
-<summary>Free Look</summary>
+<div class="realm-shared">
+<div class="realm-header">Free Look</div>
 <div class="details-content">
 <strong>Purpose</strong>
 <p>Adds the ability to look around without turning the body, a toggle key similar to EFT, movement direction preservation, and adjustable sensitivity while freelooking.</p>
@@ -24,6 +24,7 @@ Adds the ability to look around without turning the body, a toggle key similar t
 <li>Adds adjustable sensitivity while freelooking</li>
 </ul>
 
+
 <p align="center"><a href="https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/freelook.zip" style="display:inline-block;padding:12px 24px;font-size:1.5rem;font-weight:bold;text-decoration:none;color:#fff;background-color:var(--md-primary-fg-color,#007acc);border-radius:4px;">DOWNLOAD HERE</a></p>
 </div>
-</details>
+</div>
