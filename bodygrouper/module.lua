@@ -1,4 +1,4 @@
-﻿MODULE.name = "Body Group Editor"
+﻿MODULE.name = "BodyGroup Closet"
 MODULE.versionID = "public_bodygrouper"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"

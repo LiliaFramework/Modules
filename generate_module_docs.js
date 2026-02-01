@@ -1,30 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 
-let modulesPath = path.join(__dirname, 'modules.json')
-if (!fs.existsSync(modulesPath)) {
-  const alternativePath = path.join(__dirname, 'documentation', 'modules.json')
-  if (fs.existsSync(alternativePath)) {
-    modulesPath = alternativePath
-  } else {
-    process.exit(1)
-  }
-}
-
-let modules
-try {
-  modules = JSON.parse(fs.readFileSync(modulesPath, 'utf8'))
-} catch {
-  process.exit(1)
-}
-if (!Array.isArray(modules)) process.exit(1)
-
-function toFolderName(name) {
-  return String(name)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '_')
-    .replace(/^_+|_+$/g, '')
-}
+const documentationDir = path.join(__dirname, 'documentation')
+const docsModulesDir = path.join(documentationDir, 'docs', 'modules')
+const modulesJsonPath = path.join(documentationDir, 'modules.json')
+const modulesMdPath = path.join(documentationDir, 'docs', 'modules.md')
+const modulesIndexMdPath = path.join(docsModulesDir, 'index.md')
 
 function toSlug(name) {
   return String(name)
@@ -33,83 +14,124 @@ function toSlug(name) {
     .replace(/^-+|-$/g, '')
 }
 
-function parseREADME(filePath) {
-  try {
-    const content = fs.readFileSync(filePath, 'utf8')
-    
-    // Extract name
-    const nameMatch = content.match(/\*\*Name:\*\*\s*(.+)/)
-    const name = nameMatch ? nameMatch[1].trim() : ''
-    
-    // Extract description (everything between "Description:" and the next heading or end)
-    const descMatch = content.match(/\*\*Description:\*\*\s*\n\n(.+?)(?:\n\n<h2|<h3|\n<p align|$)/s)
-    const description = descMatch ? descMatch[1].trim() : ''
-    
-    return { name, description }
-  } catch (error) {
-    return { name: '', description: '' }
+function getChangelog(folder) {
+  const changelogPath = path.join(docsModulesDir, folder, 'changelog.md')
+  if (fs.existsSync(changelogPath)) {
+    try {
+      return fs.readFileSync(changelogPath, 'utf8')
+    } catch (err) {
+      console.error(`Failed to read changelog for ${folder}:`, err)
+    }
   }
+  return ''
 }
 
-// First, copy README.md files as about.md
-for (const mod of modules) {
-  const id = mod.versionID || ''
-  if (!id) continue
+function main() {
+  if (!fs.existsSync(modulesJsonPath)) {
+    console.error('modules.json not found, skipping modules.md generation.')
+    process.exit(1)
+  }
 
-  const folder = toFolderName(mod.name || id)
+  let modules = []
+  try {
+    modules = JSON.parse(fs.readFileSync(modulesJsonPath, 'utf8'))
+  } catch (err) {
+    console.error('Error parsing modules.json:', err)
+    process.exit(1)
+  }
 
-  const readmePath = path.join(__dirname, folder, 'README.md')
-  if (!fs.existsSync(readmePath)) continue
+  if (!Array.isArray(modules)) {
+    console.error('modules.json is not an array.')
+    process.exit(1)
+  }
 
-  const outputDir = path.join(__dirname, 'documentation', 'docs', 'modules', folder)
-  fs.mkdirSync(outputDir, { recursive: true })
+  // Sort modules alphabetically
+  modules.sort((a, b) => (a.name || '').localeCompare(b.name || ''))
 
-  fs.copyFileSync(readmePath, path.join(outputDir, 'about.md'))
+  const grouped = {
+    'Modules': [],
+    'Droppers': []
+  }
+
+  modules.forEach(mod => {
+    const name = mod.name || 'Unknown'
+    if (name.toLowerCase().includes('dropper')) {
+      grouped['Droppers'].push(mod)
+    } else {
+      grouped['Modules'].push(mod)
+    }
+  })
+
+  let markdown = '# List of Modules\n\n'
+
+  const categories = ['Modules', 'Droppers']
+  categories.forEach(category => {
+    const mods = grouped[category]
+    if (mods.length === 0 && category === 'Droppers') return
+
+    markdown += `## ${category}\n\n`
+    if (mods.length === 0) {
+      markdown += 'No modules found.\n\n'
+      return
+    }
+
+    mods.forEach(mod => {
+      const name = mod.name || 'Unknown'
+      const description = mod.description || 'No description available.'
+      const features = mod.features || []
+      const download = mod.download || '#'
+      const sourceUrl = mod.source || ''
+
+      // Extract folder from source URL: https://liliaframework.github.io/modules/{folder}/about/
+      let folder = ''
+      const match = sourceUrl.match(/\/modules\/([^/]+)\//)
+      if (match) {
+        folder = match[1]
+      }
+
+      const changelog = folder ? getChangelog(folder) : ''
+
+      markdown += `<details>\n<summary>${name}</summary>\n\n`
+      markdown += `- **Name**: ${name}\n`
+      markdown += `- **Description**: ${description}\n`
+
+      if (features.length > 0) {
+        markdown += `- **Main Features**:\n`
+        features.forEach(f => {
+          markdown += `    - ${f}\n`
+        })
+      }
+
+      if (changelog) {
+        markdown += `- <details><summary>Changelog</summary>\n\n`
+        markdown += `${changelog}\n\n`
+        markdown += `</details>\n`
+      } else {
+        markdown += `- **Changelog**: Not available\n`
+      }
+
+      markdown += `- [Download Button](${download})\n\n`
+      markdown += `</details>\n\n`
+    })
+  })
+
+  // Write modules.md
+  fs.mkdirSync(path.dirname(modulesMdPath), { recursive: true })
+  fs.writeFileSync(modulesMdPath, markdown)
+  console.log(`Generated modules.md at ${modulesMdPath}`)
+
+  // Write modules/index.md
+  let indexMarkdown = '# Modules\n\n'
+  if (modules.length === 0) {
+    indexMarkdown += 'No module data available. Please check back later.\n'
+  } else {
+    modules.forEach(mod => {
+      indexMarkdown += `- [${mod.name || 'Unknown'}](${mod.source || ''})\n`
+    })
+  }
+  fs.mkdirSync(path.dirname(modulesIndexMdPath), { recursive: true })
+  fs.writeFileSync(modulesIndexMdPath, indexMarkdown)
+  console.log(`Generated modules/index.md at ${modulesIndexMdPath}`)
 }
 
-console.log('README.md files copied as about.md.')
-
-// Generate modules.md
-const outputPath = path.join(__dirname, 'documentation', 'modules.md')
-const outputDir = path.dirname(outputPath)
-
-// Ensure documentation directory exists
-fs.mkdirSync(outputDir, { recursive: true })
-
-let moduleList = []
-
-// Get all directories in the current folder
-const entries = fs.readdirSync(__dirname, { withFileTypes: true })
-
-for (const entry of entries) {
-  if (!entry.isDirectory()) continue
-  if (entry.name === '.github' || entry.name === 'node_modules' || entry.name === 'documentation') continue
-  
-  const moduleDir = path.join(__dirname, entry.name)
-  const readmePath = path.join(moduleDir, 'README.md')
-  
-  if (!fs.existsSync(readmePath)) continue
-  
-  const { name, description } = parseREADME(readmePath)
-  if (!name) continue
-  
-  moduleList.push({ name, description, folder: entry.name })
-}
-
-// Sort modules alphabetically
-moduleList.sort((a, b) => a.name.localeCompare(b.name))
-
-// Generate markdown content
-let markdown = '# List of Modules\n\n'
-
-for (const module of moduleList) {
-  const slug = toSlug(module.name)
-  const url = `https://bleonheart.github.io/modules/${slug}/`
-  
-  markdown += `## [${module.name}](${url})\n`
-  markdown += `${module.description}\n\n`
-}
-
-fs.writeFileSync(outputPath, markdown)
-
-console.log(`Generated modules.md with ${moduleList.length} modules at ${outputPath}`)
+main()

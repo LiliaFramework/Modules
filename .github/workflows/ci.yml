@@ -286,31 +286,13 @@ jobs:
           # Ensure the documentation directory exists
           mkdir -p documentation/docs
 
-          # Generate modules.md in the docs directory
-          echo '# List of Modules' > documentation/docs/modules.md
-          echo "" >> documentation/docs/modules.md
-
-          # Check if modules.json exists and generate index
-          if [ -f "documentation/modules.json" ]; then
-            echo "Generating module index from modules.json..."
-            jq -r '
-              sort_by(.name) |
-              .[] |
-              @text "## [\(.name)](\(.source))\n\(.description // "No description available")\n"
-            ' documentation/modules.json >> documentation/docs/modules.md
-            # Also generate an index.md inside docs/modules for directory-style index
-            echo '# Modules' > documentation/docs/modules/index.md
-            echo "" >> documentation/docs/modules/index.md
-            jq -r '
-              sort_by(.name) |
-              .[] |
-              @text "- [\(.name)](\(.source))\n"
-            ' documentation/modules.json >> documentation/docs/modules/index.md
+          # Run the Node.js script to generate modules.md and modules/index.md
+          if [ -f "generate_module_docs.js" ]; then
+            node generate_module_docs.js
           else
-            echo "Warning: modules.json not found, creating basic index..."
-            echo "No module data available. Please check back later." >> documentation/docs/modules.md
-            echo "# Modules" > documentation/docs/modules/index.md
-            echo "No module data available. Please check back later." >> documentation/docs/modules/index.md
+            echo "Error: generate_module_docs.js not found"
+            ls -la
+            exit 1
           fi
       - name: debug-after-gather-docs
         run: |
