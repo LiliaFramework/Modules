@@ -120,7 +120,7 @@ jobs:
                --arg desc "$desc" \
                --arg version "$version" \
                --arg download "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/${dir}.zip" \
-               --arg source "https://liliaframework.github.io/modules/${folder}/about/" \
+               --arg source "../modules/${folder}/index.md" \
                --argjson features "$feat" \
                --argjson workshop "$work" \
                '. += [{name:$name,versionID:$versionID,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
@@ -239,8 +239,8 @@ jobs:
             fi
 
             if [ -n "$readme_file" ] && [ -f "$readme_file" ]; then
-              cp "$readme_file" "$dest/about.md"
-              echo "Copied $readme_file to $dest/about.md for module $mod"
+              cp "$readme_file" "$dest/index.md"
+              echo "Copied $readme_file to $dest/index.md for module $mod"
             else
               echo "No README found for module $mod in $d"
             fi

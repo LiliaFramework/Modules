@@ -82,7 +82,7 @@ function main() {
       const download = mod.download || '#'
       const sourceUrl = mod.source || ''
 
-      // Extract folder from source URL: https://liliaframework.github.io/modules/{folder}/about/
+      // Extract folder from source URL: ../modules/{folder}/index.md
       let folder = ''
       const match = sourceUrl.match(/\/modules\/([^/]+)\//)
       if (match) {
