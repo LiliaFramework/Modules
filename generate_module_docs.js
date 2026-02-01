@@ -14,6 +14,10 @@ function toSlug(name) {
     .replace(/^-+|-$/g, '')
 }
 
+function stripH1(content) {
+  return content.replace(/^#\s+.*\n?/, '').trim()
+}
+
 function getChangelog(folder) {
   const changelogPath = path.join(docsModulesDir, folder, 'changelog.md')
   if (fs.existsSync(changelogPath)) {
@@ -21,6 +25,18 @@ function getChangelog(folder) {
       return fs.readFileSync(changelogPath, 'utf8')
     } catch (err) {
       console.error(`Failed to read changelog for ${folder}:`, err)
+    }
+  }
+  return ''
+}
+
+function getAbout(folder) {
+  const aboutPath = path.join(docsModulesDir, folder, 'index.md')
+  if (fs.existsSync(aboutPath)) {
+    try {
+      return fs.readFileSync(aboutPath, 'utf8')
+    } catch (err) {
+      console.error(`Failed to read about for ${folder}:`, err)
     }
   }
   return ''
@@ -80,20 +96,19 @@ function main() {
       const description = mod.description || 'No description available.'
       const features = mod.features || []
       const download = mod.download || '#'
-      const sourceUrl = mod.source || ''
+      const folder = mod.folder || ''
+      const slug = toSlug(name)
 
-      // Extract folder from source URL: ../modules/{folder}/index.md
-      let folder = ''
-      const match = sourceUrl.match(/\/modules\/([^/]+)\//)
-      if (match) {
-        folder = match[1]
-      }
-
+      const about = folder ? getAbout(folder) : ''
       const changelog = folder ? getChangelog(folder) : ''
 
-      markdown += `<details>\n<summary>${name}</summary>\n\n`
-      markdown += `- **Name**: ${name}\n`
-      markdown += `- **Description**: ${description}\n`
+      markdown += `<details id="${slug}">\n<summary>${name}</summary>\n\n`
+
+      if (about) {
+        markdown += `### About\n\n${stripH1(about)}\n\n`
+      } else {
+        markdown += `- **Description**: ${description}\n`
+      }
 
       if (features.length > 0) {
         markdown += `- **Main Features**:\n`
@@ -106,8 +121,6 @@ function main() {
         markdown += `- <details><summary>Changelog</summary>\n\n`
         markdown += `${changelog}\n\n`
         markdown += `</details>\n`
-      } else {
-        markdown += `- **Changelog**: Not available\n`
       }
 
       markdown += `- [Download Button](${download})\n\n`
@@ -120,17 +133,9 @@ function main() {
   fs.writeFileSync(modulesMdPath, markdown)
   console.log(`Generated modules.md at ${modulesMdPath}`)
 
-  // Write modules/index.md
-  let indexMarkdown = '# Modules\n\n'
-  if (modules.length === 0) {
-    indexMarkdown += 'No module data available. Please check back later.\n'
-  } else {
-    modules.forEach(mod => {
-      indexMarkdown += `- [${mod.name || 'Unknown'}](${mod.source || ''})\n`
-    })
-  }
+  // Write modules/index.md (Same content as modules.md now)
   fs.mkdirSync(path.dirname(modulesIndexMdPath), { recursive: true })
-  fs.writeFileSync(modulesIndexMdPath, indexMarkdown)
+  fs.writeFileSync(modulesIndexMdPath, markdown)
   console.log(`Generated modules/index.md at ${modulesIndexMdPath}`)
 }
 

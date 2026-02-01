@@ -111,7 +111,8 @@ jobs:
             raww=$(grep -Po 'MODULE\.WorkshopContent\s*=\s*(\{[^}]*\}|"[^"]*")' "$m" | head -n1 | sed -E 's/^[^=]+=\s*//' || true)
             feat=$(parse_list "$rawf")
             work=$(parse_list "$raww")
-            # Use the actual directory name for the folder path (not the display name)
+            # Generate slug for anchor
+            slug=$(echo "$name" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g' | sed -E 's/^-+|-+$//g')
             folder="$dir"
             jq --arg name "$name" \
                --arg versionID "$uniqueid" \
@@ -120,10 +121,11 @@ jobs:
                --arg desc "$desc" \
                --arg version "$version" \
                --arg download "https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/${dir}.zip" \
-               --arg source "../modules/${folder}/index.md" \
+               --arg source "../modules/index.md#${slug}" \
+               --arg folder "$folder" \
                --argjson features "$feat" \
                --argjson workshop "$work" \
-               '. += [{name:$name,versionID:$versionID,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
+               '. += [{name:$name,versionID:$versionID,author:$author,discord:$discord,description:$desc,version:$version,download:$download,source:$source,folder:$folder,features:$features,workshop:$workshop}]' modules_data.json > tmp.json
             mv tmp.json modules_data.json
           done
       - name: zip-modules
@@ -289,6 +291,9 @@ jobs:
           # Run the Node.js script to generate modules.md and modules/index.md
           if [ -f "generate_module_docs.js" ]; then
             node generate_module_docs.js
+            # Cleanup individual module folders now that they are combined into the index
+            # This prevents files from being "split" across multiple directories
+            find documentation/docs/modules/ -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
           else
             echo "Error: generate_module_docs.js not found"
             ls -la
