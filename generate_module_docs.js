@@ -18,6 +18,30 @@ function stripH1(content) {
   return content.replace(/^#\s+.*\n?/, '').trim()
 }
 
+function stripRealmIdentifiers(content) {
+  if (!content) return ''
+  return content
+    .replace(/<div class="realm-[^"]+">/g, '')
+    .replace(/<div class="realm-header">[^<]+<\/div>/g, '')
+    .replace(/<div class="details-content">/g, '')
+    .replace(/<\/div>/g, (match, offset, str) => {
+      // Basic check to only remove divs that were likely our wrappers
+      // This is a bit naive but works for the common case
+      return ''
+    })
+    .trim()
+}
+
+function stripWrappers(content) {
+  // More robust stripping of our specific containers
+  let cleaned = stripH1(content)
+  cleaned = cleaned.replace(/<div class="realm-[^"]+">/g, '')
+  cleaned = cleaned.replace(/<div class="realm-header">[^<]*<\/div>/g, '')
+  cleaned = cleaned.replace(/<div class="details-content">/g, '')
+  cleaned = cleaned.replace(/<\/div>/g, '')
+  return cleaned.trim()
+}
+
 function getChangelog(folder) {
   const changelogPath = path.join(docsModulesDir, folder, 'changelog.md')
   if (fs.existsSync(changelogPath)) {
@@ -78,14 +102,17 @@ function main() {
     }
   })
 
-  let markdown = '# List of Modules\n\n'
+  let markdown = '# Modules\n\n'
 
   const categories = ['Modules', 'Droppers']
   categories.forEach(category => {
     const mods = grouped[category]
     if (mods.length === 0 && category === 'Droppers') return
 
-    markdown += `## ${category}\n\n`
+    if (category !== 'Modules') {
+      markdown += `## ${category}\n\n`
+    }
+
     if (mods.length === 0) {
       markdown += 'No modules found.\n\n'
       return
@@ -105,7 +132,7 @@ function main() {
       markdown += `<details id="${slug}">\n<summary>${name}</summary>\n\n`
 
       if (about) {
-        markdown += `### About\n\n${stripH1(about)}\n\n`
+        markdown += `${stripWrappers(about)}\n\n`
       } else {
         markdown += `- **Description**: ${description}\n`
       }
