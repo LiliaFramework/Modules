@@ -184,29 +184,23 @@ function main() {
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
         markdown += `<strong>Changelog</strong>\n`
+        markdown += `<details>\n<summary>Changelog History</summary>\n`
+        markdown += `<div class="details-content">\n`
 
-        if (versions.length > 1) {
-          versions.forEach(version => {
-            markdown += `<details>\n<summary>Version ${version}</summary>\n`
-            markdown += `<div class="details-content">\n`
-            markdown += `<ul>\n`
-            changelogData[version].forEach(entry => {
-              markdown += `  <li>${entry.trim()}</li>\n`
-            })
-            markdown += `</ul>\n`
-            markdown += `</div>\n`
-            markdown += `</details>\n`
-          })
-        } else {
+        versions.forEach(version => {
+          markdown += `<details>\n<summary>Version ${version}</summary>\n`
+          markdown += `<div class="details-content">\n`
           markdown += `<ul>\n`
-          versions.forEach(version => {
-            changelogData[version].forEach(entry => {
-              markdown += `  <li>${version} - ${entry.trim()}</li>\n`
-            })
+          changelogData[version].forEach(entry => {
+            markdown += `  <li>${entry.trim()}</li>\n`
           })
           markdown += `</ul>\n`
-        }
-        markdown += `\n`
+          markdown += `</div>\n`
+          markdown += `</details>\n`
+        })
+
+        markdown += `</div>\n`
+        markdown += `</details>\n\n`
       }
 
       markdown += `<div style="display: flex; justify-content: center; margin-top: 20px;">\n`
