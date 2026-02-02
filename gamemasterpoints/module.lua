@@ -14,8 +14,6 @@ MODULE.Privileges = {
 }
 
 MODULE.NetworkStrings = {"GMTPDelete", "GMTPMove", "GMTPNewPoint", "GMTPUpdateEffect", "GMTPUpdateName", "GMTPUpdateSound", "gmTPMenu", "gmTPNewName"}
-
 MODULE.Changelog = {
     ["1.0"] = "Initial Release",
 }
-

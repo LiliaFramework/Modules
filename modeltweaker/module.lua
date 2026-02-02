@@ -5,8 +5,6 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
 MODULE.desc = "Adds an entity to tweak prop models, adjustments for scale and rotation, easy UI controls, saving of tweaked props between restarts, and undo support for recent tweaks."
 MODULE.NetworkStrings = {"SeeModelTable", "WardrobeChangeModel"}
-
 MODULE.Changelog = {
     ["1.0"] = "Initial Release",
 }
-

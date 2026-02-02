@@ -5,8 +5,6 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
 MODULE.desc = "Comprehensive AFK protection system that automatically detects inactive players, prevents exploitation of AFK players, and integrates with restraint systems. Features configurable AFK detection, admin commands, multi-language support, and protection against various player actions."
 MODULE.NetworkStrings = {"liaAFKActivity"}
-
 MODULE.Changelog = {
     ["1.0"] = "Initial Release",
 }
-

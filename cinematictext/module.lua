@@ -14,8 +14,6 @@ MODULE.Privileges = {
 }
 
 MODULE.NetworkStrings = {"OpenCinematicMenu", "TriggerCinematic"}
-
 MODULE.Changelog = {
     ["1.0"] = "Initial Release",
 }
-

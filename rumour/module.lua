@@ -4,8 +4,6 @@ MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
 MODULE.desc = "Adds an anonymous rumour chat command, hiding of the sender's identity, encouragement for roleplay intrigue, a cooldown to prevent spam, and admin logging of rumour messages."
-
 MODULE.Changelog = {
     ["1.0"] = "Initial Release",
 }
-

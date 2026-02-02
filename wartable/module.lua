@@ -6,8 +6,6 @@ MODULE.version = 1.0
 MODULE.desc = "Adds an interactive 3D war table, the ability to plan operations on a map, a workshop model, marker placement for strategies, and support for multiple map layouts."
 MODULE.WorkshopContent = "3527544696"
 MODULE.NetworkStrings = {"ClearWarTable", "PlaceWarTableMarker", "RemoveWarTableMarker", "SetWarTableMap", "UseWarTable"}
-
 MODULE.Changelog = {
     ["1.0"] = "Initial Release",
 }
-

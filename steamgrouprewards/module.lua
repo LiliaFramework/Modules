@@ -7,8 +7,6 @@ MODULE.version = 1.0
 MODULE.desc = "Provides Steam group membership rewards system that automatically checks group membership and gives money rewards to players who join your Steam group."
 MODULE.GroupID = ""
 MODULE.MoneyReward = 500
-
 MODULE.Changelog = {
     ["1.0"] = "Initial Release",
 }
-

@@ -20,8 +20,6 @@ MODULE.Privileges = {
 }
 
 MODULE.NetworkStrings = {"BodygrouperMenu", "BodygrouperMenuClose", "BodygrouperMenuCloseClientside"}
-
 MODULE.Changelog = {
     ["1.0"] = "Initial Release",
 }
-
