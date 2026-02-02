@@ -132,7 +132,7 @@ function main() {
       const changelogData = mod.changelogData || {}
       const slug = toSlug(name)
 
-      markdown += `<details class="realm-shared" id="module-${slug}">\n`
+      markdown += `<details id="module-${slug}">\n`
       markdown += `<summary><a id="${name}"></a>${name}</summary>\n`
       markdown += `<div class="details-content">\n`
       markdown += `<a id="${slug}"></a>\n`
@@ -152,11 +152,11 @@ function main() {
         markdown += `</ul>\n\n`
       }
 
-      markdown += `<p align="center">\n`
-      markdown += `  <a href="${download}" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">\n`
-      markdown += `    <strong>Download</strong>\n`
+      markdown += `<div style="display: flex; justify-content: center; margin-top: 20px;">\n`
+      markdown += `  <a href="${download}" style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">\n`
+      markdown += `    Download\n`
       markdown += `  </a>\n`
-      markdown += `</p>\n`
+      markdown += `</div>\n`
       markdown += `</div>\n`
       markdown += `</details>\n\n`
       markdown += `---\n\n`
