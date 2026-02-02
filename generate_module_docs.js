@@ -132,31 +132,34 @@ function main() {
       const changelogData = mod.changelogData || {}
       const slug = toSlug(name)
 
-      markdown += `<details id="${slug}">\n<summary>${name}</summary>\n\n`
+      markdown += `<details class="realm-shared" id="module-${slug}">\n`
+      markdown += `<summary><a id="${name}"></a>${name}</summary>\n`
+      markdown += `<div class="details-content">\n`
+      markdown += `<a id="${slug}"></a>\n`
 
-      markdown += `### Purpose\n`
-      markdown += `${description}\n\n`
+      markdown += `<strong>Description</strong>\n`
+      markdown += `<p>${description}</p>\n\n`
 
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
-        markdown += `<details>\n<summary>Changelog</summary>\n\n`
+        markdown += `<strong>Changelog</strong>\n`
+        markdown += `<ul>\n`
         versions.forEach(version => {
-          markdown += `#### Version ${version}\n`
           changelogData[version].forEach(entry => {
-            markdown += `- ${entry}\n`
+            markdown += `  <li>${version} - ${entry}</li>\n`
           })
-          markdown += '\n'
         })
-        markdown += `</details>\n`
+        markdown += `</ul>\n\n`
       }
 
       markdown += `<p align="center">\n`
       markdown += `  <a href="${download}" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">\n`
       markdown += `    <strong>Download</strong>\n`
       markdown += `  </a>\n`
-      markdown += `</p>\n\n`
-
+      markdown += `</p>\n`
+      markdown += `</div>\n`
       markdown += `</details>\n\n`
+      markdown += `---\n\n`
     })
   })
 
