@@ -138,7 +138,7 @@ function main() {
       markdown += `<a id="${slug}"></a>\n`
 
       markdown += `<strong>Description</strong>\n`
-      markdown += `<p>${description}</p>\n\n`
+      markdown += `<p>${description.replace(/\\n/g, '<br>').replace(/\n/g, '<br>')}</p>\n\n`
 
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
@@ -146,7 +146,8 @@ function main() {
         markdown += `<ul>\n`
         versions.forEach(version => {
           changelogData[version].forEach(entry => {
-            markdown += `  <li>${version} - ${entry}</li>\n`
+            const formattedEntry = entry.replace(/\\n/g, '<br>').replace(/\n/g, '<br>')
+            markdown += `  <li>${version} - ${formattedEntry}</li>\n`
           })
         })
         markdown += `</ul>\n\n`
