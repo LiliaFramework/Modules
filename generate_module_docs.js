@@ -3,7 +3,6 @@ const path = require('path')
 
 const documentationDir = path.join(__dirname, 'documentation')
 const docsModulesDir = path.join(documentationDir, 'docs', 'modules')
-const modulesJsonPath = path.join(documentationDir, 'modules.json')
 const modulesMdPath = path.join(documentationDir, 'docs', 'modules.md')
 const modulesIndexMdPath = path.join(docsModulesDir, 'index.md')
 
@@ -14,75 +13,83 @@ function toSlug(name) {
     .replace(/^-+|-$/g, '')
 }
 
-function stripH1(content) {
-  return content.replace(/^#\s+.*\n?/, '').trim()
-}
-
-function stripRealmIdentifiers(content) {
-  if (!content) return ''
-  return content
-    .replace(/<div class="realm-[^"]+">/g, '')
-    .replace(/<div class="realm-header">[^<]+<\/div>/g, '')
-    .replace(/<div class="details-content">/g, '')
-    .replace(/<\/div>/g, (match, offset, str) => {
-      // Basic check to only remove divs that were likely our wrappers
-      // This is a bit naive but works for the common case
-      return ''
-    })
-    .trim()
-}
-
-function stripWrappers(content) {
-  // More robust stripping of our specific containers
-  let cleaned = stripH1(content)
-  cleaned = cleaned.replace(/<div class="realm-[^"]+">/g, '')
-  cleaned = cleaned.replace(/<div class="realm-header">[^<]*<\/div>/g, '')
-  cleaned = cleaned.replace(/<div class="details-content">/g, '')
-  cleaned = cleaned.replace(/<\/div>/g, '')
-  return cleaned.trim()
-}
-
-function getChangelog(folder) {
-  const changelogPath = path.join(docsModulesDir, folder, 'changelog.md')
-  if (fs.existsSync(changelogPath)) {
-    try {
-      return fs.readFileSync(changelogPath, 'utf8')
-    } catch (err) {
-      console.error(`Failed to read changelog for ${folder}:`, err)
-    }
+function parseLuaTable(content) {
+  if (!content) return []
+  const items = []
+  // Matches "string" entries in a list
+  const regex = /"([^"]+)"/g
+  let match
+  while ((match = regex.exec(content)) !== null) {
+    items.push(match[1].trim())
   }
-  return ''
+  return items
 }
 
-function getAbout(folder) {
-  const aboutPath = path.join(docsModulesDir, folder, 'index.md')
-  if (fs.existsSync(aboutPath)) {
-    try {
-      return fs.readFileSync(aboutPath, 'utf8')
-    } catch (err) {
-      console.error(`Failed to read about for ${folder}:`, err)
-    }
+function parseChangelog(content) {
+  if (!content) return {}
+  const changelog = {}
+
+  // Match table format: ["version"] = { "entry1", "entry2" }
+  const tableRegex = /\["([^"]+)"\]\s*=\s*\{([\s\S]*?)\}/g
+  let match
+  while ((match = tableRegex.exec(content)) !== null) {
+    const version = match[1]
+    const entries = parseLuaTable(match[2])
+    changelog[version] = entries
   }
-  return ''
+
+  // Match string format: ["version"] = "entry"
+  const stringRegex = /\["([^"]+)"\]\s*=\s*"([^"]*)"/g
+  while ((match = stringRegex.exec(content)) !== null) {
+    const version = match[1]
+    const entry = match[2]
+    changelog[version] = [entry]
+  }
+
+  return changelog
+}
+
+function extractMetadata(filePath) {
+  const content = fs.readFileSync(filePath, 'utf8')
+  const metadata = {}
+
+  metadata.name = (content.match(/MODULE\.name\s*=\s*"([^"]*)"/) || [])[1]
+  metadata.versionID = (content.match(/MODULE\.versionID\s*=\s*"([^"]*)"/) || [])[1]
+  metadata.author = (content.match(/MODULE\.author\s*=\s*"([^"]*)"/) || [])[1]
+  metadata.discord = (content.match(/MODULE\.discord\s*=\s*"([^"]*)"/) || [])[1]
+  metadata.version = (content.match(/MODULE\.version\s*=\s*([0-9.]+)/) || [])[1] || '0.0'
+  metadata.description = (content.match(/MODULE\.desc\s*=\s*"([^"]*)"/) || [])[1]
+
+  const changelogMatch = content.match(/MODULE\.Changelog\s*=\s*\{([\s\S]*?)\}/)
+  metadata.changelogData = changelogMatch ? parseChangelog(changelogMatch[1]) : {}
+
+  return metadata
 }
 
 function main() {
-  if (!fs.existsSync(modulesJsonPath)) {
-    console.error('modules.json not found, skipping modules.md generation.')
-    process.exit(1)
+  const rootDir = __dirname
+  const modules = []
+
+  // Ensure directories exist
+  if (!fs.existsSync(docsModulesDir)) {
+    fs.mkdirSync(docsModulesDir, { recursive: true })
   }
 
-  let modules = []
-  try {
-    modules = JSON.parse(fs.readFileSync(modulesJsonPath, 'utf8'))
-  } catch (err) {
-    console.error('Error parsing modules.json:', err)
-    process.exit(1)
-  }
+  // Scan all directories for module.lua
+  const items = fs.readdirSync(rootDir)
+  for (const item of items) {
+    const itemPath = path.join(rootDir, item)
+    if (fs.statSync(itemPath).isDirectory()) {
+      if (item === 'documentation' || item === '.github' || item === '.git' || item === 'node_modules') continue
 
-  if (!Array.isArray(modules)) {
-    console.error('modules.json is not an array.')
-    process.exit(1)
+      const moduleLuaPath = path.join(itemPath, 'module.lua')
+      if (fs.existsSync(moduleLuaPath)) {
+        const metadata = extractMetadata(moduleLuaPath)
+        metadata.folder = item
+        metadata.download = `https://github.com/LiliaFramework/Modules/raw/refs/heads/gh-pages/${item}.zip`
+        modules.push(metadata)
+      }
+    }
   }
 
   // Sort modules alphabetically
@@ -121,36 +128,34 @@ function main() {
     mods.forEach(mod => {
       const name = mod.name || 'Unknown'
       const description = mod.description || 'No description available.'
-      const features = mod.features || []
       const download = mod.download || '#'
-      const folder = mod.folder || ''
+      const changelogData = mod.changelogData || {}
       const slug = toSlug(name)
-
-      const about = folder ? getAbout(folder) : ''
-      const changelog = folder ? getChangelog(folder) : ''
 
       markdown += `<details id="${slug}">\n<summary>${name}</summary>\n\n`
 
-      if (about) {
-        markdown += `${stripWrappers(about)}\n\n`
-      } else {
-        markdown += `- **Description**: ${description}\n`
-      }
+      markdown += `### Purpose\n`
+      markdown += `${description}\n\n`
 
-      if (features.length > 0) {
-        markdown += `- **Main Features**:\n`
-        features.forEach(f => {
-          markdown += `    - ${f}\n`
+      const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
+      if (versions.length > 0) {
+        markdown += `<details>\n<summary>Changelog</summary>\n\n`
+        versions.forEach(version => {
+          markdown += `#### Version ${version}\n`
+          changelogData[version].forEach(entry => {
+            markdown += `- ${entry}\n`
+          })
+          markdown += '\n'
         })
-      }
-
-      if (changelog) {
-        markdown += `- <details><summary>Changelog</summary>\n\n`
-        markdown += `${changelog}\n\n`
         markdown += `</details>\n`
       }
 
-      markdown += `- [Download Button](${download})\n\n`
+      markdown += `<p align="center">\n`
+      markdown += `  <a href="${download}" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">\n`
+      markdown += `    <strong>Download</strong>\n`
+      markdown += `  </a>\n`
+      markdown += `</p>\n\n`
+
       markdown += `</details>\n\n`
     })
   })
@@ -160,8 +165,7 @@ function main() {
   fs.writeFileSync(modulesMdPath, markdown)
   console.log(`Generated modules.md at ${modulesMdPath}`)
 
-  // Write modules/index.md (Same content as modules.md now)
-  fs.mkdirSync(path.dirname(modulesIndexMdPath), { recursive: true })
+  // Write modules/index.md
   fs.writeFileSync(modulesIndexMdPath, markdown)
   console.log(`Generated modules/index.md at ${modulesIndexMdPath}`)
 }

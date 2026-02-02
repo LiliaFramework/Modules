@@ -2,7 +2,7 @@
 MODULE.versionID = "public_npcspawner"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.version = 1.3
+MODULE.version = 1.0
 MODULE.desc = "Adds automatic NPC spawns at points, the ability for admins to force spawns, logging of spawn actions, and configuration for spawn intervals."
 MODULE.Privileges = {
     {
@@ -12,3 +12,8 @@ MODULE.Privileges = {
         Category = "spawnPermissions",
     }
 }
+
+MODULE.Changelog = {
+    ["1.0"] = "Initial Release",
+}
+

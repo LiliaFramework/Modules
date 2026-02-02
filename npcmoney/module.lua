@@ -22,3 +22,8 @@ MODULE.MoneyTable = {
     ["npc_hunter"] = 200,
     ["npc_strider"] = 500
 }
+
+MODULE.Changelog = {
+    ["1.0"] = "Initial Release",
+}
+

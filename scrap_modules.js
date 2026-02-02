@@ -38,7 +38,6 @@ for (const moduleInfo of modulesList) {
     name = '',
     version = '',
     description = '',
-    features = [],
     download = '',
     versionID = '',
   } = moduleInfo
@@ -53,13 +52,6 @@ for (const moduleInfo of modulesList) {
     output += `<p>${description}</p>\n\n`
   }
 
-  if (features.length) {
-    output += `<p><strong>Features:</strong></p>\n<ul>\n`
-    for (const feature of features) {
-      output += `  <li>${feature}</li>\n`
-    }
-    output += `</ul>\n\n`
-  }
 
   if (versionID) {
     const base = 'https://liliaframework.github.io/Modules/docs'
