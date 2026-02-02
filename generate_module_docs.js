@@ -29,21 +29,43 @@ function parseChangelog(content) {
   if (!content) return {}
   const changelog = {}
 
-  // Match table format: ["version"] = { "entry1", "entry2" }
-  const tableRegex = /\["([^"]+)"\]\s*=\s*\{([\s\S]*?)\}/g
+  // Match version keys like ["1.0"] = or 1.0 = or ["Version 1.0"] =
+  const keyRegex = /(?:\["|')?([^"'\]]+)(?:"'\])?\s*=\s*/g
   let match
-  while ((match = tableRegex.exec(content)) !== null) {
-    const version = match[1]
-    const entries = parseLuaTable(match[2])
-    changelog[version] = entries
+  const versions = []
+
+  while ((match = keyRegex.exec(content)) !== null) {
+    versions.push({
+      version: match[1],
+      startIndex: match.index + match[0].length
+    })
   }
 
-  // Match string format: ["version"] = "entry"
-  const stringRegex = /\["([^"]+)"\]\s*=\s*"([^"]*)"/g
-  while ((match = stringRegex.exec(content)) !== null) {
-    const version = match[1]
-    const entry = match[2]
-    changelog[version] = [entry]
+  for (let i = 0; i < versions.length; i++) {
+    const v = versions[i]
+    const nextStart = versions[i + 1] ? versions[i + 1].startIndex - versions[i + 1].version.length - 10 : content.length
+    const rawValue = content.substring(v.startIndex, nextStart).trim()
+
+    if (rawValue.startsWith('{')) {
+      // It's a table, extract everything between the outer braces
+      let braceCount = 0
+      let tableContent = ""
+      for (let j = 0; j < rawValue.length; j++) {
+        if (rawValue[j] === '{') braceCount++
+        if (rawValue[j] === '}') braceCount--
+        if (braceCount === 0) {
+          tableContent = rawValue.substring(1, j)
+          break
+        }
+      }
+      changelog[v.version] = parseLuaTable(tableContent)
+    } else {
+      // It's a string, extract everything between the first and last quote
+      const stringMatch = rawValue.match(/"([^"]*)"/)
+      if (stringMatch) {
+        changelog[v.version] = [stringMatch[1]]
+      }
+    }
   }
 
   return changelog
@@ -60,8 +82,27 @@ function extractMetadata(filePath) {
   metadata.version = (content.match(/MODULE\.version\s*=\s*([0-9.]+)/) || [])[1] || '0.0'
   metadata.description = (content.match(/MODULE\.desc\s*=\s*"([^"]*)"/) || [])[1]
 
-  const changelogMatch = content.match(/MODULE\.Changelog\s*=\s*\{([\s\S]*?)\}/)
-  metadata.changelogData = changelogMatch ? parseChangelog(changelogMatch[1]) : {}
+  // Improved changelog extraction to handle nested braces
+  const changelogStartMatch = content.match(/MODULE\.Changelog\s*=\s*\{/)
+  if (changelogStartMatch) {
+    const startIndex = changelogStartMatch.index + changelogStartMatch[0].length - 1
+    let braceCount = 0
+    let changelogContent = ""
+
+    for (let i = startIndex; i < content.length; i++) {
+      const char = content[i]
+      if (char === '{') braceCount++
+      if (char === '}') braceCount--
+
+      if (braceCount === 0) {
+        changelogContent = content.substring(startIndex + 1, i)
+        break
+      }
+    }
+    metadata.changelogData = parseChangelog(changelogContent)
+  } else {
+    metadata.changelogData = {}
+  }
 
   return metadata
 }
@@ -138,7 +179,7 @@ function main() {
       markdown += `<a id="${slug}"></a>\n`
 
       markdown += `<strong>Description</strong>\n`
-      markdown += `<p>${description.split('\\n').join('<br>').split('\n').join('<br>')}</p>\n\n`
+      markdown += `<p>${description.trim()}</p>\n\n`
 
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
@@ -150,8 +191,7 @@ function main() {
             markdown += `<div class="details-content">\n`
             markdown += `<ul>\n`
             changelogData[version].forEach(entry => {
-              const formattedEntry = entry.split('\\n').join('<br>').split('\n').join('<br>')
-              markdown += `  <li>${formattedEntry}</li>\n`
+              markdown += `  <li>${entry.trim()}</li>\n`
             })
             markdown += `</ul>\n`
             markdown += `</div>\n`
@@ -161,8 +201,7 @@ function main() {
           markdown += `<ul>\n`
           versions.forEach(version => {
             changelogData[version].forEach(entry => {
-              const formattedEntry = entry.split('\\n').join('<br>').split('\n').join('<br>')
-              markdown += `  <li>${version} - ${formattedEntry}</li>\n`
+              markdown += `  <li>${version} - ${entry.trim()}</li>\n`
             })
           })
           markdown += `</ul>\n`
