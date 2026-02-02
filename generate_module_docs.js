@@ -185,33 +185,34 @@ function main() {
       markdown += `<a id="${slug}"></a>\n`
 
       // 1. Description Section
-      markdown += `<strong>Description</strong>\n`
-      markdown += `<p>${description.trim()}</p>\n\n`
+      markdown += `<h3 style="margin-bottom: 5px;">Description</h3>\n`
+      markdown += `<div style="margin-left: 20px; margin-bottom: 20px;">\n`
+      markdown += `  <p>${description.trim()}</p>\n`
+      markdown += `</div>\n\n`
 
       // 2. Changelog Section
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
-        markdown += `<strong>Changelog</strong>\n`
+        markdown += `<h3 style="margin-bottom: 5px;">Changelog</h3>\n`
+        markdown += `<div style="margin-left: 20px;">\n`
 
-        versions.forEach((version, index) => {
+        versions.forEach((version) => {
           const vSlug = toSlug(version) || 'v'
-          // Open the most recent version by default
-          const isOpen = index === 0 ? ' open' : ''
-          markdown += `<details class="realm-shared" id="changelog-${slug}-${vSlug}"${isOpen}>\n`
-          markdown += `<summary>Version ${version}</summary>\n`
-          markdown += `<div class="details-content">\n`
-          markdown += `<ul>\n`
+          markdown += `  <details class="realm-shared" id="changelog-${slug}-${vSlug}">\n`
+          markdown += `    <summary>Version ${version}</summary>\n`
+          markdown += `    <div class="details-content" style="margin-left: 20px;">\n`
+          markdown += `      <ul>\n`
 
           const entries = changelogData[version] || []
           entries.forEach(entry => {
-            markdown += `  <li>${String(entry).trim()}</li>\n`
+            markdown += `        <li>${String(entry).trim()}</li>\n`
           })
 
-          markdown += `</ul>\n`
-          markdown += `</div>\n`
-          markdown += `</details>\n`
+          markdown += `      </ul>\n`
+          markdown += `    </div>\n`
+          markdown += `  </details>\n`
         })
-        markdown += `\n`
+        markdown += `</div>\n\n`
       }
 
       // 3. Download Section
