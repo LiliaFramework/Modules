@@ -193,8 +193,9 @@ function main() {
       // 2. Changelog Section
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
-        markdown += `<h3 style="margin-bottom: 5px;">Changelog</h3>\n`
-        markdown += `<div style="margin-left: 20px;">\n`
+        markdown += `<details class="realm-shared" id="changelog-${slug}">\n`
+        markdown += `<summary>Changelog</summary>\n`
+        markdown += `<div class="details-content" style="margin-left: 20px;">\n`
 
         versions.forEach((version) => {
           const vSlug = toSlug(version) || 'v'
@@ -212,7 +213,8 @@ function main() {
           markdown += `    </div>\n`
           markdown += `  </details>\n`
         })
-        markdown += `</div>\n\n`
+        markdown += `</div>\n`
+        markdown += `</details>\n\n`
       }
 
       // 3. Download Section
