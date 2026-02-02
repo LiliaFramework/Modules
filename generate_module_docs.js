@@ -37,17 +37,23 @@ function parseChangelog(content) {
   while ((match = keyRegex.exec(content)) !== null) {
     versions.push({
       version: match[1],
-      startIndex: match.index + match[0].length
+      valueStart: match.index + match[0].length,
+      matchStart: match.index
     })
   }
 
   for (let i = 0; i < versions.length; i++) {
     const v = versions[i]
-    const nextStart = versions[i + 1] ? versions[i + 1].startIndex - versions[i + 1].version.length - 10 : content.length
-    const rawValue = content.substring(v.startIndex, nextStart).trim()
+    // The value ends either at the start of the next key or the end of the string
+    const valueEnd = versions[i + 1] ? versions[i + 1].matchStart : content.length
+    let rawValue = content.substring(v.valueStart, valueEnd).trim()
+
+    // Remove trailing comma if it exists (common in Lua tables)
+    if (rawValue.endsWith(',')) {
+      rawValue = rawValue.substring(0, rawValue.length - 1).trim()
+    }
 
     if (rawValue.startsWith('{')) {
-      // It's a table, extract everything between the outer braces
       let braceCount = 0
       let tableContent = ""
       for (let j = 0; j < rawValue.length; j++) {
@@ -60,8 +66,7 @@ function parseChangelog(content) {
       }
       changelog[v.version] = parseLuaTable(tableContent)
     } else {
-      // It's a string, extract everything between the first and last quote
-      const stringMatch = rawValue.match(/"([^"]*)"/)
+      const stringMatch = rawValue.match(/["']([^"']*)["']/)
       if (stringMatch) {
         changelog[v.version] = [stringMatch[1]]
       }
@@ -173,26 +178,34 @@ function main() {
       const changelogData = mod.changelogData || {}
       const slug = toSlug(name)
 
+      // Main module block starts here
       markdown += `<details class="realm-shared" id="module-${slug}">\n`
       markdown += `<summary><a id="${name}"></a>${name}</summary>\n`
       markdown += `<div class="details-content">\n`
       markdown += `<a id="${slug}"></a>\n`
 
+      // 1. Description Section
       markdown += `<strong>Description</strong>\n`
       markdown += `<p>${description.trim()}</p>\n\n`
 
+      // 2. Changelog Section
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
         markdown += `<strong>Changelog</strong>\n`
 
+        // Each version is its own collapsible window
         versions.forEach(version => {
-          markdown += `<details class="realm-shared" id="changelog-${slug}-${toSlug(version)}">\n`
+          const vSlug = toSlug(version) || 'v'
+          markdown += `<details class="realm-shared" id="changelog-${slug}-${vSlug}">\n`
           markdown += `<summary>Version ${version}</summary>\n`
           markdown += `<div class="details-content">\n`
           markdown += `<ul>\n`
-          changelogData[version].forEach(entry => {
-            markdown += `  <li>${entry.trim()}</li>\n`
+
+          const entries = changelogData[version] || []
+          entries.forEach(entry => {
+            markdown += `  <li>${String(entry).trim()}</li>\n`
           })
+
           markdown += `</ul>\n`
           markdown += `</div>\n`
           markdown += `</details>\n`
@@ -200,13 +213,16 @@ function main() {
         markdown += `\n`
       }
 
+      // 3. Download Section
       markdown += `<div style="display: flex; justify-content: center; margin-top: 20px;">\n`
       markdown += `  <a href="${download}" style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.2s;">\n`
       markdown += `    Download\n`
       markdown += `  </a>\n`
       markdown += `</div>\n`
-      markdown += `</div>\n`
-      markdown += `</details>\n\n`
+
+      markdown += `</div>\n` // End details-content
+      markdown += `</details>\n\n` // End module toggle
+
       markdown += `---\n\n`
     })
   })
