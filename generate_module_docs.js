@@ -16,8 +16,8 @@ function toSlug(name) {
 function parseLuaTable(content) {
   if (!content) return []
   const items = []
-  // Matches "string" entries in a list
-  const regex = /"([^"]+)"/g
+  // Matches "string" or 'string' entries
+  const regex = /["']([^"']+)["']/g
   let match
   while ((match = regex.exec(content)) !== null) {
     items.push(match[1].trim())
@@ -29,14 +29,14 @@ function parseChangelog(content) {
   if (!content) return {}
   const changelog = {}
 
-  // Match version keys like ["1.0"] = or 1.0 = or ["Version 1.0"] =
-  const keyRegex = /(?:\["|')?([^"'\]]+)(?:"'\])?\s*=\s*/g
+  // Match version keys like ["1.0"] = or 1.0 = or "1.0" =
+  const keyRegex = /\[?\s*["']?([^"']+)["']?\s*\]?\s*=\s*/g
   let match
   const versions = []
 
   while ((match = keyRegex.exec(content)) !== null) {
     versions.push({
-      version: match[1],
+      version: match[1].trim(),
       valueStart: match.index + match[0].length,
       matchStart: match.index
     })
@@ -193,9 +193,8 @@ function main() {
       // 2. Changelog Section
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
-        markdown += `<details class="realm-shared" id="changelog-${slug}">\n`
-        markdown += `<summary>Changelog</summary>\n`
-        markdown += `<div class="details-content" style="margin-left: 20px;">\n`
+        markdown += `<h3 style="margin-bottom: 5px;">Changelog</h3>\n`
+        markdown += `<div style="margin-left: 20px;">\n`
 
         versions.forEach((version) => {
           const vSlug = toSlug(version) || 'v'
@@ -213,8 +212,7 @@ function main() {
           markdown += `    </div>\n`
           markdown += `  </details>\n`
         })
-        markdown += `</div>\n`
-        markdown += `</details>\n\n`
+        markdown += `</div>\n\n`
       }
 
       // 3. Download Section
