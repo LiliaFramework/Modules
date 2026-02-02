@@ -9,5 +9,5 @@ MODULE.WeaponsSpeed = {
 }
 
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

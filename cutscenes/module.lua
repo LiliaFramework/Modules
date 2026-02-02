@@ -16,5 +16,5 @@ MODULE.Privileges = {
 
 MODULE.NetworkStrings = {"lia_cutscene"}
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

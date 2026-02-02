@@ -5,5 +5,5 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
 MODULE.desc = "Adds the ability to climb ledges using movement keys, custom climbing animations, and hooks for climb attempts."
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

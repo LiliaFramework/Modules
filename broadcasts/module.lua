@@ -22,5 +22,5 @@ MODULE.Privileges = {
 lia.flag.add("B", "Access to Faction Broadcast")
 lia.flag.add("D", "Access to Class Broadcast")
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

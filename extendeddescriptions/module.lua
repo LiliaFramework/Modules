@@ -15,5 +15,5 @@ MODULE.Privileges = {
 
 MODULE.NetworkStrings = {"EditDetailedDescriptions", "OpenDetailedDescriptions", "SetDetailedDescriptions"}
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

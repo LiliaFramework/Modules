@@ -8,5 +8,5 @@ MODULE.desc = "Provides Steam group membership rewards system that automatically
 MODULE.GroupID = ""
 MODULE.MoneyReward = 500
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

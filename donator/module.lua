@@ -26,5 +26,5 @@ MODULE.Privileges = {
 }
 
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

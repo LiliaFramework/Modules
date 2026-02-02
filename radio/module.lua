@@ -7,5 +7,5 @@ MODULE.desc = "Adds a radio chat channel for players, font configuration via Rad
 MODULE.WorkshopContent = "3527548881"
 MODULE.NetworkStrings = {"radioAdjust"}
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

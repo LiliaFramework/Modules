@@ -6,5 +6,5 @@ MODULE.version = 1.0
 MODULE.desc = "Schedules automatic server restarts at set intervals. Players see a countdown so they can prepare before the map changes."
 MODULE.NetworkStrings = {"RestartDisplay"}
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

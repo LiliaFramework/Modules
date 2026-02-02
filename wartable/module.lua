@@ -7,5 +7,5 @@ MODULE.desc = "Adds an interactive 3D war table, the ability to plan operations 
 MODULE.WorkshopContent = "3527544696"
 MODULE.NetworkStrings = {"ClearWarTable", "PlaceWarTableMarker", "RemoveWarTableMarker", "SetWarTableMap", "UseWarTable"}
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }

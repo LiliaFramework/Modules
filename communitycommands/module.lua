@@ -6,5 +6,5 @@ MODULE.version = 1.0
 MODULE.desc = "Adds chat commands to open community links, easy sharing of workshop and docs, configurable commands via settings, localization for command names, and the ability to add custom URLs."
 MODULE.NetworkStrings = {"OpenCommunityURL"}
 MODULE.Changelog = {
-    ["1.0"] = "Initial Release",
+    ["1.0"] = {"Initial Release"},
 }
