@@ -143,14 +143,31 @@ function main() {
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
         markdown += `<strong>Changelog</strong>\n`
-        markdown += `<ul>\n`
-        versions.forEach(version => {
-          changelogData[version].forEach(entry => {
-            const formattedEntry = entry.split('\\n').join('<br>').split('\n').join('<br>')
-            markdown += `  <li>${version} - ${formattedEntry}</li>\n`
+
+        if (versions.length > 1) {
+          versions.forEach(version => {
+            markdown += `<details>\n<summary>Version ${version}</summary>\n`
+            markdown += `<div class="details-content">\n`
+            markdown += `<ul>\n`
+            changelogData[version].forEach(entry => {
+              const formattedEntry = entry.split('\\n').join('<br>').split('\n').join('<br>')
+              markdown += `  <li>${formattedEntry}</li>\n`
+            })
+            markdown += `</ul>\n`
+            markdown += `</div>\n`
+            markdown += `</details>\n`
           })
-        })
-        markdown += `</ul>\n\n`
+        } else {
+          markdown += `<ul>\n`
+          versions.forEach(version => {
+            changelogData[version].forEach(entry => {
+              const formattedEntry = entry.split('\\n').join('<br>').split('\n').join('<br>')
+              markdown += `  <li>${version} - ${formattedEntry}</li>\n`
+            })
+          })
+          markdown += `</ul>\n`
+        }
+        markdown += `\n`
       }
 
       markdown += `<div style="display: flex; justify-content: center; margin-top: 20px;">\n`
