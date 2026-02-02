@@ -193,10 +193,11 @@ function main() {
       if (versions.length > 0) {
         markdown += `<strong>Changelog</strong>\n`
 
-        // Each version is its own collapsible window
-        versions.forEach(version => {
+        versions.forEach((version, index) => {
           const vSlug = toSlug(version) || 'v'
-          markdown += `<details class="realm-shared" id="changelog-${slug}-${vSlug}">\n`
+          // Open the most recent version by default
+          const isOpen = index === 0 ? ' open' : ''
+          markdown += `<details class="realm-shared" id="changelog-${slug}-${vSlug}"${isOpen}>\n`
           markdown += `<summary>Version ${version}</summary>\n`
           markdown += `<div class="details-content">\n`
           markdown += `<ul>\n`
