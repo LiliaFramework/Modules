@@ -19,6 +19,7 @@ lia.command.add("advertisement", {
             return
         end
 
+        --
         local advertPrice = lia.config.get("AdvertPrice", 10)
         local advertCooldown = lia.config.get("AdvertCooldown", 20)
         if client:getChar():hasMoney(advertPrice) then
