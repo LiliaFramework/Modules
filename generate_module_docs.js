@@ -179,13 +179,13 @@ function main() {
       const slug = toSlug(name)
 
       // Main module block starts here
-      markdown += `<details class="realm-shared" id="module-${slug}">\n`
+      markdown += `<details class="realm-shared no-icon" id="module-${slug}">\n`
       markdown += `<summary><a id="${name}"></a>${name}</summary>\n`
       markdown += `<div class="details-content">\n`
       markdown += `<a id="${slug}"></a>\n`
 
       // 1. Description Section
-      markdown += `<h3 style="margin-bottom: 5px;">Description</h3>\n`
+      markdown += `<h3 style="margin-bottom: 5px; font-weight: 700;"><a id="${slug}"></a>Description</h3>\n`
       markdown += `<div style="margin-left: 20px; margin-bottom: 20px;">\n`
       markdown += `  <p>${description.trim()}</p>\n`
       markdown += `</div>\n\n`
@@ -193,12 +193,12 @@ function main() {
       // 2. Changelog Section
       const versions = Object.keys(changelogData).sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
       if (versions.length > 0) {
-        markdown += `<h3 style="margin-bottom: 5px;">Changelog</h3>\n`
+        markdown += `<h3 style="margin-bottom: 5px; font-weight: 700;">Changelog</h3>\n`
         markdown += `<div style="margin-left: 20px;">\n`
 
         versions.forEach((version) => {
           const vSlug = toSlug(version) || 'v'
-          markdown += `  <details class="realm-shared" id="changelog-${slug}-${vSlug}">\n`
+          markdown += `  <details class="realm-shared no-icon" id="changelog-${slug}-${vSlug}">\n`
           markdown += `    <summary>Version ${version}</summary>\n`
           markdown += `    <div class="details-content" style="margin-left: 20px;">\n`
           markdown += `      <ul>\n`
