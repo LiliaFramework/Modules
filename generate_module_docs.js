@@ -156,6 +156,15 @@ function main() {
   })
 
   let markdown = '# Modules\n\n'
+  markdown += 'Comprehensive collection of official and community-built modules for the Lilia framework.\n\n'
+  markdown += '---\n\n'
+  markdown += '<h3 style="margin-bottom: 5px; font-weight: 700;">Overview</h3>\n'
+  markdown += '<div style="margin-left: 20px; margin-bottom: 20px;">\n'
+  markdown += '  <p>Modules are self-contained extensions that add new features or modify existing behavior in the Lilia framework. They allow for easy organization and distribution of custom code without modifying core gamemode files.</p>\n'
+  markdown += '  <p>For server owners and developers looking to add custom functionality, modules should be placed in the following directory relative to your server installation:</p>\n'
+  markdown += '  <code style="display: block; padding: 12px; background: rgba(0, 0, 0, 0.05); border-left: 4px solid #46a9ff; margin-top: 10px; font-family: \'JetBrains Mono\', monospace;">garrysmod/gamemodes/[schema folder]/modules/[module folder]</code>\n'
+  markdown += '</div>\n\n'
+  markdown += '---\n\n'
 
   const categories = ['Modules', 'Droppers']
   categories.forEach(category => {
