@@ -5,9 +5,8 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
 MODULE.desc = "Adds support for long item descriptions, localization for multiple languages, better RP text display, automatic line wrapping, and fallback to short descriptions."
 MODULE.Privileges = {
-    {
+    ["changeDescription"] = {
         Name = "changeDescription",
-        ID = "changeDescription",
         MinAccess = "admin",
         Category = "descriptions",
     }

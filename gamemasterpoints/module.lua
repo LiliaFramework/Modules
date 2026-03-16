@@ -5,9 +5,8 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
 MODULE.desc = "Adds teleport points for game masters, quick navigation across large maps, saving of locations for reuse, a command to list saved points, and sharing of points with other staff."
 MODULE.Privileges = {
-    {
+    ["manageGamemasterTeleportPoints"] = {
         Name = "manageGamemasterTeleportPoints",
-        ID = "manageGamemasterTeleportPoints",
         MinAccess = "admin",
         Category = "gamemasterPoints",
     }

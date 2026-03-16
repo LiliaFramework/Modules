@@ -5,15 +5,13 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
 MODULE.desc = "Allows staff to broadcast messages to chosen factions or classes. Every broadcast is logged and controlled through CAMI privileges."
 MODULE.Privileges = {
-    {
+    ["canUseFactionBroadcast"] = {
         Name = "canUseFactionBroadcast",
-        ID = "canUseFactionBroadcast",
         MinAccess = "superadmin",
         Category = "broadcasts",
     },
-    {
+    ["canUseClassBroadcast"] = {
         Name = "canUseClassBroadcast",
-        ID = "canUseClassBroadcast",
         MinAccess = "superadmin",
         Category = "broadcasts",
     }

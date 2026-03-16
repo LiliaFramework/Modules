@@ -5,9 +5,8 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
 MODULE.desc = "Adds displays of cinematic splash text overlays, screen darkening with letterbox bars, support for scripted scenes, timed fades for dramatic effect, and customizable text fonts."
 MODULE.Privileges = {
-    {
+    ["useCinematicMenu"] = {
         Name = "useCinematicMenu",
-        ID = "useCinematicMenu",
         MinAccess = "admin",
         Category = "cinematics",
     },

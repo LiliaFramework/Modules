@@ -5,15 +5,13 @@ MODULE.discord = "@liliaplayer"
 MODULE.version = 2.1
 MODULE.desc = "Spawns a bodygroup closet where players can edit their model's bodygroups. Admins may inspect others and configure the closet's model."
 MODULE.Privileges = {
-    {
+    ["manageBodygroups"] = {
         Name = "manageBodygroups",
-        ID = "manageBodygroups",
         MinAccess = "admin",
         Category = "bodygroups",
     },
-    {
+    ["changeBodygroups"] = {
         Name = "changeBodygroups",
-        ID = "changeBodygroups",
         MinAccess = "admin",
         Category = "bodygroups",
     }
