@@ -1,9 +1,9 @@
 ﻿MODULE.name = "Simple Lockpicking"
 MODULE.versionID = "public_simple_lockpicking"
-MODULE.author = "76561198312513285"
+MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
-MODULE.desc = "Adds a simple lockpick tool for doors, logging of successful picks, brute-force style gameplay, configurable pick time, and chance for tools to break."
+MODULE.desc = "Adds a simple lockpicking system for doors."
 MODULE.Changelog = {
     ["1.0"] = {"Initial Release"},
 }

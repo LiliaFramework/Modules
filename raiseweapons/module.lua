@@ -1,7 +1,7 @@
 ﻿MODULE.name = "Raise Weapons"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.desc = "Lilia port and improvement of NutScript's raiseweapons plugin."
+MODULE.desc = "Adds raised and lowered weapon states."
 lia.config.add("wepAlwaysRaised", "Weapons Always Raised", false, nil, {
     desc = "Whether lowered/passive weapon states should be disabled.",
     category = "animations",

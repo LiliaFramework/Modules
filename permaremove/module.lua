@@ -1,9 +1,9 @@
 ﻿MODULE.name = "Perma Remove"
 MODULE.versionID = "public_permaremove"
-MODULE.author = "Boz [Base Code] & Samael [Rewrite]"
-MODULE.discord = "bozdev"
+MODULE.author = "Samael"
+MODULE.discord = "discord"
 MODULE.version = 1.0
-MODULE.desc = "Adds ability to permanently delete map entities, logging for each removed entity, an admin-only command, confirmation prompts before removal, and restore list to undo mistakes."
+MODULE.desc = "Lets admins permanently remove map entities."
 MODULE.Privileges = {
     ["removeMapEntities"] = {
         Name = "removeMapEntities",

@@ -3,7 +3,7 @@ MODULE.versionID = "public_cursor"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
 MODULE.version = 1.0
-MODULE.desc = "Adds a toggleable custom cursor for the UI, a purely client-side implementation, improved menu navigation, a hotkey to quickly show or hide the cursor, and compatibility with other menu modules."
+MODULE.desc = "Adds a simple tweakable cursor."
 MODULE.Changelog = {
     ["1.0"] = {"Initial Release"},
 }

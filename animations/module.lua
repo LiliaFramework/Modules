@@ -1,4 +1,6 @@
 ﻿MODULE.name = "Animations"
 MODULE.author = "Samael"
 MODULE.discord = "@liliaplayer"
-MODULE.desc = "Lilia port and improvement of NutScript's nut.anim library and animation hooks."
+MODULE.desc = "Adds extra animation support for characters and items."
+MODULE.version = "1.0"
+MODULE.versionID = "public_animations"
