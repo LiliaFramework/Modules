@@ -526,7 +526,7 @@ function MODULE:TranslateActivity(client, act)
     end
 end
 
-function MODULE:DoAnimationEvent(client, event, _data)
+function MODULE:DoAnimationEvent(client, event)
     local anim = lia.anim
     if not anim.getModelClass or not anim.getWeaponHoldType then return end
     local className = lia.anim.getModelClass(client:GetModel())
