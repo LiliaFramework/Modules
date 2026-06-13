@@ -526,7 +526,7 @@ function MODULE:TranslateActivity(client, act)
     end
 end
 
-function MODULE:DoAnimationEvent(client, event, data)
+function MODULE:DoAnimationEvent(client, event, _data)
     local anim = lia.anim
     if not anim.getModelClass or not anim.getWeaponHoldType then return end
     local className = lia.anim.getModelClass(client:GetModel())
@@ -581,8 +581,7 @@ function MODULE:CalcMainActivity(client, velocity)
     client.CalcSeqOverride = -1
     local className = lia.anim.getModelClass(client:GetModel())
     if className ~= "player" then client:SetPoseParameter("move_yaw", normalizeAngle(vectorAngle(velocity)[2] - client:EyeAngles()[2])) end
-    if self:HandlePlayerLanding(client, velocity, client.m_bWasOnGround) or GAMEMODE:HandlePlayerNoClipping(client, velocity) or GAMEMODE:HandlePlayerDriving(client) or GAMEMODE:HandlePlayerVaulting(client, velocity) or GAMEMODE:HandlePlayerJumping(client, velocity) or GAMEMODE:HandlePlayerSwimming(client, velocity) or GAMEMODE:HandlePlayerDucking(client, velocity) then
-    else
+    if not (self:HandlePlayerLanding(client, velocity, client.m_bWasOnGround) or GAMEMODE:HandlePlayerNoClipping(client, velocity) or GAMEMODE:HandlePlayerDriving(client) or GAMEMODE:HandlePlayerVaulting(client, velocity) or GAMEMODE:HandlePlayerJumping(client, velocity) or GAMEMODE:HandlePlayerSwimming(client, velocity) or GAMEMODE:HandlePlayerDucking(client, velocity)) then
         local len2D = velocity:Length2DSqr()
         if len2D > 22500 then
             client.CalcIdeal = ACT_MP_RUN
