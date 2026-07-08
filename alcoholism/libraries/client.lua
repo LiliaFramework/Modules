@@ -5,5 +5,5 @@ function MODULE:RenderScreenspaceEffects()
 end
 
 function MODULE:LoadCharInformation()
-    hook.Run("AddTextField", L("generalinfo"), "drunkness", L("drunkness"), function() return LocalPlayer():getLocalVar("bac", 0) .. "%" end)
+    hook.Run("AddTextField", L("generalInfo"), "drunkness", L("drunkness"), function() return LocalPlayer():getLocalVar("bac", 0) .. "%" end)
 end
