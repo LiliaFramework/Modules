@@ -14,8 +14,7 @@ lia.command.add("partytier", {
     desc = "partytierCommandDesc",
     AdminStick = {
         Name = "partytierCommandDesc",
-        Category = "moderationTools",
-        SubCategory = "partyTiers"
+        Category = "loyalism"
     },
     onRun = function(client, arguments)
         local char = client:getChar()

@@ -49,7 +49,14 @@ function MODULE:DrawCharInfo(client, _, info)
     if not client:getNetVar("isAFK") then return end
     local afkTime = client:getNetVar("afkTime", 0)
     local timeAFK = CurTime() - afkTime
-    info[#info + 1] = {L("afkForTime", string.NiceTime(timeAFK)), Color(255, 165, 0)}
+    info[#info + 1] = {
+        section = "Status"
+    }
+
+    info[#info + 1] = {
+        label = "AFK",
+        value = string.NiceTime(timeAFK)
+    }
 end
 
 function MODULE:HUDPaintBackground()

@@ -51,8 +51,7 @@ lia.command.add("gmtpmoveto", {
     desc = "moveToPoint",
     AdminStick = {
         Name = "moveToPoint",
-        Category = "moderationTools",
-        SubCategory = "teleport"
+        Category = "gamemasterpoints"
     },
     arguments = {
         {

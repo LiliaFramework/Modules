@@ -2,7 +2,16 @@
 function MODULE:DrawCharInfo(_, character, info)
     if not character then return end
     local tier = tonumber(character:getPartyTier())
-    if self.Tiers[tier] then info[#info + 1] = {self.Tiers[tier], Color(255, 209, 20)} end
+    if self.Tiers[tier] then
+        info[#info + 1] = {
+            section = "Identity"
+        }
+
+        info[#info + 1] = {
+            label = "Party Tier",
+            value = self.Tiers[tier]
+        }
+    end
 end
 
 function MODULE:LoadCharInformation()

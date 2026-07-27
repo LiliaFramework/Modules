@@ -9,8 +9,7 @@
     desc = "subtractCharSlotsDesc",
     AdminStick = {
         Name = "subtractCharSlotsDesc",
-        Category = "characterManagement",
-        SubCategory = "charSlots"
+        Category = "donator"
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
@@ -34,8 +33,7 @@ lia.command.add("addcharslots", {
     desc = "addCharSlotsDesc",
     AdminStick = {
         Name = "addCharSlotsDesc",
-        Category = "characterManagement",
-        SubCategory = "charSlots"
+        Category = "donator"
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])
@@ -63,8 +61,7 @@ lia.command.add("setcharslots", {
     desc = "setCharSlotsDesc",
     AdminStick = {
         Name = "setCharSlotsDesc",
-        Category = "characterManagement",
-        SubCategory = "charSlots"
+        Category = "donator"
     },
     onRun = function(client, arguments)
         local target = lia.util.findPlayer(client, arguments[1])

@@ -1,5 +1,14 @@
 ﻿function MODULE:DrawCharInfo(client, _, info)
-    if client:getNetVar("isPicking") then info[#info + 1] = {"Lockpicking...", Color(255, 100, 100)} end
+    if client:getNetVar("isPicking") then
+        info[#info + 1] = {
+            section = "Activity"
+        }
+
+        info[#info + 1] = {
+            label = "Action",
+            value = "Lockpicking"
+        }
+    end
 end
 
 function MODULE:PlayerBindPress(ply, bind)
