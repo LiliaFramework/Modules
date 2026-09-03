@@ -6,8 +6,8 @@
         net.Start("OpenDetailedDescriptions")
         net.WriteEntity(target)
         local char = target:getChar()
-        net.WriteString(char:getTextDetDescData() or L("openDetDescFallback"))
-        net.WriteString(char:getTextDetDescDataURL() or L("openDetDescFallback"))
+        net.WriteString(char:getTextDetDescData() or "No description available.")
+        net.WriteString(char:getTextDetDescDataURL() or "No description available.")
         net.Send(client)
     end
 })

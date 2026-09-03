@@ -18,7 +18,7 @@ lia.command.add("cutscene", {
         if args[1] then
             target = lia.util.findPlayer(ply, args[1])
             if not IsValid(target) or not target:getChar() then
-                ply:notify(L("invalidTarget"))
+                ply:notify("invalidTarget")
                 return false
             end
         end
@@ -28,9 +28,9 @@ lia.command.add("cutscene", {
             table.insert(options, id)
         end
 
-        client:requestDropdown(L("selectCutsceneTitle"), L("selectCutscenePrompt"), options, function(selection)
+        client:requestDropdown("Choose Cutscene", "Select a cutscene to play:", options, function(selection)
             if not MODULE.cutscenes[selection] then
-                client:notify(L("invalidCutscene"))
+                client:notify("Invalid cutscene selected.")
                 return
             end
 
@@ -48,9 +48,9 @@ lia.command.add("globalcutscene", {
             table.insert(options, id)
         end
 
-        client:requestDropdown(L("selectCutsceneTitle"), L("globalCutscenePrompt"), options, function(selection)
+        client:requestDropdown("Choose Cutscene", "Select a cutscene to play globally:", options, function(selection)
             if not MODULE.cutscenes[selection] then
-                client:notify(L("invalidCutscene"))
+                client:notify("Invalid cutscene selected.")
                 return
             end
 

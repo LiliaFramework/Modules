@@ -25,14 +25,14 @@
         local text = arguments[2]
         local duration = tonumber(arguments[3]) or 5
         if not target or not IsValid(target) then
-            client:notifyLocalized("targetNotFound")
+            client:notify("Target not found.")
             return
         end
 
         if text then
             lia.caption.start(target, text, duration)
         else
-            client:notifyLocalized("sendCaptionError")
+            client:notify("You must specify caption text.")
         end
     end
 })
@@ -59,7 +59,7 @@ lia.command.add("broadcastCaption", {
                 lia.caption.start(target, text, duration)
             end
         else
-            client:notifyLocalized("broadcastCaptionError")
+            client:notify("You must specify text to broadcast.")
         end
     end
 })

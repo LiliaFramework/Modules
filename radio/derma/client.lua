@@ -56,7 +56,7 @@ end
 vgui.Register("liaRadioDial", PANEL, "DPanel")
 PANEL = {}
 function PANEL:Init()
-    self:SetTitle(L("radioFrequencyTitle"))
+    self:SetTitle("Select Frequency")
     self:setScaledSize(350, 180)
     self:Center()
     self:MakePopup()
@@ -87,7 +87,7 @@ function PANEL:Init()
     self.submit:Dock(BOTTOM)
     self.submit:SetTall(24)
     self.submit:DockMargin(10, 4, 10, 4)
-    self.submit:SetText(L("submit"))
+    self.submit:SetText("submit")
     self.submit.DoClick = function()
         local str = ""
         for i = 1, 5 do

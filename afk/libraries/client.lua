@@ -70,6 +70,6 @@ function MODULE:HUDPaintBackground()
     local y = ScrH() * 0.1
     draw.RoundedBox(8, x, y, width, height, Color(0, 0, 0, 150))
     draw.RoundedBox(8, x + 2, y + 2, width - 4, height - 4, Color(255, 165, 0, 50))
-    draw.SimpleText(L("youAreAFK"), "liaMediumFont", x + width * 0.5, y + 15, Color(255, 165, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-    draw.SimpleText(L("time") .. ": " .. string.NiceTime(timeAFK), "liaSmallFont", x + width * 0.5, y + 35, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText("YOU ARE AFK", "LiliaFont.25", x + width * 0.5, y + 15, Color(255, 165, 0), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+    draw.SimpleText("Time" .. ": " .. string.NiceTime(timeAFK), "LiliaFont.17", x + width * 0.5, y + 35, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end

@@ -16,7 +16,7 @@
             (ent or client):EmitSound("buttons/combine_button1.wav", 50, 170)
             item:setData("freq", freq, player.GetAll(), false, true)
         else
-            client:notifyLocalized("noRadio")
+            client:notify("You don't have a radio.")
         end
     end
 end)

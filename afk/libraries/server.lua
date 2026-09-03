@@ -87,30 +87,30 @@ end
 
 function MODULE:CanPlayerBeTiedUp(_, target)
     if not lia.config.get("AFKProtectionEnabled", true) then return end
-    if target:getNetVar("isAFK") then return false, L("cannotBeRestrained") end
+    if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be restrained." end
 end
 
 function MODULE:CanPlayerBeUntied(_, target)
     if not lia.config.get("AFKProtectionEnabled", true) then return end
-    if target:getNetVar("isAFK") then return false, L("cannotBeUnrestrained") end
+    if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be unrestrained." end
 end
 
 function MODULE:CanPlayerBeArrested(_, target)
     if not lia.config.get("AFKProtectionEnabled", true) then return end
-    if target:getNetVar("isAFK") then return false, L("cannotBeArrested") end
+    if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be arrested." end
 end
 
 function MODULE:CanPlayerBeUnarrested(_, target)
     if not lia.config.get("AFKProtectionEnabled", true) then return end
-    if target:getNetVar("isAFK") then return false, L("cannotBeUnarrested") end
+    if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be unarrested." end
 end
 
 function MODULE:CanPlayerBeStunned(_, target)
     if not lia.config.get("AFKProtectionEnabled", true) then return end
-    if target:getNetVar("isAFK") then return false, L("cannotBeStunned") end
+    if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be stunned." end
 end
 
 function MODULE:CanPlayerBeKnockedOut(_, target)
     if not lia.config.get("AFKProtectionEnabled", true) then return end
-    if target:getNetVar("isAFK") then return false, L("cannotBeKnockedOut") end
+    if target:getNetVar("isAFK") then return false, "This player is AFK and cannot be knocked out." end
 end

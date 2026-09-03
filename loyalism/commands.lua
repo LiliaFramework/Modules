@@ -18,21 +18,21 @@ lia.command.add("partytier", {
     },
     onRun = function(client, arguments)
         local char = client:getChar()
-        if not char then return L("mustBeOnCharacter") end
+        if not char then return "You must be on your character to do that." end
         local target = lia.util.findPlayer(client, arguments[1])
         if not char:hasFlags("T") then
-            client:notifyLocalized("noPerm")
+            client:notify("noPerm")
             return
         end
 
         if not target or not IsValid(target) then
-            client:notifyLocalized("targetNotFound")
+            client:notify("Target not found.")
             return
         end
 
         local tierArg = arguments[2]
         if not tierArg or tonumber(tierArg) == nil then
-            client:notifyLocalized("invalidPartyTier")
+            client:notify("Invalid party tier.")
             return
         end
 
@@ -41,11 +41,11 @@ lia.command.add("partytier", {
         local tChar = target:getChar()
         if tChar then
             tChar:setPartyTier(tier)
-            client:notifyLocalized("partyTierUpdated", target:Name(), tier)
+            client:notify(string.format("%s's loyalty tier is now %s.", target:Name(), tier))
             if tier == 0 then
-                target:notifyLocalized("partyTierRemoved", client:Name())
+                target:notify(string.format("Your loyalty tier has been cleared by %s.", client:Name()))
             else
-                target:notifyLocalized("partyTierSet", tier)
+                target:notify(string.format("Your loyalty tier is now %s.", tier))
             end
         end
 

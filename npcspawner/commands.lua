@@ -11,7 +11,7 @@
         local map = lia.data.getEquivalencyMap(game.GetMap())
         local zones = MODULE.SpawnPositions[map]
         if not zones then
-            client:notifyLocalized("noNPCSpawns")
+            client:notify("No NPC spawns are defined on this map.")
             return
         end
 
@@ -20,22 +20,22 @@
             table.insert(options, spawnerName)
         end
 
-        client:requestDropdown(L("selectSpawnerTitle"), L("selectSpawnerPrompt"), options, function(selectedSpawner)
+        client:requestDropdown("Choose Spawner", "Select a spawner:", options, function(selectedSpawner)
             if not selectedSpawner then return end
             local zone = zones[selectedSpawner]
             if zone then
                 local spawned, err = processZone(zone, selectedSpawner)
                 if spawned then
-                    client:notifyLocalized("forcedSpawnSuccess", selectedSpawner)
+                    client:notify(string.format("NPCs spawned at %s.", selectedSpawner))
                 else
                     if err then
-                        client:notifyLocalized("forcedSpawnBlocked", selectedSpawner)
+                        client:notify("NPCs are already alive for that spawner.")
                     else
-                        client:notifyLocalized("forcedSpawnFailed", selectedSpawner)
+                        client:notify("Failed to force spawn NPCs.")
                     end
                 end
             else
-                client:notifyLocalized("spawnerNotFound")
+                client:notify("Spawner not found.")
             end
         end)
     end

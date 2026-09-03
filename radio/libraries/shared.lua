@@ -63,7 +63,7 @@ lia.chat.register("radio", {
             if channel then CURCHANNEL = channel end
             speaker:EmitSound("npc/metropolice/vo/on" .. math.random(1, 2) .. ".wav", math.random(50, 60), math.random(80, 120))
         else
-            speaker:notifyLocalized("radioNoRadioComm")
+            speaker:notify("You need a radio to use this channel.")
             return false
         end
     end,

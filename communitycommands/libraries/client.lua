@@ -16,6 +16,6 @@
             gui.OpenURL(url)
         end
     else
-        chat.AddText(Color(255, 0, 0), L("invalidURLReceived"))
+        chat.AddText(Color(255, 0, 0), "Invalid URL received.")
     end
 end)

@@ -3,13 +3,13 @@
     onRun = function(client)
         local inv = client:getChar():getInv()
         if not inv:hasItem("carddeck") then
-            client:notify(L("noCardDeck"))
+            client:notify("You don't have a deck of cards.")
             return
         end
 
-        local ranks = {L("rankAce"), L("rankTwo"), L("rankThree"), L("rankFour"), L("rankFive"), L("rankSix"), L("rankSeven"), L("rankEight"), L("rankNine"), L("rankTen"), L("rankJack"), L("rankQueen"), L("rankKing")}
-        local suits = {L("suitSpades"), L("suitDiamonds"), L("suitHearts"), L("suitClubs")}
+        local ranks = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"}
+        local suits = {"of Spades", "of Diamonds", "of Hearts", "of Clubs"}
         local card = table.Random(ranks) .. " " .. table.Random(suits)
-        lia.chat.send(client, "me", L("cardDrawAction") .. " " .. card)
+        lia.chat.send(client, "me", "draws" .. " " .. card)
     end
 })

@@ -6,7 +6,7 @@ end
 
 function MODULE:AddPoint(client, name, pos)
     if not name or not pos then
-        client:notifyLocalized("invalidInfo")
+        client:notify("Invalid information provided.")
         return
     end
 
@@ -17,13 +17,13 @@ function MODULE:AddPoint(client, name, pos)
         effect = ""
     })
 
-    client:notifyLocalized("tpPointAdded", name)
+    client:notify(string.format("Teleport point %s added.", name))
     lia.data.set("TPPoints", self.tpPoints, false, false)
 end
 
 function MODULE:RemovePoint(client, name)
     if not name then
-        client:notifyLocalized("invalidInfo")
+        client:notify("Invalid information provided.")
         return
     end
 
@@ -45,18 +45,18 @@ function MODULE:RemovePoint(client, name)
     end
 
     if not id then
-        client:notifyLocalized("invalidTPName")
+        client:notify("Teleport point not found.")
         return
     end
 
     self.tpPoints[id] = nil
     lia.data.set("TPPoints", self.tpPoints, false, false)
-    client:notifyLocalized("tpPointRemoved", properName)
+    client:notify(string.format("Teleport point %s removed.", properName))
 end
 
 function MODULE:RenamePoint(client, name, newName)
     if not name or not newName then
-        client:notifyLocalized("invalidInfo")
+        client:notify("Invalid information provided.")
         return
     end
 
@@ -80,17 +80,17 @@ function MODULE:RenamePoint(client, name, newName)
     end
 
     if not oldName then
-        client:notifyLocalized("invalidTPName")
+        client:notify("Teleport point not found.")
         return
     end
 
     lia.data.set("TPPoints", self.tpPoints, false, false)
-    client:notifyLocalized("pointRenamed", oldName, newName)
+    client:notify(string.format("%s renamed to %s.", oldName, newName))
 end
 
 function MODULE:UpdateSound(client, name, _, newSound)
     if not name or not newSound then
-        client:notifyLocalized("invalidInfo")
+        client:notify("Invalid information provided.")
         return
     end
 
@@ -104,17 +104,17 @@ function MODULE:UpdateSound(client, name, _, newSound)
     end
 
     if not found then
-        client:notifyLocalized("invalidSoundPath")
+        client:notify("Invalid sound path.")
         return
     end
 
     lia.data.set("TPPoints", self.tpPoints, false, false)
-    client:notifyLocalized("soundUpdated", name, newSound)
+    client:notify(string.format("%s sound updated to %s.", name, newSound))
 end
 
 function MODULE:UpdateEffect(client, name, _, newEffect)
     if not name or not newEffect then
-        client:notifyLocalized("invalidInfo")
+        client:notify("Invalid information provided.")
         return
     end
 
@@ -128,17 +128,17 @@ function MODULE:UpdateEffect(client, name, _, newEffect)
     end
 
     if not found then
-        client:notifyLocalized("invalidEffectPath")
+        client:notify("Invalid particle effect path.")
         return
     end
 
     lia.data.set("TPPoints", self.tpPoints, false, false)
-    client:notifyLocalized("effectUpdated", name, newEffect)
+    client:notify(string.format("%s effect updated to %s.", name, newEffect))
 end
 
 function MODULE:MoveToPoint(client, name)
     if not name then
-        client:notifyLocalized("invalidInfo")
+        client:notify("Invalid information provided.")
         return
     end
 
@@ -160,7 +160,7 @@ function MODULE:MoveToPoint(client, name)
     end
 
     if not properName then
-        client:notifyLocalized("invalidTPName")
+        client:notify("Teleport point not found.")
         return
     end
 
@@ -178,7 +178,7 @@ function MODULE:MoveToPoint(client, name)
         util.Effect(effect, ed)
     end
 
-    client:notifyLocalized("movedTo", properName)
+    client:notify(string.format("Moved to %s.", properName))
 end
 
 net.Receive("GMTPMove", function(_, client)

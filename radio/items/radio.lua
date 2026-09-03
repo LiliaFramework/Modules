@@ -3,7 +3,7 @@ ITEM.desc = "Radio to use to talk to other people"
 ITEM.isRadio = true
 ITEM.model = "models/danradio/w_radio.mdl"
 ITEM.functions.sabotage = {
-    name = L("sabotage"),
+    name = "Sabotage",
     icon = "icon16/disconnect.png",
     onRun = function(item)
         local client = item.player
@@ -12,7 +12,7 @@ ITEM.functions.sabotage = {
         client:setAction("Breaking", 5, function()
             if IsValid(item.entity) then
                 item:remove()
-                lia.chat.send(client, "actions", L("radioBreakAction"), false)
+                lia.chat.send(client, "actions", "breaks the radio", false)
                 lia.item.spawn("broken_radio", client:getItemDropPos())
             end
         end)
@@ -22,7 +22,7 @@ ITEM.functions.sabotage = {
 }
 
 ITEM.functions.enable = {
-    name = L("radioTurnOn"),
+    name = "Turn On",
     icon = "icon16/connect.png",
     onRun = function(item)
         local client = item.player
@@ -30,7 +30,7 @@ ITEM.functions.enable = {
         client.RadioCount = client.RadioCount or {}
         for _, v in pairs(items) do
             if v.id ~= item.id and v.uniqueID == item.uniqueID and v:getData("enabled") then
-                client:notifyLocalized("radioAlreadyEquipped")
+                client:notify("You already have a radio equipped.")
                 return false
             end
         end
@@ -47,7 +47,7 @@ ITEM.functions.enable = {
 }
 
 ITEM.functions.disable = {
-    name = L("radioTurnOff"),
+    name = "Turn Off",
     icon = "icon16/disconnect.png",
     onRun = function(item)
         local client = item.player
@@ -63,7 +63,7 @@ ITEM.functions.disable = {
 }
 
 ITEM.functions.changeFreq = {
-    name = L("radioChangeFreq"),
+    name = "Set Frequency",
     icon = "icon16/transmit_blue.png",
     onRun = function(item)
         net.Start("radioAdjust")
@@ -81,9 +81,9 @@ ITEM.functions.changeFreq = {
 
 function ITEM:getDesc()
     if not self.entity or not IsValid(self.entity) then
-        return L("radioDescFormat", self:getData("enabled") and L("on") or L("off"), self:getData("freq", "000.0"))
+        return string.format("A handheld radio that is %s at %s MHz.", self:getData("enabled") and "on" or "off", self:getData("freq", "000.0"))
     else
-        return L("radioDescEntityFormat", self.entity:getData("enabled") and L("on") or L("off"), self.entity:getData("freq", "000.0"))
+        return string.format("This radio is %s at %s MHz.", self.entity:getData("enabled") and "on" or "off", self.entity:getData("freq", "000.0"))
     end
 end
 

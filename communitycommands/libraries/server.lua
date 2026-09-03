@@ -1,7 +1,7 @@
 ﻿function MODULE:HandleCommunityURL(client, command)
     local commandTable = self.URLs[command]
     if not commandTable then
-        client:notifyLocalized("invalidCommand")
+        client:notify("Unknown command.")
         return
     end
 

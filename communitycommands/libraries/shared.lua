@@ -9,7 +9,7 @@
                     if url and url ~= "" then
                         self:HandleCommunityURL(client, commandName)
                     else
-                        client:notifyLocalized("urlNotConfig")
+                        client:notify("This URL has not been configured.")
                     end
                 end
             end

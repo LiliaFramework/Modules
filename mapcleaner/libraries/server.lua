@@ -4,19 +4,19 @@
     local mapCleanupTime = lia.config.get("MapCleanupTime", 21600)
     timer.Create("clearWorldItemsWarning", itemCleanupTime - 60, 0, function()
         for _, client in player.Iterator() do
-            client:ChatPrint(L("itemCleanupWarning"))
+            client:ChatPrint("World items will be cleaned up in 60 seconds!")
         end
     end)
 
     timer.Create("AutomaticMapCleanupWarning", mapCleanupTime - 60, 0, function()
         for _, client in player.Iterator() do
-            client:ChatPrint(L("mapCleanupWarning"))
+            client:ChatPrint("Map will be cleaned up in 60 seconds!")
         end
     end)
 
     timer.Create("clearWorldItems", itemCleanupTime, 0, function()
         for _, client in player.Iterator() do
-            client:ChatPrint(L("itemCleanupFinalWarning"))
+            client:ChatPrint("World items have been cleaned up.")
         end
 
         for _, item in pairs(ents.FindByClass("lia_item")) do
@@ -26,7 +26,7 @@
 
     timer.Create("AutomaticMapCleanup", mapCleanupTime, 0, function()
         for _, client in player.Iterator() do
-            client:ChatPrint(L("mapCleanupFinalWarning"))
+            client:ChatPrint("Map cleanup complete.")
         end
 
         for _, ent in ents.Iterator() do

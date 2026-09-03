@@ -5,12 +5,12 @@ lia.command.add("doorkick", {
     onRun = function(client)
         local ent = client:GetEyeTraceNoCursor().Entity
         if IsValid(ent) and ent:isDoor() and ent:getNetVar("disabled", false) then
-            client:notifyLocalized("doorKickDisabled")
+            client:notify("This door can't be kicked down.")
             return
         end
 
         if not table.HasValue(KickDoorWhitelisted, client:Team()) then
-            client:notifyLocalized("doorKickTooWeak")
+            client:notify("You aren't strong enough to kick this door.")
             return
         end
 
@@ -36,12 +36,12 @@ lia.command.add("doorkick", {
                     end
                 end)
             elseif dist <= 60 then
-                client:notifyLocalized("doorKickTooClose")
+                client:notify("Step back to kick the door.")
             else
-                client:notifyLocalized("doorKickTooFar")
+                client:notify("You're too far away to kick the door.")
             end
         else
-            client:notifyLocalized("doorKickInvalid")
+            client:notify("You must be looking at a door.")
         end
     end
 })

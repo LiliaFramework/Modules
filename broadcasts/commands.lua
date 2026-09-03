@@ -10,9 +10,9 @@
     desc = "classBroadcastTitle",
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)
-        if not message then return L("invalidArg") end
+        if not message then return "invalidArg" end
         if not client:getChar():hasFlags("D") and not client:hasPrivilege("canUseClassBroadcast") then
-            client:notifyLocalized("classBroadcastNoPermission")
+            client:notify("You aren't allowed to send a class broadcast.")
             return false
         end
 
@@ -21,7 +21,7 @@
             table.insert(options, class.name .. " (" .. class.uniqueID .. ")")
         end
 
-        client:requestOptions(L("classBroadcastTitle"), L("selectClassesPrompt"), options, #options, function(selectedOptions)
+        client:requestOptions("Send a broadcast to selected classes.", "Choose classes to send to:", options, #options, function(selectedOptions)
             local classList = {}
             local classListSimple = {}
             for _, v in ipairs(selectedOptions) do
@@ -35,19 +35,19 @@
             end
 
             if table.Count(classList) == 0 then
-                client:notifyLocalized("classBroadcastNoValidClasses")
+                client:notify("No valid classes were chosen.")
                 return
             end
 
             for _, ply in player.Iterator() do
                 if ply == client or ply:getChar() and classList[ply:getChar():getClass()] and SERVER then
                     local displayName = ply:getChar() and ply:getChar():getDisplayedName(client)
-                    ClientAddText(ply, Color(200, 200, 100), L("classBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), displayName, Color(255, 255, 255), ": ", message)
-                    ClientAddText(ply, Color(200, 200, 100), L("classBroadcastLabel"), Color(255, 255, 255), ": ", L("classBroadcastSentTo", table.concat(classListSimple, ", ")))
+                    lia.util.addText(ply, Color(200, 200, 100), "[CLASS BROADCAST]", Color(255, 255, 255), ": ", Color(180, 180, 100), displayName, Color(255, 255, 255), ": ", message)
+                    lia.util.addText(ply, Color(200, 200, 100), "[CLASS BROADCAST]", Color(255, 255, 255), ": ", string.format("Sent to: %s", table.concat(classListSimple, ", ")))
                 end
             end
 
-            client:notifyLocalized("classBroadcastSent")
+            client:notify("Class broadcast sent.")
         end)
     end,
 })
@@ -64,9 +64,9 @@ lia.command.add("factionbroadcast", {
     desc = "factionBroadcastTitle",
     onRun = function(client, arguments)
         local message = table.concat(arguments, " ", 1)
-        if not message then return L("invalidArg") end
+        if not message then return "invalidArg" end
         if not client:getChar():hasFlags("B") and not client:hasPrivilege("canUseFactionBroadcast") then
-            client:notifyLocalized("factionBroadcastNoPermission")
+            client:notify("You aren't allowed to send a faction broadcast.")
             return false
         end
 
@@ -75,7 +75,7 @@ lia.command.add("factionbroadcast", {
             table.insert(options, faction.name .. " (" .. faction.uniqueID .. ")")
         end
 
-        client:requestOptions(L("factionBroadcastTitle"), L("selectFactionsPrompt"), options, #options, function(selectedOptions)
+        client:requestOptions("Send a broadcast to selected factions.", "Choose factions to send to:", options, #options, function(selectedOptions)
             local factionList = {}
             local factionListSimple = {}
             for _, v in ipairs(selectedOptions) do
@@ -89,19 +89,19 @@ lia.command.add("factionbroadcast", {
             end
 
             if table.Count(factionList) == 0 then
-                client:notifyLocalized("factionBroadcastNoValidFactions")
+                client:notify("No valid factions were chosen.")
                 return
             end
 
             for _, ply in player.Iterator() do
                 if ply == client or ply:getChar() and factionList[ply:getChar():getFaction()] and SERVER then
                     local displayName = ply:getChar() and ply:getChar():getDisplayedName(client)
-                    ClientAddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", Color(180, 180, 100), displayName, Color(255, 255, 255), ": ", message)
-                    ClientAddText(ply, Color(200, 200, 100), L("factionBroadcastLabel"), Color(255, 255, 255), ": ", L("factionBroadcastSentTo", table.concat(factionListSimple, ", ")))
+                    lia.util.addText(ply, Color(200, 200, 100), "[FACTION BROADCAST]", Color(255, 255, 255), ": ", Color(180, 180, 100), displayName, Color(255, 255, 255), ": ", message)
+                    lia.util.addText(ply, Color(200, 200, 100), "[FACTION BROADCAST]", Color(255, 255, 255), ": ", string.format("Sent to: %s", table.concat(factionListSimple, ", ")))
                 end
             end
 
-            client:notifyLocalized("factionBroadcastSent")
+            client:notify("Faction broadcast sent.")
         end)
     end,
 })

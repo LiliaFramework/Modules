@@ -14,7 +14,7 @@ end
 function lia.utilities.daysBetween(t1, t2)
     local y1, mo1, d1 = lia.utilities.ParseTime(t1)
     local y2, mo2, d2 = lia.utilities.ParseTime(t2)
-    if not y1 or not y2 then return L("invalidDates") end
+    if not y1 or not y2 then return "Invalid dates" end
     local ts1 = os.time({
         year = y1,
         month = mo1,
@@ -104,7 +104,7 @@ end
 
 function lia.utilities.weekdayName(str)
     local h, m, s, d, mo, y = str:match("(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)")
-    if not h then return L("invalidDate") end
+    if not h then return "invalidDate" end
     local ts = os.time({
         year = y,
         month = mo,
@@ -118,9 +118,9 @@ end
 
 function lia.utilities.timeUntil(str)
     local h, m, s, d, mo, y = str:match("(%d+):(%d+):(%d+)%s*-%s*(%d+)/(%d+)/(%d+)")
-    if not h then return L("invalidTimeFormat") end
+    if not h then return "Invalid time format. Expected 'HH:MM:SS - DD/MM/YYYY'." end
     h, m, s, d, mo, y = tonumber(h), tonumber(m), tonumber(s), tonumber(d), tonumber(mo), tonumber(y)
-    if h > 23 or m > 59 or s > 59 or d < 1 or d > 31 or mo < 1 or mo > 12 or y < 1970 then return L("invalidTimeValues") end
+    if h > 23 or m > 59 or s > 59 or d < 1 or d > 31 or mo < 1 or mo > 12 or y < 1970 then return "Invalid time values." end
     local target = os.time({
         year = y,
         month = mo,
@@ -131,7 +131,7 @@ function lia.utilities.timeUntil(str)
     })
 
     local now = os.time()
-    if target <= now then return L("timeIsPast") end
+    if target <= now then return "The specified time is in the past." end
     local diff = target - now
     local ydiff = math.floor(diff / 31557600)
     diff = diff % 31557600
@@ -142,7 +142,7 @@ function lia.utilities.timeUntil(str)
     local hdiff = math.floor(diff / 3600)
     diff = diff % 3600
     local mindiff = math.floor(diff / 60)
-    return L("timeDifferenceFormat", ydiff, mdiff, ddiff, hdiff, mindiff, diff % 60)
+    return string.format("%d years, %d months, %d days, %d hours, %d minutes, %d seconds", ydiff, mdiff, ddiff, hdiff, mindiff, diff % 60)
 end
 
 function lia.utilities.currentLocalTime()
@@ -400,7 +400,7 @@ if SERVER then
                     e:Spawn()
                 end
             else
-                lia.information(L("invalidEntityPosition"), class)
+                lia.information(string.format("Invalid entity position for %s.", tostring(class)))
             end
         end
     end

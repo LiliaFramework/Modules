@@ -59,7 +59,7 @@ function ENT:Use(client)
     local character = client:getChar()
     if not self.IsPlaying then return end
     if not character:hasMoney(MODULE.GamblingPrice) then
-        client:notifyLocalized("slotNotEnoughMoney")
+        client:notify("You don't have enough money!")
         return
     end
 
@@ -127,7 +127,7 @@ function ENT:Use(client)
             if payout > 9 then
                 self:EmitSound("payout.wav", 100, 100)
                 character:giveMoney(payout)
-                client:notifyLocalized("slotPayout", payout)
+                client:notify(string.format("Your payout is %sT", payout))
             end
 
             self.IsPlaying = true

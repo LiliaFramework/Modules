@@ -10,20 +10,20 @@
     onRun = function(client, arguments)
         local faction = lia.faction.indices[client:Team()]
         if not faction or not faction.criminal then
-            client:ChatPrint(L("rumourNotAllowed"))
+            client:ChatPrint("Your faction can't spread rumours.")
             return
         end
 
         local rumourMessage = table.concat(arguments, " ")
         if rumourMessage == "" then
-            client:ChatPrint(L("rumourNoMessage"))
+            client:ChatPrint("You didn't provide a rumour.")
             return
         end
 
         if not client.rumourdelay then client.rumourdelay = 0 end
         if CurTime() < client.rumourdelay then
             local seconds = math.ceil(client.rumourdelay - CurTime())
-            client:notifyLocalized("rumourCommandCooldownTimed", seconds)
+            client:notify(string.format("Please wait %s seconds before spreading another rumour.", seconds))
             return
         end
 
@@ -35,9 +35,9 @@
         for _, target in player.Iterator() do
             local targetFaction = lia.faction.indices[target:Team()]
             if targetFaction and targetFaction.criminal then
-                ClientAddText(target, prefixColor, "[RUMOUR] ", messageColor, rumourMessage)
+                lia.util.addText(target, prefixColor, "[RUMOUR] ", messageColor, rumourMessage)
             elseif revealMath and targetFaction and targetFaction.police then
-                ClientAddText(target, prefixColor, "[RUMOUR] ", messageColor, rumourMessage)
+                lia.util.addText(target, prefixColor, "[RUMOUR] ", messageColor, rumourMessage)
             end
         end
     end
