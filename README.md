@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
- <img src="https://github.com/LiliaFramework/Lilia/blob/main/logo.png?raw=true" alt="Lilia Logo" width="220" />
+ <img src="https://bleonheart.github.io/Samael-Assets/lilia.png?raw=true" alt="Lilia Logo" width="220" />
 </p>
 
 <p align="center">
