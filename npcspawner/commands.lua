@@ -8,7 +8,7 @@
     },
     desc = "forceNPCSpawnDesc",
     onRun = function(client)
-        local map = lia.data.getEquivalencyMap(game.GetMap())
+        local map = game.GetMap()
         local zones = MODULE.SpawnPositions[map]
         if not zones then
             client:notify("No NPC spawns are defined on this map.")

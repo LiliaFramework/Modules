@@ -51,9 +51,3 @@ net.Receive("PlaceWarTableMarker", function(_, client)
     marker:SetMoveType(MOVETYPE_NONE)
 end)
 
-net.Receive("RemoveWarTableMarker", function(_, client)
-    local ent = net.ReadEntity()
-    local tableEnt = getTableEnt(client:GetPos())
-    if not tableEnt then return end
-    ent:Remove()
-end)
