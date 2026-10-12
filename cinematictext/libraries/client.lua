@@ -28,7 +28,7 @@ end)
 
 net.Receive("OpenCinematicMenu", function() vgui.Create("CinematicTextMenu") end)
 function PANEL:Init()
-    if lia.gui.cinematicSplashText then lia.gui.cinematicSplashText:Remove() end
+    if IsValid(lia.gui.cinematicSplashText) then lia.gui.cinematicSplashText:Remove() end
     lia.gui.cinematicSplashText = self
     self:SetSize(ScrW(), ScrH())
     self.barSize = ScrH() * 0.13
